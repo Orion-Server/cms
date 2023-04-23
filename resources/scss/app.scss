@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Includes
+@import 'includes/reset.scss';
+@import 'includes/external.scss';
+
+// Partials
+@import 'partials/icons.scss';
+
+// Global variables
+:root {
+    --header-height: 200px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    image-rendering: pixelated;
+}
+
+// header {
+//     // &::after {
+//     //     content: '';
+//     //     position: absolute;
+//     //     bottom: 0;
+//     //     left: 0;
+//     //     width: 720px;
+//     //     height: 512px;
+//     //     background: url('../../public/assets/images/hotel.png') no-repeat center center;
+//     //     background-size: cover;
+//     //     z-index: 0;
+//     // }
+// }
