@@ -20,12 +20,12 @@
 </div>
 <div class="flex gap-4 mt-6">
     <x-ui.button @click="toggleToRegisterModal()"
-        class="dark:bg-green-600 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-500 dark:shadow-green-700/75 shadow-green-600/75 flex-1 py-3">
+        class="dark:bg-green-600 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-500 dark:shadow-green-700/75 shadow-green-600/75 flex-1 py-3 text-white">
         <i class="fa-solid fa-user-plus"></i>
         Register
     </x-ui.button>
     <x-ui.button
-        class="dark:bg-blue-600 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-500 dark:shadow-blue-700/75 shadow-blue-600/75 flex-1 py-3">
+        class="dark:bg-blue-600 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-500 dark:shadow-blue-700/75 shadow-blue-600/75 flex-1 py-3 text-white">
         <i class="fa-solid fa-right-to-bracket"></i>
         Login
     </x-ui.button>

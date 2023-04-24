@@ -20,7 +20,7 @@
         <div>
             <x-ui.button
                 @click="showLoginModal = true"
-                class="dark:bg-orange-600 bg-orange-500 border-orange-700 hover:bg-orange-400 dark:hover:bg-orange-500 dark:shadow-orange-700/75 shadow-orange-600/75 flex-1 py-3"
+                class="border-blue-500 border hover:bg-blue-500 hover:text-white dark:shadow-blue-500/75 shadow-blue-400/75 flex-1 py-3 text-blue-500"
             >
                 <i class="fa-solid fa-right-to-bracket"></i>
                 Sign In
@@ -34,7 +34,7 @@
         <div>
             <x-ui.button
                 @click="showRegisterModal = true"
-                class="dark:bg-green-600 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-500 dark:shadow-green-700/75 shadow-green-600/75 flex-1 py-3"
+                class="dark:bg-green-600 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-500 dark:shadow-green-700/75 shadow-green-600/75 flex-1 py-3 text-white"
             >
                 <i class="fa-solid fa-user-plus"></i>
                 Register now
