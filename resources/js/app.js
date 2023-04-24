@@ -1,4 +1,4 @@
-import './bootstrap';
-import TippyWrapper from './external/TippyWrapper'
+import './bootstrap'
+import WebManager from './orion/WebManager'
 
-TippyWrapper.start()
+WebManager.start()

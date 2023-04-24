@@ -6,14 +6,14 @@ export default class TippyWrapper {
             this.instance = new TippyWrapper()
         }
 
-        this.instance.detectTippyButtons()
+        this.instance.bindTooltipTriggers()
     }
 
     getInstance() {
         return this.instance
     }
 
-    detectTippyButtons() {
+    bindTooltipTriggers() {
         this.detectSingletonTooltips()
     }
 
