@@ -1,5 +1,5 @@
 i.icon {
-    @apply dark:bg-slate-950 bg-white border dark:border-slate-800 border-blue-500 rounded-lg flex justify-center items-center bg-no-repeat bg-center;
+    @apply dark:bg-slate-950 bg-white border-b-2 dark:border-slate-800 border-gray-300 shadow-lg rounded-lg flex justify-center items-center bg-no-repeat bg-center;
 
     &.big {
         width: 45px;

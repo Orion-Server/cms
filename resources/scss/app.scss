@@ -19,16 +19,6 @@ body {
     image-rendering: pixelated;
 }
 
-// header {
-//     // &::after {
-//     //     content: '';
-//     //     position: absolute;
-//     //     bottom: 0;
-//     //     left: 0;
-//     //     width: 720px;
-//     //     height: 512px;
-//     //     background: url('../../public/assets/images/hotel.png') no-repeat center center;
-//     //     background-size: cover;
-//     //     z-index: 0;
-//     // }
-// }
+header {
+    background-image: url('../../public/assets/images/background.webp')
+}
