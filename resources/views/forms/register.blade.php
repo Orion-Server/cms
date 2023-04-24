@@ -45,29 +45,4 @@
         Register
     </x-ui.button>
 </div>
-<div class="my-6 flex items-center justify-between">
-    <span class="border-b w-1/5 md:w-1/4"></span>
-    <span class="text-xs text-gray-500 uppercase">or join with</span>
-    <span class="border-b w-1/5 md:w-1/4"></span>
-</div>
-<div class="flex justify-around flex-col sm:flex-row gap-3 mt-4">
-    <a href="#" class="flex gap-3 items-center justify-center text-white rounded-lg shadow-md hover:bg-gray-100">
-        <div class="pl-4 py-3">
-            <i class="fa-brands fa-google text-red-500"></i>
-        </div>
-        <h1 class="pr-4 py-3 text-center text-gray-600 font-bold">Google</h1>
-    </a>
-    <a href="#" class="flex gap-3 items-center justify-center text-white rounded-lg shadow-md hover:bg-gray-100">
-        <div class="pl-4 py-3">
-            <i class="fa-brands fa-facebook-f text-blue-500"></i>
-        </div>
-        <h1 class="pr-4 py-3 text-center text-gray-600 font-bold">Facebook</h1>
-    </a>
-    <a href="#" class="flex gap-3 items-center justify-center text-white rounded-lg shadow-md hover:bg-gray-100">
-        <div class="pl-4 py-3">
-            <i class="fa-brands fa-discord text-gray-900"></i>
-        </div>
-        <h1 class="pr-4 py-3 text-center text-gray-600 font-bold">Discord</h1>
-    </a>
-</div>
 <a class="text-gray-500 underline underline-offset-4 block text-center mt-6 text-sm" href="#" @click="toggleToLoginModal()">Click here if you already have an account</a>
