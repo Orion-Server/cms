@@ -1,0 +1,10 @@
+i.icon {
+    &.small {
+        width: 20px;
+        height: 20px;
+
+        &.home {
+            background-image: url('../../../public/assets/images/icons/small/home.gif');
+        }
+    }
+}

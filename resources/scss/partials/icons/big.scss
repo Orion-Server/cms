@@ -1,0 +1,14 @@
+i.icon {
+    &.big {
+        width: 45px;
+        height: 45px;
+
+        &.users {
+            background-image: url('../../../public/assets/images/icons/big/users.png');
+        }
+
+        &.comment {
+            background-image: url('../../../public/assets/images/icons/big/comment.png');
+        }
+    }
+}
