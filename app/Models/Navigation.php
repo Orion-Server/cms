@@ -34,7 +34,7 @@ class Navigation extends Model
             $navigation = Navigation::defaultQuery();
 
             if($withSubNavigations) {
-                $navigation->with(['subNavigations' => fn ($query) => $query->whereVisible(true)]);
+                $navigation->with(['subNavigations' => fn ($query) => $query->whereVisible(true)->orderBy('order')]);
             }
 
             return $navigation->get();

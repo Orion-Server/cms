@@ -15,6 +15,13 @@ export default class TippyWrapper {
 
     bindTooltipTriggers() {
         this.detectSingletonTooltips()
+        this.detectSimpleTooltips()
+    }
+
+    detectSimpleTooltips() {
+        const simpleTooltips = document.querySelectorAll('[data-tippy]')
+
+        Array.from(simpleTooltips).forEach(tooltip => this.createTippyInstance(tooltip))
     }
 
     detectSingletonTooltips() {

@@ -7,11 +7,11 @@ export default class WebManager {
         WebManager.listenAlerts()
     }
 
-    startTooltips() {
+    static startTooltips() {
         TippyWrapper.start()
     }
 
-    listenAlerts() {
+    static listenAlerts() {
         window.addEventListener('orion:alert', event => {
             const { type, message, duration } = event.detail
 
