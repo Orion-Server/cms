@@ -4,7 +4,7 @@
         class="flex relative h-full justify-center items-center bg-white dark:bg-slate-950 px-2"
         x-data="{
             showLoginModal: false,
-            showRegisterModal: false,
+            showRegisterModal: true,
 
             toggleToRegisterModal() {
                 this.showLoginModal = false
@@ -26,7 +26,11 @@
                 Sign In
             </x-ui.button>
 
-            <x-ui.modal alpine-model="showLoginModal">
+            <x-ui.modal
+                alpine-model="showLoginModal"
+                title="Login"
+                sub-title="Welcome back!"
+            >
                 @include('forms.login')
             </x-ui.modal>
         </div>
@@ -40,7 +44,11 @@
                 Register now
             </x-ui.button>
 
-            <x-ui.modal alpine-model="showRegisterModal">
+            <x-ui.modal
+                alpine-model="showRegisterModal"
+                title="Register"
+                sub-title="We are glad you are here!"
+            >
                 @include('forms.register')
             </x-ui.modal>
         </div>

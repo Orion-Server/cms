@@ -1,41 +1,15 @@
-<h2 class="text-2xl font-semibold text-gray-700 text-center">Register</h2>
-<p class="text-lg text-gray-600 text-center">We are glad you are here!</p>
 <div class="mt-4 flex flex-col">
-    <label class="text-gray-700 text-left text-sm font-bold mb-2">
-        <i class="fa-regular fa-user"></i>
-        Username
-    </label>
-    <input placeholder="Username"
-        class="bg-gray-50 font-semibold text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-blue-500 border rounded-lg py-2 px-4 block w-full appearance-none"
-        type="text">
+    <x-ui.input label="Username" placeholder="Username" type="text" />
 </div>
 <div class="mt-4 flex flex-col">
-    <label class="text-gray-700 text-left text-sm font-bold mb-2">
-        <i class="fa-regular fa-envelope"></i>
-        Email
-    </label>
-    <input placeholder="Email"
-        class="bg-gray-50 font-semibold text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-blue-500 border rounded-lg py-2 px-4 block w-full appearance-none"
-        type="email">
+    <x-ui.input label="Email" placeholder="Email" type="email" />
 </div>
-<div class="flex mt-4 justify-between gap-3 sm:flex-row flex-col bg-gray-100 p-2 rounded-lg">
+<div class="flex mt-4 justify-between gap-3 sm:flex-row flex-col bg-gray-100 dark:bg-transparent dark:border dark:border-slate-800 p-2 rounded-lg">
     <div class="flex flex-col">
-        <label class="block text-gray-700 text-left text-sm font-bold mb-2">
-            <i class="fa-solid fa-lock"></i>
-            Your Password
-        </label>
-        <input placeholder="Password"
-            class="bg-gray-50 font-semibold text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-blue-500 border rounded-lg py-2 px-4 block w-full appearance-none"
-            type="password">
+        <x-ui.input label="Password" placeholder="Password" type="password" />
     </div>
     <div class="flex flex-col">
-        <label class="block text-gray-700 text-left text-sm font-bold mb-2">
-            <i class="fa-solid fa-lock"></i>
-            Confirm Password
-        </label>
-        <input placeholder="Confirmation"
-            class="bg-gray-50 font-semibold text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-blue-500 border rounded-lg py-2 px-4 block w-full appearance-none"
-            type="password">
+        <x-ui.input label="Confirm Password" placeholder="Password" type="password" />
     </div>
 </div>
 <div class="flex gap-4 mt-6">
@@ -45,4 +19,6 @@
         Register
     </x-ui.button>
 </div>
-<a class="text-gray-500 underline underline-offset-4 block text-center mt-6 text-sm" href="#" @click="toggleToLoginModal()">Click here if you already have an account</a>
+<a class="text-gray-500 dark:text-gray-400 underline underline-offset-4 block text-center mt-6 text-sm" href="#" @click="toggleToLoginModal()">
+    Click here if you already have an account
+</a>

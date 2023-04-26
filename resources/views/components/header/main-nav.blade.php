@@ -29,16 +29,16 @@
                 @foreach ($navigations as $item)
                     <div @click="toggleMenu({{ $item->id }})" @class([
                         "flex relative justify-center group gap-2 px-8 uppercase h-full cursor-pointer items-center",
-                        "text-blue-600 dark:text-blue-400 font-semibold border-b-2 border-blue-500 text-white" => \Route::current()->uri == $item->slug
+                        "text-blue-600 dark:text-blue-400 font-semibold border-b-2 border-blue-500" => \Route::current()->uri == $item->slug
                     ])>
-                        <img label="{{ $item->label }} icon" src="{{ $item->icon }}" />
+                        <img alt="{{ $item->label }} icon" src="{{ $item->icon }}" />
                         <span class="group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{{ $item->label }}</span>
                         @unless ($item->subNavigations->isEmpty())
                             <span><i class="fa-solid fa-chevron-down text-xs dark:text-slate-500"></i></span>
                         @endunless
 
                         @unless ($item->subNavigations->isEmpty())
-                            <div class="absolute top-full left-0 min-w-full w-auto dark:bg-slate-950 bg-white shadow-lg border-b-2 border-gray-200 dark:border-slate-800 rounded-b-md z-[1]"
+                            <div class="none absolute top-full left-0 min-w-full w-auto dark:bg-slate-950 bg-white shadow-lg border-b-2 border-gray-200 dark:border-slate-800 rounded-b-md z-[1]"
                                 x-transition.origin.top.left
                                 x-show="showMenu == {{ $item->id }}"
                             >
@@ -57,8 +57,14 @@
                     </div>
                 @endforeach
 
-                <div class="flex relative justify-center group gap-2 px-8 uppercase h-full cursor-pointer duration-500 items-center">
-                    <div class="relative w-6 h-6 flex items-center justify-center rounded-md dark:bg-slate-800 bg-yellow-500" @click="toggleTheme()">
+                <div class="flex relative justify-center group gap-2 px-8 uppercase h-full cursor-pointer items-center">
+                    <div
+                        class="relative w-6 h-6 flex items-center justify-center rounded-md dark:bg-slate-800 bg-yellow-500"
+                        @click="toggleTheme()"
+                        data-tippy
+                        data-tippy-content="<small>Toggle theme</small>"
+                        data-tippy-placement="bottom"
+                    >
                         <template x-if="theme == 'light'">
                             <i class="fa-solid fa-sun text-white"></i>
                         </template>
