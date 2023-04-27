@@ -1,7 +1,7 @@
 i.icon {
     &.big {
-        width: 45px;
-        height: 45px;
+        width: 50px;
+        height: 50px;
 
         &.users {
             background-image: url('../../../public/assets/images/icons/big/users.png');
@@ -9,6 +9,18 @@ i.icon {
 
         &.comment {
             background-image: url('../../../public/assets/images/icons/big/comment.png');
+        }
+
+        &.articles {
+            background-image: url('../../../public/assets/images/icons/big/articles.gif');
+        }
+
+        &.fixed-articles {
+            background-image: url('../../../public/assets/images/icons/big/fixed-articles.gif');
+        }
+
+        &.camera {
+            background-image: url('../../../public/assets/images/icons/big/camera.png');
         }
     }
 }

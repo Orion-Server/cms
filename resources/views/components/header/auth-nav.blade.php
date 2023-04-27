@@ -4,7 +4,7 @@
         class="flex relative h-full justify-center items-center bg-white dark:bg-slate-950 px-2"
         x-data="{
             showLoginModal: false,
-            showRegisterModal: true,
+            showRegisterModal: false,
 
             toggleToRegisterModal() {
                 this.showLoginModal = false
@@ -17,7 +17,10 @@
             }
         }"
     >
-        <div>
+        <div
+            @openLoginModal.window="toggleToLoginModal()"
+            @openRegisterModal.window="toggleToRegisterModal()"
+        >
             <x-ui.button
                 @click="showLoginModal = true"
                 class="border-blue-500 border hover:bg-blue-500 hover:text-white dark:shadow-blue-500/75 shadow-blue-400/75 flex-1 py-3 text-blue-500"

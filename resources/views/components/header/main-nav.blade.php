@@ -1,6 +1,6 @@
 @php($navigations = \App\Models\Navigation::getNavigations())
 
-<div class="bg-white dark:bg-slate-950 w-full z-[1] relative h-16 border-b-2 border-gray-200 dark:border-slate-800">
+<div class="bg-white dark:bg-slate-950 w-full z-[100] relative h-16 border-b-2 border-gray-200 dark:border-slate-800">
     <x-container class="h-full flex justify-center">
         <nav class="h-full w-1/2" @click.away="showMenu = null" x-data="{
             showMenu: null,
@@ -38,9 +38,10 @@
                         @endunless
 
                         @unless ($item->subNavigations->isEmpty())
-                            <div class="none absolute top-full left-0 min-w-full w-auto dark:bg-slate-950 bg-white shadow-lg border-b-2 border-gray-200 dark:border-slate-800 rounded-b-md z-[1]"
+                            <div class="absolute top-full left-0 min-w-full w-auto dark:bg-slate-950 bg-white shadow-lg border-b-2 border-gray-200 dark:border-slate-800 rounded-b-md z-[1]"
                                 x-transition.origin.top.left
                                 x-show="showMenu == {{ $item->id }}"
+                                style="display: none"
                             >
                                 <ul class="flex divide-y dark:divide-slate-800 flex-col">
                                     @foreach ($item->subNavigations as $subItem)
