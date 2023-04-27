@@ -8,13 +8,13 @@
             @openLoginModal.window="toggleToLoginModal()"
             @openRegisterModal.window="toggleToRegisterModal()"
         >
-            <x-ui.button
+            <x-ui.buttons.default
                 @click="showLoginModal = true"
                 class="border-blue-500 border hover:bg-blue-500 hover:text-white dark:shadow-blue-500/75 shadow-blue-400/75 flex-1 py-3 text-blue-500"
             >
                 <i class="fa-solid fa-right-to-bracket"></i>
                 Sign In
-            </x-ui.button>
+            </x-ui.buttons.default>
 
             <x-ui.modal
                 alpine-model="showLoginModal"
@@ -26,13 +26,13 @@
         </div>
         <span class="px-4 font-bold text-blue-400">or</span>
         <div>
-            <x-ui.button
+            <x-ui.buttons.default
                 @click="showRegisterModal = true"
                 class="dark:bg-green-600 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-500 dark:shadow-green-700/75 shadow-green-600/75 flex-1 py-3 text-white"
             >
                 <i class="fa-solid fa-user-plus"></i>
                 Register now
-            </x-ui.button>
+            </x-ui.buttons.default>
 
             <x-ui.modal
                 alpine-model="showRegisterModal"

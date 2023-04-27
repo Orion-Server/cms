@@ -32,12 +32,12 @@
                         description="Check out the latest articles below"
                         icon="articles"
                     >
-                        <x-ui.redirectable-button
+                        <x-ui.buttons.redirectable
                                 href="#"
                                 class="dark:bg-blue-600 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-500 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
                             >
                                 View All
-                        </x-ui.redirectable-button>
+                        </x-ui.buttons.redirectable>
                     </x-title-box>
                     <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-3">
                         @for ($i = 0; $i < 6; $i++)
@@ -84,12 +84,12 @@
                         description="Stay on top of what users are doing at the hotel"
                         icon="camera"
                     >
-                        <x-ui.redirectable-button
+                        <x-ui.buttons.redirectable
                             href="#"
                             class="dark:bg-blue-600 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-500 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
                         >
                                 View All
-                        </x-ui.redirectable-button>
+                        </x-ui.buttons.redirectable>
                     </x-title-box>
                     <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-2">
                         @for ($i = 0; $i < 6; $i++)

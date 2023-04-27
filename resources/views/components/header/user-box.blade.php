@@ -78,7 +78,7 @@
                         href=""
                         data-tippy
                         data-tippy-trigger="focus"
-                        data-tippy-content='<x-ui.button class="text-xs dark:bg-red-600 bg-red-500 border-red-700 hover:bg-red-400 dark:hover:bg-red-500 dark:shadow-red-700/75 shadow-red-600/75 py-2 text-white">Confirm</x-ui.button>'
+                        data-tippy-content='<x-ui.buttons.default class="text-xs dark:bg-red-600 bg-red-500 border-red-700 hover:bg-red-400 dark:hover:bg-red-500 dark:shadow-red-700/75 shadow-red-600/75 py-2 text-white">Confirm</x-ui.buttons.default>'
                         data-tippy-placement="bottom"
                         data-tippy-interactive="true"
                     >

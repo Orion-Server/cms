@@ -19,23 +19,23 @@
         />
     </div>
     <div class="flex gap-4 mt-6">
-        <x-ui.button
+        <x-ui.buttons.default
             type="button"
             @click="toggleToRegisterModal()"
             class="dark:bg-green-600 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-500 dark:shadow-green-700/75 shadow-green-600/75 flex-1 py-3 text-white"
         >
             <i class="fa-solid fa-user-plus"></i>
             Register
-        </x-ui.button>
+        </x-ui.buttons.default>
 
-        <x-ui.loading-button
+        <x-ui.buttons.loadable
             type="submit"
             alpine-model="loading"
             class="dark:bg-blue-600 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-500 dark:shadow-blue-700/75 shadow-blue-600/75 flex-1 py-3 text-white"
         >
             <i class="fa-solid fa-right-to-bracket"></i>
             Login
-        </x-ui.loading-button>
+        </x-ui.buttons.loadable>
     </div>
     <div class="my-6 flex items-center justify-between">
         <span class="border-b dark:border-gray-700 w-1/5 md:w-1/4"></span>

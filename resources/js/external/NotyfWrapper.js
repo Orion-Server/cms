@@ -59,8 +59,6 @@ export default class Alert {
             case 'error':
                 this.error(message, duration)
                 break
-            default:
-                this.success(message, duration)
         }
     }
 

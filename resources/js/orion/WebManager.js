@@ -23,7 +23,7 @@ export default class WebManager {
         window.addEventListener('orion:alert', event => {
             const { type, message, duration } = event.detail
 
-            if(!type || !message) return
+            if(!type && !message) return
 
             NotyfWrapper.alert(type, message, duration)
         })

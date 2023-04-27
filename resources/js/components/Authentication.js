@@ -158,7 +158,10 @@ export default class Authentication {
     }
 
     static _treatResponseSuccess(componentInstance, message, redirectToHome = true) {
-        componentInstance.$dispatch('orion:alert', { message })
+        componentInstance.$dispatch('orion:alert', {
+            message,
+            type: 'success'
+        })
 
         if(!redirectToHome) return
 
