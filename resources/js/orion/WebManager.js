@@ -1,10 +1,18 @@
+import Alpine from 'alpinejs'
 import TippyWrapper from '../external/TippyWrapper'
 import NotyfWrapper from '../external/NotyfWrapper'
+import Authentication from '../components/Authentication'
 
 export default class WebManager {
     static start() {
+        // Authentication components
+        Authentication.start()
+
+        // WebManager components
         WebManager.startTooltips()
         WebManager.listenAlerts()
+
+        WebManager.startAlpineFlow()
     }
 
     static startTooltips() {
@@ -19,5 +27,10 @@ export default class WebManager {
 
             NotyfWrapper.alert(type, message, duration)
         })
+    }
+
+    static startAlpineFlow() {
+        window.Alpine = Alpine
+        Alpine.start()
     }
 }

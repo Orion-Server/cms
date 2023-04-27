@@ -2,20 +2,7 @@
     <div class="absolute w-2/3 xl:w-1/3 mx-auto inset-x-0 h-px -translate-y-1/2 dark:bg-slate-900 bg-gray-300 top-1/2"></div>
     <div
         class="flex relative h-full justify-center items-center bg-white dark:bg-slate-950 px-2"
-        x-data="{
-            showLoginModal: false,
-            showRegisterModal: false,
-
-            toggleToRegisterModal() {
-                this.showLoginModal = false
-                this.showRegisterModal = true
-            },
-
-            toggleToLoginModal() {
-                this.showRegisterModal = false
-                this.showLoginModal = true
-            }
-        }"
+        x-data="authentication"
     >
         <div
             @openLoginModal.window="toggleToLoginModal()"

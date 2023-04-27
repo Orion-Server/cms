@@ -1,6 +1,6 @@
 @php($navigations = \App\Models\Navigation::getNavigations())
 
-<div class="bg-white dark:bg-slate-950 w-full z-[100] relative h-16 border-b-2 border-gray-200 dark:border-slate-800">
+<div class="bg-white dark:bg-slate-950 w-full z-[2] relative h-16 border-b-2 border-gray-200 dark:border-slate-800">
     <x-container class="h-full flex justify-center">
         <nav class="h-full w-1/2" @click.away="showMenu = null" x-data="{
             showMenu: null,

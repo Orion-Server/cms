@@ -11,7 +11,7 @@ export default class Alert {
         this.alert = new Notyf({
             duration: 4000,
             position: {
-                x: 'center',
+                x: 'right',
                 y: 'top',
             },
             types: [
@@ -48,13 +48,19 @@ export default class Alert {
     static alert(type, message, duration) {
         switch(type) {
             case 'success':
-                return this.success(message, duration)
+                this.success(message, duration)
+                break
             case 'warning':
-                return this.warning(message, duration)
+                this.warning(message, duration)
+                break
             case 'info':
-                return this.info(message, duration)
+                this.info(message, duration)
+                break
             case 'error':
-                return this.error(message, duration)
+                this.error(message, duration)
+                break
+            default:
+                this.success(message, duration)
         }
     }
 

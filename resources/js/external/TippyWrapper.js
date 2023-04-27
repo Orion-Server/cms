@@ -38,17 +38,21 @@ export default class TippyWrapper {
         )
     }
 
-    createTippyInstance(element) {
+    createTippyInstance(element, options = {}) {
         const content = element.dataset.tippyContent,
             placement = element.dataset.tippyPlacement,
-            interactive = element.dataset.tippyInteractive
+            interactive = element.dataset.tippyInteractive,
+            trigger = element.dataset.tippyTrigger
 
-        return tippy(element, {
+        options = Object.assign(options, {
             content,
             interactive: interactive !== undefined,
             placement,
+            trigger,
             allowHTML: true,
-            theme: 'translucent',
+            theme: 'translucent'
         })
+
+        return tippy(element, options)
     }
 }
