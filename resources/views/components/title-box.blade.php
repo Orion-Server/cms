@@ -2,6 +2,7 @@
     'title' => null,
     'description' => null,
     'icon' => null,
+    'image' => null,
     'buttonLabel' => null,
     'buttonLink' => null
 ])
@@ -9,7 +10,11 @@
 <div class="w-full h-16 flex justify-between">
     <div class="w-2/3 h-full flex justify-start items-center">
         <div class="w-16 h-full flex justify-start items-center">
-            <i class="icon big {{ $icon }}"></i>
+            @if ($icon)
+                <i class="icon big {{ $icon }}"></i>
+            @elseif ($image)
+                <img src="{{ $image }}" alt="" class="w-12 h-12 rounded-full">
+            @endif
         </div>
         <div class="flex flex-col">
             <span class="font-semibold dark:text-white">{{ $title }}</span>

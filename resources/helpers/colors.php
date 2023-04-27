@@ -6,7 +6,7 @@ if(!function_exists('getPredominantImageColor')) {
      */
     function getPredominantImageColor(string $imageUrl, string $default = '#000'): string {
         try {
-            $gdImage = @imagecreatefromstring(@file_get_contents($imageUrl));
+            $gdImage = imagecreatefromstring(file_get_contents($imageUrl));
 
             if(!$gdImage) return $default;
 
@@ -37,16 +37,5 @@ if(!function_exists('isDarkColor')) {
         $brightness = (($c_r * 299) + ($c_g * 587) + ($c_b * 114)) / 1000;
 
         return $brightness <= 155;
-    }
-}
-
-if(!function_exists('getTitleColor')) {
-    /**
-     * Determines the color of a string based on the predominant color of an image (possibly a string background).
-     */
-    function getStringColorByPredominantImageColor(string $imageUrl, $defaultColor): string {
-        $color = getPredominantImageColor($imageUrl, $defaultColor);
-
-        return isDarkColor($color) ? '#fff' : '#000';
     }
 }
