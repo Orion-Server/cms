@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <x-container>
     <div class="w-full h-auto relative flex justify-start flex-col lg:flex-row items-start gap-6">
         <div class="h-auto w-full lg:w-1/4">
@@ -24,8 +23,7 @@
                             data-tippy-content="<small>Posted by <b>iNicollas</b></small>"
                             @class([
                                 "dark:text-slate-300 text-sm py-1.5 border-l border-slate-300 hover:!border-slate-400 hover:border-l dark:border-slate-600 pl-3 decoration-slate-400 hover:!text-blue-400",
-                                "!border-blue-400 !text-blue-400 border-l" => $j == 3,
-                                "!border-lime-400" => $j == 2
+                                "!border-blue-400 !text-blue-400 border-l" => $j == 3
                             ])
                             href=""
                         >
@@ -35,7 +33,7 @@
                 @endfor
             </div>
         </div>
-        <div class="h-auto w-full flex flex-col lg:w-3/4">
+        <div class="h-48 w-full lg:w-3/4">
             <div
                 class="w-full !bg-cover !bg-no-repeat !bg-center h-16 flex rounded-lg shadow-lg justify-between border-b-2 border-gray-300 dark:border-slate-800"
                 style="background: linear-gradient(to right, blue 50%, transparent), url('http://localhost/assets/images/user-box-bg.gif')"
@@ -44,13 +42,8 @@
                     {{ fake()->sentence() }}
                 </span>
             </div>
-            <div class="divide-y divide-dashed divide-gray-400 dark:divide-slate-600">
-                <div class="w-full break-words text-sm leading-relaxed dark:text-slate-200 text-justify mt-4 h-auto p-4 bg-white dark:bg-slate-950 rounded-t-lg shadow-lg">
-                    {{ fake()->paragraphs(10, true) }}
-                </div>
-                <div class="w-full h-20 bg-gray-100 dark:bg-slate-800 rounded-b-lg shadow-lg">
-
-                </div>
+            <div class="w-full break-words text-sm leading-relaxed dark:text-slate-200 text-justify mt-4 h-auto p-4 bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
+                {{ fake()->paragraphs(10, true) }}
             </div>
         </div>
     </div>
