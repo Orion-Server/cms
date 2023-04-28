@@ -52,7 +52,7 @@ services:
             - ./:/var/www
         depends_on:
             - redis
-            - app
+            - orioncms
         networks:
             - laravel
 
