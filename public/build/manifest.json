@@ -1,0 +1,16 @@
+{
+  "public/assets/images/background.webp": {
+    "file": "assets/background-c82b1717.webp",
+    "src": "public/assets/images/background.webp"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-9e5ef524.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/scss/app.scss": {
+    "file": "assets/app-3a861709.css",
+    "isEntry": true,
+    "src": "resources/scss/app.scss"
+  }
+}
