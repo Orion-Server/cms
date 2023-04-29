@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Article Page')
-
 @section('content')
 <x-container>
     <div class="w-full">

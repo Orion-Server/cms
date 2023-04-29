@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@section('content')
+@section('title', 'Article Page')
 
+@section('content')
 <x-container>
     <div class="w-full h-auto relative flex justify-start flex-col lg:flex-row items-start gap-6">
         <div class="h-auto w-full lg:w-1/4">
@@ -116,7 +117,6 @@
                             </x-ui.buttons.redirectable>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
