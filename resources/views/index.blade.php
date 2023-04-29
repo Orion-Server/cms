@@ -47,7 +47,7 @@
                                     <div class="flex w-full flex-col">
                                         <a href="/articles" class="w-full font-semibold text-slate-900 dark:text-white hover:text-blue-400 dark:hover:text-blue-400 text-sm truncate">{{ fake()->sentence() }}</a>
                                         <span class="w-full mt-2 flex gap-2 justify-start items-center text-slate-700 max-h-[45px] overflow-hidden dark:text-slate-400 text-xs">
-                                            <div class="w-[30px] h-[30px] bg-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900" style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=ferrazmatheus&direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1')"></div>
+                                            <div class="w-[30px] h-[30px] bg-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900" style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1')"></div>
                                             <a class="underline underline-offset-2 hover:text-blue-400" href="#">iNicollas</a>
                                         </span>
                                     </div>
@@ -69,9 +69,9 @@
                     @for ($i = 0; $i < 16; $i++)
                         <div
                             data-tippy-singleton
-                            data-tippy-content="<small>Ferrazmatheus</small>"
+                            data-tippy-content="<small>nicollas1073</small>"
                             class="h-16 bg-white rounded-lg shadow-lg border-b-2 border-gray-300 dark:border-slate-800 dark:bg-slate-950 bg-center bg-no-repeat"
-                            style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=ferrazmatheus&head_direction=3&size=m&gesture=sml&action=sit,wav&headonly=1')"
+                            style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&head_direction=3&size=m&gesture=sml&action=sit,wav&headonly=1')"
                         ></div>
                     @endfor
                 </div>
@@ -99,7 +99,7 @@
                                     <span class="w-full absolute bottom-2 left-2 flex gap-2 justify-start items-center text-slate-700 max-h-[45px] overflow-hidden dark:text-slate-400 text-xs">
                                         <div
                                             class="w-auto pr-3 max-w-[100px] h-[30px] bg-start pl-8 flex items-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900"
-                                            style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=ferrazmatheus&direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1')"
+                                            style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1')"
                                         >
                                             <a class="underline underline-offset-2 hover:text-blue-400" href="#">iNicollas</a>
                                         </div>

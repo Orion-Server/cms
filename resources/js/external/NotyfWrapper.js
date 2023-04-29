@@ -22,8 +22,8 @@ export default class Alert {
                 },
                 {
                     type: 'info',
-                    background: 'blue',
-                    icon: false
+                    background: '#0284c7',
+                    icon: '<i class="fa-solid fa-circle-info"></i>'
                 }
             ]
         })

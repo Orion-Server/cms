@@ -12,7 +12,7 @@
         <button
             type="button"
             data-tippy
-            data-tippy-content="Bold"
+            data-tippy-content="<small>Bold</small>"
             class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
         >
             <i class="fa-solid fa-bold"></i>
@@ -21,7 +21,7 @@
         <button
             type="button"
             data-tippy
-            data-tippy-content="Italic"
+            data-tippy-content="<small>Italic</small>"
             class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
         >
             <i class="fa-solid fa-italic"></i>
@@ -30,7 +30,7 @@
         <button
             type="button"
             data-tippy
-            data-tippy-content="StrikeThrough"
+            data-tippy-content="<small>StrikeThrough</small>"
             class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
         >
             <i class="fa-solid fa-strikethrough"></i>
@@ -39,7 +39,7 @@
         <button
             type="button"
             data-tippy
-            data-tippy-content="Underline"
+            data-tippy-content="<small>Underline</small>"
             class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
         >
             <i class="fa-solid fa-underline"></i>
@@ -48,7 +48,7 @@
         <button
             type="button"
             data-tippy
-            data-tippy-content="Highlighter"
+            data-tippy-content="<small>Highlighter</small>"
             class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
         >
             <i class="fa-solid fa-highlighter"></i>

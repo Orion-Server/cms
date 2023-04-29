@@ -12,8 +12,8 @@ export const content = [
 export const theme = {
     extend: {
         spacing: {
-            '35': '8.75rem',
             '22': '5.5rem',
+            '35': '8.75rem',
         },
         colors: {
             slate: {
