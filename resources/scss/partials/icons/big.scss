@@ -4,23 +4,23 @@ i.icon {
         height: 50px;
 
         &.users {
-            background-image: url('../../../public/assets/images/icons/big/users.png');
+            background-image: url('/assets/images/icons/big/users.png');
         }
 
         &.comment {
-            background-image: url('../../../public/assets/images/icons/big/comment.png');
+            background-image: url('/assets/images/icons/big/comment.png');
         }
 
         &.articles {
-            background-image: url('../../../public/assets/images/icons/big/articles.gif');
+            background-image: url('/assets/images/icons/big/articles.gif');
         }
 
         &.fixed-articles {
-            background-image: url('../../../public/assets/images/icons/big/fixed-articles.gif');
+            background-image: url('/assets/images/icons/big/fixed-articles.gif');
         }
 
         &.camera {
-            background-image: url('../../../public/assets/images/icons/big/camera.png');
+            background-image: url('/assets/images/icons/big/camera.png');
         }
     }
 }
