@@ -134,11 +134,8 @@ export default class Authentication {
         return new Promise((resolve, reject) => {
             const validFields = Object.values(formData).filter(field => !! field)
 
-            if(validFields.length === Object.keys(formData).length) {
-                resolve(true)
-            }
-
-            reject(false)
+            if(validFields.length === Object.keys(formData).length) resolve(true)
+            else reject(false)
         })
     }
 
