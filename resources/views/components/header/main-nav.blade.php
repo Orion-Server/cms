@@ -1,34 +1,45 @@
 @php($navigations = \App\Models\Navigation::getNavigations())
 
-<div class="bg-white dark:bg-slate-950 w-full z-[2] relative h-16 border-b-2 border-gray-200 dark:border-slate-800">
-    <x-container class="h-full flex justify-center">
-        <nav class="h-full w-1/2" @click.away="showMenu = null" x-data="{
-            showMenu: null,
-            theme: 'light',
+<div class="bg-white fixed top-0 dark:bg-slate-950 w-full z-[2] lg:relative h-auto lg:h-16 border-b-2 border-gray-200 dark:border-slate-800" x-data="{
+    showMobileMenu: false,
+    showSubmenuId: null,
+    theme: 'light',
 
-            init() {
-                if (localStorage.theme === 'dark') this.toggleTheme()
-            },
+    init() {
+        if (localStorage.theme === 'dark') this.toggleTheme()
+    },
 
-            toggleTheme() {
-                this.theme = this.theme == 'light' ? 'dark' : 'light'
-                document.documentElement.classList.toggle('dark')
+    toggleTheme() {
+        this.theme = this.theme == 'light' ? 'dark' : 'light'
+        document.documentElement.classList.toggle('dark')
 
-                localStorage.setItem('theme', this.theme)
-            },
+        localStorage.setItem('theme', this.theme)
+    },
 
-            isTheme(theme) {
-                this.theme == theme
-            },
+    isTheme(theme) {
+        this.theme == theme
+    },
 
-            toggleMenu(id) {
-                this.showMenu = this.showMenu == id ? null : id
-            }
-        }">
-            <ul class="flex divide-x relative dark:divide-slate-800 justify-center text-slate-800 dark:text-white font-medium text-sm items-center h-full">
+    toggleMenu(id) {
+        this.showSubmenuId = this.showSubmenuId == id ? null : id
+    }
+}">
+    <x-container class="h-full flex flex-col items-center justify-center lg:bg-transparent bg-white dark:bg-slate-950">
+        <div
+            :class="{ 'border-b dark:border-gray-800': showMobileMenu }"
+            class="flex lg:hidden p-4 w-full dark:text-white justify-center items-center cursor-pointer"
+            @click="showMobileMenu = !showMobileMenu"
+        >
+            <i class="fa-solid fa-bars" x-show="!showMobileMenu"></i>
+            <i class="fa-solid fa-xmark" style="display: none" x-show="showMobileMenu"></i>
+        </div>
+        <nav class="h-full w-full lg:w-1/2" @click.away="showSubmenuId = null">
+            <ul :class="{ 'hidden': !showMobileMenu, 'flex': showMobileMenu }"
+                class="hidden lg:flex flex-col lg:flex-row divide-y lg:divide-x relative dark:divide-slate-800 justify-center text-slate-800 dark:text-white font-medium text-sm items-center h-full"
+            >
                 @foreach ($navigations as $navigation)
                     <li @click="toggleMenu({{ $navigation->id }})" @class([
-                        "relative group px-8 uppercase h-full cursor-pointer",
+                        "relative group px-8 uppercase w-full lg:w-auto h-12 lg:h-full cursor-pointer",
                         "text-blue-600 dark:text-blue-400 font-semibold border-b-2 border-blue-500" => \Route::current()->uri == $navigation->slug
                     ])>
                         <a
@@ -44,7 +55,7 @@
                             @unless ($navigation->subNavigations->isEmpty())
                                 <div class="absolute left-0 top-full min-w-full w-auto dark:bg-slate-950 bg-white shadow-lg border-b-2 border-gray-200 dark:border-slate-800 rounded-b-md z-[1]"
                                     x-transition.origin.top.left
-                                    x-show="showMenu == {{ $navigation->id }}"
+                                    x-show="showSubmenuId == {{ $navigation->id }}"
                                     style="display: none"
                                 >
                                     <ul class="flex divide-y dark:divide-slate-800 flex-col">
@@ -63,7 +74,7 @@
                     </li>
                 @endforeach
 
-                <div class="flex relative justify-center group gap-2 px-8 uppercase h-full cursor-pointer items-center">
+                <div class="flex relative justify-center w-full lg:w-auto group gap-2 px-8 uppercase h-12 lg:h-full cursor-pointer items-center">
                     <div
                         class="relative w-6 h-6 flex items-center justify-center rounded-md dark:bg-slate-800 bg-yellow-500"
                         @click="toggleTheme()"

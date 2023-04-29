@@ -52,4 +52,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isBoy(): bool
+    {
+        return $this->gender == 'M';
+    }
+
+    public function isGirl(): bool
+    {
+        return $this->gender == 'F';
+    }
 }

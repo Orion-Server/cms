@@ -1,4 +1,4 @@
-<div class="relative w-full flex md:w-2/4 max-w-[500px] bg-white dark:bg-slate-950 h-24 dark:shadow-none rounded-lg shadow-lg dark:divide-slate-800">
+<div class="relative w-full flex md:w-3/4 max-w-[500px] bg-white dark:bg-slate-950 h-24 dark:shadow-none rounded-lg shadow-lg dark:divide-slate-800">
     @guest
         <div x-data class="w-full h-full dark:text-white text-slate-950 font-bold text-sm blur-none rounded-lg absolute top-0 left-0 z-[1] flex justify-center items-center">
             Please, login to access this content.

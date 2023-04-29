@@ -33,7 +33,8 @@
             "Tests\\": "tests/"
         },
         "files": [
-            "resources/helpers/colors.php"
+            "resources/helpers/colors.php",
+            "app/Helpers/InternetProtocolHelper.php"
         ]
     },
     "scripts": {
