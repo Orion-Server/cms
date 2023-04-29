@@ -71,7 +71,7 @@ class NavigationSeeder extends Seeder
     ): array {
         return [
             'slug' => $slug,
-            'icon' => asset("assets/images/icons/small/$icon"),
+            'icon' => "assets/images/icons/small/$icon",
             'order' => $order
         ];
     }
