@@ -1,11 +1,45 @@
 {
+  "node_modules/lightgallery/fonts/lg.svg": {
+    "file": "assets/lg-f2fe1c00.svg",
+    "src": "node_modules/lightgallery/fonts/lg.svg"
+  },
+  "node_modules/lightgallery/fonts/lg.ttf": {
+    "file": "assets/lg-22b72ba5.ttf",
+    "src": "node_modules/lightgallery/fonts/lg.ttf"
+  },
+  "node_modules/lightgallery/fonts/lg.woff": {
+    "file": "assets/lg-fefc5c0d.woff",
+    "src": "node_modules/lightgallery/fonts/lg.woff"
+  },
+  "node_modules/lightgallery/fonts/lg.woff2": {
+    "file": "assets/lg-965a0e5f.woff2",
+    "src": "node_modules/lightgallery/fonts/lg.woff2"
+  },
+  "node_modules/lightgallery/images/loading.gif": {
+    "file": "assets/loading-298ad3ff.gif",
+    "src": "node_modules/lightgallery/images/loading.gif"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-8ec2fb49.css",
+    "src": "resources/js/app.css"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-55c4c374.js",
+    "assets": [
+      "assets/lg-965a0e5f.woff2",
+      "assets/lg-22b72ba5.ttf",
+      "assets/lg-fefc5c0d.woff",
+      "assets/lg-f2fe1c00.svg",
+      "assets/loading-298ad3ff.gif"
+    ],
+    "css": [
+      "assets/app-8ec2fb49.css"
+    ],
+    "file": "assets/app-e28d3093.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/scss/app.scss": {
-    "file": "assets/app-19821bf1.css",
+    "file": "assets/app-b540e993.css",
     "isEntry": true,
     "src": "resources/scss/app.scss"
   }
