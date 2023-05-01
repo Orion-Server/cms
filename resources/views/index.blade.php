@@ -12,7 +12,7 @@
                 />
                 <div class="w-full flex flex-col gap-3">
                     @for ($i = 0; $i < 4; $i++)
-                        <a href="/articles" class="group w-full h-20 bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
+                        <a href="{{ route('articles.index') }}" class="group w-full h-20 bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
                             <div class="w-full h-full flex gap-2 p-1 pr-2">
                                 <div class="w-24 h-full flex justify-center items-center bg-right-bottom bg-no-repeat rounded-md" style="background-image: url('{{ asset('assets/images/user-box-bg.gif') }}')"></div>
                                 <div class="flex w-2/3 flex-col">
@@ -45,7 +45,7 @@
                                 <div class="w-full h-full flex flex-col gap-2 p-1">
                                     <div class="w-full h-24 flex justify-center items-center bg-right-bottom bg-no-repeat rounded-md" style="background-image: url('{{ asset('assets/images/user-box-bg.gif') }}')"></div>
                                     <div class="flex w-full flex-col">
-                                        <a href="/articles" class="w-full font-semibold text-slate-900 dark:text-white hover:text-blue-400 dark:hover:text-blue-400 text-sm truncate">{{ fake()->sentence() }}</a>
+                                        <a href="{{ route('articles.index') }}" class="w-full font-semibold text-slate-900 dark:text-white hover:text-blue-400 dark:hover:text-blue-400 text-sm truncate">{{ fake()->sentence() }}</a>
                                         <span class="w-full mt-2 flex gap-2 justify-start items-center text-slate-700 max-h-[45px] overflow-hidden dark:text-slate-400 text-xs">
                                             <div class="w-[30px] h-[30px] bg-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900" style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1')"></div>
                                             <a class="underline underline-offset-2 hover:text-blue-400" href="#">iNicollas</a>
@@ -95,7 +95,7 @@
                         @for ($i = 0; $i < 6; $i++)
                             <div class="w-full bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
                                 <div class="w-full h-35 relative flex flex-col p-1">
-                                    <div class="w-full h-full flex justify-center items-center bg-right-bottom bg-no-repeat rounded-md" style="background-image: url('{{ asset('assets/images/user-box-bg.gif') }}')"></div>
+                                    <a href="{{ route('photos.index') }}" class="w-full h-full flex justify-center items-center bg-right-bottom bg-no-repeat rounded-md" style="background-image: url('{{ asset('assets/images/user-box-bg.gif') }}')"></a>
                                     <span class="w-full absolute bottom-2 left-2 flex gap-2 justify-start items-center text-slate-700 max-h-[45px] overflow-hidden dark:text-slate-400 text-xs">
                                         <div
                                             class="w-auto pr-3 max-w-[100px] h-[30px] bg-start pl-8 flex items-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900"
