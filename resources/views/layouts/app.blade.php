@@ -17,16 +17,34 @@
 
     <header class="relative flex justify-start items-center py-5 border-b-2 border-blue-500 bg-blue-400 shadow-md dark:shadow-none">
         <x-container class="flex lg:flex-row flex-col justify-between gap-4 lg:gap-0 items-center">
-            <span class="text-4xl lg:w-1/2 w-full lg:text-left text-center font-semibold text-white drop-shadow-lg">
-                Welcome,
-                <b @class([
-                    'text-white' => !\Auth::check(),
-                    'text-blue-300' => \Auth::user()?->isBoy(),
-                    'text-pink-300' => \Auth::user()?->isGirl(),
-                ])>
-                    {{ \Auth::check() ? \Auth::user()->username : 'guest' }}
-                </b>!
-            </span>
+            <div class="lg:w-1/2 w-full flex flex-col justify-center items-center lg:items-start">
+                <span class="text-4xl font-semibold text-white text-center lg:text-left drop-shadow-lg">
+                    Welcome,
+                    <b @class([
+                        'text-white' => !\Auth::check(),
+                        'text-blue-300' => \Auth::user()?->isBoy(),
+                        'text-pink-300' => \Auth::user()?->isGirl(),
+                    ])>
+                        {{ \Auth::check() ? \Auth::user()->username : 'guest' }}
+                    </b>!
+                </span>
+                @auth
+                    <div class="mt-2 flex gap-3 flex-wrap">
+                        <x-ui.buttons.redirectable
+                            href="#"
+                            class="dark:bg-orange-500 bg-orange-500 border-orange-700 hover:bg-orange-400 dark:hover:bg-orange-400 dark:shadow-orange-700/75 shadow-orange-600/75 py-2 text-white"
+                        >
+                            Join (Flash)
+                        </x-ui.buttons.redirectable>
+                        <x-ui.buttons.redirectable
+                            href="#"
+                            class="dark:bg-gray-500 bg-gray-500 border-gray-700 hover:bg-gray-400 dark:hover:bg-gray-400 dark:shadow-gray-700/75 shadow-gray-600/75 py-2 text-white"
+                        >
+                            Join (Nitro HTML5)
+                        </x-ui.buttons.redirectable>
+                    </div>
+                @endauth
+            </div>
             <x-header.user-box />
         </x-container>
     </header>

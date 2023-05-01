@@ -74,9 +74,9 @@
                     </li>
                 @endforeach
 
-                <div class="flex relative justify-center w-full lg:w-auto group gap-2 px-8 uppercase h-12 lg:h-full cursor-pointer items-center">
+                <div class="flex relative justify-center w-full lg:w-auto group gap-2 px-8 uppercase h-12 lg:h-full items-center">
                     <div
-                        class="relative w-6 h-6 flex items-center justify-center rounded-md dark:bg-slate-800 bg-yellow-500"
+                        class="relative w-6 h-6 flex items-center cursor-pointer justify-center rounded-md dark:bg-slate-800 bg-yellow-500"
                         @click="toggleTheme()"
                         data-tippy
                         data-tippy-content="<small>Toggle theme</small>"

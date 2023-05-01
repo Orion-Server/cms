@@ -15,6 +15,9 @@ export const theme = {
             '22': '5.5rem',
             '35': '8.75rem',
         },
+        bottom: {
+            '18': '4.5rem',
+        },
         colors: {
             slate: {
                 ...colors.slate,

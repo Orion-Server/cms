@@ -2,7 +2,8 @@
     'title' => null,
     'description' => null,
     'icon' => null,
-    'image' => null
+    'image' => null,
+    'small' => false
 ])
 
 <div class="w-full h-16 flex justify-between">
@@ -19,8 +20,15 @@
             @endif
         </div>
         <div class="flex flex-col">
-            <span class="font-semibold dark:text-white">{{ $title }}</span>
-            <span class="text-slate-700 dark:text-slate-400 text-sm">{{ $description }}</span>
+            <span @class([
+                "font-semibold dark:text-white",
+                "text-sm" => $small,
+            ])>{{ $title }}</span>
+            <span @class([
+                "text-slate-700 dark:text-slate-400",
+                "text-xs" => $small,
+                "text-sm" => !$small
+            ])>{{ $description }}</span>
         </div>
     </div>
     @if ($slot->isNotEmpty())
