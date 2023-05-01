@@ -21,8 +21,8 @@ Route::prefix('articles')
         Route::get('/', fn() => view('articles.index'))->name('index');
     });
 
-Route::prefix('photos')
-    ->name('photos.')
+Route::prefix('community')
+    ->name('community.')
     ->group(function() {
-        Route::get('/', fn() => view('photos.index'))->name('index');
+        Route::get('photos', fn() => view('photos.index'))->name('photos.index');
     });

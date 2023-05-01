@@ -2,11 +2,13 @@ import Alpine from 'alpinejs'
 import TippyWrapper from '../external/TippyWrapper'
 import NotyfWrapper from '../external/NotyfWrapper'
 import Authentication from '../components/Authentication'
+import Photos from '../components/Pages/Photos'
 
 export default class WebManager {
     static start() {
-        // Authentication components
+        // Alpine components
         Authentication.start()
+        Photos.start()
 
         // WebManager components
         WebManager.startTooltips()

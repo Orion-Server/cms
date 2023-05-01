@@ -1,5 +1,5 @@
 @props([
-    'alpine-model' => null
+    'alpineModel' => null
 ])
 
 <button
@@ -10,6 +10,7 @@
         {{ $slot }}
     </span>
     <span x-show="{{ $alpineModel }}">
-        <i class="fa-solid fa-circle-notch fa-spin"></i>
+        <i class="fa-solid fa-circle-notch fa-spin mr-1"></i>
+        Loading...
     </span>
 </button>

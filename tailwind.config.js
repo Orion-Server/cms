@@ -20,7 +20,7 @@ export const theme = {
                 ...colors.slate,
                 850: '#152033',
             }
-        },
+        }
     },
     plugins: [],
 }

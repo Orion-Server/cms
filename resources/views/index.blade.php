@@ -34,7 +34,7 @@
                     >
                         <x-ui.buttons.redirectable
                                 href="#"
-                                class="dark:bg-blue-600 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-500 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
+                                class="dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
                             >
                                 View All
                         </x-ui.buttons.redirectable>
@@ -86,16 +86,16 @@
                     >
                         <x-ui.buttons.redirectable
                             href="#"
-                            class="dark:bg-blue-600 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-500 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
+                            class="dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
                         >
                                 View All
                         </x-ui.buttons.redirectable>
                     </x-title-box>
                     <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-2">
                         @for ($i = 0; $i < 6; $i++)
-                            <div class="w-full bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
+                            <div class="w-full bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg hover:scale-[1.05] transition-transform">
                                 <div class="w-full h-35 relative flex flex-col p-1">
-                                    <a href="{{ route('photos.index') }}" class="w-full h-full flex justify-center items-center bg-right-bottom bg-no-repeat rounded-md" style="background-image: url('{{ asset('assets/images/user-box-bg.gif') }}')"></a>
+                                    <a href="{{ route('community.photos.index') }}" class="w-full h-full flex justify-center items-center bg-right-bottom bg-no-repeat rounded-md" style="background-image: url('{{ asset('assets/images/user-box-bg.gif') }}')"></a>
                                     <span class="w-full absolute bottom-2 left-2 flex gap-2 justify-start items-center text-slate-700 max-h-[45px] overflow-hidden dark:text-slate-400 text-xs">
                                         <div
                                             class="w-auto pr-3 max-w-[100px] h-[30px] bg-start pl-8 flex items-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900"
