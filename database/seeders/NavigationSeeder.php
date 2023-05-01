@@ -18,8 +18,17 @@ class NavigationSeeder extends Seeder
             tap(Navigation::create(
                 array_merge(['label' => $navigationName], $navigation['data'])
             ), function($navInstance) use ($navigation) {
-                foreach($navigation['subNavigations'] as $subNavigationName) {
-                    $navInstance->subNavigations()->create(['label' => $subNavigationName]);
+                foreach($navigation['subNavigations'] as $key => $subNavigationName) {
+                    if(is_string($subNavigationName)) {
+                        $navInstance->subNavigations()->create(['label' => $subNavigationName]);
+                        continue;
+                    }
+
+                    $navInstance->subNavigations()
+                        ->create([
+                            'label' => $key,
+                            'slug' => $subNavigationName['slug'] ?? null,
+                        ]);
                 }
             });
         });
@@ -37,7 +46,7 @@ class NavigationSeeder extends Seeder
                 'subNavigations' => [
                     'Staff',
                     'Rankings',
-                    'Photos'
+                    'Photos' => ['slug' => '/community/photos']
                 ]
             ],
             'Forum' => [

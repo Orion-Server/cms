@@ -4,6 +4,7 @@
         <x-ui.input
             label="Username"
             autocomplete="username"
+            icon="fa-solid fa-user"
             alpine-model="loginData.username"
             placeholder="Username"
             type="text"
@@ -13,6 +14,7 @@
         <x-ui.input
             label="Password"
             autocomplete="password"
+            icon="fa-solid fa-key"
             alpine-model="loginData.password"
             placeholder="Password"
             type="password"

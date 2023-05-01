@@ -83,7 +83,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-2 flex items-center h-auto relative w-full flex-wrap gap-2">
+                <div class="mt-8 flex items-center h-auto relative w-full flex-wrap gap-2">
                     <x-ui.buttons.confirmable
                         data-tippy-placement="top"
                         class="group flex w-12 h-12 items-center justify-center bg-blue-300 dark:bg-blue-600 dark:text-white border-b-2 border-blue-500 rounded-lg"
@@ -140,7 +140,7 @@
                     />
                 </div>
                 <div class="w-full flex flex-col gap-4">
-                    @for ($i = 0; $i < 15; $i++)
+                    @for ($i = 0; $i < 2; $i++)
                     <div class="bg-white relative w-full flex flex-col overflow-hidden justify-between h-auto dark:text-slate-200 dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
                         <div class="p-2 w-full">
                             <div class="w-full flex justify-between text-sm pb-0.5 mb-2 border-b border-gray-100 dark:border-gray-800">
@@ -163,7 +163,7 @@
                                 ></div>
                                 <div class="w-full h-full items-center pl-20 flex gap-2">
                                     @for ($j = 0; $j < 5; $j++)
-                                        <div class="w-[40px] h-[40px] rounded-lg bg-blue-300"></div>
+                                        <div class="w-[48px] bg-center bg-no-repeat h-[48px] rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600 border" style="background-image: url('{{ asset('assets/images/default_badge.gif') }}')"></div>
                                     @endfor
                                 </div>
                             </div>

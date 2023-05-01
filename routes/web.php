@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', fn() => view('index'))->name('index');
 
 Route::prefix('articles')
+    ->name('articles.')
     ->group(function() {
-        Route::get('/', fn() => view('articles.index'))->name('articles.index');
+        Route::get('/', fn() => view('articles.index'))->name('index');
+    });
+
+Route::prefix('community')
+    ->name('community.')
+    ->group(function() {
+        Route::get('photos', fn() => view('community.photos.index'))->name('photos.index');
     });
