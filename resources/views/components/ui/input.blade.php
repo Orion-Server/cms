@@ -3,12 +3,13 @@
     'label' => null,
     'placeholder' => null,
     'autocomplete' => null,
-    'alpineModel' => null
+    'alpineModel' => null,
+    'icon' => null
 ])
 
 @if ($label)
 <label class="text-gray-700 text-left text-sm font-semibold mb-2 dark:text-gray-200">
-    <i class="fa-regular fa-envelope mr-1"></i>
+    <i class="{{ $icon }} mr-1"></i>
     {{ $label }}
 </label>
 @endif

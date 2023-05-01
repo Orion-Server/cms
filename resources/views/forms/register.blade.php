@@ -4,6 +4,7 @@
         <x-ui.input
             label="Username"
             autocomplete="username"
+            icon="fa-solid fa-user"
             alpine-model="registerData.username"
             placeholder="Username"
             type="text"
@@ -13,6 +14,7 @@
         <x-ui.input
             label="Email"
             autocomplete="email"
+            icon="fa-solid fa-envelope"
             alpine-model="registerData.email"
             placeholder="Email"
             type="email"
@@ -23,6 +25,7 @@
             <x-ui.input
                 label="Password"
                 autocomplete="password"
+                icon="fa-solid fa-key"
                 alpine-model="registerData.password"
                 placeholder="Password"
                 type="password"
@@ -32,6 +35,7 @@
             <x-ui.input
                 label="Confirm Password"
                 autocomplete="password"
+                icon="fa-solid fa-key"
                 alpine-model="registerData.password_confirmation"
                 placeholder="Password"
                 @keyup.enter="onRegisterSubmit()"
