@@ -15,7 +15,7 @@
 <body class="bg-gray-100 dark:bg-slate-900 pt-12 lg:pt-0">
     <x-header.main-nav />
 
-    <header class="relative flex justify-start items-center py-5 border-b-2 border-blue-500 bg-blue-400 shadow-md dark:shadow-none">
+    <header class="relative flex justify-start items-center py-7 border-b-2 border-blue-500 bg-blue-400 shadow-md dark:shadow-none">
         <x-container class="flex lg:flex-row flex-col justify-between gap-4 lg:gap-0 items-center">
             <div class="lg:w-1/2 w-full flex flex-col justify-center items-center lg:items-start">
                 <span class="text-4xl font-semibold text-white text-center lg:text-left drop-shadow-lg">

@@ -13,6 +13,7 @@
             <li class="px-1"><a href="{{ route('articles.index') }}">Article Page</a></li>
             <li class="px-1"><a href="{{ route('community.photos.index') }}">Photos Page</a></li>
             <li class="px-1"><a href="{{ route('community.staff.index') }}">Staff Page</a></li>
+            <li class="px-1"><a href="{{ route('community.rankings.index') }}">Rankings Page</a></li>
         </ul>
     </div>
 

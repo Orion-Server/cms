@@ -26,4 +26,5 @@ Route::prefix('community')
     ->group(function() {
         Route::get('photos', fn() => view('community.photos.index'))->name('photos.index');
         Route::get('staff', fn() => view('community.staff.index'))->name('staff.index');
+        Route::get('rankings', fn() => view('community.rankings.index'))->name('rankings.index');
     });

@@ -45,7 +45,7 @@ class NavigationSeeder extends Seeder
                 'data' => $this->makeNavigationData('/community', 'community.png', 1),
                 'subNavigations' => [
                     'Staff' => ['slug' => '/community/staff'],
-                    'Rankings',
+                    'Rankings' => ['slug' => '/community/rankings'],
                     'Photos' => ['slug' => '/community/photos']
                 ]
             ],
