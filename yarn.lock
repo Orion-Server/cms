@@ -532,6 +532,11 @@ laravel-vite-plugin@^0.7.2:
     picocolors "^1.0.0"
     vite-plugin-full-reload "^1.0.5"
 
+lightgallery@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/lightgallery/-/lightgallery-2.7.1.tgz#6f15bfb72d51ed9499aa6b6363181083fd048ef9"
+  integrity sha512-NbXOzD2APY1OhOOn464jDsBZBaCRahUoLvBxhDFxvwJeC8hCkCIPYSjGgGTYINxVK09DKMsNDJzRr1ngH5nDdg==
+
 lilconfig@^2.0.5, lilconfig@^2.0.6:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.1.0.tgz#78e23ac89ebb7e1bfbf25b18043de756548e7f52"

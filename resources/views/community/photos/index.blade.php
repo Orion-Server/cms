@@ -29,10 +29,15 @@
                 @endforeach
             </div>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="lightgallery">
             @for ($i = 0; $i < 40; $i++)
                 <div class="bg-white dark:bg-slate-950 p-2 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg h-auto">
-                    <div class="bg-center flex items-end w-full h-48 bf-no-repeat rounded-t-lg" style="background-image: url('{{ asset('assets/images/photo.png') }}')">
+                    <div
+                        class="bg-center hover:scale-[1.05] transition-transform relative group lightgallery-image cursor-pointer flex items-end justify-center w-full h-48 bg-no-repeat rounded-t-lg"
+                        data-src="{{ asset('assets/images/photo.png') }}"
+                        data-sub-html='<h4>Photo by <a href="#" class="underline underline-offset-4">iNicollas</a></h4><p>Photo taken on <b>30/02/1920</b> in the <a href="#" class="underline underline-offset-4">Example room</a></p>'
+                        style="background-image: url('{{ asset('assets/images/photo.png') }}')"
+                    >
                         <div class="w-full p-2 flex justify-end items-center gap-2 bg-black/75 h-10">
                             <span class="text-slate-200 flex-1 text-xs">
                                 <i class="fa-regular fa-clock"></i>
@@ -50,10 +55,14 @@
                     </div>
                     <div class="w-full flex justify-start items-center gap-3 p-1 bg-gray-100 rounded-b-lg border-t-2 border-gray-300 dark:border-slate-600 dark:bg-gray-900">
                         <div
-                            class="w-[50px] h-[50px] bg-center bg-no-repeat rounded-full bg-white border border-gray-200 dark:bg-gray-950 dark:border-black"
+                            class="w-[50px] min-w-[50px] h-[50px] bg-center bg-no-repeat rounded-full bg-white border border-gray-200 dark:bg-gray-950 dark:border-black"
                             style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&direction=2&head_direction=2&size=m&gesture=sml&headonly=1')"
                         ></div>
-                        <a href="#" class="text-sm dark:text-slate-200 font-medium underline underline-offset-2 truncate">iNicollas</a>
+                        <a href="#" class="text-sm dark:text-slate-200 grow font-medium underline underline-offset-2 truncate">iNicollas</a>
+                        <div class="dark:text-slate-200 text-end text-xs cursor-pointer">
+                            <i class="fa-solid fa-comments"></i>
+                            <span>(10)</span>
+                        </div>
                     </div>
                 </div>
             @endfor

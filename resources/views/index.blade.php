@@ -99,8 +99,8 @@
                         @for ($i = 0; $i < 6; $i++)
                             <div class="w-full bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg hover:scale-[1.05] transition-transform">
                                 <div class="w-full h-35 relative flex flex-col p-1">
-                                    <a href="{{ route('community.photos.index') }}" class="w-full h-full flex justify-center items-center bg-right-bottom bg-no-repeat rounded-md" style="background-image: url('{{ asset('assets/images/user-box-bg.gif') }}')"></a>
-                                    <span class="w-full absolute bottom-2 left-2 flex gap-2 justify-start items-center text-slate-700 max-h-[45px] overflow-hidden dark:text-slate-400 text-xs">
+                                    <a href="{{ route('community.photos.index') }}" class="w-full h-full flex justify-center items-center bg-center bg-no-repeat rounded-md" style="background-image: url('{{ asset('assets/images/photo.png') }}')"></a>
+                                    <span class="w-auto absolute bottom-2 left-2 flex gap-2 justify-start items-center text-slate-700 max-h-[45px] overflow-hidden dark:text-slate-400 text-xs">
                                         <div
                                             class="w-auto pr-3 max-w-[100px] h-[30px] bg-start pl-8 flex items-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900"
                                             style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1')"
