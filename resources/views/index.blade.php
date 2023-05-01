@@ -3,6 +3,10 @@
 @section('content')
 <x-container>
     <div class="w-full">
+        <div class="w-full text-gray-50 py-4 px-2 border text-sm border-red-500 rounded-lg font-bold bg-red-400 flex justify-center items-center">
+            <i class="fa-solid fa-circle-info mr-2"></i>
+            <span>OrionCMS is under development. Join our <a href="https://discord.com/invite/Kb7USXupCT" class="underline underline-offset-4 hover:animate-pulse" target="_blank">discord</a>.</span>
+        </div>
         <div class="w-full mx-auto gap-8 flex flex-col lg:flex-row h-auto p-1 justify-between items-start">
             <div class="w-full flex flex-col gap-2 lg:w-1/3">
                 <x-title-box
