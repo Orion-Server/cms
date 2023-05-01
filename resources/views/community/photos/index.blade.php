@@ -5,8 +5,8 @@
 @section('content')
 <x-container>
     <div class="w-full h-auto flex flex-col gap-4" x-data="photosPage">
-        <div class="w-full h-16 p-2 flex justify-between gap-2">
-            <div class="w-full lg:w-1/2 flex justify-start items-center gap-2">
+        <div class="w-full lg:h-16 h-auto p-2 flex flex-col lg:flex-row justify-between gap-8 lg:gap-2">
+            <div class="w-full lg:w-1/2 flex flex-wrap justify-start items-center gap-2">
                 @foreach (['All', 'Today', 'Last Week', 'Last Month'] as $buttonLabel)
                     <x-ui.buttons.loadable
                         alpine-model="loading"
@@ -17,7 +17,7 @@
                     </x-ui.buttons.loadable>
                 @endforeach
             </div>
-            <div class="w-full lg:w-1/2 flex justify-end items-center gap-2">
+            <div class="w-full lg:w-1/2 flex lg:justify-end items-center gap-2">
                 @foreach (['Only my friends', 'Liked by me'] as $buttonLabel)
                 <x-ui.buttons.loadable
                     alpine-model="loading"

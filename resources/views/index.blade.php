@@ -2,11 +2,20 @@
 
 @section('content')
 <x-container>
-    <div class="w-full">
-        <div class="w-full text-gray-50 py-4 px-2 border text-sm border-red-500 rounded-lg font-bold bg-red-400 flex justify-center items-center">
+    <div class="w-full text-gray-50 py-4 px-2 border text-sm border-red-500 rounded-lg bg-red-400 flex flex-col justify-center items-star gap-3">
+        <span class="font-bold">
             <i class="fa-solid fa-circle-info mr-2"></i>
-            <span>OrionCMS is under development. Join our <a href="https://discord.com/invite/Kb7USXupCT" class="underline underline-offset-4 hover:animate-pulse" target="_blank">discord</a>.</span>
-        </div>
+            OrionCMS is under development. Join our <a href="https://discord.com/invite/Kb7USXupCT" class="underline underline-offset-4 hover:animate-pulse" target="_blank">discord</a>.
+        </span>
+        <ul class="flex flex-col lg:flex-row gap-2 underline underline-offset-2">
+            <li class="px-1"><a href="/login">Login</a></li>
+            <li class="px-1"><a href="/register">Register</a></li>
+            <li class="px-1"><a href="{{ route('articles.index') }}">Article Page</a></li>
+            <li class="px-1"><a href="{{ route('community.photos.index') }}">Photos Page</a></li>
+        </ul>
+    </div>
+
+    <div class="w-full">
         <div class="w-full mx-auto gap-8 flex flex-col lg:flex-row h-auto p-1 justify-between items-start">
             <div class="w-full flex flex-col gap-2 lg:w-1/3">
                 <x-title-box
