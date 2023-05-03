@@ -21,7 +21,7 @@
                 title="Login"
                 sub-title="Welcome back!"
             >
-                @include('forms.login')
+                <x-forms.login />
             </x-ui.modal>
         </div>
         <span class="px-4 font-bold text-blue-400">or</span>
@@ -39,7 +39,7 @@
                 title="Register"
                 sub-title="We are glad you are here!"
             >
-                @include('forms.register')
+                <x-forms.register />
             </x-ui.modal>
         </div>
     </div>

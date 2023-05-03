@@ -18,13 +18,13 @@ Route::get('/', fn() => view('index'))->name('index');
 Route::prefix('articles')
     ->name('articles.')
     ->group(function() {
-        Route::get('/', fn() => view('articles.index'))->name('index');
+        Route::get('/', fn() => view('pages.articles.index'))->name('index');
     });
 
 Route::prefix('community')
     ->name('community.')
     ->group(function() {
-        Route::get('photos', fn() => view('community.photos.index'))->name('photos.index');
-        Route::get('staff', fn() => view('community.staff.index'))->name('staff.index');
-        Route::get('rankings', fn() => view('community.rankings.index'))->name('rankings.index');
+        Route::get('photos', fn() => view('pages.community.photos.index'))->name('photos.index');
+        Route::get('staff', fn() => view('pages.community.staff.index'))->name('staff.index');
+        Route::get('rankings', fn() => view('pages.community.rankings.index'))->name('rankings.index');
     });

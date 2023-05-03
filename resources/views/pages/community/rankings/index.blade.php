@@ -12,7 +12,7 @@
 @section('content')
 <x-container class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-6">
     @foreach ($rankings as $title => $icon)
-        @include('community.rankings._partials.ranking-box', [
+        @include('pages.community.rankings._partials.ranking-box', [
             'title' => $title,
             'icon' => $icon
         ])
