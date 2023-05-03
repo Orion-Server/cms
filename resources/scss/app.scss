@@ -9,6 +9,11 @@
 // Partials
 @import 'partials/icons.scss';
 
+:root {
+    --swiper-pagination-progressbar-bg-color: rgba(0, 0, 0, 0.25);
+    --swiper-pagination-color: #1d4ed8;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     image-rendering: pixelated;
@@ -16,4 +21,35 @@ body {
 
 header {
     background-image: url('/assets/images/background.webp')
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #2058d9 #ffffff;
+}
+
+html {
+    /* Chrome, Edge, and Safari */
+    *::-webkit-scrollbar {
+        width: 7px;
+        height: 7px
+    }
+
+    *::-webkit-scrollbar-track {
+        background: #ffffff;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background-color: #2058d9;
+        border-radius: 3px;
+        border: 2px none #ffffff;
+    }
+
+    &.dark {
+        *::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+    }
 }

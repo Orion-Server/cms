@@ -10,6 +10,7 @@
     <link rel="icon" href="{{ asset('favicon.png') }}" sizes="20x20" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}" />
     @vite(['resources/scss/app.scss'])
 </head>
 <body class="bg-gray-100 dark:bg-slate-900 pt-12 lg:pt-0">
@@ -58,6 +59,8 @@
     </main>
 
     @include('layouts.footer')
+
+    <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
     @vite(['resources/js/app.js'])
 </body>
 </html>

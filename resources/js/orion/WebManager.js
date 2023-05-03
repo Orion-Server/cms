@@ -4,6 +4,7 @@ import TippyWrapper from '../external/TippyWrapper'
 import NotyfWrapper from '../external/NotyfWrapper'
 import Authentication from '../components/Authentication'
 import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
+import SwiperWrapper from '../external/SwiperWrapper'
 
 export default class WebManager {
     static start() {
@@ -15,7 +16,9 @@ export default class WebManager {
         // WebManager components
         WebManager.startTooltips()
         WebManager.listenAlerts()
+        WebManager.startSliders()
 
+        WebManager.detectHorizontallyScrollables()
         WebManager.startAlpineFlow()
     }
 
@@ -33,8 +36,23 @@ export default class WebManager {
         })
     }
 
+    static startSliders() {
+        SwiperWrapper.start()
+    }
+
     static startAlpineFlow() {
         window.Alpine = Alpine
         Alpine.start()
     }
+
+    static detectHorizontallyScrollables() {
+        const scrollContainer = document.querySelectorAll(".scroll-x")
+
+        Array.from(scrollContainer).map((container) => {
+            container.addEventListener("wheel", (event) => {
+                event.preventDefault()
+                container.scrollLeft += event.deltaY * 1.96
+            })
+        })
+      }
 }

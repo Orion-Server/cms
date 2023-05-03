@@ -17,7 +17,6 @@
     "dependencies": {
         "lightgallery": "^2.7.1",
         "notyf": "^3.10.0",
-        "swiper": "^9.2.4",
         "tippy.js": "^6.3.7"
     }
 }

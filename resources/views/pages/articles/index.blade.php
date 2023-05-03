@@ -96,7 +96,8 @@
                                     <i class="fa-solid fa-thumbs-up"></i>
                                 </x-ui.buttons.defaultclass>
                                 <x-ui.buttons.default
-                                    class="w-8 h-8 bg-red-400 hover:bg-red-500 text-red-800 !border-b-2 border-red-600 rounded-lg">
+                                    class="w-8 h-8 bg-red-400 hover:bg-red-500 text-red-800 !border-b-2 border-red-600 rounded-lg"
+                                >
                                     <i class="fa-solid fa-thumbs-down"></i>
                                 </x-ui.buttons.defaultclass>
                             </div>

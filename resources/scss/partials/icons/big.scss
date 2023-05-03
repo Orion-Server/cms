@@ -54,5 +54,21 @@ i.icon {
         &.respects {
             background-image: url('/assets/images/icons/big/respects.png');
         }
+
+        &.story-camera {
+            background-image: url('/assets/images/icons/big/story-camera.png');
+        }
+
+        &.online-friends {
+            background-image: url('/assets/images/icons/big/online-friends.png');
+        }
+
+        &.user-referrals {
+            background-image: url('/assets/images/icons/big/referrals.gif');
+        }
+
+        &.balance {
+            background-image: url('/assets/images/icons/big/balance.png');
+        }
     }
 }

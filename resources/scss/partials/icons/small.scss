@@ -6,5 +6,9 @@ i.icon {
         &.home {
             background-image: url('/assets/images/icons/small/home.gif');
         }
+
+        &.ifixed {
+            background-image: url('/assets/images/icons/small/fixed.png');
+        }
     }
 }

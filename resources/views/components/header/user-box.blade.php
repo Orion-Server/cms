@@ -11,7 +11,7 @@
         <div class="w-3/4 flex flex-col">
             <div class="w-full rounded-t-lg flex justify-around items-center divide-x dark:divide-slate-800 h-16 bg-gray-100 dark:bg-gray-900">
                 <a
-                    class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
+                    class="h-full rounded-tl-lg flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
                     data-tippy
                     data-tippy-content="<small>My Profile</small>"
                     href=""
