@@ -48,7 +48,11 @@ class CreateNewUser implements CreatesNewUsers
 
     private function setReferrer(User $user, string $referrerCode): void
     {
-        $referrerCodeOwner = User::where('referral_code', $referrerCode)->first();
+        $referrerCodeOwner = User::where('referral_code', $referrerCode)
+            ->where(
+                fn ($query) => $query->whereNot('ip_register', $user->ip_register)
+                    ->whereNot('ip_current', $user->ip_current)
+            )->first();
 
         if(!$referrerCodeOwner) return;
 
