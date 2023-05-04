@@ -9,6 +9,7 @@
         icon="fa-regular fa-share-from-square"
         label="Your Referral Link"
         placeholder="Referral Link"
+        id="referral-link"
         :small="true"
         default-value="{{ route('register', ['referral' => auth()->user()->username]) }}"
         :disabled="true"
@@ -23,7 +24,7 @@
         copyLink(event) {
             const buttonContent = event.target.innerHTML
 
-            navigator.clipboard.writeText('{{ route('register', ['referral' => auth()->user()->username]) }}')
+            navigator.clipboard.writeText(document.getElementById('referral-link').value)
             event.target.innerHTML = 'Successfull!'
 
             setTimeout(() => event.target.innerHTML = buttonContent, 2000)

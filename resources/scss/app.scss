@@ -47,6 +47,12 @@ html {
         border: 2px none #ffffff;
     }
 
+    #discord-widget {
+        *::-webkit-scrollbar-thumb {
+            background-color: #5765F2 !important;
+        }
+    }
+
     &.dark {
         *::-webkit-scrollbar-track {
             background: #1e293b;

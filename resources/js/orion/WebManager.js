@@ -5,12 +5,14 @@ import NotyfWrapper from '../external/NotyfWrapper'
 import Authentication from '../components/Authentication'
 import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
 import SwiperWrapper from '../external/SwiperWrapper'
+import DiscordWidget from '../components/DiscordWidget'
 
 export default class WebManager {
     static start() {
         // Alpine components
-        Authentication.start()
         Photos.start()
+        DiscordWidget.start()
+        Authentication.start()
         ImageVisualizationWrapper.start()
 
         // WebManager components
