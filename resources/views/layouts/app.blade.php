@@ -23,8 +23,8 @@
                     Welcome,
                     <b @class([
                         'text-white' => !\Auth::check(),
-                        'text-blue-300' => \Auth::user()?->isBoy(),
-                        'text-pink-300' => \Auth::user()?->isGirl(),
+                        'text-lime-500' => \Auth::user()?->isBoy(),
+                        'text-rose-500' => \Auth::user()?->isGirl(),
                     ])>
                         {{ \Auth::check() ? \Auth::user()->username : 'guest' }}
                     </b>!

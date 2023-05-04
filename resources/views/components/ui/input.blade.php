@@ -12,7 +12,10 @@
 ])
 
 @if ($label)
-<label class="text-gray-700 text-left font-semibold mb-2 dark:text-gray-200 text-sm">
+<label
+    @if($id) for="{{ $id }}" @endif
+    class="text-gray-700 text-left font-semibold mb-2 dark:text-gray-200 text-sm"
+>
     <i class="{{ $icon }} mr-1"></i>
     {{ $label }}
 </label>

@@ -24,20 +24,49 @@ export default class Authentication {
     static _layoutMethods() {
         return {
             treatCurrentUrl() {
-                const url = window.location.pathname
+                const url = new URL(window.location.href)
 
-                if (['/login'].includes(url)) {
+                if (['/login'].includes(url.pathname)) {
                     this.toggleToLoginModal()
                 }
 
-                if (['/register'].includes(url)) {
-                    this.toggleToRegisterModal()
+                if (['/register'].includes(url.pathname)) {
+                    this.toggleToRegisterModal(
+                        url.searchParams.get('referral')
+                    )
                 }
             },
 
-            toggleToRegisterModal() {
+            toggleToRegisterModal(referralCode = null) {
                 this.showLoginModal = false
                 this.showRegisterModal = true
+
+                if(referralCode) {
+                    this.treatReferralCode(referralCode)
+                }
+            },
+
+            treatReferralCode(referralCode) {
+                this.registerReferrerData.code = referralCode
+
+                const referralUsername = localStorage.getItem(`referral_${referralCode}_username`)
+
+                if(referralUsername) {
+                    this.registerReferrerData.username = referralUsername
+                    return
+                }
+
+                axios.get(`/api/referral/${referralCode}`)
+                    .then(response => {
+                        if(response.status != 200) return
+
+                        this.registerReferrerData.username = response.data.username
+
+                        localStorage.setItem(`referral_${referralCode}_username`, response.data.username)
+                    })
+                    .catch(error => {
+                        console.error('[ReferralIdentification]', error)
+                    })
             },
 
             toggleToLoginModal() {
@@ -53,13 +82,23 @@ export default class Authentication {
                 username: '',
                 email: '',
                 password: '',
-                password_confirmation: ''
+                password_confirmation: '',
+                gender: 'M',
+            },
+
+            registerReferrerData: {
+                code: null,
+                username: null
             },
 
             async onFormRegisterSubmit() {
                 if(this.loading) return
 
                 this.loading = true
+
+                if(this.registerReferrerData.code) {
+                    this.registerData.referrer_code = this.registerReferrerData.code
+                }
 
                 await Authentication._attemptAuthentication('/register', this.registerData,
                     () => {

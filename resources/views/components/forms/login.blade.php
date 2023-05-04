@@ -4,22 +4,26 @@
         <x-ui.input
             label="Username"
             autocomplete="username"
+            id="login-username"
             icon="fa-solid fa-user"
             alpine-model="loginData.username"
             placeholder="Username"
             type="text"
         />
     </div>
+
     <div class="mt-4 flex flex-col">
         <x-ui.input
             label="Password"
             autocomplete="password"
+            id="login-password"
             icon="fa-solid fa-key"
             alpine-model="loginData.password"
             placeholder="Password"
             type="password"
         />
     </div>
+
     <div class="flex gap-4 mt-6">
         <x-ui.buttons.default
             type="button"
@@ -39,11 +43,13 @@
             Login
         </x-ui.buttons.loadable>
     </div>
+
     <div class="my-6 flex items-center justify-between">
         <span class="border-b dark:border-gray-700 w-1/5 md:w-1/4"></span>
         <span class="text-xs text-gray-500 uppercase dark:text-gray-100">or join with</span>
         <span class="border-b dark:border-gray-700 w-1/5 md:w-1/4"></span>
     </div>
+
     <div class="flex justify-around flex-col sm:flex-row gap-3 mt-4">
         <a href="#" class="flex gap-3 items-center justify-center dark:bg-slate-900 dark:shadow-xl dark:border-slate-800 dark:border text-white rounded-lg shadow-md hover:bg-gray-100">
             <div class="pl-4 py-3">

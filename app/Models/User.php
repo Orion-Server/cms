@@ -31,7 +31,10 @@ class User extends Authenticatable
         'ip_register',
         'ip_current',
         'home_room',
-        'auth_ticket'
+        'auth_ticket',
+        'gender',
+        'referral_code',
+        'referrer_code'
     ];
 
     /**
@@ -52,6 +55,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function referrer()
+    {
+        return $this->belongsTo(User::class, 'referrer_code', 'referral_code');
+    }
+
+    public function referredUsers()
+    {
+        return $this->hasMany(User::class, 'referrer_code', 'referral_code');
+    }
 
     public function isBoy(): bool
     {

@@ -10,5 +10,13 @@ i.icon {
         &.ifixed {
             background-image: url('/assets/images/icons/small/fixed.png');
         }
+
+        &.male {
+            background-image: url('/assets/images/icons/small/male.png');
+        }
+
+        &.female {
+            background-image: url('/assets/images/icons/small/female.png');
+        }
     }
 }

@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->rememberToken();
+
+            $table->string('referral_code', 15)
+                ->nullable()
+                ->unique();
+
+            $table->string('referrer_code', 15)->nullable();
         });
     }
 

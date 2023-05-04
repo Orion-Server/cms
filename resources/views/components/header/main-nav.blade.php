@@ -75,9 +75,9 @@
                 @endforeach
 
                 <div class="flex relative justify-center w-full lg:w-auto group gap-2 px-8 uppercase h-12 lg:h-full items-center">
-                    <div
-                        class="relative w-6 h-6 flex items-center cursor-pointer justify-center rounded-md dark:bg-slate-800 bg-yellow-500"
-                        @click="toggleTheme()"
+                    <x-ui.buttons.default
+                        class="bg-blue-500 border-blue-600 dark:border-slate-600 hover:bg-blue-400 dark:bg-slate-500 dark:hover:bg-slate-400 text-white dark:text-white"
+                        @click="toggleTheme"
                         data-tippy
                         data-tippy-content="<small>Toggle theme</small>"
                         data-tippy-placement="bottom"
@@ -88,7 +88,7 @@
                         <template x-if="theme == 'dark'">
                             <i class="fa-solid fa-moon"></i>
                         </template>
-                    </div>
+                    </x-ui.buttons.default>
                 </div>
             </ul>
         </nav>

@@ -6,11 +6,13 @@ import Authentication from '../components/Authentication'
 import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
 import SwiperWrapper from '../external/SwiperWrapper'
 import DiscordWidget from '../components/DiscordWidget'
+import Footer from '../components/Footer'
 
 export default class WebManager {
     static start() {
         // Alpine components
         Photos.start()
+        Footer.start()
         DiscordWidget.start()
         Authentication.start()
         ImageVisualizationWrapper.start()
