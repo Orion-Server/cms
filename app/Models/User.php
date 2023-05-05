@@ -13,8 +13,10 @@ use App\Models\Compositions\User\{
     HasCurrency,
     HasSettings
 };
+use Filament\Models\Contracts\HasName;
+use Filament\Models\Contracts\FilamentUser;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser, HasNAme
 {
     use HasApiTokens, HasFactory, Notifiable, HasCurrency, HasSettings;
 
@@ -80,6 +82,25 @@ class User extends Authenticatable
     public function referredUsers(): HasMany
     {
         return $this->hasMany(User::class, 'referrer_code', 'referral_code');
+    }
+
+    public function canAccessFilament(): bool
+    {
+        return $this->rank >= getSetting('min_rank_to_housekeeping_login');
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return sprintf(
+            '%s%s&size=m&head_direction=2&gesture=sml&headonly=1',
+            getSetting('avatar_image_url'),
+            $this->look
+        );
+    }
+
+    public function getFilamentName(): string
+    {
+        return $this->username;
     }
 
     public function isBoy(): bool

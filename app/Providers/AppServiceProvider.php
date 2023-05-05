@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\SettingsService;
+use Filament\Facades\Filament;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -27,5 +28,9 @@ class AppServiceProvider extends ServiceProvider
         if (App::isProduction()) {
             URL::forceScheme('https');
         }
+
+        Filament::serving(function() {
+            Filament::registerViteTheme('resources/css/filament.css');
+        });
     }
 }

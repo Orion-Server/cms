@@ -7,6 +7,7 @@ export const content = [
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
     "./resources/**/*.vue",
+    './vendor/filament/**/*.blade.php'
 ]
 
 export const theme = {
@@ -22,8 +23,15 @@ export const theme = {
             slate: {
                 ...colors.slate,
                 850: '#152033',
-            }
+            },
+            danger: colors.rose,
+            primary: colors.blue,
+            success: colors.green,
+            warning: colors.yellow,
         }
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography')
+    ],
 }
