@@ -1,0 +1,4 @@
+.ck-editor__editable[role="textbox"] {
+    min-height: 250px;
+    resize: vertical;
+}

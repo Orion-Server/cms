@@ -6,8 +6,7 @@ export const darkMode = 'class'
 export const content = [
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
-    "./resources/**/*.vue",
-    './vendor/filament/**/*.blade.php'
+    "./resources/**/*.vue"
 ]
 
 export const theme = {
@@ -23,11 +22,7 @@ export const theme = {
             slate: {
                 ...colors.slate,
                 850: '#152033',
-            },
-            danger: colors.rose,
-            primary: colors.blue,
-            success: colors.green,
-            warning: colors.yellow,
+            }
         }
     },
     plugins: [

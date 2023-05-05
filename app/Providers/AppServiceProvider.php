@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\SettingsService;
 use Filament\Facades\Filament;
+use Filament\Navigation\NavigationGroup;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -30,7 +31,14 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Filament::serving(function() {
-            Filament::registerViteTheme('resources/css/filament.css');
+            Filament::registerStyles([
+                asset('assets/css/ckeditor.css')
+            ]);
+
+            Filament::registerNavigationGroups([
+                NavigationGroup::make()->label('Hotel'),
+                NavigationGroup::make()->label('Administration'),
+            ]);
         });
     }
 }

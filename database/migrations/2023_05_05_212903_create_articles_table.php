@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('description')->nullable();
 
+            $table->text('content');
+
             $table->string('slug')->unique()->index();
             $table->string('image');
 

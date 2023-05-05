@@ -9,7 +9,7 @@ export default defineConfig({
     },
     plugins: [
         laravel({
-            input: ['resources/scss/app.scss', 'resources/js/app.js', 'resources/css/filament.css'],
+            input: ['resources/scss/app.scss', 'resources/js/app.js'],
             refresh: true,
             transformOnServe: (code) => code.replaceAll('/assets/', '/public/assets/'),
         }),
