@@ -1,4 +1,4 @@
-@php($widgetId = '1099836667780665364')
+@php($widgetId = getSetting('discord_widget_id'))
 
 @if($widgetId)
 <div class="flex flex-col gap-4" id="discord-widget" x-data="discordWidget('{{ $widgetId }}')">

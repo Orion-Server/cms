@@ -37,12 +37,23 @@
                         >
                             Join (Flash)
                         </x-ui.buttons.redirectable>
+
                         <x-ui.buttons.redirectable
                             href="#"
                             class="dark:bg-gray-500 bg-gray-500 border-gray-700 hover:bg-gray-400 dark:hover:bg-gray-400 dark:shadow-gray-700/75 shadow-gray-600/75 py-2 text-white"
                         >
                             Join (Nitro HTML5)
                         </x-ui.buttons.redirectable>
+
+                        @if (\Auth::user()->rank >= getSetting('min_rank_to_housekeeping_login'))
+                        <x-ui.buttons.redirectable
+                            href="#"
+                            class="dark:bg-red-500 bg-red-500 border-red-700 hover:bg-red-400 dark:hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75 py-2 text-white"
+                        >
+                            <i class="fa-solid fa-chart-line mr-1"></i>
+                            Housekeeping
+                        </x-ui.buttons.redirectable>
+                        @endif
                     </div>
                 @endauth
             </div>

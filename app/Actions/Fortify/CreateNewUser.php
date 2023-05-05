@@ -115,7 +115,7 @@ class CreateNewUser implements CreatesNewUsers
     {
         $validations = [
             'username' => ['required', 'string', 'max:25', sprintf('regex:%s', getSetting('register_username_regex')), 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,mail'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'mail')],
             'gender' => ['required', 'string', 'max:1', Rule::in(['M', 'F'])],
             'referral_code' => ['sometimes', 'string', 'size:15'],
             'password' => $this->passwordRules()

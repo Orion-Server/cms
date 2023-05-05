@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WebController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn() => view('index'))->name('index');
+Route::get('/', [WebController::class, 'index'])->name('index');
 
 Route::prefix('articles')
     ->name('articles.')
     ->group(function() {
-        Route::get('/', fn() => view('pages.articles.index'))->name('index');
+        Route::get('/', [ArticleController::class, 'index'])->name('index');
     });
 
 Route::prefix('community')
