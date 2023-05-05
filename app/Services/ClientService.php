@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Services;
 
 use App\Models\User;
 
-class ClientHelper {
+class ClientService {
     public static function updateSSO($user): string
     {
         $ssoInUse = User::whereAuthTicket(

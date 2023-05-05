@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Navigation extends Model
 {
@@ -14,19 +17,19 @@ class Navigation extends Model
 
     public $timestamps = false;
 
-    public static function defaultQuery()
+    public static function defaultQuery(): Builder
     {
         return Navigation::whereVisible(true)
             ->orderBy('order')
             ->orderByDesc('id');
     }
 
-    public function subNavigations()
+    public function subNavigations(): HasMany
     {
         return $this->hasMany(SubNavigation::class);
     }
 
-    public static function getNavigations(bool $withSubNavigations = true)
+    public static function getNavigations(bool $withSubNavigations = true): Collection
     {
         $cacheableTime = App::isLocal() ? 0 : 300;
 

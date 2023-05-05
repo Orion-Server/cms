@@ -1,5 +1,16 @@
 <?php
 
+use App\Services\SettingsService;
+
+if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+    $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+}
+
+if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+{
+    $_SERVER["REMOTE_ADDR"] = $_SERVER['HTTP_X_FORWARDED_FOR'];
+}
+
 if(!function_exists('getPredominantImageColor')) {
     /**
      * Gets the most predominant color in an image.
@@ -37,5 +48,14 @@ if(!function_exists('isDarkColor')) {
         $brightness = (($c_r * 299) + ($c_g * 587) + ($c_b * 114)) / 1000;
 
         return $brightness <= 155;
+    }
+}
+
+if(!function_exists('getSetting')) {
+    /**
+     * Gets a setting from the database (**cms_settings** table).
+     */
+    function getSetting(string $key, ?string $defaultValue = null): string|int {
+        return app(SettingsService::class)->get($key, $defaultValue);
     }
 }

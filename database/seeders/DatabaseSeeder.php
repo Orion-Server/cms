@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            NavigationSeeder::class
+            NavigationSeeder::class,
+            CmsSettingsSeeder::class
         ]);
     }
 }
