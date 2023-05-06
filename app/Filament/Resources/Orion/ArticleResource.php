@@ -31,7 +31,7 @@ class ArticleResource extends Resource
     {
         return $form
             ->schema([
-                Tabs::make('Heading')
+                Tabs::make('Main')
                     ->tabs([
                         Tabs\Tab::make('Home')
                             ->icon('heroicon-o-home')
@@ -103,7 +103,8 @@ class ArticleResource extends Resource
         return $table
             ->poll('60s')
             ->columns([
-                TextColumn::make('id'),
+                TextColumn::make('id')
+                    ->label('ID'),
 
                 ImageColumn::make('image')
                     ->circular()

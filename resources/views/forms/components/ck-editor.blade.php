@@ -123,7 +123,7 @@
                             },
                         ],
                     },
-                    placeholder: 'Digite aqui',
+                    placeholder: '. . .',
                     fontFamily: {
                         options: [
                             'default',
@@ -136,19 +136,6 @@
                             'Trebuchet MS, Helvetica, sans-serif',
                             'Verdana, Geneva, sans-serif',
                             'Montserrat, sans-serif'
-                        ],
-                        supportAllValues: true,
-                    },
-                    fontSize: {
-                        options: [
-                            { title: '5pt', model: '5pt', },
-                            { title: '6pt', model: '6pt', },
-                            { title: '7pt', model: '7pt', },
-                            'default',
-                            { title: '9pt', model: '9pt', },
-                            { title: '10pt', model: '10pt', },
-                            { title: '11pt', model: '11pt', },
-                            { title: '12pt', model: '12pt', },
                         ],
                         supportAllValues: true,
                     },

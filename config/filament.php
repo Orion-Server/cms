@@ -228,7 +228,7 @@ return [
         ],
         'forms' => [
             'actions' => [
-                'alignment' => 'left',
+                'alignment' => 'right',
                 'are_sticky' => false,
             ],
             'have_inline_labels' => false,
@@ -260,7 +260,7 @@ return [
     |
     */
 
-    'favicon' => null,
+    'favicon' => asset('favicon.png'),
 
     /*
     |--------------------------------------------------------------------------

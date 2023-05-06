@@ -7,7 +7,13 @@ use App\Models\CmsTag;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ColorPicker;
 use App\Filament\Resources\Orion\CmsTagResource\Pages;
+use Filament\Tables\Columns\ColorColumn;
+use Filament\Tables\Columns\TextColumn;
 
 class CmsTagResource extends Resource
 {
@@ -25,7 +31,23 @@ class CmsTagResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Tabs::make('Main')
+                    ->tabs([
+                        Tab::make('Home')
+                            ->icon('heroicon-o-home')
+                            ->schema([
+                                TextInput::make('name')
+                                    ->placeholder('Tag name')
+                                    ->required()
+                                    ->autocomplete('name')
+                                    ->columnSpan('full'),
+
+                                ColorPicker::make('background_color')
+                                    ->required()
+                                    ->placeholder('The background color of the tag')
+                                    ->columnSpan('full'),
+                            ]),
+                    ])->columnSpanFull()
             ]);
     }
 
@@ -33,7 +55,16 @@ class CmsTagResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('id')
+                    ->label('ID'),
+
+                TextColumn::make('name')
+                    ->limit(50),
+
+                ColorColumn::make('background_color')
+                    ->copyable()
+                    ->copyMessage('Color code copied')
+                    ->copyMessageDuration(1500)
             ])
             ->filters([
                 //
