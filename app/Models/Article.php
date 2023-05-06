@@ -17,6 +17,16 @@ class Article extends Model
         'allow_comments' => 'boolean'
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($article) {
+            $article->user_id = \Auth::id();
+            $article->slug = \Str::slug($article->title) . '-' . \Str::random(6);
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
             ]);
 
             Filament::registerNavigationGroups([
+                NavigationGroup::make()->label('Dashboard'),
                 NavigationGroup::make()->label('Hotel'),
                 NavigationGroup::make()->label('Administration'),
             ]);

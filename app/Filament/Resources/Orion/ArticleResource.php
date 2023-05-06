@@ -28,30 +28,31 @@ class ArticleResource extends Resource
                 Card::make()
                     ->schema([
                         TextInput::make('title')
-                            ->label('Título')
-                            ->placeholder('Título da notícia')
+                            ->label('Title')
+                            ->placeholder('Article title')
                             ->maxLength(255)
                             ->required()
                             ->autocomplete('title')
                             ->columnSpan('full'),
 
                         TextInput::make('description')
-                            ->label('Descrição')
-                            ->placeholder('Descrição da notícia')
+                            ->label('Description')
+                            ->placeholder('Article description')
                             ->maxLength(255)
                             ->required()
                             ->autocomplete('description')
                             ->columnSpan('full'),
 
                         TextInput::make('image')
-                            ->label('Imagem')
+                            ->label('Image')
                             ->required()
-                            ->placeholder('Link da Imagem')
+                            ->placeholder('Image link')
+                            ->helperText('Eg: https://example.com/image.jpg')
                             ->maxLength(255)
                             ->columnSpan('full'),
 
                         CKEditor::make('content')
-                            ->label('Conteúdo')
+                            ->label('Article content')
                             ->required()
                             ->columnSpan('full'),
                     ])

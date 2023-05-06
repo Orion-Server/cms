@@ -87,7 +87,7 @@ return [
     'auth' => [
         'guard' => env('FILAMENT_AUTH_GUARD', 'web'),
         'pages' => [
-            'login' => \Filament\Http\Livewire\Auth\Login::class,
+            'login' => \App\Filament\Pages\Login::class,
         ],
     ],
 
@@ -104,9 +104,7 @@ return [
     'pages' => [
         'namespace' => 'App\\Filament\\Pages',
         'path' => app_path('Filament/Pages'),
-        'register' => [
-            Pages\Dashboard::class,
-        ],
+        'register' => [],
     ],
 
     /*
