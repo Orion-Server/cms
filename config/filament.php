@@ -260,7 +260,7 @@ return [
     |
     */
 
-    'favicon' => asset('favicon.png'),
+    'favicon' => env('APP_URL') . '/favicon.png',
 
     /*
     |--------------------------------------------------------------------------
