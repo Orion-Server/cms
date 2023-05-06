@@ -21,8 +21,11 @@ return new class extends Migration
 
             $table->text('content');
 
-            $table->string('slug')->unique()->index();
+            $table->string('slug')->index();
             $table->string('image');
+
+            $table->boolean('is_promotion')->default(false);
+            $table->timestamp('promotion_ends_at')->nullable();
 
             $table->boolean('visible')->default(true);
             $table->boolean('fixed')->default(false);

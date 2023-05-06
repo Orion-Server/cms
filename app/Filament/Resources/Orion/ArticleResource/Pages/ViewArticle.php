@@ -3,17 +3,10 @@
 namespace App\Filament\Resources\Orion\ArticleResource\Pages;
 
 use Filament\Pages\Actions;
-use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 use App\Filament\Resources\Orion\ArticleResource;
 
-class EditArticle extends EditRecord
+class ViewArticle extends ViewRecord
 {
     protected static string $resource = ArticleResource::class;
-
-    protected function getActions(): array
-    {
-        return [
-            Actions\DeleteAction::make(),
-        ];
-    }
 }

@@ -5,18 +5,23 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Compositions\User\{
     HasCurrency,
     HasSettings
 };
-use Filament\Models\Contracts\HasName;
-use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Database\Eloquent\Relations\{
+    HasMany,
+    BelongsTo
+};
+use Filament\Models\Contracts\{
+    HasName,
+    FilamentUser,
+    HasAvatar
+};
 
-class User extends Authenticatable implements FilamentUser, HasNAme
+class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
 {
     use HasApiTokens, HasFactory, Notifiable, HasCurrency, HasSettings;
 
@@ -92,8 +97,8 @@ class User extends Authenticatable implements FilamentUser, HasNAme
     public function getFilamentAvatarUrl(): ?string
     {
         return sprintf(
-            '%s%s&size=m&head_direction=2&gesture=sml&headonly=1',
-            getSetting('avatar_image_url'),
+            '%s%s&size=m&head_direction=3&gesture=sml&headonly=1',
+            getSetting('figure_imager'),
             $this->look
         );
     }

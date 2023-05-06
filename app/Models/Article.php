@@ -14,7 +14,9 @@ class Article extends Model
     protected $casts = [
         'visible' => 'boolean',
         'fixed' => 'boolean',
-        'allow_comments' => 'boolean'
+        'allow_comments' => 'boolean',
+        'is_promotion' => 'boolean',
+        'promotion_ends_at' => 'datetime'
     ];
 
     public static function boot()
@@ -23,7 +25,7 @@ class Article extends Model
 
         static::creating(function ($article) {
             $article->user_id = \Auth::id();
-            $article->slug = \Str::slug($article->title) . '-' . \Str::random(6);
+            $article->slug = \Str::slug($article->title);
         });
     }
 
