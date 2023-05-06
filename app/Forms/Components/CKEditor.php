@@ -12,5 +12,5 @@ class CKEditor extends Field implements Contracts\CanBeLengthConstrained, Contra
     use Concerns\HasFileAttachments;
     use Concerns\CanBeLengthConstrained;
 
-    protected string $view = 'forms.components.ck-editor';
+    protected string $view = 'filament.forms.components.ck-editor';
 }

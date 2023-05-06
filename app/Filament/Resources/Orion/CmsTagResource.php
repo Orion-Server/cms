@@ -14,6 +14,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ColorColumn;
 use Filament\Forms\Components\ColorPicker;
 use App\Filament\Resources\Orion\CmsTagResource\Pages;
+use App\Filament\Resources\Orion\CmsTagResource\RelationManagers;
 
 class CmsTagResource extends Resource
 {
@@ -30,46 +31,40 @@ class CmsTagResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Tabs::make('Main')
-                    ->tabs([
-                        Tab::make('Home')
-                            ->icon('heroicon-o-home')
-                            ->schema([
-                                TextInput::make('name')
-                                    ->placeholder('Tag name')
-                                    ->required()
-                                    ->autocomplete('name')
-                                    ->columnSpan('full'),
+            ->schema(static::getForm());
+    }
 
-                                ColorPicker::make('background_color')
-                                    ->required()
-                                    ->placeholder('The background color of the tag')
-                                    ->columnSpan('full'),
-                            ]),
-                    ])->columnSpanFull()
-            ]);
+    public static function getForm(): array {
+        return [
+            Tabs::make('Main')
+                ->tabs([
+                    Tab::make('Home')
+                        ->icon('heroicon-o-home')
+                        ->schema([
+                            TextInput::make('name')
+                                ->placeholder('Tag name')
+                                ->required()
+                                ->autocomplete('name')
+                                ->columnSpan('full'),
+
+                            ColorPicker::make('background_color')
+                                ->required()
+                                ->placeholder('The background color of the tag')
+                                ->columnSpan('full'),
+                        ]),
+                ])->columnSpanFull()
+        ];
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                TextColumn::make('id')
-                    ->label('ID'),
-
-                TextColumn::make('name')
-                    ->limit(50),
-
-                ColorColumn::make('background_color')
-                    ->copyable()
-                    ->copyMessage('Color code copied')
-                    ->copyMessageDuration(1500)
-            ])
+            ->columns(static::getTable())
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -77,10 +72,26 @@ class CmsTagResource extends Resource
             ]);
     }
 
+    public static function getTable(): array
+    {
+        return [
+            TextColumn::make('id')
+                ->label('ID'),
+
+            TextColumn::make('name')
+                ->limit(50),
+
+            ColorColumn::make('background_color')
+                ->copyable()
+                ->copyMessage('Color code copied')
+                ->copyMessageDuration(1500)
+        ];
+    }
+
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ArticlesRelationManager::class
         ];
     }
 
@@ -89,6 +100,7 @@ class CmsTagResource extends Resource
         return [
             'index' => Pages\ListCmsTags::route('/'),
             'create' => Pages\CreateCmsTag::route('/create'),
+            'view' => Pages\ViewCmsTag::route('/{record}'),
             'edit' => Pages\EditCmsTag::route('/{record}/edit'),
         ];
     }

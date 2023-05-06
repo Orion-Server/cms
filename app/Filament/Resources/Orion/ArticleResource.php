@@ -16,6 +16,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Resources\Orion\ArticleResource\Pages;
+use App\Filament\Resources\Orion\ArticleResource\RelationManagers;
 
 class ArticleResource extends Resource
 {
@@ -30,111 +31,129 @@ class ArticleResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Tabs::make('Main')
-                    ->tabs([
-                        Tabs\Tab::make('Home')
-                            ->icon('heroicon-o-home')
-                            ->schema([
-                                TextInput::make('title')
-                                    ->placeholder('Article title')
-                                    ->required()
-                                    ->autocomplete('title')
-                                    ->columnSpan('full'),
+            ->schema(static::getForm());
+    }
 
-                                TextInput::make('description')
-                                    ->placeholder('Article description')
-                                    ->required()
-                                    ->autocomplete('description')
-                                    ->columnSpan('full'),
+    public static function getForm(): array
+    {
+        return [
+            Tabs::make('Main')
+                ->tabs([
+                    Tabs\Tab::make('Home')
+                        ->icon('heroicon-o-home')
+                        ->schema([
+                            TextInput::make('title')
+                                ->placeholder('Article title')
+                                ->required()
+                                ->autocomplete('title')
+                                ->columnSpan('full'),
 
-                                TextInput::make('image')
-                                    ->required()
-                                    ->placeholder('Image link')
-                                    ->columnSpan('full'),
+                            TextInput::make('description')
+                                ->placeholder('Article description')
+                                ->required()
+                                ->autocomplete('description')
+                                ->columnSpan('full'),
 
-                                CKEditor::make('content')
-                                    ->label('Article content')
-                                    ->required()
-                                    ->columnSpan('full'),
-                            ]),
+                            TextInput::make('image')
+                                ->required()
+                                ->placeholder('Image link')
+                                ->columnSpan('full'),
 
-                        Tabs\Tab::make('Configurations')
-                            ->icon('heroicon-o-cog')
-                            ->schema([
-                                Toggle::make('visible')
-                                    ->onIcon('heroicon-s-check')
-                                    ->label('Mark as visible article')
-                                    ->default(false)
-                                    ->offIcon('heroicon-s-x'),
+                            CKEditor::make('content')
+                                ->label('Article content')
+                                ->required()
+                                ->columnSpan('full'),
+                        ]),
 
-                                Toggle::make('fixed')
-                                    ->onIcon('heroicon-s-check')
-                                    ->label('Mark as fixed article')
-                                    ->default(false)
-                                    ->offIcon('heroicon-s-x'),
+                    Tabs\Tab::make('Configurations')
+                        ->icon('heroicon-o-cog')
+                        ->schema([
+                            Toggle::make('visible')
+                                ->onIcon('heroicon-s-check')
+                                ->label('Mark as visible article')
+                                ->default(false)
+                                ->offIcon('heroicon-s-x'),
 
-                                Toggle::make('allow_comments')
-                                    ->onIcon('heroicon-s-check')
-                                    ->label('Allow comments on this article')
-                                    ->default(true)
-                                    ->offIcon('heroicon-s-x'),
+                            Toggle::make('fixed')
+                                ->onIcon('heroicon-s-check')
+                                ->label('Mark as fixed article')
+                                ->default(false)
+                                ->offIcon('heroicon-s-x'),
 
-                                Toggle::make('is_promotion')
-                                    ->label('Article is a Promotion')
-                                    ->onIcon('heroicon-s-check')
-                                    ->default(false)
-                                    ->reactive()
-                                    ->offIcon('heroicon-s-x'),
+                            Toggle::make('allow_comments')
+                                ->onIcon('heroicon-s-check')
+                                ->label('Allow comments on this article')
+                                ->default(true)
+                                ->offIcon('heroicon-s-x'),
 
-                                DateTimePicker::make('promotion_ends_at')
-                                    ->withoutSeconds()
-                                    ->hidden(fn (\Closure $get) => !$get('is_promotion'))
-                                    ->label('Promotion ends at')
-                                    ->required()
-                                    ->columnSpan('full'),
-                            ]),
-                    ])->columnSpanFull()
-            ]);
+                            Toggle::make('is_promotion')
+                                ->label('Article is a Promotion')
+                                ->onIcon('heroicon-s-check')
+                                ->default(false)
+                                ->reactive()
+                                ->offIcon('heroicon-s-x'),
+
+                            DateTimePicker::make('promotion_ends_at')
+                                ->withoutSeconds()
+                                ->hidden(fn (\Closure $get) => !$get('is_promotion'))
+                                ->label('Promotion ends at')
+                                ->required()
+                                ->columnSpan('full'),
+                        ]),
+                ])->columnSpanFull()
+        ];
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->poll('60s')
-            ->columns([
-                TextColumn::make('id')
-                    ->label('ID'),
-
-                ImageColumn::make('image')
-                    ->circular()
-                    ->extraAttributes(['style' => 'image-rendering: pixelated'])
-                    ->size(50)
-                    ->label('Image'),
-
-                TextColumn::make('title')->limit(50),
-                TextColumn::make('user.username')->label('Posted by'),
-
-                ToggleColumn::make('visible'),
-                ToggleColumn::make('fixed'),
-                ToggleColumn::make('allow_comments'),
-            ])
+            ->columns(static::getTable())
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 
+    public static function getTable(bool $isRelationManager = false): array
+    {
+        return [
+            TextColumn::make('id')
+                ->label('ID'),
+
+            ImageColumn::make('image')
+                ->circular()
+                ->extraAttributes(['style' => 'image-rendering: pixelated'])
+                ->size(50)
+                ->label('Image'),
+
+            TextColumn::make('title')->limit(50),
+            TextColumn::make('user.username')->label('Posted by'),
+
+            ToggleColumn::make('visible')
+                ->onIcon('heroicon-s-check')
+                ->disabled($isRelationManager),
+
+            ToggleColumn::make('fixed')
+                ->onIcon('heroicon-s-check')
+                ->disabled($isRelationManager),
+
+            ToggleColumn::make('allow_comments')
+                ->onIcon('heroicon-s-check')
+                ->disabled($isRelationManager),
+        ];
+    }
+
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\TagsRelationManager::class,
         ];
     }
 

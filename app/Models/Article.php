@@ -34,7 +34,7 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function tags()
+    public function cmsTags()
     {
         return $this->morphToMany(CmsTag::class, 'taggable');
     }
