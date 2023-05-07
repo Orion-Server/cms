@@ -4,6 +4,7 @@ namespace App\Filament\Resources\User;
 
 use App\Models\User;
 use Filament\Tables;
+use App\Models\Permission;
 use App\Enums\CurrencyType;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
@@ -19,13 +20,9 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use App\Tables\Columns\UserAvatarColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\BadgeColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Resources\User\UserResource\Pages;
-use App\Filament\Resources\User\UserResource\RelationManagers;
-use App\Models\Permission;
-use Filament\Forms\Components\Fieldset;
 
 class UserResource extends Resource
 {
