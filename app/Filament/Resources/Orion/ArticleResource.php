@@ -133,19 +133,22 @@ class ArticleResource extends Resource
                 ->size(50)
                 ->label('Image'),
 
-            TextColumn::make('title')->limit(50),
-            TextColumn::make('user.username')->label('Posted by'),
+            TextColumn::make('title')->searchable()->limit(50),
+            TextColumn::make('user.username')->searchable()->label('Posted by'),
 
             ToggleColumn::make('visible')
                 ->onIcon('heroicon-s-check')
+                ->toggleable()
                 ->disabled($isRelationManager),
 
             ToggleColumn::make('fixed')
                 ->onIcon('heroicon-s-check')
+                ->toggleable()
                 ->disabled($isRelationManager),
 
             ToggleColumn::make('allow_comments')
                 ->onIcon('heroicon-s-check')
+                ->toggleable()
                 ->disabled($isRelationManager),
         ];
     }

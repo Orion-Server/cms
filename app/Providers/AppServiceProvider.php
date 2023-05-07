@@ -30,15 +30,32 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
+        // Dashboard configuration
         Filament::serving(function() {
             Filament::registerStyles([
                 asset('assets/css/ckeditor.css')
             ]);
 
             Filament::registerNavigationGroups([
-                NavigationGroup::make()->label('Dashboard'),
-                NavigationGroup::make()->label('Hotel'),
-                NavigationGroup::make()->label('Administration'),
+                NavigationGroup::make()
+                    ->label('Dashboard')
+                    ->collapsed()
+                    ->icon('heroicon-s-server'),
+
+                NavigationGroup::make()
+                    ->label('Website')
+                    ->collapsed()
+                    ->icon('heroicon-s-desktop-computer'),
+
+                NavigationGroup::make()
+                    ->label('Hotel')
+                    ->collapsed()
+                    ->icon('heroicon-s-office-building'),
+
+                NavigationGroup::make()
+                    ->label('Administration')
+                    ->collapsed()
+                    ->icon('heroicon-s-adjustments'),
             ]);
         });
     }

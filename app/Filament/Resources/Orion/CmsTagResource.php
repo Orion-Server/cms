@@ -79,9 +79,11 @@ class CmsTagResource extends Resource
                 ->label('ID'),
 
             TextColumn::make('name')
+                ->searchable()
                 ->limit(50),
 
             ColorColumn::make('background_color')
+                ->searchable()
                 ->copyable()
                 ->copyMessage('Color code copied')
                 ->copyMessageDuration(1500)
