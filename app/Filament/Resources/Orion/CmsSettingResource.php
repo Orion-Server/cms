@@ -33,17 +33,17 @@ class CmsSettingResource extends Resource
                     ->schema([
                         TextInput::make('key')
                             ->maxLength(50)
-                            ->autocomplete('key')
-                            ->unique('cms_settings', 'key')
+                            ->autocomplete()
+                            ->unique(ignoreRecord: true)
                             ->required(),
 
                         TextInput::make('value')
                             ->required()
-                            ->autocomplete('value'),
+                            ->autocomplete(),
 
                         TextInput::make('comment')
                             ->nullable()
-                            ->autocomplete('comment')
+                            ->autocomplete()
                             ->columnSpanFull()
                     ])
                     ->columns([

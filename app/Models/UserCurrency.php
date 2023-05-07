@@ -16,6 +16,8 @@ class UserCurrency extends Model
 
     public $timestamps = false;
 
+    protected $primaryKey = 'user_id';
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

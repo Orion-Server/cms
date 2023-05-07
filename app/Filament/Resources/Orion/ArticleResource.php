@@ -45,13 +45,13 @@ class ArticleResource extends Resource
                             TextInput::make('title')
                                 ->placeholder('Article title')
                                 ->required()
-                                ->autocomplete('title')
+                                ->autocomplete()
                                 ->columnSpan('full'),
 
                             TextInput::make('description')
                                 ->placeholder('Article description')
                                 ->required()
-                                ->autocomplete('description')
+                                ->autocomplete()
                                 ->columnSpan('full'),
 
                             TextInput::make('image')

@@ -4,6 +4,7 @@
 /public/client
 /public/static
 /public/storage
+/public/nitro
 /storage/*.key
 /vendor
 .env

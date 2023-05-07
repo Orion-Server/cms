@@ -44,7 +44,7 @@ class CmsTagResource extends Resource
                             TextInput::make('name')
                                 ->placeholder('Tag name')
                                 ->required()
-                                ->autocomplete('name')
+                                ->autocomplete()
                                 ->columnSpan('full'),
 
                             ColorPicker::make('background_color')

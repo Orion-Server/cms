@@ -56,6 +56,11 @@ class AppServiceProvider extends ServiceProvider
                     ->label('Administration')
                     ->collapsed()
                     ->icon('heroicon-s-adjustments'),
+
+                NavigationGroup::make()
+                    ->label('User Management')
+                    ->collapsed()
+                    ->icon('heroicon-s-user'),
             ]);
         });
     }

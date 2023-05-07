@@ -2,7 +2,9 @@
 
 namespace App\Models\Compositions\User;
 
+use App\Enums\CurrencyType;
 use App\Models\UserCurrency;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait HasCurrency
@@ -28,23 +30,25 @@ trait HasCurrency
         ]);
     }
 
+    public function scopeWithCurrencies($query): Builder
+    {
+        return $query->with(['currencies']);
+    }
+
     public function currencies(): HasMany
     {
         return $this->hasMany(UserCurrency::class);
     }
 
-    public function currency(string $currencyName): int
+    public function currency(CurrencyType $currency): int
     {
         if (!$this->relationLoaded('currencies')) {
             $this->load('currencies');
         }
 
-        $type = match ($currencyName) {
-            'duckets' => 0,
-            'diamonds' => 5,
-            'points' => 101
-        };
-
-        return $this->currencies->where('type', $type)->first()->amount ?? 0;
+        return $this->currencies
+            ->where('type', $currency->value)
+            ->first()
+            ->amount ?? 0;
     }
 }

@@ -183,7 +183,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+        'CurrencyType' => App\Enums\CurrencyType::class,
     ])->toArray(),
 
 ];
