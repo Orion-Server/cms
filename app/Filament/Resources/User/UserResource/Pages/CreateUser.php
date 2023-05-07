@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\User\UserResource\Pages;
 
-use App\Filament\Resources\User\UserResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use App\Filament\Resources\User\UserResource;
 
 class CreateUser extends CreateRecord
 {

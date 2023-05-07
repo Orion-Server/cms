@@ -90,13 +90,13 @@ class RconService
      */
     public function giveCurrency(User $user, string $currency, int $amount)
     {
-        if(is_string($currency) && !in_array($currency, ['credits', '0', '5', '101'])) return;
+        if (! in_array($currency, array_merge(CurrencyType::values(), ['credits']))) return;
 
         $data = [
             'user_id' => $user->id
         ];
 
-        if($currency == 'credits') {
+        if ($currency == 'credits') {
             $data[$currency] = $amount;
 
             return $this->sendPacket('givecredits', $data);
@@ -114,11 +114,11 @@ class RconService
      * @param user $user
      * @return mixed
      */
-    public function disconnectUser(User $user, string $type)
+    public function disconnectUser(User $user)
     {
         return $this->sendPacket('disconnect', [
-            'user_data' => $user->id,
-            'type' => $type
+            'user_id' => $user->id,
+            'username' => $user->username,
         ]);
     }
 
@@ -198,11 +198,11 @@ class RconService
     /**
      * Set users rank.
      */
-    public function setRank(User $user)
+    public function setRank(User $user, int $rank)
     {
         return $this->sendPacket('setrank', [
             'user_id' => $user->id,
-            'rank' => $user->rank,
+            'rank' => $rank,
         ]);
     }
 
@@ -273,7 +273,7 @@ class RconService
         try {
             $this->{$method}(...$args);
         } catch (\Throwable $e) {
-            if($fallback) $fallback($e);
+            if ($fallback) $fallback($e);
         }
     }
 
@@ -282,7 +282,7 @@ class RconService
         $this->sendSafely(
             $method,
             $args,
-            fn() => Notification::make()
+            fn () => Notification::make()
                 ->danger()
                 ->persistent()
                 ->title($notificationTitle)

@@ -13,7 +13,8 @@ use App\Models\Compositions\User\{
 };
 use Illuminate\Database\Eloquent\Relations\{
     HasMany,
-    BelongsTo
+    BelongsTo,
+    HasOne
 };
 use Filament\Models\Contracts\{
     HasName,
@@ -40,6 +41,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         'last_login',
         'motto',
         'look',
+        'rank',
         'credits',
         'ip_register',
         'ip_current',
@@ -67,6 +69,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'online' => 'boolean',
     ];
 
     public static function boot(): void
@@ -101,6 +104,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
             getSetting('figure_imager'),
             $this->look
         );
+    }
+
+    public function permission(): BelongsTo
+    {
+        return $this->belongsTo(Permission::class, 'rank');
     }
 
     public function getFilamentName(): string

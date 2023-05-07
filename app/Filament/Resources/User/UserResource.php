@@ -2,26 +2,30 @@
 
 namespace App\Filament\Resources\User;
 
-use Filament\Forms;
 use App\Models\User;
 use Filament\Tables;
+use App\Enums\CurrencyType;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Tabs;
 use Illuminate\Support\Facades\Hash;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Tabs\Tab;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
+use App\Tables\Columns\UserAvatarColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\BadgeColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Resources\User\UserResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\User\UserResource\RelationManagers;
-use Filament\Forms\Components\Toggle;
+use App\Models\Permission;
+use Filament\Forms\Components\Fieldset;
 
 class UserResource extends Resource
 {
@@ -152,6 +156,13 @@ class UserResource extends Resource
                                     ])->collapsible()
                                     ->columns(['sm' => 2])
                                     ->collapsed(),
+
+                                Section::make('Rank & Permissions')
+                                    ->schema([
+                                        Select::make('rank')
+                                            ->options(Permission::all()->pluck('rank_name', 'id'))
+                                    ])->collapsible()
+                                    ->collapsed(),
                             ])
                     ])->columnSpanFull()
             ]);
@@ -166,12 +177,50 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->searchable(),
+
+                UserAvatarColumn::make('avatar')
+                    ->toggleable()
+                    ->label('Avatar')
+                    ->options('&size=m&head_direction=3&gesture=sml&headonly=1'),
+
+                TextColumn::make('username')
+                    ->searchable(),
+
+                TextColumn::make('mail')
+                    ->label('Email')
+                    ->toggleable()
+                    ->searchable()
+                    ->limit(50),
+
+                TextColumn::make('motto')
+                    ->toggleable()
+                    ->limit(30)
+                    ->searchable(),
+
+                IconColumn::make('online')
+                    ->label('Online')
+                    ->options([
+                        'heroicon-o-x-circle' => fn ($state, $record): bool => ! $record->online,
+                        'heroicon-o-check-circle' => fn ($state, $record): bool => !! $record->online,
+                    ])
+                    ->colors([
+                        'danger' => false,
+                        'success' => true,
+                    ]),
+
+                TextColumn::make('account_created')
+                    ->toggleable()
+                    ->date('Y-m-d H:i')
+                    ->label('Account created')
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -186,11 +235,22 @@ class UserResource extends Resource
         ];
     }
 
+    public static function fillWithOutsideData(Model $record, array $formData): array
+    {
+        $formData['currency_0'] = $record->currency(CurrencyType::Duckets);
+        $formData['currency_5'] = $record->currency(CurrencyType::Diamonds);
+        $formData['currency_101'] = $record->currency(CurrencyType::Points);
+        $formData['allow_change_username'] = $record->settings->can_change_name;
+
+        return $formData;
+    }
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUser::route('/create'),
+            'view' => Pages\ViewUser::route('/{record}'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
