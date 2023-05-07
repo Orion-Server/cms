@@ -6,6 +6,8 @@ use App\Enums\CurrencyType;
 use Socket;
 use Carbon\Carbon;
 use App\Models\User;
+use Error;
+use Filament\Notifications\Notification;
 
 class RconService
 {
@@ -36,16 +38,16 @@ class RconService
             abort(500, sprintf("socket_create function doesn't exist. PHP Error: [%s]", socket_strerror(socket_last_error())));
         }
 
-        $this->socket = socket_create(config('hotel.rcon.domain'), config('hotel.rcon.type'), config('hotel.rcon.protocol'));
-
-        if (!$this->socket) {
-            abort(500, sprintf('socket_create failed. PHP Error: [%s]', socket_strerror(socket_last_error())));
+        try {
+            $this->socket = socket_create(config('hotel.rcon.domain'), config('hotel.rcon.type'), config('hotel.rcon.protocol'));
+        } catch (\Throwable) {
+            throw new Error(sprintf('socket_create failed. PHP Error: [%s]', socket_strerror(socket_last_error())));
         }
 
-        $this->connected = socket_connect($this->socket, config('hotel.rcon.host'), config('hotel.rcon.port'));
-
-        if (!$this->connected) {
-            abort(500, sprintf('socket_connect failed. PHP Error: [%s]', socket_strerror(socket_last_error())));
+        try {
+            $this->connected = socket_connect($this->socket, config('hotel.rcon.host'), config('hotel.rcon.port'));
+        } catch (\Throwable) {
+            throw new Error(sprintf('socket_create failed. PHP Error: [%s]', socket_strerror(socket_last_error())));
         }
     }
 
@@ -185,9 +187,12 @@ class RconService
     /**
      * Update users username.
      */
-    public function changeUsername(User $user, string $username)
+    public function changeUsername(User $user, bool $canChange = false)
     {
-        return $this->updateUser($user, 'username', $username);
+        return $this->sendPacket('changeusername', [
+            'user_id' => $user->id,
+            'canChange' => $canChange,
+        ]);
     }
 
     /**
@@ -261,5 +266,28 @@ class RconService
             'user_id' => $currentUser->id,
             'follow_id' => $user->id
         ]);
+    }
+
+    public function sendSafely($method, array $args, $fallback = null)
+    {
+        try {
+            $this->{$method}(...$args);
+        } catch (\Throwable $e) {
+            if($fallback) $fallback($e);
+        }
+    }
+
+    public function sendSafelyFromDashboard($method, array $args, $notificationTitle)
+    {
+        $this->sendSafely(
+            $method,
+            $args,
+            fn() => Notification::make()
+                ->danger()
+                ->persistent()
+                ->title($notificationTitle)
+                ->body('Please check your RCON connection and try again.')
+                ->send()
+        );
     }
 }

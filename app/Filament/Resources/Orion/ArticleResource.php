@@ -94,6 +94,7 @@ class ArticleResource extends Resource
                                 ->offIcon('heroicon-s-x'),
 
                             DateTimePicker::make('promotion_ends_at')
+                                ->displayFormat('Y-m-d H:i')
                                 ->withoutSeconds()
                                 ->hidden(fn (\Closure $get) => !$get('is_promotion'))
                                 ->label('Promotion ends at')
