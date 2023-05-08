@@ -54,7 +54,7 @@
                         {{ Auth::check() ? Auth::user()->username : 'guest' }}
                     </b>!
                 </span>
-                @auth
+                @if (Auth::check() && !$fromClient)
                     <div class="mt-2 flex gap-3 flex-wrap">
                         <x-ui.buttons.redirectable
                             href="#"
@@ -81,7 +81,7 @@
                         </x-ui.buttons.redirectable>
                         @endif
                     </div>
-                @endauth
+                @endif
             </div>
             <x-header.user-box />
         </x-container>

@@ -59,7 +59,7 @@
             style="display: none"
         >
             <iframe
-                src="/"
+                src="/?fromClient=1"
                 class="overflow-hidden dark:bg-slate-950 left-0 top-0 w-screen h-screen border-none m-0 p-0 z-20"
             >
             </iframe>

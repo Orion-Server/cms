@@ -37,7 +37,7 @@ export default class Client {
 
                 await axios.get(this.endpoints.onlineCount)
                     .then(response => {
-                        if(!response.data || !response.data.onlineCount) {
+                        if(!response.data) {
                             this.onlineCount = 'N/A'
                             return
                         }

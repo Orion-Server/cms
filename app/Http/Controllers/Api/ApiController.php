@@ -11,7 +11,7 @@ class ApiController extends Controller
     public function getOnlineCount(): JsonResponse
     {
         return response()->json([
-            'onlineCount' => User::whereOnline(true)->count()
+            'onlineCount' => User::whereOnline('1')->count()
         ]);
     }
 }
