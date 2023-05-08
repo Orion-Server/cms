@@ -19,11 +19,6 @@
     "file": "assets/loading-298ad3ff.gif",
     "src": "node_modules/lightgallery/images/loading.gif"
   },
-  "resources/css/filament.css": {
-    "file": "assets/filament-2de96318.css",
-    "isEntry": true,
-    "src": "resources/css/filament.css"
-  },
   "resources/js/app.css": {
     "file": "assets/app-8ec2fb49.css",
     "src": "resources/js/app.css"
@@ -44,7 +39,7 @@
     "src": "resources/js/app.js"
   },
   "resources/scss/app.scss": {
-    "file": "assets/app-856ab0a0.css",
+    "file": "assets/app-f1980d96.css",
     "isEntry": true,
     "src": "resources/scss/app.scss"
   }
