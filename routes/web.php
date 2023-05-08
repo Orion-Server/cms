@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,11 @@ Route::prefix('community')
         Route::get('photos', fn() => view('pages.community.photos.index'))->name('photos.index');
         Route::get('staff', fn() => view('pages.community.staff.index'))->name('staff.index');
         Route::get('rankings', fn() => view('pages.community.rankings.index'))->name('rankings.index');
+    });
+
+
+Route::prefix('client')
+    ->name('client.')
+    ->group(function() {
+        Route::get('nitro', [ClientController::class, 'nitroClient'])->name('nitro');
     });

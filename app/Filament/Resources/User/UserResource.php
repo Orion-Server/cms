@@ -18,10 +18,10 @@ use Filament\Forms\Components\Tabs\Tab;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
-use App\Tables\Columns\UserAvatarColumn;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\DateTimePicker;
+use App\Filament\Tables\Columns\UserAvatarColumn;
 use App\Filament\Resources\User\UserResource\Pages;
 
 class UserResource extends Resource

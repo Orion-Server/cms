@@ -7,14 +7,13 @@ use Filament\Tables;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
-use App\Tables\Columns\UserAvatarColumn;
 use Filament\Tables\Columns\BadgeColumn;
-use App\Filament\Resources\User\BanResource\Pages;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
+use App\Filament\Tables\Columns\UserAvatarColumn;
+use App\Filament\Resources\User\BanResource\Pages;
 
 class BanResource extends Resource
 {
@@ -114,7 +113,8 @@ class BanResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->label('Edit or View'),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

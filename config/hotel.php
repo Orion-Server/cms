@@ -2,7 +2,7 @@
 
 return [
     /**
-     * Rcon configuration
+     * Rcon configurations
      */
     'rcon' => [
         'enabled' => !! env('RCON_ENABLED', false),
@@ -12,4 +12,13 @@ return [
         'type' => SOCK_STREAM,
         'protocol' => SOL_TCP,
     ],
+
+    /**
+     * Client configurations
+     */
+    'client' => [
+        'nitro' => [
+            'path' => env('NITRO_CLIENT_PATH', '/client'),
+        ],
+    ]
 ];

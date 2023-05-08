@@ -1,11 +1,7 @@
 <?php
 
-namespace App\Tables\Columns;
+namespace App\Filament\Tables\Columns;
 
-use App\Models\{
-    Ban,
-    User
-};
 use Filament\Tables\Columns\Column;
 
 class UserAvatarColumn extends Column
