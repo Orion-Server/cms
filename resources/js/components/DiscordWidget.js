@@ -31,7 +31,7 @@ export default class DiscordWidget {
                 })
                 .catch(error => {
                     this.failed = true
-                    console.error('[DiscordWidget]: ', error)
+                    console.error('[DiscordWidget] - ', error)
                 })
 
                 setTimeout(() => this.loading = false, 1000)

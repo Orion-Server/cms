@@ -5,15 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <meta name="author" content="{{ config('hotel.meta.author') }}">
+    <meta name="title" content="{{ config('hotel.meta.title') }}">
+    <meta name="description" content="{{ config('hotel.meta.description') }}">
+
     <title>@yield('title', 'Index') - {{ config('app.name') }}</title>
+
+    <meta name="keywords" content="{{ config('hotel.meta.keywords') }}">
+    <meta name="rating" content="Geral">
+    <meta name="robots" content="index,follow">
+
+    <meta property="og:title" content="{{ config('hotel.meta.title') }}">
+    <meta property="og:url" content="{{ config('app.url') }}">
+    <meta property="og:image" content="{{ asset(config('hotel.meta.image')) }}">
+
+    <meta name="theme-color" content="#478dde">
+    <meta name="msapplication-navbutton-color" content="#478dde">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="{{ config('hotel.meta.twitter') }}">
+    <meta name="twitter:title" content="{{ config('hotel.meta.title') }}">
+    <meta name="twitter:description" content="{{ config('hotel.meta.description') }}">
+
+    <meta name="twitter:image" content="{{ asset(config('hotel.meta.image')) }}" />
 
     <link rel="icon" href="{{ asset('favicon.png') }}" sizes="20x20" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
     <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}" />
     @vite(['resources/scss/app.scss'])
 </head>
-<body class="bg-gray-100 dark:bg-slate-900 pt-12 lg:pt-0">
+<body class="bg-gray-100 dark:bg-slate-900 pt-12 lg:pt-0 overflow-x-hidden">
     <x-header.main-nav />
 
     <header class="relative flex justify-start items-center py-7 border-b-2 border-blue-500 bg-blue-400 shadow-md dark:shadow-none">
@@ -22,11 +47,11 @@
                 <span class="text-4xl font-semibold text-white text-center lg:text-left drop-shadow-lg">
                     Welcome,
                     <b @class([
-                        'text-white' => !\Auth::check(),
-                        'text-lime-500' => \Auth::user()?->isBoy(),
-                        'text-rose-500' => \Auth::user()?->isGirl(),
+                        'text-white' => !Auth::check(),
+                        'text-lime-500' => Auth::user()?->isBoy(),
+                        'text-rose-500' => Auth::user()?->isGirl(),
                     ])>
-                        {{ \Auth::check() ? \Auth::user()->username : 'guest' }}
+                        {{ Auth::check() ? Auth::user()->username : 'guest' }}
                     </b>!
                 </span>
                 @auth
@@ -39,13 +64,13 @@
                         </x-ui.buttons.redirectable>
 
                         <x-ui.buttons.redirectable
-                            href="#"
+                            href="{{ route('hotel.nitro') }}"
                             class="dark:bg-gray-500 bg-gray-500 border-gray-700 hover:bg-gray-400 dark:hover:bg-gray-400 dark:shadow-gray-700/75 shadow-gray-600/75 py-2 text-white"
                         >
                             Join (Nitro HTML5)
                         </x-ui.buttons.redirectable>
 
-                        @if (\Auth::user()->rank >= getSetting('min_rank_to_housekeeping_login'))
+                        @if (Auth::user()->rank >= getSetting('min_rank_to_housekeeping_login'))
                         <x-ui.buttons.redirectable
                             href="/admin"
                             target="_blank"

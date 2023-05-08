@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\InviteController;
@@ -20,3 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('referral/{code}', [InviteController::class, 'getReferralUsername']);
+
+Route::prefix('hotel')
+    ->name('hotel.')
+    ->group(function() {
+        Route::get('online-count', [ApiController::class, 'getOnlineCount'])->name('online-count');
+    });

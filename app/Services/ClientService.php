@@ -18,7 +18,7 @@ class ClientService {
         }
 
         $user->update([
-            'sso' => $updatedSSO
+            'auth_ticket' => $updatedSSO
         ]);
 
         return $updatedSSO;

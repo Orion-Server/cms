@@ -58,5 +58,5 @@ export default class WebManager {
                 container.scrollLeft += event.deltaY * 1.96
             })
         })
-      }
+    }
 }

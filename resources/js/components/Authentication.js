@@ -65,7 +65,7 @@ export default class Authentication {
                         localStorage.setItem(`referral_${referralCode}_username`, response.data.username)
                     })
                     .catch(error => {
-                        console.error('[ReferralIdentification]', error)
+                        console.error('[ReferralIdentification] - ', error)
                     })
             },
 

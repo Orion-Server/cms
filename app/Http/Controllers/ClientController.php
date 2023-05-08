@@ -8,7 +8,12 @@ use App\Services\ClientService;
 
 class ClientController extends Controller
 {
-    public function nitroClient(): View
+    public function __construct()
+    {
+        app('debugbar')->disable();
+    }
+
+    public function nitro(): View
     {
         return view('pages.client.nitro', [
             'nitroClientUrl' => sprintf('%s/index.html', config('hotel.client.nitro.path')),

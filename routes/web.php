@@ -16,7 +16,14 @@ use App\Http\Controllers\ClientController;
 |
 */
 
+
 Route::get('/', [WebController::class, 'index'])->name('index');
+
+Route::prefix('hotel')
+    ->name('hotel.')
+    ->group(function() {
+        Route::get('nitro', [ClientController::class, 'nitro'])->name('nitro');
+    });
 
 Route::prefix('articles')
     ->name('articles.')
@@ -30,11 +37,4 @@ Route::prefix('community')
         Route::get('photos', fn() => view('pages.community.photos.index'))->name('photos.index');
         Route::get('staff', fn() => view('pages.community.staff.index'))->name('staff.index');
         Route::get('rankings', fn() => view('pages.community.rankings.index'))->name('rankings.index');
-    });
-
-
-Route::prefix('client')
-    ->name('client.')
-    ->group(function() {
-        Route::get('nitro', [ClientController::class, 'nitroClient'])->name('nitro');
     });

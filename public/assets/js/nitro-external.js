@@ -1,4 +1,4 @@
-const frame = document.getElementById("nitro");
+const frame = document.querySelector("iframe#nitro-client");
 
 window.FlashExternalInterface = {
     disconnect: () => {
@@ -6,22 +6,24 @@ window.FlashExternalInterface = {
     },
 };
 
-if (!frame || !frame.contentWindow) return;
+if (frame && frame.contentWindow) {
+    window.addEventListener("message", (ev) => {
+        if (!frame || ev.source !== frame.contentWindow) return
 
-window.addEventListener("message", (ev) => {
-    if (!frame || ev.source !== frame.contentWindow) return
+        const legacyInterface = "Nitro_LegacyExternalInterface"
 
-    const legacyInterface = "Nitro_LegacyExternalInterface"
+        if (typeof ev.data !== "string") return
 
-    if (typeof ev.data !== "string") return
+        if (!ev.data.startsWith(legacyInterface)) return
 
-    if (!ev.data.startsWith(legacyInterface)) return
+        const { method, params } = JSON.parse(ev.data.substring(legacyInterface.length))
 
-    const { method, params } = JSON.parse(ev.data.substring(legacyInterface.length))
+        if (!("FlashExternalInterface" in window)) return
 
-    if (!("FlashExternalInterface" in window)) return
+        const fn = window.FlashExternalInterface[method]
 
-    const fn = window.FlashExternalInterface[method]
+        if (fn) fn(...params)
+    })
+}
 
-    if (fn) fn(...params)
-})
+
