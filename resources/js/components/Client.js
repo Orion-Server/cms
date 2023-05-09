@@ -11,7 +11,7 @@ export default class Client {
             onlineCount: 0,
             showCmsFrame: false,
             onlineCountButtonDelay: false,
-            isDisconnected: true,
+            isDisconnected: false,
 
             endpoints: {
                 onlineCount: onlineCountEndpoint
