@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\JailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,7 @@ use App\Http\Controllers\ClientController;
 
 
 Route::get('/', [WebController::class, 'index'])->name('index');
+Route::get('jail', [JailController::class, 'show'])->name('jail');
 
 Route::prefix('hotel')
     ->name('hotel.')
