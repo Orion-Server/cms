@@ -30,6 +30,8 @@ return [
      */
     'client' => [
         'nitro' => [
+            'cms_toggle_button' => true,
+            'online_count_button' => true,
             'path' => env('NITRO_CLIENT_PATH', '/client'),
         ],
     ]

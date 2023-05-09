@@ -18,6 +18,8 @@ export default class Client {
 
             init() {
                 this.$nextTick(() => {
+                    if(!this.endpoints.onlineCount) return
+
                     this.reloadOnlineCount()
 
                     // 30 seconds interval to reload online count
@@ -30,7 +32,7 @@ export default class Client {
             },
 
             async reloadOnlineCount() {
-                if(this.onlineCountButtonDelay) return
+                if(this.onlineCountButtonDelay || !this.endpoints.onlineCount) return
 
                 this.onlineCountButtonDelay = true
                 this.onlineCount = '...'

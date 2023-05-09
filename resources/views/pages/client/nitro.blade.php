@@ -1,3 +1,4 @@
+@php($showOnlineCountButton = config('hotel.client.nitro.online_count_button'))
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +10,15 @@
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}" />
     @vite(['resources/scss/app.scss'])
 </head>
-<body class="w-full h-full dark:bg-slate-950 overflow-x-hidden" x-data="client(
-    '{{ route('api.hotel.online-count') }}'
-)">
+<body
+    class="w-full h-full dark:bg-slate-950 overflow-x-hidden"
+    x-data="client(
+        '{{ $showOnlineCountButton ? route('api.hotel.online-count') : null }}'
+    )"
+>
     <main>
         <div class="fixed z-50 top-0 left-0 pl-2 pt-2 h-12 flex gap-2">
+            @if (config('hotel.client.nitro.cms_toggle_button'))
             <x-ui.buttons.default
                 class="dark:bg-orange-500 bg-orange-500 border-orange-700 hover:bg-orange-400 dark:hover:bg-orange-400 dark:shadow-orange-700/75 shadow-orange-600/75 py-2 text-white"
                 @click="toggleCms"
@@ -26,9 +31,11 @@
                     <i class="fa-solid fa-rotate-left"></i>
                 </template>
             </x-ui.buttons.default>
+            @endif
 
+            @if ($showOnlineCountButton)
             <div
-                x-transition
+                x-transition.duration.1000ms
                 x-show="!showCmsFrame"
             >
                 <x-ui.buttons.default
@@ -41,6 +48,7 @@
                     <span x-text="onlineCount"></span>
                 </x-ui.buttons.default>
             </div>
+            @endif
         </div>
 
         <div
@@ -54,6 +62,7 @@
             ></iframe>
         </div>
 
+        @if (config('hotel.client.nitro.cms_toggle_button'))
         <div
             x-show="showCmsFrame"
             style="display: none"
@@ -64,6 +73,7 @@
             >
             </iframe>
         </div>
+        @endif
     </main>
 
     @vite(['resources/js/client.js'])
