@@ -21,6 +21,7 @@ Route::get('/', [WebController::class, 'index'])->name('index');
 
 Route::prefix('hotel')
     ->name('hotel.')
+    ->middleware('auth')
     ->group(function() {
         Route::get('nitro', [ClientController::class, 'nitro'])->name('nitro');
     });
