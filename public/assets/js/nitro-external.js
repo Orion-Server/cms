@@ -2,7 +2,9 @@ const frame = document.querySelector("iframe#nitro-client");
 
 window.FlashExternalInterface = {
     disconnect: () => {
-        console.log('You has been disconnected')
+        document.dispatchEvent(
+            new Event("nitro:disconnect")
+        )
     },
 };
 

@@ -11,12 +11,15 @@ export default class Client {
             onlineCount: 0,
             showCmsFrame: false,
             onlineCountButtonDelay: false,
+            isDisconnected: true,
 
             endpoints: {
                 onlineCount: onlineCountEndpoint
             },
 
             init() {
+                document.addEventListener('nitro:disconnect', () => this.isDisconnected = true)
+
                 this.$nextTick(() => {
                     if(!this.endpoints.onlineCount) return
 
