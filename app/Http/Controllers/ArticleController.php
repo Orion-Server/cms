@@ -2,64 +2,72 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
+use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ArticleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private const ARTICLES_LIST_LIMIT = 55;
+    private const ARTICLES_LIST_CATEGORIES = [
+        'Today' => [],
+        'Latest week' => [],
+        'Latest month' => [],
+        'Latest year' => [],
+        'Others' => []
+    ];
+
     public function index(): View
     {
-        return view('pages.articles.index');
-    }
+        $latestArticlesWithCategories = $this->getLatestArticlesByCategory();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('pages.articles.index', [
+            'latestArticlesWithCategories' => $latestArticlesWithCategories,
+            'activeArticle' => Article::valid()->latest()->first()
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(?string $id = null, ?string $slug = null)
     {
-        //
+        $latestArticlesWithCategories = $this->getLatestArticlesByCategory();
+
+        if (!$activeArticle = Article::fromIdAndSlug($id, $slug)->first()) {
+            return redirect()->route('articles.index');
+        }
+
+        return view('pages.articles.index', [
+            'latestArticlesWithCategories' => $latestArticlesWithCategories,
+            'activeArticle' => $activeArticle
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function getLatestArticlesByCategory(): array
     {
-        //
-    }
+        $latestArticles = Article::forList(self::ARTICLES_LIST_LIMIT)->get();
+        $articlesByCategory = self::ARTICLES_LIST_CATEGORIES;
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        if ($latestArticles->isEmpty()) return $latestArticles;
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $latestArticles->filter(
+            function ($article) use (&$articlesByCategory) {
+                $referralCategory = match (true) {
+                    $article->created_at->isToday() => 'Today',
+                    $article->created_at->isCurrentWeek() => 'Latest week',
+                    $article->created_at->isCurrentMonth() => 'Latest month',
+                    $article->created_at->isCurrentYear() => 'Latest year',
+                    !$article->created_at->isCurrentYear() => 'Others',
+                    default => null
+                };
+
+                if (!$referralCategory) return false;
+
+                $articlesByCategory[$referralCategory][] = $article;
+            }
+        );
+
+        return $articlesByCategory;
     }
 }

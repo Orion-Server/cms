@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model
 {
@@ -27,6 +28,32 @@ class Article extends Model
             $article->user_id = \Auth::id();
             $article->slug = \Str::slug($article->title);
         });
+    }
+
+    public static function fromIdAndSlug(string $id, string $slug): Builder
+    {
+        return Article::valid()
+            ->defaultRelationships()
+            ->whereId($id)
+            ->whereSlug($slug);
+    }
+
+    public static function forList(int $limit): Builder
+    {
+        return Article::valid()
+            ->defaultRelationships()
+            ->latest()
+            ->limit($limit);
+    }
+
+    public function scopeValid($query): Builder
+    {
+        return $query->whereVisible(true);
+    }
+
+    public function scopeDefaultRelationships($query): Builder
+    {
+        return $query->with(['user', 'cmsTags']);
     }
 
     public function user()

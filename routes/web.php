@@ -17,6 +17,7 @@ use App\Http\Controllers\JailController;
 |
 */
 
+Route::get('articles/factory', fn () => \App\Models\Article::factory(50)->create());
 
 Route::get('/', [WebController::class, 'index'])->name('index');
 Route::get('jail', [JailController::class, 'show'])->name('jail');
@@ -32,6 +33,7 @@ Route::prefix('articles')
     ->name('articles.')
     ->group(function() {
         Route::get('/', [ArticleController::class, 'index'])->name('index');
+        Route::get('{id}/{slug}', [ArticleController::class, 'show'])->name('show');
     });
 
 Route::prefix('community')
