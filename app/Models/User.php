@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Article\ArticleReaction;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -79,6 +80,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
             $user->generateInitialCurrencies();
             $user->generateInitialSettings();
         });
+    }
+
+    public function articleReactions(): HasMany
+    {
+        return $this->hasMany(ArticleReaction::class);
     }
 
     public function referrer(): BelongsTo

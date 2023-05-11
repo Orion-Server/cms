@@ -32,12 +32,16 @@ class Article extends Model
         });
     }
 
-    public static function fromIdAndSlug(string $id, string $slug): Builder
+    public static function fromIdAndSlug(string $id, string $slug, bool $withDefaultRelationships = true): Builder
     {
-        return Article::valid()
-            ->defaultRelationships()
-            ->whereId($id)
-            ->whereSlug($slug);
+        $query = Article::valid();
+
+        if($withDefaultRelationships) {
+            $query->defaultRelationships();
+        }
+
+        return $query->whereId($id)
+                ->whereSlug($slug);
     }
 
     public static function getLatestValidArticle(bool $withDefaultRelationships = true): ?Article
@@ -64,7 +68,7 @@ class Article extends Model
     public function scopeDefaultRelationships($query): void
     {
         $query->with([
-            'user',
+            'user:id,username,look',
             'tags',
             'reactions' => fn ($query) => $query->with(['user:id,username,look', 'reaction:id,color'])
         ]);
@@ -72,7 +76,7 @@ class Article extends Model
 
     public function reactions(): HasMany
     {
-        return $this->hasMany(ArticleReaction::class);
+        return $this->hasMany(ArticleReaction::class)->latest();
     }
 
     public function user()

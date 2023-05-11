@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
+use App\Models\{Article, Reaction};
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
@@ -21,10 +20,16 @@ class ArticleController extends Controller
     {
         $latestArticlesWithCategories = $this->getLatestArticlesByCategory();
 
-        return view('pages.articles.index', [
+        $data = [
             'latestArticlesWithCategories' => $latestArticlesWithCategories,
             'activeArticle' => Article::getLatestValidArticle()
-        ]);
+        ];
+
+        if($data['activeArticle']) {
+            $data['allReactions'] = Reaction::all();
+        }
+
+        return view('pages.articles.index', $data);
     }
 
     /**
@@ -40,7 +45,8 @@ class ArticleController extends Controller
 
         return view('pages.articles.index', [
             'latestArticlesWithCategories' => $latestArticlesWithCategories,
-            'activeArticle' => $activeArticle
+            'activeArticle' => $activeArticle,
+            'allReactions' => Reaction::all()
         ]);
     }
 

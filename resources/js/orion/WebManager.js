@@ -1,12 +1,13 @@
 import Alpine from 'alpinejs'
+import Footer from '../components/Footer'
 import Photos from '../components/Pages/Photos'
 import TippyWrapper from '../external/TippyWrapper'
 import NotyfWrapper from '../external/NotyfWrapper'
-import Authentication from '../components/Authentication'
-import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
 import SwiperWrapper from '../external/SwiperWrapper'
 import DiscordWidget from '../components/DiscordWidget'
-import Footer from '../components/Footer'
+import Authentication from '../components/Authentication'
+import ArticleReactions from '../components/Pages/Articles/ArticleReactions'
+import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
 
 export default class WebManager {
     static start() {
@@ -16,6 +17,7 @@ export default class WebManager {
         DiscordWidget.start()
         Authentication.start()
         ImageVisualizationWrapper.start()
+        ArticleReactions.start()
 
         // WebManager components
         WebManager.startTooltips()

@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\ClientController;
 use App\Http\Controllers\JailController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\Article\ArticleReactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,9 @@ Route::prefix('articles')
     ->group(function() {
         Route::get('/', [ArticleController::class, 'index'])->name('index');
         Route::get('{id}/{slug}', [ArticleController::class, 'show'])->name('show');
+
+        Route::post('{id}/{slug}/reacts/{reactionId}', ArticleReactionController::class)
+            ->name('reactions.toggle');
     });
 
 Route::prefix('community')

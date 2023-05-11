@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ArticleReaction extends Model
 {
+    protected $guarded = [];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
