@@ -50,12 +50,17 @@ class Article extends Model
             ->first();
     }
 
-    public static function forList(int $limit): Builder
+    public static function forList(int $limit, bool $onlyFixeds = false): Builder
     {
-        return Article::valid()
-            ->select(['id', 'user_id', 'title', 'slug', 'is_promotion', 'promotion_ends_at', 'created_at'])
+        $query = Article::valid()
+            ->with(['user:id,username'])
+            ->select(['id', 'user_id', 'title', 'slug', 'is_promotion', 'image', 'description', 'promotion_ends_at', 'created_at'])
             ->latest()
             ->limit($limit);
+
+        if($onlyFixeds) $query->whereFixed(true);
+
+        return $query;
     }
 
     public function scopeValid($query): void
