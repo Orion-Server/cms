@@ -91,6 +91,23 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         return $this->hasMany(User::class, 'referrer_code', 'referral_code');
     }
 
+    public function getOnlineFriends(int $limit = 20)
+    {
+        return $this->friends()
+            ->defaultFriendData()
+            ->join('users', 'users.id', '=', 'user_two_id')
+            ->selectRaw('user_two_id')
+            ->where('users.online', '1')
+            ->inRandomOrder()
+            ->limit($limit)
+            ->get();
+    }
+
+    public function friends(): HasMany
+    {
+        return $this->hasMany(MessengerFriendship::class, 'user_one_id');
+    }
+
     public function canAccessFilament(): bool
     {
         return $this->rank >= getSetting('min_rank_to_housekeeping_login');

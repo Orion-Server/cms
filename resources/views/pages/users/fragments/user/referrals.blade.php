@@ -1,6 +1,6 @@
 <x-title-box
     icon="user-referrals"
-    title="Your Referrals ({{ \Auth::user()->referredUsers()->count() }})"
+    title="Your Referrals ({{ $referredUsersCount }})"
     description="Refer friends and earn great rewards"
 />
 <div class="flex flex-col gap-1 relative mt-4 p-4 overflow-x-auto rounded-lg shadow border-b-2 border-gray-300 dark:border-slate-800 bg-white dark:bg-slate-950">

@@ -15,9 +15,21 @@ class WebController extends Controller
         $sliderArticles = Article::forList(self::ARTICLES_LIST_COUNT)->get();
         $fixedArticles = Article::forList(self::ARTICLES_LIST_COUNT, true)->get();
 
-        return view('index', [
-            'sliderArticles' => $sliderArticles,
-            'fixedArticles' => $fixedArticles,
-        ]);
+        $compact = [
+            'sliderArticles',
+            'fixedArticles'
+        ];
+
+        if(\Auth::check()) {
+            $onlineFriends = \Auth::user()->getOnlineFriends();
+            $referredUsersCount = \Auth::user()->referredUsers()->count();
+
+            $compact = array_merge($compact, [
+                'onlineFriends',
+                'referredUsersCount'
+            ]);
+        }
+
+        return view('index', compact($compact));
     }
 }
