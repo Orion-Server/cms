@@ -8,13 +8,13 @@ use Illuminate\View\View;
 
 class ArticleController extends Controller
 {
-    private const ARTICLES_LIST_LIMIT = 55;
+    private const ARTICLES_LIST_LIMIT = 35;
     private const ARTICLES_LIST_CATEGORIES = [
         'Today' => [],
-        'Latest week' => [],
-        'Latest month' => [],
-        'Latest year' => [],
-        'Others' => []
+        'Yesterday' => [],
+        'Current week' => [],
+        'Last week' => [],
+        'Current month' => []
     ];
 
     public function index(): View
@@ -55,10 +55,10 @@ class ArticleController extends Controller
             function ($article) use (&$articlesByCategory) {
                 $referralCategory = match (true) {
                     $article->created_at->isToday() => 'Today',
-                    $article->created_at->isCurrentWeek() => 'Latest week',
-                    $article->created_at->isCurrentMonth() => 'Latest month',
-                    $article->created_at->isCurrentYear() => 'Latest year',
-                    !$article->created_at->isCurrentYear() => 'Others',
+                    $article->created_at->isYesterday() => 'Yesterday',
+                    $article->created_at->isCurrentWeek() => 'Current week',
+                    $article->created_at->isLastWeek() => 'Last week',
+                    !$article->created_at->isCurrentMonth() => 'Current month',
                     default => null
                 };
 
