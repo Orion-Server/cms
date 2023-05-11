@@ -28,7 +28,12 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('remember_token');
+            $table->dropRememberToken();
+
+            $table->dropColumn([
+                'referral_code',
+                'referrer_code'
+            ]);
         });
     }
 };

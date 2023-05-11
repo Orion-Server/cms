@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('taggables', function (Blueprint $table) {
-            $table->unsignedBigInteger('cms_tag_id');
+            $table->unsignedBigInteger('tag_id');
             $table->morphs('taggable');
         });
     }

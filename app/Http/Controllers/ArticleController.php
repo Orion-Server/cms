@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
@@ -23,7 +23,7 @@ class ArticleController extends Controller
 
         return view('pages.articles.index', [
             'latestArticlesWithCategories' => $latestArticlesWithCategories,
-            'activeArticle' => Article::valid()->latest()->first()
+            'activeArticle' => Article::valid()->defaultRelationships()->latest()->first()
         ]);
     }
 
@@ -49,7 +49,7 @@ class ArticleController extends Controller
         $latestArticles = Article::forList(self::ARTICLES_LIST_LIMIT)->get();
         $articlesByCategory = self::ARTICLES_LIST_CATEGORIES;
 
-        if ($latestArticles->isEmpty()) return $latestArticles;
+        if ($latestArticles->isEmpty()) return $articlesByCategory;
 
         $latestArticles->filter(
             function ($article) use (&$articlesByCategory) {

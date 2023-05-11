@@ -153,7 +153,7 @@ class CmsSettingsSeeder extends Seeder
             ],
             [
                 'min_rank_to_housekeeping_login',
-                '8',
+                '7',
                 'Minimum rank to login into housekeeping'
             ]
         ];

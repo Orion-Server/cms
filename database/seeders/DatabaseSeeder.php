@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             NavigationSeeder::class,
-            CmsSettingsSeeder::class
+            CmsSettingsSeeder::class,
+            ReactionSeeder::class
         ]);
     }
 }

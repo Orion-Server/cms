@@ -17,8 +17,6 @@ use App\Http\Controllers\JailController;
 |
 */
 
-Route::get('articles/factory', fn () => \App\Models\Article::factory(50)->create());
-
 Route::get('/', [WebController::class, 'index'])->name('index');
 Route::get('jail', [JailController::class, 'show'])->name('jail');
 

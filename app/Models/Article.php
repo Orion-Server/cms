@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Article extends Model
 {
@@ -53,7 +54,12 @@ class Article extends Model
 
     public function scopeDefaultRelationships($query): Builder
     {
-        return $query->with(['user', 'cmsTags']);
+        return $query->with(['user', 'tags', 'reactions']);
+    }
+
+    public function reactions(): BelongsToMany
+    {
+        return $this->belongsToMany(Reaction::class);
     }
 
     public function user()
@@ -61,8 +67,8 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function cmsTags()
+    public function tags()
     {
-        return $this->morphToMany(CmsTag::class, 'taggable');
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 }
