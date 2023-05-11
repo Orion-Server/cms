@@ -23,7 +23,7 @@ class ArticleController extends Controller
 
         return view('pages.articles.index', [
             'latestArticlesWithCategories' => $latestArticlesWithCategories,
-            'activeArticle' => Article::valid()->defaultRelationships()->latest()->first()
+            'activeArticle' => Article::getLatestValidArticle()
         ]);
     }
 

@@ -8,13 +8,14 @@ use App\Models\Reaction;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Card;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\ColorPicker;
 use App\Filament\Resources\Orion\ReactionResource\Pages;
 use App\Filament\Resources\Orion\ReactionResource\RelationManagers;
-use Filament\Forms\Components\Card;
-use Filament\Forms\Components\ColorPicker;
-use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ColorColumn;
 
 class ReactionResource extends Resource
 {
@@ -29,34 +30,37 @@ class ReactionResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Card::make()
-                    ->schema([
-                        TextInput::make('name')
-                            ->unique(ignoreRecord: true)
-                            ->required()
-                            ->maxLength(30),
+            ->schema(ReactionResource::getForm());
+    }
 
-                        TextInput::make('icon')
-                            ->label('Icon URL')
-                            ->maxLength(100)
-                            ->helperText('Recommended size 20x20 or smaller')
-                            ->required(),
+    public static function getForm(): array
+    {
+        return [
+            Card::make()
+                ->schema([
+                    TextInput::make('name')
+                    ->unique(ignoreRecord: true)
+                    ->required()
+                    ->maxLength(30),
 
-                        ColorPicker::make('color')
-                            ->label('Background Color')
-                            ->required()
-                            ->hex()
-                    ])
-            ]);
+                    TextInput::make('icon')
+                        ->label('Icon URL')
+                        ->maxLength(100)
+                        ->helperText('Recommended size 20x20 or smaller')
+                        ->required(),
+
+                    ColorPicker::make('color')
+                        ->label('Background Color')
+                        ->required()
+                        ->hex()
+                ])
+        ];
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                //
-            ])
+            ->columns(ReactionResource::getTable())
             ->filters([
                 //
             ])
@@ -67,6 +71,32 @@ class ReactionResource extends Resource
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
+    }
+
+    public static function getTable(): array
+    {
+        return [
+            TextColumn::make('id')
+                ->label('ID'),
+
+            ImageColumn::make('completeIconPath')
+                ->label('Icon')
+                ->size(20)
+                ->toggleable()
+                ->extraAttributes(['style' => 'image-rendering: pixelated']),
+
+            TextColumn::make('name')
+                ->searchable(),
+
+            ColorColumn::make('color')
+                ->toggleable(),
+
+            TextColumn::make('articles_count')
+                ->label('Used in Articles')
+                ->counts('articles')
+                ->toggleable()
+                ->searchable(),
+        ];
     }
 
     public static function getPages(): array

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\Article;
 use App\Models\Reaction;
 use Illuminate\Support\Facades\Schema;
@@ -13,9 +14,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('article_reaction', function (Blueprint $table) {
+        Schema::create('article_reactions', function (Blueprint $table) {
+            $table->id();
+
+            $table->foreignIdFor(User::class);
             $table->foreignIdFor(Article::class);
             $table->foreignIdFor(Reaction::class);
+
+            $table->timestamps();
         });
     }
 
@@ -24,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('article_reaction');
+        Schema::dropIfExists('article_reactions');
     }
 };

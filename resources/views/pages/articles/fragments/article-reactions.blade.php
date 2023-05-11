@@ -22,17 +22,15 @@
             <i class="fa-solid fa-plus text-white text-lg"></i>
         </x-slot:label>
     </x-ui.buttons.confirmable>
-    @for ($i = 0; $i < 15; $i++)
+    @foreach ($activeArticle->reactions as $articleReaction)
         <a
             href="#"
             data-tippy-singleton
-            data-tippy-content="<small>iNicollas</small>"
-            @class([
-                "w-12 h-12 shadow-lg rounded-lg bg-center bg-no-repeat border-b-2 cursor-pointer",
-                "bg-green-400 border-green-600" => $i % 2 == 0,
-                "bg-red-400 border-red-600" => $i % 2 == 1,
-            ])
-            style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&direction=4&head_direction=2&size=m&gesture=sml&action=sit,wav&headonly=1')"
-        ></a>
-    @endfor
+            data-tippy-content="<small>{{ $articleReaction->user->username }}</small>"
+            class="w-12 h-12 shadow-lg rounded-lg bg-center bg-no-repeat border-b-2 cursor-pointer border-slate-500 dark:border-slate-500"
+            style="
+                background-color: {{ $articleReaction->reaction->color }};
+                background-image: url('{{ getSetting('figure_imager') . $articleReaction->user->look }}&headonly=1')
+            "></a>
+    @endforeach
 </div>

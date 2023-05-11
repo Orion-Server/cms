@@ -17,6 +17,7 @@ use Filament\Tables\Columns\ToggleColumn;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Resources\Orion\ArticleResource\Pages;
 use App\Filament\Resources\Orion\ArticleResource\RelationManagers;
+use Filament\Resources\RelationManagers\RelationManager;
 
 class ArticleResource extends Resource
 {
@@ -158,6 +159,7 @@ class ArticleResource extends Resource
     {
         return [
             RelationManagers\TagsRelationManager::class,
+            RelationManagers\ReactionsRelationManager::class,
         ];
     }
 

@@ -42,7 +42,7 @@
                 </label>
             </div>
             <div class="w-full h-10 lg:h-1/2 py-1 flex gap-1 items-center justify-start flex-wrap">
-                @forelse ($activeArticle->cmsTags as $tag)
+                @forelse ($activeArticle->tags as $tag)
                     <span @class([
                         "text-xs font-medium rounded-lg px-2",
                         "text-slate-800" => !isDarkColor($tag->background_color),

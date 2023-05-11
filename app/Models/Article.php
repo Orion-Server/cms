@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Article\ArticleReaction;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Article extends Model
 {
@@ -39,27 +40,39 @@ class Article extends Model
             ->whereSlug($slug);
     }
 
+    public static function getLatestValidArticle(bool $withDefaultRelationships = true): ?Article
+    {
+        return Article::valid()
+            ->when($withDefaultRelationships, fn ($query) => $query->defaultRelationships())
+            ->latest()
+            ->first();
+    }
+
     public static function forList(int $limit): Builder
     {
         return Article::valid()
-            ->defaultRelationships()
+            ->select(['id', 'user_id', 'title', 'slug', 'is_promotion', 'promotion_ends_at', 'created_at'])
             ->latest()
             ->limit($limit);
     }
 
-    public function scopeValid($query): Builder
+    public function scopeValid($query): void
     {
-        return $query->whereVisible(true);
+        $query->whereVisible(true);
     }
 
-    public function scopeDefaultRelationships($query): Builder
+    public function scopeDefaultRelationships($query): void
     {
-        return $query->with(['user', 'tags', 'reactions']);
+        $query->with([
+            'user',
+            'tags',
+            'reactions' => fn ($query) => $query->with(['user:id,username,look', 'reaction:id,color'])
+        ]);
     }
 
-    public function reactions(): BelongsToMany
+    public function reactions(): HasMany
     {
-        return $this->belongsToMany(Reaction::class);
+        return $this->hasMany(ArticleReaction::class);
     }
 
     public function user()

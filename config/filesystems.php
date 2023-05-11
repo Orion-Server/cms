@@ -44,6 +44,14 @@ return [
             'throw' => false,
         ],
 
+        'reactions' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/assets/images/reactions'),
+            'url' => env('APP_URL').'/assets/images/reactions',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
