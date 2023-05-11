@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Filament\Resources\Orion\CmsTagResource\Pages;
+namespace App\Filament\Resources\Orion\TagResource\Pages;
 
 use Filament\Resources\Pages\CreateRecord;
-use App\Filament\Resources\Orion\CmsTagResource;
+use App\Filament\Resources\Orion\TagResource;
 
-class CreateCmsTag extends CreateRecord
+class CreateTag extends CreateRecord
 {
-    protected static string $resource = CmsTagResource::class;
+    protected static string $resource = TagResource::class;
 }

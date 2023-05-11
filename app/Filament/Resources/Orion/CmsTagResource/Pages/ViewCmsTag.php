@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Filament\Resources\Orion\CmsTagResource\Pages;
+namespace App\Filament\Resources\Orion\TagResource\Pages;
 
 use Filament\Resources\Pages\ViewRecord;
-use App\Filament\Resources\Orion\CmsTagResource;
+use App\Filament\Resources\Orion\TagResource;
 
-class ViewCmsTag extends ViewRecord
+class ViewTag extends ViewRecord
 {
-    protected static string $resource = CmsTagResource::class;
+    protected static string $resource = TagResource::class;
 }

@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Filament\Resources\Orion\CmsTagResource\Pages;
+namespace App\Filament\Resources\Orion\TagResource\Pages;
 
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
 use App\Filament\Traits\LatestResourcesTrait;
-use App\Filament\Resources\Orion\CmsTagResource;
+use App\Filament\Resources\Orion\TagResource;
 
-class ListCmsTags extends ListRecords
+class ListTags extends ListRecords
 {
     use LatestResourcesTrait;
 
-    protected static string $resource = CmsTagResource::class;
+    protected static string $resource = TagResource::class;
 
     protected function getActions(): array
     {

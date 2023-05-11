@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\Orion;
 
 use Filament\Tables;
-use App\Models\CmsTag;
+use App\Models\Tag;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
@@ -13,18 +13,18 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ColorColumn;
 use Filament\Forms\Components\ColorPicker;
-use App\Filament\Resources\Orion\CmsTagResource\Pages;
-use App\Filament\Resources\Orion\CmsTagResource\RelationManagers;
+use App\Filament\Resources\Orion\TagResource\Pages;
+use App\Filament\Resources\Orion\TagResource\RelationManagers;
 
-class CmsTagResource extends Resource
+class TagResource extends Resource
 {
-    protected static ?string $model = CmsTag::class;
+    protected static ?string $model = Tag::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
     protected static ?string $navigationGroup = 'Administration';
 
-    protected static ?string $slug = 'administration/cms-tags';
+    protected static ?string $slug = 'administration/tags';
 
     protected static ?string $label = 'Tag';
 
@@ -100,10 +100,10 @@ class CmsTagResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCmsTags::route('/'),
-            'create' => Pages\CreateCmsTag::route('/create'),
-            'view' => Pages\ViewCmsTag::route('/{record}'),
-            'edit' => Pages\EditCmsTag::route('/{record}/edit'),
+            'index' => Pages\ListTags::route('/'),
+            'create' => Pages\CreateTag::route('/create'),
+            'view' => Pages\ViewTag::route('/{record}'),
+            'edit' => Pages\EditTag::route('/{record}/edit'),
         ];
     }
 }

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model
 {
@@ -29,13 +30,54 @@ class Article extends Model
         });
     }
 
+    public static function fromIdAndSlug(string $id, string $slug, bool $withDefaultRelationships = true): Builder
+    {
+        $query = Article::valid();
+
+        if($withDefaultRelationships) {
+            $query->defaultRelationships();
+        }
+
+        return $query->whereId($id)
+                ->whereSlug($slug);
+    }
+
+    public static function getLatestValidArticle(bool $withDefaultRelationships = true): ?Article
+    {
+        return Article::valid()
+            ->when($withDefaultRelationships, fn ($query) => $query->defaultRelationships())
+            ->latest()
+            ->first();
+    }
+
+    public static function forList(int $limit): Builder
+    {
+        return Article::valid()
+            ->select(['id', 'user_id', 'title', 'slug', 'is_promotion', 'promotion_ends_at', 'created_at'])
+            ->latest()
+            ->limit($limit);
+    }
+
+    public function scopeValid($query): void
+    {
+        $query->whereVisible(true);
+    }
+
+    public function scopeDefaultRelationships($query): void
+    {
+        $query->with([
+            'user:id,username,look',
+            'tags'
+        ]);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function cmsTags()
+    public function tags()
     {
-        return $this->morphToMany(CmsTag::class, 'taggable');
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 }

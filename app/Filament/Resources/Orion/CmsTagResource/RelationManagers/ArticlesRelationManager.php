@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Orion\CmsTagResource\RelationManagers;
+namespace App\Filament\Resources\Orion\TagResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Tables;

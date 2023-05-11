@@ -13,8 +13,7 @@ use App\Models\Compositions\User\{
 };
 use Illuminate\Database\Eloquent\Relations\{
     HasMany,
-    BelongsTo,
-    HasOne
+    BelongsTo
 };
 use Filament\Models\Contracts\{
     HasName,

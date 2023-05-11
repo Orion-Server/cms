@@ -2,18 +2,16 @@
 
 namespace App\Filament\Resources\Orion\ArticleResource\RelationManagers;
 
-use App\Filament\Resources\Orion\CmsTagResource;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use App\Filament\Resources\Orion\TagResource;
+use Filament\Resources\RelationManagers\RelationManager;
 
 class TagsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'cmsTags';
+    protected static string $relationship = 'tags';
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -34,13 +32,13 @@ class TagsRelationManager extends RelationManager
     public static function table(Table $table): Table
     {
         return $table
-            ->columns(CmsTagResource::getTable())
+            ->columns(TagResource::getTable())
             ->filters([
                 //
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make()
-                    ->form(CmsTagResource::getForm()),
+                    ->form(TagResource::getForm()),
 
                 Tables\Actions\AttachAction::make()->preloadRecordSelect()
             ])

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\Orion\CmsTagResource\Pages;
+namespace App\Filament\Resources\Orion\TagResource\Pages;
 
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
-use App\Filament\Resources\Orion\CmsTagResource;
+use App\Filament\Resources\Orion\TagResource;
 
-class EditCmsTag extends EditRecord
+class EditTag extends EditRecord
 {
-    protected static string $resource = CmsTagResource::class;
+    protected static string $resource = TagResource::class;
 
     protected function getActions(): array
     {
