@@ -47,7 +47,7 @@ class ArticleController extends Controller
 
     public function getLatestArticlesByCategory(): array
     {
-        $latestArticles = Article::forList(self::ARTICLES_LIST_LIMIT)->get();
+        $latestArticles = Article::forIndex(self::ARTICLES_LIST_LIMIT)->get();
         $articlesByCategory = self::ARTICLES_LIST_CATEGORIES;
 
         if ($latestArticles->isEmpty()) return $articlesByCategory;

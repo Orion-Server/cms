@@ -1,16 +1,28 @@
 <div class="w-full flex flex-col gap-4">
-    @for ($i = 0; $i < 2; $i++)
-    <div class="bg-white relative w-full flex flex-col overflow-hidden justify-between h-auto dark:text-slate-200 dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
+    @forelse ($activeArticle->comments as $comment)
+    <div @class([
+        "bg-white relative w-full flex flex-col overflow-hidden justify-between h-auto dark:text-slate-200 dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg",
+        "border-2 !border-blue-400" => $comment->fixed
+    ])>
         <div class="p-2 w-full">
             <div class="w-full flex justify-between text-sm pb-0.5 mb-2 border-b border-gray-100 dark:border-gray-800">
-                <span class="w-1/2 font-medium"><a href="#" class="font-bold underline underline-offset-2 text-blue-400">iNicollas</a> commented:</span>
+                <span class="w-1/2 font-medium flex gap-1">
+                    @if ($comment->fixed)
+                        <i
+                            data-tippy
+                            data-tippy-content="<small>This comment is fixed</small>"
+                            class="icon small w-[13px] h-[15px] border-none shadow-none rounded-none ifixed"
+                        ></i>
+                    @endif
+                    <a href="#" class="font-bold underline underline-offset-2 text-blue-400">{{ $comment->user->username }}</a> commented:
+                </span>
                 <span class="w-1/2 text-end text-xs text-slate-400">
                     <i class="fa-regular fa-clock"></i>
-                    12 hours ago
+                    {{ $comment->created_at->diffForHumans() }}
                 </span>
             </div>
             <div class="w-full text-sm text-justify dark:text-light-200 mb-4">
-                {{ fake()->sentence(random_int(10, 100)) }}
+                {{ $comment->content }}
             </div>
         </div>
         <div class="w-full h-14 p-1 bg-gray-100 dark:bg-slate-800 rounded-b-lg border-t dark:border-gray-700">
@@ -28,5 +40,7 @@
             </div>
         </div>
     </div>
-    @endfor
+    @empty
+    <x-not-found message="No comments yet." />
+    @endforelse
 </div>

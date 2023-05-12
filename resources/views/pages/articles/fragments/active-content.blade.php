@@ -71,7 +71,7 @@
     </div>
     <div class="my-8 w-full h-auto">
         <x-title-box
-            title="Article Comments ({{ random_int(5, 100) }})"
+            title="Article Comments ({{ $activeArticle->comments->count() }})"
             description="All comments of this article"
             icon="users-comments"
         />

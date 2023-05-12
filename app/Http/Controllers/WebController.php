@@ -7,19 +7,35 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 class WebController extends Controller
 {
-    private const ARTICLES_LIST_COUNT = 5;
+    private const FIXED_ARTICLES_LIST_COUNT_WHEN_AUTH = 4;
+    private const FIXED_ARTICLES_LIST_COUNT_WHEN_GUEST = 6;
+
+    private const ARTICLES_LIST_COUNT_WHEN_AUTH = 5;
+    private const ARTICLES_LIST_COUNT_WHEN_GUEST = 3;
 
     public function index(): View
     {
-        $sliderArticles = Article::forList(self::ARTICLES_LIST_COUNT)->get();
-        $fixedArticles = Article::forList(self::ARTICLES_LIST_COUNT, true)->get();
+        $isAuthenticated = \Auth::check();
+
+        $articlesListCount = match($isAuthenticated) {
+            true => self::ARTICLES_LIST_COUNT_WHEN_AUTH,
+            false => self::ARTICLES_LIST_COUNT_WHEN_GUEST
+        };
+
+        $fixedArticlesListCount = match($isAuthenticated) {
+            true => self::FIXED_ARTICLES_LIST_COUNT_WHEN_AUTH,
+            false => self::FIXED_ARTICLES_LIST_COUNT_WHEN_GUEST
+        };
+
+        $defaultArticles = Article::forIndex($articlesListCount)->get();
+        $fixedArticles = Article::forIndex($fixedArticlesListCount, true)->get();
 
         $compact = [
-            'sliderArticles',
+            'defaultArticles',
             'fixedArticles'
         ];
 
-        if(\Auth::check()) {
+        if($isAuthenticated) {
             $onlineFriends = \Auth::user()->getOnlineFriends();
             $referredUsersCount = \Auth::user()->referredUsers()->count();
 

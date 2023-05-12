@@ -4,8 +4,10 @@ namespace App\Models\Compositions\User;
 
 use App\Enums\CurrencyType;
 use App\Models\UserCurrency;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\{
+    Builder,
+    Relations\HasMany
+};
 
 trait HasCurrency
 {

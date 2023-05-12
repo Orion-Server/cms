@@ -8,19 +8,16 @@
 <div class="relative flex flex-col p-1.5 rounded-lg shadow border-b-2 border-gray-300 dark:border-slate-800 bg-white dark:bg-slate-950">
     <div class="swiper w-full h-44 relative" id="latestArticles">
         <div class="swiper-wrapper">
-            @forelse ($sliderArticles as $sliderArticle)
-            <div class="swiper-slide relative bg-center bg-no-repeat" style="background-image: url({{ $sliderArticle->image }})">
+            @forelse ($defaultArticles as $defaultArticle)
+            <div class="swiper-slide relative bg-center bg-no-repeat" style="background-image: url({{ $defaultArticle->image }})">
                 <div class="absolute w-full h-full bg-black/50 top-0 left-0"></div>
                 <div class="w-full h-full flex flex-col relative p-4">
-                    <a href="{{ route('articles.show', [$sliderArticle->id, $sliderArticle->slug]) }}" class="text-white font-semibold">{{ $sliderArticle->title }}</a>
-                    <span class="text-slate-300 mt-2 text-xs w-full line-clamp-5">{{ $sliderArticle->description }}</span>
+                    <a href="{{ route('articles.show', [$defaultArticle->id, $defaultArticle->slug]) }}" class="text-white font-semibold">{{ $defaultArticle->title }}</a>
+                    <span class="text-slate-300 mt-2 text-xs w-full line-clamp-5">{{ $defaultArticle->description }}</span>
                 </div>
             </div>
             @empty
-            <span class="text-slate-700 dark:text-slate-200 text-xs flex items-center justify-center h-full w-full">
-                <i class="fa-regular fa-circle-xmark mr-2"></i>
-                Articles not found
-            </span>
+            <x-not-found message="Articles not found." />
             @endforelse
         </div>
         <div class="swiper-pagination"></div>

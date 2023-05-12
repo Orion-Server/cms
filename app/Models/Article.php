@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Article\ArticleComment;
+use Illuminate\Database\Eloquent\{
+    Model,
+    Builder,
+    Relations\HasMany,
+    Factories\HasFactory
+};
 
 class Article extends Model
 {
@@ -50,10 +54,10 @@ class Article extends Model
             ->first();
     }
 
-    public static function forList(int $limit, bool $onlyFixeds = false): Builder
+    public static function forIndex(int $limit, bool $onlyFixeds = false): Builder
     {
         $query = Article::valid()
-            ->with(['user:id,username'])
+            ->with(['user:id,username,look'])
             ->select(['id', 'user_id', 'title', 'slug', 'is_promotion', 'image', 'description', 'promotion_ends_at', 'created_at'])
             ->latest()
             ->limit($limit);
@@ -72,8 +76,14 @@ class Article extends Model
     {
         $query->with([
             'user:id,username,look',
-            'tags'
+            'tags',
+            'comments' => fn ($query) => $query->defaultRelationships()
         ]);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(ArticleComment::class)->orderBy('fixed', 'desc')->latest();
     }
 
     public function user()
