@@ -5,6 +5,7 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\JailController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\External\RconController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,13 @@ Route::prefix('hotel')
     ->middleware('auth')
     ->group(function() {
         Route::get('nitro', [ClientController::class, 'nitro'])->name('nitro');
+
+        Route::prefix('rcon')
+            ->name('rcon.')
+            ->group(function() {
+                Route::post('follow-user/{user}', [RconController::class, 'followUser'])->name('follow-user')
+                    ->middleware('throttle:15,1');
+            });
     });
 
     Route::prefix('articles')

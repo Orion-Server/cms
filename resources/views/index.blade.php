@@ -21,8 +21,6 @@
         @include('pages.users.guest-me')
     @endguest
 
-    @auth
-        @include('pages.users.auth-me')
-    @endauth
+    @includeWhen(Auth::check(), 'pages.users.auth-me')
 </x-container>
 @endsection

@@ -6,9 +6,10 @@
 <div @class([
     "flex gap-3 scroll-smooth scroll-x relative mt-4 p-2 overflow-x-auto rounded-lg shadow border-b-2 border-gray-300 dark:border-slate-800 bg-white dark:bg-slate-950",
     "pb-6" => $onlineFriends->isNotEmpty()
-])>
+]) x-data="onlineFriends('{{ route('hotel.rcon.follow-user', ':userId') }}')">
     @forelse ($onlineFriends as $onlineFriend)
         <div
+            @click="followUser('{{ $onlineFriend->id }}')"
             data-tippy
             data-tippy-content="<small>{{ $onlineFriend->motto }}</small>"
             class="w-14 h-14 relative shrink-0 rounded-full dark:bg-slate-800 border border-gray-300 dark:border-slate-700 p-0.5 cursor-pointer"

@@ -260,11 +260,11 @@ class RconService
     /**
      * Follow to a user.
      */
-    public function followUser(User $currentUser, User $user)
+    public function followUser(int|User $currentUser, int|User $user)
     {
         return $this->sendPacket('stalkuser', [
-            'user_id' => $currentUser->id,
-            'follow_id' => $user->id
+            'user_id' => $currentUser instanceof User ? $currentUser->id : $currentUser,
+            'follow_id' => $user instanceof User ? $user->id : $user,
         ]);
     }
 
