@@ -65,9 +65,10 @@
         icon="comment"
     />
     <div class="bg-white w-full h-auto dark:bg-slate-950 p-1 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg mt-8">
-        <form method="POST">
-            <x-ui.textarea />
-        </form>
+        <x-ui.textarea
+            article-id="{{ $activeArticle->id }}"
+            article-slug="{{ $activeArticle->slug }}"
+        />
     </div>
     <div class="my-8 w-full h-auto">
         <x-title-box

@@ -122,7 +122,7 @@ class ArticleResource extends Resource
             ]);
     }
 
-    public static function getTable(bool $isRelationManager = false): array
+    public static function getTable(): array
     {
         return [
             TextColumn::make('id')
@@ -140,17 +140,17 @@ class ArticleResource extends Resource
             ToggleColumn::make('visible')
                 ->onIcon('heroicon-s-check')
                 ->toggleable()
-                ->disabled($isRelationManager),
+                ->disabled(),
 
             ToggleColumn::make('fixed')
                 ->onIcon('heroicon-s-check')
                 ->toggleable()
-                ->disabled($isRelationManager),
+                ->disabled(),
 
             ToggleColumn::make('allow_comments')
                 ->onIcon('heroicon-s-check')
                 ->toggleable()
-                ->disabled($isRelationManager),
+                ->disabled(),
         ];
     }
 

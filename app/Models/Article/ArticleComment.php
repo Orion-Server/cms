@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\{
     Relations\BelongsTo,
     Factories\HasFactory
 };
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class ArticleComment extends Model
 {
@@ -36,5 +37,12 @@ class ArticleComment extends Model
     public function article(): BelongsTo
     {
         return $this->belongsTo(Article::class);
+    }
+
+    public function renderedContent(): Attribute
+    {
+        return new Attribute(
+            get: fn() => renderBBCodeText($this->content)
+        );
     }
 }

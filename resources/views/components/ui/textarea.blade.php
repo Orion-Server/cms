@@ -1,4 +1,14 @@
-<div x-data="textareaEditor">
+@props([
+    'articleId' => null,
+    'articleSlug' => null,
+])
+
+<form
+    @submit.prevent="onSubmit"
+    x-data="textareaEditor"
+    action="{{ route('articles.comments.store', [$articleId, $articleSlug]) }}"
+    x-ref="form"
+>
 
     <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-slate-800">
         <label for="comment" class="sr-only">Your comment</label>
@@ -29,12 +39,14 @@
                 icon="fa-solid fa-highlighter" type="HighLighter" before="[h]" after="[/h]"
             />
         </div>
-        <x-ui.buttons.redirectable
-            href="#"
+        <x-ui.buttons.loadable
+            alpine-model="loading"
+            type="submit"
             class="dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
         >
-                Post Comment
-        </x-ui.buttons.redirectable>
+            <i class="fa-solid fa-message mr-1"></i>
+            Post Comment
+        </x-ui.buttons.loadable>
     </div>
 
-</div>
+</form>

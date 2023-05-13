@@ -25,7 +25,7 @@ class ArticlesRelationManager extends RelationManager
     public static function table(Table $table): Table
     {
         return $table
-            ->columns(ArticleResource::getTable(true))
+            ->columns(ArticleResource::getTable())
             ->filters([
                 //
             ])

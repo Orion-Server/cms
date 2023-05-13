@@ -1,6 +1,7 @@
 <?php
 
 use App\Services\SettingsService;
+use Illuminate\Support\Facades\Pipeline;
 
 if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
     $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
@@ -57,5 +58,21 @@ if(!function_exists('getSetting')) {
      */
     function getSetting(string $key, ?string $defaultValue = null): string|int {
         return app(SettingsService::class)->get($key, $defaultValue);
+    }
+}
+
+if(!function_exists('renderBBCodeText')) {
+    /**
+     * Render BBCode text to HTML.
+     */
+    function renderBBCodeText(string $content): string {
+        return Pipeline::send($content)
+            ->through([
+                fn (string $content, \Closure $next) => $next(str_replace(['[b]', '[/b]'], ['<b>', '</b>'], $content)),
+                fn (string $content, \Closure $next) => $next(str_replace(['[i]', '[/i]'], ['<i>', '</i>'], $content)),
+                fn (string $content, \Closure $next) => $next(str_replace(['[u]', '[/u]'], ['<u>', '</u>'], $content)),
+                fn (string $content, \Closure $next) => $next(str_replace(['[s]', '[/s]'], ['<s>', '</s>'], $content)),
+                fn (string $content, \Closure $next) => $next(str_replace(['[h]', '[/h]'], ['<span class="text-xs rounded text-white px-1" style="background-color: #0284c7">', '</span>'], $content)),
+            ])->then(fn (string $content) => $content);
     }
 }

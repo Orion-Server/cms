@@ -22,7 +22,7 @@
                 </span>
             </div>
             <div class="w-full text-sm text-justify dark:text-light-200 mb-4">
-                {{ $comment->content }}
+                {!! $comment->renderedContent !!}
             </div>
         </div>
         <div class="w-full h-14 p-1 bg-gray-100 dark:bg-slate-800 rounded-b-lg border-t dark:border-gray-700">

@@ -41,7 +41,7 @@
                             View All
                     </x-ui.buttons.redirectable>
                 </x-title-box>
-                <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-3">
+                <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     @foreach ($defaultArticles as $defaultArticle)
                         <div class="w-full bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
                             <div class="w-full h-full flex flex-col gap-2 p-1">

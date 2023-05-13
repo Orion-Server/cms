@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WebController;
-use App\Http\Controllers\JailController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\External\RconController;
+use App\Http\Controllers\{
+    WebController,
+    JailController,
+    ClientController,
+    ArticleController,
+    External\RconController,
+    Article\ArticleCommentController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +44,10 @@ Route::prefix('hotel')
     ->group(function() {
         Route::get('/', [ArticleController::class, 'index'])->name('index');
         Route::get('{id}/{slug}', [ArticleController::class, 'show'])->name('show');
+
+        Route::post('{id}/{slug}/comment', [ArticleCommentController::class, 'store'])
+            ->middleware('auth')
+            ->name('comments.store');
     });
 
 Route::prefix('community')

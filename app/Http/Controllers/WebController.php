@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\View\View;
-use Illuminate\Http\Request;
+
 class WebController extends Controller
 {
-    private const FIXED_ARTICLES_LIST_COUNT_WHEN_AUTH = 4;
-    private const FIXED_ARTICLES_LIST_COUNT_WHEN_GUEST = 6;
+    private const FIXED_ARTICLES_LIST_COUNT_WHEN_AUTH = 5;
+    private const FIXED_ARTICLES_LIST_COUNT_WHEN_GUEST = 4;
 
     private const ARTICLES_LIST_COUNT_WHEN_AUTH = 5;
-    private const ARTICLES_LIST_COUNT_WHEN_GUEST = 3;
+    private const ARTICLES_LIST_COUNT_WHEN_GUEST = 6;
 
     public function index(): View
     {

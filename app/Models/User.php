@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Article\ArticleComment;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -101,6 +103,18 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
             ->inRandomOrder()
             ->limit($limit)
             ->get();
+    }
+
+    public function recentlyCommentedOnArticle(int $minutes = 2): bool
+    {
+        return $this->articleComments()
+            ->where('created_at', '>=', now()->subMinutes($minutes))
+            ->exists();
+    }
+
+    public function articleComments(): HasMany
+    {
+        return $this->hasMany(ArticleComment::class);
     }
 
     public function friends(): HasMany
