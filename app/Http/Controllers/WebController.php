@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Article;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+
 class WebController extends Controller
 {
     private const FIXED_ARTICLES_LIST_COUNT_WHEN_AUTH = 4;
@@ -29,10 +31,12 @@ class WebController extends Controller
 
         $defaultArticles = Article::forIndex($articlesListCount)->get();
         $fixedArticles = Article::forIndex($fixedArticlesListCount, true)->get();
+        $latestUsers = User::latest('account_created')->take(16)->get();
 
         $compact = [
             'defaultArticles',
-            'fixedArticles'
+            'fixedArticles',
+            'latestUsers'
         ];
 
         if($isAuthenticated) {

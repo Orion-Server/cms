@@ -77,14 +77,14 @@
                 icon="users"
             />
             <div class="w-full grid grid-cols-4 grid-rows-4 flex-wrap gap-3">
-                @for ($i = 0; $i < 16; $i++)
+                @foreach ($latestUsers as $user)
                     <div
                         data-tippy-singleton
-                        data-tippy-content="<small>nicollas1073</small>"
+                        data-tippy-content="<small>{{ $user->username }}</small>"
                         class="h-16 bg-white rounded-lg shadow-lg border-b-2 border-gray-300 dark:border-slate-800 dark:bg-slate-950 bg-center bg-no-repeat"
-                        style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&head_direction=3&size=m&gesture=sml&action=sit,wav&headonly=1')"
+                        style="background-image: url('{{ getSetting('figure_imager') . $user->look }}&head_direction=3&gesture=sml&headonly=1')"
                     ></div>
-                @endfor
+                @endforeach
             </div>
         </div>
 
