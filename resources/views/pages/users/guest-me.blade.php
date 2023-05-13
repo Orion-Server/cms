@@ -7,7 +7,7 @@
                 icon="fixed-articles"
             />
             <div class="w-full flex flex-col gap-3">
-                @forelse ($fixedArticles as $fixedArticle)
+                @foreach ($fixedArticles as $fixedArticle)
                     <a
                         href="{{ route('articles.show', [$fixedArticle->id, $fixedArticle->slug]) }}"
                         class="group w-full h-20 bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg"
@@ -23,9 +23,7 @@
                             </div>
                         </div>
                     </a>
-                @empty
-                <x-not-found message="Fixed articles not found" />
-                @endforelse
+                @endforeach
             </div>
         </div>
 
@@ -44,7 +42,7 @@
                     </x-ui.buttons.redirectable>
                 </x-title-box>
                 <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-3">
-                    @forelse ($defaultArticles as $defaultArticle)
+                    @foreach ($defaultArticles as $defaultArticle)
                         <div class="w-full bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
                             <div class="w-full h-full flex flex-col gap-2 p-1">
                                 <div
@@ -66,9 +64,7 @@
                                 </div>
                             </div>
                         </div>
-                    @empty
-                    <x-not-found message="Articles not found" />
-                    @endforelse
+                    @endforeach
                 </div>
             </div>
         </div>

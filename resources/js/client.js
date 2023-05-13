@@ -1,5 +1,5 @@
 import Alpine from 'alpinejs'
-import Client from './components/Client'
+import Client from './components/Pages/Client'
 
 Client.start()
 

@@ -62,7 +62,7 @@ class Article extends Model
             ->latest()
             ->limit($limit);
 
-        if($onlyFixeds) $query->whereFixed(true);
+        $query->whereFixed($onlyFixeds);
 
         return $query;
     }

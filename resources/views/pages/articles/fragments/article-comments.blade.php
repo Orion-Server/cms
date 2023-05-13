@@ -1,5 +1,5 @@
 <div class="w-full flex flex-col gap-4">
-    @forelse ($activeArticle->comments as $comment)
+    @foreach ($activeArticle->comments as $comment)
     <div @class([
         "bg-white relative w-full flex flex-col overflow-hidden justify-between h-auto dark:text-slate-200 dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg",
         "border-2 !border-blue-400" => $comment->fixed
@@ -40,7 +40,5 @@
             </div>
         </div>
     </div>
-    @empty
-    <x-not-found message="No comments yet." />
-    @endforelse
+    @endforeach
 </div>

@@ -1,5 +1,5 @@
 import Alpine from 'alpinejs'
-import Footer from '../components/Footer'
+import Footer from '../components/Pages/Footer'
 import Photos from '../components/Pages/Photos'
 import TippyWrapper from '../external/TippyWrapper'
 import NotyfWrapper from '../external/NotyfWrapper'
@@ -8,6 +8,7 @@ import DiscordWidget from '../components/DiscordWidget'
 import OnlineFriends from '../components/OnlineFriends'
 import Authentication from '../components/Authentication'
 import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
+import TextareaEditor from '../components/Ui/TextareaEditor'
 
 export default class WebManager {
     static start() {
@@ -18,6 +19,7 @@ export default class WebManager {
         Authentication.start()
         ImageVisualizationWrapper.start()
         OnlineFriends.start()
+        TextareaEditor.start()
 
         // WebManager components
         WebManager.startTooltips()
