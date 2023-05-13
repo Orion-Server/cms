@@ -1,6 +1,8 @@
 export default class SwiperWrapper {
     static start() {
-        SwiperWrapper.detectSwiperContainers()
+        document.addEventListener('turbolinks:load', () => {
+            SwiperWrapper.detectSwiperContainers()
+        })
     }
 
     static detectSwiperContainers() {

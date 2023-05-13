@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="turbolinks-cache-control" content="no-cache">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
@@ -65,6 +66,7 @@
 
                         <x-ui.buttons.redirectable
                             href="{{ route('hotel.nitro') }}"
+                            data-turbolinks="false"
                             class="dark:bg-gray-500 bg-gray-500 border-gray-700 hover:bg-gray-400 dark:hover:bg-gray-400 dark:shadow-gray-700/75 shadow-gray-600/75 py-2 text-white"
                         >
                             Join (Nitro HTML5)

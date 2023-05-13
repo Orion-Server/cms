@@ -9,6 +9,11 @@
 // Partials
 @import 'partials/icons.scss';
 
+html,
+body {
+    scroll-behavior: smooth;
+}
+
 :root {
     --swiper-pagination-progressbar-bg-color: rgba(0, 0, 0, 0.25);
     --swiper-pagination-color: #1d4ed8;

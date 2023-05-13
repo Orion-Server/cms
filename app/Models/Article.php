@@ -54,15 +54,13 @@ class Article extends Model
             ->first();
     }
 
-    public static function forIndex(int $limit, bool $onlyFixeds = false): Builder
+    public static function forIndex(int $limit): Builder
     {
         $query = Article::valid()
             ->with(['user:id,username,look'])
             ->select(['id', 'user_id', 'title', 'slug', 'is_promotion', 'image', 'description', 'promotion_ends_at', 'created_at'])
             ->latest()
             ->limit($limit);
-
-        $query->whereFixed($onlyFixeds);
 
         return $query;
     }

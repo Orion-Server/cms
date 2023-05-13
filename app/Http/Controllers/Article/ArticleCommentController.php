@@ -15,7 +15,7 @@ class ArticleCommentController extends Controller
             'content' => 'required|string|min:5'
         ]);
 
-        if (!$activeArticle = Article::fromIdAndSlug($id, $slug)->first()) {
+        if (!$article = Article::fromIdAndSlug($id, $slug)->first()) {
             return $this->jsonResponse(['message' => 'Article not found'], 404);
         }
 
@@ -25,14 +25,15 @@ class ArticleCommentController extends Controller
             return $this->jsonResponse(['message' => 'You are commenting too fast'], 422);
         }
 
-        $comment = $activeArticle->comments()->create([
+        $comment = $article->comments()->create([
             'content' => nl2br(strip_tags($data['content'])),
             'user_id' => $user->id
         ]);
 
         return $this->jsonResponse([
             'comment' => $comment,
-            'message' => 'Comment created successfully'
+            'message' => 'Comment created successfully',
+            'href' => route('articles.show', ['id' => $article->id, 'slug' => $article->slug])
         ]);
     }
 }

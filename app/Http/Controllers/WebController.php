@@ -27,8 +27,11 @@ class WebController extends Controller
             false => self::FIXED_ARTICLES_LIST_COUNT_WHEN_GUEST
         };
 
-        $defaultArticles = Article::forIndex($articlesListCount)->get();
-        $fixedArticles = Article::forIndex($fixedArticlesListCount, true)->get();
+        $defaultArticles = Article::forIndex($articlesListCount)
+            ->whereFixed(false)->get();
+
+        $fixedArticles = Article::forIndex($fixedArticlesListCount)
+            ->whereFixed(true)->get();
 
         $compact = [
             'defaultArticles',

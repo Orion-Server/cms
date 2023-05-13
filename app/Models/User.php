@@ -4,11 +4,14 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use App\Models\Article\ArticleComment;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\{
+    User\UserBadge,
+    Article\ArticleComment
+};
 use App\Models\Compositions\User\{
     HasCurrency,
     HasSettings
@@ -115,6 +118,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     public function articleComments(): HasMany
     {
         return $this->hasMany(ArticleComment::class);
+    }
+
+    public function badges(): HasMany
+    {
+        return $this->hasMany(UserBadge::class);
     }
 
     public function friends(): HasMany

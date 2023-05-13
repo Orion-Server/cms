@@ -1,11 +1,11 @@
 import Alpine from 'alpinejs'
 
-export default class Footer {
-    static start() {
-        document.addEventListener('alpine:init', Footer._startComponent())
+class Footer {
+    start() {
+        document.addEventListener('alpine:init', this._startComponent)
     }
 
-    static _startComponent() {
+    _startComponent() {
         Alpine.data('footer', () => ({
             showScrollButton: false,
 
@@ -28,3 +28,5 @@ export default class Footer {
         }))
     }
 }
+
+export default new Footer

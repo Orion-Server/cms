@@ -1,29 +1,10 @@
 @php($navigations = \App\Models\Navigation::getNavigations())
 
-<div class="bg-white fixed top-0 dark:bg-slate-950 w-full z-[2] lg:relative h-auto lg:h-16 border-b-2 border-gray-200 dark:border-slate-800" x-data="{
-    showMobileMenu: false,
-    showSubmenuId: null,
-    theme: 'light',
-
-    init() {
-        if (localStorage.theme === 'dark') this.toggleTheme()
-    },
-
-    toggleTheme() {
-        this.theme = this.theme == 'light' ? 'dark' : 'light'
-        document.documentElement.classList.toggle('dark')
-
-        localStorage.setItem('theme', this.theme)
-    },
-
-    isTheme(theme) {
-        this.theme == theme
-    },
-
-    toggleMenu(id) {
-        this.showSubmenuId = this.showSubmenuId == id ? null : id
-    }
-}">
+<div
+    class="bg-white fixed top-0 dark:bg-slate-950 w-full z-[2] lg:relative h-auto lg:h-16 border-b-2 border-gray-200 dark:border-slate-800"
+    x-data="navigation"
+    data-turbolinks-permanent
+>
     <x-container class="h-full flex flex-col items-center justify-center lg:bg-transparent bg-white dark:bg-slate-950">
         <div
             :class="{ 'border-b dark:border-gray-800': showMobileMenu }"

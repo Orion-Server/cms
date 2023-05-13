@@ -26,7 +26,10 @@ class ArticleComment extends Model
 
     public function scopeDefaultRelationships($query): void
     {
-        $query->with(['user:id,username,look']);
+        $query->with([
+            'user:id,username,look',
+            'user.badges' => fn ($query) => $query->where('slot_id', '<>', '0')
+        ]);
     }
 
     public function user(): BelongsTo

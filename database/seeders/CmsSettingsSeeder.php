@@ -153,8 +153,13 @@ class CmsSettingsSeeder extends Seeder
             ],
             [
                 'min_rank_to_housekeeping_login',
-                '8',
+                '7',
                 'Minimum rank to login into housekeeping'
+            ],
+            [
+                'badges_path',
+                'https://images.habbo.com/c_images/album1584/',
+                'The base URL to render the badges on the CMS'
             ]
         ];
     }

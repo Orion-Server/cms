@@ -33,9 +33,14 @@
                     style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&direction=2&head_direction=2&size=m&gesture=sml&action=sit,wav')"
                 ></div>
                 <div class="w-full h-full items-center pl-20 flex gap-2">
-                    @for ($j = 0; $j < 5; $j++)
-                        <div class="w-[48px] bg-center bg-no-repeat h-[48px] rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600 border" style="background-image: url('{{ asset('assets/images/default_badge.gif') }}')"></div>
-                    @endfor
+                    @foreach ($comment->user->badges as $badge)
+                        <div
+                            data-tippy
+                            data-tippy-content="<small>{{ $badge->badge_code }}</small>"
+                            class="w-[48px] bg-center bg-no-repeat h-[48px] rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600 border"
+                            style="background-image: url('{{ getSetting('badges_path') . $badge->badge_code }}.png')"
+                        ></div>
+                    @endforeach
                 </div>
             </div>
         </div>

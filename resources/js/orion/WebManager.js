@@ -9,6 +9,7 @@ import OnlineFriends from '../components/OnlineFriends'
 import Authentication from '../components/Authentication'
 import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
 import TextareaEditor from '../components/Ui/TextareaEditor'
+import Navigation from '../components/Navigation'
 
 export default class WebManager {
     static start() {
@@ -20,6 +21,7 @@ export default class WebManager {
         ImageVisualizationWrapper.start()
         OnlineFriends.start()
         TextareaEditor.start()
+        Navigation.start()
 
         // WebManager components
         WebManager.startTooltips()

@@ -1,12 +1,12 @@
 import axios from 'axios'
 import Alpine from 'alpinejs'
 
-export default class Client {
-    static start() {
-        document.addEventListener('alpine:init', Client._startComponent())
+class Client {
+    start() {
+        document.addEventListener('alpine:init', this._startComponent)
     }
 
-    static _startComponent() {
+    _startComponent() {
         Alpine.data('client', (onlineCountEndpoint) => ({
             onlineCount: 0,
             showCmsFrame: false,
@@ -61,3 +61,5 @@ export default class Client {
         }))
     }
 }
+
+export default new Client

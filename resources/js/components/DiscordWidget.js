@@ -1,13 +1,13 @@
 import Alpine from 'alpinejs'
 
-export default class DiscordWidget {
-    static start() {
+class DiscordWidget {
+    start() {
         if(!document.getElementById('discord-widget')) return
 
-        document.addEventListener('alpine:init', DiscordWidget._startComponent())
+        document.addEventListener('alpine:init', this._startComponent)
     }
 
-    static _startComponent() {
+    _startComponent() {
         Alpine.data('discordWidget', (widgetId) => ({
             discordData: null,
             loading: true,
@@ -65,3 +65,5 @@ export default class DiscordWidget {
         }))
     }
 }
+
+export default new DiscordWidget

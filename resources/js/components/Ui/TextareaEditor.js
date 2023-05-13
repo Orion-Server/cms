@@ -1,8 +1,9 @@
 import Alpine from "alpinejs"
+import Turbolinks from "turbolinks"
 
 class TextareaEditor {
     start() {
-        document.addEventListener("alpine:init", () => this._startComponent())
+        document.addEventListener("alpine:init", this._startComponent)
     }
 
     _startComponent() {
@@ -29,6 +30,8 @@ class TextareaEditor {
                             type: 'success',
                             message: response.data.message
                         })
+
+                        Turbolinks.visit(response.data.href)
                     })
                     .catch(error => {
                         const message = error.response?.data?.message
@@ -91,4 +94,4 @@ class TextareaEditor {
     }
 }
 
-export default new TextareaEditor();
+export default new TextareaEditor;

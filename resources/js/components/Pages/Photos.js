@@ -1,11 +1,11 @@
 import Alpine from 'alpinejs'
 
-export default class Photos {
-    static start() {
-        document.addEventListener('alpine:init', () => Photos._startComponent())
+class Photos {
+    start() {
+        document.addEventListener('alpine:init', this._startComponent)
     }
 
-    static _startComponent() {
+    _startComponent() {
         Alpine.data('photosPage', () => ({
             loading: false,
 
@@ -20,3 +20,5 @@ export default class Photos {
         }))
     }
 }
+
+export default new Photos

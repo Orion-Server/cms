@@ -4,7 +4,7 @@ import { default as lightGalleryLibrary } from 'lightgallery'
 
 export default class ImageVisualizationWrapper {
     static start() {
-        document.addEventListener('alpine:init', ImageVisualizationWrapper._startComponent())
+        document.addEventListener('turbolinks:load', () => ImageVisualizationWrapper._startComponent())
     }
 
     static _startComponent() {

@@ -1,12 +1,12 @@
 import axios from 'axios'
 import Alpine from 'alpinejs'
 
-export default class OnlineFriends {
-    static start() {
-        document.addEventListener('alpine:init', OnlineFriends._startComponent())
+class OnlineFriends {
+    start() {
+        document.addEventListener('alpine:init', this._startComponent)
     }
 
-    static _startComponent() {
+    _startComponent() {
         Alpine.data('onlineFriends', (followUserEndpoint) => ({
             delay: false,
 
@@ -17,7 +17,10 @@ export default class OnlineFriends {
 
                 await axios.post(followUserEndpoint.replace(':userId', id))
                     .then(response => {
-                        OnlineFriends._dispatchErrorFromAxios(this, response.data)
+                        this.$dispatch('orion:alert', {
+                            type: response.data.type,
+                            message: response.data.message
+                        })
                     })
                     .catch(error => {
                         console.error('[FollowUser] - ', error)
@@ -27,11 +30,6 @@ export default class OnlineFriends {
             }
         }))
     }
-
-    static _dispatchErrorFromAxios(componentInstance, data) {
-        componentInstance.$dispatch('orion:alert', {
-            type: data.type,
-            message: data.message
-        })
-    }
 }
+
+export default new OnlineFriends

@@ -6,7 +6,9 @@ export default class TippyWrapper {
             this.instance = new TippyWrapper()
         }
 
-        this.instance.bindTooltipTriggers()
+        document.addEventListener('turbolinks:load', () => {
+            this.instance.bindTooltipTriggers()
+        })
     }
 
     getInstance() {
