@@ -42,3 +42,7 @@
     </div>
 </x-container>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/super-build/ckeditor.js"></script>
+@endpush

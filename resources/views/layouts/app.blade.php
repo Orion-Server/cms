@@ -99,6 +99,7 @@
 
     @include('layouts.footer')
 
+    @stack('scripts')
     <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
     @vite(['resources/js/app.js'])
 </body>

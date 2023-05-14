@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         // Dashboard configuration
         Filament::serving(function() {
             Filament::registerStyles([
+                asset('assets/css/filament.css'),
                 asset('assets/css/ckeditor.css')
             ]);
 

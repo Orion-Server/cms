@@ -2,3 +2,25 @@
     min-height: 250px;
     resize: vertical;
 }
+
+html.dark .ck-reset_all :not(.ck-reset_all-excluded *), .ck.ck-reset, .ck.ck-reset_all,
+html.dark .ck-content {
+    background-color: #374151 !important; /* gray-700 */
+    border-color: #4b5563 !important; /* gray-600 */
+    color: white !important; /* gray-400 */
+}
+
+.ck-content menu,
+.ck-content ol,
+.ck-content ul {
+    margin: 0 0 0 0.5rem !important;
+    padding: inherit !important;
+}
+
+.ck-content ol {
+    list-style: disc;
+}
+
+.ck-content ul {
+    list-style: circle;
+}
