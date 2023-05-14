@@ -1,4 +1,4 @@
-<div class="w-full flex flex-col gap-4">
+<div class="w-full mt-8 flex flex-col gap-4">
     @foreach ($activeArticle->comments as $comment)
     <div @class([
         "bg-white relative w-full flex flex-col overflow-hidden justify-between h-auto dark:text-slate-200 dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg",

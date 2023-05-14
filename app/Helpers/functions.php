@@ -64,15 +64,17 @@ if(!function_exists('getSetting')) {
 if(!function_exists('renderBBCodeText')) {
     /**
      * Render BBCode text to HTML.
+     *
+     * @param bool $reflectLineBreaks Whether to reflect line breaks or not. (usually when displaying rendered text)
      */
-    function renderBBCodeText(string $content): string {
+    function renderBBCodeText(string $content, bool $reflectLineBreaks = false): string {
         return Pipeline::send($content)
             ->through([
                 fn (string $content, \Closure $next) => $next(str_replace(['[b]', '[/b]'], ['<b>', '</b>'], $content)),
                 fn (string $content, \Closure $next) => $next(str_replace(['[i]', '[/i]'], ['<i>', '</i>'], $content)),
                 fn (string $content, \Closure $next) => $next(str_replace(['[u]', '[/u]'], ['<u>', '</u>'], $content)),
                 fn (string $content, \Closure $next) => $next(str_replace(['[s]', '[/s]'], ['<s>', '</s>'], $content)),
-                fn (string $content, \Closure $next) => $next(str_replace(['[h]', '[/h]'], ['<span class="text-xs rounded text-white px-1" style="background-color: #0284c7">', '</span>'], $content)),
-            ])->then(fn (string $content) => $content);
+                fn (string $content, \Closure $next) => $next(str_replace(['[h]', '[/h]'], ['<span class="bbcode-highlighter">', '</span>'], $content)),
+            ])->then(fn (string $content) => $reflectLineBreaks ? nl2br($content) : $content);
     }
 }

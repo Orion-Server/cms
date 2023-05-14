@@ -45,7 +45,7 @@ class ArticleComment extends Model
     public function renderedContent(): Attribute
     {
         return new Attribute(
-            get: fn() => renderBBCodeText($this->content)
+            get: fn() => renderBBCodeText($this->content, true)
         );
     }
 }

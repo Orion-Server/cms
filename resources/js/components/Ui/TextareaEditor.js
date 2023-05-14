@@ -1,5 +1,6 @@
 import Alpine from "alpinejs"
 import Turbolinks from "turbolinks"
+import XssWrapper from "../../external/XssWrapper"
 
 class TextareaEditor {
     start() {
@@ -10,57 +11,26 @@ class TextareaEditor {
         Alpine.data("textareaEditor", () => ({
             loading: false,
 
+            showPreview: false,
+            previewLoading: false,
+            previewText: null,
+
             init() {
-                this.initButtons()
+                this.initEditorButtons()
             },
 
-            async onSubmit() {
-                if(this.loading) return
-
-                this.loading = true
-
-                const content = this.$refs.textarea.value
-
-                await axios.post(this.$refs.form.action, { content }).then(response => {
-                        if(!response.data.success) return
-
-                        this.$refs.textarea.value = ''
-
-                        this.$dispatch('orion:alert', {
-                            type: 'success',
-                            message: response.data.message
-                        })
-
-                        Turbolinks.visit(response.data.href)
-                    })
-                    .catch(error => {
-                        const message = error.response?.data?.message
-
-                        if(message) {
-                            this.$dispatch('orion:alert', {
-                                type: 'error',
-                                message
-                            })
-                        }
-
-                        console.error('[TextareaEditorForm] - ', error)
-                    })
-
-                setTimeout(() => this.loading = false, 2000)
-            },
-
-            initButtons() {
+            initEditorButtons() {
                 const buttons = document.querySelectorAll("[data-editor]")
 
                 Array.from(buttons).map((button) =>
-                    this.treatButtonAction(button)
-                );
+                    this.treatEditButtonAction(button)
+                )
             },
 
-            treatButtonAction(button) {
+            treatEditButtonAction(button) {
                 const textarea = this.$refs.textarea
 
-                if (!textarea) return;
+                if (!textarea) return
 
                 button.addEventListener("click", () => {
                     const before = button.dataset.before,
@@ -86,12 +56,81 @@ class TextareaEditor {
                         textarea.selectionStart =
                             selectionStart == selectionEnd
                                 ? selectionStart + before.length
-                                : textarea.value.length;
+                                : textarea.value.length
                     })
                 })
             },
+
+            async onSubmit() {
+                if (this.loading) return
+
+                this.loading = true
+
+                const content = this.$refs.textarea.value
+
+                await axios
+                    .post(this.$refs.form.action, { content })
+                    .then((response) => {
+                        if (!response.data.success) return
+
+                        this.$refs.textarea.value = ""
+
+                        this.$dispatch("orion:alert", {
+                            type: "success",
+                            message: response.data.message,
+                        })
+
+                        Turbolinks.visit(response.data.href)
+                    })
+                    .catch((error) => {
+                        const message = error.response?.data?.message
+
+                        if (message) {
+                            this.$dispatch("orion:alert", {
+                                type: "error",
+                                message,
+                            })
+                        }
+
+                        console.error("[TextareaEditorForm] - ", error)
+                    })
+
+                setTimeout(() => (this.loading = false), 2000)
+            },
+
+            async onPreviewRequest() {
+                if(this.showPreview) {
+                    this.showPreview = false
+                    return
+                }
+
+                const textarea = this.$refs.textarea
+
+                if(!textarea
+                    || !textarea.value.length
+                    || this.previewLoading
+                ) return
+
+                this.previewLoading = true
+
+                await axios.post('/api/bbcode/preview', { content: textarea.value })
+                    .then(response => {
+                        if(!response.data.success) {
+                            const { message } = response.data
+
+                            this.$dispatch('orion:alert', { type: 'error', message })
+                            return
+                        }
+
+                        this.previewText = XssWrapper.clean(response.data.content)
+                        this.showPreview = true
+                    })
+                    .catch(error => console.error('[TextareaEditorPreview] - ', error))
+
+                setTimeout(() => this.previewLoading = false, 2000)
+            }
         }))
     }
 }
 
-export default new TextareaEditor;
+export default new TextareaEditor()

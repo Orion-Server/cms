@@ -21,6 +21,7 @@
     "dependencies": {
         "lightgallery": "^2.7.1",
         "notyf": "^3.10.0",
-        "tippy.js": "^6.3.7"
+        "tippy.js": "^6.3.7",
+        "xss": "^1.0.14"
     }
 }

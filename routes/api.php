@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('referral/{code}', [InviteController::class, 'getReferralUsername']);
+Route::post('bbcode/preview', [ApiController::class, 'getBBCodePreview'])->name('bbcode.preview');
 
 Route::prefix('hotel')
     ->name('hotel.')

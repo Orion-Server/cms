@@ -26,7 +26,7 @@ class ArticleCommentController extends Controller
         }
 
         $comment = $article->comments()->create([
-            'content' => nl2br(strip_tags($data['content'])),
+            'content' => strip_tags($data['content']),
             'user_id' => $user->id
         ]);
 

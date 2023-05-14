@@ -59,18 +59,22 @@
     @include('pages.articles.fragments.article-reactions')
 </div>
 <div class="mt-8 w-full h-auto">
-    <x-title-box
-        title="Comment this Article"
-        description="Write your opinion below"
-        icon="comment"
-    />
-    <div class="bg-white w-full h-auto dark:bg-slate-950 p-1 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg mt-8">
-        <x-ui.textarea
-            article-id="{{ $activeArticle->id }}"
-            article-slug="{{ $activeArticle->slug }}"
-        />
-    </div>
-    <div class="my-8 w-full h-auto">
+    @auth
+        <div class="mb-8">
+            <x-title-box
+                title="Comment this Article"
+                description="Write your opinion below"
+                icon="comment"
+            />
+            <div class="bg-white w-full h-auto dark:bg-slate-950 p-1 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg mt-8">
+                <x-ui.textarea
+                    article-id="{{ $activeArticle->id }}"
+                    article-slug="{{ $activeArticle->slug }}"
+                />
+            </div>
+        </div>
+    @endauth
+    <div class="w-full h-auto">
         <x-title-box
             title="Article Comments ({{ $activeArticle->comments->count() }})"
             description="All comments of this article"
