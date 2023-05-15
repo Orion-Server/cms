@@ -46,4 +46,6 @@
         </div>
     </div>
     @endforeach
+
+    {{ $activeArticle->comments->links() }}
 </div>

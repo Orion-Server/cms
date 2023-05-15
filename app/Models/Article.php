@@ -74,8 +74,7 @@ class Article extends Model
     {
         $query->with([
             'user:id,username,look',
-            'tags',
-            'comments' => fn ($query) => $query->defaultRelationships()
+            'tags'
         ]);
     }
 

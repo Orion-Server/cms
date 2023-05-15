@@ -39,6 +39,11 @@ class ArticleController extends Controller
             return redirect()->route('articles.index');
         }
 
+        $activeArticle->setRelation(
+            'comments',
+            $activeArticle->comments()->defaultRelationships()->paginate()
+        );
+
         return view('pages.articles.index', [
             'latestArticlesWithCategories' => $latestArticlesWithCategories,
             'activeArticle' => $activeArticle

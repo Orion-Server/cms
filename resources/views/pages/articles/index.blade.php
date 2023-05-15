@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Article Page')
+@section('title', $activeArticle->title)
 
 @section('content')
 <x-container>

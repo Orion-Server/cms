@@ -22,9 +22,11 @@ class ApiController extends Controller
             'content' => 'required|string'
         ]);
 
+        $content = strip_tags($data['content']);
+
         return response()->json([
             'success' => true,
-            'content' => strip_tags(renderBBCodeText($data['content'], true))
+            'content' => renderBBCodeText($content, true)
         ]);
     }
 }
