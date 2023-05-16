@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Rules\RecaptchaRule;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -120,6 +121,10 @@ class CreateNewUser implements CreatesNewUsers
             'referral_code' => ['sometimes', 'string', 'size:15'],
             'password' => $this->passwordRules()
         ];
+
+        if(config('hotel.recaptcha.enabled')) {
+            $validations['recaptcha'] = ['required', 'string', new RecaptchaRule];
+        }
 
         return Validator::make($input, $validations)
             ->stopOnFirstFailure()

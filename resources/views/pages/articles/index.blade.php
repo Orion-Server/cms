@@ -43,8 +43,5 @@
 </x-container>
 @endsection
 
-@once
-    @push('scripts')
-    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/super-build/ckeditor.js" data-turbolinks-eval="false"></script>
-    @endpush
-@endonce
+<script src="{{ asset('assets/js/ckeditor.min.js') }}"></script>
+

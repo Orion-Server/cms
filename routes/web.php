@@ -21,8 +21,10 @@ use App\Http\Controllers\{
 |
 */
 
-
 Route::get('/', [WebController::class, 'index'])->name('index');
+Route::get('/login', [WebController::class, 'index'])->name('login');
+Route::get('/register', [WebController::class, 'index'])->name('register');
+
 Route::get('jail', [JailController::class, 'show'])->name('jail');
 
 Route::prefix('hotel')

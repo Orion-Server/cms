@@ -2,16 +2,16 @@ import 'lightgallery/css/lightgallery-bundle.min.css'
 import lgThumbnail from 'lightgallery/plugins/thumbnail'
 import { default as lightGalleryLibrary } from 'lightgallery'
 
-export default class ImageVisualizationWrapper {
-    static start() {
-        document.addEventListener('turbolinks:load', () => ImageVisualizationWrapper._startComponent())
+class ImageVisualizationWrapper {
+    start() {
+        document.addEventListener('turbolinks:load', () => this._startComponent())
     }
 
-    static _startComponent() {
-        ImageVisualizationWrapper._registerPhotosPageComponent()
+    _startComponent() {
+        this._registerPhotosPageComponent()
     }
 
-    static _registerPhotosPageComponent() {
+    _registerPhotosPageComponent() {
         lightGalleryLibrary(document.getElementById('lightgallery'), {
             plugins: [lgThumbnail],
             exThumbImage: 'data-src',
@@ -20,3 +20,5 @@ export default class ImageVisualizationWrapper {
         })
     }
 }
+
+export default new ImageVisualizationWrapper()

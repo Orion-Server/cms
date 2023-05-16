@@ -100,6 +100,12 @@ export default class Authentication {
                     this.registerData.referrer_code = this.registerReferrerData.code
                 }
 
+                const recaptchaResponse = document.querySelector('#register-form #g-recaptcha-response')
+
+                if(recaptchaResponse && recaptchaResponse.value.length) {
+                    this.registerData.recaptcha = recaptchaResponse.value
+                }
+
                 await Authentication._attemptAuthentication('/register', this.registerData,
                     () => {
                         Authentication._treatResponseSuccess(this, 'You have been registered successfully.')

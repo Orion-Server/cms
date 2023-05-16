@@ -1,5 +1,6 @@
 <form
     method="POST"
+    id="register-form"
     @submit.prevent="onFormRegisterSubmit"
 >
     <template x-if="!! registerReferrerData.username">
@@ -85,6 +86,10 @@
                 />
             </div>
         </div>
+    </div>
+
+    <div class="flex justify-center mt-4">
+        @includeWhen(config('hotel.recaptcha.enabled'), 'components.ui.recaptcha')
     </div>
 
     <div class="flex gap-4 mt-6">

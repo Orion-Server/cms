@@ -1,4 +1,8 @@
-<form method="POST" @submit.prevent="onFormLoginSubmit">
+<form
+    id="login-form"
+    method="POST"
+    @submit.prevent="onFormLoginSubmit"
+>
     @csrf
     <div class="mt-4 flex flex-col">
         <x-ui.input

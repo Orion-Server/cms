@@ -10,6 +10,8 @@
     <meta name="title" content="{{ config('hotel.meta.title') }}">
     <meta name="description" content="{{ config('hotel.meta.description') }}">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>@yield('title', 'Index') - {{ config('app.name') }}</title>
 
     <meta name="keywords" content="{{ config('hotel.meta.keywords') }}">
@@ -37,6 +39,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}" />
+
     @vite(['resources/scss/app.scss'])
 </head>
 <body class="bg-gray-100 dark:bg-slate-900 pt-12 lg:pt-0 overflow-x-hidden">
@@ -98,9 +101,8 @@
     </main>
 
     @include('layouts.footer')
-
-    @stack('scripts')
     <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
     @vite(['resources/js/app.js'])
+    @stack('scripts')
 </body>
 </html>

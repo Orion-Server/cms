@@ -6,3 +6,7 @@
 .bbcode-highlighter {
     @apply text-xs rounded text-white px-1 bg-blue-500;
 }
+
+.turbolinks-progress-bar {
+    @apply bg-sky-500/25 h-2;
+}
