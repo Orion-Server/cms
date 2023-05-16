@@ -7,6 +7,9 @@ export default defineConfig({
         outDir: Path.join(__dirname, 'public', 'build'),
         emptyOutDir: true,
     },
+    server: {
+        host: 'localhost'
+    },
     plugins: [
         laravel({
             input: ['resources/scss/app.scss', 'resources/js/app.js'],

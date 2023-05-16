@@ -38,11 +38,11 @@ class NavigationSeeder extends Seeder
     {
         return [
             'Home' => [
-                'data' => $this->makeNavigationData('/', 'home.gif', 0),
+                'data' => $this->makeNavigationData('/', 'https://i.imgur.com/FFql1oZ.gif', 0),
                 'subNavigations' => [],
             ],
             'Community' => [
-                'data' => $this->makeNavigationData('/community', 'community.png', 1),
+                'data' => $this->makeNavigationData('/community', 'https://i.imgur.com/dTeCegt.png', 1),
                 'subNavigations' => [
                     'Staff' => ['slug' => '/community/staff'],
                     'Rankings' => ['slug' => '/community/rankings'],
@@ -50,7 +50,7 @@ class NavigationSeeder extends Seeder
                 ]
             ],
             'Forum' => [
-                'data' => $this->makeNavigationData('/forum', 'forum.gif', 2),
+                'data' => $this->makeNavigationData('/forum', 'https://i.imgur.com/Z0eWGl7.gif', 2),
                 'subNavigations' => [
                     'Access',
                     'Rules',
@@ -60,11 +60,11 @@ class NavigationSeeder extends Seeder
                 ]
             ],
             'Shop' => [
-                'data' => $this->makeNavigationData('/shop', 'shop.gif', 3),
+                'data' => $this->makeNavigationData('/shop', 'https://i.imgur.com/6Z1Noci.gif', 3),
                 'subNavigations' => [],
             ],
             'Radio' => [
-                'data' => $this->makeNavigationData('/radio', 'radio.gif', 4),
+                'data' => $this->makeNavigationData('/radio', 'https://i.imgur.com/S1nUekx.gif', 4),
                 'subNavigations' => [
                     'Schedules',
                     'Join Us'
@@ -80,7 +80,7 @@ class NavigationSeeder extends Seeder
     ): array {
         return [
             'slug' => $slug,
-            'icon' => "assets/images/icons/small/$icon",
+            'icon' => $icon,
             'order' => $order
         ];
     }

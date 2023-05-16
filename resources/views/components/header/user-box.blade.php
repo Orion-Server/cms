@@ -16,7 +16,7 @@
                     data-tippy-content="<small>My Profile</small>"
                     href=""
                 >
-                    <img src="{{ asset('assets/images/icons/big/profile.png') }}" alt="Profile icon" />
+                    <img src="{{ asset('https://i.imgur.com/wYP2GOf.png') }}" alt="Profile icon" />
                 </a>
                 <a
                     class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
@@ -24,7 +24,7 @@
                     data-tippy-content="<small>My Settings</small>"
                     href=""
                 >
-                    <img src="{{ asset('assets/images/icons/big/settings.gif') }}" alt="Settings icon" />
+                    <img src="{{ asset('https://i.imgur.com/zjDy01f.gif') }}" alt="Settings icon" />
                 </a>
                 <a
                     class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
@@ -32,7 +32,7 @@
                     data-tippy-content="<small>My Achievements</small>"
                     href=""
                 >
-                    <img src="{{ asset('assets/images/icons/big/achievements.png') }}" alt="Achievements icon" />
+                    <img src="{{ asset('https://i.imgur.com/Re6k2iv.png') }}" alt="Achievements icon" />
                 </a>
                 <a
                     class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
@@ -40,7 +40,7 @@
                     data-tippy-content="<small>My Inbox</small>"
                     href=""
                 >
-                    <img src="{{ asset('assets/images/icons/big/inbox.png') }}" alt="Inbox icon" />
+                    <img src="{{ asset('https://i.imgur.com/d4oZMFz.png') }}" alt="Inbox icon" />
                 </a>
                 <a
                     class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
@@ -48,7 +48,7 @@
                     data-tippy-content="<small>Help & Suggestions</small>"
                     href=""
                 >
-                    <img src="{{ asset('assets/images/icons/big/help.png') }}" alt="Help icon" />
+                    <img src="{{ asset('https://i.imgur.com/jy18kQD.png') }}" alt="Help icon" />
                 </a>
             </div>
             <div class="w-full flex justify-start items-center divide-x h-8 dark:divide-slate-800">

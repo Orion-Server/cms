@@ -58,6 +58,7 @@
     </div>
     @include('pages.articles.fragments.article-reactions')
 </div>
+@if ($activeArticle->allow_comments)
 <div class="mt-8 w-full h-auto">
     @auth
         <div class="mb-8">
@@ -76,10 +77,11 @@
     @endauth
     <div class="w-full h-auto">
         <x-title-box
-            title="Article Comments ({{ $activeArticle->comments->count() }})"
+            title="Article Comments"
             description="All comments of this article"
             icon="users-comments"
         />
     </div>
     @include('pages.articles.fragments.article-comments')
 </div>
+@endif

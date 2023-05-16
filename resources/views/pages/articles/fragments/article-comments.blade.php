@@ -47,5 +47,7 @@
     </div>
     @endforeach
 
-    {{ $activeArticle->comments->links() }}
+    @if ($activeArticle)
+        {{ $activeArticle->comments->links() }}
+    @endif
 </div>

@@ -35,6 +35,13 @@ class Article extends Model
         });
     }
 
+    public function syncPaginatedComments(): void
+    {
+        $this->setRelation('comments',
+            $this->comments()->defaultRelationships()->paginate(10)
+        );
+    }
+
     public static function fromIdAndSlug(string $id, string $slug, bool $withDefaultRelationships = true): Builder
     {
         $query = Article::valid();
@@ -49,10 +56,16 @@ class Article extends Model
 
     public static function getLatestValidArticle(bool $withDefaultRelationships = true): ?Article
     {
-        return Article::valid()
+        $article = Article::valid()
             ->when($withDefaultRelationships, fn ($query) => $query->defaultRelationships())
             ->latest()
             ->first();
+
+        if(!$article) return null;
+
+        $article->syncPaginatedComments();
+
+        return $article;
     }
 
     public static function forIndex(int $limit): Builder
