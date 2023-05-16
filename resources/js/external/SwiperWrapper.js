@@ -38,11 +38,6 @@ export default class SwiperWrapper {
                 pagination: {
                     el: ".swiper-pagination",
                     type: "progressbar",
-                },
-                on: {
-                    autoplay(swiper) {
-                        console.log('mudou')
-                    }
                 }
             }
         }[elementId]

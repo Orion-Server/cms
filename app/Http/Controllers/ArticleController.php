@@ -13,7 +13,8 @@ class ArticleController extends Controller
         'Yesterday' => [],
         'Current week' => [],
         'Last week' => [],
-        'Current month' => []
+        'Current month' => [],
+        'Others' => []
     ];
 
     public function index(): View
@@ -61,8 +62,8 @@ class ArticleController extends Controller
                     $article->created_at->isYesterday() => 'Yesterday',
                     $article->created_at->isCurrentWeek() => 'Current week',
                     $article->created_at->isLastWeek() => 'Last week',
-                    !$article->created_at->isCurrentMonth() => 'Current month',
-                    default => null
+                    $article->created_at->isCurrentMonth() => 'Current month',
+                    default => 'Others'
                 };
 
                 if (!$referralCategory) return false;
