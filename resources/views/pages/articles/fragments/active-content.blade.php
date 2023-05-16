@@ -4,9 +4,9 @@
 
 <div
     class="w-full !bg-cover !bg-no-repeat !bg-center h-16 flex rounded-lg shadow-lg justify-between border-b-2 border-gray-300 dark:border-slate-800"
-    style="background: linear-gradient(to right, blue 50%, transparent), url('{{ asset('assets/images/user-box-bg.gif') }}')"
+    style="background: linear-gradient(to right, {{ $activeArticle->predominantColor }}, transparent), url('{{ $activeArticle->image }}')"
 >
-    <span class="w-full h-full font-semibold text-white flex items-center justify-start py-2 px-4">
+    <span class="w-full h-full font-semibold flex items-center justify-start py-2 px-4" style="color: {{ $activeArticle->titleColor }}">
         {{ $activeArticle->title }}
     </span>
 </div>

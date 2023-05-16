@@ -1,6 +1,8 @@
 <?php
 
 use App\Services\SettingsService;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Pipeline;
 
 if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
@@ -17,21 +19,27 @@ if(!function_exists('getPredominantImageColor')) {
      * Gets the most predominant color in an image.
      */
     function getPredominantImageColor(string $imageUrl, string $default = '#000'): string {
-        try {
-            $gdImage = imagecreatefromstring(file_get_contents($imageUrl));
+        $cacheableTime = App::isLocal() ? 0 : 86400 * 10; // 10 days
 
-            if(!$gdImage) return $default;
+        return Cache::remember("image-color-$imageUrl", $cacheableTime, function () use ($imageUrl, $default) {
+            try {
+                $gdImage = imagecreatefromstring(
+                    Http::get($imageUrl)->body()
+                );
 
-            $shortendImage = imagecreatetruecolor(1, 1);
+                if(!$gdImage) return $default;
 
-            imagecopyresampled($shortendImage, $gdImage, 0, 0, 0, 0, 1, 1, imagesx($gdImage), imagesy($gdImage));
+                $shortendImage = imagecreatetruecolor(1, 1);
 
-            $color = dechex(imagecolorat($shortendImage, 0, 0));
+                imagecopyresampled($shortendImage, $gdImage, 0, 0, 0, 0, 1, 1, imagesx($gdImage), imagesy($gdImage));
 
-            return "#$color";
-        } catch (\Throwable $ignored) {
-            return $default;
-        }
+                $color = dechex(imagecolorat($shortendImage, 0, 0));
+
+                return "#$color";
+            } catch (\Throwable $ignored) {
+                return $default;
+            }
+        });
     }
 }
 

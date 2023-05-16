@@ -6,8 +6,9 @@ use App\Models\Article\ArticleComment;
 use Illuminate\Database\Eloquent\{
     Model,
     Builder,
+    Casts\Attribute,
     Relations\HasMany,
-    Factories\HasFactory
+    Factories\HasFactory,
 };
 
 class Article extends Model
@@ -91,5 +92,19 @@ class Article extends Model
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    public function predominantColor(): Attribute
+    {
+        return new Attribute(
+            get: fn () => getPredominantImageColor($this->image)
+        );
+    }
+
+    public function titleColor(): Attribute
+    {
+        return new Attribute(
+            get: fn() => isDarkColor($this->predominantColor) ? '#fff' : '#000'
+        );
     }
 }
