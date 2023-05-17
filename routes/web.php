@@ -7,7 +7,8 @@ use App\Http\Controllers\{
     ClientController,
     ArticleController,
     External\RconController,
-    Article\ArticleCommentController
+    Article\ArticleCommentController,
+    UserSettingController
 };
 
 /*
@@ -30,20 +31,20 @@ Route::get('jail', [JailController::class, 'show'])->name('jail');
 Route::prefix('hotel')
     ->name('hotel.')
     ->middleware('auth')
-    ->group(function() {
+    ->group(function () {
         Route::get('nitro', [ClientController::class, 'nitro'])->name('nitro');
 
         Route::prefix('rcon')
             ->name('rcon.')
-            ->group(function() {
+            ->group(function () {
                 Route::post('follow-user/{user}', [RconController::class, 'followUser'])->name('follow-user')
                     ->middleware('throttle:15,1');
             });
     });
 
-    Route::prefix('articles')
+Route::prefix('articles')
     ->name('articles.')
-    ->group(function() {
+    ->group(function () {
         Route::get('/', [ArticleController::class, 'index'])->name('index');
         Route::get('{id}/{slug}', [ArticleController::class, 'show'])->name('show');
 
@@ -54,8 +55,20 @@ Route::prefix('hotel')
 
 Route::prefix('community')
     ->name('community.')
-    ->group(function() {
-        Route::get('photos', fn() => view('pages.community.photos.index'))->name('photos.index');
-        Route::get('staff', fn() => view('pages.community.staff.index'))->name('staff.index');
-        Route::get('rankings', fn() => view('pages.community.rankings.index'))->name('rankings.index');
+    ->group(function () {
+        Route::get('photos', fn () => view('pages.community.photos.index'))->name('photos.index');
+        Route::get('staff', fn () => view('pages.community.staff.index'))->name('staff.index');
+        Route::get('rankings', fn () => view('pages.community.rankings.index'))->name('rankings.index');
+    });
+
+Route::prefix('user')
+    ->name('users.')
+    ->group(function () {
+
+        // User Settings
+        Route::prefix('settings')
+            ->name('settings.')
+            ->group(function () {
+                Route::get('/{page?}', [UserSettingController::class, 'index'])->name('index');
+            });
     });

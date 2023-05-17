@@ -1,3 +1,5 @@
+@section('title', \Auth::user()->username)
+
 <x-container class="relative h-auto !px-0">
     <div class="mb-6">
         @include('pages.users.fragments.user.stories')

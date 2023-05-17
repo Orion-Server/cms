@@ -22,7 +22,7 @@
                     class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
                     data-tippy
                     data-tippy-content="<small>My Settings</small>"
-                    href=""
+                    href="{{ route('users.settings.index') }}"
                 >
                     <img src="{{ asset('https://i.imgur.com/zjDy01f.gif') }}" alt="Settings icon" />
                 </a>
@@ -96,7 +96,7 @@
                 <div class="absolute -bottom-6 right-2 w-[73px] h-[57px] bg-center bg-no-repeat" style="background-image: url('{{ asset('assets/images/stage.png') }}')"></div>
                 <div
                     class="absolute -bottom-4 right-2 w-[64px] h-[110px] bg-center bg-no-repeat"
-                    style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&direction=4&head_direction=4&size=m&gesture=sml&action=sit,wav')"
+                    style="background-image: url('{{ getSetting('figure_imager') . \Auth::user()->look }}&direction=4&head_direction=4&size=m&gesture=sml&action=sit,wav')"
                 ></div>
             </div>
         </div>

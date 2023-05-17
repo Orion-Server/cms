@@ -17,12 +17,12 @@ class WebController extends Controller
     {
         $isAuthenticated = \Auth::check();
 
-        $articlesListCount = match($isAuthenticated) {
+        $articlesListCount = match ($isAuthenticated) {
             true => self::ARTICLES_LIST_COUNT_WHEN_AUTH,
             false => self::ARTICLES_LIST_COUNT_WHEN_GUEST
         };
 
-        $fixedArticlesListCount = match($isAuthenticated) {
+        $fixedArticlesListCount = match ($isAuthenticated) {
             true => self::FIXED_ARTICLES_LIST_COUNT_WHEN_AUTH,
             false => self::FIXED_ARTICLES_LIST_COUNT_WHEN_GUEST
         };
@@ -38,7 +38,7 @@ class WebController extends Controller
             'fixedArticles'
         ];
 
-        if($isAuthenticated) {
+        if ($isAuthenticated) {
             $onlineFriends = \Auth::user()->getOnlineFriends();
             $referredUsersCount = \Auth::user()->referredUsers()->count();
 

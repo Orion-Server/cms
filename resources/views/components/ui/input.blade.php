@@ -8,7 +8,8 @@
     'disabled' => false,
     'defaultValue' => null,
     'small' => false,
-    'id' => null
+    'id' => null,
+    'autofocus' => false
 ])
 
 @if ($label)
@@ -26,6 +27,7 @@
     placeholder="{{ $placeholder }}"
     @if($alpineModel) x-model="{{ $alpineModel }}" @endif
     @if($defaultValue) value="{{ $defaultValue }}" @endif
+    @if($autofocus) autofocus @endif
     @if($id) id="{{ $id }}" @endif
     @disabled($disabled)
     @class([
