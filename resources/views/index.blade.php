@@ -18,9 +18,9 @@
             </ul>
         </div>
 
-        @include('pages.users.guest-me')
+        @include('pages.guest.index')
     @endguest
 
-    @includeWhen(Auth::check(), 'pages.users.auth-me')
+    @includeWhen(Auth::check(), 'pages.users.index')
 </x-container>
 @endsection
