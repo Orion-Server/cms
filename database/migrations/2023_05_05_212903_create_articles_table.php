@@ -30,6 +30,8 @@ return new class extends Migration
             $table->boolean('visible')->default(true);
             $table->boolean('fixed')->default(false);
 
+            $table->string('predominant_color', 10)->nullable();
+
             $table->boolean('allow_comments')->default(true);
 
             $table->timestamps();

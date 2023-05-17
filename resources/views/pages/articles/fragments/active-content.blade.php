@@ -4,7 +4,7 @@
 
 <div
     class="w-full !bg-cover !bg-no-repeat !bg-center h-16 flex rounded-lg shadow-lg justify-between border-b-2 border-gray-300 dark:border-slate-800"
-    style="background: linear-gradient(to right, {{ $activeArticle->predominantColor }}, transparent), url('{{ $activeArticle->image }}')"
+    style="background: linear-gradient(to right, {{ $activeArticle->predominant_color }}, transparent), url('{{ $activeArticle->image }}')"
 >
     <span class="w-full h-full font-semibold flex items-center justify-start py-2 px-4" style="color: {{ $activeArticle->titleColor }}">
         {{ $activeArticle->title }}
@@ -21,7 +21,7 @@
                 "border-blue-300 shadow-blue-500" => true,
                 "border-pink-300 shadow-pink-500" => false
             ]) style="background-image: url('{{ asset('assets/images/user-box-bg.gif') }}')">
-                <div class="w-[64px] h-[110px] absolute bottom-2 left-2" style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&direction=2&head_direction=2&size=m&gesture=sml')"></div>
+                <div class="w-[64px] h-[110px] absolute bottom-2 left-2" style="background-image: url('{{ getSetting('figure_imager') . $activeArticle->user->look }}&direction=2&head_direction=2&size=m&gesture=sml')"></div>
             </div>
             <a
                 href="#"

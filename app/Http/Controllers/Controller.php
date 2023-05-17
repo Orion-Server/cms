@@ -18,4 +18,15 @@ class Controller extends BaseController
             ...$args
         ], $status);
     }
+
+    public function externalJsonResponse(string $type, string $message): JsonResponse
+    {
+        return $this->jsonResponse([
+            'type' => $type,
+            'message' => $message
+        ], $type == 'success'
+            ? 200
+            : 400
+        );
+    }
 }

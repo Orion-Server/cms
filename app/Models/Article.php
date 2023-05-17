@@ -32,6 +32,15 @@ class Article extends Model
         static::creating(function ($article) {
             $article->user_id = \Auth::id();
             $article->slug = \Str::slug($article->title);
+            $article->predominant_color = getPredominantImageColor($article->image);
+        });
+
+        static::updating(function ($article) {
+            $article->slug = \Str::slug($article->title);
+
+            if($article->isDirty('image')) {
+                $article->predominant_color = getPredominantImageColor($article->image);
+            }
         });
     }
 
@@ -107,17 +116,10 @@ class Article extends Model
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
-    public function predominantColor(): Attribute
-    {
-        return new Attribute(
-            get: fn () => getPredominantImageColor($this->image)
-        );
-    }
-
     public function titleColor(): Attribute
     {
         return new Attribute(
-            get: fn() => isDarkColor($this->predominantColor) ? '#fff' : '#000'
+            get: fn() => isDarkColor($this->predominant_color) ? '#fff' : '#000'
         );
     }
 }

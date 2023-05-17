@@ -14,7 +14,7 @@ class SettingsService
         $this->allSettings = CmsSetting::all()->pluck('value', 'key');
     }
 
-    public function get(string $key, ?string $defaultValue = null): string|int
+    public function get(string $key, ?string $defaultValue = null): mixed
     {
         return $this->allSettings->get($key, $defaultValue);
     }

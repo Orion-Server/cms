@@ -64,7 +64,7 @@ if(!function_exists('getSetting')) {
     /**
      * Gets a setting from the database (**cms_settings** table).
      */
-    function getSetting(string $key, ?string $defaultValue = null): string|int {
+    function getSetting(string $key, ?string $defaultValue = null): mixed {
         return app(SettingsService::class)->get($key, $defaultValue);
     }
 }
