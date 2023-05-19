@@ -69,6 +69,6 @@ Route::prefix('user')
         Route::prefix('settings')
             ->name('settings.')
             ->group(function () {
-                Route::get('/{page?}', [UserSettingController::class, 'index'])->name('index');
+                Route::match(['GET', 'POST'], '/{page?}', [UserSettingController::class, 'index'])->name('index');
             });
     });

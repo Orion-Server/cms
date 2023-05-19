@@ -2,8 +2,6 @@ import Alpine from 'alpinejs'
 
 class DiscordWidget {
     start() {
-        if(!document.getElementById('discord-widget')) return
-
         document.addEventListener('alpine:init', this._startComponent)
     }
 

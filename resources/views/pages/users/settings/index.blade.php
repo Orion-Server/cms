@@ -9,7 +9,7 @@
         @forelse ($navigations as $navigation)
             <a href="{{ route("users.settings.index", $navigation['type']) }}" @class([
                 "rounded font-semibold p-3 text-sm text-slate-800 dark:text-white",
-                "bg-slate-100 dark:bg-slate-800 !text-blue-400" => $page == $navigation['type'],
+                "border-b-2 bg-slate-100 border-blue-400 dark:bg-slate-800 !text-blue-400" => $page == $navigation['type'],
                 "dark:hover:bg-slate-800 hover:bg-slate-100 hover:!text-blue-400" => $page != $navigation['type']
             ])>
                 <i class="{{ $navigation['icon'] }} mr-1"></i>

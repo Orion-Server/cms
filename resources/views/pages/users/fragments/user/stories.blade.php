@@ -15,7 +15,7 @@
                 "border-green-500" => $i % 2 == 0,
                 "border-gray-400 dark:border-slate-700" => $i % 2 == 1
             ])>
-            <div class="w-full h-full rounded-full bg-center bg-no-repeat" style="background-image: url('{{ asset('assets/images/user-box-bg2.gif') }}')"></div>
+            <div class="w-full h-full rounded-full bg-center bg-no-repeat" style="background-image: url('{{ asset('assets/images/user-box-bg.gif') }}')"></div>
             <div class="absolute max-w-[100%] truncate text-xs -bottom-5 left-1/2 -translate-x-1/2 dark:text-slate-200">iNicollas</div>
         </div>
     @endfor

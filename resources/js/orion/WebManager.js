@@ -10,10 +10,25 @@ import Authentication from '../components/Authentication'
 import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
 import TextareaEditor from '../components/Ui/TextareaEditor'
 import Navigation from '../components/Navigation'
+import AccountSettings from '../components/Pages/Users/AccountSettings'
+import PasswordSettings from '../components/Pages/Users/PasswordSettings'
+import IngameSettings from '../components/Pages/Users/IngameSettings'
 
 export default class WebManager {
     static start() {
         // Alpine components
+        WebManager.startAlpineComponents()
+
+        // WebManager components
+        WebManager.startTooltips()
+        WebManager.listenAlerts()
+        WebManager.startSliders()
+
+        WebManager.detectHorizontallyScrollables()
+        WebManager.startAlpineFlow()
+    }
+
+    static startAlpineComponents() {
         Photos.start()
         Footer.start()
         DiscordWidget.start()
@@ -23,13 +38,10 @@ export default class WebManager {
         TextareaEditor.start()
         Navigation.start()
 
-        // WebManager components
-        WebManager.startTooltips()
-        WebManager.listenAlerts()
-        WebManager.startSliders()
-
-        WebManager.detectHorizontallyScrollables()
-        WebManager.startAlpineFlow()
+        // User Settings
+        AccountSettings.start()
+        PasswordSettings.start()
+        IngameSettings.start()
     }
 
     static startTooltips() {

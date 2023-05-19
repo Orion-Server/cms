@@ -19,7 +19,7 @@
                 if(initialized) return
 
                 if(CKEDITOR === undefined || !$refs.ckeditor) {
-                    console.log('[CKEDITOR] not found or [CKEDITOR element] not found')
+                    console.error('[CKEDITOR] not found or [CKEDITOR element] not found')
                     return
                 }
 

@@ -176,11 +176,11 @@ class RconService
     /**
      * Update user data.
      */
-    public function updateUser(User $user, string $column, $value)
+    public function updateUser(User $user, array $data)
     {
         return $this->sendPacket('updateuser', [
             'user_id' => $user->id,
-            $column => $value
+            ...$data
         ]);
     }
 
