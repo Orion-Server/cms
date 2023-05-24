@@ -160,6 +160,11 @@ class CmsSettingsSeeder extends Seeder
                 'badges_path',
                 'https://images.habbo.com/c_images/album1584/',
                 'The base URL to render the badges on the CMS'
+            ],
+            [
+                'min_list_rank',
+                '4',
+                'The minimum rank to show on the staff list'
             ]
         ];
     }

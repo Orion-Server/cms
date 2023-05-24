@@ -25,6 +25,7 @@ use Filament\Models\Contracts\{
     FilamentUser,
     HasAvatar
 };
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
 {
@@ -120,6 +121,13 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         return $this->hasMany(ArticleComment::class);
     }
 
+    public function activeBadges(): HasMany
+    {
+        return $this->badges()
+            ->where('slot_id', '<>', 0)
+            ->orderBy('slot_id');
+    }
+
     public function badges(): HasMany
     {
         return $this->hasMany(UserBadge::class);
@@ -162,5 +170,12 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     public function isGirl(): bool
     {
         return $this->gender == 'F';
+    }
+
+    public function figurePath(): Attribute
+    {
+        return new Attribute(
+            get: fn() => getSetting('figure_imager') . $this->look
+        );
     }
 }

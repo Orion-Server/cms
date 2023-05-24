@@ -3,7 +3,8 @@
     'description' => null,
     'icon' => null,
     'image' => null,
-    'small' => false
+    'small' => false,
+    'imageIsBadge' => false
 ])
 
 <div class="w-full h-16 flex justify-between">
@@ -12,11 +13,20 @@
         'w-2/3' => $slot->isNotEmpty(),
         'w-full' => $slot->isEmpty()
     ])>
-        <div class="w-16 h-full flex justify-start items-center">
+        <div @class([
+            "w-16 h-full flex items-center",
+            "justify-start" => !$imageIsBadge,
+            "justify-center" => $imageIsBadge
+        ])>
             @if ($icon)
                 <i class="icon big {{ $icon }}"></i>
             @elseif ($image)
-                <img src="{{ $image }}" alt="" class="w-12 h-12 rounded-full">
+                <i class="icon big">
+                    <img src="{{ $image }}" alt="" @class([
+                        "rounded-full",
+                        "w-12 h-12" => !$imageIsBadge
+                    ])>
+                </i>
             @endif
         </div>
         <div class="flex flex-col">
