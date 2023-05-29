@@ -6,8 +6,11 @@ namespace App\Models;
 
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\{
+    Casts\Attribute,
+    Factories\HasFactory
+};
 use App\Models\{
     User\UserBadge,
     Article\ArticleComment
@@ -25,7 +28,7 @@ use Filament\Models\Contracts\{
     FilamentUser,
     HasAvatar
 };
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
 {
@@ -85,6 +88,21 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
             $user->generateInitialCurrencies();
             $user->generateInitialSettings();
         });
+    }
+
+    public static function getAllStaffsId(): array
+    {
+        return User::where('rank', '>=', getSetting('min_list_rank'))
+            ->pluck('id')
+            ->toArray();
+    }
+
+    public static function getCreditsRanking(int $limit = 10): Builder
+    {
+        return User::where('rank', '<', getSetting('min_list_rank'))
+            ->select(['id', 'username', 'look', 'credits as value'])
+            ->orderByDesc('credits')
+            ->limit($limit);
     }
 
     public function referrer(): BelongsTo

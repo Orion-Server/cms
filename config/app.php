@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -185,6 +186,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'CurrencyType' => App\Enums\CurrencyType::class,
+        'CarbonInterval' => Carbon\CarbonInterval::class
     ])->toArray(),
 
 ];

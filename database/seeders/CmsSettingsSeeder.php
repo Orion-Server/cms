@@ -164,7 +164,7 @@ class CmsSettingsSeeder extends Seeder
             [
                 'min_list_rank',
                 '4',
-                'The minimum rank to show on the staff list'
+                'The minimum rank to show on CMS lists (Eg. rankings, staff pages)'
             ]
         ];
     }
