@@ -23,7 +23,7 @@ class AchievementResource extends Resource
 {
     protected static ?string $model = Achievement::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     protected static ?string $navigationGroup = 'Hotel';
 
@@ -95,15 +95,18 @@ class AchievementResource extends Resource
                     ->label('ID'),
 
                 HabboBadgeColumn::make('badge')
+                    ->searchable()
                     ->label('Badge'),
 
                 TextColumn::make('name')
+                    ->searchable()
                     ->label('Name'),
 
                 TextColumn::make('level')
                     ->label('Level'),
 
                 BadgeColumn::make('category')
+                    ->searchable()
                     ->label('Category')
                     ->toggleable(),
 
@@ -129,9 +132,7 @@ class AchievementResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ->bulkActions([]);
     }
 
     public static function getRelations(): array
