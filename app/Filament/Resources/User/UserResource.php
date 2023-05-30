@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Tables\Columns\UserAvatarColumn;
 use App\Filament\Resources\User\UserResource\Pages;
+use App\Filament\Resources\User\UserResource\RelationManagers;
 
 class UserResource extends Resource
 {
@@ -226,7 +227,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\SettingsRelationManager::class
         ];
     }
 
@@ -235,7 +236,10 @@ class UserResource extends Resource
         $formData['currency_0'] = $record->currency(CurrencyType::Duckets);
         $formData['currency_5'] = $record->currency(CurrencyType::Diamonds);
         $formData['currency_101'] = $record->currency(CurrencyType::Points);
-        $formData['allow_change_username'] = $record->settings->can_change_name;
+
+        if($record->settings) {
+            $formData['allow_change_username'] = $record->settings->can_change_name;
+        }
 
         return $formData;
     }
