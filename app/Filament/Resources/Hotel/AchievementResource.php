@@ -2,26 +2,22 @@
 
 namespace App\Filament\Resources\Hotel;
 
-use App\Enums\AchievementCategory;
-use App\Enums\CurrencyType;
-use Filament\Forms;
 use Filament\Tables;
+use App\Enums\CurrencyType;
 use App\Models\Achievement;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use App\Enums\AchievementCategory;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use App\Tables\Columns\HabboBadgeColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\ToggleColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\Hotel\AchievementResource\Pages;
-use App\Filament\Resources\Hotel\AchievementResource\RelationManagers;
-use Filament\Forms\Components\Select;
 use Filament\Tables\Filters\SelectFilter;
+use App\Filament\Resources\Hotel\AchievementResource\Pages;
 
 class AchievementResource extends Resource
 {

@@ -21,7 +21,7 @@ class CmsSettingResource extends Resource
 
     protected static ?string $navigationGroup = 'Website';
 
-    protected static ?string $slug = 'administration/cms-settings';
+    protected static ?string $slug = 'website/cms-settings';
 
     protected static ?string $label = 'Settings';
 

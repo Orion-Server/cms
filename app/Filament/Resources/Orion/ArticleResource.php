@@ -24,9 +24,9 @@ class ArticleResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
-    protected static ?string $navigationGroup = 'Administration';
+    protected static ?string $navigationGroup = 'Website';
 
-    protected static ?string $slug = 'administration/articles';
+    protected static ?string $slug = 'website/articles';
 
     public static function form(Form $form): Form
     {

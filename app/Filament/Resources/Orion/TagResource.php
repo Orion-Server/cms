@@ -22,9 +22,9 @@ class TagResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
-    protected static ?string $navigationGroup = 'Administration';
+    protected static ?string $navigationGroup = 'Website';
 
-    protected static ?string $slug = 'administration/tags';
+    protected static ?string $slug = 'website/tags';
 
     protected static ?string $label = 'Tag';
 
