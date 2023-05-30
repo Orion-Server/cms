@@ -2,12 +2,17 @@
 
 namespace App\Enums;
 
-enum CurrencyType: int
+enum AchievementCategory: string
 {
-    case Credits = -1;
-    case Duckets = 0;
-    case Diamonds = 5;
-    case Points = 101;
+    case Identity = 'identity';
+    case Explore = 'explore';
+    case Music = 'music';
+    case Social = 'social';
+    case Games = 'games';
+    case RoomBuilder = 'room_builder';
+    case Pets = 'pets';
+    case Tools = 'tools';
+    case Events = 'events';
 
     public static function values(): array
     {

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Compositions\HasBadge;
 use Illuminate\Database\Eloquent\{
     Model,
     Factories\HasFactory
@@ -9,5 +10,19 @@ use Illuminate\Database\Eloquent\{
 
 class Achievement extends Model
 {
-    use HasFactory;
+    use HasFactory, HasBadge;
+
+    public $timestamps = false;
+
+    protected $guarded = [];
+
+    public function getBadgePath(): string
+    {
+        return sprintf('%sACH_%s.gif', getSetting('badges_path'), $this->getBadgeName());
+    }
+
+    public function getBadgeName(): string
+    {
+        return sprintf('%s%s', $this->name, (string) $this->level);
+    }
 }
