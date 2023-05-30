@@ -179,6 +179,7 @@ class UserResource extends Resource
                     ->searchable(),
 
                 UserAvatarColumn::make('avatar')
+                    ->toggleable()
                     ->label('Avatar')
                     ->options('&size=m&head_direction=3&gesture=sml&headonly=1'),
 
@@ -187,10 +188,12 @@ class UserResource extends Resource
 
                 TextColumn::make('mail')
                     ->label('Email')
+                    ->toggleable()
                     ->searchable()
                     ->limit(50),
 
                 TextColumn::make('motto')
+                    ->toggleable()
                     ->limit(30)
                     ->searchable(),
 
@@ -206,6 +209,7 @@ class UserResource extends Resource
                     ]),
 
                 TextColumn::make('account_created')
+                    ->toggleable()
                     ->date('Y-m-d H:i')
                     ->label('Account created')
             ])
