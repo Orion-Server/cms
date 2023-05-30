@@ -227,7 +227,8 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\SettingsRelationManager::class
+            RelationManagers\SettingsRelationManager::class,
+            RelationManagers\BadgesRelationManager::class,
         ];
     }
 

@@ -2,7 +2,10 @@
 
 namespace App\Models\User;
 
-use App\Models\User;
+use App\Models\{
+    Compositions\HasBadge,
+    User
+};
 use Illuminate\Database\Eloquent\{
     Model,
     Casts\Attribute,
@@ -12,19 +15,26 @@ use Illuminate\Database\Eloquent\{
 
 class UserBadge extends Model
 {
-    use HasFactory;
+    use HasFactory, HasBadge;
 
     protected $table = 'users_badges';
+
+    protected $guarded = [];
+
+    public $timestamps = false;
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function badgePath(): Attribute
+    public function getBadgePath(): string
     {
-        return new Attribute(
-            get: fn () => getSetting('badges_path') . $this->badge_code . '.gif'
-        );
+        return getSetting('badges_path') . $this->badge_code . '.gif';
+    }
+
+    public function getBadgeName(): string
+    {
+        return $this->badge_code;
     }
 }

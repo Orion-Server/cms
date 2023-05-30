@@ -2,17 +2,14 @@
 
 namespace App\Filament\Resources\User\UserResource\RelationManagers;
 
-use Filament\Forms;
-use Filament\Forms\Components\Select;
 use Filament\Tables;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Resources\RelationManagers\RelationManager;
 
 class SettingsRelationManager extends RelationManager
@@ -135,6 +132,10 @@ class SettingsRelationManager extends RelationManager
                 TextColumn::make('respects_received')
                     ->toggleable(),
 
+                TextColumn::make('online_time')
+                    ->formatStateUsing(fn (string $state) => __(':m minutes', ['m' => round(\CarbonInterval::seconds($state)->totalMinutes)]))
+                    ->toggleable(),
+
                 IconColumn::make('can_trade')
                     ->options([
                         'heroicon-o-check-circle' => '1',
@@ -145,8 +146,15 @@ class SettingsRelationManager extends RelationManager
                         'danger' => '0',
                     ]),
 
-                TextColumn::make('online_time')
-                    ->toggleable(),
+                IconColumn::make('can_change_name')
+                    ->options([
+                        'heroicon-o-check-circle' => '1',
+                        'heroicon-o-x-circle' => '0',
+                    ])
+                    ->colors([
+                        'success' => '1',
+                        'danger' => '0',
+                    ]),
             ])
             ->filters([
                 //

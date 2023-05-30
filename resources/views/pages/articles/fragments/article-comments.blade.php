@@ -38,7 +38,7 @@
                             data-tippy
                             data-tippy-content="<small>{{ $badge->badge_code }}</small>"
                             class="w-[48px] bg-center bg-no-repeat h-[48px] rounded-lg bg-white dark:bg-slate-700 dark:border-slate-600 border"
-                            style="background-image: url('{{ getSetting('badges_path') . $badge->badge_code }}.png')"
+                            style="background-image: url('{{ $badge->getBadgePath() }}')"
                         ></div>
                     @endforeach
                 </div>
