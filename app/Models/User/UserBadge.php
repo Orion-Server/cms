@@ -8,7 +8,6 @@ use App\Models\{
 };
 use Illuminate\Database\Eloquent\{
     Model,
-    Casts\Attribute,
     Relations\BelongsTo,
     Factories\HasFactory
 };

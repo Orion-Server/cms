@@ -3,11 +3,11 @@
 namespace App\Filament\Resources\User\UserResource\RelationManagers;
 
 use Filament\Forms;
-use App\Models\User;
-use Filament\Tables;
 use Filament\Resources\Form;
 use App\Services\RconService;
 use Filament\Resources\Table;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use App\Tables\Columns\HabboBadgeColumn;
@@ -50,11 +50,11 @@ class BadgesRelationManager extends RelationManager
                 IconColumn::make('slot_id')
                     ->label('Equipped')
                     ->options([
-                        'heroicon-o-check-circle' => fn (string $state) => $state > 0 ,
+                        'heroicon-o-check-circle' => fn (string $state) => $state > 0,
                         'heroicon-o-x-circle' => fn (string $state) => $state <= 0,
                     ])
                     ->colors([
-                        'success' => fn (string $state) => $state > 0 ,
+                        'success' => fn (string $state) => $state > 0,
                         'danger' => fn (string $state) => $state <= 0,
                     ]),
             ])
@@ -63,13 +63,13 @@ class BadgesRelationManager extends RelationManager
             ])
             ->headerActions([
                 CreateAction::make()
-                    ->before(function(CreateAction $action, RelationManager $livewire): void {
+                    ->before(function (CreateAction $action, RelationManager $livewire): void {
                         $user = $livewire->ownerRecord;
                         $hasRconEnabled = config('hotel.rcon.enabled');
 
-                        if(!$user->online) return;
+                        if (!$user->online) return;
 
-                        if(!$hasRconEnabled) {
+                        if (!$hasRconEnabled) {
                             Notification::make()
                                 ->danger()
                                 ->title('RCON is not enabled!')
@@ -87,10 +87,31 @@ class BadgesRelationManager extends RelationManager
                     }),
             ])
             ->actions([
-                Tables\Actions\DeleteAction::make(),
+                DeleteAction::make()
+                    ->before(
+                        fn (DeleteAction $action, RelationManager $livewire)
+                        => self::onDeleteBadgeAction($action, $livewire)
+                    ),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                DeleteBulkAction::make()
+                    ->before(
+                        fn (DeleteBulkAction $action, RelationManager $livewire)
+                        => self::onDeleteBadgeAction($action, $livewire)
+                    ),
             ]);
+    }
+
+    public static function onDeleteBadgeAction(DeleteAction|DeleteBulkAction $action, RelationManager $livewire): void
+    {
+        if (!$livewire->ownerRecord->online) return;
+
+        Notification::make()
+            ->danger()
+            ->title('User is online!')
+            ->body("You can't remove badges from an online user via the dashboard.")
+            ->send();
+
+        $action->cancel();
     }
 }
