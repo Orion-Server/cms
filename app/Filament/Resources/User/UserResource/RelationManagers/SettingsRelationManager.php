@@ -2,21 +2,22 @@
 
 namespace App\Filament\Resources\User\UserResource\RelationManagers;
 
-use Filament\Tables;
 use Filament\Resources\Form;
+use App\Services\RconService;
 use Filament\Resources\Table;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Select;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables\Actions\Action;
 
 class SettingsRelationManager extends RelationManager
 {
     protected static string $relationship = 'settings';
-
-    protected static ?string $recordTitleAttribute = 'user_id';
 
     public static function form(Form $form): Form
     {
@@ -80,44 +81,44 @@ class SettingsRelationManager extends RelationManager
                             ])
                             ->columns(['sm' => 2]),
 
-                            Tabs\Tab::make('Extra Settings')
-                                ->schema([
-                                    Select::make('old_chat')
-                                        ->disablePlaceholderSelection()
-                                        ->placeholder('Using old chat')
-                                        ->options([
-                                            '0' => 'No',
-                                            '1' => 'Yes',
-                                        ])
-                                        ->required(),
+                        Tabs\Tab::make('Extra Settings')
+                            ->schema([
+                                Select::make('old_chat')
+                                    ->disablePlaceholderSelection()
+                                    ->placeholder('Using old chat')
+                                    ->options([
+                                        '0' => 'No',
+                                        '1' => 'Yes',
+                                    ])
+                                    ->required(),
 
-                                    Select::make('block_camera_follow')
-                                        ->disablePlaceholderSelection()
-                                        ->placeholder('Block camera following user')
-                                        ->options([
-                                            '0' => 'No',
-                                            '1' => 'Yes',
-                                        ])
-                                        ->required(),
+                                Select::make('block_camera_follow')
+                                    ->disablePlaceholderSelection()
+                                    ->placeholder('Block camera following user')
+                                    ->options([
+                                        '0' => 'No',
+                                        '1' => 'Yes',
+                                    ])
+                                    ->required(),
 
-                                    Select::make('ignore_bots')
-                                        ->disablePlaceholderSelection()
-                                        ->placeholder('Ignore bots')
-                                        ->options([
-                                            '0' => 'No',
-                                            '1' => 'Yes',
-                                        ])
-                                        ->required(),
+                                Select::make('ignore_bots')
+                                    ->disablePlaceholderSelection()
+                                    ->placeholder('Ignore bots')
+                                    ->options([
+                                        '0' => 'No',
+                                        '1' => 'Yes',
+                                    ])
+                                    ->required(),
 
-                                    Select::make('ignore_pets')
-                                        ->disablePlaceholderSelection()
-                                        ->placeholder('Ignore pets')
-                                        ->options([
-                                            '0' => 'No',
-                                            '1' => 'Yes',
-                                        ])
-                                        ->required(),
-                                ])->columns(['sm' => 2]),
+                                Select::make('ignore_pets')
+                                    ->disablePlaceholderSelection()
+                                    ->placeholder('Ignore pets')
+                                    ->options([
+                                        '0' => 'No',
+                                        '1' => 'Yes',
+                                    ])
+                                    ->required(),
+                            ])->columns(['sm' => 2]),
                     ])->columnSpanFull(),
             ]);
     }
@@ -159,9 +160,16 @@ class SettingsRelationManager extends RelationManager
             ->filters([
                 //
             ])
-            ->headerActions([])
+            ->headerActions([
+                Action::make('helper')
+                    ->label('Settings Tip')
+                    ->icon('heroicon-o-exclamation')
+                    ->tooltip('You can only change the offline user settings.')
+                    ->extraAttributes(['style' => 'cursor: default !important'])
+            ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make()
+                    ->disabled(fn (RelationManager $livewire) => $livewire->ownerRecord->online),
             ])
             ->bulkActions([]);
     }

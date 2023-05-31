@@ -92,7 +92,7 @@ class EditUser extends EditRecord
             sleep(2);
         }
 
-        $rcon->sendSafelyFromDashboard('disconnect', [$user], "RCON: Failed to disconnect a user");
+        $rcon->sendSafelyFromDashboard('disconnectUser', [$user], "RCON: Failed to disconnect a user");
         $rcon->sendSafelyFromDashboard('setRank', [$user, $data['rank']], "RCON: Failed to update the user rank");
     }
 
