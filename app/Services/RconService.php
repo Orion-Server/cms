@@ -144,9 +144,9 @@ class RconService
     }
 
     /**
-     * Give badge to a user.
+     * Send badge to a user.
      */
-    public function giveBadge(User $user, string $badge)
+    public function sendBadge(User $user, string $badge)
     {
         return $this->sendPacket('givebadge', [
             'user_id' => $user->id,
