@@ -77,14 +77,14 @@
                 icon="users"
             />
             <div class="w-full grid grid-cols-4 grid-rows-4 flex-wrap gap-3">
-                @for ($i = 0; $i < 16; $i++)
+                @foreach ($latestUsers as $latestUser)
                     <div
                         data-tippy-singleton
-                        data-tippy-content="<small>nicollas1073</small>"
+                        data-tippy-content="<small>{{ $latestUser->username }}</small>"
                         class="h-16 bg-white rounded-lg shadow-lg border-b-2 border-gray-300 dark:border-slate-800 dark:bg-slate-950 bg-center bg-no-repeat"
-                        style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&head_direction=3&size=m&gesture=sml&action=sit,wav&headonly=1')"
+                        style="background-image: url('{{ getSetting('figure_imager') . $latestUser->look }}&head_direction=3&size=m&gesture=sml&action=sit,wav&headonly=1')"
                     ></div>
-                @endfor
+                @endforeach
             </div>
         </div>
 
@@ -103,21 +103,21 @@
                     </x-ui.buttons.redirectable>
                 </x-title-box>
                 <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-2">
-                    @for ($i = 0; $i < 6; $i++)
+                    @foreach ($photos as $photo)
                         <div class="w-full bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg hover:scale-[1.05] transition-transform">
                             <div class="w-full h-35 relative flex flex-col p-1">
-                                <a href="{{ route('community.photos.index') }}" class="w-full h-full flex justify-center items-center bg-center bg-no-repeat rounded-md" style="background-image: url('{{ asset('assets/images/photo.png') }}')"></a>
+                                <a href="{{ route('community.photos.index') }}" class="w-full h-full flex justify-center items-center bg-center bg-no-repeat rounded-md" style="background-image: url('{{ $photo->url }}')"></a>
                                 <span class="w-auto absolute bottom-2 left-2 flex gap-2 justify-start items-center text-slate-700 max-h-[45px] overflow-hidden dark:text-slate-400 text-xs">
                                     <div
                                         class="w-auto pr-3 max-w-[100px] h-[30px] bg-start pl-8 flex items-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900"
-                                        style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1')"
+                                        style="background-image: url('{{ getSetting('figure_imager') . $photo->user->look }}&direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1')"
                                     >
-                                        <a class="underline underline-offset-2 hover:text-blue-400" href="#">iNicollas</a>
+                                        <a class="underline underline-offset-2 hover:text-blue-400" href="#">{{ $photo->user->username }}</a>
                                     </div>
                                 </span>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
             </div>
         </div>

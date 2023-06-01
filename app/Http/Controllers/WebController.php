@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Camera;
+use App\Models\User;
 use Illuminate\View\View;
 
 class WebController extends Controller
@@ -17,37 +19,43 @@ class WebController extends Controller
     {
         $isAuthenticated = \Auth::check();
 
-        $articlesListCount = match ($isAuthenticated) {
-            true => self::ARTICLES_LIST_COUNT_WHEN_AUTH,
-            false => self::ARTICLES_LIST_COUNT_WHEN_GUEST
-        };
+        $defaultArticles = Article::forIndex(
+            $this->getArticlesLimit('default', $isAuthenticated)
+        )->whereFixed(false)->get();
 
-        $fixedArticlesListCount = match ($isAuthenticated) {
-            true => self::FIXED_ARTICLES_LIST_COUNT_WHEN_AUTH,
-            false => self::FIXED_ARTICLES_LIST_COUNT_WHEN_GUEST
-        };
+        $fixedArticles = Article::forIndex(
+            $this->getArticlesLimit('fixed', $isAuthenticated)
+        )->whereFixed(true)->get();
 
-        $defaultArticles = Article::forIndex($articlesListCount)
-            ->whereFixed(false)->get();
-
-        $fixedArticles = Article::forIndex($fixedArticlesListCount)
-            ->whereFixed(true)->get();
-
-        $compact = [
-            'defaultArticles',
-            'fixedArticles'
-        ];
+        $compactValues = ['defaultArticles', 'fixedArticles'];
 
         if ($isAuthenticated) {
             $onlineFriends = \Auth::user()->getOnlineFriends();
             $referredUsersCount = \Auth::user()->referredUsers()->count();
 
-            $compact = array_merge($compact, [
-                'onlineFriends',
-                'referredUsersCount'
-            ]);
+            array_push($compactValues, 'onlineFriends', 'referredUsersCount');
+        } else {
+            $photos = Camera::latestWith()->get();
+            $latestUsers = User::forIndex()->get();
+
+            array_push($compactValues, 'photos', 'latestUsers');
         }
 
-        return view('index', compact($compact));
+        return view('index', compact($compactValues));
+    }
+
+    private function getArticlesLimit(string $type, bool $isAuthenticated): int
+    {
+        if($type == 'default') return match ($isAuthenticated) {
+            true => self::ARTICLES_LIST_COUNT_WHEN_AUTH,
+            false => self::ARTICLES_LIST_COUNT_WHEN_GUEST
+        };
+
+        if($type == 'fixed') return match ($isAuthenticated) {
+            true => self::FIXED_ARTICLES_LIST_COUNT_WHEN_AUTH,
+            false => self::FIXED_ARTICLES_LIST_COUNT_WHEN_GUEST
+        };
+
+        return 0;
     }
 }

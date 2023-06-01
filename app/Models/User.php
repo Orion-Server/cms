@@ -105,6 +105,13 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
             ->limit($limit);
     }
 
+    public static function forIndex(int $limit = 16): Builder
+    {
+        return User::select(['id', 'username', 'look'])
+            ->limit($limit)
+            ->latest('id');
+    }
+
     public function referrer(): BelongsTo
     {
         return $this->belongsTo(User::class, 'referrer_code', 'referral_code');
