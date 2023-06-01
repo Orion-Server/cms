@@ -8,6 +8,7 @@ use App\Http\Controllers\{
     ArticleController,
     External\RconController,
     Article\ArticleCommentController,
+    CameraController,
     RankingController,
     StaffController,
     UserSettingController
@@ -58,7 +59,7 @@ Route::prefix('articles')
 Route::prefix('community')
     ->name('community.')
     ->group(function () {
-        Route::get('photos', fn () => view('pages.community.photos.index'))->name('photos.index');
+        Route::get('photos', [CameraController::class, 'index'])->name('photos.index');
         Route::get('staff', [StaffController::class, 'index'])->name('staffs.index');
         Route::get('rankings', RankingController::class)->name('rankings.index');
     });

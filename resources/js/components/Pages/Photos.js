@@ -1,3 +1,4 @@
+import axios from 'axios'
 import Alpine from 'alpinejs'
 
 class Photos {
@@ -8,15 +9,11 @@ class Photos {
     _startComponent() {
         Alpine.data('photosPage', () => ({
             loading: false,
+            activeFilter: 'all',
 
             init() {
-                this.$watch('loading', value => {
-                    if(!value) return
 
-                    this.$dispatch('orion:alert', { message: 'Not implemented yet', type: 'info' })
-                    setTimeout(() => this.loading = false, 2000)
-                })
-            }
+            },
         }))
     }
 }
