@@ -2,26 +2,13 @@
 
 @section('title', 'Photos')
 
-@php($filters = [
-    'left' => [
-        'all' => 'All',
-        'today' => 'Today',
-        'last_week' => 'Last Week',
-        'last_month' => 'Last Month',
-    ],
-    'right' => [
-        'only_my_friends' => 'Only my friends',
-        'liked_by_me' => 'Liked by me'
-    ]
-])
-
 @section('content')
 <x-container>
     <div class="w-full h-auto flex flex-col gap-4" x-data="photosPage">
         <div class="flex justify-between px-2">
-            @if(request()->has('period'))
+            @if($period && $period != 'all')
             <x-ui.buttons.redirectable
-                href="{{ route('community.photos.index', ['filter' => request()->get('filter', null)]) }}"
+                href="{{ route('community.photos.index', ['rule' => $rule]) }}"
                 class="dark:bg-red-500 bg-red-500 text-white py-2 border-red-700 hover:bg-red-400 dark:hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75"
             >
                 <i class="fas fa-times mr-2"></i>
@@ -29,41 +16,42 @@
             </x-ui.buttons.redirectable>
             @endif
 
-            @if(request()->has('filter'))
+            @if($rule)
             <x-ui.buttons.redirectable
-                href="{{ route('community.photos.index', ['period' => request()->get('period', null)]) }}"
+                href="{{ route('community.photos.index', ['period' => $period]) }}"
                 class="dark:bg-red-500 bg-red-500 text-white py-2 border-red-700 hover:bg-red-400 dark:hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75"
             >
                 <i class="fas fa-times mr-2"></i>
-                Reset Filter
+                Reset Rule
             </x-ui.buttons.redirectable>
             @endif
         </div>
 
         <div class="w-full lg:h-16 h-auto p-2 flex flex-col lg:flex-row justify-between gap-8 lg:gap-2">
             <div class="w-full lg:w-1/2 flex flex-wrap justify-start items-center gap-2">
-                @foreach ($filters['left'] as $key => $label)
+                @foreach ($filters['periods'] as $key => $label)
                     <x-ui.buttons.redirectable
-                        href="{{ route('community.photos.index', ['period' => $key, 'filter' => request()->get('filter', null) ]) }}"
+                        href="{{ route('community.photos.index', ['period' => $key, 'rule' => $rule ]) }}"
                         @class([
                             "py-2 text-white",
-                            "dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75" => request()->get('period', null) != $key,
-                            "dark:bg-slate-500 bg-slate-500 border-slate-700 hover:bg-slate-400 dark:hover:bg-slate-400 dark:shadow-slate-700/75 shadow-slate-600/75" => request()->get('period', null) == $key
+                            "dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75" => $period != $key,
+                            "dark:bg-slate-500 bg-slate-500 border-slate-700 hover:bg-slate-400 dark:hover:bg-slate-400 dark:shadow-slate-700/75 shadow-slate-600/75" => (!$period && $key == 'all') || $period == $key
                         ])
                     >
                         {{ $label }}
                     </x-ui.buttons.redirectable>
                 @endforeach
             </div>
+
             @auth
             <div class="w-full lg:w-1/2 flex lg:justify-end items-center gap-2">
-                @foreach ($filters['right'] as $key => $label)
+                @foreach ($filters['rules'] as $key => $label)
                 <x-ui.buttons.redirectable
-                    href="{{ route('community.photos.index', ['filter' => $key, 'period' => request()->get('period', null) ]) }}"
+                    href="{{ route('community.photos.index', ['rule' => $key, 'period' => $period ]) }}"
                     @class([
                             "py-2 text-white",
-                            "dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75" => request()->get('filter', null) != $key,
-                            "dark:bg-slate-500 bg-slate-500 border-slate-700 hover:bg-slate-400 dark:hover:bg-slate-400 dark:shadow-slate-700/75 shadow-slate-600/75" => request()->get('filter', null) == $key
+                            "dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75" => $rule != $key,
+                            "dark:bg-slate-500 bg-slate-500 border-slate-700 hover:bg-slate-400 dark:hover:bg-slate-400 dark:shadow-slate-700/75 shadow-slate-600/75" => $rule == $key
                         ])
                     >
                     {{ $label }}
@@ -71,6 +59,7 @@
                 @endforeach
             </div>
             @endauth
+
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="lightgallery">
             @foreach ($photos as $photo)
