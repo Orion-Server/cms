@@ -6,13 +6,13 @@ use Filament\Forms;
 use Filament\Resources\Form;
 use App\Services\RconService;
 use Filament\Resources\Table;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use App\Tables\Columns\HabboBadgeColumn;
 use Filament\Notifications\Notification;
 use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Traits\LatestRelationResourcesTrait;
 use Filament\Resources\RelationManagers\RelationManager;
 
@@ -88,17 +88,11 @@ class BadgesRelationManager extends RelationManager
             ])
             ->actions([
                 DeleteAction::make()
-                    ->before(
-                        fn (DeleteAction $action, RelationManager $livewire)
-                        => self::onDeleteBadgeAction($action, $livewire)
-                    ),
+                    ->before(fn (DeleteAction $action, RelationManager $livewire) => self::onDeleteBadgeAction($action, $livewire)),
             ])
             ->bulkActions([
                 DeleteBulkAction::make()
-                    ->before(
-                        fn (DeleteBulkAction $action, RelationManager $livewire)
-                        => self::onDeleteBadgeAction($action, $livewire)
-                    ),
+                    ->before(fn (DeleteBulkAction $action, RelationManager $livewire) => self::onDeleteBadgeAction($action, $livewire)),
             ]);
     }
 

@@ -15,21 +15,46 @@ class Camera extends Model
 
     protected $table = 'camera_web';
 
-    public $timestamsp = false;
+    public $timestamps = false;
 
-    public static function latestWith(int $limit = 6, bool $includesRoom = false): Builder
+    public static function latestWith(bool $includesRoom = false): Builder
     {
         $query = Camera::query()
-            ->latest('id')
-            ->limit($limit);
+            ->latest('id');
 
         $includes = ['user:id,look,username'];
 
-        if($includesRoom) {
+        if ($includesRoom) {
             array_push($includes, 'room:id,name');
         }
 
         return $query->with($includes);
+    }
+
+    public function scopeFilter($query, $filter)
+    {
+        $user = \Auth::user();
+        $friendsId = $user->friends()->pluck('id')->toArray();
+
+        $query = match ($filter) {
+            'only_my_friends' => $query->whereIn('user_id', $friendsId),
+            'liked_by_me' => $query, // TODO: implement this
+            default => $query
+        };
+
+        return $query;
+    }
+
+    public function scopePeriod($query, $period)
+    {
+        $query = match ($period) {
+            'today' => $query->where('timestamp', '>=', Carbon::today()->timestamp),
+            'last_week' => $query->whereBetween('timestamp', [now()->subWeek()->timestamp, now()->timestamp]),
+            'last_month' => $query->whereBetween('timestamp', [now()->subMonth()->timestamp, now()->timestamp]),
+            default => $query
+        };
+
+        return $query;
     }
 
     public function user(): BelongsTo

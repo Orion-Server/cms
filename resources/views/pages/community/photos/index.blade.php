@@ -14,25 +14,34 @@
         'liked_by_me' => 'Liked by me'
     ]
 ])
-@php($hasAnyFilter = request()->has('period') || request()->has('filter'))
 
 @section('content')
 <x-container>
     <div class="w-full h-auto flex flex-col gap-4" x-data="photosPage">
-        @if($hasAnyFilter)
-        <div class="flex px-2">
+        <div class="flex justify-between px-2">
+            @if(request()->has('period'))
             <x-ui.buttons.redirectable
-                    href="{{ route('community.photos.index') }}"
-                    class="dark:bg-red-500 bg-red-500 text-white py-2 border-red-700 hover:bg-red-400 dark:hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75"
-                >
-                    <i class="fas fa-times mr-2"></i>
-                    Reset All Filters
+                href="{{ route('community.photos.index', ['filter' => request()->get('filter', null)]) }}"
+                class="dark:bg-red-500 bg-red-500 text-white py-2 border-red-700 hover:bg-red-400 dark:hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75"
+            >
+                <i class="fas fa-times mr-2"></i>
+                Reset Period
             </x-ui.buttons.redirectable>
+            @endif
+
+            @if(request()->has('filter'))
+            <x-ui.buttons.redirectable
+                href="{{ route('community.photos.index', ['period' => request()->get('period', null)]) }}"
+                class="dark:bg-red-500 bg-red-500 text-white py-2 border-red-700 hover:bg-red-400 dark:hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75"
+            >
+                <i class="fas fa-times mr-2"></i>
+                Reset Filter
+            </x-ui.buttons.redirectable>
+            @endif
         </div>
-        @endif
+
         <div class="w-full lg:h-16 h-auto p-2 flex flex-col lg:flex-row justify-between gap-8 lg:gap-2">
             <div class="w-full lg:w-1/2 flex flex-wrap justify-start items-center gap-2">
-
                 @foreach ($filters['left'] as $key => $label)
                     <x-ui.buttons.redirectable
                         href="{{ route('community.photos.index', ['period' => $key, 'filter' => request()->get('filter', null) ]) }}"
@@ -46,6 +55,7 @@
                     </x-ui.buttons.redirectable>
                 @endforeach
             </div>
+            @auth
             <div class="w-full lg:w-1/2 flex lg:justify-end items-center gap-2">
                 @foreach ($filters['right'] as $key => $label)
                 <x-ui.buttons.redirectable
@@ -60,6 +70,7 @@
                 </x-ui.buttons.redirectable>
                 @endforeach
             </div>
+            @endauth
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="lightgallery">
             @foreach ($photos as $photo)
@@ -99,16 +110,7 @@
                 </div>
             @endforeach
         </div>
-        <div class="w-full flex justify-center items-center">
-            <x-ui.buttons.loadable
-                alpine-model="loading"
-                @click="loading = !loading"
-                class="dark:bg-blue-600 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-500 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
-            >
-                <i class="fa-solid fa-plus"></i>
-                Load more
-            </x-ui.buttons.loadable>
-        </div>
+        {!! $photos->withQueryString()->links() !!}
     </div>
 </x-container>
 @endsection

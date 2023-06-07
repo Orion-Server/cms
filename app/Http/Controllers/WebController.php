@@ -35,7 +35,7 @@ class WebController extends Controller
 
             array_push($compactValues, 'onlineFriends', 'referredUsersCount');
         } else {
-            $photos = Camera::latestWith()->get();
+            $photos = Camera::latestWith()->limit(6)->get();
             $latestUsers = User::forIndex()->get();
 
             array_push($compactValues, 'photos', 'latestUsers');
