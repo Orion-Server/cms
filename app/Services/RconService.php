@@ -155,6 +155,17 @@ class RconService
     }
 
     /**
+     * Send badge to a user.
+     */
+    public function removeBadge(User $user, string $badge)
+    {
+        return $this->sendPacket('removebadge', [
+            'user_id' => $user->id,
+            'badge' => $badge,
+        ]);
+    }
+
+    /**
      * Update users motto.
      */
     public function setMotto(User $user, string $motto)

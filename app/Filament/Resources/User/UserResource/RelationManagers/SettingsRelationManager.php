@@ -169,7 +169,7 @@ class SettingsRelationManager extends RelationManager
             ])
             ->actions([
                 EditAction::make()
-                    ->disabled(fn (RelationManager $livewire) => $livewire->ownerRecord->online),
+                    ->disabled(fn (RelationManager $livewire) => $livewire->getOwnerRecord()->online),
             ])
             ->bulkActions([]);
     }

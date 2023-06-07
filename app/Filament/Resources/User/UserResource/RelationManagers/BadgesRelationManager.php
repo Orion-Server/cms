@@ -64,7 +64,7 @@ class BadgesRelationManager extends RelationManager
             ->headerActions([
                 CreateAction::make()
                     ->before(function (CreateAction $action, RelationManager $livewire): void {
-                        $user = $livewire->ownerRecord;
+                        $user = $livewire->getOwnerRecord();
                         $hasRconEnabled = config('hotel.rcon.enabled');
 
                         if (!$user->online) return;
@@ -104,13 +104,26 @@ class BadgesRelationManager extends RelationManager
 
     public static function onDeleteBadgeAction(DeleteAction|DeleteBulkAction $action, RelationManager $livewire): void
     {
-        if (!$livewire->ownerRecord->online) return;
+        $user = $livewire->getOwnerRecord();
+        $hasRconEnabled = config('hotel.rcon.enabled');
 
-        Notification::make()
-            ->danger()
-            ->title('User is online!')
-            ->body("You can't remove badges from an online user via the dashboard.")
-            ->send();
+        if (!$user->online) return;
+
+        if (!$hasRconEnabled) {
+            Notification::make()
+                ->danger()
+                ->title('RCON is not enabled!')
+                ->body("You can't remove badges to online users if RCON is not enabled.")
+                ->persistent()
+                ->send();
+        } else {
+            $rcon = app(RconService::class);
+            $badge = $action instanceof DeleteAction
+                ? $action->getRecord()?->badge_code
+                : $action->getRecords()->map(fn ($record) => $record->badge_code)->join(';');
+
+            $rcon->sendSafelyFromDashboard('removeBadge', [$user, $badge], 'RCON: Failed to remove the badge');
+        }
 
         $action->cancel();
     }
