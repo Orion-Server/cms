@@ -4,9 +4,13 @@
 
 @section('content')
 <x-container>
-    <div class="w-full h-auto flex flex-col gap-4" x-data="photosPage">
-        <div class="flex justify-between px-2">
-            @if($period && $period != 'all')
+    <div class="w-full h-auto flex flex-col gap-4" x-data="photosPage('{{ route('community.photos.like', '%ID%') }}')">
+        <div @class([
+            "flex px-2",
+            "justify-between" => $period && $rule,
+            "justify-end" => ! $period && $rule
+        ])>
+            @if($period)
             <x-ui.buttons.redirectable
                 href="{{ route('community.photos.index', ['rule' => $rule]) }}"
                 class="dark:bg-red-500 bg-red-500 text-white py-2 border-red-700 hover:bg-red-400 dark:hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75"
@@ -35,7 +39,7 @@
                         @class([
                             "py-2 text-white",
                             "dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75" => $period != $key,
-                            "dark:bg-slate-500 bg-slate-500 border-slate-700 hover:bg-slate-400 dark:hover:bg-slate-400 dark:shadow-slate-700/75 shadow-slate-600/75" => (!$period && $key == 'all') || $period == $key
+                            "dark:bg-slate-500 bg-slate-500 border-slate-700 hover:bg-slate-400 dark:hover:bg-slate-400 dark:shadow-slate-700/75 shadow-slate-600/75" => (!$period && $key === null) || $period == $key
                         ])
                     >
                         {{ $label }}
@@ -65,7 +69,7 @@
             @foreach ($photos as $photo)
                 <div class="bg-white dark:bg-slate-950 p-2 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg h-auto">
                     <div
-                        class="bg-center hover:scale-[1.05] transition-transform relative group lightgallery-image cursor-pointer flex items-end justify-center w-full h-48 bg-no-repeat rounded-t-lg"
+                        class="bg-center border border-slate-300 dark:border-slate-700 hover:scale-[1.05] transition-transform relative group lightgallery-image cursor-pointer flex items-end justify-center w-full h-48 bg-no-repeat rounded-t-lg"
                         data-src="{{ $photo->url }}"
                         data-sub-html='<h4>Photo by <a href="#" class="underline underline-offset-4">{{ $photo->user->username }}</a></h4><p>Photo taken on <b>{{ $photo->formattedDate }}</b> in the <a href="#" class="underline underline-offset-4">{{ $photo->room->name }}</a></p>'
                         style="background-image: url('{{ $photo->url }}')"
@@ -76,13 +80,21 @@
                                 {{ $photo->formattedDate }}
                             </span>
                             <span class="text-slate-200 text-end text-xs underline underline-offset-2">
-                                Likes (10)
+                                Likes (<b x-ref="photoLikes{{ $photo->id }}">{{ $photo->likes->count() }}</b>)
                             </span>
-                            <i
-                                data-tippy
-                                data-tippy-content="Like"
-                                class="fa-solid fa-thumbs-up text-slate-200 mb-1 cursor-pointer hover:scale-110 hover:animate-spin"
-                            ></i>
+                            @auth
+                                @php($liked = $photo->likes->contains('user_id', auth()->id()))
+                                <i
+                                    data-tippy
+                                    data-tippy-content="Like"
+                                    @click.stop="likePhoto($event, {{ $photo->id }})"
+                                    @class([
+                                        "fa-regular text-slate-200" => ! $liked,
+                                        "fa-solid text-blue-400" => $liked,
+                                        "fa-thumbs-up mb-1 cursor-pointer hover:scale-125"
+                                    ])
+                                ></i>
+                            @endauth
                         </div>
                     </div>
                     <div class="w-full flex justify-start items-center gap-3 p-1 bg-gray-100 rounded-b-lg border-t-2 border-gray-300 dark:border-slate-600 dark:bg-gray-900">

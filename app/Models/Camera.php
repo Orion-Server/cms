@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Camera extends Model
 {
@@ -19,10 +20,12 @@ class Camera extends Model
 
     public static function latestWith(bool $includesRoom = false): Builder
     {
-        $query = Camera::query()
-            ->latest('id');
+        $query = Camera::query()->latest('id');
 
-        $includes = ['user:id,look,username'];
+        $includes = [
+            'user:id,look,username',
+            'likes' => fn ($query) => $query->whereLiked(true)
+        ];
 
         if ($includesRoom) {
             array_push($includes, 'room:id,name');
@@ -34,11 +37,18 @@ class Camera extends Model
     public function scopeFilter($query, $filter)
     {
         $user = \Auth::user();
-        $friendsId = $user->friends()->pluck('id')->toArray();
+
+        if($filter == 'only_my_friends') {
+            $friendsId = $user->friends()->pluck('id')->toArray();
+        }
+
+        if($filter == 'liked_by_me') {
+            $likedPhotoIds = $user->photoLikes()->pluck('camera_id')->toArray();
+        }
 
         $query = match ($filter) {
             'only_my_friends' => $query->whereIn('user_id', $friendsId),
-            'liked_by_me' => $query, // TODO: implement this
+            'liked_by_me' => $query->whereIn('id', $likedPhotoIds),
             default => $query
         };
 
@@ -65,6 +75,11 @@ class Camera extends Model
     public function room(): BelongsTo
     {
         return $this->belongsTo(Room::class);
+    }
+
+    public function likes(): HasMany
+    {
+        return $this->hasMany(CameraLike::class);
     }
 
     public function formattedDate(): Attribute

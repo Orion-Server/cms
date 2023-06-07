@@ -182,6 +182,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         return $this->belongsTo(Permission::class, 'rank');
     }
 
+    public function photoLikes(): HasMany
+    {
+        return $this->hasMany(CameraLike::class)->whereLiked(true);
+    }
+
     public function getFilamentName(): string
     {
         return $this->username;

@@ -59,7 +59,16 @@ Route::prefix('articles')
 Route::prefix('community')
     ->name('community.')
     ->group(function () {
-        Route::get('photos', [CameraController::class, 'index'])->name('photos.index');
+        // Photos Routes
+        Route::prefix('photos')
+            ->name('photos.')
+            ->group(function () {
+                Route::get('/', [CameraController::class, 'index'])->name('index');
+                Route::post('photo/{camera:id}/like', [CameraController::class, 'toggleLike'])
+                    ->middleware('auth')
+                    ->name('like');
+            });
+
         Route::get('staff', [StaffController::class, 'index'])->name('staffs.index');
         Route::get('rankings', RankingController::class)->name('rankings.index');
     });

@@ -39,7 +39,7 @@ class CameraController extends Controller
     {
         return match($name) {
             'periods' => [
-                'all' => 'All',
+                null => 'All',
                 'today' => 'Today',
                 'last_week' => 'Last week',
                 'last_month' => 'Last month',
@@ -49,5 +49,30 @@ class CameraController extends Controller
                 'liked_by_me' => 'Liked by me',
             ]
         };
+    }
+
+    public function toggleLike(Request $request, Camera $camera)
+    {
+        $userId = \Auth::id();
+
+        $like = $camera->likes()
+            ->where('user_id', $userId)
+            ->first();
+
+        if($like) {
+            $like->update([
+                'liked' => ! $like->liked
+            ]);
+        } else {
+            $like = $camera->likes()->create([
+                'user_id' => $userId,
+                'liked' => true
+            ]);
+        }
+
+        return response()->json([
+            'status' => $like->liked,
+            'likes' => $camera->likes()->whereLiked(true)->count()
+        ]);
     }
 }
