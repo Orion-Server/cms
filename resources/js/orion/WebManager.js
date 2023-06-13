@@ -70,12 +70,14 @@ export default class WebManager {
     }
 
     static detectHorizontallyScrollables() {
-        const scrollContainer = document.querySelectorAll(".scroll-x")
+        document.addEventListener('turbolinks:load', () => {
+            const scrollContainer = document.querySelectorAll(".scroll-x")
 
-        Array.from(scrollContainer).map((container) => {
-            container.addEventListener("wheel", (event) => {
-                event.preventDefault()
-                container.scrollLeft += event.deltaY * 1.96
+            Array.from(scrollContainer).map((container) => {
+                container.addEventListener("wheel", (event) => {
+                    event.preventDefault()
+                    container.scrollLeft += event.deltaY * 1.96
+                })
             })
         })
     }
