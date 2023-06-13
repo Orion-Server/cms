@@ -12,7 +12,7 @@ use App\Enums\AchievementCategory;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
-use App\Tables\Columns\HabboBadgeColumn;
+use App\Filament\Tables\Columns\HabboBadgeColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\ToggleColumn;

@@ -2,15 +2,9 @@
 
 namespace App\Models\Compositions;
 
-trait HasBadge
+interface HasBadge
 {
-    public function getBadgePath(): string
-    {
-        return '';
-    }
+    public function getBadgePath(): string;
 
-    public function getBadgeName(): string
-    {
-        return '';
-    }
+    public function getBadgeName(): string;
 }

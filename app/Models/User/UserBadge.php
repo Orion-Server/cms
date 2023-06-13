@@ -12,9 +12,9 @@ use Illuminate\Database\Eloquent\{
     Factories\HasFactory
 };
 
-class UserBadge extends Model
+class UserBadge extends Model implements HasBadge
 {
-    use HasFactory, HasBadge;
+    use HasFactory;
 
     protected $table = 'users_badges';
 

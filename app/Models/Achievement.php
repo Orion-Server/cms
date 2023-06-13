@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\{
     Factories\HasFactory
 };
 
-class Achievement extends Model
+class Achievement extends Model implements HasBadge
 {
-    use HasFactory, HasBadge;
+    use HasFactory;
 
     public $timestamps = false;
 

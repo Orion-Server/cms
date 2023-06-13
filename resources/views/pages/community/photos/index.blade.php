@@ -103,10 +103,10 @@
                             style="background-image: url('{{ getSetting('figure_imager') . $photo->user->username }}&direction=2&head_direction=2&size=m&gesture=sml&headonly=1')"
                         ></div>
                         <a href="#" class="text-sm dark:text-slate-200 grow font-medium underline underline-offset-2 truncate">{{ $photo->user->username }}</a>
-                        <div class="dark:text-slate-200 text-end text-xs cursor-pointer">
+                        {{-- <div class="dark:text-slate-200 text-end text-xs cursor-pointer">
                             <i class="fa-solid fa-comments"></i>
                             <span>(10)</span>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             @endforeach

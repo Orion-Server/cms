@@ -1,3 +1,8 @@
+@props([
+    'removeRegisterButton' => false,
+    'removeSocialButtons' => false,
+])
+
 <form
     id="login-form"
     method="POST"
@@ -29,6 +34,7 @@
     </div>
 
     <div class="flex gap-4 mt-6">
+        @if (!$removeRegisterButton)
         <x-ui.buttons.default
             type="button"
             @click="toggleToRegisterModal()"
@@ -37,6 +43,7 @@
             <i class="fa-solid fa-user-plus"></i>
             Register
         </x-ui.buttons.default>
+        @endif
 
         <x-ui.buttons.loadable
             type="submit"
@@ -48,6 +55,7 @@
         </x-ui.buttons.loadable>
     </div>
 
+    @if (!$removeSocialButtons)
     <div class="my-6 flex items-center justify-between">
         <span class="border-b dark:border-gray-700 w-1/5 md:w-1/4"></span>
         <span class="text-xs text-gray-500 uppercase dark:text-gray-100">or join with</span>
@@ -74,4 +82,5 @@
             <h1 class="pr-4 py-3 text-center text-gray-600 font-bold">Discord</h1>
         </a>
     </div>
+    @endif
 </form>

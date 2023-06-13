@@ -30,6 +30,7 @@ Route::get('/login', [WebController::class, 'index'])->name('login');
 Route::get('/register', [WebController::class, 'index'])->name('register');
 
 Route::get('jail', [JailController::class, 'show'])->name('jail');
+Route::get('maintenance', [WebController::class, 'maintenance'])->name('maintenance');
 
 Route::prefix('hotel')
     ->name('hotel.')

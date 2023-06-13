@@ -19,7 +19,7 @@ class SettingsService
         return $this->allSettings->get($key, $defaultValue);
     }
 
-    public function set(string $key, string|int $value, ?string $comment = null): void
+    public function set(string $key, string $value, ?string $comment = null): void
     {
         $this->allSettings->put($key, $value);
 

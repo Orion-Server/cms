@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Compositions\HasBadge;
 use Illuminate\Database\Eloquent\{
     Collection,
     Model,
     Factories\HasFactory,
     Relations\HasMany
 };
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class Permission extends Model
+class Permission extends Model implements HasBadge
 {
     use HasFactory;
 
@@ -38,10 +38,13 @@ class Permission extends Model
         return $this->hasMany(User::class, 'rank');
     }
 
-    public function badgePath(): Attribute
+    public function getBadgePath(): string
     {
-        return new Attribute(
-            get: fn () => getSetting('badges_path') . $this->badge . '.gif'
-        );
+        return getSetting('badges_path') . $this->badge . '.gif';
+    }
+
+    public function getBadgeName(): string
+    {
+        return $this->badge;
     }
 }

@@ -8,7 +8,7 @@ use App\Services\RconService;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
-use App\Tables\Columns\HabboBadgeColumn;
+use App\Filament\Tables\Columns\HabboBadgeColumn;
 use Filament\Notifications\Notification;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;

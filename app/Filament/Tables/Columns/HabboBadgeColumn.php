@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Tables\Columns;
+namespace App\Filament\Tables\Columns;
 
 use Filament\Tables\Columns\Column;
 use App\Models\Compositions\HasBadge;
 
-class HabboBadgeColumn extends Column
+class HabboBadgeColumn extends Column implements HasBadge
 {
     protected string $view = 'filament.tables.columns.habbo-badge-column';
 
@@ -13,7 +13,7 @@ class HabboBadgeColumn extends Column
     {
         $record = $this->getRecord();
 
-        if(!in_array(HasBadge::class, class_uses($record))) return '';
+        if (!method_exists($record, 'getBadgePath')) return '';
 
         return $record->getBadgePath();
     }
@@ -22,7 +22,7 @@ class HabboBadgeColumn extends Column
     {
         $record = $this->getRecord();
 
-        if(!in_array(HasBadge::class, class_uses($record))) return '';
+        if (!method_exists($record, 'getBadgeName')) return '';
 
         return $record->getBadgeName();
     }

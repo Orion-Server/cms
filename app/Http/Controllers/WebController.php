@@ -58,4 +58,9 @@ class WebController extends Controller
 
         return 0;
     }
+
+    public function maintenance(): View
+    {
+        return view('pages.maintenance');
+    }
 }

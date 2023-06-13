@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
-use App\Services\SettingsService;
 use Filament\Facades\Filament;
-use Filament\Navigation\NavigationGroup;
+use App\Services\SettingsService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Filament\Navigation\NavigationGroup;
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -48,7 +48,7 @@
                     >
                         <div class="w-full bg-gray-200 dark:bg-slate-850 dark:border-gray-700 border-b border-gray-300 flex p-2 rounded-t-lg">
                             <x-title-box
-                                image="{{ $staff->badge_path }}"
+                                image="{{ $staff->getBadgePath() }}"
                                 :image-is-badge="true"
                                 :small="true"
                                 title="{{ $staff->name }}"
@@ -77,7 +77,7 @@
                                             @foreach ($userStaff->activeBadges as $activeBadge)
                                                 <div
                                                     class="w-[48px] h-[48px] bg-white border dark:border-none rounded-lg dark:bg-slate-800 bg-center bg-no-repeat"
-                                                    style="background-image: url('{{ $activeBadge->badge_path }}')"
+                                                    style="background-image: url('{{ $activeBadge->getBadgePath() }}')"
                                                 ></div>
                                             @endforeach
                                         </div>
