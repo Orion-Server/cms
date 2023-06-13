@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::share('fromClient', request()->has('fromClient'));
+        View::share('isMaintenance', getSetting('maintenance'));
 
         if (App::isProduction()) {
             URL::forceScheme('https');
