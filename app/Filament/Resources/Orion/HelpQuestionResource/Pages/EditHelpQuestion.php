@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Orion\HelpQuestionResource\Pages;
 
-use App\Filament\Resources\Orion\HelpQuestionResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\Orion\HelpQuestionResource;
 
 class EditHelpQuestion extends EditRecord
 {

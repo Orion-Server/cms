@@ -18,7 +18,7 @@
             const initCKEditor = () => {
                 if(initialized) return
 
-                if(CKEDITOR === undefined || !$refs.ckeditor) {
+                if(typeof CKEDITOR === undefined || !$refs.ckeditor) {
                     console.error('[CKEDITOR] not found or [CKEDITOR element] not found')
                     return
                 }

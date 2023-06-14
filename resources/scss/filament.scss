@@ -21,6 +21,10 @@
 }
 
 @screen lg {
+    .filament-main-topbar {
+        position: relative;
+    }
+
     .filament-sidebar,
     .filament-main-topbar {
         @apply border-none shadow-none;

@@ -15,6 +15,8 @@ class HelpQuestionCategory extends Model
 
     protected $guarded = [];
 
+    public $timestamps = false;
+
     public function questions(): BelongsToMany
     {
         return $this->belongsToMany(HelpQuestion::class, 'help_question_category');

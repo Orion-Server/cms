@@ -20,6 +20,16 @@ class HelpQuestion extends Model
         'visible' => 'boolean'
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (HelpQuestion $question) {
+            $question->user_id = \Auth::id();
+            $question->slug = \Str::slug($question->title);
+        });
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

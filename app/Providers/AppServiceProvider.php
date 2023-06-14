@@ -37,19 +37,23 @@ class AppServiceProvider extends ServiceProvider
         // Dashboard configuration
         Filament::serving(function() {
             Filament::registerStyles([asset('assets/css/ckeditor.css')]);
-
             Filament::registerViteTheme('resources/scss/filament.scss');
 
             Filament::registerNavigationGroups([
                 NavigationGroup::make()
                     ->label('Dashboard')
-                    ->collapsed()
+                    ->collapsible(false)
                     ->icon('heroicon-s-server'),
 
                 NavigationGroup::make()
                     ->label('Website')
                     ->collapsed()
                     ->icon('heroicon-s-desktop-computer'),
+
+                NavigationGroup::make()
+                    ->label('Help Center')
+                    ->collapsed()
+                    ->icon('heroicon-o-support'),
 
                 NavigationGroup::make()
                     ->label('Hotel')

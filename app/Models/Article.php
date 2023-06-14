@@ -29,7 +29,7 @@ class Article extends Model
     {
         parent::boot();
 
-        static::creating(function ($article) {
+        static::creating(function (Article $article) {
             $article->user_id = \Auth::id();
             $article->slug = \Str::slug($article->title);
             $article->predominant_color = getPredominantImageColor($article->image);

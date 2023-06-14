@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources\Orion\HelpQuestionResource\Pages;
 
-use Filament\Pages\Actions;
-use Filament\Resources\Pages\CreateRecord;
+use Filament\Resources\Pages\ViewRecord;
 use App\Filament\Resources\Orion\HelpQuestionResource;
 
-class CreateHelpQuestion extends CreateRecord
+class ViewHelpQuestion extends ViewRecord
 {
     protected static string $resource = HelpQuestionResource::class;
 }
