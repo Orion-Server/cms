@@ -1,32 +1,39 @@
 import colors from 'tailwindcss/colors'
+import forms from '@tailwindcss/forms'
+import typography from '@tailwindcss/typography'
 
-/** @type {import('tailwindcss').Config} */
-export const darkMode = 'class'
-
-export const content = [
-    "./resources/**/*.blade.php",
-    "./resources/**/*.js",
-    "./resources/**/*.vue"
-]
-
-export const theme = {
-    extend: {
-        spacing: {
-            '22': '5.5rem',
-            '35': '8.75rem',
-        },
-        bottom: {
-            '18': '4.5rem',
-        },
-        colors: {
-            slate: {
-                ...colors.slate,
-                850: '#152033',
+export default {
+    content: [
+        "./resources/**/*.blade.php",
+        "./resources/**/*.js",
+        "./resources/**/*.vue",
+        './vendor/filament/**/*.blade.php',
+    ],
+    darkMode: 'class',
+    theme: {
+        extend: {
+            spacing: {
+                '22': '5.5rem',
+                '35': '8.75rem',
+            },
+            bottom: {
+                '18': '4.5rem',
+            },
+            colors: {
+                slate: {
+                    ...colors.slate,
+                    850: '#152033',
+                },
+                gray: colors.slate,
+                danger: colors.rose,
+                primary: colors.blue,
+                success: colors.emerald,
+                warning: colors.orange,
             }
-        }
+        },
     },
     plugins: [
-        require('@tailwindcss/forms'),
-        require('@tailwindcss/typography')
+        forms,
+        typography,
     ],
 }

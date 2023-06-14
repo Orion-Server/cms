@@ -24,6 +24,11 @@
         copyLink(event) {
             const buttonContent = event.target.innerHTML
 
+            if(!navigator?.clipboard) {
+                console.error('[Referral Link] Clipboard API is not supported')
+                return
+            }
+
             navigator.clipboard.writeText(document.getElementById('referral-link').value)
             event.target.innerHTML = 'Successfull!'
 

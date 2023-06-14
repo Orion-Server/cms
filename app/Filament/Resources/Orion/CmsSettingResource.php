@@ -61,7 +61,7 @@ class CmsSettingResource extends Resource
 
                 TextColumn::make('value')
                     ->searchable()
-                    ->limit(50),
+                    ->limit(30),
 
                 TextColumn::make('comment')
                     ->toggleable()
@@ -73,7 +73,7 @@ class CmsSettingResource extends Resource
 
                         return $state;
                     })
-                    ->limit(25)
+                    ->limit(60)
             ])
             ->filters([
                 //
