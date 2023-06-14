@@ -84,7 +84,6 @@ class HelpQuestionResource extends Resource
 
             TextColumn::make('title')
                 ->searchable()
-                ->url(fn (HelpQuestion $helpQuestion) => static::getPages()['view'])
                 ->limit(50),
 
             TextColumn::make('user.username')
