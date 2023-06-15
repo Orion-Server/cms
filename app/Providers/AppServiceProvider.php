@@ -28,13 +28,19 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::share('fromClient', request()->has('fromClient'));
-        View::share('isMaintenance', getSetting('maintenance'));
 
         if (App::isProduction()) {
             URL::forceScheme('https');
         }
 
-        // Dashboard configuration
+        $this->bootDashboardSettings();
+    }
+
+    /**
+     * Bootstrap the dashboard settings.
+     */
+    private function bootDashboardSettings(): void
+    {
         Filament::serving(function() {
             Filament::registerStyles([asset('assets/css/ckeditor.css')]);
             Filament::registerViteTheme('resources/scss/filament.scss');

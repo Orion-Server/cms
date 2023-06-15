@@ -23,6 +23,8 @@ return new class extends Migration
             $table->text('content');
             $table->boolean('visible');
 
+            $table->integer('views')->default(0);
+
             $table->timestamps();
         });
     }

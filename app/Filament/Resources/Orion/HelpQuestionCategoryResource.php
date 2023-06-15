@@ -46,12 +46,9 @@ class HelpQuestionCategoryResource extends Resource
                         ->placeholder('Category name')
                         ->required(),
 
-                    FileUpload::make('icon')
-                        ->image()
+                    TextInput::make('icon')
+                        ->label('Icon URL (optional)')
                         ->nullable()
-                        ->label('Icon')
-                        ->visibility('public')
-                        ->directory('help-question-categories')
                 ])
         ];
     }
@@ -75,11 +72,15 @@ class HelpQuestionCategoryResource extends Resource
     {
         return [
             TextColumn::make('id')
-                ->label('ID'),
+                ->label('ID')
+                ->sortable(),
+
+            TextColumn::make('order')
+                ->sortable(),
 
             ImageColumn::make('icon')
-                ->size(20)
-                ->circular(),
+                ->extraAttributes(['style' => 'image-rendering: pixelated'])
+                ->label('icon'),
 
             TextColumn::make('name')
                 ->searchable(),

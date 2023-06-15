@@ -9,8 +9,6 @@ use App\Filament\Resources\Orion\HelpQuestionCategoryResource;
 
 class ListHelpQuestionCategories extends ListRecords
 {
-    use LatestResourcesTrait;
-
     protected static string $resource = HelpQuestionCategoryResource::class;
 
     protected function getActions(): array
@@ -18,5 +16,10 @@ class ListHelpQuestionCategories extends ListRecords
         return [
             Actions\CreateAction::make(),
         ];
+    }
+
+    protected function getTableReorderColumn(): ?string
+    {
+        return 'order';
     }
 }

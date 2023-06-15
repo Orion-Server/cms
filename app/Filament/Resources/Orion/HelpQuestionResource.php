@@ -34,7 +34,7 @@ class HelpQuestionResource extends Resource
         return $form->schema(static::getForm());
     }
 
-    public static function getForm(bool $turnsTitleRedirectable = false): array
+    public static function getForm(): array
     {
         return [
             Card::make()

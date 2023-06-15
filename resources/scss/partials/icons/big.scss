@@ -82,5 +82,13 @@ i.icon {
         &.security-settings {
             background-image: url('https://i.imgur.com/nzzPQsM.png');
         }
+
+        &.added-recent-questions {
+            background-image: url('https://i.imgur.com/2c1h9CN.png');
+        }
+
+        &.most-asked-questions {
+            background-image: url('https://i.imgur.com/1Nl5OcC.png');
+        }
     }
 }

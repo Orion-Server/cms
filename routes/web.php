@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     External\RconController,
     Article\ArticleCommentController,
     CameraController,
+    HelpQuestionController,
     RankingController,
     StaffController,
     UserSettingController
@@ -83,5 +84,16 @@ Route::prefix('user')
             ->name('settings.')
             ->group(function () {
                 Route::match(['GET', 'POST'], '/{page?}', [UserSettingController::class, 'index'])->name('index');
+            });
+    });
+
+Route::prefix('support')
+    ->name('support.')
+    ->group(function() {
+        Route::prefix('questions')
+            ->name('questions.')
+            ->group(function() {
+                Route::get('/', [HelpQuestionController::class, 'index'])->name('index');
+                Route::get('{id}/{slug}', [HelpQuestionController::class, 'show'])->name('show');
             });
     });
