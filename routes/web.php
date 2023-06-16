@@ -72,11 +72,14 @@ Route::prefix('community')
             });
 
         Route::get('staff', [StaffController::class, 'index'])->name('staffs.index');
-        Route::get('rankings', RankingController::class)->name('rankings.index');
+        Route::get('rankings', RankingController::class)
+            ->middleware('auth')
+            ->name('rankings.index');
     });
 
 Route::prefix('user')
     ->name('users.')
+    ->middleware('auth')
     ->group(function () {
 
         // User Settings
@@ -89,11 +92,13 @@ Route::prefix('user')
 
 Route::prefix('support')
     ->name('support.')
+    ->middleware('auth')
     ->group(function() {
         Route::prefix('questions')
             ->name('questions.')
             ->group(function() {
                 Route::get('/', [HelpQuestionController::class, 'index'])->name('index');
                 Route::get('{id}/{slug}', [HelpQuestionController::class, 'show'])->name('show');
+                Route::get('category/{name}', [HelpQuestionController::class, 'category'])->name('categories.show');
             });
     });

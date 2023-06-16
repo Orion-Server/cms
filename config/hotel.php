@@ -26,7 +26,7 @@ return [
      * Meta data configurations
      */
     'meta' => [
-        'author' => 'Nicollas#8412',
+        'author' => 'inicollas',
         'title' => 'OrionCMS - An open-source project for retros management',
         'description' => 'Join us: https://discord.com/invite/Kb7USXupCT',
         'keywords' => 'habbo, habbo hotel, friends, games',

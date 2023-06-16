@@ -17,6 +17,8 @@ return new class extends Migration
             $table->integer('order')->default(0);
 
             $table->string('name');
+            $table->string('slug')->unique();
+
             $table->string('icon')->nullable();
         });
     }

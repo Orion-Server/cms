@@ -17,6 +17,19 @@ class HelpQuestionCategory extends Model
 
     public $timestamps = false;
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (HelpQuestionCategory $category) {
+            $category->slug = \Str::slug($category->name);
+        });
+
+        static::updating(function (HelpQuestionCategory $category) {
+            $category->slug = \Str::slug($category->name);
+        });
+    }
+
     public function questions(): BelongsToMany
     {
         return $this->belongsToMany(HelpQuestion::class, 'help_question_category');
