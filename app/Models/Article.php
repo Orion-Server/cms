@@ -88,12 +88,12 @@ class Article extends Model
         return $query;
     }
 
-    public function scopeValid($query): void
+    public function scopeValid(Builder $query): void
     {
         $query->whereVisible(true);
     }
 
-    public function scopeDefaultRelationships($query): void
+    public function scopeDefaultRelationships(Builder $query): void
     {
         $query->with([
             'user:id,username,look',

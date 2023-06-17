@@ -9,7 +9,8 @@ use App\Models\{
 use Illuminate\Database\Eloquent\{
     Model,
     Relations\BelongsTo,
-    Factories\HasFactory
+    Factories\HasFactory,
+    Builder
 };
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
@@ -24,7 +25,7 @@ class ArticleComment extends Model
         'fixed' => 'boolean'
     ];
 
-    public function scopeDefaultRelationships($query): void
+    public function scopeDefaultRelationships(Builder $query): void
     {
         $query->with([
             'user:id,username,look',

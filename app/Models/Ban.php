@@ -18,9 +18,9 @@ class Ban extends Model
 
     protected $guarded = [];
 
-    public function scopeValid($query): Builder
+    public function scopeValid(Builder $query): void
     {
-        return $query->where(fn ($query) =>
+        $query->where(fn ($query) =>
             $query->where('ban_expire', '>', now())
                   ->orWhere('ban_expire', '0') // permanent
         );

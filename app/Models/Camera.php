@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\{
+    Model,
+    Builder,
+    Casts\Attribute,
+    Relations\BelongsTo,
+    Factories\HasFactory,
+    Relations\HasMany
+};
 
 class Camera extends Model
 {
@@ -34,37 +36,36 @@ class Camera extends Model
         return $query->with($includes);
     }
 
-    public function scopeFilter($query, $filter)
+    public function scopeFilter(Builder $query, $filter): void
     {
         $user = \Auth::user();
 
         if($filter == 'only_my_friends') {
             $friendsId = $user->friends()->pluck('id')->toArray();
+
+            $query->whereIn('user_id', $friendsId);
         }
 
         if($filter == 'liked_by_me') {
             $likedPhotoIds = $user->photoLikes()->pluck('camera_id')->toArray();
+
+            $query->whereIn('id', $likedPhotoIds);
         }
-
-        $query = match ($filter) {
-            'only_my_friends' => $query->whereIn('user_id', $friendsId),
-            'liked_by_me' => $query->whereIn('id', $likedPhotoIds),
-            default => $query
-        };
-
-        return $query;
     }
 
-    public function scopePeriod($query, $period)
+    public function scopePeriod(Builder $query, $period): void
     {
-        $query = match ($period) {
-            'today' => $query->where('timestamp', '>=', Carbon::today()->timestamp),
-            'last_week' => $query->whereBetween('timestamp', [now()->subWeek()->timestamp, now()->timestamp]),
-            'last_month' => $query->whereBetween('timestamp', [now()->subMonth()->timestamp, now()->timestamp]),
-            default => $query
-        };
+        if($period == 'today') {
+            $query->where('timestamp', '>=', Carbon::today()->timestamp);
+        }
 
-        return $query;
+        if($period == 'last_week') {
+            $query->whereBetween('timestamp', [now()->subWeek()->timestamp, now()->timestamp]);
+        }
+
+        if($period == 'last_month') {
+            $query->whereBetween('timestamp', [now()->subMonth()->timestamp, now()->timestamp]);
+        }
     }
 
     public function user(): BelongsTo

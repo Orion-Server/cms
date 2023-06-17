@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\HelpQuestion;
 use Illuminate\View\View;
+use App\Models\HelpQuestion;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Models\HelpQuestion\HelpQuestionCategory;
 
 class HelpQuestionController extends Controller
@@ -20,8 +21,8 @@ class HelpQuestionController extends Controller
             ->limit(static::RECENT_ADDED_QUESTIONS_LIMIT)
             ->get();
 
-        $mostAskedQuestions = HelpQuestion::orderByDesc('views')
-            ->where('views', '>', 0)
+        $mostAskedQuestions = HelpQuestion::orderByUniqueViews()
+            ->whereHas('views')
             ->limit(static::MOST_ASKED_QUESTIONS_LIMIT)
             ->get();
 
@@ -31,14 +32,25 @@ class HelpQuestionController extends Controller
         );
     }
 
-    public function show(int $id, string $slug, Request $request): View
+    public function show(int $id, string $slug): RedirectResponse|View
     {
         if (! $question = HelpQuestion::forPage($id, $slug)->first()) {
             return redirect()->route('support.questions.index');
         }
 
-        $question->increment('views');
+        views($question)->record();
 
         return view('pages.support.questions.show', compact('question'));
+    }
+
+    public function category(string $slug, Request $request): RedirectResponse|View
+    {
+        if (! $category = HelpQuestionCategory::forPage($slug)->first()) {
+            return redirect()->route('support.questions.index');
+        }
+
+        $category->syncPaginatedQuestions($request);
+
+        return view('pages.support.questions.categories.show', compact('category'));
     }
 }

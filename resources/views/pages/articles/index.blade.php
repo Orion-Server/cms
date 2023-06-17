@@ -59,5 +59,6 @@
 </x-container>
 @endsection
 
-<script src="{{ asset('assets/js/ckeditor.min.js') }}"></script>
-
+@push
+    <script src="{{ asset('assets/js/ckeditor.min.js') }}"></script>
+@endpush

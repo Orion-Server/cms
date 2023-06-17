@@ -32,9 +32,9 @@ trait HasCurrency
         ]);
     }
 
-    public function scopeWithCurrencies($query): Builder
+    public function scopeWithCurrencies(Builder $query): void
     {
-        return $query->with(['currencies']);
+        $query->with(['currencies']);
     }
 
     public function currencies(): HasMany

@@ -4,7 +4,7 @@
 
 @section('content')
     <x-container class="mt-10 flex flex-col gap-8">
-        <div class="flex justify-center">
+        <div class="flex">
             <x-ui.buttons.redirectable
                 href="{{ route('support.questions.index') }}"
                 class="bg-red-500 border-red-700 hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75 py-2 text-white"
@@ -37,3 +37,7 @@
         </div>
     </x-container>
 @endsection
+
+@push
+    <script src="{{ asset('assets/js/ckeditor.min.js') }}"></script>
+@endpush

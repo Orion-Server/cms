@@ -3,6 +3,10 @@
 namespace App\Models;
 
 use App\Models\HelpQuestion\HelpQuestionCategory;
+use CyrildeWit\EloquentViewable\{
+    Contracts\Viewable,
+    InteractsWithViews
+};
 use Illuminate\Database\Eloquent\{
     Model,
     Builder,
@@ -11,11 +15,13 @@ use Illuminate\Database\Eloquent\{
     Relations\BelongsTo
 };
 
-class HelpQuestion extends Model
+class HelpQuestion extends Model implements Viewable
 {
-    use HasFactory;
+    use HasFactory, InteractsWithViews;
 
     protected $guarded = [];
+
+    protected $removeViewsOnDelete = true;
 
     protected $casts = [
         'visible' => 'boolean'
@@ -31,11 +37,16 @@ class HelpQuestion extends Model
         });
     }
 
+    public function scopeVisible(Builder $query): void
+    {
+        $query->where('visible', true);
+    }
+
     public static function forPage(int $id, string $slug): Builder
     {
         return HelpQuestion::where('id', $id)
+            ->visible()
             ->with('categories')
-            ->where('visible', true)
             ->where('slug', $slug);
     }
 

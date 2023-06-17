@@ -9,6 +9,7 @@
     'defaultValue' => null,
     'small' => false,
     'id' => null,
+    'name' => null,
     'autofocus' => false
 ])
 
@@ -27,6 +28,7 @@
     placeholder="{{ $placeholder }}"
     @if($alpineModel) x-model="{{ $alpineModel }}" @endif
     @if($defaultValue) value="{{ $defaultValue }}" @endif
+    @if($name) name="{{ $name }}" @endif
     @if($autofocus) autofocus @endif
     @if($id) id="{{ $id }}" @endif
     @disabled($disabled)

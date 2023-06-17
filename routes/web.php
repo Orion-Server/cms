@@ -98,7 +98,7 @@ Route::prefix('support')
             ->name('questions.')
             ->group(function() {
                 Route::get('/', [HelpQuestionController::class, 'index'])->name('index');
+                Route::get('category/{slug}', [HelpQuestionController::class, 'category'])->name('categories.show');
                 Route::get('{id}/{slug}', [HelpQuestionController::class, 'show'])->name('show');
-                Route::get('category/{name}', [HelpQuestionController::class, 'category'])->name('categories.show');
             });
     });
