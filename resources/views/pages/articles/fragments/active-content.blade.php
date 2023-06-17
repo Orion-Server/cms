@@ -69,7 +69,7 @@
             </div>
         </div>
     @endauth
-    <div class="w-full h-auto">
+    <div class="w-full h-auto" id="comments">
         <x-title-box
             title="Article Comments"
             description="All comments of this article"

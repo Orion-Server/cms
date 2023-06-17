@@ -2,6 +2,7 @@
 
 namespace App\Models\HelpQuestion;
 
+use App\Http\Controllers\HelpQuestionController;
 use App\Models\HelpQuestion;
 use Illuminate\Database\Eloquent\{
     Builder,
@@ -38,13 +39,10 @@ class HelpQuestionCategory extends Model
             ->visible();
 
         if($request->has('search')) {
-            $query->where(function(Builder $builder) use ($request): void {
-                $builder->where('title', 'like', "%{$request->search}%")
-                    ->orWhere('content', 'like', "%{$request->search}%");
-            });
+            $query->searchBy($request->search);
         }
 
-        $this->setRelation('questions', $query->paginate(20));
+        $this->setRelation('questions', $query->paginate(HelpQuestionController::SEARCH_QUESTIONS_PER_PAGE));
     }
 
     public static function forPage(string $slug): Builder

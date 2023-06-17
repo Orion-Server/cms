@@ -92,7 +92,7 @@ Route::prefix('user')
 
 Route::prefix('support')
     ->name('support.')
-    ->middleware('auth')
+    ->middleware('auth', 'throttle:60,1')
     ->group(function() {
         Route::prefix('questions')
             ->name('questions.')

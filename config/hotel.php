@@ -2,6 +2,11 @@
 
 return [
     /**
+     * Forces the HTTPS protocol
+     */
+    'force_https' => !! env('FORCE_HTTPS', true),
+
+    /**
      * Rcon configurations
      */
     'rcon' => [

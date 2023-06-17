@@ -14,7 +14,7 @@
                     >
                         <div class="w-full h-full flex gap-2 p-1 pr-2">
                             <div
-                                class="w-24 h-full flex justify-center items-center bg-right-bottom bg-no-repeat rounded-md"
+                                class="w-24 h-full flex justify-center items-center bg-cover bg-right-bottom bg-no-repeat rounded-md no-pixelated"
                                 style="background-image: url('{{ $fixedArticle->image }}')"
                             ></div>
                             <div class="flex w-2/3 flex-col">

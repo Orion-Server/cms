@@ -47,7 +47,7 @@ class Article extends Model
     public function syncPaginatedComments(): void
     {
         $this->setRelation('comments',
-            $this->comments()->defaultRelationships()->paginate(10)
+            $this->comments()->defaultRelationships()->paginate(10)->fragment('comments')
         );
     }
 
@@ -60,7 +60,7 @@ class Article extends Model
         }
 
         return $query->whereId($id)
-                ->whereSlug($slug);
+            ->whereSlug($slug);
     }
 
     public static function getLatestValidArticle(bool $withDefaultRelationships = true): ?Article

@@ -10,11 +10,17 @@ use App\Models\HelpQuestion\HelpQuestionCategory;
 
 class HelpQuestionController extends Controller
 {
+    public const SEARCH_QUESTIONS_PER_PAGE = 15;
+
     private const MOST_ASKED_QUESTIONS_LIMIT = 15;
     private const RECENT_ADDED_QUESTIONS_LIMIT = 15;
 
-    public function index(): View
+    public function index(Request $request): View
     {
+        if($request->has('search')) {
+            return $this->indexSearch($request);
+        }
+
         $categories = HelpQuestionCategory::orderBy('order')->get();
 
         $addedRecentQuestions = HelpQuestion::latest()
@@ -29,6 +35,19 @@ class HelpQuestionController extends Controller
         return view(
             'pages.support.questions.index',
             compact('categories', 'addedRecentQuestions', 'mostAskedQuestions')
+        );
+    }
+
+    public function indexSearch(Request $request): View
+    {
+        $questions = HelpQuestion::visible()
+            ->searchBy($request->search)
+            ->latest()
+            ->paginate(static::SEARCH_QUESTIONS_PER_PAGE);
+
+        return view(
+            'pages.support.questions.index',
+            compact('questions')
         );
     }
 

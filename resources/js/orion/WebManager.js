@@ -14,6 +14,7 @@ import AccountSettings from '../components/Pages/Users/AccountSettings'
 import PasswordSettings from '../components/Pages/Users/PasswordSettings'
 import IngameSettings from '../components/Pages/Users/IngameSettings'
 import Staff from '../components/Pages/Staff'
+import AutomaticSearch from '../components/Ui/AutomaticSearch'
 
 export default class WebManager {
     static start() {
@@ -39,6 +40,7 @@ export default class WebManager {
         TextareaEditor.start()
         Navigation.start()
         Staff.start()
+        AutomaticSearch.start()
 
         // User Settings
         AccountSettings.start()

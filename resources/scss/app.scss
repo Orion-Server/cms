@@ -24,6 +24,10 @@ body {
     image-rendering: pixelated;
 }
 
+.no-pixelated {
+    image-rendering: auto !important;
+}
+
 header {
     background-image: url('/assets/images/background.webp')
 }

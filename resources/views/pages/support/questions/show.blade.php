@@ -4,15 +4,7 @@
 
 @section('content')
     <x-container class="mt-10 flex flex-col gap-8">
-        <div class="flex">
-            <x-ui.buttons.redirectable
-                href="{{ route('support.questions.index') }}"
-                class="bg-red-500 border-red-700 hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75 py-2 text-white"
-            >
-                <i class="fa-solid fa-angle-left mr-1"></i>
-                Back to Questions
-            </x-ui.buttons.redirectable>
-        </div>
+        @include('pages.support.questions.partials.back-button')
 
         <div class="flex flex-col justify-center items-center gap-2">
             <span class="text-3xl leading-10 font-bold text-slate-800 dark:text-slate-200 underline underline-offset-4 decoration-emerald-500">
@@ -38,6 +30,6 @@
     </x-container>
 @endsection
 
-@push
-    <script src="{{ asset('assets/js/ckeditor.min.js') }}"></script>
-@endpush
+@pushOnce('scripts')
+<script src="{{ asset('assets/js/ckeditor.min.js') }}"></script>
+@endpushOnce

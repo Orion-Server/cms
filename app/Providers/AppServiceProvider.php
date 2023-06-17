@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('fromClient', request()->has('fromClient'));
 
-        if (App::isProduction()) {
+        if (App::isProduction() && config('hotel.force_https')) {
             URL::forceScheme('https');
         }
 

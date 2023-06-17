@@ -42,6 +42,14 @@ class HelpQuestion extends Model implements Viewable
         $query->where('visible', true);
     }
 
+    public function scopeSearchBy(Builder $query, ?string $search): void
+    {
+        $query->where(function(Builder $builder) use ($search): void {
+            $builder->where('title', 'like', "%{$search}%")
+                ->orWhere('content', 'like', "%{$search}%");
+        });
+    }
+
     public static function forPage(int $id, string $slug): Builder
     {
         return HelpQuestion::where('id', $id)

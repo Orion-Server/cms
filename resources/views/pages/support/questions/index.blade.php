@@ -2,8 +2,12 @@
 
 @section('title', 'Help Questions')
 
+@php($hasSearch = request()->has('search'))
+
 @section('content')
     <x-container class="mt-10 flex flex-col gap-8">
+        @includeWhen($hasSearch, 'pages.support.questions.partials.back-button')
+
         <div class="flex flex-col justify-center items-center gap-2">
             <span class="text-3xl font-bold text-slate-800 dark:text-slate-200 underline underline-offset-4 decoration-emerald-500">
                 Help Questions
@@ -11,79 +15,27 @@
             <span class="text-sm dark:text-slate-400 text-slate-600">
                 Here you can find answers to the most frequently asked questions.
             </span>
-            <div class="lg:w-2/3 w-full space-y-2 mt-4">
+            <div
+                class="lg:w-2/3 w-full space-y-2 mt-4"
+                x-data="automaticSearch('{{ route('support.questions.index') }}')"
+            >
                 <x-ui.input
-                    label="Ask a question"
-                    autocomplete="questions"
-                    id="question"
+                    label="Ask a Question"
+                    autocomplete="search"
+                    id="search"
                     icon="fa-regular fa-circle-question"
                     placeholder="How can I get diamonds?"
+                    alpine-model="search"
                     type="text"
+                    ref="search"
                 />
                 <small class="text-slate-400 dark:text-slate-500 block text-right">
-                    Press enter to search
+                    This search is automatic, you just need to type something.
                 </small>
             </div>
         </div>
 
-        <div class="flex flex-col justify-center items-center gap-2">
-            <span class="text-3xl font-bold text-slate-800 dark:text-slate-200 underline underline-offset-4 decoration-emerald-500">
-                Categories
-            </span>
-            <span class="text-sm dark:text-slate-400 text-slate-600">
-                Maybe you can find your answer in one of these categories.
-            </span>
-        </div>
-
-        <div class="flex gap-2 flex-wrap justify-center">
-            @foreach ($categories as $category)
-                <x-ui.buttons.redirectable
-                    href="{{ route('support.questions.categories.show', $category->slug) }}"
-                    class="bg-emerald-500 border-emerald-700 hover:bg-emerald-400 dark:shadow-emerald-700/75 shadow-emerald-600/75 py-2 text-white"
-                >
-                    <img src="{{ $category->icon }}" alt="{{ $category->name }}" loading="lazy" />
-                    {{ $category->name }}
-                </x-ui.buttons.redirectable>
-            @endforeach
-        </div>
-
-        <div class="flex gap-3 mt-8 justify-between flex-col lg:flex-row">
-            <div class="w-full lg:w-1/2">
-                <x-title-box
-                    title="Most Asked Questions"
-                    icon="most-asked-questions"
-                />
-
-                <div class="flex flex-col gap-2">
-                    @foreach ($mostAskedQuestions as $question)
-                        <a
-                            href="{{ route('support.questions.show', [$question->id, $question->slug]) }}"
-                            class="underline underline-offset-4 text-blue-400 underline-blue-400 text-sm hover:underline-blue-600 hover:text-blue-600"
-                        >
-                            <i class="fa-regular fa-circle-question mr-1 text-xs"></i>
-                            {{ $question->title }}
-                        </a>
-                    @endforeach
-                </div>
-            </div>
-            <div class="w-full lg:w-1/2">
-                <x-title-box
-                    title="Added Recent Questions"
-                    icon="added-recent-questions"
-                />
-
-                <div class="flex flex-col gap-2">
-                    @foreach ($addedRecentQuestions as $question)
-                        <a
-                            href="{{ route('support.questions.show', [$question->id, $question->slug]) }}"
-                            class="underline underline-offset-4 text-blue-400 underline-blue-400 text-sm hover:underline-blue-600 hover:text-blue-600"
-                        >
-                            <i class="fa-regular fa-circle-question mr-1 text-xs"></i>
-                            {{ $question->title }}
-                        </a>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+        @includeWhen(! $hasSearch, 'pages.support.questions.partials.default-content')
+        @includeWhen($hasSearch, 'pages.support.questions.partials.researched-content')
     </x-container>
 @endsection

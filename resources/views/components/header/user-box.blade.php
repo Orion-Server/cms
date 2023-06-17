@@ -45,7 +45,7 @@
                 <a
                     class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
                     data-tippy
-                    data-tippy-content="<small>Help & Suggestions</small>"
+                    data-tippy-content="<small>Help & Tricks</small>"
                     href="{{ route('support.questions.index') }}"
                 >
                     <img src="{{ asset('https://i.imgur.com/jy18kQD.png') }}" alt="Help icon" />
