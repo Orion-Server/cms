@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Camera;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class WebController extends Controller
@@ -57,6 +58,12 @@ class WebController extends Controller
         };
 
         return 0;
+    }
+
+    public function setLanguage(string $countryCode): RedirectResponse
+    {
+        dd($countryCode);
+        return redirect()->back();
     }
 
     public function maintenance(): View

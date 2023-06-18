@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::share('fromClient', request()->has('fromClient'));
+        View::share('availableLanguages', config('hotel.cms.available_languages'));
 
         if (App::isProduction() && config('hotel.force_https')) {
             URL::forceScheme('https');

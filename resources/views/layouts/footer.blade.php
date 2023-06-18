@@ -12,3 +12,5 @@
         <span class="font-semibold dark:text-white">This website is a not-for-profit educational project.</span>
     </x-container>
 </div>
+
+@include('components.select-language-modal')

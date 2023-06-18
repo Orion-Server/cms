@@ -1,6 +1,18 @@
 <?php
 
 return [
+    'cms' => [
+        'available_languages' => [
+            'en' => 'English',
+            'es' => 'Spanish',
+            'pt_BR' => 'Portuguese (Brazil)',
+            'tr' => 'Turkish',
+            'da' => 'Danish',
+            'nl' => 'Netherland',
+            'fi' => 'Finnish',
+        ]
+    ],
+
     /**
      * Forces the HTTPS protocol
      */

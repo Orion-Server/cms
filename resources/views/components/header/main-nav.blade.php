@@ -30,7 +30,7 @@
                             <div class="bg-center bg-no-repeat w-[25px] h-[25px]" style="background-image: url('{{ asset($navigation->icon) }}')"></div>
                             <span class="group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{{ $navigation->label }}</span>
                             @unless ($navigation->subNavigations->isEmpty())
-                                <span><i class="fa-solid fa-chevron-down text-xs dark:text-slate-500"></i></span>
+                                <span class="ml-2"><i class="fa-solid fa-chevron-down text-xs dark:text-slate-500"></i></span>
                             @endunless
 
                             @unless ($navigation->subNavigations->isEmpty())

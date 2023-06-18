@@ -46,7 +46,7 @@
                 </small>
             </div>
         </div>
-        
+
         <x-title-box
             title="Category Questions"
             icon="most-asked-questions"
@@ -63,7 +63,7 @@
                 </a>
             @empty
             <span class="text-slate-400 dark:text-slate-500">
-                No questions found for this category.
+                No questions were found for this category.
             </span>
             @endforelse
         </div>

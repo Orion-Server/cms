@@ -14,7 +14,7 @@
         </a>
     @empty
     <span class="text-slate-400 dark:text-slate-500">
-        No questions found for this search.
+        No questions were found for this search.
     </span>
     @endforelse
 </div>

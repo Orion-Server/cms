@@ -26,6 +26,8 @@ use App\Http\Controllers\{
 |
 */
 
+Route::get('/set-language/{language}', [WebController::class, 'setLanguage'])->name('set-language');
+
 Route::get('/', [WebController::class, 'index'])->name('index');
 Route::get('/login', [WebController::class, 'index'])->name('login');
 Route::get('/register', [WebController::class, 'index'])->name('register');
