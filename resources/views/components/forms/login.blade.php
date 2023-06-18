@@ -11,24 +11,24 @@
     @csrf
     <div class="mt-4 flex flex-col">
         <x-ui.input
-            label="Username"
+            label="{{ __('Username') }}"
             autocomplete="username"
             id="login-username"
             icon="fa-solid fa-user"
             alpine-model="loginData.username"
-            placeholder="Username"
+            placeholder="{{ __('Username') }}"
             type="text"
         />
     </div>
 
     <div class="mt-4 flex flex-col">
         <x-ui.input
-            label="Password"
+            label="{{ __('Password') }}"
             autocomplete="password"
             id="login-password"
             icon="fa-solid fa-key"
             alpine-model="loginData.password"
-            placeholder="Password"
+            placeholder="{{ __('Password') }}"
             type="password"
         />
     </div>
@@ -41,7 +41,7 @@
             class="dark:bg-green-600 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-500 dark:shadow-green-700/75 shadow-green-600/75 flex-1 py-3 text-white"
         >
             <i class="fa-solid fa-user-plus"></i>
-            Register
+            {{ __('Register') }}
         </x-ui.buttons.default>
         @endif
 
@@ -51,14 +51,14 @@
             class="dark:bg-blue-600 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-500 dark:shadow-blue-700/75 shadow-blue-600/75 flex-1 py-3 text-white"
         >
             <i class="fa-solid fa-right-to-bracket"></i>
-            Login
+            {{ __('Login') }}
         </x-ui.buttons.loadable>
     </div>
 
     @if (!$removeSocialButtons)
     <div class="my-6 flex items-center justify-between">
         <span class="border-b dark:border-gray-700 w-1/5 md:w-1/4"></span>
-        <span class="text-xs text-gray-500 uppercase dark:text-gray-100">or join with</span>
+        <span class="text-xs text-gray-500 uppercase dark:text-gray-100">{{ __('or join with') }}</span>
         <span class="border-b dark:border-gray-700 w-1/5 md:w-1/4"></span>
     </div>
 

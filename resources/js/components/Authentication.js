@@ -47,6 +47,12 @@ export default class Authentication {
                 }
             },
 
+            toggleToLoginModal() {
+                console.log('entrei')
+                this.showRegisterModal = false
+                this.showLoginModal = true
+            },
+
             treatReferralCode(referralCode) {
                 this.registerReferrerData.code = referralCode
 
@@ -68,11 +74,6 @@ export default class Authentication {
                     .catch(error => {
                         console.error('[ReferralIdentification] - ', error)
                     })
-            },
-
-            toggleToLoginModal() {
-                this.showRegisterModal = false
-                this.showLoginModal = true
             }
         }
     }

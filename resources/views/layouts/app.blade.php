@@ -46,7 +46,7 @@
     @if(!! getSetting('maintenance'))
         <span class="w-full h-12 flex justify-center items-center bg-red-500 text-red-800 font-bold">
             <i class="fa-solid fa-exclamation-circle mr-2"></i>
-            The hotel is currently in maintenance mode.
+            {{ __('The hotel is currently in maintenance mode.') }}
         </span>
     @endif
 
@@ -56,13 +56,13 @@
         <x-container class="flex lg:flex-row flex-col justify-between gap-4 lg:gap-0 items-center">
             <div class="lg:w-1/2 w-full flex flex-col justify-center items-center lg:items-start">
                 <span class="text-4xl font-semibold text-white text-center lg:text-left drop-shadow-lg">
-                    Welcome,
+                    {{ __('Welcome') }},
                     <b @class([
                         'text-white' => !Auth::check(),
                         'text-lime-500' => Auth::user()?->isBoy(),
                         'text-rose-500' => Auth::user()?->isGirl(),
                     ])>
-                        {{ Auth::check() ? Auth::user()->username : 'guest' }}
+                        {{ Auth::check() ? Auth::user()->username : strtolower(__('Guest')) }}
                     </b>!
                 </span>
                 @if (Auth::check() && !$fromClient)
@@ -71,7 +71,7 @@
                             href="#"
                             class="dark:bg-orange-500 bg-orange-500 border-orange-700 hover:bg-orange-400 dark:hover:bg-orange-400 dark:shadow-orange-700/75 shadow-orange-600/75 py-2 text-white"
                         >
-                            Join (Flash)
+                            {{ __('Join (Flash)') }}
                         </x-ui.buttons.redirectable>
 
                         <x-ui.buttons.redirectable
@@ -79,7 +79,7 @@
                             data-turbolinks="false"
                             class="dark:bg-gray-500 bg-gray-500 border-gray-700 hover:bg-gray-400 dark:hover:bg-gray-400 dark:shadow-gray-700/75 shadow-gray-600/75 py-2 text-white"
                         >
-                            Join (Nitro HTML5)
+                            {{ __('Join (Nitro HTML5)') }}
                         </x-ui.buttons.redirectable>
 
                         @if (Auth::user()->rank >= getSetting('min_rank_to_housekeeping_login'))
@@ -89,7 +89,7 @@
                                 class="dark:bg-red-500 bg-red-500 border-red-700 hover:bg-red-400 dark:hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75 py-2 text-white"
                             >
                                 <i class="fa-solid fa-chart-line mr-1"></i>
-                                Housekeeping
+                                {{ __('Housekeeping') }}
                             </x-ui.buttons.redirectable>
                         @endif
                     </div>

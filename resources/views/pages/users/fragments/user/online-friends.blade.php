@@ -1,7 +1,7 @@
 <x-title-box
     icon="online-friends"
-    title="Online Friends ({{ $onlineFriends->count() }})"
-    description="See which friends are online now"
+    title="{{ __('Online Friends') }} ({{ $onlineFriends->count() }})"
+    description="{{ __('See which friends are online now') }}"
 />
 @unless ($onlineFriends->isEmpty())
     <div @class([

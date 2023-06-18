@@ -2,8 +2,8 @@
     <div class="w-full mx-auto gap-8 flex flex-col lg:flex-row h-auto p-1 justify-between items-start">
         <div class="w-full flex flex-col gap-2 lg:w-1/3">
             <x-title-box
-                title="Fixed Articles"
-                description="Articles to remember"
+                title="{{ __('Fixed Articles') }}"
+                description="{{ __('Articles to remember') }}"
                 icon="fixed-articles"
             />
             <div class="w-full flex flex-col gap-3">
@@ -30,15 +30,15 @@
         <div class="w-full lg:w-2/3">
             <div class="w-full flex flex-col gap-2">
                 <x-title-box
-                    title="Latest Articles"
-                    description="Check out the latest articles below"
+                    title="{{ __('Latest Articles') }}"
+                    description="{{ __('Check out the latest articles below') }}"
                     icon="articles"
                 >
                     <x-ui.buttons.redirectable
-                            href="{{ route('articles.index') }}"
-                            class="dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
-                        >
-                            View All
+                        href="{{ route('articles.index') }}"
+                        class="dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
+                    >
+                        {{ __('View All') }}
                     </x-ui.buttons.redirectable>
                 </x-title-box>
                 <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -72,8 +72,8 @@
     <div class="w-full mx-auto gap-8 mt-8 flex flex-col lg:flex-row h-auto p-1 justify-between items-start">
         <div class="w-full flex flex-col gap-2 lg:w-1/3">
             <x-title-box
-                title="Latest Users"
-                description="The most recent users"
+                title="{{ __('Latest Users') }}"
+                description="{{ __('The most recent users') }}"
                 icon="users"
             />
             <div class="w-full grid grid-cols-4 grid-rows-4 flex-wrap gap-3">
@@ -91,15 +91,15 @@
         <div class="w-full lg:w-2/3">
             <div class="w-full flex flex-col gap-2">
                 <x-title-box
-                    title="Latest User Photos"
-                    description="Stay on top of what users are doing at the hotel"
+                    title="{{ __('Latest User Photos') }}"
+                    description="{{ __('Stay on top of what users are doing at the hotel') }}"
                     icon="camera"
                 >
                     <x-ui.buttons.redirectable
                         href="{{ route('community.photos.index') }}"
                         class="dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
                     >
-                            View All
+                        {{ __('View All') }}
                     </x-ui.buttons.redirectable>
                 </x-title-box>
                 <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-2">

@@ -39,14 +39,14 @@ class CameraController extends Controller
     {
         return match($name) {
             'periods' => [
-                null => 'All',
-                'today' => 'Today',
-                'last_week' => 'Last week',
-                'last_month' => 'Last month',
+                null => __('All'),
+                'today' => __('Today'),
+                'last_week' => __('Last week'),
+                'last_month' => __('Last month'),
             ],
             'rules' => [
-                'only_my_friends' => 'Only my friends',
-                'liked_by_me' => 'Liked by me',
+                'only_my_friends' => __('Only my friends'),
+                'liked_by_me' => __('Liked by me'),
             ]
         };
     }

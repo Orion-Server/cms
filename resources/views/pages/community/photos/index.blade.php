@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Photos')
+@section('title', __('Photos'))
 
 @section('content')
 <x-container>
@@ -16,7 +16,7 @@
                 class="dark:bg-red-500 bg-red-500 text-white py-2 border-red-700 hover:bg-red-400 dark:hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75"
             >
                 <i class="fas fa-times mr-2"></i>
-                Reset Period
+                {{ __('Reset Period') }}
             </x-ui.buttons.redirectable>
             @endif
 
@@ -26,7 +26,7 @@
                 class="dark:bg-red-500 bg-red-500 text-white py-2 border-red-700 hover:bg-red-400 dark:hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75"
             >
                 <i class="fas fa-times mr-2"></i>
-                Reset Rule
+                {{ __('Reset Rule') }}
             </x-ui.buttons.redirectable>
             @endif
         </div>
@@ -71,7 +71,7 @@
                     <div
                         class="bg-center border border-slate-300 dark:border-slate-700 hover:scale-[1.05] transition-transform relative group lightgallery-image cursor-pointer flex items-end justify-center w-full h-48 bg-no-repeat rounded-t-lg"
                         data-src="{{ $photo->url }}"
-                        data-sub-html='<h4>Photo by <a href="#" class="underline underline-offset-4">{{ $photo->user->username }}</a></h4><p>Photo taken on <b>{{ $photo->formattedDate }}</b> in the <a href="#" class="underline underline-offset-4">{{ $photo->room->name }}</a></p>'
+                        data-sub-html='<h4>{{ __("Photo by") }} <a href="#" class="underline underline-offset-4">{{ $photo->user->username }}</a></h4><p>{{ __("Photo taken on") }} <b>{{ $photo->formattedDate }}</b> {{ __("in the room") }} <a href="#" class="underline underline-offset-4">{{ $photo->room->name }}</a></p>'
                         style="background-image: url('{{ $photo->url }}')"
                     >
                         <div class="w-full p-2 flex justify-end items-center gap-2 bg-black/75 h-10">
@@ -80,7 +80,7 @@
                                 {{ $photo->formattedDate }}
                             </span>
                             <span class="text-slate-200 text-end text-xs underline underline-offset-2">
-                                Likes (<b x-ref="photoLikes{{ $photo->id }}">{{ $photo->likes->count() }}</b>)
+                                {{ __('Likes') }} (<b x-ref="photoLikes{{ $photo->id }}">{{ $photo->likes->count() }}</b>)
                             </span>
                             @auth
                                 @php($liked = $photo->likes->contains('user_id', auth()->id()))

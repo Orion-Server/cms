@@ -2,8 +2,8 @@
 
 <x-title-box
     icon="story-camera"
-    title="Friends Stories ({{ $randomStories }})"
-    description="Stay on top of your friends latest activities"
+    title="{{ __('Friends Stories') }} ({{ $randomStories }})"
+    description="{{ __('Stay on top of your friends latest activities') }}"
 />
 <div class="flex gap-3 scroll-smooth scroll-x relative mt-4 p-2 pb-6 overflow-x-auto rounded-lg shadow border-b-2 border-gray-300 dark:border-slate-800 bg-white dark:bg-slate-950">
     @for ($i = 0; $i < $randomStories; $i++)

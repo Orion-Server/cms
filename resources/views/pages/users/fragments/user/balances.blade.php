@@ -2,8 +2,8 @@
     <div class="h-16">
         <x-title-box
             icon="balance"
-            title="My Balance"
-            description="Riches are on display."
+            title="{{ __('My Balance') }}"
+            description="{{ __('Riches are on display.') }}"
         />
     </div>
 

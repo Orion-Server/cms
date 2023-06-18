@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('permissions', function (Blueprint $table) {
-            $table->string('description')->nullable();
+            $table->string('description')->after('rank_name')->nullable();
             $table->boolean('is_hidden')->default(false);
         });
     }

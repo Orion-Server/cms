@@ -2,23 +2,17 @@
     modalOpen: false,
 
     init() {
-        this.modalOpen = !localStorage.getItem('language')
-
-        document.addEventListener('toggle-language-modal', (event) => {
-            console.log('chegou', event)
+        this.$nextTick(() => {
+            this.modalOpen = !@json(Session::has('locale'))
         })
-    },
 
-    setLanguage(language) {
-        localStorage.setItem('language', language)
-        this.modalOpen = false
-
-        Turbolinks.visit(location.href, { action: 'replace' })
+        document.addEventListener('selectLanguageModal', ({ detail: value }) => {
+            this.modalOpen = value
+        })
     }
 }">
     <x-ui.modal
-        title="Select Your Language"
+        title="Select Language"
         type="select-language"
     />
-
 </div>

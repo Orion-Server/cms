@@ -1,7 +1,7 @@
 <div class="relative w-full flex md:w-3/4 max-w-[500px] bg-white dark:bg-slate-950 h-24 dark:shadow-none rounded-lg shadow-lg dark:divide-slate-800">
     @guest
         <div x-data class="w-full h-full dark:text-white text-slate-950 font-bold text-sm blur-none rounded-lg absolute top-0 left-0 z-[1] flex justify-center items-center">
-            Please, login to access this content.
+            {{ __('Please, login to access this content.') }}
         </div>
     @endguest
     <div @class([
@@ -13,7 +13,7 @@
                 <a
                     class="h-full rounded-tl-lg flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
                     data-tippy
-                    data-tippy-content="<small>My Profile</small>"
+                    data-tippy-content="<small>{{ __('My Profile') }}</small>"
                     href=""
                 >
                     <img src="{{ asset('https://i.imgur.com/wYP2GOf.png') }}" alt="Profile icon" />
@@ -21,7 +21,7 @@
                 <a
                     class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
                     data-tippy
-                    data-tippy-content="<small>My Settings</small>"
+                    data-tippy-content="<small>{{ __('My Settings') }}</small>"
                     href="{{ route('users.settings.index') }}"
                 >
                     <img src="{{ asset('https://i.imgur.com/zjDy01f.gif') }}" alt="Settings icon" />
@@ -29,7 +29,7 @@
                 <a
                     class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
                     data-tippy
-                    data-tippy-content="<small>My Achievements</small>"
+                    data-tippy-content="<small>{{ __('My Achievements') }}</small>"
                     href=""
                 >
                     <img src="{{ asset('https://i.imgur.com/Re6k2iv.png') }}" alt="Achievements icon" />
@@ -37,7 +37,7 @@
                 <a
                     class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
                     data-tippy
-                    data-tippy-content="<small>My Inbox</small>"
+                    data-tippy-content="<small>{{ __('My Inbox') }}</small>"
                     href=""
                 >
                     <img src="{{ asset('https://i.imgur.com/d4oZMFz.png') }}" alt="Inbox icon" />
@@ -45,7 +45,7 @@
                 <a
                     class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
                     data-tippy
-                    data-tippy-content="<small>Help & Tricks</small>"
+                    data-tippy-content="<small>{{ __('Help & Tricks') }}</small>"
                     href="{{ route('support.questions.index') }}"
                 >
                     <img src="{{ asset('https://i.imgur.com/jy18kQD.png') }}" alt="Help icon" />
@@ -56,7 +56,7 @@
                     class="flex flex-1 h-full rounded-bl-lg items-center justify-center hover:bg-gray-50 dark:hover:bg-slate-800"
                     href=""
                     data-tippy
-                    data-tippy-content="<small>My Notifications</small>"
+                    data-tippy-content="<small>{{ __('My Notifications') }}</small>"
                     data-tippy-placement="bottom"
                 >
                     <i class="fa-regular fa-bell text-slate-700 dark:text-white"></i>
@@ -65,7 +65,7 @@
                     class="flex flex-1 h-full items-center justify-center hover:bg-gray-50 dark:hover:bg-slate-800"
                     href=""
                     data-tippy
-                    data-tippy-content="<small>My Purchases</small>"
+                    data-tippy-content="<small>{{ __('My Purchases') }}</small>"
                     data-tippy-placement="bottom"
                 >
                     <i class="fa-solid fa-cart-plus text-slate-700 dark:text-white"></i>
@@ -80,7 +80,7 @@
                         <x-slot:confirmation>
                             <x-ui.buttons.default
                                 class="text-xs dark:bg-red-600 bg-red-500 border-red-700 hover:bg-red-400 dark:hover:bg-red-500 dark:shadow-red-700/75 shadow-red-600/75 py-2 text-white">
-                                Confirm
+                                {{ __('Confirm') }}
                             </x-ui.buttons.default>
                         </x-slot:confirmation>
 

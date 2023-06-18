@@ -27,7 +27,7 @@
                     disabled
                     @click="changeTab($event, '0')"
                 >
-                    All
+                    {{ __('All') }}
                 </x-ui.buttons.default>
                 @foreach ($staffs as $staff)
                 <x-ui.buttons.default
@@ -88,7 +88,7 @@
                                 class="text-slate-600 dark:text-slate-400 col-span-full font-medium text-sm text-center p-2"
                             >
                                 <i class="fas fa-exclamation-circle mr-2"></i>
-                                No staffs found for this rank.
+                                {{ __('No staffs found for this rank.') }}
                             </span>
                             @endforelse
                         </div>

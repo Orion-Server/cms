@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use App\Models\Camera;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Camera;
+use App\Models\Article;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\App;
+use Illuminate\Http\RedirectResponse;
 
 class WebController extends Controller
 {
@@ -62,8 +63,12 @@ class WebController extends Controller
 
     public function setLanguage(string $countryCode): RedirectResponse
     {
-        dd($countryCode);
-        return redirect()->back();
+        if(array_key_exists($countryCode, config('hotel.cms.available_languages'))) {
+            App::setLocale($countryCode);
+            session()->put('locale', $countryCode);
+        }
+
+        return redirect()->route('index');
     }
 
     public function maintenance(): View

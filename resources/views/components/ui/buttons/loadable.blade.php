@@ -11,6 +11,6 @@
     </span>
     <span x-show="{{ $alpineModel }}" style="display: none">
         <i class="fa-solid fa-circle-notch fa-spin mr-1"></i>
-        Loading...
+        {{ __('Loading') }}...
     </span>
 </button>

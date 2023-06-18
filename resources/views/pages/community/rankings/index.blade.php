@@ -1,21 +1,21 @@
 @extends('layouts.app')
 
 @php($rankingTitle = [
-    'diamonds' =>'Top Diamonds',
-    'respects' =>'Top Respects',
-    'coins' =>'Top Credits',
-    'pixels' =>'Top Pixels',
-    'points' =>'Top Points',
-    'online-time' =>'Top Online Time'
+    'diamonds' => __('Top Diamonds'),
+    'respects' => __('Top Respects'),
+    'coins' => __('Top Credits'),
+    'pixels' => __('Top Pixels'),
+    'points' => __('Top Points'),
+    'online-time' => __('Top Online Time')
 ])
 
 @php($rankingDescription = [
-    'diamonds' =>'This is customizable',
-    'respects' =>'This is customizable',
-    'coins' =>'This is customizable',
-    'pixels' =>'This is customizable',
-    'points' =>'This is customizable',
-    'online-time' =>'This is customizable'
+    'diamonds' => __('The richest users in diamonds'),
+    'respects' => __('The richest users in respects'),
+    'coins' => __('The richest users in coins'),
+    'pixels' => __('The richest users in pixels'),
+    'points' => __('The richest users in points'),
+    'online-time' => __('Users who play the most')
 ])
 
 @section('content')

@@ -13,31 +13,31 @@
                 class="border-blue-500 border hover:bg-blue-500 hover:text-white dark:shadow-blue-500/75 shadow-blue-400/75 flex-1 py-3 text-blue-500"
             >
                 <i class="fa-solid fa-right-to-bracket"></i>
-                Sign In
+                {{ __('Sign In') }}
             </x-ui.buttons.default>
 
             <x-ui.modal
                 alpine-model="showLoginModal"
-                title="Login"
-                sub-title="Welcome back!"
+                title="{{ __('Login') }}"
+                sub-title="{{ __('Welcome back!') }}"
             >
                 <x-forms.login />
             </x-ui.modal>
         </div>
-        <span class="px-4 font-bold text-blue-400">or</span>
+        <span class="px-4 font-bold text-blue-400">{{ __('or') }}</span>
         <div>
             <x-ui.buttons.default
                 @click="showRegisterModal = true"
                 class="dark:bg-green-600 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-500 dark:shadow-green-700/75 shadow-green-600/75 flex-1 py-3 text-white"
             >
                 <i class="fa-solid fa-user-plus"></i>
-                Register now
+                {{ __('Register now') }}
             </x-ui.buttons.default>
 
             <x-ui.modal
                 alpine-model="showRegisterModal"
-                title="Register"
-                sub-title="We are glad you are here!"
+                title="{{ __('Register') }}"
+                sub-title="{{ __('We are glad you are here!') }}"
             >
                 <x-forms.register />
             </x-ui.modal>

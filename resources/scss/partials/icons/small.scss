@@ -19,4 +19,41 @@ i.icon {
             background-image: url('https://i.imgur.com/ZVpAxKv.png');
         }
     }
+
+    &.language {
+        width: 26px;
+        height: 26px;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        image-rendering: auto !important;
+
+        &.en {
+            background-image: url('/assets/images/country-flags/en.png');
+        }
+
+        &.es {
+            background-image: url('/assets/images/country-flags/es.png');
+        }
+
+        &.pt_br {
+            background-image: url('/assets/images/country-flags/pt_BR.png');
+        }
+
+        &.tr {
+            background-image: url('/assets/images/country-flags/tr.png');
+        }
+
+        &.da {
+            background-image: url('/assets/images/country-flags/da.png');
+        }
+
+        &.nl {
+            background-image: url('/assets/images/country-flags/nl.png');
+        }
+
+        &.fi {
+            background-image: url('/assets/images/country-flags/fi.png');
+        }
+    }
 }
