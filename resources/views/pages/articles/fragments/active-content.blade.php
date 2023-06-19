@@ -29,11 +29,11 @@
             >
                 {{ $activeArticle->user->username }}
             </a>
-            <span class="text-xs w-full dark:text-slate-200"><b class="text-zinc-600 dark:text-slate-200">Date:</b> {{ $activeArticle->created_at->format('Y-m-d H:i') }}</span>
+            <span class="text-xs w-full dark:text-slate-200"><b class="text-zinc-600 dark:text-slate-200">{{ __('Date') }}:</b> {{ $activeArticle->created_at->format('Y-m-d H:i') }}</span>
         </div>
         <div class="w-full lg:w-2/3 h-full flex-col lg:flex-row relative divide-y dark:divide-slate-800 pl-2">
             <div class="w-full h-10 lg:h-1/2 flex items-center">
-                <x-ui.toggle label="Always get notifications from this author" />
+                <x-ui.toggle label="{{ __('Always get notifications from this author') }}" />
             </div>
             <div class="w-full h-10 lg:h-1/2 py-1 flex gap-1 items-center justify-start flex-wrap">
                 @forelse ($activeArticle->tags as $tag)
@@ -44,7 +44,7 @@
                     ]) style="background-color: {{ $tag->background_color }}">{{ $tag->name }}</span>
                 @empty
                     <span class="text-xs text-gray-900 dark:text-gray-400">
-                        No tags found.
+                        {{ __('No tags found.') }}
                     </span>
                 @endforelse
             </div>
@@ -57,8 +57,8 @@
     @auth
         <div class="mb-8">
             <x-title-box
-                title="Comment this Article"
-                description="Write your opinion below"
+                title="{{ __('Comment this Article') }}"
+                description="{{ __('Write your opinion below') }}"
                 icon="comment"
             />
             <div class="bg-white w-full h-auto dark:bg-slate-950 p-1 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg mt-8">
@@ -71,8 +71,8 @@
     @endauth
     <div class="w-full h-auto" id="comments">
         <x-title-box
-            title="Article Comments"
-            description="All comments of this article"
+            title="{{ __('Article Comments') }}"
+            description="{{ __('All comments of this article') }}"
             icon="users-comments"
         />
     </div>

@@ -1,9 +1,9 @@
 <div class="flex flex-col justify-center items-center gap-2">
     <span class="text-3xl font-bold text-slate-800 dark:text-slate-200 underline underline-offset-4 decoration-emerald-500">
-        Categories
+        {{ __('Categories') }}
     </span>
     <span class="text-sm dark:text-slate-400 text-slate-600">
-        Maybe you can find your answer in one of these categories.
+        {{ __("Maybe you'll find what you're looking for in one of these categories.") }}
     </span>
 </div>
 
@@ -22,7 +22,7 @@
 <div class="flex gap-3 mt-8 justify-between flex-col lg:flex-row">
     <div class="w-full lg:w-1/2">
         <x-title-box
-            title="Most Asked Questions"
+            title="{{ __('Most Asked Questions') }}"
             icon="most-asked-questions"
         />
 
@@ -40,7 +40,7 @@
     </div>
     <div class="w-full lg:w-1/2">
         <x-title-box
-            title="Added Recent Questions"
+            title="{{ __('Added Recent Questions') }}"
             icon="added-recent-questions"
         />
 

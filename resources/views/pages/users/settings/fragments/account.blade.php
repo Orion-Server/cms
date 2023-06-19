@@ -1,5 +1,5 @@
 <x-title-box
-    title="Your account settings"
+    title="{{ __('Your account settings') }}"
     icon="account-settings"
 />
 
@@ -14,32 +14,32 @@
     >
         <div class="flex flex-col gap-1">
             <x-ui.input
-                label="Your Email"
+                label="{{ __('Email') }}"
                 autocomplete="email"
                 id="settings-email"
                 icon="fa-solid fa-envelope"
                 alpine-model="data.email"
                 name="email"
-                placeholder="Your Email"
+                placeholder="{{ __('Email') }}"
                 type="email"
             />
             <small class="text-slate-500">
-                To change the email, make sure the access is viable. You will need it to change your account password in case you forget it.
+                {{ __('To change the email, make sure the access is viable. You will need it to change your account password in case you forget it.') }}
             </small>
         </div>
 
         <div class="flex flex-col gap-1">
             <x-ui.input
-                label="Referral Code"
+                label="{{ __('Referral Code') }}"
                 id="referral-code"
                 icon="fa-solid fa-user-plus"
                 alpine-model="data.referral_code"
                 name="referral_code"
-                placeholder="Your Referral Code"
+                placeholder="{{ __('Referral Code') }}"
                 type="text"
             />
             <small class="text-slate-500">
-                Customize your referral code above. This is the code that you can share with your friends and family to earn rewards.
+                {{ __('Customize your referral code above. This is the code that you can share with your friends and family to earn rewards.') }}
             </small>
         </div>
 
@@ -51,7 +51,7 @@
                 class="dark:bg-green-600 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-500 dark:shadow-green-700/75 shadow-green-600/75 py-3 text-white"
             >
                 <i class="fa-regular fa-address-card mr-2"></i>
-                Update Settings
+                {{ __('Update Settings') }}
             </x-ui.buttons.loadable>
         </div>
     </form>

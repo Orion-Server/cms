@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Hotel;
 
-use Filament\Forms;
 use Filament\Tables;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
@@ -10,20 +9,21 @@ use App\Models\EmulatorSetting;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Traits\TranslatableResource;
 use App\Filament\Resources\Hotel\EmulatorSettingResource\Pages;
-use App\Filament\Resources\Hotel\EmulatorSettingResource\RelationManagers;
 
 class EmulatorSettingResource extends Resource
 {
+    use TranslatableResource;
+
     protected static ?string $model = EmulatorSetting::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-adjustments';
 
     protected static ?string $navigationGroup = 'Hotel';
+
+    public static string $translateIdentifier = 'emulator-settings';
 
     public static function form(Form $form): Form
     {
@@ -32,11 +32,13 @@ class EmulatorSettingResource extends Resource
                 Card::make()
                     ->schema([
                         TextInput::make('key')
+                            ->label(__('filament::resources.inputs.key'))
                             ->required()
                             ->maxLength(100)
                             ->unique(ignoreRecord: true),
 
                         TextInput::make('value')
+                            ->label(__('filament::resources.inputs.value'))
                             ->required()
                             ->maxLength(512),
                     ])

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\VerifyLocale;
 use Filament\Pages;
 use Filament\Widgets;
 use Filament\Http\Middleware\Authenticate;
@@ -325,6 +326,7 @@ return [
             SubstituteBindings::class,
             DispatchServingFilamentEvent::class,
             MirrorConfigToSubpackages::class,
+            VerifyLocale::class
         ],
     ],
 

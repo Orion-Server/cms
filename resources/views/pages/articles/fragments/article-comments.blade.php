@@ -2,19 +2,22 @@
     @foreach ($activeArticle->comments as $comment)
     <div @class([
         "bg-white relative w-full flex flex-col overflow-hidden justify-between h-auto dark:text-slate-200 dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg",
-        "border-2 !border-blue-400" => $comment->fixed
+        "bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 p-0.5" => $comment->fixed
     ])>
-        <div class="p-2 w-full">
+        <div @class([
+            "p-2 w-full",
+            "bg-white dark:bg-slate-950 rounded-t-lg" => $comment->fixed
+        ])>
             <div class="w-full flex justify-between text-sm pb-0.5 mb-2 border-b border-gray-100 dark:border-gray-800">
                 <span class="w-1/2 font-medium flex gap-1">
                     @if ($comment->fixed)
                         <i
                             data-tippy
-                            data-tippy-content="<small>This comment is fixed</small>"
+                            data-tippy-content="<small>{{ __('This comment is fixed') }}</small>"
                             class="icon small w-[13px] h-[15px] border-none shadow-none rounded-none ifixed"
                         ></i>
                     @endif
-                    <a href="#" class="font-bold underline underline-offset-2 text-blue-400">{{ $comment->user->username }}</a> commented:
+                    <a href="#" class="font-bold underline underline-offset-2 text-blue-400">{{ $comment->user->username }}</a> {{ strtolower(__('Commented')) }}:
                 </span>
                 <span class="w-1/2 text-end text-xs text-slate-400">
                     <i class="fa-regular fa-clock"></i>

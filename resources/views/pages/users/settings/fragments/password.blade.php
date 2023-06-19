@@ -1,5 +1,5 @@
 <x-title-box
-    title="Your Security Settings"
+    title="{{ __('Your Security Settings') }}"
     icon="security-settings"
 />
 
@@ -14,51 +14,51 @@
     >
         <span class="w-full text-center py-3 bg-red-500 text-white rounded-lg border border-b-2 border-red-700 text-sm font-bold">
             <i class="fa-solid fa-triangle-exclamation mr-1"></i>
-            Don't share your password with anyone. We will never ask for your password.
+            {{ __("Don't share your password with anyone. We will never ask for your password.") }}
         </span>
         <div class="flex-1 border-b border-dashed border-gray-300 dark:border-slate-800"></div>
         <div class="flex flex-col gap-1">
             <x-ui.input
-                label="Current Password"
+                label="{{ __('Current Password') }}"
                 autocomplete="password"
                 id="current-password"
                 icon="fa-solid fa-key"
-                placeholder="Current Password"
+                placeholder="{{ __('Current Password') }}"
                 alpine-model="data.current_password"
                 type="password"
             />
             <small class="text-slate-500">
-                You need to enter your current password to update your password.
+                {{ __('You need to enter your current password to update your password.') }}
             </small>
         </div>
 
         <div class="flex flex-col gap-1">
             <x-ui.input
-                label="New Password"
+                label="{{ __('New Password') }}"
                 autocomplete="password"
                 id="new-password"
                 icon="fa-solid fa-lock-open"
-                placeholder="New Password"
+                placeholder="{{ __('New Password') }}"
                 alpine-model="data.password"
                 type="password"
             />
             <small class="text-slate-500">
-                Your password must be at least 8 characters long.
+                {{ __('Your password must be at least 8 characters long.') }}
             </small>
         </div>
 
         <div class="flex flex-col gap-1">
             <x-ui.input
-                label="Confirm Password"
+                label="{{ __('Confirm Password') }}"
                 autocomplete="password"
                 id="confirm-password"
                 icon="fa-solid fa-lock"
                 alpine-model="data.password_confirmation"
-                placeholder="Confirm Password"
+                placeholder="{{ __('Confirm Password') }}"
                 type="password"
             />
             <small class="text-slate-500">
-                Confirm your new password.
+                {{ __('Confirm your new password.') }}
             </small>
         </div>
 
@@ -70,7 +70,7 @@
                 class="dark:bg-green-600 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-500 dark:shadow-green-700/75 shadow-green-600/75 py-3 text-white"
             >
                 <i class="fa-solid fa-key mr-2"></i>
-                Update Settings
+                {{ __('Update Settings') }}
             </x-ui.buttons.loadable>
         </div>
 

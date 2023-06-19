@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
-@section('title', $activeArticle?->title ?? 'Articles')
+@section('title', $activeArticle?->title ?? __('Articles'))
 
 @section('content')
 <x-container>
     <div class="w-full h-auto relative flex justify-start flex-col lg:flex-row items-start gap-6">
         <div class="h-auto w-full lg:w-1/4">
             <x-title-box
-                title="Articles"
-                description="All recent articles"
+                title="{{ __('Articles') }}"
+                description="{{ __('All recent articles') }}"
                 icon="articles"
             />
             <div class="w-full max-h-72 lg:h-auto lg:max-h-none overflow-y-auto flex flex-col p-3 mt-4 bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
                 @foreach ($latestArticlesWithCategories as $category => $latestArticles)
                     <div class="border-b uppercase font-semibold pb-2 mb-4 [&:not(:first-of-type)]:mt-4 text-sm text-slate-800 dark:text-white border-dashed border-slate-400 dark:border-slate-800">
-                        {{ $category }}
+                        {{ __($category) }}
                     </div>
 
                     @forelse ($latestArticles as $lastArticle)
@@ -36,7 +36,7 @@
                             ])">»</span>
                         </a>
                     @empty
-                        <span class="text-sm text-slate-800 dark:text-white">No articles found.</span>
+                        <span class="text-sm text-slate-800 dark:text-white">{{ __('No articles found.') }}</span>
                     @endforelse
 
                 @endforeach
@@ -48,9 +48,9 @@
             @else
                 <div class="w-full lg:w-3/4 flex flex-col lg:flex-row items-center lg:mt-20 mt-4 justify-center gap-4">
                     <img width="250" src="{{ asset('assets/images/frank-not-found.gif') }}" alt="frank-not-found" />
-                    <div class="flex flex-col dark:text-slate-200 text-center lg:text-left">
-                        <p class="text-4xl font-bold text-red-500">No article selected.</p>
-                        <p class="text-md">Select an article or wait for the team to create a new one.</p>
+                    <div class="flex flex-col gap-3 dark:text-slate-200 text-center lg:text-left">
+                        <p class="text-4xl font-bold text-red-500">{{ __('No articles found.') }}</p>
+                        <p class="text-md">{{ __('Select an article or wait for the team to create a new one.') }}</p>
                     </div>
                 </div>
             @endif

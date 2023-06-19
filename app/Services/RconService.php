@@ -297,7 +297,7 @@ class RconService
                 ->danger()
                 ->persistent()
                 ->title($notificationTitle)
-                ->body('Please check your RCON connection and try again.')
+                ->body(__('Please check your RCON connection and try again.'))
                 ->send()
         );
     }

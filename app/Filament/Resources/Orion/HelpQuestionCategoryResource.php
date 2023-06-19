@@ -2,25 +2,23 @@
 
 namespace App\Filament\Resources\Orion;
 
-use Filament\Forms;
 use Filament\Tables;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
-use Livewire\TemporaryUploadedFile;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\FileUpload;
-use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Columns\ImageColumn;
+use App\Filament\Traits\TranslatableResource;
 use App\Models\HelpQuestion\HelpQuestionCategory;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\Orion\HelpQuestionCategoryResource\Pages;
 use App\Filament\Resources\Orion\HelpQuestionCategoryResource\RelationManagers;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\TextColumn;
 
 class HelpQuestionCategoryResource extends Resource
 {
+    use TranslatableResource;
+
     protected static ?string $model = HelpQuestionCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-s-menu';
@@ -29,7 +27,7 @@ class HelpQuestionCategoryResource extends Resource
 
     protected static ?string $slug = 'help/help-question-categories';
 
-    protected static ?string $label = 'Help Questions Category';
+    public static string $translateIdentifier = 'help-questions-categories';
 
     public static function form(Form $form): Form
     {

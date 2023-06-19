@@ -11,10 +11,13 @@ use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use App\Filament\Traits\TranslatableResource;
 use App\Filament\Resources\Orion\CmsSettingResource\Pages;
 
 class CmsSettingResource extends Resource
 {
+    use TranslatableResource;
+
     protected static ?string $model = CmsSetting::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chip';
@@ -23,7 +26,7 @@ class CmsSettingResource extends Resource
 
     protected static ?string $slug = 'website/cms-settings';
 
-    protected static ?string $label = 'Settings';
+    public static string $translateIdentifier = 'cms-settings';
 
     public static function form(Form $form): Form
     {

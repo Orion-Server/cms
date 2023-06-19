@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Orion;
 
-use Filament\Tables;
 use App\Models\Tag;
+use Filament\Tables;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
@@ -13,11 +13,14 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ColorColumn;
 use Filament\Forms\Components\ColorPicker;
+use App\Filament\Traits\TranslatableResource;
 use App\Filament\Resources\Orion\TagResource\Pages;
 use App\Filament\Resources\Orion\TagResource\RelationManagers;
 
 class TagResource extends Resource
 {
+    use TranslatableResource;
+
     protected static ?string $model = Tag::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
@@ -26,7 +29,7 @@ class TagResource extends Resource
 
     protected static ?string $slug = 'website/tags';
 
-    protected static ?string $label = 'Tag';
+    public static string $translateIdentifier = 'tags';
 
     public static function form(Form $form): Form
     {

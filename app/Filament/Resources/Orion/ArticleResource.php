@@ -14,12 +14,15 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\ToggleColumn;
+use App\Filament\Traits\TranslatableResource;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Resources\Orion\ArticleResource\Pages;
 use App\Filament\Resources\Orion\ArticleResource\RelationManagers;
 
 class ArticleResource extends Resource
 {
+    use TranslatableResource;
+
     protected static ?string $model = Article::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
@@ -27,6 +30,8 @@ class ArticleResource extends Resource
     protected static ?string $navigationGroup = 'Website';
 
     protected static ?string $slug = 'website/articles';
+
+    public static string $translateIdentifier = 'article';
 
     public static function form(Form $form): Form
     {

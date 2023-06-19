@@ -68,7 +68,7 @@ class WebController extends Controller
             session()->put('locale', $countryCode);
         }
 
-        return redirect()->route('index');
+        return redirect()->back(302, [], route('index'));
     }
 
     public function maintenance(): View

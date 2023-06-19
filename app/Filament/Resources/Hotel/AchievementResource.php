@@ -12,20 +12,25 @@ use App\Enums\AchievementCategory;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
-use App\Filament\Tables\Columns\HabboBadgeColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
+use App\Filament\Traits\TranslatableResource;
+use App\Filament\Tables\Columns\HabboBadgeColumn;
 use App\Filament\Resources\Hotel\AchievementResource\Pages;
 
 class AchievementResource extends Resource
 {
+    use TranslatableResource;
+
     protected static ?string $model = Achievement::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     protected static ?string $navigationGroup = 'Hotel';
+
+    public static string $translateIdentifier = 'achievements';
 
     public static function form(Form $form): Form
     {

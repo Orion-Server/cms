@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Maintenance - {{ config('app.name') }}</title>
+    <title>{{ __('Maintenance') }} - {{ config('app.name') }}</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}" />
@@ -15,7 +15,7 @@
 >
     <div class="w-screen bg-black/25 h-screen flex flex-col items-center gap-4 justify-center p-4">
         <span class="font-extrabold text-7xl drop-shadow-lg text-slate-200">
-            MAINTENANCE
+            {{ strtoupper(__('MAINTENANCE')) }}
         </span>
         <span class="font-lg text-lg text-slate-300">
             {{ getSetting('maintenance_reason') }}
@@ -36,13 +36,13 @@
                     class="bg-red-500 border-red-700 hover:bg-red-500 dark:shadow-red-500/75 shadow-red-400/75 flex-1 text-white"
                 >
                     <i class="fa-solid fa-right-to-bracket"></i>
-                    Staff Login
+                    {{ __('Staff Login') }}
                 </x-ui.buttons.default>
 
                 <x-ui.modal
                     alpine-model="showLoginModal"
-                    title="Staff Login"
-                    sub-title="Only for authorities!"
+                    title="{{ __('Staff Login') }}"
+                    sub-title="{{ __('Only for authorities!') }}"
                 >
                     <x-forms.login
                         :remove-register-button="true"

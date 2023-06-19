@@ -60,7 +60,7 @@
                         class="!py-0.5 !px-1 border border-slate-600 text-white dark:text-white"
                         @click="$dispatch('selectLanguageModal', true)"
                         data-tippy
-                        data-tippy-content="<small>Select Language</small>"
+                        data-tippy-content="<small>{{ __('Select Language') }}</small>"
                         data-tippy-placement="bottom"
                     >
                         <i class="icon border-none language {{ strtolower(app()->getLocale()) }}"></i>
@@ -70,7 +70,7 @@
                         class="bg-blue-500 border border-blue-600 dark:border-slate-600 hover:bg-blue-400 dark:bg-slate-500 dark:hover:bg-slate-400 text-white dark:text-white"
                         @click="toggleTheme"
                         data-tippy
-                        data-tippy-content="<small>Toggle theme</small>"
+                        data-tippy-content="<small>{{ __('Toggle theme') }}</small>"
                         data-tippy-placement="bottom"
                     >
                         <template x-if="theme == 'light'">

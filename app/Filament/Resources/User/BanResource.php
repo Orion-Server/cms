@@ -11,12 +11,15 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\BadgeColumn;
+use App\Filament\Traits\TranslatableResource;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Tables\Columns\UserAvatarColumn;
 use App\Filament\Resources\User\BanResource\Pages;
 
 class BanResource extends Resource
 {
+    use TranslatableResource;
+
     protected static ?string $model = Ban::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-shield-exclamation';
@@ -26,6 +29,8 @@ class BanResource extends Resource
     protected static ?string $slug = 'user-management/bans';
 
     protected static ?int $navigationSort = 1;
+
+    public static string $translateIdentifier = 'bans';
 
     public static function form(Form $form): Form
     {

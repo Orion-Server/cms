@@ -1,23 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Category: ' . $category->name)
+@section('title', sprintf('%s: %s', __('Category'), $category->name))
 
 @section('content')
     <x-container class="mt-10 flex flex-col gap-8">
-        <div class="flex">
-            <x-ui.buttons.redirectable
-                href="{{ route('support.questions.index') }}"
-                class="bg-red-500 border-red-700 hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75 py-2 text-white"
-            >
-                <i class="fa-solid fa-angle-left mr-1"></i>
-                Back to Questions
-            </x-ui.buttons.redirectable>
-        </div>
+        @include('pages.support.questions.partials.back-button')
 
         <div class="flex flex-col justify-center items-center gap-2">
             <div class="flex gap-2 items-center flex-wrap">
                 <span class="text-3xl font-bold text-slate-800 dark:text-slate-200">
-                    Category:
+                    {{ __('Category') }}:
                 </span>
                 <div>
                     <img class="p-2 dark:bg-slate-950 bg-slate-300 rounded-full" src="{{ $category->icon }}" alt="{{ $category->name }}" loading="lazy" />
@@ -32,23 +24,23 @@
                 x-data="automaticSearch('{{ route('support.questions.categories.show', $category->slug) }}')"
             >
                 <x-ui.input
-                    label="Ask a question for this category"
+                    label="{{ __('Search something in this category') }}"
                     autocomplete="search"
                     id="search"
                     icon="fa-regular fa-circle-question"
-                    placeholder="..."
+                    placeholder="{{ __('Search') }}"
                     alpine-model="search"
                     type="text"
                     ref="search"
                 />
                 <small class="text-slate-400 dark:text-slate-500 block text-right">
-                    This search is automatic, you just need to type something.
+                    {{ __('This search is automatic, you just need to type something.') }}
                 </small>
             </div>
         </div>
 
         <x-title-box
-            title="Category Questions"
+            title="{{ __('Category Questions') }}"
             icon="most-asked-questions"
         />
 
@@ -63,7 +55,7 @@
                 </a>
             @empty
             <span class="text-slate-400 dark:text-slate-500">
-                No questions were found for this category.
+                {{ __('No questions were found for this :n.', ['n' => strtolower(__('Category'))]) }}
             </span>
             @endforelse
         </div>

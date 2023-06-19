@@ -20,6 +20,7 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Traits\TranslatableResource;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Tables\Columns\UserAvatarColumn;
 use App\Filament\Resources\User\UserResource\Pages;
@@ -27,6 +28,8 @@ use App\Filament\Resources\User\UserResource\RelationManagers;
 
 class UserResource extends Resource
 {
+    use TranslatableResource;
+
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
@@ -34,6 +37,8 @@ class UserResource extends Resource
     protected static ?string $navigationGroup = 'User Management';
 
     protected static ?string $slug = 'user-management/users';
+
+    public static string $translateIdentifier = 'users';
 
     public static function form(Form $form): Form
     {

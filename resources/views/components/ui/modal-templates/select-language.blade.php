@@ -18,9 +18,8 @@
 
     <div class="flex justify-end">
         <x-ui.buttons.redirectable
-            href="{{ route('set-language', app()->getLocale()) }}"
+            @click="storeActionLocally()"
             class="dark:bg-red-500 bg-red-500 border-red-700 hover:bg-red-400 dark:hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75 py-2 text-white"
-            data-turbolinks="false"
         >
             <i class="fas fa-times mr-2"></i>
             {{ __('Dont show this again') }}

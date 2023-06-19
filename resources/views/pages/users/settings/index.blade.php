@@ -17,7 +17,7 @@
             </a>
         @empty
             <div class="text-slate-800 dark:text-white text-sm font-semibold p-3">
-                No navigation found.
+                {{ __('No navigation found.') }}
             </div>
         @endforelse
         </div>

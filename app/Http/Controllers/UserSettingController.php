@@ -54,7 +54,7 @@ class UserSettingController extends Controller
             'referral_code' => $data['referral_code']
         ]);
 
-        return ['type' => 'success', 'message' => 'Your account settings has been updated!'];
+        return ['type' => 'success', 'message' => __('Your account settings has been updated!')];
     }
 
     private function treatUpdatePasswordSettings(Request $request, User $user): array
@@ -70,7 +70,7 @@ class UserSettingController extends Controller
 
         \Auth::logout();
 
-        return ['type' => 'success', 'message' => 'Your password has been updated! Please, login again.'];
+        return ['type' => 'success', 'message' => __('Your password has been updated! Please, login again.')];
     }
 
     private function treatUpdateIngameSettings(Request $request, User $user): array
@@ -99,11 +99,11 @@ class UserSettingController extends Controller
                 'block_camera_follow' => (bool) $data['blockCameraFollow'] ? '1' : '0'
             ]);
 
-            return ['type' => 'success', 'message' => 'Your in-game settings has been updated!'];
+            return ['type' => 'success', 'message' => __('Your in-game settings has been updated!')];
         }
 
         if (!$hasRconEnabled) {
-            return ['type' => 'error', 'message' => "You can't change your in-game settings while you are online!"];
+            return ['type' => 'error', 'message' => __("You can't change your in-game settings while you are online!")];
         }
 
         $hasRconError = false;
@@ -124,8 +124,8 @@ class UserSettingController extends Controller
         });
 
         return $hasRconError
-            ? ['type' => 'error', 'message' => "An error occurred while trying to update your in-game settings!"]
-            : ['type' => 'success', 'message' => 'Your in-game settings has been updated!'];
+            ? ['type' => 'error', 'message' => __('An error occurred while trying to update your in-game settings!')]
+            : ['type' => 'success', 'message' => __('Your in-game settings has been updated!')];
     }
 
     private function getSettingsNavigationData(): array
@@ -133,17 +133,17 @@ class UserSettingController extends Controller
         return [
             [
                 'type' => 'account',
-                'title' => 'Account Preferences',
+                'title' => __('Account Preferences'),
                 'icon' => 'fa-regular fa-address-card'
             ],
             [
                 'type' => 'password',
-                'title' => 'Account Security',
+                'title' => __('Account Security'),
                 'icon' => 'fa-solid fa-key'
             ],
             [
                 'type' => 'ingame',
-                'title' => 'In-game Settings',
+                'title' => __('In-game Settings'),
                 'icon' => 'fa-solid fa-gamepad'
             ]
         ];

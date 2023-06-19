@@ -1,6 +1,6 @@
 <x-title-box
-    title="Your In-game Preferences"
-    description="All settings below are automatically applied in-game if you are online."
+    title="{{ __('Your In-game Preferences') }}"
+    description="{{ __('All settings below are automatically applied in-game if you are online.') }}"
     icon="security-settings"
 />
 
@@ -24,7 +24,7 @@
         @unless (config('hotel.rcon.enabled'))
         <span class="w-full text-center py-3 bg-sky-400 text-white rounded-lg border border-b-2 border-sky-500 text-sm font-bold">
             <i class="fa-solid fa-info-circle mr-1"></i>
-            You need to be offline to apply these changes.
+            {{ __('You need to be offline to apply these changes.') }}
         </span>
 
         <div class="flex-1 border-b border-dashed border-gray-300 dark:border-slate-800"></div>
@@ -32,11 +32,11 @@
 
         <div class="flex flex-col gap-1">
             <x-ui.input
-                label="Motto"
+                label="{{ __('Motto') }}"
                 autocomplete="motto"
                 id="current-motto"
                 icon="fa-solid fa-pen-to-square"
-                placeholder="Your Motto"
+                placeholder="..."
                 alpine-model="data.motto"
                 type="text"
             />
@@ -46,7 +46,7 @@
 
         <div class="flex flex-col gap-1">
             <x-ui.toggle
-                label="Receive friend requests"
+                label="{{ __('Receive friend requests') }}"
                 alpine-model="data.receiveFriendRequests"
                 :small="false"
             />
@@ -55,7 +55,7 @@
         <div class="flex flex-col gap-1">
             <x-ui.toggle
                 alpine-model="data.allowFriendsFollow"
-                label="Allow other users to follow you"
+                label="{{ __('Allow other users to follow you') }}"
                 :small="false"
             />
         </div>
@@ -63,7 +63,7 @@
         <div class="flex flex-col gap-1">
             <x-ui.toggle
                 alpine-model="data.allowRoomInvites"
-                label="Receive room invites"
+                label="{{ __('Receive room invites') }}"
                 :small="false"
             />
         </div>
@@ -71,7 +71,7 @@
         <div class="flex flex-col gap-1">
             <x-ui.toggle
                 alpine-model="data.oldChat"
-                label="Use old chat version"
+                label="{{ __('Use old chat version') }}"
                 :small="false"
             />
         </div>
@@ -79,7 +79,7 @@
         <div class="flex flex-col gap-1">
             <x-ui.toggle
                 alpine-model="data.blockCameraFollow"
-                label="Block the camera from following your avatar"
+                label="{{ __('Block the camera from following your avatar') }}"
                 :small="false"
             />
         </div>
@@ -92,7 +92,7 @@
                 class="dark:bg-green-600 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-500 dark:shadow-green-700/75 shadow-green-600/75 py-3 text-white"
             >
                 <i class="fa-solid fa-gamepad mr-2"></i>
-                Update Settings
+                {{ __('Update Settings') }}
             </x-ui.buttons.loadable>
         </div>
     </form>

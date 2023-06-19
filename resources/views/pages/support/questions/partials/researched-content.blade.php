@@ -1,5 +1,5 @@
 <x-title-box
-    title="Research Results ({{ $questions->total() }} results found)"
+    title="{{ __('Research Results (:t results found)', ['t' => $questions->total()]) }}"
     icon="added-recent-questions"
 />
 
@@ -14,7 +14,7 @@
         </a>
     @empty
     <span class="text-slate-400 dark:text-slate-500">
-        No questions were found for this search.
+        {{ __('No questions were found for this :n.', ['n' => 'search']) }}
     </span>
     @endforelse
 </div>

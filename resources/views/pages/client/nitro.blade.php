@@ -82,7 +82,7 @@
             style="display: none"
         >
             <span class="text-4xl text-center text-white font-bold flex gap-2 animate__animated animate__pulse animate__infinite">
-                You have been disconnected.
+                {{ __('You have been disconnected.') }}
             </span>
 
             <div class="flex gap-4">
@@ -90,14 +90,14 @@
                     class="dark:bg-emerald-500 bg-emerald-500 border-emerald-700 hover:bg-emerald-400 dark:hover:bg-emerald-400 dark:shadow-emerald-700/75 shadow-emerald-600/75 py-2 text-white"
                     href="{{ route('hotel.nitro') }}"
                 >
-                    Reload
+                    {{ __('Reload') }}
                 </x-ui.buttons.redirectable>
 
                 <x-ui.buttons.redirectable
                     class="dark:bg-orange-500 bg-orange-500 border-orange-700 hover:bg-orange-400 dark:hover:bg-orange-400 dark:shadow-orange-700/75 shadow-orange-600/75 py-2 text-white"
                     href="{{ route('index') }}"
                 >
-                    Back to website
+                    {{ __('Back to website') }}
                 </x-ui.buttons.redirectable>
             </div>
         </div>

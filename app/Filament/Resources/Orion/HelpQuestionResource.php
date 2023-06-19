@@ -13,12 +13,14 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Actions\Action;
+use App\Filament\Traits\TranslatableResource;
 use App\Filament\Resources\Orion\HelpQuestionResource\Pages;
 use App\Filament\Resources\Orion\HelpQuestionResource\RelationManagers;
 
 class HelpQuestionResource extends Resource
 {
+    use TranslatableResource;
+
     protected static ?string $model = HelpQuestion::class;
 
     protected static ?string $navigationIcon = 'heroicon-s-question-mark-circle';
@@ -27,7 +29,7 @@ class HelpQuestionResource extends Resource
 
     protected static ?string $slug = 'help/help-questions';
 
-    protected static ?string $label = 'Help Questions';
+    public static string $translateIdentifier = 'help-questions';
 
     public static function form(Form $form): Form
     {

@@ -14,6 +14,7 @@ use App\Http\Controllers\{
     StaffController,
     UserSettingController
 };
+use App\Http\Controllers\Auth\AuthSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,8 @@ Route::get('/set-language/{language}', [WebController::class, 'setLanguage'])->n
 Route::get('/', [WebController::class, 'index'])->name('index');
 Route::get('/login', [WebController::class, 'index'])->name('login');
 Route::get('/register', [WebController::class, 'index'])->name('register');
+
+Route::post('/logout', [AuthSessionController::class, 'destroy'])->name('logout');
 
 Route::get('jail', [JailController::class, 'show'])->name('jail');
 Route::get('maintenance', [WebController::class, 'maintenance'])->name('maintenance');

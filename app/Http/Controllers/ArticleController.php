@@ -8,7 +8,7 @@ use Illuminate\View\View;
 class ArticleController extends Controller
 {
     private const ARTICLES_LIST_LIMIT = 35;
-    private const ARTICLES_LIST_CATEGORIES = [
+    private array $articleCategoriesList = [
         'Today' => [],
         'Yesterday' => [],
         'Current week' => [],
@@ -51,12 +51,9 @@ class ArticleController extends Controller
     public function getLatestArticlesByCategory(): array
     {
         $latestArticles = Article::forIndex(self::ARTICLES_LIST_LIMIT)->get();
-        $articlesByCategory = self::ARTICLES_LIST_CATEGORIES;
 
-        if ($latestArticles->isEmpty()) return $articlesByCategory;
-
-        $latestArticles->filter(
-            function ($article) use (&$articlesByCategory) {
+        if ($latestArticles->isNotEmpty()) {
+            $latestArticles->each(function ($article) {
                 $referralCategory = match (true) {
                     $article->created_at->isToday() => 'Today',
                     $article->created_at->isYesterday() => 'Yesterday',
@@ -66,12 +63,12 @@ class ArticleController extends Controller
                     default => 'Others'
                 };
 
-                if (!$referralCategory) return false;
+                if (!$referralCategory) return;
 
-                $articlesByCategory[$referralCategory][] = $article;
-            }
-        );
+                array_push($this->articleCategoriesList[$referralCategory], $article);
+            });
+        }
 
-        return $articlesByCategory;
+        return $this->articleCategoriesList;
     }
 }

@@ -46,34 +46,36 @@ class AppServiceProvider extends ServiceProvider
             Filament::registerStyles([asset('assets/css/ckeditor.css')]);
             Filament::registerViteTheme('resources/scss/filament.scss');
 
+            $getNavigationLabel = fn (string $label) => __("filament::resources.navigations.{$label}");
+
             Filament::registerNavigationGroups([
                 NavigationGroup::make()
-                    ->label('Dashboard')
+                    ->label($getNavigationLabel('Dashboard'))
                     ->collapsible(false)
                     ->icon('heroicon-s-server'),
 
                 NavigationGroup::make()
-                    ->label('Website')
+                    ->label($getNavigationLabel('Website'))
                     ->collapsed()
                     ->icon('heroicon-s-desktop-computer'),
 
                 NavigationGroup::make()
-                    ->label('Help Center')
+                    ->label($getNavigationLabel('Help Center'))
                     ->collapsed()
                     ->icon('heroicon-o-support'),
 
                 NavigationGroup::make()
-                    ->label('Hotel')
+                    ->label($getNavigationLabel('Hotel'))
                     ->collapsed()
                     ->icon('heroicon-s-office-building'),
 
                 NavigationGroup::make()
-                    ->label('Administration')
+                    ->label($getNavigationLabel('Administration'))
                     ->collapsed()
                     ->icon('heroicon-s-adjustments'),
 
                 NavigationGroup::make()
-                    ->label('User Management')
+                    ->label($getNavigationLabel('User Management'))
                     ->collapsed()
                     ->icon('heroicon-s-user'),
             ]);

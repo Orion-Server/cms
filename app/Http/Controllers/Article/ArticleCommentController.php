@@ -16,13 +16,13 @@ class ArticleCommentController extends Controller
         ]);
 
         if (!$article = Article::fromIdAndSlug($id, $slug)->first()) {
-            return $this->jsonResponse(['message' => 'Article not found'], 404);
+            return $this->jsonResponse(['message' => __('Article not found')], 404);
         }
 
         $user = \Auth::user();
 
         if($user->recentlyCommentedOnArticle()) {
-            return $this->jsonResponse(['message' => 'You are commenting too fast'], 422);
+            return $this->jsonResponse(['message' => __('You are commenting too fast')], 422);
         }
 
         $comment = $article->comments()->create([
@@ -32,7 +32,7 @@ class ArticleCommentController extends Controller
 
         return $this->jsonResponse([
             'comment' => $comment,
-            'message' => 'Comment created successfully',
+            'message' => __('Comment created successfully'),
             'href' => route('articles.show', ['id' => $article->id, 'slug' => $article->slug])
         ]);
     }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>You have been banned - {{ config('app.name') }}</title>
+    <title>{{ __('You have been banned') }} - {{ config('app.name') }}</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}" />
@@ -14,7 +14,7 @@
     <img src="{{ asset('assets/images/frank-jail.gif') }}" alt="frank-jail" />
     <div class="relative flex flex-col gap-6 max-w-lg">
         <span class="text-center text-white font-bold text-4xl animate__animated animate__pulse animate__infinite">
-            <i class="fa-solid fa-skull mr-3"></i>You have been banned
+            <i class="fa-solid fa-skull mr-3"></i>{{ __('You have been banned') }}
         </span>
         <div class="bg-slate-800/50 border-b-4 border-slate-700/75 block rounded-lg p-4 text-white underline-offset-4">
             <div>
@@ -44,7 +44,7 @@
                     <x-ui.buttons.default
                         class="bg-red-700 border-red-900 hover:bg-red-500 shadow-red-600/75 py-2 text-white">
                         <i class="fa-solid fa-right-from-bracket mr-1"></i>
-                        Logout
+                        {{ __('Logout') }}
                     </x-ui.buttons.default>
                 </form>
             @endif
@@ -53,7 +53,7 @@
                 class="bg-slate-700 border-slate-850 hover:bg-slate-500 shadow-slate-600/75 py-2 text-white"
             >
                 <i class="fa-brands fa-discord mr-1"></i>
-                Discord Contact
+                {{ __('Discord Contact') }}
             </x-ui.buttons.redirectable>
         </div>
     </div>

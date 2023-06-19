@@ -17,7 +17,7 @@
             x-ref="textarea"
             rows="6"
             class="w-full focus:outline-none px-0 text-sm text-gray-900 bg-transparent border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-            placeholder="Write a comment..."
+            placeholder="{{ __('Write a comment...') }}"
             required
         ></textarea>
 
@@ -28,19 +28,19 @@
     <div class="flex flex-col gap-2 lg:flex-row dark:bg-slate-850 bg-gray-100 rounded-b-lg items-center justify-between px-3 py-2 border-t dark:border-gray-600">
         <div x-show="!showPreview" class="flex pl-0 space-x-1 sm:pl-2">
             <x-ui.buttons.editor
-                icon="fa-solid fa-bold" type="Bold" before="[b]" after="[/b]"
+                icon="fa-solid fa-bold" type="{{ __('Bold') }}" before="[b]" after="[/b]"
             />
             <x-ui.buttons.editor
-                icon="fa-solid fa-italic" type="Italic" before="[i]" after="[/i]"
+                icon="fa-solid fa-italic" type="{{ __('Italic') }}" before="[i]" after="[/i]"
             />
             <x-ui.buttons.editor
-                icon="fa-solid fa-strikethrough" type="StrikeThrough" before="[s]" after="[/s]"
+                icon="fa-solid fa-strikethrough" type="{{ __('StrikeThrough') }}" before="[s]" after="[/s]"
             />
             <x-ui.buttons.editor
-                icon="fa-solid fa-underline" type="Underline" before="[u]" after="[/u]"
+                icon="fa-solid fa-underline" type="{{ __('Underline') }}" before="[u]" after="[/u]"
             />
             <x-ui.buttons.editor
-                icon="fa-solid fa-highlighter" type="HighLighter" before="[h]" after="[/h]"
+                icon="fa-solid fa-highlighter" type="{{ __('HighLighter') }}" before="[h]" after="[/h]"
             />
         </div>
 
@@ -54,14 +54,14 @@
                 <template x-if="!showPreview">
                     <span>
                         <i class="fa-solid fa-eye mr-1"></i>
-                        Preview
+                        {{ __('Preview') }}
                     </span>
                 </template>
 
                 <template x-if="showPreview">
                     <span>
                         <i class="fa-solid fa-arrow-rotate-left mr-1"></i>
-                        Back to Form
+                        {{ __('Back to Form') }}
                     </span>
                 </template>
             </x-ui.buttons.loadable>
@@ -73,7 +73,7 @@
                     class="dark:bg-green-500 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-400 dark:shadow-green-700/75 shadow-green-600/75 py-2 text-white"
                 >
                     <i class="fa-solid fa-message mr-1"></i>
-                    Post Comment
+                    {{ __('Post Comment') }}
                 </x-ui.buttons.loadable>
             </template>
         </div>
