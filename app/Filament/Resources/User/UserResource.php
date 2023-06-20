@@ -46,22 +46,25 @@ class UserResource extends Resource
             ->schema([
                 Tabs::make('Main')
                     ->tabs([
-                        Tab::make('General Information')
+                        Tab::make(__('filament::resources.tabs.General Information'))
                             ->schema([
                                 TextInput::make('username')
+                                    ->label(__('filament::resources.inputs.username'))
                                     ->required()
                                     ->disabled()
                                     ->unique(ignoreRecord: true)
                                     ->maxLength(25),
 
                                 TextInput::make('motto')
+                                    ->label(__('filament::resources.inputs.motto'))
                                     ->required()
                                     ->maxLength(127),
 
                                 Select::make('gender')
+                                    ->label(__('filament::resources.inputs.gender'))
                                     ->options([
-                                        'M' => 'Male',
-                                        'F' => 'Female'
+                                        'M' => __('filament::resources.common.Male'),
+                                        'F' => __('filament::resources.common.Female')
                                     ])
                                     ->required(),
 
@@ -69,100 +72,105 @@ class UserResource extends Resource
                                     ->displayFormat('Y-m-d H:i:s')
                                     ->dehydrateStateUsing(fn (Model $record) => $record->account_created)
                                     ->disabled()
-                                    ->label('Account created at'),
+                                    ->label(__('filament::resources.inputs.created_at')),
 
                                 DateTimePicker::make('last_login')
                                     ->displayFormat('Y-m-d H:i:s')
                                     ->dehydrateStateUsing(fn (Model $record) => $record->last_login)
                                     ->disabled()
-                                    ->label('Last login at'),
+                                    ->label(__('filament::resources.inputs.last_login')),
 
                                 DateTimePicker::make('last_online')
                                     ->displayFormat('Y-m-d H:i:s')
                                     ->dehydrateStateUsing(fn (Model $record) => $record->last_online)
                                     ->disabled()
-                                    ->label('Last online at'),
+                                    ->label(__('filament::resources.inputs.last_online')),
 
                                 TextInput::make('ip_register')
-                                    ->label('Registration IP')
+                                    ->label(__('filament::resources.inputs.ip_register'))
                                     ->disabled(),
 
                                 TextInput::make('ip_current')
-                                    ->label('Current IP')
+                                    ->label(__('filament::resources.inputs.ip_current'))
                                     ->disabled(),
 
                                 TextInput::make('referral_code')
+                                    ->label(__('filament::resources.inputs.referral_code'))
                                     ->disabled(),
 
                                 TextInput::make('referrer_code')
+                                    ->label(__('filament::resources.inputs.referrer_code'))
                                     ->nullable()
                                     ->maxLength(15),
                             ])->columns(['sm' => 2]),
 
-                        Tab::make('Currencies')
+                        Tab::make(__('filament::resources.tabs.Currencies'))
                             ->schema([
                                 TextInput::make('credits')
+                                    ->label(__('filament::resources.common.Credits'))
                                     ->numeric()
                                     ->minValue(0)
                                     ->columnSpanFull(),
 
                                 TextInput::make('currency_0')
-                                    ->label('Duckets')
+                                    ->label(__('filament::resources.common.Duckets'))
                                     ->numeric()
                                     ->minValue(0)
                                     ->columnSpanFull(),
 
                                 TextInput::make('currency_5')
-                                    ->label('Diamonds')
+                                    ->label(__('filament::resources.common.Diamonds'))
                                     ->numeric()
                                     ->minValue(0)
                                     ->columnSpanFull(),
 
                                 TextInput::make('currency_101')
-                                    ->label('Points')
+                                    ->label(__('filament::resources.common.Points'))
                                     ->numeric()
                                     ->minValue(0)
                                     ->columnSpanFull(),
                             ])
                             ->columns(['sm' => 2]),
 
-                        Tab::make('Security')
+                        Tab::make(__('filament::resources.tabs.Security'))
                             ->schema([
-                                Section::make('Username')
-                                    ->description('Allow this user to change their username (inside the client)')
+                                Section::make(__('filament::resources.tabs.Change Username'))
+                                    ->description(__('filament::resources.helpers.change_username_description'))
                                     ->schema([
                                         Toggle::make('allow_change_username')
-                                            ->label('Allow change username')
+                                            ->label(__('filament::resources.inputs.allow_change_username'))
                                     ])->collapsible()->collapsed(),
 
-                                Section::make('Email')
+                                Section::make(__('filament::resources.tabs.Change Email'))
                                     ->schema([
                                         TextInput::make('mail')
-                                            ->label('Email')
+                                            ->label(__('filament::resources.inputs.email'))
                                             ->email()
                                             ->required()
                                     ])->collapsible()->collapsed(),
 
-                                Section::make('Password')
-                                    ->description('Leave empty to keep the current password')
+                                Section::make(__('filament::resources.tabs.Change Password'))
+                                    ->description(__('filament::resources.helpers.change_password_description'))
                                     ->schema([
                                         TextInput::make('password')
-                                            ->label('New password')
+                                            ->label(__('filament::resources.inputs.new_password'))
                                             ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                                             ->dehydrated(fn ($state) => filled($state))
                                             ->password()
                                             ->confirmed(),
 
                                         TextInput::make('password_confirmation')
+                                            ->label(__('filament::resources.inputs.new_password_confirmation'))
                                             ->dehydrated(false)
                                             ->password(),
                                     ])->collapsible()
                                     ->columns(['sm' => 2])
                                     ->collapsed(),
 
-                                Section::make('Rank & Permissions')
+                                Section::make(__('filament::resources.tabs.Change Rank'))
                                     ->schema([
                                         Select::make('rank')
+                                            ->label(__('filament::resources.inputs.rank'))
                                             ->options(Permission::all()->pluck('rank_name', 'id'))
                                     ])->collapsible()
                                     ->collapsed(),
@@ -181,30 +189,32 @@ class UserResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')
-                    ->label('ID')
+                    ->label(__('filament::resources.columns.id'))
                     ->searchable(),
 
                 UserAvatarColumn::make('avatar')
                     ->toggleable()
-                    ->label('Avatar')
+                    ->label(__('filament::resources.columns.avatar'))
                     ->options('&size=m&head_direction=3&gesture=sml&headonly=1'),
 
                 TextColumn::make('username')
+                    ->label(__('filament::resources.columns.username'))
                     ->searchable(),
 
                 TextColumn::make('mail')
-                    ->label('Email')
+                    ->label(__('filament::resources.columns.email'))
                     ->toggleable()
                     ->searchable()
                     ->limit(50),
 
                 TextColumn::make('motto')
+                    ->label(__('filament::resources.columns.motto'))
                     ->toggleable()
                     ->limit(30)
                     ->searchable(),
 
                 IconColumn::make('online')
-                    ->label('Online')
+                    ->label(__('filament::resources.columns.online'))
                     ->options([
                         'heroicon-o-x-circle' => fn ($state, $record): bool => ! $record->online,
                         'heroicon-o-check-circle' => fn ($state, $record): bool => !! $record->online,
@@ -217,7 +227,7 @@ class UserResource extends Resource
                 TextColumn::make('account_created')
                     ->toggleable()
                     ->date('Y-m-d H:i')
-                    ->label('Account created')
+                    ->label(__('filament::resources.columns.created_at'))
             ])
             ->filters([
                 //

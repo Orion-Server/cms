@@ -14,21 +14,25 @@ use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Traits\LatestRelationResourcesTrait;
+use App\Filament\Traits\TranslatableResource;
 use Filament\Resources\RelationManagers\RelationManager;
 
 class BadgesRelationManager extends RelationManager
 {
-    use LatestRelationResourcesTrait;
+    use LatestRelationResourcesTrait, TranslatableResource;
 
     protected static string $relationship = 'badges';
 
     protected static ?string $recordTitleAttribute = 'badge_code';
+
+    protected static ?string $translateIdentifier = 'badges';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('badge_code')
+                    ->label(__('filament::resources.inputs.badge_code'))
                     ->required()
                     ->maxLength(255)
                     ->columnSpanFull(),
@@ -39,16 +43,18 @@ class BadgesRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                TextColumn::make('id'),
+                TextColumn::make('id')
+                    ->label(__('filament::resources.columns.id')),
 
-                HabboBadgeColumn::make('badge'),
+                HabboBadgeColumn::make('badge')
+                    ->label(__('filament::resources.columns.image')),
 
                 TextColumn::make('badge_code')
-                    ->label('Code')
+                    ->label(__('filament::resources.columns.badge_code'))
                     ->searchable(),
 
                 IconColumn::make('slot_id')
-                    ->label('Equipped')
+                    ->label(__('filament::resources.columns.equipped'))
                     ->options([
                         'heroicon-o-check-circle' => fn (string $state) => $state > 0,
                         'heroicon-o-x-circle' => fn (string $state) => $state <= 0,

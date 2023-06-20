@@ -14,7 +14,6 @@ return [
         'dashboard' => [
             'navigation_label' => 'Início'
         ],
-
         'achievements' => [
             'navigation_label' => 'Gerenciar Conquistas',
             'label' => 'Conquista',
@@ -59,7 +58,19 @@ return [
             'navigation_label' => 'Gerenciar Usuários',
             'label' => 'Usuário',
             'plural' => 'Usuários',
-        ]
+        ],
+
+        // Relations
+        'settings' => [
+            'navigation_label' => 'Configurações',
+            'label' => 'Configuração',
+            'plural' => 'Configurações',
+        ],
+        'badges' => [
+            'navigation_label' => 'Emblemas',
+            'label' => 'Emblema',
+            'plural' => 'Emblemas',
+        ],
     ],
 
     'common' => [
@@ -72,18 +83,35 @@ return [
         'IP' => 'IP',
         'Machine' => 'Máquina',
         'Super' => 'Super',
+        'Male' => 'Masculino',
+        'Female' => 'Feminino',
+        'Credits' => 'Créditos',
+        'Duckets' => 'Duckets',
+        'Diamonds' => 'Diamantes',
+        'Points' => 'Pontos',
     ],
 
     'helpers' => [
-        'achievement_points' => 'Pontos de Conquista a serem recompensados',
+        'achievement_points' => 'Pontos de conquista a serem recompensados',
         'achievement_progress_needed' => 'Progresso necessário para completar a conquista',
-        'help_questions_category_icon' => 'Você pode usar qualquer link de imagem aqui. Recomendamos usar uma imagem com tamanho 20x20.'
+        'help_questions_category_icon' => 'Você pode usar qualquer link de imagem aqui. Recomendamos usar uma imagem com tamanho 20x20.',
+        'change_username_description' => 'Permitir que este usuário altere seu nome de usuário (dentro do cliente)',
+        'change_password_description' => 'Deixe vazio para manter a senha atual',
     ],
 
     'tabs' => [
         'Home' => 'Início',
         'Main' => 'Principal',
         'Configurations' => 'Configurações',
+        'General Information' => 'Informações gerais',
+        'Currencies' => 'Moedas',
+        'Security' => 'Segurança',
+        'Change Username' => 'Alterar nome do usuário',
+        'Change Email' => 'Alterar e-mail',
+        'Change Password' => 'Alterar senha',
+        'Change Rank' => 'Alterar rank',
+        'Account Data' => 'Dados da conta',
+        'Extra Settings' => 'Configurações extras',
     ],
 
     'inputs' => [
@@ -92,14 +120,15 @@ return [
         'comment' => 'Comentário',
         'name' => 'Nome',
         'level' => 'Nível',
+        'email' => 'E-mail',
         'category' => 'Categoria',
         'visible' => 'Visível',
-        'reward_type' => 'Tipo de Recompensa',
-        'reward_amount' => 'Quantidade da Recompensa',
+        'reward_type' => 'Tipo de recompensa',
+        'reward_amount' => 'Quantidade da recompensa',
         'points' => 'Pontos',
-        'progress_needed' => 'Progresso Necessário',
+        'progress_needed' => 'Progresso necessário',
         'fixed' => 'Fixo',
-        'allow_comments' => 'Permitir Comentários',
+        'allow_comments' => 'Permitir comentários',
         'title' => 'Título',
         'description' => 'Descrição',
         'image' => 'Imagem',
@@ -108,10 +137,37 @@ return [
         'is_promotion' => 'Esse artigo é uma promoção?',
         'promotion_ends_at' => 'Promoção termina em',
         'categories' => 'Categorias',
-        'background_color' => 'Cor de Fundo',
+        'background_color' => 'Cor de fundo',
         'expires_at' => 'Expira em',
         'reason' => 'Motivo',
         'type' => 'Tipo',
+        'username' => 'Usuário',
+        'motto' => 'Missão',
+        'gender' => 'Gênero',
+        'created_at' => 'Criado em',
+        'last_login' => 'Último login em',
+        'last_online' => 'Último vez online em',
+        'ip_register' => 'IP de registro',
+        'ip_current' => 'IP atual',
+        'referral_code' => 'Código referenciado',
+        'referrer_code' => 'Código de referência',
+        'allow_change_username' => 'Permitir alteração do nome de usuário',
+        'new_password' => 'Nova senha',
+        'new_password_confirmation' => 'Confirmação da nova senha',
+        'rank' => 'Rank',
+        'badge_code' => 'Código do emblema',
+        'achievement_score' => 'Pontos de conquista',
+        'respects_received' => 'Respeitos recebidos',
+        'can_trade' => 'Pode negociar?',
+        'block_following' => 'Bloquear seguir',
+        'block_friendrequests' => 'Bloquear solicitações de amizade',
+        'block_roominvites' => 'Bloquear convites de quarto',
+        'max_rooms' => 'Máximo de quartos',
+        'max_friends' => 'Máximo de amigos',
+        'old_chat' => 'Chat antigo',
+        'block_camera_follow' => 'Bloquear a câmera de seguir o avatar',
+        'ignore_bots' => 'Ignorar bots',
+        'ignore_pets' => 'Ignorar mascotes',
     ],
 
     'columns' => [
@@ -139,5 +195,16 @@ return [
         'type' => 'Tipo',
         'banned_at' => 'Banido em',
         'expires_at' => 'Expira em',
+        'email' => 'E-mail',
+        'motto' => 'Missão',
+        'created_at' => 'Criado em',
+        'online' => 'Online?',
+        'badge_code' => 'Código do Emblema',
+        'equipped' => 'Equipado?',
+        'achievement_score' => 'Pontos de conquista',
+        'respects_received' => 'Respeitos recebidos',
+        'online_time' => 'Tempo online',
+        'can_trade' => 'Pode negociar?',
+        'can_change_name' => 'Pode alterar o nome?',
     ]
 ];
