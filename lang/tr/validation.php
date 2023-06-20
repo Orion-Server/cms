@@ -85,8 +85,6 @@ return [
         'file' => ':attribute, :value kilobayttan küçük veya eşit olmalıdır.',
         'numeric' => ':attribute, :value\'den küçük veya eşit olmalıdır.',
         'string' => ':attribute, :value karakterden küçük veya eşit olmalıdır.',
-
-
     ],
     'mac_address' => ':attribute geçerli bir MAC adresi olmalıdır.',
     'max' => [

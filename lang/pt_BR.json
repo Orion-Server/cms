@@ -183,5 +183,9 @@
     "Category": "Categoria",
     "Search something in this category": "Pesquise algo nesta categoria",
     "Category Questions": "Perguntas da Categoria",
-    "No questions were found for this :n.": "Nenhuma pergunta foi encontrada para esta :n."
+    "No questions were found for this :n.": "Nenhuma pergunta foi encontrada para esta :n.",
+    "Showing": "Exibindo",
+    "to": "a",
+    "of": "de",
+    "results": "resultados"
 }

@@ -2,19 +2,23 @@
 
 namespace App\Filament\Resources\Orion\TagResource\RelationManagers;
 
-use Filament\Forms;
 use Filament\Tables;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
+use App\Filament\Traits\TranslatableResource;
 use App\Filament\Resources\Orion\ArticleResource;
+use App\Filament\Traits\LatestRelationResourcesTrait;
 use Filament\Resources\RelationManagers\RelationManager;
-use Illuminate\Database\Eloquent\Model;
 
 class ArticlesRelationManager extends RelationManager
 {
+    use LatestRelationResourcesTrait, TranslatableResource;
+
     protected static string $relationship = 'articles';
 
     protected static ?string $recordTitleAttribute = 'title';
+
+    public static string $translateIdentifier = 'article';
 
     public static function form(Form $form): Form
     {

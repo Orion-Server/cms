@@ -183,5 +183,9 @@
     "Category": "Kategori",
     "Search something in this category": "Bu kategoride bir şey arayın",
     "Category Questions": "Kategori Soruları",
-    "No questions were found for this :n.": "Bu :n için soru bulunamadı."
+    "No questions were found for this :n.": "Bu :n için soru bulunamadı.",
+    "Showing": "Gösteriliyor",
+    "to": "kadar",
+    "of": "toplam",
+    "results": "sonuç"
 }

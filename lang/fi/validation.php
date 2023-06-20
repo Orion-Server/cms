@@ -42,9 +42,7 @@ return [
     'declined_if' => ':Attribute-kentän on oltava hylätty, kun :other on :value.',
     'different' => ':Attribute-kentän on oltava erilainen kuin :other.',
     'digits' => ':Attribute-kentän on oltava :digits numeroa.',
-    'digits_between' => ':Attribute-kentän on oltava :min - :max numer
-
-on pituinen.',
+    'digits_between' => ':Attribute-kentän on oltava :min - :max numeron pituinen.',
     'dimensions' => ':Attribute-kentällä on virheelliset kuvan mitat.',
     'distinct' => ':Attribute-kentällä on kaksoiskappaleita.',
     'doesnt_end_with' => ':Attribute-kenttä ei saa päättyä seuraaviin: :values.',
@@ -80,9 +78,7 @@ on pituinen.',
         'array' => ':Attribute-kentällä on oltava vähemmän kuin :value kohdetta.',
         'file' => ':Attribute-kentän koon on oltava pienempi kuin :value kilotavua.',
         'numeric' => ':Attribute-kentän on oltava pienempi kuin :value.',
-        'string' => ':Attribute-kentän merkkijonon on oltava lyhyempi kuin :value mer
-
-kkiä.',
+        'string' => ':Attribute-kentän merkkijonon on oltava lyhyempi kuin :value merkkiä.',
     ],
     'lte' => [
         'array' => ':Attribute-kentällä ei saa olla enemmän kuin :value kohdetta.',
@@ -119,9 +115,7 @@ kkiä.',
     'password' => [
         'letters' => ':Attribute-kentän on sisällettävä vähintään yksi kirjain.',
         'mixed' => ':Attribute-kentän on sisällettävä vähintään yksi iso- ja pienikirjain.',
-        'numbers' =>
-
- ':Attribute-kentän on sisällettävä vähintään yksi numero.',
+        'numbers' => ':Attribute-kentän on sisällettävä vähintään yksi numero.',
         'symbols' => ':Attribute-kentän on sisällettävä vähintään yksi symboli.',
         'not_present' => ':Attribute-kentän ei pitäisi olla läsnä.',
     ],
@@ -177,8 +171,6 @@ kkiä.',
     |
     | The following language lines are used to swap attribute place-holders
     | with something more reader friendly such as E-Mail Address instead
-
-
     | of "email". This simply helps us make messages a little cleaner.
     |
     */

@@ -42,22 +42,24 @@ class HelpQuestionResource extends Resource
             Card::make()
                 ->schema([
                     TextInput::make('title')
-                        ->placeholder('Question title')
+                        ->label(__('filament::resources.inputs.title'))
                         ->required()
                         ->autocomplete()
                         ->columnSpan('full'),
 
                     Select::make('categories')
+                        ->label(__('filament::resources.inputs.categories'))
                         ->multiple()
                         ->visibleOn('create')
                         ->relationship('categories', 'name'),
 
                     CKEditor::make('content')
-                        ->label('Question content')
+                        ->label(__('filament::resources.inputs.content'))
                         ->required()
                         ->columnSpan('full'),
 
                     Toggle::make('visible')
+                        ->label(__('filament::resources.inputs.visible'))
                 ])
         ];
     }
@@ -82,14 +84,15 @@ class HelpQuestionResource extends Resource
     {
         return [
             TextColumn::make('id')
-                ->label('ID'),
+                ->label(__('filament::resources.columns.id')),
 
             TextColumn::make('title')
+                ->label(__('filament::resources.columns.title'))
                 ->searchable()
                 ->limit(50),
 
             TextColumn::make('user.username')
-                ->label('Created By')
+                ->label(__('filament::resources.columns.by'))
                 ->searchable()
         ];
     }

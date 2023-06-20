@@ -41,11 +41,12 @@ class HelpQuestionCategoryResource extends Resource
             Card::make()
                 ->schema([
                     TextInput::make('name')
-                        ->placeholder('Category name')
+                        ->label(__('filament::resources.inputs.name'))
                         ->required(),
 
                     TextInput::make('icon')
-                        ->label('Icon URL (optional)')
+                        ->label(__('filament::resources.inputs.icon'))
+                        ->helperText(__('filament::resources.helpers.help_questions_category_icon'))
                         ->nullable()
                 ])
         ];
@@ -59,6 +60,7 @@ class HelpQuestionCategoryResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -70,20 +72,24 @@ class HelpQuestionCategoryResource extends Resource
     {
         return [
             TextColumn::make('id')
-                ->label('ID')
+                ->label(__('filament::resources.columns.id'))
                 ->sortable(),
 
             TextColumn::make('order')
+                ->label(__('filament::resources.columns.order'))
                 ->sortable(),
 
             ImageColumn::make('icon')
                 ->extraAttributes(['style' => 'image-rendering: pixelated'])
-                ->label('icon'),
+                ->size('auto')
+                ->label(__('filament::resources.columns.icon')),
 
             TextColumn::make('name')
+                ->label(__('filament::resources.columns.name'))
                 ->searchable(),
 
             TextColumn::make('questions_count')
+                ->label(__('filament::resources.columns.questions_count'))
                 ->counts('questions'),
         ];
     }
@@ -100,6 +106,7 @@ class HelpQuestionCategoryResource extends Resource
         return [
             'index' => Pages\ListHelpQuestionCategories::route('/'),
             'create' => Pages\CreateHelpQuestionCategory::route('/create'),
+            'view' => Pages\ViewHelpQuestionCategory::route('/{record}'),
             'edit' => Pages\EditHelpQuestionCategory::route('/{record}/edit'),
         ];
     }

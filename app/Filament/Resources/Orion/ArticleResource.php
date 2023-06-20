@@ -44,55 +44,55 @@ class ArticleResource extends Resource
         return [
             Tabs::make('Main')
                 ->tabs([
-                    Tabs\Tab::make('Home')
+                    Tabs\Tab::make(__('filament::resources.tabs.Home'))
                         ->icon('heroicon-o-home')
                         ->schema([
                             TextInput::make('title')
-                                ->placeholder('Article title')
+                                ->label(__('filament::resources.inputs.title'))
                                 ->required()
                                 ->autocomplete()
                                 ->columnSpan('full'),
 
                             TextInput::make('description')
-                                ->placeholder('Article description')
+                                ->label(__('filament::resources.inputs.description'))
                                 ->required()
                                 ->autocomplete()
                                 ->columnSpan('full'),
 
                             TextInput::make('image')
+                                ->label(__('filament::resources.inputs.image'))
                                 ->required()
-                                ->placeholder('Image link')
                                 ->columnSpan('full'),
 
                             CKEditor::make('content')
-                                ->label('Article content')
+                                ->label(__('filament::resources.inputs.content'))
                                 ->required()
                                 ->columnSpan('full'),
                         ]),
 
-                    Tabs\Tab::make('Configurations')
+                    Tabs\Tab::make(__('filament::resources.tabs.Configurations'))
                         ->icon('heroicon-o-cog')
                         ->schema([
                             Toggle::make('visible')
                                 ->onIcon('heroicon-s-check')
-                                ->label('Mark as visible article')
+                                ->label(__('filament::resources.inputs.visible'))
                                 ->default(false)
                                 ->offIcon('heroicon-s-x'),
 
                             Toggle::make('fixed')
                                 ->onIcon('heroicon-s-check')
-                                ->label('Mark as fixed article')
+                                ->label(__('filament::resources.inputs.fixed'))
                                 ->default(false)
                                 ->offIcon('heroicon-s-x'),
 
                             Toggle::make('allow_comments')
                                 ->onIcon('heroicon-s-check')
-                                ->label('Allow comments on this article')
+                                ->label(__('filament::resources.inputs.allow_comments'))
                                 ->default(true)
                                 ->offIcon('heroicon-s-x'),
 
                             Toggle::make('is_promotion')
-                                ->label('Article is a Promotion')
+                                ->label(__('filament::resources.inputs.is_promotion'))
                                 ->onIcon('heroicon-s-check')
                                 ->default(false)
                                 ->reactive()
@@ -102,7 +102,7 @@ class ArticleResource extends Resource
                                 ->displayFormat('Y-m-d H:i')
                                 ->withoutSeconds()
                                 ->hidden(fn (\Closure $get) => !$get('is_promotion'))
-                                ->label('Promotion ends at')
+                                ->label(__('filament::resources.inputs.promotion_ends_at'))
                                 ->required()
                                 ->columnSpan('full'),
                         ]),
@@ -131,28 +131,37 @@ class ArticleResource extends Resource
     {
         return [
             TextColumn::make('id')
-                ->label('ID'),
+                ->label(__('filament::resources.columns.id')),
 
             ImageColumn::make('image')
                 ->circular()
                 ->extraAttributes(['style' => 'image-rendering: pixelated'])
                 ->size(50)
-                ->label('Image'),
+                ->label(__('filament::resources.columns.image')),
 
-            TextColumn::make('title')->searchable()->limit(50),
-            TextColumn::make('user.username')->searchable()->label('Posted by'),
+            TextColumn::make('title')
+                ->label(__('filament::resources.columns.title'))
+                ->searchable()
+                ->limit(50),
+
+            TextColumn::make('user.username')
+                ->searchable()
+                ->label(__('filament::resources.columns.by')),
 
             ToggleColumn::make('visible')
+                ->label(__('filament::resources.columns.visible'))
                 ->onIcon('heroicon-s-check')
                 ->toggleable()
                 ->disabled(),
 
             ToggleColumn::make('fixed')
+                ->label(__('filament::resources.columns.fixed'))
                 ->onIcon('heroicon-s-check')
                 ->toggleable()
                 ->disabled(),
 
             ToggleColumn::make('allow_comments')
+                ->label(__('filament::resources.columns.allow_comments'))
                 ->onIcon('heroicon-s-check')
                 ->toggleable()
                 ->disabled(),

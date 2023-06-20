@@ -50,15 +50,18 @@ class EmulatorSettingResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('key')
+                    ->label(__('filament::resources.columns.key'))
                     ->searchable(),
 
                 TextColumn::make('value')
+                    ->label(__('filament::resources.columns.value'))
                     ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([]);

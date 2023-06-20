@@ -13,9 +13,12 @@ trait TranslatableResource
 
     public static function getPluralModelLabel(): string
     {
-        return __(
-            sprintf('filament::resources.resources.%s.plural', static::$translateIdentifier)
-        );
+        return __(sprintf(
+            \Str::endsWith(static::class, 'RelationManager')
+                ? 'filament::resources.resources.%s.navigation_label'
+                : 'filament::resources.resources.%s.plural',
+            static::$translateIdentifier
+        ));
     }
 
     public static function getNavigationLabel(): string

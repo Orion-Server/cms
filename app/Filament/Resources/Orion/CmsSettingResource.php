@@ -35,16 +35,19 @@ class CmsSettingResource extends Resource
                 Card::make()
                     ->schema([
                         TextInput::make('key')
+                            ->label(__('filament::resources.inputs.key'))
                             ->maxLength(50)
                             ->autocomplete()
                             ->unique(ignoreRecord: true)
                             ->required(),
 
                         TextInput::make('value')
+                            ->label(__('filament::resources.inputs.value'))
                             ->required()
                             ->autocomplete(),
 
                         TextInput::make('comment')
+                            ->label(__('filament::resources.inputs.comment'))
                             ->nullable()
                             ->autocomplete()
                             ->columnSpanFull()
@@ -60,13 +63,16 @@ class CmsSettingResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('key')
+                    ->label(__('filament::resources.columns.key'))
                     ->searchable(),
 
                 TextColumn::make('value')
+                    ->label(__('filament::resources.columns.value'))
                     ->searchable()
                     ->limit(30),
 
                 TextColumn::make('comment')
+                    ->label(__('filament::resources.columns.comment'))
                     ->toggleable()
                     ->searchable()
                     ->tooltip(function (TextColumn $column): ?string {

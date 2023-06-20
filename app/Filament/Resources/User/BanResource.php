@@ -37,21 +37,21 @@ class BanResource extends Resource
         return $form
             ->schema([
                 Textarea::make('ban_reason')
-                    ->label('Reason')
+                    ->label(__('filament::resources.inputs.reason'))
                     ->columnSpanFull(),
 
                 Select::make('type')
-                    ->label('Ban Type')
+                    ->label(__('filament::resources.inputs.type'))
                     ->columnSpanFull()
                     ->options([
-                        'account' => 'Account',
-                        'ip' => 'IP',
-                        'machine' => 'MachineBan',
-                        'super' => 'SuperBan'
+                        'account' => __('filament::resources.common.Account'),
+                        'ip' => __('filament::resources.common.IP'),
+                        'machine' => __('filament::resources.common.Machine'),
+                        'super' => __('filament::resources.common.Super'),
                     ]),
 
                 DateTimePicker::make('ban_expire')
-                    ->label('Expires at')
+                    ->label(__('filament::resources.inputs.expires_at'))
                     ->displayFormat('Y-m-d H:i')
                     ->format('U')
                     ->columnSpanFull(),
@@ -63,24 +63,24 @@ class BanResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')
-                    ->label('ID'),
+                    ->label(__('filament::resources.columns.id')),
 
                 UserAvatarColumn::make('avatar')
                     ->toggleable()
                     ->pointer('user.look')
-                    ->label('User')
+                    ->label(__('filament::resources.columns.avatar'))
                     ->options('&size=m&head_direction=3&gesture=sml&headonly=1'),
 
                 TextColumn::make('user.username')
-                    ->label('Username')
+                    ->label(__('filament::resources.columns.username'))
                     ->searchable(),
 
                 TextColumn::make('staff.username')
-                    ->label('Staff')
+                    ->label(__('filament::resources.columns.by'))
                     ->searchable(),
 
                 TextColumn::make('ban_reason')
-                    ->label('Reason')
+                    ->label(__('filament::resources.columns.reason'))
                     ->tooltip(function (TextColumn $column): ?string {
                         $state = $column->getState();
 
@@ -92,12 +92,12 @@ class BanResource extends Resource
                     ->searchable(),
 
                 BadgeColumn::make('type')
-                    ->label('Ban Type')
+                    ->label(__('filament::resources.columns.type'))
                     ->enum([
-                        'account' => 'Account',
-                        'ip' => 'IP',
-                        'machine' => 'MachineBan',
-                        'super' => 'SuperBan'
+                        'account' => __('filament::resources.common.Account'),
+                        'ip' => __('filament::resources.common.IP'),
+                        'machine' => __('filament::resources.common.Machine'),
+                        'super' => __('filament::resources.common.Super'),
                     ])
                     ->colors([
                         'primary' => 'account',
@@ -107,19 +107,19 @@ class BanResource extends Resource
                     ]),
 
                 TextColumn::make('timestamp')
-                    ->label('Banned at')
+                    ->label(__('filament::resources.columns.banned_at'))
                     ->date('Y-m-d H:i'),
 
                 TextColumn::make('ban_expire')
-                    ->label('Expires at')
-                    ->formatStateUsing(fn (string $state): string => $state == 0 ? 'Never' : date('Y-m-d H:i', $state)),
+                    ->label(__('filament::resources.columns.expires_at'))
+                    ->formatStateUsing(fn (string $state): string => $state == 0 ? __('filament::resources.common.Never') : date('Y-m-d H:i', $state)),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make()
-                    ->label('Edit or View'),
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

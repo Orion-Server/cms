@@ -38,53 +38,58 @@ class AchievementResource extends Resource
             ->schema([
                 Tabs::make('Main')
                     ->tabs([
-                        Tabs\Tab::make('Home')
+                        Tabs\Tab::make(__('filament::resources.tabs.Home'))
                             ->icon('heroicon-o-home')
                             ->schema([
                                 TextInput::make('name')
-                                    ->placeholder('Achievement Name')
+                                    ->label(__('filament::resources.inputs.name'))
                                     ->required()
                                     ->autocomplete()
                                     ->columnSpan('full'),
 
                                 TextInput::make('level')
-                                    ->placeholder('Achievement Level')
+                                    ->label(__('filament::resources.inputs.level'))
                                     ->numeric()
                                     ->required()
                                     ->autocomplete()
                                     ->columnSpan('full'),
 
                                 Select::make('category')
-                                    ->placeholder('Achievement Category')
+                                    ->label(__('filament::resources.inputs.category'))
                                     ->disablePlaceholderSelection()
                                     ->options(AchievementCategory::toInput())
                             ]),
 
-                        Tabs\Tab::make('Configurations')
+                        Tabs\Tab::make(__('filament::resources.tabs.Configurations'))
                             ->icon('heroicon-o-cog')
                             ->schema([
                                 Select::make('visible')
+                                    ->label(__('filament::resources.inputs.visible'))
                                     ->disablePlaceholderSelection()
                                     ->options([
-                                        '1' => 'Yes',
-                                        '0' => 'No',
+                                        '1' => __('filament::resources.common.Yes'),
+                                        '0' => __('filament::resources.common.No'),
                                     ]),
 
                                 Select::make('reward_type')
+                                    ->label(__('filament::resources.inputs.reward_type'))
                                     ->disablePlaceholderSelection()
                                     ->options(CurrencyType::toInput()),
 
                                 TextInput::make('reward_amount')
+                                    ->label(__('filament::resources.inputs.reward_amount'))
                                     ->numeric()
                                     ->required(),
 
                                 TextInput::make('points')
-                                    ->helperText('Achievement Points to be rewarded')
+                                    ->label(__('filament::resources.inputs.points'))
+                                    ->helperText(__('filament::resources.helpers.achievement_points'))
                                     ->numeric()
                                     ->required(),
 
                                 TextInput::make('progress_needed')
-                                    ->helperText('Progress needed to complete the achievement')
+                                    ->label(__('filament::resources.inputs.progress_needed'))
+                                    ->helperText(__('filament::resources.helpers.achievement_progress_needed'))
                                     ->numeric()
                                     ->required()
                             ])
@@ -97,44 +102,45 @@ class AchievementResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')
-                    ->label('ID'),
+                    ->label(__('filament::resources.columns.id')),
 
                 HabboBadgeColumn::make('badge')
-                    ->searchable()
-                    ->label('Badge'),
+                    ->label(__('filament::resources.columns.badge'))
+                    ->searchable(),
 
                 TextColumn::make('name')
-                    ->searchable()
-                    ->label('Name'),
+                    ->label(__('filament::resources.columns.name'))
+                    ->searchable(),
 
                 TextColumn::make('level')
-                    ->label('Level'),
+                    ->label(__('filament::resources.columns.level')),
 
                 BadgeColumn::make('category')
                     ->searchable()
-                    ->label('Category')
+                    ->label(__('filament::resources.columns.category'))
                     ->toggleable(),
 
                 ToggleColumn::make('visible')
-                    ->label('Visible')
+                    ->label(__('filament::resources.columns.visible'))
                     ->disabled()
                     ->toggleable()
             ])
             ->filters([
                 SelectFilter::make('visible')
                     ->options([
-                        '1' => 'Yes',
-                        '0' => 'No',
+                        '1' => __('filament::resources.common.Yes'),
+                        '0' => __('filament::resources.common.No'),
                     ])
-                    ->label('Visible')
-                    ->placeholder('All'),
+                    ->label(__('filament::resources.columns.visible'))
+                    ->placeholder(__('filament::resources.common.All')),
 
                 SelectFilter::make('category')
                     ->options(AchievementCategory::toInput())
-                    ->label('Category')
-                    ->placeholder('All'),
+                    ->label(__('filament::resources.columns.category'))
+                    ->placeholder(__('filament::resources.common.All')),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([]);
@@ -152,6 +158,7 @@ class AchievementResource extends Resource
         return [
             'index' => Pages\ListAchievements::route('/'),
             'create' => Pages\CreateAchievement::route('/create'),
+            'view' => Pages\ViewAchievement::route('/{record}'),
             'edit' => Pages\EditAchievement::route('/{record}/edit'),
         ];
     }

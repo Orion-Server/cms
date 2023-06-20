@@ -183,5 +183,9 @@
     "Category": "Kategori",
     "Search something in this category": "Søg efter noget i denne kategori",
     "Category Questions": "Kategori Spørgsmål",
-    "No questions were found for this :n.": "Ingen spørgsmål blev fundet for dette :n."
+    "No questions were found for this :n.": "Ingen spørgsmål blev fundet for dette :n.",
+    "Showing": "Viser",
+    "to": "til",
+    "of": "af",
+    "results": "resultater"
 }

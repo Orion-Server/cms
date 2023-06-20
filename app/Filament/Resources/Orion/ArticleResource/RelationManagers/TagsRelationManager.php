@@ -7,17 +7,19 @@ use Filament\Tables;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use App\Filament\Resources\Orion\TagResource;
+use App\Filament\Traits\TranslatableResource;
+use App\Filament\Traits\LatestRelationResourcesTrait;
 use Filament\Resources\RelationManagers\RelationManager;
 
 class TagsRelationManager extends RelationManager
 {
+    use LatestRelationResourcesTrait, TranslatableResource;
+
     protected static string $relationship = 'tags';
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    protected static ?string $title = 'Tags';
-
-    protected static ?string $modelLabel = 'Tag';
+    public static string $translateIdentifier = 'tags';
 
     public static function form(Form $form): Form
     {

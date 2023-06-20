@@ -41,18 +41,18 @@ class TagResource extends Resource
         return [
             Tabs::make('Main')
                 ->tabs([
-                    Tab::make('Home')
+                    Tab::make(__('filament::resources.tabs.Home'))
                         ->icon('heroicon-o-home')
                         ->schema([
                             TextInput::make('name')
-                                ->placeholder('Tag name')
+                                ->label(__('filament::resources.inputs.name'))
                                 ->required()
                                 ->autocomplete()
                                 ->columnSpan('full'),
 
                             ColorPicker::make('background_color')
+                                ->label(__('filament::resources.inputs.background_color'))
                                 ->required()
-                                ->placeholder('The background color of the tag')
                                 ->columnSpan('full'),
                         ]),
                 ])->columnSpanFull()
@@ -79,16 +79,18 @@ class TagResource extends Resource
     {
         return [
             TextColumn::make('id')
-                ->label('ID'),
+                ->label(__('filament::resources.columns.id')),
 
             TextColumn::make('name')
+                ->label(__('filament::resources.columns.name'))
                 ->searchable()
                 ->limit(50),
 
             ColorColumn::make('background_color')
+                ->label(__('filament::resources.columns.background_color'))
                 ->searchable()
                 ->copyable()
-                ->copyMessage('Color code copied')
+                ->copyMessage(__('filament::resources.common.Sucessfull'))
                 ->copyMessageDuration(1500)
         ];
     }

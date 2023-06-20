@@ -183,5 +183,9 @@
     "Category": "Kategoria",
     "Search something in this category": "Etsi jotain tässä kategoriassa",
     "Category Questions": "Kategorian kysymykset",
-    "No questions were found for this :n.": "Kysymyksiä ei löytynyt tälle :n."
+    "No questions were found for this :n.": "Kysymyksiä ei löytynyt tälle :n.",
+    "Showing": "Näytetään",
+    "to": "jotta",
+    "of": "kpl",
+    "results": "tulosta"
 }
