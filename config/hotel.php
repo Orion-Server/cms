@@ -5,7 +5,7 @@ return [
         'available_languages' => [
             'en' => 'English',
             'es' => 'Spanish',
-            'pt_BR' => 'Portuguese (Brazil)',
+            'pt_BR' => 'Portuguese',
             'tr' => 'Turkish',
             'da' => 'Danish',
             'nl' => 'Netherland',
@@ -58,6 +58,10 @@ return [
         'nitro' => [
             'cms_toggle_button' => true,
             'online_count_button' => true,
+
+            /**
+             * Path to the client folder (relative to the public folder)
+             */
             'path' => env('NITRO_CLIENT_PATH', '/client'),
         ],
     ]
