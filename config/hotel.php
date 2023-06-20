@@ -8,8 +8,9 @@ return [
             'pt_BR' => 'Portuguese',
             'tr' => 'Turkish',
             'da' => 'Danish',
-            'nl' => 'Netherland',
+            'nl' => 'Dutch',
             'fi' => 'Finnish',
+            'fr' => 'French',
         ]
     ],
 
