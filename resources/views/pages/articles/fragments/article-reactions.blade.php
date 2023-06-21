@@ -1,20 +1,23 @@
-<div class="mt-8 flex items-center h-auto relative w-full flex-wrap gap-2">
+@php($allUserReactions = $activeArticle->reactions->where('user_id', Auth::id())->pluck('type.value'))
+@php($availableReactions = $articleReactions->whereNotIn('value', $allUserReactions))
+
+<div class="mt-8 flex items-center h-auto relative w-full flex-wrap gap-2" x-data="articleReaction('{{ route('articles.reactions.toggle', [$activeArticle->id, $activeArticle->slug]) }}')">
+    @unless($availableReactions->isEmpty())
     <x-ui.buttons.confirmable
         data-tippy-placement="top"
-        class="group flex w-12 h-12 items-center justify-center bg-blue-300 dark:bg-blue-600 dark:text-white border-b-2 border-blue-500 rounded-lg"
+        class="group flex w-12 h-12 items-center justify-center bg-rose-300 dark:bg-rose-400 dark:text-white border-b-2 border-rose-500 rounded-lg"
         :exclusive="true"
     >
         <x-slot:confirmation>
-            <div class="flex gap-2">
-                <x-ui.buttons.default
-                    class="w-8 h-8 bg-green-400 hover:bg-green-500 text-green-800 !border-b-2 border-green-600 rounded-lg">
-                    <i class="fa-solid fa-thumbs-up"></i>
-                </x-ui.buttons.defaultclass>
-                <x-ui.buttons.default
-                    class="w-8 h-8 bg-red-400 hover:bg-red-500 text-red-800 !border-b-2 border-red-600 rounded-lg"
-                >
-                    <i class="fa-solid fa-thumbs-down"></i>
-                </x-ui.buttons.defaultclass>
+            <div class="flex gap-2 bg-black/25 rounded-lg p-1">
+                @foreach ($availableReactions as $reaction)
+                    <x-ui.buttons.default
+                        data-type="{{ $reaction->value }}"
+                        @click="toggleReaction"
+                        class="w-8 h-8 rounded-md border-none shadow-[inset_0_-3px_0_0_rgba(0,0,0,0.5)] hover:brightness-125"
+                        style="background: url({{ $reaction->getIcon() }}) center no-repeat, {{ $reaction->getColor() }}"
+                    />
+                @endforeach
             </div>
         </x-slot:confirmation>
 
@@ -22,17 +25,27 @@
             <i class="fa-solid fa-plus text-white text-lg"></i>
         </x-slot:label>
     </x-ui.buttons.confirmable>
-    @for ($i = 0; $i < 15; $i++)
-        <a
-            href="#"
+    @endunless
+
+    @foreach ($activeArticle->reactions as $reaction)
+        <div
             data-tippy-singleton
-            data-tippy-content="<small>iNicollas</small>"
-            @class([
-                "w-12 h-12 shadow-lg rounded-lg bg-center bg-no-repeat border-b-2 cursor-pointer",
-                "bg-green-400 border-green-600" => $i % 2 == 0,
-                "bg-red-400 border-red-600" => $i % 2 == 1,
-            ])
-            style="background-image: url('https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=png&user=nicollas1073&direction=4&head_direction=2&size=m&gesture=sml&action=sit,wav&headonly=1')"
-        ></a>
-    @endfor
+            data-tippy-content="<small>{{ $reaction->user->username }}</small>"
+            class="w-12 h-12 group shadow-lg relative rounded-lg bg-center bg-no-repeat border-b-2 cursor-pointer even:bg-blue-300 dark:even:bg-blue-600 bg-blue-400 dark:bg-blue-400 dark:text-white border-blue-500"
+            style="background-image: url('{{ getSetting('figure_imager') . $reaction->user->look }}&head_direction=2&size=m&gesture=sml&headonly=1')"
+        >
+            <div
+                class="absolute -bottom-0.5 left-0 w-[20px] h-[20px]"
+                style="background: url({{ $reaction->type->getIcon() }}) center no-repeat"
+            ></div>
+
+            @if ($reaction->user_id === Auth::id())
+                <i
+                    data-type="{{ $reaction->type->value }}"
+                    @click.stop="toggleReaction"
+                    class="fas fa-times fa-xs invisible absolute group-hover:visible -top-1 -right-1 bg-red-500 rounded-full p-1 py-2 text-white"
+                ></i>
+            @endif
+        </div>
+    @endforeach
 </div>

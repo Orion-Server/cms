@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Article\ArticleComment;
+use App\Models\Article\{
+    ArticleComment,
+    ArticleReaction
+};
 use Illuminate\Database\Eloquent\{
     Model,
     Builder,
@@ -97,13 +100,19 @@ class Article extends Model
     {
         $query->with([
             'user:id,username,look',
-            'tags'
+            'tags',
+            'reactions' => fn ($query) => $query->defaultRelationships()
         ]);
     }
 
     public function comments(): HasMany
     {
-        return $this->hasMany(ArticleComment::class)->orderBy('fixed', 'desc')->latest();
+        return $this->hasMany(ArticleComment::class)->defaultBehavior();
+    }
+
+    public function reactions(): HasMany
+    {
+        return $this->hasMany(ArticleReaction::class)->defaultBehavior();
     }
 
     public function user()

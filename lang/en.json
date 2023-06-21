@@ -82,7 +82,7 @@
     "Your Referral Link": "Your Referral Link",
     "Share the link above to receive great prizes when your friends register.": "Share the link above to receive great prizes when your friends register.",
     "You still need to invite :u to collect the next reward": "You still need to invite :u to collect the next reward",
-    "Successfull!": "Successfull!",
+    "Successful!": "Successful!",
     "[Referral Link] Clipboard API is not supported": "[Referral Link] Clipboard API is not supported",
     "Click to copy the link": "Click to copy the link",
     "Copy Link": "Copy Link",
@@ -187,5 +187,6 @@
     "Showing": "Showing",
     "to": "to",
     "of": "of",
-    "results": "results"
+    "results": "results",
+    "Please select a valid reaction type.": "Please select a valid reaction type."
 }

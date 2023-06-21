@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\{
     Model,
     Relations\BelongsTo,
     Factories\HasFactory,
-    Builder
+    Builder,
+    Casts\Attribute
 };
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class ArticleComment extends Model
 {
@@ -31,6 +31,11 @@ class ArticleComment extends Model
             'user:id,username,look',
             'user.badges' => fn ($query) => $query->where('slot_id', '<>', '0')
         ]);
+    }
+
+    public function scopeDefaultBehavior(Builder $query): void
+    {
+        $query->orderBy('fixed', 'desc')->latest();
     }
 
     public function user(): BelongsTo

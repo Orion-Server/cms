@@ -61,6 +61,10 @@ Route::prefix('articles')
         Route::post('{id}/{slug}/comment', [ArticleCommentController::class, 'store'])
             ->middleware('auth')
             ->name('comments.store');
+
+        Route::post('{id}/{slug}/react', [ArticleController::class, 'toggleReaction'])
+            ->middleware('auth')
+            ->name('reactions.toggle');
     });
 
 Route::prefix('community')

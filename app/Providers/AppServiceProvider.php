@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Enums\ArticleReactionType;
 use Filament\Facades\Filament;
 use App\Services\SettingsService;
 use Illuminate\Support\Facades\App;
@@ -27,14 +28,23 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::share('fromClient', request()->has('fromClient'));
-        View::share('availableLanguages', config('hotel.cms.available_languages'));
+        $this->bootGlobalViewVariables();
 
         if (App::isProduction() && config('hotel.force_https')) {
             URL::forceScheme('https');
         }
 
         $this->bootDashboardSettings();
+    }
+
+    /**
+     * Bootstrap the global view variables.
+     */
+    private function bootGlobalViewVariables(): void
+    {
+        View::share('fromClient', request()->has('fromClient'));
+        View::share('availableLanguages', config('hotel.cms.available_languages'));
+        View::share('articleReactions', collect(ArticleReactionType::cases()));
     }
 
     /**

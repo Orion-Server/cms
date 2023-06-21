@@ -82,7 +82,7 @@
     "Your Referral Link": "Tu Enlace de Referido",
     "Share the link above to receive great prizes when your friends register.": "Comparte el enlace de arriba para recibir grandes premios cuando tus amigos se registren.",
     "You still need to invite :u to collect the next reward": "Todavía necesitas invitar a :u para recoger la siguiente recompensa",
-    "Successfull!": "¡Exitoso!",
+    "Successful!": "¡Exitoso!",
     "[Referral Link] Clipboard API is not supported": "[Enlace de Referido] API del portapapeles no es compatible",
     "Click to copy the link": "Haz clic para copiar el enlace",
     "Copy Link": "Copiar Enlace",
@@ -187,5 +187,6 @@
     "Showing": "Mostrando",
     "to": "a",
     "of": "de",
-    "results": "resultados"
+    "results": "resultados",
+    "Please select a valid reaction type.": "Por favor, selecciona un tipo de reacción válido."
 }

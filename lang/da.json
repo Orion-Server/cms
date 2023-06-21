@@ -82,7 +82,7 @@
     "Your Referral Link": "Dit henvisningslink",
     "Share the link above to receive great prizes when your friends register.": "Del linket ovenfor for at modtage fantastiske præmier, når dine venner registrerer sig.",
     "You still need to invite :u to collect the next reward": "Du skal stadig invitere :u for at modtage næste belønning",
-    "Successfull!": "Succesfuld!",
+    "Successful!": "Succesfuld!",
     "[Referral Link] Clipboard API is not supported": "[Henvisningslink] Clipboard API er ikke understøttet",
     "Click to copy the link": "Klik for at kopiere linket",
     "Copy Link": "Kopier link",
@@ -187,5 +187,6 @@
     "Showing": "Viser",
     "to": "til",
     "of": "af",
-    "results": "resultater"
+    "results": "resultater",
+    "Please select a valid reaction type": "Vælg venligst en gyldig reaktionstype"
 }

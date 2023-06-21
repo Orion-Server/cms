@@ -82,7 +82,7 @@
     "Your Referral Link": "Referans Bağlantınız",
     "Share the link above to receive great prizes when your friends register.": "Arkadaşlarınız kaydolduğunda büyük ödüller almak için yukarıdaki bağlantıyı paylaşın.",
     "You still need to invite :u to collect the next reward": "Hala bir sonraki ödülü almak için :u'u davet etmeniz gerekiyor",
-    "Successfull!": "Başarılı!",
+    "Successful!": "Başarılı!",
     "[Referral Link] Clipboard API is not supported": "[Referans Bağlantısı] Pano API'si desteklenmiyor",
     "Click to copy the link": "Bağlantıyı kopyalamak için tıklayın",
     "Copy Link": "Bağlantıyı Kopyala",
@@ -187,5 +187,6 @@
     "Showing": "Gösteriliyor",
     "to": "kadar",
     "of": "toplam",
-    "results": "sonuç"
+    "results": "sonuç",
+    "Please select a valid reaction type": "Lütfen geçerli bir tepki türü seçin"
 }
