@@ -59,6 +59,11 @@ return [
             'label' => 'Usuário',
             'plural' => 'Usuários',
         ],
+        'badge-resource' => [
+            'navigation_label' => 'Gerenciar Emblemas',
+            'label' => 'Emblema',
+            'plural' => 'Emblemas',
+        ],
 
         // Relations
         'settings' => [
@@ -168,6 +173,7 @@ return [
         'block_camera_follow' => 'Bloquear a câmera de seguir o avatar',
         'ignore_bots' => 'Ignorar bots',
         'ignore_pets' => 'Ignorar mascotes',
+        'badge_code' => 'Código do Emblema',
     ],
 
     'columns' => [
