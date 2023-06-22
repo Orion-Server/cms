@@ -59,6 +59,11 @@ return [
             'label' => 'Kullanıcı',
             'plural' => 'Kullanıcılar',
         ],
+        'badge-resource' => [
+            'navigation_label' => 'Rozetleri Yönet',
+            'label' => 'Rozet',
+            'plural' => 'Rozetler',
+        ],
 
         // Relations
         'settings' => [
@@ -112,6 +117,7 @@ return [
         'Change Rank' => 'Rütbe Değiştir',
         'Account Data' => 'Hesap Verileri',
         'Extra Settings' => 'Ek Ayarlar',
+        'badge_code_helper' => 'Kodu girin ve alanın yanındaki büyüteci tıklayın. Amblem varsa otomatik olarak doldurulacaktır.',
     ],
 
     'inputs' => [
@@ -168,6 +174,10 @@ return [
         'block_camera_follow' => 'Kamera Takibini Engelle',
         'ignore_bots' => 'Botları Yoksay',
         'ignore_pets' => 'Evcil Hayvanları Yoksay',
+        'badge_code' => 'Rozet Kodu',
+        'badge_title' => 'Rozet Başlığı',
+        'badge_description' => 'Rozet Açıklaması',
+        'badge_image' => 'Rozet Resmi',
     ],
 
     'columns' => [
@@ -206,5 +216,12 @@ return [
         'online_time' => 'Çevrimiçi Süre',
         'can_trade' => 'Takas Yapabilir mi?',
         'can_change_name' => 'İsim Değiştirebilir mi?',
+    ],
+
+    'notifications' => [
+        'badge_code_required' => 'Rozet kodu gereklidir.',
+        'badge_found' => 'Rozet bulundu!',
+        'badge_updated' => 'Rozet güncellendi!',
+        'badge_update_failed' => 'Rozet güncellenemedi!',
     ]
 ];

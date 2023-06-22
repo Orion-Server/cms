@@ -59,6 +59,11 @@ return [
             'label' => 'Gebruiker',
             'plural' => 'Gebruikers',
         ],
+        'badge-resource' => [
+            'navigation_label' => 'Beheer Badges',
+            'label' => 'Badge',
+            'plural' => 'Badges',
+        ],
 
         // Relations
         'settings' => [
@@ -89,6 +94,7 @@ return [
         'Duckets' => 'Duckets',
         'Diamonds' => 'Diamanten',
         'Points' => 'Punten',
+        'Open link' => 'Open link',
     ],
 
     'helpers' => [
@@ -97,6 +103,7 @@ return [
         'help_questions_category_icon' => 'Je kunt hier elke afbeeldingslink gebruiken. We raden aan om een afbeelding met een formaat van 20x20 te gebruiken.',
         'change_username_description' => 'Sta deze gebruiker toe om zijn gebruikersnaam te wijzigen (binnen de client)',
         'change_password_description' => 'Laat leeg om het huidige wachtwoord te behouden',
+        'badge_code_helper' => 'Voer de code in en klik op het vergrootglas naast het veld. Als het embleem bestaat, wordt het automatisch ingevuld.',
     ],
 
     'tabs' => [
@@ -126,7 +133,7 @@ return [
         'reward_type' => 'Beloningstype',
         'reward_amount' => 'Beloningsbedrag',
         'points' => 'Punten',
-        'progress_needed' => 'Benodigde Voortgang',
+        'progress_needed' => 'Benodigde voortgang',
         'fixed' => 'Vast',
         'allow_comments' => 'Reacties toestaan',
         'title' => 'Titel',
@@ -145,29 +152,33 @@ return [
         'motto' => 'Motto',
         'gender' => 'Geslacht',
         'created_at' => 'Aangemaakt op',
-        'last_login' => 'Laatste Login',
-        'last_online' => 'Laatst Online',
+        'last_login' => 'Laatste login',
+        'last_online' => 'Laatst online',
         'ip_register' => 'Registratie-IP',
         'ip_current' => 'Huidige IP',
         'referral_code' => 'Verwijzingscode',
         'referrer_code' => 'Verwijzer Code',
         'allow_change_username' => 'Gebruikersnaam wijzigen toestaan',
-        'new_password' => 'Nieuw Wachtwoord',
-        'new_password_confirmation' => 'Bevestig Nieuw Wachtwoord',
+        'new_password' => 'Nieuw wachtwoord',
+        'new_password_confirmation' => 'Bevestig nieuw wachtwoord',
         'rank' => 'Rang',
-        'badge_code' => 'Badge Code',
+        'badge_code' => 'Badge code',
         'achievement_score' => 'Prestatiescore',
-        'respects_received' => 'Ontvangen Respect',
-        'can_trade' => 'Kan Handelen?',
-        'block_following' => 'Volgen Blokkeren',
-        'block_friendrequests' => 'Vriendverzoeken Blokkeren',
-        'block_roominvites' => 'Kameruitnodigingen Blokkeren',
-        'max_rooms' => 'Maximale Kamers',
-        'max_friends' => 'Maximale Vrienden',
-        'old_chat' => 'Oude Chat',
-        'block_camera_follow' => 'Camera Volgen Blokkeren',
+        'respects_received' => 'Ontvangen respect',
+        'can_trade' => 'Kan handelen?',
+        'block_following' => 'Volgen blokkeren',
+        'block_friendrequests' => 'Vriendverzoeken blokkeren',
+        'block_roominvites' => 'Kameruitnodigingen blokkeren',
+        'max_rooms' => 'Maximale kamers',
+        'max_friends' => 'Maximale vrienden',
+        'old_chat' => 'Oude chat',
+        'block_camera_follow' => 'Camera volgen blokkeren',
         'ignore_bots' => 'Bots negeren',
         'ignore_pets' => 'Huisdieren negeren',
+        'badge_code' => 'Embleem code',
+        'badge_title' => 'Embleem titel',
+        'badge_description' => 'Embleem beschrijving',
+        'badge_image' => 'Embleem afbeelding',
     ],
 
     'columns' => [
@@ -206,5 +217,12 @@ return [
         'online_time' => 'Online Tijd',
         'can_trade' => 'Kan Handelen?',
         'can_change_name' => 'Kan Naam Wijzigen?',
+    ],
+
+    'notifications' => [
+        'badge_code_required' => 'Je moet een embleemcode invoeren!',
+        'badge_found' => 'Embleem gevonden!',
+        'badge_updated' => 'Embleem bijgewerkt!',
+        'badge_update_failed' => 'Embleem bijwerken mislukt!',
     ]
 ];

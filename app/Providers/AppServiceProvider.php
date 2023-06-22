@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Filament\Navigation\NavigationGroup;
+use App\Services\Parsers\ExternalTextsParser;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,9 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(SettingsService::class, function () {
-            return new SettingsService();
-        });
+        $this->app->singleton(ExternalTextsParser::class, fn () => new ExternalTextsParser());
+        $this->app->singleton(SettingsService::class, fn () => new SettingsService());
     }
 
     /**

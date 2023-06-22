@@ -59,6 +59,11 @@ return [
             'label' => 'Utilisateur',
             'plural' => 'Utilisateurs',
         ],
+        'badge-resource' => [
+            'navigation_label' => 'Gérer les badges',
+            'label' => 'Badge',
+            'plural' => 'Badges',
+        ],
 
         // Relations
         'settings' => [
@@ -89,6 +94,7 @@ return [
         'Duckets' => 'Duckets',
         'Diamonds' => 'Diamants',
         'Points' => 'Points',
+        'Open link' => 'Ouvrir le lien',
     ],
 
     'helpers' => [
@@ -97,6 +103,7 @@ return [
         'help_questions_category_icon' => 'Vous pouvez utiliser n\'importe quel lien d\'image ici. Nous recommandons d\'utiliser une image de taille 20x20.',
         'change_username_description' => 'Autoriser cet utilisateur à changer son nom d\'utilisateur (dans le client)',
         'change_password_description' => 'Laissez vide pour conserver le mot de passe actuel',
+        'badge_code_helper' => 'Entrez le code et cliquez sur la loupe à côté du champ. Si le badge existe, tous les champs seront remplis automatiquement.',
     ],
 
     'tabs' => [
@@ -168,6 +175,10 @@ return [
         'block_camera_follow' => 'Bloquer le suivi de la caméra',
         'ignore_bots' => 'Ignorer les robots',
         'ignore_pets' => 'Ignorer les animaux de compagnie',
+        'badge_code' => 'Code de badge',
+        'badge_title' => 'Titre du badge',
+        'badge_description' => 'Description du badge',
+        'badge_image' => 'Image du badge',
     ],
 
     'columns' => [
@@ -206,5 +217,12 @@ return [
         'online_time' => 'Temps en ligne',
         'can_trade' => 'Peut échanger?',
         'can_change_name' => 'Peut changer de nom?',
+    ],
+
+    'notifications' => [
+        'badge_code_required' => 'Vous devez fournir un code de badge.',
+        'badge_found' => 'Badge trouvé!',
+        'badge_updated' => 'Badge mis à jour!',
+        'badge_update_failed' => 'Impossible de mettre à jour le badge.',
     ]
 ];
