@@ -4,7 +4,7 @@ namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
 use Filament\Forms\Components\Card;
-use App\Services\Parsers\BadgeParser;
+use App\Services\Parsers\ExternalTextsParser;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Traits\TranslatableResource;
@@ -114,7 +114,7 @@ class BadgeResource extends Page
             return;
         }
 
-        $badgeData = app(BadgeParser::class)->getBadgeData($badgeCode);
+        $badgeData = app(ExternalTextsParser::class)->getBadgeData($badgeCode);
         $this->badgeWasPreviouslyCreated = is_array($badgeData['nitro']) || is_array($badgeData['flash']);
 
         if ($this->badgeWasPreviouslyCreated) {
@@ -162,7 +162,7 @@ class BadgeResource extends Page
 
     public function submit()
     {
-        dd('submit', $this->data);
+
     }
 
     public function getButtonLabel(): string

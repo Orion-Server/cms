@@ -7,9 +7,9 @@ use App\Services\SettingsService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
-use App\Services\Parsers\BadgeParser;
 use Illuminate\Support\ServiceProvider;
 use Filament\Navigation\NavigationGroup;
+use App\Services\Parsers\ExternalTextsParser;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,13 +18,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(SettingsService::class, function () {
-            return new SettingsService();
-        });
-
-        $this->app->singleton(BadgeParser::class, function () {
-            return new BadgeParser();
-        });
+        $this->app->singleton(ExternalTextsParser::class, fn () => new ExternalTextsParser());
+        $this->app->singleton(SettingsService::class, fn () => new SettingsService());
     }
 
     /**
