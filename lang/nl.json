@@ -82,7 +82,7 @@
     "Your Referral Link": "Jouw Verwijslink",
     "Share the link above to receive great prizes when your friends register.": "Deel de bovenstaande link om geweldige prijzen te ontvangen wanneer je vrienden zich registreren.",
     "You still need to invite :u to collect the next reward": "Je moet nog steeds :u uitnodigen om de volgende beloning te ontvangen",
-    "Successfull!": "Succesvol!",
+    "Successful!": "Succesvol!",
     "[Referral Link] Clipboard API is not supported": "[Verwijslink] Kladblok API wordt niet ondersteund",
     "Click to copy the link": "Klik om de link te kopiëren",
     "Copy Link": "Kopieer Link",
@@ -187,5 +187,6 @@
     "Showing": "Tonen",
     "to": "naar",
     "of": "van",
-    "results": "resultaten"
+    "results": "resultaten",
+    "Please select a valid reaction type": "Selecteer een geldig reactietype"
 }

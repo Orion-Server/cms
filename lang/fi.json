@@ -82,7 +82,7 @@
     "Your Referral Link": "Suosittelulinkkisi",
     "Share the link above to receive great prizes when your friends register.": "Jaa yllä oleva linkki saadaksesi suuria palkintoja, kun ystäväsi rekisteröityvät.",
     "You still need to invite :u to collect the next reward": "Sinun täytyy vielä kutsua :u kerätäksesi seuraavan palkinnon",
-    "Successfull!": "Onnistunut!",
+    "Successful!": "Onnistunut!",
     "[Referral Link] Clipboard API is not supported": "[Suosittelulinkki] Leikepöydän API ei ole tuettu",
     "Click to copy the link": "Klikkaa kopioidaksesi linkin",
     "Copy Link": "Kopioi linkki",
@@ -187,5 +187,6 @@
     "Showing": "Näytetään",
     "to": "jotta",
     "of": "kpl",
-    "results": "tulosta"
+    "results": "tulosta",
+    "Please select a valid reaction type": "Valitse kelvollinen reaktiotyyppi"
 }

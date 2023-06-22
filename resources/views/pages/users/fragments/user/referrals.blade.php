@@ -29,7 +29,7 @@
             }
 
             navigator.clipboard.writeText(document.getElementById('referral-link').value)
-            event.target.innerHTML = '{{ __('Successfull!') }}'
+            event.target.innerHTML = '{{ __('Successful!') }}'
 
             setTimeout(() => event.target.innerHTML = buttonContent, 2000)
         }

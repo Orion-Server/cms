@@ -1,20 +1,21 @@
 import Alpine from 'alpinejs'
+import Staff from '../components/Pages/Staff'
 import Footer from '../components/Pages/Footer'
 import Photos from '../components/Pages/Photos'
+import Navigation from '../components/Navigation'
 import TippyWrapper from '../external/TippyWrapper'
 import NotyfWrapper from '../external/NotyfWrapper'
 import SwiperWrapper from '../external/SwiperWrapper'
 import DiscordWidget from '../components/DiscordWidget'
 import OnlineFriends from '../components/OnlineFriends'
 import Authentication from '../components/Authentication'
-import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
 import TextareaEditor from '../components/Ui/TextareaEditor'
-import Navigation from '../components/Navigation'
+import AutomaticSearch from '../components/Ui/AutomaticSearch'
+import IngameSettings from '../components/Pages/Users/IngameSettings'
 import AccountSettings from '../components/Pages/Users/AccountSettings'
 import PasswordSettings from '../components/Pages/Users/PasswordSettings'
-import IngameSettings from '../components/Pages/Users/IngameSettings'
-import Staff from '../components/Pages/Staff'
-import AutomaticSearch from '../components/Ui/AutomaticSearch'
+import ArticleReaction from '../components/Pages/Articles/ArticleReaction'
+import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
 
 export default class WebManager {
     static start() {
@@ -41,6 +42,7 @@ export default class WebManager {
         Navigation.start()
         Staff.start()
         AutomaticSearch.start()
+        ArticleReaction.start()
 
         // User Settings
         AccountSettings.start()

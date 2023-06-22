@@ -42,7 +42,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="h-auto w-full flex flex-col lg:w-3/4">
+        <div class="h-auto w-full flex flex-col lg:w-3/4" id="article-content">
             @if ($activeArticle)
                 @include('pages.articles.fragments.active-content', ['activeArticle' => $activeArticle])
             @else
