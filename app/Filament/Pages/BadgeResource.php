@@ -73,7 +73,6 @@ class BadgeResource extends Page
                 ]),
 
             Section::make('Nitro Texts')
-                ->description('Test')
                 ->collapsible()
                 ->visible(fn () => isset($this->data['nitro']))
                 ->schema([
@@ -89,7 +88,6 @@ class BadgeResource extends Page
                 ]),
 
             Section::make('Flash Texts')
-                ->description('Test')
                 ->collapsible()
                 ->visible(fn () => isset($this->data['flash']))
                 ->schema([

@@ -56,7 +56,6 @@ return [
      * Client configurations
      */
     'client' => [
-        // Nitro client version
         'nitro' => [
             'cms_toggle_button' => true,
             'online_count_button' => true,
@@ -65,16 +64,11 @@ return [
              * Path to the client folder (relative to the public folder)
              */
             'path' => env('NITRO_CLIENT_PATH', '/client'),
-
-            /**
-             *
-             */
-            'externalTextsUrl' => env('NITRO_EXTERNAL_TEXTS_URL', null)
+            'gamedata_relative_path' => env('NITRO_GAMEDATA_RELATIVE_PATH', null)
         ],
 
-        // Flash client version
         'flash' => [
-            'externalTextsUrl' => env('FLASH_EXTERNAL_TEXTS_URL', null)
+            'gamedata_relative_path' => env('FLASH_GAMEDATA_RELATIVE_PATH', null)
         ]
     ]
 ];
