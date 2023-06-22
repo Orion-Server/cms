@@ -59,6 +59,11 @@ return [
             'label' => 'User',
             'plural' => 'Users',
         ],
+        'badge-resource' => [
+            'navigation_label' => 'Manage Badges',
+            'label' => 'Badge',
+            'plural' => 'Badges',
+        ],
 
         // Relations
         'settings' => [
@@ -89,6 +94,9 @@ return [
         'Duckets' => 'Duckets',
         'Diamonds' => 'Diamonds',
         'Points' => 'Points',
+        'Update' => 'Update',
+        'Create' => 'Create',
+        'Open link' => 'Open link',
     ],
 
     'helpers' => [
@@ -97,6 +105,7 @@ return [
         'help_questions_category_icon' => 'You can use any image link here. We recommend using an image with a size of 20x20.',
         'change_username_description' => 'Allow this user to change their username (within the client)',
         'change_password_description' => 'Leave blank to keep the current password',
+        'badge_code_helper' => 'Enter the code and click on the magnifying glass next to the field. If the badge exists, all fields will be filled in automatically.',
     ],
 
     'tabs' => [
@@ -168,6 +177,10 @@ return [
         'block_camera_follow' => 'Block Camera Follow',
         'ignore_bots' => 'Ignore Bots',
         'ignore_pets' => 'Ignore Pets',
+        'badge_code' => 'Badge Code',
+        'badge_title' => 'Badge Title',
+        'badge_description' => 'Badge Description',
+        'badge_image' => 'Badge Image',
     ],
 
     'columns' => [
@@ -206,5 +219,10 @@ return [
         'online_time' => 'Online Time',
         'can_trade' => 'Can Trade?',
         'can_change_name' => 'Can Change Name?',
+    ],
+
+    'notifications' => [
+        'badge_code_required' => 'You need to enter a badge code.',
+        'badge_found' => 'Badge found! The fields below have been automatically filled in.'
     ]
 ];

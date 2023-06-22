@@ -94,6 +94,9 @@ return [
         'Duckets' => 'Duckets',
         'Diamonds' => 'Diamantes',
         'Points' => 'Pontos',
+        'Update' => 'Atualizar',
+        'Create' => 'Criar',
+        'Open link' => 'Abrir link',
     ],
 
     'helpers' => [
@@ -102,6 +105,7 @@ return [
         'help_questions_category_icon' => 'Você pode usar qualquer link de imagem aqui. Recomendamos usar uma imagem com tamanho 20x20.',
         'change_username_description' => 'Permitir que este usuário altere seu nome de usuário (dentro do cliente)',
         'change_password_description' => 'Deixe vazio para manter a senha atual',
+        'badge_code_helper' => 'Digite o código e clique na lupa ao lado do campo. Se o emblema existir, ele será preenchido automaticamente.',
     ],
 
     'tabs' => [
@@ -173,7 +177,10 @@ return [
         'block_camera_follow' => 'Bloquear a câmera de seguir o avatar',
         'ignore_bots' => 'Ignorar bots',
         'ignore_pets' => 'Ignorar mascotes',
-        'badge_code' => 'Código do Emblema',
+        'badge_code' => 'Código do emblema',
+        'badge_title' => 'Título do emblema',
+        'badge_description' => 'Descrição do emblema',
+        'badge_image' => 'Imagem do emblema',
     ],
 
     'columns' => [
@@ -212,5 +219,10 @@ return [
         'online_time' => 'Tempo online',
         'can_trade' => 'Pode negociar?',
         'can_change_name' => 'Pode alterar o nome?',
+    ],
+
+    'notifications' => [
+        'badge_code_required' => 'Você precisa inserir um código de emblema.',
+        'badge_found' => 'Emblema encontrado! Os campos foram preenchidos automaticamente.',
     ]
 ];
