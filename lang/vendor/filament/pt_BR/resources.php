@@ -223,6 +223,8 @@ return [
 
     'notifications' => [
         'badge_code_required' => 'Você precisa inserir um código de emblema.',
-        'badge_found' => 'Emblema encontrado! Os campos foram preenchidos automaticamente.',
+        'badge_found' => 'Emblema encontrado!',
+        'badge_updated' => 'Emblema atualizado com sucesso!',
+        'badge_update_failed' => 'Não foi possível atualizar o emblema.'
     ]
 ];

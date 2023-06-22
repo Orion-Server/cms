@@ -27,10 +27,6 @@ use App\Http\Controllers\Auth\AuthSessionController;
 |
 */
 
-Route::get('/debug-parser', function() {
-    app(\App\Services\Parsers\Badge\FlashBadgeParser::class);
-});
-
 Route::get('/set-language/{language}', [WebController::class, 'setLanguage'])->name('set-language');
 
 Route::get('/', [WebController::class, 'index'])->name('index');

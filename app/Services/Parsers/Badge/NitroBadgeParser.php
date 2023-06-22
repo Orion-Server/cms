@@ -58,6 +58,22 @@ class NitroBadgeParser extends BadgeParser
             );
     }
 
+    public function updateBadgeTexts(string $code, string $name, string $description): void {
+        $file = $this->disk->get($this->getFileName());
+
+        if(empty($file)) {
+            Log::warning("[ORION NITRO PARSER] - Error while updating nitro texts: {$this->getFileName()} does not exist.");
+            return;
+        }
+
+        $file = json_decode($file, true);
+
+        $file["badge_desc_{$code}"] = $description;
+        $file["badge_name_{$code}"] = $name;
+
+        $this->disk->put($this->getFileName(), json_encode($file));
+    }
+
     public function getFileName(): string
     {
         return 'ExternalTexts.json';

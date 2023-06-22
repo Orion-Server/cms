@@ -4,12 +4,13 @@ namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
 use Filament\Forms\Components\Card;
-use App\Services\Parsers\ExternalTextsParser;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Traits\TranslatableResource;
+use App\Services\Parsers\ExternalTextsParser;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Pages\Actions\Action as PageAction;
 
 class BadgeResource extends Page
 {
@@ -158,23 +159,35 @@ class BadgeResource extends Page
         ];
     }
 
-    public function submit()
+    public function create()
     {
+        // image and code fields are required when creating a new badge
+        if(!$this->badgeWasPreviouslyCreated && (empty($this->data['image']) || empty($this->data['code']))) {
+            $this->notify('danger', __('filament::resources.notifications.badge_image_required'));
+            return;
+        }
 
+        try {
+            $externalTextsParser = app(ExternalTextsParser::class);
+
+            $externalTextsParser->updateNitroBadgeTexts($this->data['code'], ...$this->data['nitro']);
+            $externalTextsParser->updateFlashBadgeTexts($this->data['code'], ...$this->data['flash']);
+        } catch (\Throwable $exception) {
+            $this->notify('danger', __('filament::resources.notifications.badge_update_failed'));
+            return;
+        }
+
+        $this->notify('success', __('filament::resources.notifications.badge_updated'));
     }
 
-    public function getButtonLabel(): string
+    public function getFormActions(): array
     {
-        return $this->badgeWasPreviouslyCreated ? __('filament::resources.common.Update') : __('filament::resources.common.Create');
-    }
-
-    public function getButtonColor(): string
-    {
-        return $this->badgeWasPreviouslyCreated ? 'primary' : 'success';
-    }
-
-    public function getButtonIcon(): string
-    {
-        return $this->badgeWasPreviouslyCreated ? 'heroicon-o-check' : 'heroicon-o-upload';
+        return [
+            PageAction::make('create')
+                ->label(__('filament::resources.common.Update'))
+                ->submit('create')
+                ->icon('heroicon-o-upload')
+                ->color('success'),
+        ];
     }
 }

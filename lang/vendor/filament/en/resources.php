@@ -223,6 +223,8 @@ return [
 
     'notifications' => [
         'badge_code_required' => 'You need to enter a badge code.',
-        'badge_found' => 'Badge found! The fields below have been automatically filled in.'
+        'badge_found' => 'Badge found!',
+        'badge_updated' => 'Badge updated successfully!',
+        'badge_update_failed' => 'Badge update failed.',
     ]
 ];

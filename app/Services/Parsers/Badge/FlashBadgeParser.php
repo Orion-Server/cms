@@ -39,7 +39,7 @@ class FlashBadgeParser extends BadgeParser
             return;
         }
 
-        if(!$this->disk->exists($this->getFileName())) {
+        if (!$this->disk->exists($this->getFileName())) {
             Log::warning("[ORION FLASH PARSER] - Error while parsing flash texts: {$this->getFileName()} does not exist.");
             return;
         }
@@ -58,7 +58,7 @@ class FlashBadgeParser extends BadgeParser
                 ->mapWithKeys(function (string $value): array {
                     $splitted = explode('=', $value);
 
-                    if(count($splitted) !== 2) return [];
+                    if (count($splitted) !== 2) return [];
 
                     return [
                         $splitted[0] => $splitted[1] // badge_text => badge_text_value
@@ -68,6 +68,39 @@ class FlashBadgeParser extends BadgeParser
             Log::error('[ORION FLASH PARSER] - Error while parsing flash texts: ' . $error->getMessage());
             $this->flashTexts = null;
         }
+    }
+
+    public function updateBadgeTexts(string $code, string $name, string $description): void
+    {
+        if(!($this->flashTexts instanceof Collection)) return;
+
+        $updatedFlashTexts = $this->clearOldBadgedata(
+            $this->disk->get($this->getFileName()),
+            $code
+        );
+
+        $this->disk->put($this->getFileName(), $updatedFlashTexts);
+
+        $this->disk->append($this->getFileName(), "badge_desc_{$code}={$description}");
+        $this->disk->append($this->getFileName(), "badge_name_{$code}={$name}");
+    }
+
+    protected function clearOldBadgedata(string $texts, string $code): string
+    {
+        $possibleBadgeData = [
+            "badge_desc_{$code}=",
+            "badge_name_{$code}="
+        ];
+
+        if(! Str::contains($texts, $possibleBadgeData)) {
+            return $texts;
+        }
+
+        $texts = collect(preg_split('/\r\n|\r|\n/', $texts, -1, PREG_SPLIT_NO_EMPTY));
+
+        return $texts->filter(function(?string $value, ?string $key) use ($possibleBadgeData): bool {
+            return ! Str::contains($value, $possibleBadgeData);
+        })->join("\r\n");
     }
 
     public function getFileName(): string
