@@ -59,6 +59,11 @@ return [
             'label' => 'Bruger',
             'plural' => 'Brugere',
         ],
+        'badge-resource' => [
+            'navigation_label' => 'Administrer Mærker',
+            'label' => 'Mærke',
+            'plural' => 'Mærker',
+        ],
 
         // Relations
         'settings' => [
@@ -89,6 +94,7 @@ return [
         'Duckets' => 'Duckets',
         'Diamonds' => 'Diamanter',
         'Points' => 'Point',
+        'Open link' => 'Åben link',
     ],
 
     'helpers' => [
@@ -206,5 +212,12 @@ return [
         'online_time' => 'Online Tid',
         'can_trade' => 'Kan Handle?',
         'can_change_name' => 'Kan ændre Navn?',
+    ],
+
+    'notifications' => [
+        'badge_code_required' => 'Du skal angive en mærkekode.',
+        'badge_found' => 'Mærke fundet!',
+        'badge_updated' => 'Mærke opdateret!',
+        'badge_update_failed' => 'Mærke opdatering mislykkedes!',
     ]
 ];

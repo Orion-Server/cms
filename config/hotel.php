@@ -64,11 +64,11 @@ return [
              * Path to the client folder (relative to the public folder)
              */
             'path' => env('NITRO_CLIENT_PATH', '/client'),
-            'gamedata_relative_path' => env('NITRO_GAMEDATA_RELATIVE_PATH', null)
+            'relative_files_path' => env('NITRO_FILES_RELATIVE_PATH', null)
         ],
 
         'flash' => [
-            'gamedata_relative_path' => env('FLASH_GAMEDATA_RELATIVE_PATH', null)
+            'relative_files_path' => env('FLASH_FILES_RELATIVE_PATH', null)
         ]
     ]
 ];

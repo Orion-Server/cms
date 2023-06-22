@@ -59,6 +59,11 @@ return [
             'label' => 'Usuario',
             'plural' => 'Usuarios',
         ],
+        'badge-resource' => [
+            'navigation_label' => 'Administrar Insignias',
+            'label' => 'Insignia',
+            'plural' => 'Insignias',
+        ],
 
         // Relations
         'settings' => [
@@ -89,6 +94,7 @@ return [
         'Duckets' => 'Duckets',
         'Diamonds' => 'Diamantes',
         'Points' => 'Puntos',
+        'Open link' => 'Abrir enlace',
     ],
 
     'helpers' => [
@@ -97,6 +103,7 @@ return [
         'help_questions_category_icon' => 'Puedes usar cualquier enlace de imagen aquí. Recomendamos usar una imagen con un tamaño de 20x20.',
         'change_username_description' => 'Permitir que este usuario cambie su nombre de usuario (dentro del cliente)',
         'change_password_description' => 'Dejar en blanco para mantener la contraseña actual',
+        'badge_code_helper' => 'Ingrese el código y haga clic en la lupa al lado del campo. Si existe la insignia, todos los campos se completarán automáticamente.',
     ],
 
     'tabs' => [
@@ -168,6 +175,10 @@ return [
         'block_camera_follow' => 'Bloquear Seguimiento de Cámara',
         'ignore_bots' => 'Ignorar Bots',
         'ignore_pets' => 'Ignorar Mascotas',
+        'badge_code' => 'Código de Insignia',
+        'badge_title' => 'Título de Insignia',
+        'badge_description' => 'Descripción de Insignia',
+        'badge_image' => 'Imagen de Insignia',
     ],
 
     'columns' => [
@@ -206,5 +217,12 @@ return [
         'online_time' => 'Tiempo en Línea',
         'can_trade' => '¿Puede Comerciar?',
         'can_change_name' => '¿Puede Cambiar el Nombre?',
+    ],
+
+    'notifications' => [
+        'badge_code_required' => 'El código de la insignia es obligatorio.',
+        'badge_found' => 'Insignia encontrada!',
+        'badge_updated' => 'Insignia actualizada!',
+        'badge_update_failed' => 'No se pudo actualizar la insignia.',
     ]
 ];

@@ -24,10 +24,15 @@ class FlashBadgeParser extends BadgeParser
     private function buildTemporaryDisk()
     {
         $this->disk = Storage::build([
-            'root' => public_path(config('hotel.client.flash.gamedata_relative_path')),
+            'root' => $this->getRootPath(),
             'driver' => 'local',
             'visibility' => 'public',
         ]);
+    }
+
+    public function getRootPath(): string
+    {
+        return public_path(trim(config('hotel.client.flash.relative_files_path'), '\//') . '/gamedata');
     }
 
     private function parseTexts(): void
@@ -106,6 +111,11 @@ class FlashBadgeParser extends BadgeParser
     public function getFileName(): string
     {
         return 'external_flash_texts.txt';
+    }
+
+    public function getDisk(): ?Filesystem
+    {
+        return $this->disk;
     }
 
     public function getTexts(): ?Collection

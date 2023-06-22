@@ -22,10 +22,15 @@ class ExternalTextsParser
     {
         return [
             'code' => $badgeCode,
-            'image' => sprintf('%s%s.gif', getSetting('badges_path'), $badgeCode),
+            'image' => $this->getBadgeImageUrl($badgeCode),
             'nitro' => $this->nitroParser->getBadgeData($badgeCode),
             'flash' => $this->flashParser->getBadgeData($badgeCode)
         ];
+    }
+
+    public function getBadgeImageUrl(string $badgeCode): string
+    {
+        return sprintf('%s%s.gif', getSetting('badges_path'), $badgeCode);
     }
 
     public function updateNitroBadgeTexts(

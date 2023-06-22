@@ -24,10 +24,15 @@ class NitroBadgeParser extends BadgeParser
     private function buildTemporaryDisk()
     {
         $this->disk = Storage::build([
-            'root' => public_path(config('hotel.client.nitro.gamedata_relative_path')),
+            'root' => $this->getRootPath(),
             'driver' => 'local',
             'visibility' => 'public',
         ]);
+    }
+
+    public function getRootPath(): string
+    {
+        return public_path(trim(config('hotel.client.nitro.relative_files_path'), '\//') . '/gamedata');
     }
 
     private function parseTexts(): void

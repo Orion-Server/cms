@@ -59,6 +59,11 @@ return [
             'label' => 'Käyttäjä',
             'plural' => 'Käyttäjät',
         ],
+        'badge-resource' => [
+            'navigation_label' => 'Hallinnoi tunnuksia',
+            'label' => 'Tunnus',
+            'plural' => 'Tunnukset',
+        ],
 
         // Relations
         'settings' => [
@@ -89,6 +94,7 @@ return [
         'Duckets' => 'Duckets',
         'Diamonds' => 'Timantit',
         'Points' => 'Pisteet',
+        'Open link' => 'Avaa linkki',
     ],
 
     'helpers' => [
@@ -97,6 +103,7 @@ return [
         'help_questions_category_icon' => 'Voit käyttää mitä tahansa kuvan linkkiä tässä. Suosittelemme kuvan kokoa 20x20.',
         'change_username_description' => 'Salli tämän käyttäjän vaihtaa käyttäjänimensä (asiakasohjelmassa)',
         'change_password_description' => 'Jätä tyhjäksi pitääksesi nykyisen salasanan',
+        'badge_code_helper' => 'Syötä koodi ja napsauta kentän vieressä olevaa suurennuslasia. Jos merkki on olemassa, kaikki kentät täytetään automaattisesti.',
     ],
 
     'tabs' => [
@@ -168,6 +175,10 @@ return [
         'block_camera_follow' => 'Estä kameran seuraaminen',
         'ignore_bots' => 'Ohita bottit',
         'ignore_pets' => 'Ohita lemmikit',
+        'badge_code' => 'Tunnuksen koodi',
+        'badge_title' => 'Tunnuksen otsikko',
+        'badge_description' => 'Tunnuksen kuvaus',
+        'badge_image' => 'Tunnuksen kuva',
     ],
 
     'columns' => [
@@ -206,5 +217,12 @@ return [
         'online_time' => 'Online-aika',
         'can_trade' => 'Voiko vaihtaa?',
         'can_change_name' => 'Voiko vaihtaa nimeä?',
+    ],
+
+    'notifications' => [
+        'badge_code_required' => 'Tunnuksen koodi on pakollinen.',
+        'badge_found' => 'Tunnus löydetty!',
+        'badge_updated' => 'Tunnus päivitetty!',
+        'badge_update_failed' => 'Tunnuksen päivitys epäonnistui.',
     ]
 ];

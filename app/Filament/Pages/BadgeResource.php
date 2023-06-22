@@ -4,6 +4,8 @@ namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
 use Filament\Forms\Components\Card;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Traits\TranslatableResource;
@@ -167,17 +169,45 @@ class BadgeResource extends Page
             return;
         }
 
+        $externalTextsParser = app(ExternalTextsParser::class);
+
         try {
-            $externalTextsParser = app(ExternalTextsParser::class);
+            $this->uploadBadgeImage($externalTextsParser);
 
             $externalTextsParser->updateNitroBadgeTexts($this->data['code'], ...$this->data['nitro']);
             $externalTextsParser->updateFlashBadgeTexts($this->data['code'], ...$this->data['flash']);
         } catch (\Throwable $exception) {
+            Log::error('[ORION BADGE RESOURCE] - ERROR: ', $exception->getMessage());
+
             $this->notify('danger', __('filament::resources.notifications.badge_update_failed'));
             return;
         }
 
         $this->notify('success', __('filament::resources.notifications.badge_updated'));
+    }
+
+    protected function uploadBadgeImage(ExternalTextsParser $parser): void
+    {
+        if (empty($this->data['image']) || !filter_var($this->data['image'], FILTER_VALIDATE_URL)) return;
+
+        if($this->data['image'] == $parser->getBadgeImageUrl($this->data['code'])) return;
+
+        $gdImage = imagecreatefromstring(
+            Http::get($this->data['image'])->body()
+        );
+
+        if ($gdImage === false) {
+            $this->notify('danger', __('filament::resources.notifications.badge_image_upload_failed'));
+            return;
+        }
+
+        $uploadPath = public_path(sprintf('%s%s%s.gif',
+            rtrim(config('hotel.client.flash.relative_files_path'), '\//'),
+            '/c_images/album1584/',
+            $this->data['code']
+        ));
+
+        imagegif($gdImage, $uploadPath);
     }
 
     public function getFormActions(): array
