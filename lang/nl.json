@@ -189,5 +189,10 @@
     "of": "van",
     "results": "resultaten",
     "Please select a valid reaction type": "Selecteer een geldig reactietype",
-    "Fixed": "Vast"
+    "Fixed": "Vast",
+    ":a credits": ":a munten",
+    ":a duckets": ":a pixels",
+    ":a diamonds": ":a diamanten",
+    ":a points": ":a punten",
+    "No friends online": "Geen vrienden online"
 }

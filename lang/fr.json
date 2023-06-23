@@ -189,5 +189,10 @@
     "of": "de",
     "results": "résultats",
     "Please select a valid reaction type": "Veuillez sélectionner un type de réaction valide",
-    "Fixed": "Fixé"
+    "Fixed": "Fixé",
+    ":a credits": ":a pièces de monnaie",
+    ":a duckets": ":a duckets",
+    ":a diamonds": ":a diamants",
+    ":a points": ":a points",
+    "No friends online": "Aucun ami en ligne"
 }

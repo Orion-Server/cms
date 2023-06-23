@@ -189,5 +189,10 @@
     "of": "kpl",
     "results": "tulosta",
     "Please select a valid reaction type": "Valitse kelvollinen reaktiotyyppi",
-    "Fixed": "Korjattu"
+    "Fixed": "Korjattu",
+    ":a credits": ":a kolikoita",
+    ":a duckets": ":a pikseliä",
+    ":a diamonds": ":a timantteja",
+    ":a points": ":a pisteitä",
+    "No friends online": "Ei ystäviä verkossa"
 }

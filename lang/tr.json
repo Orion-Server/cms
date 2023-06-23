@@ -189,5 +189,10 @@
     "of": "toplam",
     "results": "sonuç",
     "Please select a valid reaction type": "Lütfen geçerli bir tepki türü seçin",
-    "Fixed": "Düzeltildi"
+    "Fixed": "Düzeltildi",
+    ":a credits": ":a paralar",
+    ":a duckets": ":a piksel",
+    ":a diamonds": ":a elmaslar",
+    ":a points": ":a puanlar",
+    "No friends online": "Çevrimiçi arkadaş yok"
 }

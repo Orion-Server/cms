@@ -189,5 +189,10 @@
     "of": "af",
     "results": "resultater",
     "Please select a valid reaction type": "Vælg venligst en gyldig reaktionstype",
-    "Fixed": "Fastgjort"
+    "Fixed": "Fastgjort",
+    ":a credits": ":a mønter",
+    ":a duckets": ":a pixels",
+    ":a diamonds": ":a diamanter",
+    ":a points": ":a point",
+    "No friends online": "Ingen venner online"
 }

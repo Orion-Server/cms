@@ -19,7 +19,7 @@
     <span class="text-slate-400 text-xs font-medium mt-1 border-l-2 border-blue-500 dark:border-blue-400 pl-2">
         {!! __('You still need to invite :m to collect the next reward.', ['m' => '<span class="text-blue-500 dark:text-blue-400">5 users</span>']) !!}
     </span>
-    <div class="flex gap-3 mt-2" x-data="{
+    <div class="flex items-center justify-end gap-3 mt-2" x-data="{
         copyLink(event) {
             const buttonContent = event.target.innerHTML
 
@@ -34,8 +34,9 @@
             setTimeout(() => event.target.innerHTML = buttonContent, 2000)
         }
     }">
+        <div class="border-t border-gray-300 dark:border-slate-700 flex-auto"></div>
         <x-ui.buttons.default
-            class="bg-blue-400 w-1/2 hover:bg-blue-500 text-white border-blue-600 rounded-lg"
+            class="bg-blue-400 hover:bg-blue-500 text-white border-blue-600 rounded-lg"
             data-tippy
             @click.debounce.500ms="copyLink"
             data-tippy-content="<small>{{ __('Click to copy the link') }}</small>"
@@ -44,7 +45,7 @@
             {{ __('Copy Link') }}
         </x-ui.buttons.default>
         <x-ui.buttons.default
-            class="w-1/2 bg-green-400 disabled:!bg-slate-400 disabled:!border-slate-600 disabled:!text-slate-300 disabled:cursor-not-allowed hover:bg-green-500 text-green-800 border-green-600 rounded-lg"
+            class="bg-green-400 disabled:!bg-slate-400 disabled:!border-slate-600 disabled:!text-slate-300 disabled:cursor-not-allowed hover:bg-green-500 text-green-800 border-green-600 rounded-lg"
             :disabled="true"
         >
         <i class="fa-solid fa-gift mr-1"></i>

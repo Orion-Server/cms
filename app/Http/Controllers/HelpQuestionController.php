@@ -24,6 +24,7 @@ class HelpQuestionController extends Controller
         $categories = HelpQuestionCategory::orderBy('order')->get();
 
         $addedRecentQuestions = HelpQuestion::latest()
+            ->visible()
             ->limit(static::RECENT_ADDED_QUESTIONS_LIMIT)
             ->get();
 

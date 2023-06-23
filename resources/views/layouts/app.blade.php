@@ -103,6 +103,10 @@
         <x-header.auth-nav />
     @endguest
 
+    @auth
+    @include('pages.users.fragments.user.balances')
+    @endauth
+
     <main class="mt-4">
         @yield('content')
     </main>
