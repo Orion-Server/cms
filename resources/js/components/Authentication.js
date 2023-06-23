@@ -48,7 +48,6 @@ export default class Authentication {
             },
 
             toggleToLoginModal() {
-                console.log('entrei')
                 this.showRegisterModal = false
                 this.showLoginModal = true
             },
@@ -110,14 +109,14 @@ export default class Authentication {
 
                 await Authentication._attemptAuthentication('/register', this.registerData,
                     () => {
-                        Authentication._treatResponseSuccess(this, 'You have been registered successfully.')
+                        Authentication._treatResponseSuccess(this, __('You have been registered successfully!'))
                     },
                     (response) => {
                         Authentication._treatResponseErrors(this, response)
                     },
                     () => {
                         this.$dispatch('orion:alert', {
-                            message: 'Please fill in all register fields',
+                            message: __('Please fill in all register fields'),
                             type: 'error'
                         })
                     }
@@ -142,14 +141,14 @@ export default class Authentication {
 
                 await Authentication._attemptAuthentication('/login', this.loginData,
                     () => {
-                        Authentication._treatResponseSuccess(this, 'You have been logged in successfully.')
+                        Authentication._treatResponseSuccess(this, __('You have been logged in successfully.'))
                     },
                     (response) => {
                         Authentication._treatResponseErrors(this, response)
                     },
                     () => {
                         this.$dispatch('orion:alert', {
-                            message: 'Please fill in all login fields',
+                            message: __('Please fill in all login fields'),
                             type: 'error'
                         })
                     }

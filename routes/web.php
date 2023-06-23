@@ -12,9 +12,9 @@ use App\Http\Controllers\{
     HelpQuestionController,
     RankingController,
     StaffController,
-    UserSettingController
+    UserSettingController,
+    Auth\AuthSessionController
 };
-use App\Http\Controllers\Auth\AuthSessionController;
 
 /*
 |--------------------------------------------------------------------------

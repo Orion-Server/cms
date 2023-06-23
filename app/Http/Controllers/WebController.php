@@ -19,11 +19,13 @@ class WebController extends Controller
     public function index(): View
     {
         $isAuthenticated = \Auth::check();
+        $defaultArticles = Article::forIndex($this->getArticlesLimit('default', $isAuthenticated));
 
-        $defaultArticles = Article::forIndex(
-            $this->getArticlesLimit('default', $isAuthenticated)
-        )->get();
+        if($isAuthenticated) {
+            $defaultArticles->whereFixed(false);
+        }
 
+        $defaultArticles = $defaultArticles->get();
         $compactValues = ['defaultArticles'];
 
         if ($isAuthenticated) {

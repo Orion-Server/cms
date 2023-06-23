@@ -194,5 +194,9 @@
     ":a duckets": ":a pikseliä",
     ":a diamonds": ":a timantteja",
     ":a points": ":a pisteitä",
-    "No friends online": "Ei ystäviä verkossa"
+    "No friends online": "Ei ystäviä verkossa",
+    "You have been registered successfully!": "Olet rekisteröitynyt onnistuneesti!",
+    "Please fill in all register fields": "Täytä kaikki rekisteröintikentät",
+    "Please fill in all login fields": "Täytä kaikki kirjautumiskentät",
+    "You have been logged in successfully.": "Olet kirjautunut sisään onnistuneesti."
 }

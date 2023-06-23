@@ -194,5 +194,9 @@
     ":a duckets": ":a piksel",
     ":a diamonds": ":a elmaslar",
     ":a points": ":a puanlar",
-    "No friends online": "Çevrimiçi arkadaş yok"
+    "No friends online": "Çevrimiçi arkadaş yok",
+    "You have been registered successfully!": "Başarıyla kayıt oldunuz!",
+    "Please fill in all register fields": "Lütfen tüm kayıt alanlarını doldurun",
+    "Please fill in all login fields": "Lütfen tüm giriş alanlarını doldurun",
+    "You have been logged in successfully.": "Başarıyla giriş yaptınız."
 }

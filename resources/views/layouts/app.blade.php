@@ -40,6 +40,19 @@
     <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}" />
 
+    <script>
+        window.__ = (key) => {
+            const translations = {
+                'You have been registered successfully': "{{ __('You have been registered successfully') }}",
+                'Please fill in all register fields': "{{ __('Please fill in all register fields') }}",
+                'Please fill in all login fields': "{{ __('Please fill in all login fields') }}",
+                'You have been logged in successfully.': "{{ __('You have been logged in successfully.') }}",
+            }
+
+            return translations[key] ?? key;
+        }
+    </script>
+
     @vite(['resources/scss/app.scss'])
 </head>
 <body class="bg-gray-100 dark:bg-slate-900 pt-12 lg:pt-0 overflow-x-hidden">

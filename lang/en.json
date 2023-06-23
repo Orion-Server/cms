@@ -194,5 +194,9 @@
     ":a duckets": ":a duckets",
     ":a diamonds": ":a diamonds",
     ":a points": ":a points",
-    "No friends online": "No friends online"
+    "No friends online": "No friends online",
+    "You have been registered successfully!": "You have been registered successfully!",
+    "Please fill in all register fields": "Please fill in all register fields",
+    "Please fill in all login fields": "Please fill in all login fields",
+    "You have been logged in successfully.": "You have been logged in successfully."
 }

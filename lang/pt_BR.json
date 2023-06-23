@@ -194,5 +194,9 @@
     ":a duckets": ":a pixels",
     ":a diamonds": ":a diamantes",
     ":a points": ":a pontos",
-    "No friends online": "Nenhum amigo online"
+    "No friends online": "Nenhum amigo online",
+    "You have been registered successfully!": "Você foi registrado com sucesso!",
+    "Please fill in all register fields": "Por favor, preencha todos os campos de registro",
+    "Please fill in all login fields": "Por favor, preencha todos os campos de login",
+    "You have been logged in successfully.": "Você foi conectado com sucesso."
 }
