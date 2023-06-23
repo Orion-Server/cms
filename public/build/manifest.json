@@ -34,17 +34,17 @@
     "css": [
       "assets/app-8ec2fb49.css"
     ],
-    "file": "assets/app-3eeec165.js",
+    "file": "assets/app-275f0335.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/scss/app.scss": {
-    "file": "assets/app-15a53530.css",
+    "file": "assets/app-54cdda29.css",
     "isEntry": true,
     "src": "resources/scss/app.scss"
   },
   "resources/scss/filament.scss": {
-    "file": "assets/filament-b9b27caf.css",
+    "file": "assets/filament-4e7f8cc0.css",
     "isEntry": true,
     "src": "resources/scss/filament.scss"
   }
