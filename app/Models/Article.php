@@ -82,13 +82,11 @@ class Article extends Model
 
     public static function forIndex(int $limit): Builder
     {
-        $query = Article::valid()
+        return Article::valid()
             ->with(['user:id,username,look'])
-            ->select(['id', 'user_id', 'title', 'slug', 'is_promotion', 'image', 'description', 'promotion_ends_at', 'created_at'])
-            ->latest()
-            ->limit($limit);
-
-        return $query;
+            ->select(['id', 'user_id', 'title', 'slug', 'is_promotion', 'image', 'description', 'promotion_ends_at', 'created_at', 'fixed'])
+            ->limit($limit)
+            ->latest();
     }
 
     public function scopeValid(Builder $query): void

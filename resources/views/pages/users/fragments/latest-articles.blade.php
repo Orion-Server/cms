@@ -31,7 +31,7 @@
 
     @foreach ($fixedArticles as $fixedArticle)
         <div class="odd:bg-gray-50 p-2 dark:odd:bg-slate-900 flex gap-1 h-14 hover:bg-gray-100 dark:hover:bg-slate-850">
-            <div class="w-14 h-full rounded bg-no-repeat bg-right-bottom" style="background-image: url('{{ $fixedArticle->image }}')"></div>
+            <div class="w-14 h-full rounded bg-no-repeat bg-center" style="background-image: url('{{ $fixedArticle->image }}')"></div>
             <div class="h-full w-full flex flex-col truncate">
                 <a href="{{ route('articles.show', [$fixedArticle->id, $fixedArticle->slug]) }}" class="underline underline-offset-2 text-slate-700 dark:text-slate-200 text-sm font-semibold">{{ $fixedArticle->title }}</a>
                 <span class="text-xs text-slate-600 dark:text-slate-300 mt-1">{{ __('Posted by') }} <a href="#" class="font-medium text-blue-400">{{ $fixedArticle->user->username }}</a></span>

@@ -12,10 +12,9 @@ use Illuminate\Http\RedirectResponse;
 class WebController extends Controller
 {
     private const FIXED_ARTICLES_LIST_COUNT_WHEN_AUTH = 5;
-    private const FIXED_ARTICLES_LIST_COUNT_WHEN_GUEST = 4;
 
     private const ARTICLES_LIST_COUNT_WHEN_AUTH = 5;
-    private const ARTICLES_LIST_COUNT_WHEN_GUEST = 6;
+    private const ARTICLES_LIST_COUNT_WHEN_GUEST = 8;
 
     public function index(): View
     {
@@ -23,19 +22,19 @@ class WebController extends Controller
 
         $defaultArticles = Article::forIndex(
             $this->getArticlesLimit('default', $isAuthenticated)
-        )->whereFixed(false)->get();
+        )->get();
 
-        $fixedArticles = Article::forIndex(
-            $this->getArticlesLimit('fixed', $isAuthenticated)
-        )->whereFixed(true)->get();
-
-        $compactValues = ['defaultArticles', 'fixedArticles'];
+        $compactValues = ['defaultArticles'];
 
         if ($isAuthenticated) {
             $onlineFriends = \Auth::user()->getOnlineFriends();
             $referredUsersCount = \Auth::user()->referredUsers()->count();
 
-            array_push($compactValues, 'onlineFriends', 'referredUsersCount');
+            $fixedArticles = Article::forIndex($this->getArticlesLimit('fixed', $isAuthenticated))
+                ->whereFixed(true)
+                ->get();
+
+            array_push($compactValues, 'onlineFriends', 'referredUsersCount', 'fixedArticles');
         } else {
             $photos = Camera::latestWith()->limit(6)->get();
             $latestUsers = User::forIndex()->get();
@@ -53,10 +52,9 @@ class WebController extends Controller
             false => self::ARTICLES_LIST_COUNT_WHEN_GUEST
         };
 
-        if($type == 'fixed') return match ($isAuthenticated) {
-            true => self::FIXED_ARTICLES_LIST_COUNT_WHEN_AUTH,
-            false => self::FIXED_ARTICLES_LIST_COUNT_WHEN_GUEST
-        };
+        if($type == 'fixed') {
+            return self::FIXED_ARTICLES_LIST_COUNT_WHEN_AUTH;
+        }
 
         return 0;
     }
