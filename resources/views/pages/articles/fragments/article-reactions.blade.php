@@ -2,30 +2,32 @@
 @php($availableReactions = $articleReactions->whereNotIn('value', $allUserReactions))
 
 <div class="mt-8 flex items-center h-auto relative w-full flex-wrap gap-2" x-data="articleReaction('{{ route('articles.reactions.toggle', [$activeArticle->id, $activeArticle->slug]) }}')">
-    @unless($availableReactions->isEmpty())
-    <x-ui.buttons.confirmable
-        data-tippy-placement="top"
-        class="group flex w-12 h-12 items-center justify-center bg-rose-300 dark:bg-rose-400 dark:text-white border-b-2 border-rose-500 rounded-lg"
-        :exclusive="true"
-    >
-        <x-slot:confirmation>
-            <div class="flex gap-2 bg-black/25 rounded-lg p-1">
-                @foreach ($availableReactions as $reaction)
-                    <x-ui.buttons.default
-                        data-type="{{ $reaction->value }}"
-                        @click="toggleReaction"
-                        class="w-8 h-8 rounded-md border-none shadow-[inset_0_-3px_0_0_rgba(0,0,0,0.5)] hover:brightness-125"
-                        style="background: url({{ $reaction->getIcon() }}) center no-repeat, {{ $reaction->getColor() }}"
-                    />
-                @endforeach
-            </div>
-        </x-slot:confirmation>
+    @auth
+        @unless($availableReactions->isEmpty())
+        <x-ui.buttons.confirmable
+            data-tippy-placement="top"
+            class="group flex w-12 h-12 items-center justify-center bg-rose-300 dark:bg-rose-400 dark:text-white border-b-2 border-rose-500 rounded-lg"
+            :exclusive="true"
+        >
+            <x-slot:confirmation>
+                <div class="flex gap-2 bg-black/25 rounded-lg p-1">
+                    @foreach ($availableReactions as $reaction)
+                        <x-ui.buttons.default
+                            data-type="{{ $reaction->value }}"
+                            @click="toggleReaction"
+                            class="w-8 h-8 rounded-md border-none shadow-[inset_0_-3px_0_0_rgba(0,0,0,0.5)] hover:brightness-125"
+                            style="background: url({{ $reaction->getIcon() }}) center no-repeat, {{ $reaction->getColor() }}"
+                        />
+                    @endforeach
+                </div>
+            </x-slot:confirmation>
 
-        <x-slot:label>
-            <i class="fa-solid fa-plus text-white text-lg"></i>
-        </x-slot:label>
-    </x-ui.buttons.confirmable>
-    @endunless
+            <x-slot:label>
+                <i class="fa-solid fa-plus text-white text-lg"></i>
+            </x-slot:label>
+        </x-ui.buttons.confirmable>
+        @endunless
+    @endauth
 
     @foreach ($activeArticle->reactions as $reaction)
         <div
@@ -39,7 +41,7 @@
                 style="background: url({{ $reaction->type->getIcon() }}) center no-repeat"
             ></div>
 
-            @if ($reaction->user_id === Auth::id())
+            @if (Auth::check() && $reaction->user_id === Auth::id())
                 <i
                     data-type="{{ $reaction->type->value }}"
                     @click.stop="toggleReaction"
