@@ -1,4 +1,4 @@
-<div class="w-full mt-12 pb-4" x-data="footer">
+<div class="w-full mt-12 p-2 border-t-2 border-gray-200 shadow dark:border-slate-800 bg-white dark:bg-slate-950" x-data="footer">
     <x-ui.buttons.default
         class="bottom-3 right-3 z-10 bg-blue-400 border-blue-600 hover:bg-blue-300 text-white"
         x-bind:class="{ '!hidden': !showScrollButton, '!fixed': showScrollButton }"

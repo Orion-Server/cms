@@ -188,5 +188,6 @@
     "to": "a",
     "of": "de",
     "results": "resultados",
-    "Please select a valid reaction type.": "Por favor, selecciona un tipo de reacción válido."
+    "Please select a valid reaction type.": "Por favor, selecciona un tipo de reacción válido.",
+    "Fixed": "Fijo"
 }
