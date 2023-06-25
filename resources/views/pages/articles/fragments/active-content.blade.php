@@ -11,7 +11,7 @@
     </span>
 </div>
 <div>
-    <div class="text-sm prose dark:prose-invert !max-w-full ck-content w-full dark:text-slate-200 mt-4 h-auto p-4 bg-white dark:bg-slate-950 rounded-t-lg shadow-lg">
+    <div class="active-article-content text-sm prose dark:prose-invert !max-w-full ck-content w-full dark:text-slate-200 mt-4 h-auto p-4 bg-white dark:bg-slate-950 rounded-t-lg shadow-lg">
         {!! $activeArticle->content !!}
     </div>
     <div class="w-full flex border-t dark:border-slate-700 flex-col lg:flex-row gap-4 lg:gap-0 h-auto lg:h-20 lg:divide-x dark:divide-slate-800 py-2 overflow-hidden px-4 bg-gray-100 dark:bg-slate-850 rounded-b-lg shadow-lg">
