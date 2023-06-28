@@ -71,7 +71,7 @@
                     <div
                         class="bg-center border border-slate-300 dark:border-slate-700 hover:scale-[1.05] transition-transform relative group lightgallery-image cursor-pointer flex items-end justify-center w-full h-48 bg-no-repeat rounded-t-lg"
                         data-src="{{ $photo->url }}"
-                        data-sub-html='<h4>{{ __("Photo by") }} <a href="#" class="underline underline-offset-4">{{ $photo->user->username }}</a></h4><p>{{ __("Photo taken on") }} <b>{{ $photo->formattedDate }}</b> {{ __("in the room") }} <a href="#" class="underline underline-offset-4">{{ $photo->room->name }}</a></p>'
+                        data-sub-html='<h4>{{ __("Photo by") }} <a href="#" class="underline underline-offset-4">{{ $photo->user->username }}</a></h4><p>{{ __("Photo taken on") }} <b>{{ $photo->formattedDate }}</b>@if($photo->room) {{ __("in the room") }} <a href="#" class="underline underline-offset-4">{{ $photo->room->name }}</a>@endif</p>'
                         style="background-image: url('{{ $photo->url }}')"
                     >
                         <div class="w-full p-2 flex justify-end items-center gap-2 bg-black/75 h-10">

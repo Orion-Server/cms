@@ -14,7 +14,7 @@
                     class="h-full rounded-tl-lg flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
                     data-tippy
                     data-tippy-content="<small>{{ __('My Profile') }}</small>"
-                    href=""
+                    @auth href="{{ route('users.profile.show', Auth::user()->username) }}" @endauth
                 >
                     <img src="{{ asset('https://i.imgur.com/wYP2GOf.png') }}" alt="Profile icon" />
                 </a>
@@ -22,7 +22,7 @@
                     class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
                     data-tippy
                     data-tippy-content="<small>{{ __('My Settings') }}</small>"
-                    href="{{ route('users.settings.index') }}"
+                    @auth href="{{ route('users.settings.index') }}" @endauth
                 >
                     <img src="{{ asset('https://i.imgur.com/zjDy01f.gif') }}" alt="Settings icon" />
                 </a>

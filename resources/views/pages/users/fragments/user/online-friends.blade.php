@@ -20,7 +20,7 @@
     @empty
         <div class="flex items-center justify-center gap-2 w-full">
             <i class="fa-solid fa-users-slash text-gray-300 dark:text-slate-600"></i>
-            <span class="text-gray-400 dark:text-slate-500 text-sm">{{ __('No friends online') }}</span>
+            <span class="text-gray-400 dark:text-slate-500 text-sm py-5">{{ __('No friends online') }}</span>
         </div>
     @endforelse
 </div>

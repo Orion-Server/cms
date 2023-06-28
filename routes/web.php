@@ -13,7 +13,8 @@ use App\Http\Controllers\{
     RankingController,
     StaffController,
     UserSettingController,
-    Auth\AuthSessionController
+    Auth\AuthSessionController,
+    UserProfileController
 };
 
 /*
@@ -70,7 +71,6 @@ Route::prefix('articles')
 Route::prefix('community')
     ->name('community.')
     ->group(function () {
-        // Photos Routes
         Route::prefix('photos')
             ->name('photos.')
             ->group(function () {
@@ -86,16 +86,23 @@ Route::prefix('community')
             ->name('rankings.index');
     });
 
-Route::prefix('user')
-    ->name('users.')
+Route::name('users.')
     ->middleware('auth')
     ->group(function () {
 
-        // User Settings
-        Route::prefix('settings')
-            ->name('settings.')
+        Route::prefix('profile')
+            ->name('profile.')
             ->group(function () {
-                Route::match(['GET', 'POST'], '/{page?}', [UserSettingController::class, 'index'])->name('index');
+                Route::get('{username}', [UserProfileController::class, 'show'])->name('show');
+            });
+
+        Route::prefix('user')
+            ->group(function() {
+                Route::prefix('settings')
+                    ->name('settings.')
+                    ->group(function () {
+                        Route::match(['GET', 'POST'], '/{page?}', [UserSettingController::class, 'index'])->name('index');
+                    });
             });
     });
 
