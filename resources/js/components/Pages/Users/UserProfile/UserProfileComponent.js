@@ -8,7 +8,19 @@ class UserProfileComponent {
 
     _startComponent() {
         Alpine.data('userProfile', () => ({
-            editing: false
+            editing: false,
+            showBagModal: false,
+            bagTab: 'inventory',
+
+            openInventory() {
+                this.bagTab = 'inventory'
+                this.showBagModal = true
+            },
+
+            openShop() {
+                this.bagTab = 'shop'
+                this.showBagModal = true
+            }
         }))
     }
 }

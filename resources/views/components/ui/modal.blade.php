@@ -2,7 +2,8 @@
     'type' => null,
     'title' => null,
     'subTitle' => null,
-    'alpineModel' => 'modalOpen'
+    'alpineModel' => 'modalOpen',
+    'maxWidth' => false
 ])
 
 <div tabindex="-1"
@@ -13,7 +14,11 @@
     x-on:click.self="{{ $alpineModel }} = false"
     x-on:keydown.escape.prevent.stop="{{ $alpineModel }} = false"
 >
-    <div class="relative w-full max-w-md max-h-full">
+    <div @class([
+        'relative w-full max-h-full',
+        'max-w-md' => !$maxWidth,
+        $maxWidth,
+    ])>
         {{-- <div class="card bg-blue-500 shadow-lg shadow-blue-700/75 w-full h-full rounded-3xl absolute  transform -rotate-3"></div>
         <div class="card bg-blue-400 shadow-blue-600/75 shadow-lg w-full h-full rounded-3xl absolute  transform rotate-3"></div> --}}
         <div class="relative w-full md:w-auto bg-white rounded-lg shadow dark:bg-slate-900">
