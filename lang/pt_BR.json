@@ -198,5 +198,16 @@
     "You have been registered successfully!": "Você foi registrado com sucesso!",
     "Please fill in all register fields": "Por favor, preencha todos os campos de registro",
     "Please fill in all login fields": "Por favor, preencha todos os campos de login",
-    "You have been logged in successfully.": "Você foi conectado com sucesso."
+    "You have been logged in successfully.": "Você foi conectado com sucesso.",
+    "Inventory": "Inventário",
+    "Shop": "Loja",
+    "Stickers": "Stickers",
+    "Home": "Início",
+    "Notes": "Notas",
+    "Widgets": "Widgets",
+    "Backgrounds": "Fundos",
+    "Cancel": "Cancelar",
+    "Save": "Salvar",
+    "Edit": "Editar",
+    "Profile of :u": "Perfil de :u"
 }

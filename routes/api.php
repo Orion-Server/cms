@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\InviteController;
+use App\Http\Controllers\Api\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,10 @@ Route::prefix('hotel')
     ->name('hotel.')
     ->group(function() {
         Route::get('online-count', [ApiController::class, 'getOnlineCount'])->name('online-count');
+    });
+
+Route::prefix('profile')
+    ->name('profile.')
+    ->group(function() {
+        Route::get('{username}/inventory', [UserProfileController::class, 'getInventory'])->name('inventory');
     });

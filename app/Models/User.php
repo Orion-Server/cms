@@ -17,7 +17,8 @@ use App\Models\{
 };
 use App\Models\Compositions\User\{
     HasCurrency,
-    HasSettings
+    HasSettings,
+    HasProfile
 };
 use Illuminate\Database\Eloquent\Relations\{
     HasMany,
@@ -32,7 +33,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
 {
-    use HasApiTokens, HasFactory, Notifiable, HasCurrency, HasSettings;
+    use HasApiTokens, HasFactory, Notifiable, HasCurrency, HasSettings, HasProfile;
 
     public $timestamps = false;
 
@@ -87,6 +88,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         static::created(function ($user) {
             $user->generateInitialCurrencies();
             $user->generateInitialSettings();
+            $user->generateInitialHomeItems();
         });
     }
 

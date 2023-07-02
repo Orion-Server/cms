@@ -5,10 +5,11 @@
 @section('content')
     <x-container @class([
         "flex flex-col justify-center items-center"
-    ]) x-data="userProfile">
+    ]) x-data="userProfile('{{ route('api.profile.inventory', $user->username) }}')">
         @includeWhen(!$user, 'pages.users.profile.partials.user-not-found')
 
         @if ($user)
+            @if(Auth::check() && $user->id == Auth::id())
             <div class="w-[928px] pb-2">
                 <template x-if="editing">
                     <div class="flex justify-between">
@@ -47,7 +48,7 @@
 
                         <x-ui.modal
                             alpine-model="showBagModal"
-                            max-width="max-w-[700px]"
+                            max-width="max-w-[800px]"
                         >
                             <x-home.inventory />
                         </x-ui.modal>
@@ -63,6 +64,9 @@
                     </x-ui.buttons.default>
                 </template>
             </div>
+            @else
+            <span class="text-2xl underline underline-offset-4 font-bold mb-4 dark:text-slate-100">{{ __('Profile of :u', ['u' => $user->username]) }}</span>
+            @endif
 
             <div class="border border-dashed border-slate-200 dark:border-slate-800 w-[928px] h-[1360px]">
 

@@ -9,7 +9,7 @@ use Illuminate\Http\RedirectResponse;
 
 class UserProfileController extends Controller
 {
-    public function show(string $username, Request $request): RedirectResponse|View
+    public function show(string $username): RedirectResponse|View
     {
         return view('pages.users.profile.show', [
             'user' => User::whereUsername($username)->first()
