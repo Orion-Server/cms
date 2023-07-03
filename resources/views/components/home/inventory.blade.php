@@ -6,6 +6,7 @@
     >
         {{ __('Inventory') }}
     </x-ui.buttons.default>
+
     <x-ui.buttons.default
         @click="openShop()"
         x-bind:disabled="bagTab == 'shop'"
@@ -15,18 +16,35 @@
     </x-ui.buttons.default>
 </div>
 <div class="flex justify-around h-[350px] divide-x dark:divide-slate-800">
-    <div class="w-1/4 h-full">
+    <div class="w-1/4 h-full overflow-y-auto">
         <template x-if="currentBagTabIs('inventory')">
             <x-home.layouts.inventory-menu />
         </template>
+
         <template x-if="currentBagTabIs('shop')">
             <x-home.layouts.shop-menu />
         </template>
     </div>
-    <div class="w-2/4 h-full">
+    <div
+        class="h-full"
+        :class="{ 'w-2/4': !isShopHomepage(), 'w-3/4': isShopHomepage() }"
+    >
+        <template x-if="isShopHomepage()">
+            <x-home.layouts.pages.shop-home />
+        </template>
 
+        <template x-if="!isShopHomepage() && currentBagTabIs('inventory')">
+            <x-home.layouts.pages.inventory-category />
+        </template>
+
+        <template x-if="!isShopHomepage() && currentBagTabIs('shop')">
+            <x-home.layouts.pages.shop-category />
+        </template>
     </div>
-    <div class="w-1/4 h-full">
+    <div
+        class="h-full w-1/4"
+        :class="{ 'flex': !isShopHomepage(), 'hidden': isShopHomepage() }"
+    >
 
     </div>
 </div>

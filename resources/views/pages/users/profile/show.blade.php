@@ -4,8 +4,13 @@
 
 @section('content')
     <x-container @class([
-        "flex flex-col justify-center items-center"
-    ]) x-data="userProfile('{{ route('api.profile.inventory', $user->username) }}')">
+        "flex flex-col justify-center items-center select-none"
+    ]) x-data="userProfile(
+            '{{ route('api.profile.inventory', $user->username) }}',
+            '{{ route('api.profile.shop.categories') }}',
+            '{{ route('api.profile.shop.items-by-category', '%ID%') }}',
+            '{{ route('api.profile.shop.items-by-type', '%TYPE%') }}'
+        )">
         @includeWhen(!$user, 'pages.users.profile.partials.user-not-found')
 
         @if ($user)
@@ -48,7 +53,7 @@
 
                         <x-ui.modal
                             alpine-model="showBagModal"
-                            max-width="max-w-[800px]"
+                            max-width="max-w-[850px]"
                         >
                             <x-home.inventory />
                         </x-ui.modal>

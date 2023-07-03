@@ -7,21 +7,39 @@ class UserProfileComponent {
     }
 
     _startComponent() {
-        Alpine.data('userProfile', (inventoryEndpoint) => ({
+        Alpine.data('userProfile', (
+            inventoryEndpoint,
+            shopCategoriesEndpoint,
+            shopCategoryItemsByCategoryEndpoint,
+            showCategoryItemsByTypeEndpoint,
+        ) => ({
             endpoints: {
                 inventoryEndpoint,
+                shopCategoriesEndpoint,
+                shopCategoryItemsByCategoryEndpoint,
+                showCategoryItemsByTypeEndpoint
             },
 
-            delay: false, // Prevents double click
+            // Application data
+            delay: false,
             editing: false,
             showBagModal: false,
             bagTab: 'inventory',
 
-            shop: [],
+            // Shop data
             shopTab: 'home',
+            shopCategories: [],
             showCategoriesElement: false,
 
-            inventory: [],
+            shopItems: new Map(),
+            activeShopItem: null,
+            categoryTabId: null,
+            categoryTabItems: [],
+
+            // Inventory data
+            inventory: new Map(),
+            inventoryItem: null,
+            inventoryTabItems: [],
             inventoryTab: 'stickers',
 
             init() {
@@ -29,32 +47,31 @@ class UserProfileComponent {
                     document.body.classList.toggle('overflow-hidden', value)
                 })
 
-                this.$watch('editing', (value) => {
+                this.$watch('editing', async (value) => {
                     if(!value || this.delay) return
 
+                    const errorMessage = 'Failed to fetch inventory'
                     this.delay = true
 
-                    axios.get(this.endpoints.inventoryEndpoint)
-                        .then(({ data }) => {
-                            if(!data.success || !data.inventory) {
-                                this.$dispatch('orion:alert', { type: 'error', message: data.message })
-                                return
-                            }
+                    await this.fetchData(this.endpoints.inventoryEndpoint, ({ data }) => {
+                        if(!data.success || !data.inventory) {
+                            this.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
+                            return
+                        }
 
-                            this.inventory = data.inventory
-                        })
-                        .catch(data => {
-                            this.$dispatch('orion:alert', { type: 'error', message: data?.message || 'Failed to fetch inventory' })
+                        this.inventory = data.inventory
+                    }, errorMessage)
 
-                            console.error('[UserProfileComponent] Failed to fetch inventory - ERROR: ', data)
-                        })
-
-                    setTimeout(() => this.delay = false, 2500)
+                    setTimeout(() => this.delay = false, 1000)
                 })
             },
 
             currentBagTabIs(tab) {
                 return this.bagTab === tab
+            },
+
+            currentShopTabIs(tab) {
+                return this.shopTab === tab
             },
 
             openInventory() {
@@ -67,6 +84,16 @@ class UserProfileComponent {
                 this.showBagModal = true
             },
 
+            openInventoryTab(tab) {
+                if(!this.isValidInventoryTab(tab)) return
+
+                this.inventoryTab = tab
+            },
+
+            isValidInventoryTab(tab) {
+                return ['stickers', 'notes', 'widgets', 'backgrounds'].includes(tab)
+            },
+
             openShop() {
                 this.bagTab = 'shop'
 
@@ -75,12 +102,7 @@ class UserProfileComponent {
                 }
 
                 this.showBagModal = true
-            },
-
-            openInventoryTab(tab) {
-                if(!this.isValidInventoryTab(tab)) return
-
-                this.inventoryTab = tab
+                this.fetchShopCategories()
             },
 
             openShopTab(tab) {
@@ -88,19 +110,102 @@ class UserProfileComponent {
 
                 this.shopTab = tab
 
-                if(tab == 'categories') this.toggleShopCategoriesElement()
-            },
-
-            isValidInventoryTab(tab) {
-                return ['stickers', 'notes', 'widgets', 'backgrounds'].includes(tab)
+                if(tab == 'categories') {
+                    this.toggleShopCategoriesElement()
+                } else {
+                    this.showCategoriesElement = false
+                    this.fetchItemsByType()
+                }
             },
 
             isValidShopTab(tab) {
                 return ['home', 'categories', 'notes', 'widgets', 'backgrounds'].includes(tab)
             },
 
+            async fetchItemsByType() {
+                if(this.shopTab == 'home') return
+
+                const errorMessage = 'Failed to fetch shop items'
+                this.delay = true
+
+                this.fetchData(this.endpoints.showCategoryItemsByTypeEndpoint.replace('%TYPE%', this.shopTab), ({ data }) => {
+                    if(!data.success || !data.items) {
+                        this.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
+                        return
+                    }
+
+                    this.categoryTabItems = data.items
+                    this.shopItems.set(this.shopTab, data.items)
+                }, errorMessage)
+
+                setTimeout(() => this.delay = false, 1000)
+            },
+
+            fetchShopCategories() {
+                if(this.shopCategories.length) return
+
+                const errorMessage = 'Failed to fetch shop categories'
+
+                this.fetchData(this.endpoints.shopCategoriesEndpoint, ({ data }) => {
+                    if(!data.success || !data.categories) {
+                        this.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
+                        return
+                    }
+
+                    this.shopCategories = data.categories
+                }, errorMessage)
+            },
+
             toggleShopCategoriesElement() {
                 this.showCategoriesElement = !this.showCategoriesElement
+            },
+
+            openCategoryTab(tabId) {
+                if(!this.isValidCategoryTab(tabId)) return
+
+                this.categoryTabId = tabId
+
+                if(this.shopItems.has(tabId)) this.categoryTabItems = this.shopItems.get(tabId)
+                else this.fetchCategoryTab()
+            },
+
+            isValidCategoryTab(tab) {
+                return this.shopCategories.map(category => category.id).includes(tab)
+            },
+
+            async fetchCategoryTab(tabId = null) {
+                if(!tabId) tabId = this.categoryTabId
+
+                if(!this.isValidCategoryTab(tabId)) return
+
+                const errorMessage = 'Failed to fetch shop category'
+                this.delay = true
+
+                await this.fetchData(this.endpoints.shopCategoryItemsByCategoryEndpoint.replace('%ID%', tabId), ({ data }) => {
+                    if(!data.success || !data.items) {
+                        this.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
+                        return
+                    }
+
+                    this.categoryTabItems = data.items
+                    this.shopItems.set(tabId, data.items)
+                }, errorMessage)
+
+                setTimeout(() => this.delay = false, 1000)
+            },
+
+            isShopHomepage() {
+                return this.bagTab == 'shop' && this.currentShopTabIs('home')
+            },
+
+            async fetchData(endpoint, onSuccessCallback, errorMessage = 'Failed to fetch data') {
+                await axios.get(endpoint)
+                    .then(response => onSuccessCallback(response))
+                    .catch(data => {
+                        this.$dispatch('orion:alert', { type: 'error', message: data?.message || errorMessage })
+
+                        console.error('[UserProfile] Failed to fetch - ERROR: ', data)
+                    })
             }
         }))
     }

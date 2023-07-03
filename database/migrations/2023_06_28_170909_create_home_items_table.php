@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('home_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(HomeCategory::class);
+            $table->foreignIdFor(HomeCategory::class)->nullable();
 
             $table->char('type', 1);
 
