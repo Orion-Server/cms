@@ -20,7 +20,9 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('image');
-            $table->decimal('price');
+
+            $table->integer('price');
+            $table->integer('currency_type')->default(-1);
 
             $table->string('width', 3);
             $table->string('height', 4);

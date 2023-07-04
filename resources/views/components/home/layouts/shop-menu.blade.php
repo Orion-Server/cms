@@ -23,9 +23,10 @@
         @if ($key == 'categories')
             <div
                 x-ref="categoriesElement"
-                x-transition
+                x-transition.origin.top.center
+                x-show="showCategoriesElement"
                 class="flex-col divide-y divide-gray-300 dark:divide-gray-800 bg-slate-100 dark:bg-black/25"
-                :class="{ 'hidden': !showCategoriesElement, 'flex': showCategoriesElement }"
+                :class="{ 'flex': showCategoriesElement }"
             >
                 <template x-for="shopCategory in shopCategories" :key="shopCategory.id">
                     <div

@@ -30,21 +30,23 @@
         :class="{ 'w-2/4': !isShopHomepage(), 'w-3/4': isShopHomepage() }"
     >
         <template x-if="isShopHomepage()">
-            <x-home.layouts.pages.shop-home />
+            <x-home.layouts.pages.shop.homepage />
         </template>
 
         <template x-if="!isShopHomepage() && currentBagTabIs('inventory')">
-            <x-home.layouts.pages.inventory-category />
+            <x-home.layouts.pages.inventory.category-items />
         </template>
 
         <template x-if="!isShopHomepage() && currentBagTabIs('shop')">
-            <x-home.layouts.pages.shop-category />
+            <x-home.layouts.pages.shop.category-items />
         </template>
     </div>
     <div
         class="h-full w-1/4"
         :class="{ 'flex': !isShopHomepage(), 'hidden': isShopHomepage() }"
     >
-
+        <template x-if="activeShopItem">
+            <x-home.layouts.pages.shop.active-item />
+        </template>
     </div>
 </div>

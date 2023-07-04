@@ -32,9 +32,12 @@ class UserProfileComponent {
             showCategoriesElement: false,
 
             shopItems: new Map(),
-            activeShopItem: null,
             categoryTabId: null,
             categoryTabItems: [],
+
+            activeShopItem: null,
+            purchaseQuantity: 1,
+            totalPrice: 0,
 
             // Inventory data
             inventory: new Map(),
@@ -59,10 +62,20 @@ class UserProfileComponent {
                             return
                         }
 
+                        // TODO: Fix this
                         this.inventory = data.inventory
                     }, errorMessage)
 
                     setTimeout(() => this.delay = false, 1000)
+                })
+
+                this.$watch('purchaseQuantity', (value) => {
+                    if(value < 1) this.purchaseQuantity = 1
+                    else if(value > 100) this.purchaseQuantity = 100
+
+                    this.purchaseQuantity = Math.floor(this.purchaseQuantity)
+
+                    this.totalPrice = this.activeShopItem.price * this.purchaseQuantity
                 })
             },
 
@@ -115,6 +128,7 @@ class UserProfileComponent {
                 } else {
                     this.showCategoriesElement = false
                     this.fetchItemsByType()
+                    this.resetSelectedItem()
                 }
             },
 
@@ -164,6 +178,7 @@ class UserProfileComponent {
                 if(!this.isValidCategoryTab(tabId)) return
 
                 this.categoryTabId = tabId
+                this.resetSelectedItem()
 
                 if(this.shopItems.has(tabId)) this.categoryTabItems = this.shopItems.get(tabId)
                 else this.fetchCategoryTab()
@@ -196,6 +211,18 @@ class UserProfileComponent {
 
             isShopHomepage() {
                 return this.bagTab == 'shop' && this.currentShopTabIs('home')
+            },
+
+            selectItem(item) {
+                this.activeShopItem = item
+                this.purchaseQuantity = 1
+                this.totalPrice = item.price
+            },
+
+            resetSelectedItem() {
+                this.activeShopItem = null
+                this.purchaseQuantity = 1
+                this.totalPrice = 0
             },
 
             async fetchData(endpoint, onSuccessCallback, errorMessage = 'Failed to fetch data') {
