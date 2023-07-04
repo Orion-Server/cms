@@ -6,7 +6,10 @@ use App\Models\Home\HomeCategory;
 use Database\Seeders\Compositions\Home\{
     HasBlingAlphabetCategoryData,
     HasCineCategoryData,
+    HasKeepItRealCategoryData,
     HasPlasticAlphabetCategoryData,
+    HasPiratesCategoryData,
+    HasSummerVacationCategoryData,
     HasWoodenAlphabetCategoryData
 };
 
@@ -15,7 +18,10 @@ trait HasUserProfileData
     use HasCineCategoryData,
         HasBlingAlphabetCategoryData,
         HasPlasticAlphabetCategoryData,
-        HasWoodenAlphabetCategoryData;
+        HasWoodenAlphabetCategoryData,
+        HasKeepItRealCategoryData,
+        HasSummerVacationCategoryData,
+        HasPiratesCategoryData;
 
     protected function buildItemStructure(
         HomeCategory $category,

@@ -40,10 +40,6 @@ class HomeCategorySeeder extends Seeder
                 'https://i.imgur.com/abzSMEH.gif'
             ],
             [
-                'Studio MTV',
-                'https://i.imgur.com/Q3hmF7w.png'
-            ],
-            [
                 'Pirates',
                 'https://i.imgur.com/XTRzzsI.png'
             ],

@@ -95,12 +95,14 @@ class UserProfileComponent {
                 }
 
                 this.showBagModal = true
+                this.resetSelectedItem()
             },
 
             openInventoryTab(tab) {
                 if(!this.isValidInventoryTab(tab)) return
 
                 this.inventoryTab = tab
+                this.resetSelectedItem()
             },
 
             isValidInventoryTab(tab) {
@@ -116,6 +118,7 @@ class UserProfileComponent {
 
                 this.showBagModal = true
                 this.fetchShopCategories()
+                this.resetSelectedItem()
             },
 
             openShopTab(tab) {

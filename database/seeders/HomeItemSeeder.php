@@ -19,6 +19,9 @@ class HomeItemSeeder extends Seeder
         $this->addItemForCategory('Bling Alphabet');
         $this->addItemForCategory('Plastic Alphabet');
         $this->addItemForCategory('Wooden Alphabet');
+        $this->addItemForCategory('Keep It Real');
+        $this->addItemForCategory('Summer Vacation');
+        $this->addItemForCategory('Pirates');
     }
 
     protected function addItemForCategory(string $categoryName): void

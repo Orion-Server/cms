@@ -11,7 +11,7 @@ trait HasCineCategoryData
         return [
             $this->buildItemStructure($category, 'https://i.imgur.com/JWzSQLa.png'),
             $this->buildItemStructure($category, 'https://imgur.com/Rr4ajkG.png'),
-            $this->buildItemStructure($category, 'https://imgur.com/igQRc4R.png'),
+            $this->buildItemStructure($category, 'https://imgur.com/igQRc4R.gif'),
             $this->buildItemStructure($category, 'https://imgur.com/pA8XHOU.png'),
             $this->buildItemStructure($category, 'https://imgur.com/n4y5tMX.png'),
             $this->buildItemStructure($category, 'https://imgur.com/xl4zv9x.png'),
@@ -44,10 +44,10 @@ trait HasCineCategoryData
             $this->buildItemStructure($category, 'https://imgur.com/MPhuI9j.png'),
             $this->buildItemStructure($category, 'https://imgur.com/8sOSziG.png'),
             $this->buildItemStructure($category, 'https://imgur.com/h0wtMzX.png'),
-            $this->buildItemStructure($category, 'https://imgur.com/OYGIW8N.png'),
-            $this->buildItemStructure($category, 'https://imgur.com/mEeD2KO.png'),
-            $this->buildItemStructure($category, 'https://imgur.com/YOXplAg.png'),
-            $this->buildItemStructure($category, 'https://imgur.com/jK0fI0A.png'),
+            $this->buildItemStructure($category, 'https://imgur.com/OYGIW8N.gif'),
+            $this->buildItemStructure($category, 'https://imgur.com/mEeD2KO.gif'),
+            $this->buildItemStructure($category, 'https://imgur.com/YOXplAg.gif'),
+            $this->buildItemStructure($category, 'https://imgur.com/jK0fI0A.gif'),
         ];
     }
 }

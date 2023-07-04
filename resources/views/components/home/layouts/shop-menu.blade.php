@@ -23,7 +23,7 @@
         @if ($key == 'categories')
             <div
                 x-ref="categoriesElement"
-                x-transition.origin.top.center
+                x-transition.scale.origin.top.center
                 x-show="showCategoriesElement"
                 class="flex-col divide-y divide-gray-300 dark:divide-gray-800 bg-slate-100 dark:bg-black/25"
                 :class="{ 'flex': showCategoriesElement }"
