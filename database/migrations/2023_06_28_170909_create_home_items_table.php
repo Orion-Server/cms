@@ -24,11 +24,8 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('currency_type')->default(-1);
 
-            $table->string('width', 3);
-            $table->string('height', 4);
-
             $table->boolean('enabled')->default(true);
-            $table->integer('limit');
+            $table->integer('limit')->limit(0);
 
             $table->timestamps();
         });
