@@ -4,12 +4,15 @@ namespace Database\Seeders\Compositions;
 
 use App\Models\Home\HomeCategory;
 use Database\Seeders\Compositions\Home\{
+    HasAlhambraCategoryData,
     HasBlingAlphabetCategoryData,
+    HasButtonsCategoryData,
     HasCineCategoryData,
     HasKeepItRealCategoryData,
     HasPlasticAlphabetCategoryData,
     HasPiratesCategoryData,
     HasSummerVacationCategoryData,
+    HasValentineCategoryData,
     HasWoodenAlphabetCategoryData
 };
 
@@ -21,7 +24,10 @@ trait HasUserProfileData
         HasWoodenAlphabetCategoryData,
         HasKeepItRealCategoryData,
         HasSummerVacationCategoryData,
-        HasPiratesCategoryData;
+        HasPiratesCategoryData,
+        HasValentineCategoryData,
+        HasButtonsCategoryData,
+        HasAlhambraCategoryData;
 
     protected function buildItemStructure(
         HomeCategory $category,

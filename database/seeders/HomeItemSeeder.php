@@ -10,6 +10,7 @@ use Database\Seeders\Compositions\HasUserProfileData;
 class HomeItemSeeder extends Seeder
 {
     use HasUserProfileData;
+
     /**
      * Run the database seeds.
      */
@@ -22,6 +23,9 @@ class HomeItemSeeder extends Seeder
         $this->addItemForCategory('Keep It Real');
         $this->addItemForCategory('Summer Vacation');
         $this->addItemForCategory('Pirates');
+        $this->addItemForCategory('Valentine');
+        $this->addItemForCategory('Buttons');
+        $this->addItemForCategory('Alhambra');
     }
 
     protected function addItemForCategory(string $categoryName): void
