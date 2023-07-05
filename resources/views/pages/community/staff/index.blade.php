@@ -65,7 +65,7 @@
                                                 "bg-green-400 animate-pulse" => $userStaff->online,
                                                 "bg-red-500" => ! $userStaff->online,
                                             ])></div>
-                                            <a href="#" class="text-white font-bold truncate text-sm hover:underline underline-offset-4">{{ $userStaff->username }}</a>
+                                            <a href="{{ route('users.profile.show', $userStaff->username) }}" class="text-white font-bold truncate text-sm hover:underline underline-offset-4">{{ $userStaff->username }}</a>
                                         </div>
                                         <div
                                             class="absolute -bottom-12 right-0 w-[64px] h-[110px] bg-center bg-no-repeat"

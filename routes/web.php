@@ -82,7 +82,6 @@ Route::prefix('community')
 
         Route::get('staff', [StaffController::class, 'index'])->name('staffs.index');
         Route::get('rankings', RankingController::class)
-            ->middleware('auth')
             ->name('rankings.index');
     });
 
@@ -93,7 +92,7 @@ Route::name('users.')
         Route::prefix('profile')
             ->name('profile.')
             ->group(function () {
-                Route::get('{username}', [UserProfileController::class, 'show'])->name('show');
+                Route::get('{username}', [UserProfileController::class, 'show'])->name('show')->withoutMiddleware('auth');
             });
 
         Route::prefix('user')

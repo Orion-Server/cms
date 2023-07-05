@@ -35,7 +35,7 @@
                                         class="w-[30px] h-[30px] bg-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900"
                                         style="background-image: url('{{ getSetting('figure_imager') . $defaultArticle->user->look }}&head_direction=2&size=s&headonly=1')"
                                     ></div>
-                                    <a class="underline underline-offset-2 hover:text-blue-400" href="#">{{ $defaultArticle->user->username }}</a>
+                                    <a class="underline underline-offset-2 hover:text-blue-400" href="{{ route('users.profile.show', $defaultArticle->user->username) }}">{{ $defaultArticle->user->username }}</a>
                                 </span>
                             </div>
                         </div>
@@ -54,9 +54,10 @@
             <div class="w-full grid grid-cols-4 grid-rows-4 flex-wrap gap-3">
                 @foreach ($latestUsers as $latestUser)
                     <div
+                        onclick="Turbolinks.visit('{{ route('users.profile.show', $latestUser->username) }}')"
                         data-tippy-singleton
                         data-tippy-content="<small>{{ $latestUser->username }}</small>"
-                        class="h-16 bg-white rounded-lg shadow-lg border-b-2 border-gray-300 dark:border-slate-800 dark:bg-slate-950 bg-center bg-no-repeat"
+                        class="h-16 bg-white rounded-lg shadow-lg border-b-2 border-gray-300 dark:border-slate-800 dark:bg-slate-950 bg-center bg-no-repeat cursor-pointer"
                         style="background-image: url('{{ getSetting('figure_imager') . $latestUser->look }}&head_direction=3&size=m&gesture=sml&action=sit,wav&headonly=1')"
                     ></div>
                 @endforeach
@@ -87,7 +88,7 @@
                                         class="w-auto pr-3 max-w-[100px] h-[30px] bg-start pl-8 flex items-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900"
                                         style="background-image: url('{{ getSetting('figure_imager') . $photo->user->look }}&direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1')"
                                     >
-                                        <a class="underline underline-offset-2 hover:text-blue-400" href="#">{{ $photo->user->username }}</a>
+                                        <a class="underline underline-offset-2 hover:text-blue-400" href="{{ route('users.profile.show', $photo->user->username) }}">{{ $photo->user->username }}</a>
                                     </div>
                                 </span>
                             </div>

@@ -24,7 +24,7 @@
                 <div class="w-[64px] h-[110px] absolute bottom-2 left-2" style="background-image: url('{{ getSetting('figure_imager') . $activeArticle->user->look }}&direction=2&head_direction=2&size=m&gesture=sml')"></div>
             </div>
             <a
-                href="#"
+                href="{{ route('users.profile.show', $activeArticle->user->username) }}"
                 class="truncate w-full font-semibold underline underline-offset-2 text-blue-400"
             >
                 {{ $activeArticle->user->username }}

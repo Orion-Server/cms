@@ -34,7 +34,7 @@
             <div class="w-14 h-full rounded bg-no-repeat bg-center" style="background-image: url('{{ $fixedArticle->image }}')"></div>
             <div class="h-full w-full flex flex-col truncate">
                 <a href="{{ route('articles.show', [$fixedArticle->id, $fixedArticle->slug]) }}" class="underline underline-offset-2 text-slate-700 dark:text-slate-200 text-sm font-semibold">{{ $fixedArticle->title }}</a>
-                <span class="text-xs text-slate-600 dark:text-slate-300 mt-1">{{ __('Posted by') }} <a href="#" class="font-medium text-blue-400">{{ $fixedArticle->user->username }}</a></span>
+                <span class="text-xs text-slate-600 dark:text-slate-300 mt-1">{{ __('Posted by') }} <a href="{{ route('users.profile.show', $fixedArticle->user->username) }}" class="font-medium text-blue-400">{{ $fixedArticle->user->username }}</a></span>
             </div>
         </div>
     @endforeach

@@ -31,6 +31,7 @@
 
     @foreach ($activeArticle->reactions as $reaction)
         <div
+            onclick="Turbolinks.visit('{{ route('users.profile.show', $reaction->user->username) }}')"
             data-tippy-singleton
             data-tippy-content="<small>{{ $reaction->user->username }}</small>"
             class="w-12 h-12 group shadow-lg relative rounded-lg bg-center bg-no-repeat border-b-2 cursor-pointer even:bg-blue-300 dark:even:bg-blue-600 bg-blue-400 dark:bg-blue-400 dark:text-white border-blue-500"
