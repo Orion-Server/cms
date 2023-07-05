@@ -8,7 +8,9 @@ use Database\Seeders\Compositions\Home\{
     HasBlingAlphabetCategoryData,
     HasButtonsCategoryData,
     HasCineCategoryData,
+    HasDividersCategoryData,
     HasKeepItRealCategoryData,
+    HasPaintingsCategoryData,
     HasPlasticAlphabetCategoryData,
     HasPiratesCategoryData,
     HasSportsCategoryData,
@@ -31,7 +33,9 @@ trait HasUserProfileData
         HasButtonsCategoryData,
         HasAlhambraCategoryData,
         HasSportsCategoryData,
-        HasWWECategoryData;
+        HasWWECategoryData,
+        HasPaintingsCategoryData,
+        HasDividersCategoryData;
 
     protected function buildItemStructure(
         HomeCategory $category,

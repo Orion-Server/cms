@@ -28,6 +28,8 @@ class HomeItemSeeder extends Seeder
         $this->addItemForCategory('Alhambra');
         $this->addItemForCategory('Sports');
         $this->addItemForCategory('WWE');
+        $this->addItemForCategory('Paintings');
+        $this->addItemForCategory('Dividers');
     }
 
     protected function addItemForCategory(string $categoryName): void

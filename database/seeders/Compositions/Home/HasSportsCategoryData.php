@@ -31,6 +31,8 @@ trait HasSportsCategoryData
             $this->buildItemStructure($category, 'https://imgur.com/n1P8aEN.gif'),
             $this->buildItemStructure($category, 'https://imgur.com/XTZ9VGM.png'),
             $this->buildItemStructure($category, 'https://imgur.com/MHYZnWm.png'),
+            $this->buildItemStructure($category, 'https://imgur.com/7CtX9pS.png'),
+            $this->buildItemStructure($category, 'https://imgur.com/IjHpCoK.gif'),
         ];
     }
 }
