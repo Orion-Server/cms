@@ -11,9 +11,11 @@ use Database\Seeders\Compositions\Home\{
     HasKeepItRealCategoryData,
     HasPlasticAlphabetCategoryData,
     HasPiratesCategoryData,
+    HasSportsCategoryData,
     HasSummerVacationCategoryData,
     HasValentineCategoryData,
-    HasWoodenAlphabetCategoryData
+    HasWoodenAlphabetCategoryData,
+    HasWWECategoryData
 };
 
 trait HasUserProfileData
@@ -27,7 +29,9 @@ trait HasUserProfileData
         HasPiratesCategoryData,
         HasValentineCategoryData,
         HasButtonsCategoryData,
-        HasAlhambraCategoryData;
+        HasAlhambraCategoryData,
+        HasSportsCategoryData,
+        HasWWECategoryData;
 
     protected function buildItemStructure(
         HomeCategory $category,

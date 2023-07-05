@@ -26,6 +26,8 @@ class HomeItemSeeder extends Seeder
         $this->addItemForCategory('Valentine');
         $this->addItemForCategory('Buttons');
         $this->addItemForCategory('Alhambra');
+        $this->addItemForCategory('Sports');
+        $this->addItemForCategory('WWE');
     }
 
     protected function addItemForCategory(string $categoryName): void
