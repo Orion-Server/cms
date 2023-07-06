@@ -50,9 +50,7 @@ export default class WebManager {
         PasswordSettings.start()
         IngameSettings.start()
 
-        if(document.querySelector('#user-profile')) {
-            UserProfileComponent.start()
-        }
+        UserProfileComponent.start()
     }
 
     static startTooltips() {

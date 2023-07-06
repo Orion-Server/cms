@@ -20,6 +20,6 @@ class UserHomeItem extends Model
 
     public function scopeDefaultRelationships(Builder $query): void
     {
-        $query->with('homeItem');
+        $query->with('homeItem:id,type,name,image');
     }
 }

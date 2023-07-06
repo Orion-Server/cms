@@ -13,6 +13,9 @@
             @click="inventoryStore.openTab('{{ $key }}')"
         >
             {{ $label }}
+            <template x-if="!! inventoryStore.getNewItemsCountForTab('{{ $key }}')">
+                <span class="ml-1 px-1 rounded-full font-bold text-xs bg-blue-400" x-text="inventoryStore.getNewItemsCountForTab('{{ $key }}')"></span>
+            </template>
         </li>
     @endforeach
 </ul>

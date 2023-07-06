@@ -22,7 +22,6 @@
                 label='<i class="fa-solid fa-arrow-up-wide-short fa-xl"></i>'
                 label-classes="!mb-0"
                 alpine-model="shopStore.purchaseQuantity"
-                placeholder="{{ __('Quantity') }}"
                 type="number"
                 :small="true"
             />

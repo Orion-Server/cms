@@ -20,7 +20,6 @@
                     <img :src="shopStore.getCurrencyIcon(item)" alt="Coin">
                 </div>
             </div>
-
         </template>
     </template>
 </div>

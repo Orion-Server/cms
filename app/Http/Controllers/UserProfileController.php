@@ -63,7 +63,8 @@ class UserProfileController extends Controller
         });
 
         return $this->jsonResponse([
-            'success' => true, 'message' => 'hi'
+            'success' => true,
+            'message' => __('You have successfully bought :quantity items.', ['quantity' => $data['quantity']])
         ]);
     }
 }

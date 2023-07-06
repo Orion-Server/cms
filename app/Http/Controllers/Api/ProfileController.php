@@ -10,6 +10,7 @@ use App\Models\Home\HomeCategory;
 use App\Models\Home\UserHomeItem;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -61,8 +62,10 @@ class ProfileController extends Controller
         }
 
         $allInventoryItems = $user->inventoryHomeItems()
-            ->latest()
-            ->get();
+            ->select('home_item_id', DB::raw('COUNT(*) as total_items'))
+            ->groupBy('home_item_id')
+            ->get()
+            ->sortByDesc('total_items');
 
         $filterByType = fn ($type) => $allInventoryItems->filter(
             fn (UserHomeItem $item) => $item->homeItem?->type === $type->value
