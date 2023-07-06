@@ -5,7 +5,7 @@
 @section('content')
     <x-container @class([
         "flex flex-col justify-center items-center select-none"
-    ]) x-data="userProfile(
+    ]) id="user-profile" x-data="userProfile(
             '{{ route('api.profile.inventory', $user->username) }}',
             '{{ route('api.profile.shop.categories') }}',
             '{{ route('api.profile.shop.items-by-category', '%ID%') }}',

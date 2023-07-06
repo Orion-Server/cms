@@ -27,25 +27,25 @@
     </div>
     <div
         class="h-full"
-        :class="{ 'w-2/4': !isShopHomepage(), 'w-3/4': isShopHomepage() }"
+        :class="{ 'w-2/4': !shopStore.isHomepage(), 'w-3/4': shopStore.isHomepage() }"
     >
-        <template x-if="isShopHomepage()">
+        <template x-if="shopStore.isHomepage()">
             <x-home.layouts.pages.shop.homepage />
         </template>
 
-        <template x-if="!isShopHomepage() && currentBagTabIs('inventory')">
+        <template x-if="!shopStore.isHomepage() && currentBagTabIs('inventory')">
             <x-home.layouts.pages.inventory.category-items />
         </template>
 
-        <template x-if="!isShopHomepage() && currentBagTabIs('shop')">
+        <template x-if="!shopStore.isHomepage() && currentBagTabIs('shop')">
             <x-home.layouts.pages.shop.category-items />
         </template>
     </div>
     <div
         class="h-full w-1/4"
-        :class="{ 'flex': !isShopHomepage(), 'hidden': isShopHomepage() }"
+        :class="{ 'flex': !shopStore.isHomepage(), 'hidden': shopStore.isHomepage() }"
     >
-        <template x-if="activeShopItem">
+        <template x-if="shopStore.activeItem">
             <x-home.layouts.pages.shop.active-item />
         </template>
     </div>

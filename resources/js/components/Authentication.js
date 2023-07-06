@@ -160,7 +160,7 @@ export default class Authentication {
     }
 
     static async _attemptAuthentication(url, formData, onSuccessCallback, onFailureCallback, onInvalidFieldsCallback = null) {
-        Authentication._validateFields(formData)
+        await Authentication._validateFields(formData)
             .then(async () => {
                 this.loading = true
 

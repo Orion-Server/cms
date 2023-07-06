@@ -1,15 +1,15 @@
 <div class=" flex flex-wrap gap-2 max-h-full justify-start items-start overflow-y-auto px-2">
-    <template x-if="delay">
+    <template x-if="shopStore.delay">
         <div class="h-[300px] w-full flex justify-center items-center">
             <div class="orion-loader"></div>
         </div>
     </template>
-    <template x-if="!delay">
-        <template x-for="item in categoryTabItems">
+    <template x-if="!shopStore.delay">
+        <template x-for="item in shopStore.categoryTabItems">
             <div
                 class="flex flex-col w-22 h-28 border-2 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer hover:!border-blue-400 rounded-md"
-                :class="{ '!border-blue-500': item.id === activeShopItem?.id }"
-                @click="selectItem(item)"
+                :class="{ '!border-blue-500': item.id === shopStore.activeItem?.id }"
+                @click="shopStore.selectItem(item)"
             >
                 <div
                     class="w-full h-22 bg-no-repeat bg-center rounded-t-md border-b-2 dark:border-slate-600"

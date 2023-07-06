@@ -49,7 +49,10 @@ export default class WebManager {
         AccountSettings.start()
         PasswordSettings.start()
         IngameSettings.start()
-        UserProfileComponent.start()
+
+        if(document.querySelector('#user-profile')) {
+            UserProfileComponent.start()
+        }
     }
 
     static startTooltips() {
