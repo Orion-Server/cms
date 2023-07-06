@@ -9,7 +9,7 @@ class UserProfileComponent {
     }
 
     _startComponent() {
-        Alpine.data('userProfile', (itemsEndpoint, categoriesEndpoint, itemsByCategoryIdEndpoint, itemsByCategoryTypeEndpoint) => ({
+        Alpine.data('userProfile', (itemsEndpoint, categoriesEndpoint, itemsByCategoryIdEndpoint, itemsByCategoryTypeEndpoint, buyItemEndpoint) => ({
             inventoryEndpoints: {
                 itemsEndpoint,
             },
@@ -17,7 +17,8 @@ class UserProfileComponent {
             shopEndpoints: {
                 categoriesEndpoint,
                 itemsByCategoryIdEndpoint,
-                itemsByCategoryTypeEndpoint
+                itemsByCategoryTypeEndpoint,
+                buyItemEndpoint
             },
 
             editing: false,
@@ -99,12 +100,13 @@ class UserProfileComponent {
                 })
 
                 this.$watch(() => this.shopStore.purchaseQuantity, (value) => {
+                    if(!this.shopStore.activeItem) return
+
                     if(value < 1) this.shopStore.purchaseQuantity = 1
                     else if(value > 100) this.shopStore.purchaseQuantity = 100
 
                     this.shopStore.purchaseQuantity = Math.floor(this.shopStore.purchaseQuantity)
-
-                    this.shopStore.totalPrice = 5 * this.shopStore.purchaseQuantity
+                    this.shopStore.totalPrice = this.shopStore.activeItem.price * this.shopStore.purchaseQuantity
                 })
             }
         }))

@@ -209,5 +209,16 @@
     "Cancel": "Cancel",
     "Save": "Save",
     "Edit": "Edit",
-    "Profile of :u": "Profile of :u"
+    "Buy": "Buy",
+    "Profile of :u": "Profile of :u",
+    "You cannot edit users because RCON is not enabled and the user is online.": "You cannot edit users because RCON is not enabled and the user is online.",
+    "RCON is not enabled!": "RCON is not enabled!",
+    "Home item not found.": "Home item not found.",
+    "This item exceeded the purchase limit.": "This item exceeded the purchase limit.",
+    "You can't buy more than :max of this item.": "You can't buy more than :max of this item.",
+    "You don't have enough :c to buy this item.": "You don't have enough :c to buy this item.",
+    "Credits": "Credits",
+    "Duckets": "Duckets",
+    "Diamonds": "Diamonds",
+    "Points": "Points",
 }

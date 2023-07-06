@@ -44,6 +44,8 @@ trait HasCurrency
 
     public function currency(CurrencyType $currency): int
     {
+        if($currency->value === CurrencyType::Credits->value) return $this->credits;
+
         if (!$this->relationLoaded('currencies')) {
             $this->load('currencies');
         }
@@ -52,5 +54,10 @@ trait HasCurrency
             ->where('type', $currency->value)
             ->first()
             ->amount ?? 0;
+    }
+
+    public function takeCurrency(CurrencyType $currency, int $amount): void
+    {
+        // do something
     }
 }

@@ -93,6 +93,7 @@ Route::name('users.')
             ->name('profile.')
             ->group(function () {
                 Route::get('{username}', [UserProfileController::class, 'show'])->name('show')->withoutMiddleware('auth');
+                Route::post('/buy-item', [UserProfileController::class, 'buyItem'])->name('buy-item');
             });
 
         Route::prefix('user')

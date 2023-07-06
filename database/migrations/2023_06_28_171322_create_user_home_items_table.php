@@ -19,9 +19,9 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(HomeItem::class);
 
-            $table->integer('x');
-            $table->integer('y');
-            $table->integer('z');
+            $table->integer('x')->default(0);
+            $table->integer('y')->default(0);
+            $table->integer('z')->default(0);
 
             $table->boolean('placed')->default(false);
             $table->boolean('is_reversed')->default(false);

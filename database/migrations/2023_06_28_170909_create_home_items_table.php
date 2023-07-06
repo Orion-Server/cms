@@ -25,7 +25,9 @@ return new class extends Migration
             $table->integer('currency_type')->default(-1);
 
             $table->boolean('enabled')->default(true);
-            $table->integer('limit')->limit(0);
+
+            $table->integer('limit')->nullable();
+            $table->integer('total_bought')->default(0);
 
             $table->timestamps();
         });

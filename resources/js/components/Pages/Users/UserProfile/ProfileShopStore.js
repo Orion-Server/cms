@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs'
+import axios from 'axios'
 
 document.addEventListener('alpine:init', () => {
     Alpine.store('profileShop', {
@@ -7,6 +8,7 @@ document.addEventListener('alpine:init', () => {
         shopCategories: [],
         showCategoriesElement: false,
         delay: false,
+        buttonDelay: false,
 
         profileComponent: null,
 
@@ -50,7 +52,7 @@ document.addEventListener('alpine:init', () => {
 
             await this.profileComponent.fetchData(this.profileComponent.shopEndpoints.itemsByCategoryTypeEndpoint.replace('%TYPE%', this.currentTab), ({ data }) => {
                 if(!data.success || !data.items) {
-                    this.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
+                    this.dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
                 }
 
@@ -68,7 +70,7 @@ document.addEventListener('alpine:init', () => {
 
             await this.profileComponent.fetchData(this.profileComponent.shopEndpoints.categoriesEndpoint, ({ data }) => {
                 if(!data.success || !data.categories) {
-                    this.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
+                    this.dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
                 }
 
@@ -104,7 +106,7 @@ document.addEventListener('alpine:init', () => {
 
             await this.profileComponent.fetchData(this.profileComponent.shopEndpoints.itemsByCategoryIdEndpoint.replace('%ID%', tabId), ({ data }) => {
                 if(!data.success || !data.items) {
-                    this.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
+                    this.dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
                 }
 
@@ -134,6 +136,51 @@ document.addEventListener('alpine:init', () => {
         setProfileComponent(component) {
             this.profileComponent = component
         },
+
+        getCurrencyIcon(item = null) {
+            if(!item) item = this.activeItem
+
+            switch(item.currency_type) {
+                case -1:
+                default:
+                    return 'https://i.imgur.com/dijttdM.png'
+                case 0:
+                    return 'https://imgur.com/Yf8pbjY.png'
+                case 5:
+                    return 'https://imgur.com/5HOWcZS.png'
+                case 101:
+                    return 'https://imgur.com/93gYnPp.png'
+            }
+        },
+
+        async buyItem() {
+            if(this.buttonDelay || !this.activeItem) return
+
+            let errorMessage = 'Failed to buy item'
+            this.buttonDelay = true
+
+            await axios.post(this.profileComponent.shopEndpoints.buyItemEndpoint, {
+                item_id: this.activeItem.id,
+                quantity: this.purchaseQuantity
+            }).then(({ data }) => {
+                if(!data.success) {
+                    this.dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
+                    return
+                }
+
+                this.dispatch('orion:alert', { type: 'success', message: data.message || 'Successfully bought item' })
+            }).catch(error => {
+                errorMessage = error.response?.data?.message || errorMessage
+
+                this.dispatch('orion:alert', { type: 'error', message: errorMessage || 'Failed to buy item' })
+            })
+
+            setTimeout(() => this.buttonDelay = false, 1000)
+        },
+
+        dispatch(event, data) {
+            this.profileComponent.$dispatch(event, data)
+        }
     })
 })
 

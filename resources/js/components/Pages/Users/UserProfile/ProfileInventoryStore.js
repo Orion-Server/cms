@@ -17,7 +17,7 @@ document.addEventListener('alpine:init', () => {
             await this.profileComponent
                 .fetchData(this.profileComponent.inventoryEndpoints.itemsEndpoint, ({ data }) => {
                     if(!data.success || !data.inventory) {
-                        this.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
+                        this.profileComponent.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                         return
                     }
 

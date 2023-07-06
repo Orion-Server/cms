@@ -21,4 +21,9 @@ class HomeItem extends Model
     {
         return $this->belongsTo(HomeCategory::class);
     }
+
+    public function exceededPurchaseLimit(): bool
+    {
+        return $this->total_bought >= $this->limit;
+    }
 }

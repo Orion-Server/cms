@@ -17,7 +17,7 @@
                 ></div>
                 <div class="w-full h-6 px-1 flex justify-end items-center gap-1 bg-slate-100 dark:bg-slate-700 rounded-b-md">
                     <span class="dark:text-white text-[0.65rem]" x-text="item.price"></span>
-                    <img src="https://i.imgur.com/dijttdM.png" alt="Coin">
+                    <img :src="shopStore.getCurrencyIcon(item)" alt="Coin">
                 </div>
             </div>
 

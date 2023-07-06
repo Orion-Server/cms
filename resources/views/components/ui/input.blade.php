@@ -1,6 +1,7 @@
 @props([
     'type' => null,
     'label' => null,
+    'labelClasses' => null,
     'placeholder' => null,
     'autocomplete' => null,
     'alpineModel' => null,
@@ -17,10 +18,10 @@
 @if ($label)
 <label
     @if($id) for="{{ $id }}" @endif
-    class="text-gray-700 text-left font-semibold mb-2 dark:text-gray-200 text-sm"
+    class="text-gray-700 text-left font-semibold mb-2 dark:text-gray-200 text-sm {{ $labelClasses }}"
 >
     <i class="{{ $icon }} mr-1"></i>
-    {{ $label }}
+    {!! $label !!}
 </label>
 @endif
 <input

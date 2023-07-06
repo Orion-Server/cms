@@ -9,7 +9,8 @@
             '{{ route('api.profile.inventory', $user->username) }}',
             '{{ route('api.profile.shop.categories') }}',
             '{{ route('api.profile.shop.items-by-category', '%ID%') }}',
-            '{{ route('api.profile.shop.items-by-type', '%TYPE%') }}'
+            '{{ route('api.profile.shop.items-by-type', '%TYPE%') }}',
+            '{{ route('users.profile.buy-item') }}',
         )">
         @includeWhen(!$user, 'pages.users.profile.partials.user-not-found')
 
