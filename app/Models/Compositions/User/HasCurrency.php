@@ -56,8 +56,15 @@ trait HasCurrency
             ->amount ?? 0;
     }
 
-    public function takeCurrency(CurrencyType $currency, int $amount): void
+    public function discountCurrency(CurrencyType $currency, int $amount): void
     {
-        // do something
+        if($currency === CurrencyType::Credits) {
+            $this->decrement('credits', $amount);
+            return;
+        }
+
+        $this->currencies()
+            ->whereType($currency->value)
+            ->decrement('amount', $amount);
     }
 }

@@ -19,6 +19,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "interactjs": "^1.10.17",
         "lightgallery": "^2.7.1",
         "notyf": "^3.10.0",
         "tippy.js": "^6.3.7",

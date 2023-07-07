@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Home\HomeItem;
 use App\Models\User;
+use App\Services\ProfileService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
@@ -15,7 +16,8 @@ class UserProfileController extends Controller
     public function show(string $username): RedirectResponse|View
     {
         return view('pages.users.profile.show', [
-            'user' => User::whereUsername($username)->first()
+            'user' => User::whereUsername($username)->first(),
+            'isMe' => $username === \Auth::user()?->username
         ]);
     }
 
@@ -28,9 +30,8 @@ class UserProfileController extends Controller
 
         if(! $item = HomeItem::with('homeCategory')->find($data['item_id'])) {
             return $this->jsonResponse([
-                'success' => false,
                 'message' => __('Home item not found.')
-            ]);
+            ], 404);
         }
 
         $user = \Auth::user();
@@ -38,32 +39,31 @@ class UserProfileController extends Controller
 
         if($item->limit && $item->exceededPurchaseLimit()) {
             return $this->jsonResponse([
-                'success' => false,
                 'message' => __('This item exceeded the purchase limit.')
-            ]);
+            ], 400);
         }
 
         if($item->limit && (($item->total_bought + $data['quantity']) > $item->limit)) {
             return $this->jsonResponse([
-                'success' => false,
                 'message' => __("You can't buy more than :max of this item.", ['max' => $item->limit - $item->total_bought])
-            ]);
+            ], 400);
         }
 
         if($totalPrice > $user->currency($item->currency_type)) {
             return $this->jsonResponse([
-                'success' => false,
                 'message' => __("You don't have enough :c to buy this item.", ['c' => strtolower(__($item->currency_type->name))])
-            ]);
+            ], 400);
         }
 
-        DB::transaction(function () use ($user, $item, $data, $totalPrice) {
-            $user->takeCurrency($item->currency_type, $totalPrice);
-            $user->giveHomeItem($item, $data['quantity']);
-        });
+        try {
+            ProfileService::buyItemForUser($user, $item, $data, $totalPrice);
+        } catch (\Throwable $exception) {
+            return $this->jsonResponse([
+                'message' => $exception->getMessage()
+            ], 500);
+        }
 
         return $this->jsonResponse([
-            'success' => true,
             'message' => __('You have successfully bought :quantity items.', ['quantity' => $data['quantity']])
         ]);
     }

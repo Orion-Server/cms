@@ -42,4 +42,5 @@ Route::prefix('profile')
             });
 
         Route::get('{username}/inventory', [ProfileController::class, 'getUserInventory'])->name('inventory');
+        Route::get('{username}/placed-items', [ProfileController::class, 'getUserHomeItems'])->name('placed-items');
     });

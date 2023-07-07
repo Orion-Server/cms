@@ -4,13 +4,15 @@
 
 @section('content')
     <x-container @class([
-        "flex flex-col justify-center items-center select-none"
+        "flex flex-col justify-center items-center select-none gap-2"
     ]) id="user-profile" x-data="userProfile(
             '{{ route('api.profile.inventory', $user->username) }}',
             '{{ route('api.profile.shop.categories') }}',
             '{{ route('api.profile.shop.items-by-category', '%ID%') }}',
             '{{ route('api.profile.shop.items-by-type', '%TYPE%') }}',
-            '{{ route('users.profile.buy-item') }}',
+            '{{ route('users.profile.buy-item', $user->username) }}',
+            '{{ route('api.profile.placed-items', $user->username) }}',
+            '{{ route('users.profile.save', $user->username) }}'
         )">
         @includeWhen(!$user, 'pages.users.profile.partials.user-not-found')
 
@@ -45,7 +47,7 @@
                             </x-ui.buttons.default>
                             <x-ui.buttons.default
                                 class="dark:bg-emerald-500 bg-emerald-500 border-emerald-700 hover:bg-emerald-400 dark:hover:bg-emerald-400 dark:shadow-emerald-700/75 shadow-emerald-600/75 py-2 text-white"
-                                @click="saveInventory()"
+                                @click="itemsStore.save()"
                             >
                                 <img src="https://i.imgur.com/c5GWgRv.png" alt="{{ __('Save') }}">
                                 {{ __('Save') }}
@@ -56,7 +58,7 @@
                             alpine-model="showBagModal"
                             max-width="max-w-[850px]"
                         >
-                            <x-home.inventory />
+                            <x-home.bag />
                         </x-ui.modal>
                     </div>
                 </template>
@@ -74,8 +76,24 @@
             <span class="text-2xl underline underline-offset-4 font-bold mb-4 dark:text-slate-100">{{ __('Profile of :u', ['u' => $user->username]) }}</span>
             @endif
 
-            <div class="border border-dashed border-slate-200 dark:border-slate-800 w-[928px] h-[1360px]">
-
+            <div
+                class="home-container border-2 relative border-dashed border-slate-200 dark:border-slate-800 w-[928px] h-[1360px]"
+                :style="{ backgroundImage: `url(${itemsStore.currentBackground?.home_item.image})` }"
+            >
+                <template x-for="(item, index) in itemsStore.placedItems" :key="index">
+                    <div
+                        class="select-none"
+                        :style="`position: absolute; top: ${item.y}px; left: ${item.x}px; z-index: ${item.z};`"
+                        @if($isMe)
+                        :class="{ 'home-draggable': editing }"
+                        @mouseDown="itemsStore.selectItem(item)"
+                        @mouseUp="itemsStore.selectItem(null)"
+                        @click="itemsStore.updateZIndex(item)"
+                        @endif
+                    >
+                        <img :src="item.home_item.image" alt="Item image" />
+                    </div>
+                </template>
             </div>
         @endif
     </x-container>

@@ -92,12 +92,18 @@ document.addEventListener('alpine:init', () => {
 
         selectItem(item) {
             item.hasNewTotal = false
+            this.placeQuantity = 1
 
             this.activeItem = item
         },
 
         placeSelectedItem(allItems = false) {
-            // do something
+            this.profileComponent.itemsStore.placeItem(
+                this.activeItem,
+                allItems ? this.activeItem.total_items : this.placeQuantity
+            )
+
+            this.profileComponent.showBagModal = false
         },
 
         resetSelectedItem() {
@@ -113,6 +119,19 @@ document.addEventListener('alpine:init', () => {
 
         getNewItemsTotal() {
             return Object.values(this.newItemsCount).reduce((a, b) => a + b, 0)
+        },
+
+        discountItemQuantity(item, quantity) {
+            if(!item) return
+
+            item.total_items -= quantity
+
+            if(item.total_items <= 0) {
+                this.allItems.get(this.currentTab)
+                    .splice(this.allItems.get(this.currentTab).indexOf(item), 1)
+
+                this.activeItem = null
+            }
         },
 
         resetItemsCountForCurrentTab() {

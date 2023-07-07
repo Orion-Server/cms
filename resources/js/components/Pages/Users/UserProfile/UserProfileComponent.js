@@ -2,6 +2,7 @@ import axios from 'axios'
 import Alpine from 'alpinejs'
 import './ProfileShopStore'
 import './ProfileInventoryStore'
+import './ProfileItemsStore'
 
 class UserProfileComponent {
     start() {
@@ -9,7 +10,15 @@ class UserProfileComponent {
     }
 
     _startComponent() {
-        Alpine.data('userProfile', (itemsEndpoint, categoriesEndpoint, itemsByCategoryIdEndpoint, itemsByCategoryTypeEndpoint, buyItemEndpoint) => ({
+        Alpine.data('userProfile', (
+            itemsEndpoint,
+            categoriesEndpoint,
+            itemsByCategoryIdEndpoint,
+            itemsByCategoryTypeEndpoint,
+            buyItemEndpoint,
+            placedItemsEndpoint,
+            saveItemsEndpoint
+        ) => ({
             inventoryEndpoints: {
                 itemsEndpoint,
             },
@@ -21,6 +30,11 @@ class UserProfileComponent {
                 buyItemEndpoint
             },
 
+            homeEndpoints: {
+                placedItemsEndpoint,
+                saveItemsEndpoint
+            },
+
             editing: false,
             showBagModal: false,
             bagTab: 'inventory',
@@ -28,6 +42,7 @@ class UserProfileComponent {
             init() {
                 this.shopStore.setProfileComponent(this)
                 this.inventoryStore.setProfileComponent(this)
+                this.itemsStore.setProfileComponent(this)
 
                 this.initWatchers()
             },
@@ -38,6 +53,10 @@ class UserProfileComponent {
 
             get inventoryStore() {
                 return this.$store.profileInventory
+            },
+
+            get itemsStore() {
+                return this.$store.profileItems
             },
 
             currentBagTabIs(tab) {

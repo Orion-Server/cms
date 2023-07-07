@@ -80,4 +80,28 @@ class ProfileController extends Controller
             ]
         ]);
     }
+
+    public function getUserHomeItems(string $username): JsonResponse
+    {
+        if (!$user = User::whereUsername($username)->first()) {
+            return $this->jsonResponse([
+                'message' => __('User not found')
+            ], 404);
+        }
+
+        $allPlacedItems = $user->placedHomeItems()
+            ->defaultRelationships(true)
+            ->get();
+
+        $filterByType = fn ($type) => $allPlacedItems->filter(
+            fn (UserHomeItem $item) => $item->homeItem?->type === $type->value
+        )->values();
+
+        return $this->jsonResponse([
+            'activeBackground' => $filterByType(HomeItemType::Background)->first(),
+            'items' => $filterByType(HomeItemType::Widget)
+                ->concat($filterByType(HomeItemType::Sticker))
+                ->concat($filterByType(HomeItemType::Note))
+        ]);
+    }
 }

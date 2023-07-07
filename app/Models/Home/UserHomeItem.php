@@ -18,8 +18,14 @@ class UserHomeItem extends Model
         return $this->belongsTo(HomeItem::class);
     }
 
-    public function scopeDefaultRelationships(Builder $query): void
+    public function scopeDefaultRelationships(Builder $query, bool $completeLoading = false): void
     {
-        $query->with('homeItem:id,type,name,image');
+        $relation = 'homeItem';
+
+        if(!$completeLoading) {
+            $relation .= ':id,type,name,image';
+        }
+
+        $query->with($relation);
     }
 }
