@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}" />
 
     <script>
+        window.appUrl = (completePath) => "{{ config('app.url') }}" + completePath;
         window.__ = (key) => {
             const translations = {
                 'You have been registered successfully': "{{ __('You have been registered successfully') }}",

@@ -6,7 +6,12 @@ document.addEventListener('alpine:init', () => {
         delay: false,
         currentTab: 'stickers',
 
-        allItems: new Map(),
+        allItems: {
+            'stickers': {},
+            'notes': {},
+            'widgets': {},
+            'backgrounds': {}
+        },
 
         activeItem: null,
         placeQuantity: 1,
@@ -23,14 +28,24 @@ document.addEventListener('alpine:init', () => {
                     this.delay = true
 
             await this.profileComponent
-                .fetchData(this.profileComponent.inventoryEndpoints.itemsEndpoint, ({ data }) => {
+                .fetchData(appUrl(`/api/profile/${this.profileComponent.username}/inventory`), ({ data }) => {
                     if(!data.success || !data.inventory) {
                         this.profileComponent.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                         return
                     }
 
                     Object.entries(data.inventory).forEach(([tab, items]) => {
-                        this.allItems.set(tab, items)
+                        items.forEach(item => {
+                            if(!this.allItems[tab][item.home_item.id]) {
+                                this.allItems[tab][item.home_item.id] = {
+                                    total_items: 0,
+                                    items: [item]
+                                }
+                            }
+
+                            this.allItems[tab][item.home_item.id].total_items++
+                            this.allItems[tab][item.home_item.id].items.push(item)
+                        })
                     })
                 }, errorMessage)
 
@@ -87,7 +102,7 @@ document.addEventListener('alpine:init', () => {
         getItemsForTab(tab) {
             if(!this.isValidTab(tab)) return []
 
-            return this.allItems.get(tab)
+            return Object.entries(this.allItems[tab])
         },
 
         selectItem(item) {

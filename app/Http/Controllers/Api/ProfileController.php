@@ -62,10 +62,8 @@ class ProfileController extends Controller
         }
 
         $allInventoryItems = $user->inventoryHomeItems()
-            ->select('home_item_id', DB::raw('COUNT(*) as total_items'))
-            ->groupBy('home_item_id')
-            ->get()
-            ->sortByDesc('total_items');
+            ->select('id', 'home_item_id')
+            ->get();
 
         $filterByType = fn ($type) => $allInventoryItems->filter(
             fn (UserHomeItem $item) => $item->homeItem?->type === $type->value

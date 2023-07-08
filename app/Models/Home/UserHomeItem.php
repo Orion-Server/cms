@@ -13,6 +13,13 @@ class UserHomeItem extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
+    protected $casts = [
+        'placed' => 'boolean',
+        'is_reversed' => 'boolean',
+    ];
+
     public function homeItem(): BelongsTo
     {
         return $this->belongsTo(HomeItem::class);

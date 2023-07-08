@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
-use App\Enums\ArticleReactionType;
 use Filament\Facades\Filament;
+use App\Services\ProfileService;
 use App\Services\SettingsService;
+use App\Enums\ArticleReactionType;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
@@ -21,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(ExternalTextsParser::class, fn () => new ExternalTextsParser());
         $this->app->singleton(SettingsService::class, fn () => new SettingsService());
+        $this->app->singleton(ProfileService::class, fn () => new ProfileService());
     }
 
     /**

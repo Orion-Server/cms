@@ -2,17 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Home\HomeItem;
 use App\Models\User;
-use App\Services\ProfileService;
 use Illuminate\Http\Request;
+use App\Models\Home\HomeItem;
+use App\Services\ProfileService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 
 class UserProfileController extends Controller
 {
+    protected ProfileService $profileService;
+
+    public function __construct()
+    {
+        $this->profileService = app(ProfileService::class);
+    }
+
     public function show(string $username): RedirectResponse|View
     {
         return view('pages.users.profile.show', [
@@ -37,26 +43,9 @@ class UserProfileController extends Controller
         $user = \Auth::user();
         $totalPrice = $item->price * $data['quantity'];
 
-        if($item->limit && $item->exceededPurchaseLimit()) {
-            return $this->jsonResponse([
-                'message' => __('This item exceeded the purchase limit.')
-            ], 400);
-        }
-
-        if($item->limit && (($item->total_bought + $data['quantity']) > $item->limit)) {
-            return $this->jsonResponse([
-                'message' => __("You can't buy more than :max of this item.", ['max' => $item->limit - $item->total_bought])
-            ], 400);
-        }
-
-        if($totalPrice > $user->currency($item->currency_type)) {
-            return $this->jsonResponse([
-                'message' => __("You don't have enough :c to buy this item.", ['c' => strtolower(__($item->currency_type->name))])
-            ], 400);
-        }
-
         try {
-            ProfileService::buyItemForUser($user, $item, $data, $totalPrice);
+            $this->profileService->checkPurchasePossibility($user, $item, $data, $totalPrice);
+            $this->profileService->buyItemForUser($user, $item, $data, $totalPrice);
         } catch (\Throwable $exception) {
             return $this->jsonResponse([
                 'message' => $exception->getMessage()
@@ -65,6 +54,31 @@ class UserProfileController extends Controller
 
         return $this->jsonResponse([
             'message' => __('You have successfully bought :quantity items.', ['quantity' => $data['quantity']])
+        ]);
+    }
+
+    public function save(Request $request): JsonResponse
+    {
+        $data = $request->validate([
+            'items.*.id' => 'required|integer',
+            'items.*.x' => 'required|integer',
+            'items.*.y' => 'required|integer',
+            'items.*.z' => 'required|integer',
+            'items.*.is_reversed' => 'nullable|boolean',
+            'items.*.theme' => 'nullable|string',
+            'backgroundId' => 'required|integer',
+        ]);
+
+        try {
+            $this->profileService->saveItems(\Auth::user(), $data);
+        } catch (\Throwable $ignored) {
+            return $this->jsonResponse([
+                'message' => __('An error occurred while saving your profile.')
+            ], 500);
+        }
+
+        return $this->jsonResponse([
+            'message' => __('Profile saved successfully.')
         ]);
     }
 }

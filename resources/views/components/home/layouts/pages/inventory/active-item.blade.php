@@ -4,6 +4,7 @@
     </div>
     <div
         class="flex flex-col w-full h-40 border dark:border-slate-800 rounded-md bg-no-repeat bg-center transition-[background-image]"
+        :class="{'bg-cover no-pixelated': inventoryStore.currentTab == 'backgrounds'}"
         :style="{ backgroundImage: `url(${inventoryStore.activeItem?.home_item.image})` }"
     ></div>
     <di class="flex flex-col gap-2">

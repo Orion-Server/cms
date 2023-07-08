@@ -1,5 +1,7 @@
+import axios from 'axios'
 import Alpine from 'alpinejs'
 import interact from 'interactjs'
+import Turbolinks from 'turbolinks'
 
 document.addEventListener('alpine:init', () => {
     Alpine.store('profileItems', {
@@ -7,6 +9,8 @@ document.addEventListener('alpine:init', () => {
 
         currentBackground: null,
         placedItems: [],
+
+        saveButtonDelay: false,
 
         activeItem: null,
 
@@ -30,7 +34,7 @@ document.addEventListener('alpine:init', () => {
         },
 
         async fetchPlacedItems() {
-            await this.profileComponent.fetchData(this.profileComponent.homeEndpoints.placedItemsEndpoint, ({ data }) => {
+            await this.profileComponent.fetchData(appUrl(`/api/profile/${this.profileComponent.username}/placed-items`), ({ data }) => {
                 if(!data.success || !data.items) {
                     this.profileComponent.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to fetch placed items' })
                     return
@@ -69,6 +73,7 @@ document.addEventListener('alpine:init', () => {
 
         placeItemOnce(item) {
             this.placedItems.push({
+                id: item.id,
                 home_item: {
                     image: item.home_item.image,
                     type: item.home_item.type,
@@ -81,26 +86,37 @@ document.addEventListener('alpine:init', () => {
             })
         },
 
-        saveItems() {
+        async saveItems() {
+            if(this.saveButtonDelay) return
+
             const items = this.placedItems.map(item => {
-                return {
-                    home_item_id: item.home_item.id,
-                    x: item.x,
-                    y: item.y,
-                    z: item.z,
-                    is_reversed: item.is_reversed,
-                    theme: item.theme,
-                }
-            })
+                    return {
+                        id: item.id,
+                        x: item.x,
+                        y: item.y,
+                        z: item.z,
+                        is_reversed: item.is_reversed,
+                        theme: item.theme,
+                    }
+                })
 
-            this.profileComponent.postData(this.profileComponent.homeEndpoints.saveItemsEndpoint, { items }, ({ data }) => {
-                if(!data.success) {
-                    this.profileComponent.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to save items' })
-                    return
-                }
+            this.saveButtonDelay = true
 
-                this.profileComponent.$dispatch('orion:alert', { type: 'success', message: data.message || 'Successfully saved items' })
-            }, 'Failed to save items')
+            await axios.post(appUrl(`/profile/${this.profileComponent.username}/save`), { items, backgroundId: this.currentBackground.id })
+                .then(({ data }) => {
+                    if(!data.success) {
+                        this.profileComponent.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to save items' })
+                        return
+                    }
+
+                    this.profileComponent.$dispatch('orion:alert', { type: 'success', message: data.message })
+
+                    setTimeout(() => Turbolinks.visit(data.href), 500)
+                })
+                .catch(data => {
+                    this.$dispatch('orion:alert', { type: 'error', message: data?.message || 'Failed to save items' })
+                    this.saveButtonDelay = false
+                })
         }
     })
 })

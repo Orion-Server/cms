@@ -10,41 +10,28 @@ class UserProfileComponent {
     }
 
     _startComponent() {
-        Alpine.data('userProfile', (
-            itemsEndpoint,
-            categoriesEndpoint,
-            itemsByCategoryIdEndpoint,
-            itemsByCategoryTypeEndpoint,
-            buyItemEndpoint,
-            placedItemsEndpoint,
-            saveItemsEndpoint
-        ) => ({
-            inventoryEndpoints: {
-                itemsEndpoint,
-            },
-
-            shopEndpoints: {
-                categoriesEndpoint,
-                itemsByCategoryIdEndpoint,
-                itemsByCategoryTypeEndpoint,
-                buyItemEndpoint
-            },
-
-            homeEndpoints: {
-                placedItemsEndpoint,
-                saveItemsEndpoint
-            },
+        Alpine.data('userProfile', username => ({
+            username,
+            isOwner: document.getElementById('home-edit-bar'),
 
             editing: false,
             showBagModal: false,
             bagTab: 'inventory',
 
             init() {
-                this.shopStore.setProfileComponent(this)
-                this.inventoryStore.setProfileComponent(this)
-                this.itemsStore.setProfileComponent(this)
+                if(!this.isValidUsername()) return
 
+                if(this.isOwner) {
+                    this.shopStore.setProfileComponent(this)
+                    this.inventoryStore.setProfileComponent(this)
+                }
+
+                this.itemsStore.setProfileComponent(this)
                 this.initWatchers()
+            },
+
+            isValidUsername() {
+                return this.username && this.username.length > 0
             },
 
             get shopStore() {
@@ -111,6 +98,8 @@ class UserProfileComponent {
             },
 
             initWatchers() {
+                if(!this.isOwner) return
+
                 this.$watch('showBagModal', (value) => document.body.classList.toggle('overflow-hidden', value))
 
                 this.$watch('editing', async (value) => {

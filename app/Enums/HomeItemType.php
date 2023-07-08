@@ -9,7 +9,7 @@ enum HomeItemType: string
     case Widget = 'w';
     case Background = 'b';
 
-    public static function values($exceptValue = null): array
+    public static function values(): array
     {
         return array_column(self::cases(), 'value');
     }

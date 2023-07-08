@@ -50,7 +50,7 @@ document.addEventListener('alpine:init', () => {
             const errorMessage = 'Failed to fetch shop items'
             this.delay = true
 
-            await this.profileComponent.fetchData(this.profileComponent.shopEndpoints.itemsByCategoryTypeEndpoint.replace('%TYPE%', this.currentTab), ({ data }) => {
+            await this.profileComponent.fetchData(appUrl(`/api/profile/shop/type/${this.currentTab}/items`), ({ data }) => {
                 if(!data.success || !data.items) {
                     this.dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
@@ -68,7 +68,7 @@ document.addEventListener('alpine:init', () => {
 
             const errorMessage = 'Failed to fetch shop categories'
 
-            await this.profileComponent.fetchData(this.profileComponent.shopEndpoints.categoriesEndpoint, ({ data }) => {
+            await this.profileComponent.fetchData(appUrl(`/api/profile/shop/categories`), ({ data }) => {
                 if(!data.success || !data.categories) {
                     this.dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
@@ -104,7 +104,7 @@ document.addEventListener('alpine:init', () => {
             const errorMessage = 'Failed to fetch shop category'
             this.delay = true
 
-            await this.profileComponent.fetchData(this.profileComponent.shopEndpoints.itemsByCategoryIdEndpoint.replace('%ID%', tabId), ({ data }) => {
+            await this.profileComponent.fetchData(appUrl(`/api/profile/shop/category/${tabId}/items`), ({ data }) => {
                 if(!data.success || !data.items) {
                     this.dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
@@ -162,7 +162,7 @@ document.addEventListener('alpine:init', () => {
             const item = this.activeItem,
                 purchaseQuantity = this.purchaseQuantity
 
-            await axios.post(this.profileComponent.shopEndpoints.buyItemEndpoint, {
+            await axios.post(appUrl(`/profile/${this.profileComponent.username}/buy-item`), {
                 item_id: this.activeItem.id,
                 quantity: this.purchaseQuantity
             }).then(({ data }) => {
@@ -172,6 +172,8 @@ document.addEventListener('alpine:init', () => {
                 }
 
                 this.dispatch('orion:alert', { type: 'success', message: data.message })
+
+                item.id = data.item_id
 
                 this.profileComponent.inventoryStore.giveItem(item, purchaseQuantity, this.currentTab)
             }).catch(error => {

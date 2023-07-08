@@ -14,7 +14,8 @@ class HomeItem extends Model
     use HasFactory;
 
     protected $casts = [
-        'currency_type' => CurrencyType::class
+        'currency_type' => CurrencyType::class,
+        'enabled' => 'boolean'
     ];
 
     public function homeCategory(): BelongsTo

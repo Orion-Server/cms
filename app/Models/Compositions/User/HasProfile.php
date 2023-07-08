@@ -2,8 +2,11 @@
 
 namespace App\Models\Compositions\User;
 
-use App\Models\Home\HomeItem;
-use App\Models\Home\UserHomeItem;
+use App\Enums\HomeItemType;
+use App\Models\Home\{
+    HomeItem,
+    UserHomeItem
+};
 use Illuminate\Database\Eloquent\{
     Relations\HasMany
 };
@@ -46,5 +49,15 @@ trait HasProfile
         );
 
         $item->increment('total_bought', $quantity);
+    }
+
+    public function changeProfileBackground(UserHomeItem $background): void
+    {
+        $this->placedHomeItems()
+            ->whereType(HomeItemType::Background)
+            ->update(['placed' => 0]);
+
+        $background->placed = true;
+        $background->save();
     }
 }
