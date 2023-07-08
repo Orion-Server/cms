@@ -55,6 +55,7 @@
                         <x-ui.modal
                             alpine-model="showBagModal"
                             max-width="max-w-[850px]"
+                            extra-classes="z-[9999]"
                         >
                             <x-home.bag />
                         </x-ui.modal>

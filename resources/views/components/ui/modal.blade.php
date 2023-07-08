@@ -3,11 +3,12 @@
     'title' => null,
     'subTitle' => null,
     'alpineModel' => 'modalOpen',
-    'maxWidth' => false
+    'maxWidth' => false,
+    'extraClasses' => ''
 ])
 
 <div tabindex="-1"
-    class="fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden bg-black/50 overflow-y-auto md:inset-0 h-full max-h-full hidden justify-center items-center"
+    class="fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden bg-black/50 overflow-y-auto md:inset-0 h-full max-h-full hidden justify-center items-center {{ $extraClasses }}"
     :class="{ 'hidden': !{{ $alpineModel }}, 'flex': {{ $alpineModel }} }"
     x-transition
     x-show="{{ $alpineModel }}"
