@@ -72,6 +72,9 @@ document.addEventListener('alpine:init', () => {
             this.placeQuantity = placeAllItems ? this.activeItem.item_ids.length : this.placeQuantity
 
             this.profileComponent.itemsStore.placeItem(this.activeItem, this.placeQuantity)
+
+            this.resetSelectedItem()
+            this.profileComponent.showBagModal = false
         },
 
         onPlacedItems() {

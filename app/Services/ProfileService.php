@@ -50,11 +50,13 @@ class ProfileService
         $user->giveHomeItem($item, $data['quantity']);
     }
 
-    public function saveItems(User $user, array $data)
+    public function saveItems(User $user, array $data): void
     {
         if (isset($data['backgroundId']) && $background = $user->inventoryHomeItems()->find($data['backgroundId'])) {
             $user->changeProfileBackground($background);
         }
+
+        if(!isset($data['items']) || count($data['items']) < 1) return;
 
         $itemsCollection = collect($data['items']);
         $allItemsInstance = $user->homeItems()
@@ -65,14 +67,16 @@ class ProfileService
             $allItemsInstance->each(function (UserHomeItem $item) use ($itemsCollection) {
                 $itemData = $itemsCollection->where('id', $item->id)->first();
 
-                $item->update([
-                    'placed' => 1,
-                    'x' => (int) $itemData['x'] ?? $item->x,
-                    'y' => (int) $itemData['y'] ?? $item->y,
-                    'z' => (int) $itemData['z'] ?? $item->z,
-                    'is_reversed' => (bool) $itemData['is_reversed'] ?? $item->is_reversed,
-                    'theme' => (bool) $itemData['theme'] ?? $item->theme,
-                ]);
+                $item->placed = 1;
+                $item->x = (int) $itemData['x'] ?? $item->x;
+                $item->y = (int) $itemData['y'] ?? $item->y;
+                $item->z = (int) $itemData['z'] ?? $item->z;
+                $item->is_reversed = (bool) $itemData['is_reversed'] ?? $item->is_reversed;
+                $item->theme = (bool) $itemData['theme'] ?? $item->theme;
+
+                if(!$item->isDirty()) return;
+
+                $item->save();
             });
         });
     }

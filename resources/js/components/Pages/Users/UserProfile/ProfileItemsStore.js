@@ -47,6 +47,10 @@ document.addEventListener('alpine:init', () => {
 
         selectItem(item) {
             this.activeItem = item
+
+            if(!this.activeItem) return
+
+            this.activeItem.hasChanges = true
         },
 
         updateZIndex(item) {
@@ -85,6 +89,8 @@ document.addEventListener('alpine:init', () => {
             if(this.saveButtonDelay) return
 
             const items = this.placedItems.map(item => {
+                    if(!item.hasChanges) return null
+
                     return {
                         id: item.id,
                         x: item.x,
@@ -93,7 +99,7 @@ document.addEventListener('alpine:init', () => {
                         is_reversed: item.is_reversed,
                         theme: item.theme,
                     }
-                })
+                }).filter(item => item)
 
             this.saveButtonDelay = true
 
@@ -106,7 +112,13 @@ document.addEventListener('alpine:init', () => {
 
                     this.profileComponent.$dispatch('orion:alert', { type: 'success', message: data.message })
 
-                    setTimeout(() => Turbolinks.visit(data.href), 500)
+                    setTimeout(() => {
+                        Turbolinks.visit(data.href)
+
+                        this.profileComponent.$nextTick(() => {
+                            this.saveButtonDelay = false
+                        })
+                    }, 500)
                 })
                 .catch(data => {
                     this.$dispatch('orion:alert', { type: 'error', message: data?.message || 'Failed to save items' })
