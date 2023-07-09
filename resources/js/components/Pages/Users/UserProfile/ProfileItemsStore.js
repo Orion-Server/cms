@@ -67,8 +67,6 @@ document.addEventListener('alpine:init', () => {
             for (let i = 0; i < quantity; i++) {
                 this.placeItemOnce(item)
             }
-
-            this.profileComponent.inventoryStore.discountItemQuantity(item, quantity)
         },
 
         placeItemOnce(item) {

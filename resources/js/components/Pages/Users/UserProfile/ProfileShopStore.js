@@ -174,8 +174,6 @@ document.addEventListener('alpine:init', () => {
                 this.dispatch('orion:alert', { type: 'success', message: data.message })
 
                 item.id = data.item_id
-
-                this.profileComponent.inventoryStore.giveItem(item, purchaseQuantity, this.currentTab)
             }).catch(error => {
                 errorMessage = error.response?.data?.message || errorMessage
 

@@ -67,7 +67,6 @@ class UserProfileComponent {
 
                 this.showBagModal = true
                 this.resetSelectedItem()
-                this.inventoryStore.resetItemsCountForCurrentTab()
             },
 
             openShop() {
@@ -116,19 +115,6 @@ class UserProfileComponent {
 
                     this.shopStore.purchaseQuantity = Math.floor(this.shopStore.purchaseQuantity)
                     this.shopStore.totalPrice = this.shopStore.activeItem.price * this.shopStore.purchaseQuantity
-                })
-
-                this.$watch(() => this.inventoryStore.placeQuantity, (value) => {
-                    if(!this.inventoryStore.activeItem) return
-
-                    if(value < 1) this.inventoryStore.placeQuantity = 1
-                    else if(value > this.inventoryStore.activeItem.total_items) this.inventoryStore.placeQuantity = this.inventoryStore.activeItem.total_items
-
-                    if(this.inventoryStore.placeQuantity > 15) {
-                        this.inventoryStore.placeQuantity = 15
-                    }
-
-                    this.inventoryStore.placeQuantity = Math.floor(this.inventoryStore.placeQuantity)
                 })
             }
         }))

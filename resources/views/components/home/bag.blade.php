@@ -5,8 +5,8 @@
         class="dark:bg-blue-600 rounded-r-none bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-500 dark:shadow-blue-700/75 shadow-blue-600/75 text-white"
     >
         {{ __('Inventory') }}
-        <template x-if="!! inventoryStore.getNewItemsTotal()">
-            <span class="px-1 rounded-full font-bold text-xs bg-blue-400" x-text="inventoryStore.getNewItemsTotal()"></span>
+        <template>
+            <span class="px-1 rounded-full font-bold text-xs bg-blue-400">2</span>
         </template>
     </x-ui.buttons.default>
 
