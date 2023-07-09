@@ -159,21 +159,20 @@ document.addEventListener('alpine:init', () => {
             let errorMessage = 'Failed to buy item'
             this.buttonDelay = true
 
-            const item = this.activeItem,
-                purchaseQuantity = this.purchaseQuantity
+            const item = this.activeItem
 
             await axios.post(appUrl(`/profile/${this.profileComponent.username}/buy-item`), {
                 item_id: this.activeItem.id,
                 quantity: this.purchaseQuantity
             }).then(({ data }) => {
-                if(!data.success) {
+                if(!data.success || !data.items || !data.items.length) {
                     this.dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
                 }
 
                 this.dispatch('orion:alert', { type: 'success', message: data.message })
 
-                item.id = data.item_id
+                this.profileComponent.inventoryStore.giveItemsForTab(this.currentTab, data.items)
             }).catch(error => {
                 errorMessage = error.response?.data?.message || errorMessage
 

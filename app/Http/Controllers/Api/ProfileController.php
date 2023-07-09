@@ -4,13 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use App\Enums\HomeItemType;
-use Illuminate\Http\Request;
 use App\Models\Home\HomeItem;
 use App\Models\Home\HomeCategory;
 use App\Models\Home\UserHomeItem;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -61,10 +59,7 @@ class ProfileController extends Controller
             ], 404);
         }
 
-        $allInventoryItems = $user->inventoryHomeItems()
-            ->select(DB::raw('home_item_id, JSON_ARRAYAGG(id) as item_ids'))
-            ->groupBy('home_item_id')
-            ->get();
+        $allInventoryItems = $user->groupedInventoryItems()->get();
 
         $filterByType = fn ($type) => $allInventoryItems->filter(
             fn (UserHomeItem $item) => $item->homeItem?->type === $type->value

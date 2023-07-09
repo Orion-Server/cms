@@ -3,10 +3,12 @@
 namespace App\Models\Compositions\User;
 
 use App\Enums\HomeItemType;
+use Illuminate\Support\Facades\DB;
 use App\Models\Home\{
     HomeItem,
     UserHomeItem
 };
+use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\{
     Relations\HasMany
 };
@@ -28,6 +30,13 @@ trait HasProfile
         return $this->homeItems()
             ->defaultRelationships()
             ->wherePlaced(0);
+    }
+
+    public function groupedInventoryItems(): HasMany
+    {
+        return $this->inventoryHomeItems()
+            ->select(DB::raw('home_item_id, JSON_ARRAYAGG(id) as item_ids'))
+            ->groupBy('home_item_id');
     }
 
     public function placedHomeItems(): HasMany

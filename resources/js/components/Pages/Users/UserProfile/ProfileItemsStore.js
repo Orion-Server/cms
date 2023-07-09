@@ -81,8 +81,6 @@ document.addEventListener('alpine:init', () => {
                     theme: null,
                 })
             }
-
-            this.profileComponent.inventoryStore.onPlacedItems(item)
         },
 
         async saveItems() {

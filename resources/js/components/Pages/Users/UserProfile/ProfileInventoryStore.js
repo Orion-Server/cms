@@ -63,7 +63,31 @@ document.addEventListener('alpine:init', () => {
         },
 
         getItemsForCurrentTab() {
-            return this.allItems[this.currentTab]
+            return this.allItems[this.currentTab].filter(item => !! item.item_ids?.length)
+        },
+
+        giveItemsForTab(tab, items) {
+            if(tab == 'categories') tab = 'stickers'
+
+            if(!this.isValidTab(tab)) return
+
+            const firstItem = items[0]
+
+            if(!firstItem) return
+
+            if(!this.allItems[tab].length) {
+                this.allItems[tab] = items
+                return
+            }
+
+            const existingItem = this.allItems[tab].find(item => item.home_item_id === firstItem.home_item_id)
+
+            if(!existingItem) {
+                this.allItems[tab].push(...items)
+                return
+            }
+
+            existingItem.item_ids.push(...firstItem.item_ids)
         },
 
         placeActiveItem(placeAllItems = false) {
@@ -76,14 +100,6 @@ document.addEventListener('alpine:init', () => {
             this.resetSelectedItem()
             this.profileComponent.showBagModal = false
         },
-
-        onPlacedItems() {
-            if(!this.activeItem.item_ids?.length) {
-                this.allItems[this.currentTab] = this.allItems[this.currentTab].filter(item => item.home_item_id !== this.activeItem.home_item_id)
-            }
-
-            this.resetSelectedItem()
-        }
     })
 })
 

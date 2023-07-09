@@ -53,7 +53,8 @@ class UserProfileController extends Controller
         }
 
         return $this->jsonResponse([
-            'message' => __('You have successfully bought :quantity items.', ['quantity' => $data['quantity']])
+            'message' => __('You have successfully bought :quantity items.', ['quantity' => $data['quantity']]),
+            'items' => $this->profileService->getLatestPurchaseItemIds($user, $item, $data['quantity'])
         ]);
     }
 

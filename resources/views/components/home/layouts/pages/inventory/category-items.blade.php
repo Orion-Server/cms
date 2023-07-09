@@ -5,7 +5,7 @@
         </div>
     </template>
     <template x-if="!inventoryStore.delay">
-        <template x-for="homeItemData in inventoryStore.getItemsForCurrentTab()">
+        <template x-for="homeItemData in inventoryStore.getItemsForCurrentTab()" :key="homeItemData.home_item_id">
             <div
                 class="flex flex-col w-22 h-28 border-2 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer hover:!border-blue-400 rounded-md"
                 :class="{ '!border-blue-500': inventoryStore.activeItem?.home_item_id == homeItemData.home_item_id, '!border-green-500': false }"
