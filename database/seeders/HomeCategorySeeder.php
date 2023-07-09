@@ -80,16 +80,12 @@ class HomeCategorySeeder extends Seeder
                 'https://i.imgur.com/vgjnpff.png'
             ],
             [
-                'Battle Banzai',
-                'https://i.imgur.com/Uzht4OK.png'
-            ],
-            [
                 'SnowStorm',
                 'https://i.imgur.com/oevdfAb.png'
             ],
             [
                 'Monsters Of Habbo',
-                'https://i.imgur.com/oevdfAb.png'
+                'https://imgur.com/QkNM2XA.png'
             ],
             [
                 'Habboween',
@@ -97,15 +93,15 @@ class HomeCategorySeeder extends Seeder
             ],
             [
                 'Coins and Related',
-                'https://i.imgur.com/vYp3zVW.png'
+                'https://imgur.com/2dv241o.png'
             ],
             [
                 'Forest and Related',
-                'https://i.imgur.com/vb7KopB.png'
+                'https://imgur.com/93S5hn6.png'
             ],
             [
-                'KungFu Panda',
-                'https://i.imgur.com/fWdwdgd.png'
+                'Clamps and Related',
+                'https://imgur.com/9cAAtv0.png'
             ]
         ];
     }

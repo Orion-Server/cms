@@ -27,6 +27,7 @@ trait HasArtistsCategoryData
             $this->buildItemStructure($category, 'https://imgur.com/Lm87PDS.png'),
             $this->buildItemStructure($category, 'https://imgur.com/zHzlXre.png'),
             $this->buildItemStructure($category, 'https://imgur.com/RSrua7L.png'),
+            $this->buildItemStructure($category, 'https://imgur.com/rxB30lD.gif'),
         ];
     }
 }

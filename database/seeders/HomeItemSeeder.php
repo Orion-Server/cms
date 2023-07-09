@@ -35,6 +35,9 @@ class HomeItemSeeder extends Seeder
         $this->addItemForCategory('Habboween');
         $this->addItemForCategory('Coins and Related');
         $this->addItemForCategory('Forest and Related');
+        $this->addItemForCategory('Clamps and Related');
+
+        $this->insertBackgroundsItemsData();
     }
 
     protected function addItemForCategory(string $categoryName): void
