@@ -119,7 +119,7 @@ document.addEventListener('alpine:init', () => {
                     }, 500)
                 })
                 .catch(data => {
-                    this.$dispatch('orion:alert', { type: 'error', message: data?.message || 'Failed to save items' })
+                    this.profileComponent.$dispatch('orion:alert', { type: 'error', message: __('An error occurred while saving your home, please try again') })
                     this.saveButtonDelay = false
                 })
         }

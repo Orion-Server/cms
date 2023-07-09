@@ -85,8 +85,8 @@ document.addEventListener('alpine:init', () => {
         openCategoryTab(tabId) {
             if(!this.isValidCategoryTab(tabId)) return
 
-            this.categoryTabId = tabId
             this.resetSelectedItem()
+            this.categoryTabId = tabId
 
             if(this.itemsByCategory.has(tabId)) this.categoryTabItems = this.itemsByCategory.get(tabId)
             else this.fetchCategoryTab()
@@ -118,6 +118,9 @@ document.addEventListener('alpine:init', () => {
         },
 
         resetSelectedItem() {
+            this.categoryTabId = null
+            this.categoryTabItems = []
+
             this.activeItem = null
             this.purchaseQuantity = 1
             this.totalPrice = 0
