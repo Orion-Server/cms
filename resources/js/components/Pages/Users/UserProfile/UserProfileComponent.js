@@ -116,6 +116,19 @@ class UserProfileComponent {
                     this.shopStore.purchaseQuantity = Math.floor(this.shopStore.purchaseQuantity)
                     this.shopStore.totalPrice = this.shopStore.activeItem.price * this.shopStore.purchaseQuantity
                 })
+
+                this.$watch(() => this.inventoryStore.placeQuantity, (value) => {
+                    if(!this.inventoryStore.activeItem) return
+
+                    if(value < 1) this.inventoryStore.placeQuantity = 1
+                    else if(value > this.inventoryStore.activeItem.item_ids.length) this.inventoryStore.placeQuantity = this.inventoryStore.activeItem.item_ids.length
+
+                    if(this.inventoryStore.placeQuantity > 15) {
+                        this.inventoryStore.placeQuantity = 15
+                    }
+
+                    this.inventoryStore.placeQuantity = Math.floor(this.inventoryStore.placeQuantity)
+                })
             }
         }))
     }

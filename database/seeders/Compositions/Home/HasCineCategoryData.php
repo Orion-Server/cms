@@ -20,7 +20,7 @@ trait HasCineCategoryData
             $this->buildItemStructure($category, 'https://imgur.com/AY4AhyS.png'),
             $this->buildItemStructure($category, 'https://imgur.com/p3jkYkZ.png'),
             $this->buildItemStructure($category, 'https://imgur.com/wFpU8GP.png'),
-            $this->buildItemStructure($category, 'https://imgur.com/UZBwQZs.png'),
+            $this->buildItemStructure($category, 'https://i.imgur.com/qdIpG80.png'),
             $this->buildItemStructure($category, 'https://imgur.com/K0Ar5Hr.png'),
             $this->buildItemStructure($category, 'https://imgur.com/2JAGZpr.png'),
             $this->buildItemStructure($category, 'https://imgur.com/t4pC6VD.png'),

@@ -6,6 +6,13 @@ document.addEventListener('alpine:init', () => {
         delay: false,
         currentTab: 'stickers',
 
+        allItems: {
+            'stickers': [],
+            'notes': [],
+            'widgets': [],
+            'backgrounds': []
+        },
+
         activeItem: null,
         placeQuantity: 1,
 
@@ -20,9 +27,7 @@ document.addEventListener('alpine:init', () => {
                         return
                     }
 
-                    Object.entries(data.inventory).forEach(([tab, items]) => {
-
-                    })
+                    this.allItems = data.inventory
                 }, errorMessage)
 
             setTimeout(() => this.delay = false, 1000)
@@ -35,11 +40,9 @@ document.addEventListener('alpine:init', () => {
         openTab(tab) {
             if(!this.isValidTab(tab)) return
 
-            this.resetHasNewTotalFromItemsByTab(this.currentTab)
             this.currentTab = tab
 
             this.resetSelectedItem()
-            this.resetItemsCountForCurrentTab()
         },
 
         isValidTab(tab) {
@@ -49,6 +52,34 @@ document.addEventListener('alpine:init', () => {
         resetSelectedItem() {
             this.activeItem = null
             this.placeQuantity = 1
+        },
+
+        selectItem(item) {
+            if(this.activeItem && this.activeItem.home_item_id === item.home_item_id) return
+
+            this.resetSelectedItem()
+
+            this.activeItem = item
+        },
+
+        getItemsForCurrentTab() {
+            return this.allItems[this.currentTab]
+        },
+
+        placeActiveItem(placeAllItems = false) {
+            if(!this.activeItem) return
+
+            this.placeQuantity = placeAllItems ? this.activeItem.item_ids.length : this.placeQuantity
+
+            this.profileComponent.itemsStore.placeItem(this.activeItem, this.placeQuantity)
+        },
+
+        onPlacedItems() {
+            if(!this.activeItem.item_ids?.length) {
+                this.allItems[this.currentTab] = this.allItems[this.currentTab].filter(item => item.home_item_id !== this.activeItem.home_item_id)
+            }
+
+            this.resetSelectedItem()
         }
     })
 })

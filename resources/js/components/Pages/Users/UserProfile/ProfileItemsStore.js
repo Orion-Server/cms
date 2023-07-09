@@ -62,26 +62,23 @@ document.addEventListener('alpine:init', () => {
         },
 
         placeItem(item, quantity) {
-            if(!item.home_item) return
+            if(!item.item_ids?.length || !item.home_item) return
 
             for (let i = 0; i < quantity; i++) {
-                this.placeItemOnce(item)
-            }
-        },
+                const id = item.item_ids.shift()
 
-        placeItemOnce(item) {
-            this.placedItems.push({
-                id: item.id,
-                home_item: {
-                    image: item.home_item.image,
-                    type: item.home_item.type,
-                },
-                x: item.x || 0,
-                y: item.y || 0,
-                z: item.z || 0,
-                is_reversed: item.is_reversed || false,
-                theme: item.theme || null,
-            })
+                this.placedItems.push({
+                    id,
+                    home_item: item.home_item,
+                    x: 0,
+                    y: 0,
+                    z: 0,
+                    is_reversed: false,
+                    theme: null,
+                })
+            }
+
+            this.profileComponent.inventoryStore.onPlacedItems(item)
         },
 
         async saveItems() {

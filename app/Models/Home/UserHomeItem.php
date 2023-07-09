@@ -18,6 +18,7 @@ class UserHomeItem extends Model
     protected $casts = [
         'placed' => 'boolean',
         'is_reversed' => 'boolean',
+        'item_ids' => 'array'
     ];
 
     public function homeItem(): BelongsTo
