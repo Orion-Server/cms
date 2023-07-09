@@ -5,14 +5,19 @@ namespace Database\Seeders\Compositions;
 use App\Models\Home\HomeCategory;
 use Database\Seeders\Compositions\Home\{
     HasAlhambraCategoryData,
+    HasArtistsCategoryData,
     HasBlingAlphabetCategoryData,
     HasButtonsCategoryData,
     HasCineCategoryData,
+    HasCoinsAndRelatedCategoryData,
     HasDividersCategoryData,
+    HasForestAndRelatedCategoryData,
+    HasHabboweenCategoryData,
     HasKeepItRealCategoryData,
     HasPaintingsCategoryData,
     HasPlasticAlphabetCategoryData,
     HasPiratesCategoryData,
+    HasSnowStormCategoryData,
     HasSportsCategoryData,
     HasSummerVacationCategoryData,
     HasValentineCategoryData,
@@ -35,7 +40,12 @@ trait HasUserProfileData
         HasSportsCategoryData,
         HasWWECategoryData,
         HasPaintingsCategoryData,
-        HasDividersCategoryData;
+        HasDividersCategoryData,
+        HasSnowStormCategoryData,
+        HasArtistsCategoryData,
+        HasHabboweenCategoryData,
+        HasCoinsAndRelatedCategoryData,
+        HasForestAndRelatedCategoryData;
 
     protected function buildItemStructure(
         HomeCategory $category,

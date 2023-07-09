@@ -98,7 +98,9 @@ class ProfileService
         JOIN home_items hi ON hi.id = uhi.home_item_id
         GROUP BY hi.id, hi.type, hi.name, hi.image";
 
-        $query = DB::select($query, [$user->id, 0, $item->id, $quantity]);
+        $result = DB::select($query, [$user->id, 0, $item->id, $quantity]);
+
+        if(!$result) return [];
 
         return array_map(function ($item) {
             return [
@@ -111,6 +113,6 @@ class ProfileService
                     'image' => $item->image,
                 ],
             ];
-        }, $query);
+        }, $result);
     }
 }

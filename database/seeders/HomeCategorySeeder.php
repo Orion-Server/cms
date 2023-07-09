@@ -88,7 +88,11 @@ class HomeCategorySeeder extends Seeder
                 'https://i.imgur.com/oevdfAb.png'
             ],
             [
-                'Halloween',
+                'Monsters Of Habbo',
+                'https://i.imgur.com/oevdfAb.png'
+            ],
+            [
+                'Habboween',
                 'https://i.imgur.com/NibQAwu.png'
             ],
             [
@@ -96,7 +100,7 @@ class HomeCategorySeeder extends Seeder
                 'https://i.imgur.com/vYp3zVW.png'
             ],
             [
-                'Easter and Animals',
+                'Forest and Related',
                 'https://i.imgur.com/vb7KopB.png'
             ],
             [

@@ -30,6 +30,11 @@ class HomeItemSeeder extends Seeder
         $this->addItemForCategory('WWE');
         $this->addItemForCategory('Paintings');
         $this->addItemForCategory('Dividers');
+        $this->addItemForCategory('SnowStorm');
+        $this->addItemForCategory('Artists');
+        $this->addItemForCategory('Habboween');
+        $this->addItemForCategory('Coins and Related');
+        $this->addItemForCategory('Forest and Related');
     }
 
     protected function addItemForCategory(string $categoryName): void
