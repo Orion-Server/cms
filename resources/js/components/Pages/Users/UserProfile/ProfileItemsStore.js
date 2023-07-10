@@ -10,6 +10,7 @@ document.addEventListener('alpine:init', () => {
         isBackgroundPreview: false,
         currentBackground: null,
         placedItems: [],
+        removedItemIds: [],
 
         saveButtonDelay: false,
 
@@ -35,6 +36,8 @@ document.addEventListener('alpine:init', () => {
         },
 
         async fetchPlacedItems() {
+            if(this.placedItems.length) return
+
             await this.profileComponent.fetchData(appUrl(`/api/profile/${this.profileComponent.username}/placed-items`), ({ data }) => {
                 if(!data.success || !data.items) {
                     this.profileComponent.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to fetch placed items' })
@@ -47,6 +50,8 @@ document.addEventListener('alpine:init', () => {
         },
 
         selectItem(item) {
+            if(!this.profileComponent.editing) return
+
             this.activeItem = item
 
             if(!this.activeItem) return
@@ -55,6 +60,8 @@ document.addEventListener('alpine:init', () => {
         },
 
         updateZIndex(item) {
+            if(!this.profileComponent.editing) return
+
             const highestZIndex = Math.max(...this.placedItems.map(item => item.z), 0)
 
             item.z = highestZIndex + 1
@@ -79,6 +86,13 @@ document.addEventListener('alpine:init', () => {
             for (let i = 0; i < quantity; i++) {
                 const id = item.item_ids.shift()
 
+                if(!id) continue
+
+                if(this.removedItemIds.includes(id)) {
+                    this.placeRemovedItem(id)
+                    continue
+                }
+
                 this.placedItems.push({
                     id,
                     home_item: item.home_item,
@@ -89,6 +103,31 @@ document.addEventListener('alpine:init', () => {
                     theme: null,
                 })
             }
+        },
+
+        placeRemovedItem(id) {
+            this.removedItemIds.splice(this.removedItemIds.indexOf(id), 1)
+
+            const item = this.placedItems.find(item => item.id == id)
+
+            if(!item) return
+
+            item.x = 0
+            item.y = 0
+            item.z = 0
+            item.is_reversed = false
+            item.theme = null
+        },
+
+        getPlacedItems() {
+            return this.placedItems.filter(item => !this.removedItemIds.includes(item.id))
+        },
+
+        backToInventory(item) {
+            if(!item.home_item || item.home_item.type == 'b') return
+
+            this.removedItemIds.push(item.id)
+            this.profileComponent.inventoryStore.backItemToInventory(item)
         },
 
         async saveItems() {
@@ -104,6 +143,7 @@ document.addEventListener('alpine:init', () => {
                         z: item.z,
                         is_reversed: item.is_reversed,
                         theme: item.theme,
+                        placed: !this.removedItemIds.includes(item.id),
                     }
                 }).filter(item => item)
 

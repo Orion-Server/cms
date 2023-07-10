@@ -79,19 +79,8 @@
                 :class="{ 'opacity-90': itemsStore.isBackgroundPreview }"
                 :style="{ backgroundImage: `url(${itemsStore.getBackground()})` }"
             >
-                <template x-for="(item, index) in itemsStore.placedItems" :key="index">
-                    <div
-                        class="select-none"
-                        :style="`position: absolute; top: ${item.y}px; left: ${item.x}px; z-index: ${item.z};`"
-                        @if($isMe)
-                        :class="{ 'home-draggable': editing }"
-                        @mouseDown="itemsStore.selectItem(item)"
-                        @mouseUp="itemsStore.selectItem(null)"
-                        @click="itemsStore.updateZIndex(item)"
-                        @endif
-                    >
-                        <img :src="item.home_item.image" alt="Item image" />
-                    </div>
+                <template x-for="(item, index) in itemsStore.getPlacedItems()" :key="index">
+                    @include('components.home.items.sticker')
                 </template>
             </div>
         @endif

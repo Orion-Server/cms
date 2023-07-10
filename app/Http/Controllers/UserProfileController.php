@@ -67,6 +67,7 @@ class UserProfileController extends Controller
             'items.*.z' => 'required|integer',
             'items.*.is_reversed' => 'nullable|boolean',
             'items.*.theme' => 'nullable|string',
+            'items.*.placed' => 'nullable|boolean',
             'backgroundId' => 'required|integer',
         ]);
 

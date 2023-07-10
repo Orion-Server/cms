@@ -76,7 +76,7 @@ class ProfileService
             $allItemsInstance->each(function (UserHomeItem $item) use ($itemsCollection) {
                 $itemData = $itemsCollection->where('id', $item->id)->first();
 
-                $item->placed = 1;
+                $item->placed = (bool) $itemData['placed'] ?? $item->placed;
                 $item->x = (int) $itemData['x'] ?? $item->x;
                 $item->y = (int) $itemData['y'] ?? $item->y;
                 $item->z = (int) $itemData['z'] ?? $item->z;

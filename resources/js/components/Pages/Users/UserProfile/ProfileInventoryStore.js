@@ -90,6 +90,30 @@ document.addEventListener('alpine:init', () => {
             existingItem.item_ids.push(...firstItem.item_ids)
         },
 
+        backItemToInventory(item) {
+            let tab = ''
+
+            if(item.home_item.type == 's') tab = 'stickers'
+            else if(item.home_item.type == 'w') tab = 'widgets'
+            else tab = 'notes'
+
+            if(!this.isValidTab(tab)) return
+
+            const existingItem = this.allItems[tab].find(tabItem => tabItem.home_item_id === item.home_item_id)
+
+            if(!existingItem) {
+                this.allItems[tab].push({
+                    home_item_id: item.home_item.id,
+                    item_ids: [item.id],
+                    home_item: item.home_item
+                })
+
+                return
+            }
+
+            existingItem.item_ids.push(item.id)
+        },
+
         placeActiveItem(placeAllItems = false) {
             if(!this.activeItem) return
 
