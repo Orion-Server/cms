@@ -90,7 +90,7 @@ document.addEventListener('alpine:init', () => {
             existingItem.item_ids.push(...firstItem.item_ids)
         },
 
-        backItemToInventory(item) {
+        async backItemToInventory(item) {
             let tab = ''
 
             if(item.home_item.type == 's') tab = 'stickers'
@@ -99,19 +99,21 @@ document.addEventListener('alpine:init', () => {
 
             if(!this.isValidTab(tab)) return
 
-            const existingItem = this.allItems[tab].find(tabItem => tabItem.home_item_id === item.home_item_id)
+            await new Promise(resolve => {
+                const existingItem = this.allItems[tab].find(tabItem => tabItem.home_item_id === item.home_item_id)
 
-            if(!existingItem) {
-                this.allItems[tab].push({
-                    home_item_id: item.home_item.id,
-                    item_ids: [item.id],
-                    home_item: item.home_item
-                })
+                if(existingItem) {
+                    existingItem.item_ids.push(item.id)
+                } else {
+                    this.allItems[tab].push({
+                        home_item_id: item.home_item.id,
+                        item_ids: [item.id],
+                        home_item: item.home_item
+                    })
+                }
 
-                return
-            }
-
-            existingItem.item_ids.push(item.id)
+                resolve()
+            })
         },
 
         placeActiveItem(placeAllItems = false) {

@@ -79,7 +79,7 @@
                 :class="{ 'opacity-90': itemsStore.isBackgroundPreview }"
                 :style="{ backgroundImage: `url(${itemsStore.getBackground()})` }"
             >
-                <template x-for="(item, index) in itemsStore.getPlacedItems()" :key="index">
+                <template x-for="(item, index) in itemsStore.getPlacedItems()" :key="item.id">
                     @include('components.home.items.sticker')
                 </template>
             </div>

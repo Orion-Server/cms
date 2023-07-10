@@ -123,11 +123,12 @@ document.addEventListener('alpine:init', () => {
             return this.placedItems.filter(item => !this.removedItemIds.includes(item.id))
         },
 
-        backToInventory(item) {
+        async backToInventory(item) {
             if(!item.home_item || item.home_item.type == 'b') return
 
+            await this.profileComponent.inventoryStore.backItemToInventory(item)
+
             this.removedItemIds.push(item.id)
-            this.profileComponent.inventoryStore.backItemToInventory(item)
         },
 
         async saveItems() {
