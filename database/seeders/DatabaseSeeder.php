@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             NavigationSeeder::class,
             CmsSettingsSeeder::class,
-            HomeCategorySeeder::class
+            HomeCategorySeeder::class,
+            HomeItemSeeder::class
         ]);
     }
 }
