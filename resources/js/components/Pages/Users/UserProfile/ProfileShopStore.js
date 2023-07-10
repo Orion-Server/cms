@@ -118,9 +118,6 @@ document.addEventListener('alpine:init', () => {
         },
 
         resetSelectedItem() {
-            this.categoryTabId = null
-            this.categoryTabItems = []
-
             this.activeItem = null
             this.purchaseQuantity = 1
             this.totalPrice = 0
@@ -142,6 +139,8 @@ document.addEventListener('alpine:init', () => {
 
         getCurrencyIcon(item = null) {
             if(!item) item = this.activeItem
+
+            if(!item) return ''
 
             switch(item.currency_type) {
                 case -1:
@@ -183,6 +182,12 @@ document.addEventListener('alpine:init', () => {
             })
 
             setTimeout(() => this.buttonDelay = false, 1000)
+        },
+
+        previewBackground(background = null) {
+            if(!background) background = this.activeItem
+
+            this.profileComponent.itemsStore.previewBackground(background)
         },
 
         dispatch(event, data) {

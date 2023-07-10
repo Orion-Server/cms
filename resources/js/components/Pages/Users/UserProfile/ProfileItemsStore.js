@@ -7,6 +7,7 @@ document.addEventListener('alpine:init', () => {
     Alpine.store('profileItems', {
         profileComponent: null,
 
+        isBackgroundPreview: false,
         currentBackground: null,
         placedItems: [],
 
@@ -68,6 +69,13 @@ document.addEventListener('alpine:init', () => {
         placeItem(item, quantity) {
             if(!item.item_ids?.length || !item.home_item) return
 
+            if(item.home_item.type == 'b') {
+                item.id = item.item_ids.shift()
+
+                this.currentBackground = item
+                return
+            }
+
             for (let i = 0; i < quantity; i++) {
                 const id = item.item_ids.shift()
 
@@ -101,7 +109,7 @@ document.addEventListener('alpine:init', () => {
 
             this.saveButtonDelay = true
 
-            await axios.post(appUrl(`/profile/${this.profileComponent.username}/save`), { items, backgroundId: this.currentBackground.id })
+            await axios.post(appUrl(`/profile/${this.profileComponent.username}/save`), { items, backgroundId: this.currentBackground?.id || 0 })
                 .then(({ data }) => {
                     if(!data.success) {
                         this.profileComponent.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to save items' })
@@ -122,6 +130,28 @@ document.addEventListener('alpine:init', () => {
                     this.profileComponent.$dispatch('orion:alert', { type: 'error', message: __('An error occurred while saving your home, please try again') })
                     this.saveButtonDelay = false
                 })
+        },
+
+        previewBackground(background) {
+            const oldBackground = this.currentBackground
+
+            this.isBackgroundPreview = true
+            this.currentBackground = background
+            this.profileComponent.showBagModal = false
+
+            setTimeout(() => {
+                this.isBackgroundPreview = false
+                this.currentBackground = oldBackground
+                this.profileComponent.showBagModal = true
+            }, 3000)
+        },
+
+        getBackground() {
+            if(!this.isBackgroundPreview) {
+                return this.currentBackground?.home_item?.image
+            }
+
+            return this.currentBackground.image
         }
     })
 })

@@ -11,7 +11,7 @@
         @if ($user)
             @if(Auth::check() && $user->id == Auth::id())
             <div class="w-[928px] pb-2" id="home-edit-bar">
-                <template x-if="editing">
+                <template x-if="editing && !itemsStore.isBackgroundPreview">
                     <div class="flex justify-between">
                         <div class="flex gap-3">
                             <x-ui.buttons.default
@@ -76,7 +76,8 @@
 
             <div
                 class="home-container border-2 relative border-dashed border-slate-200 dark:border-slate-800 w-[928px] h-[1360px]"
-                :style="{ backgroundImage: `url(${itemsStore.currentBackground?.home_item.image})` }"
+                :class="{ 'opacity-90': itemsStore.isBackgroundPreview }"
+                :style="{ backgroundImage: `url(${itemsStore.getBackground()})` }"
             >
                 <template x-for="(item, index) in itemsStore.placedItems" :key="index">
                     <div

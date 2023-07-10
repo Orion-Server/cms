@@ -73,3 +73,7 @@ html {
 .notyf {
     z-index: 100000
 }
+
+.home-container {
+    transition: background-image 0.3s ease-in-out;
+}

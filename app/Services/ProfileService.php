@@ -23,6 +23,14 @@ class ProfileService
         if ($totalPrice > $user->currency($item->currency_type)) {
             throw new \Exception(__("You don't have enough :c to buy this item.", ['c' => strtolower(__($item->currency_type->name))]));
         }
+
+        if($item->type == 'b' && $user->homeItems()->where('home_item_id', $item->id)->exists()) {
+            throw new \Exception(__('You already have this background in your inventory.'));
+        }
+
+        if($item->type == 'b' && $data['quantity'] > 1) {
+            throw new \Exception(__('You can only buy one background at a time.'));
+        }
     }
 
     public function buyItemForUser(User $user, HomeItem $item, array $data, int $totalPrice): bool
@@ -73,7 +81,7 @@ class ProfileService
                 $item->y = (int) $itemData['y'] ?? $item->y;
                 $item->z = (int) $itemData['z'] ?? $item->z;
                 $item->is_reversed = (bool) $itemData['is_reversed'] ?? $item->is_reversed;
-                $item->theme = (bool) $itemData['theme'] ?? $item->theme;
+                $item->theme = $itemData['theme'] ?? $item->theme;
 
                 if (!$item->isDirty()) return;
 

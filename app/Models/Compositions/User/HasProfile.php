@@ -8,7 +8,6 @@ use App\Models\Home\{
     HomeItem,
     UserHomeItem
 };
-use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\{
     Relations\HasMany
 };
@@ -17,7 +16,10 @@ trait HasProfile
 {
     private function generateInitialHomeItems(): void
     {
-        // TODO: Implement generateInitialHomeItems() method.
+        $this->homeItems()->create([
+            'home_item_id' => HomeItem::whereType(HomeItemType::Background)->first()->id,
+            'placed' => true
+        ]);
     }
 
     public function homeItems(): HasMany
@@ -63,7 +65,7 @@ trait HasProfile
     public function changeProfileBackground(UserHomeItem $background): void
     {
         $this->placedHomeItems()
-            ->whereType(HomeItemType::Background)
+            ->whereHas('homeItem', fn ($query) => $query->whereType(HomeItemType::Background))
             ->update(['placed' => 0]);
 
         $background->placed = true;

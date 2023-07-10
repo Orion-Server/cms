@@ -9,6 +9,7 @@ trait HasBackgroundsCategoryData
     public function insertBackgroundsItemsData()
     {
         DB::table('home_items')->insert([
+            $this->buildItemStructure(null, 'https://imgur.com/GKQVS9q.png', 'Default Home Background', 15, 'b'),
             $this->buildItemStructure(null, 'https://imgur.com/4YXmogn.png', 'Home Background', 15, 'b'),
             $this->buildItemStructure(null, 'https://imgur.com/qbyTAoY.png', 'Home Background', 15, 'b'),
             $this->buildItemStructure(null, 'https://imgur.com/WmMizPc.png', 'Home Background', 15, 'b'),
