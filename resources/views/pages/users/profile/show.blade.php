@@ -5,7 +5,7 @@
 @section('content')
     <x-container @class([
         "flex flex-col justify-center items-center select-none gap-2"
-    ]) id="user-profile" x-data="userProfile('{{ $user ? $user->username : '' }}')">
+    ]) id="user-profile" x-data="userProfileManager('{{ $user ? $user->username : '' }}')">
         @includeWhen(!$user, 'pages.users.profile.partials.user-not-found')
 
         @if ($user)

@@ -1,16 +1,16 @@
 import axios from 'axios'
 import Alpine from 'alpinejs'
-import './ProfileShopStore'
-import './ProfileInventoryStore'
-import './ProfileItemsStore'
+import './store/ProfileShopStore'
+import './store/ProfileItemsStore'
+import './store/ProfileInventoryStore'
 
-class UserProfileComponent {
+export default new class UserProfileManager {
     start() {
         document.addEventListener('alpine:init', this._startComponent)
     }
 
     _startComponent() {
-        Alpine.data('userProfile', username => ({
+        Alpine.data('userProfileManager', username => ({
             username,
             isOwner: document.getElementById('home-edit-bar'),
 
@@ -22,13 +22,13 @@ class UserProfileComponent {
                 if(!this.isValidUsername()) return
 
                 if(this.isOwner) {
-                    this.shopStore.setProfileComponent(this)
-                    this.inventoryStore.setProfileComponent(this)
+                    this.shopStore.setProfileManager(this)
+                    this.inventoryStore.setProfileManager(this)
                     this.treatPageReload()
                     this.initWatchers()
                 }
 
-                this.itemsStore.setProfileComponent(this)
+                this.itemsStore.setProfileManager(this)
             },
 
             treatPageReload() {
@@ -149,5 +149,3 @@ class UserProfileComponent {
         }))
     }
 }
-
-export default new UserProfileComponent

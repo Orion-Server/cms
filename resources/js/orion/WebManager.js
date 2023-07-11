@@ -16,7 +16,7 @@ import AccountSettings from '../components/Pages/Users/AccountSettings'
 import PasswordSettings from '../components/Pages/Users/PasswordSettings'
 import ArticleReaction from '../components/Pages/Articles/ArticleReaction'
 import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
-import UserProfileComponent from '../components/Pages/Users/UserProfile/UserProfileComponent'
+import UserProfileManager from '../components/Pages/Users/UserProfile/UserProfileManager'
 
 export default class WebManager {
     static start() {
@@ -50,7 +50,7 @@ export default class WebManager {
         PasswordSettings.start()
         IngameSettings.start()
 
-        UserProfileComponent.start()
+        UserProfileManager.start()
     }
 
     static startTooltips() {

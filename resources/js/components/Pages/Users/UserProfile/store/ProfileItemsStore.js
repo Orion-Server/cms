@@ -4,7 +4,7 @@ import interact from 'interactjs'
 
 document.addEventListener('alpine:init', () => {
     Alpine.store('profileItems', {
-        profileComponent: null,
+        profileManager: null,
 
         isBackgroundPreview: false,
         currentBackground: null,
@@ -35,11 +35,11 @@ document.addEventListener('alpine:init', () => {
         },
 
         async fetchPlacedItems() {
-            if(!this.profileComponent.username?.length) return
+            if(!this.profileManager.username?.length) return
 
-            await this.profileComponent.fetchData(appUrl(`/api/profile/${this.profileComponent.username}/placed-items`), ({ data }) => {
+            await this.profileManager.fetchData(appUrl(`/api/profile/${this.profileManager.username}/placed-items`), ({ data }) => {
                 if(!data.success || !data.items) {
-                    this.profileComponent.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to fetch placed items' })
+                    this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to fetch placed items' })
                     return
                 }
 
@@ -49,7 +49,7 @@ document.addEventListener('alpine:init', () => {
         },
 
         selectItem(item) {
-            if(!this.profileComponent.editing) return
+            if(!this.profileManager.editing) return
 
             this.activeItem = item
 
@@ -59,15 +59,15 @@ document.addEventListener('alpine:init', () => {
         },
 
         updateZIndex(item) {
-            if(!this.profileComponent.editing) return
+            if(!this.profileManager.editing) return
 
             const highestZIndex = Math.max(...this.placedItems.map(item => item.z), 0)
 
             item.z = highestZIndex + 1
         },
 
-        setProfileComponent(component) {
-            this.profileComponent = component
+        setProfileManager(component) {
+            this.profileManager = component
 
             this.fetchPlacedItems()
         },
@@ -125,7 +125,7 @@ document.addEventListener('alpine:init', () => {
         async backToInventory(item) {
             if(!item.home_item || item.home_item.type == 'b') return
 
-            await this.profileComponent.inventoryStore.backItemToInventory(item)
+            await this.profileManager.inventoryStore.backItemToInventory(item)
 
             this.removedItemIds.push(item.id)
         },
@@ -149,21 +149,21 @@ document.addEventListener('alpine:init', () => {
 
             this.saveButtonDelay = true
 
-            await axios.post(appUrl(`/profile/${this.profileComponent.username}/save`), { items, backgroundId: this.currentBackground?.id || 0 })
+            await axios.post(appUrl(`/profile/${this.profileManager.username}/save`), { items, backgroundId: this.currentBackground?.id || 0 })
                 .then(({ data }) => {
                     if(!data.success) {
-                        this.profileComponent.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to save items' })
+                        this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to save items' })
                         return
                     }
 
-                    this.profileComponent.$dispatch('orion:alert', { type: 'success', message: data.message })
+                    this.profileManager.$dispatch('orion:alert', { type: 'success', message: data.message })
 
                     setTimeout(() => {
                         window.location.href = data.href
                     }, 1000)
                 })
                 .catch(data => {
-                    this.profileComponent.$dispatch('orion:alert', { type: 'error', message: __('An error occurred while saving your profile.') })
+                    this.profileManager.$dispatch('orion:alert', { type: 'error', message: __('An error occurred while saving your profile.') })
                     this.saveButtonDelay = false
                 })
         },
@@ -173,12 +173,12 @@ document.addEventListener('alpine:init', () => {
 
             this.isBackgroundPreview = true
             this.currentBackground = background
-            this.profileComponent.showBagModal = false
+            this.profileManager.showBagModal = false
 
             setTimeout(() => {
                 this.isBackgroundPreview = false
                 this.currentBackground = oldBackground
-                this.profileComponent.showBagModal = true
+                this.profileManager.showBagModal = true
             }, 3000)
         },
 

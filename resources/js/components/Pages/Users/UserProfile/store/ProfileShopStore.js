@@ -10,7 +10,7 @@ document.addEventListener('alpine:init', () => {
         delay: false,
         buttonDelay: false,
 
-        profileComponent: null,
+        profileManager: null,
 
         itemsByCategory: new Map(),
         categoryTabId: null,
@@ -50,7 +50,7 @@ document.addEventListener('alpine:init', () => {
             const errorMessage = __('Failed to fetch shop items.')
             this.delay = true
 
-            await this.profileComponent.fetchData(appUrl(`/api/profile/shop/type/${this.currentTab}/items`), ({ data }) => {
+            await this.profileManager.fetchData(appUrl(`/api/profile/shop/type/${this.currentTab}/items`), ({ data }) => {
                 if(!data.success || !data.items) {
                     this.dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
@@ -68,7 +68,7 @@ document.addEventListener('alpine:init', () => {
 
             const errorMessage = __('Failed to fetch shop categories.')
 
-            await this.profileComponent.fetchData(appUrl(`/api/profile/shop/categories`), ({ data }) => {
+            await this.profileManager.fetchData(appUrl(`/api/profile/shop/categories`), ({ data }) => {
                 if(!data.success || !data.categories) {
                     this.dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
@@ -104,7 +104,7 @@ document.addEventListener('alpine:init', () => {
             const errorMessage = __('Failed to fetch shop category items.')
             this.delay = true
 
-            await this.profileComponent.fetchData(appUrl(`/api/profile/shop/category/${tabId}/items`), ({ data }) => {
+            await this.profileManager.fetchData(appUrl(`/api/profile/shop/category/${tabId}/items`), ({ data }) => {
                 if(!data.success || !data.items) {
                     this.dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
@@ -130,11 +130,11 @@ document.addEventListener('alpine:init', () => {
         },
 
         isHomepage() {
-            return this.profileComponent.bagTab == 'shop' && this.currentTab == 'home'
+            return this.profileManager.bagTab == 'shop' && this.currentTab == 'home'
         },
 
-        setProfileComponent(component) {
-            this.profileComponent = component
+        setProfileManager(component) {
+            this.profileManager = component
         },
 
         getCurrencyIcon(item = null) {
@@ -161,7 +161,7 @@ document.addEventListener('alpine:init', () => {
             let errorMessage = __('Failed to buy item.')
             this.buttonDelay = true
 
-            await axios.post(appUrl(`/profile/${this.profileComponent.username}/buy-item`), {
+            await axios.post(appUrl(`/profile/${this.profileManager.username}/buy-item`), {
                 item_id: this.activeItem.id,
                 quantity: this.purchaseQuantity
             }).then(({ data }) => {
@@ -172,7 +172,7 @@ document.addEventListener('alpine:init', () => {
 
                 this.dispatch('orion:alert', { type: 'success', message: data.message })
 
-                this.profileComponent.inventoryStore.giveItemsForTab(this.currentTab, data.items)
+                this.profileManager.inventoryStore.giveItemsForTab(this.currentTab, data.items)
             }).catch(error => {
                 errorMessage = error.response?.data?.message || errorMessage
 
@@ -185,11 +185,11 @@ document.addEventListener('alpine:init', () => {
         previewBackground(background = null) {
             if(!background) background = this.activeItem
 
-            this.profileComponent.itemsStore.previewBackground(background)
+            this.profileManager.itemsStore.previewBackground(background)
         },
 
         dispatch(event, data) {
-            this.profileComponent.$dispatch(event, data)
+            this.profileManager.$dispatch(event, data)
         }
     })
 })

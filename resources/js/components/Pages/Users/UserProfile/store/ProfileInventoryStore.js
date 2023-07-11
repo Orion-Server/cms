@@ -2,6 +2,7 @@ import Alpine from 'alpinejs'
 
 document.addEventListener('alpine:init', () => {
     Alpine.store('profileInventory', {
+        profileManager: null,
         tabs: ['stickers', 'notes', 'widgets', 'backgrounds'],
         delay: false,
         currentTab: 'stickers',
@@ -20,10 +21,10 @@ document.addEventListener('alpine:init', () => {
             const errorMessage = __('Failed to fetch inventory.')
                     this.delay = true
 
-            await this.profileComponent
-                .fetchData(appUrl(`/api/profile/${this.profileComponent.username}/inventory`), ({ data }) => {
+            await this.profileManager
+                .fetchData(appUrl(`/api/profile/${this.profileManager.username}/inventory`), ({ data }) => {
                     if(!data.success || !data.inventory) {
-                        this.profileComponent.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
+                        this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                         return
                     }
 
@@ -33,8 +34,8 @@ document.addEventListener('alpine:init', () => {
             setTimeout(() => this.delay = false, 1000)
         },
 
-        setProfileComponent(component) {
-            this.profileComponent = component
+        setProfileManager(component) {
+            this.profileManager = component
         },
 
         openTab(tab) {
@@ -129,10 +130,10 @@ document.addEventListener('alpine:init', () => {
 
             this.placeQuantity = placeAllItems ? this.activeItem.item_ids.length : this.placeQuantity
 
-            this.profileComponent.itemsStore.placeItem(this.activeItem, this.placeQuantity)
+            this.profileManager.itemsStore.placeItem(this.activeItem, this.placeQuantity)
 
             this.resetSelectedItem()
-            this.profileComponent.showBagModal = false
+            this.profileManager.showBagModal = false
         },
     })
 })
