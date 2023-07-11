@@ -48,6 +48,13 @@
                 'Please fill in all register fields': "{{ __('Please fill in all register fields') }}",
                 'Please fill in all login fields': "{{ __('Please fill in all login fields') }}",
                 'You have been logged in successfully.': "{{ __('You have been logged in successfully.') }}",
+                'An error occurred while saving your profile.': "{{ __('An error occurred while saving your profile.') }}",
+                'Failed to fetch inventory.': "{{ __('Failed to fetch inventory.') }}",
+                'Failed to buy item.': "{{ __('Failed to buy item.') }}",
+                'Failed to fetch placed items.': "{{ __('Failed to fetch placed items.') }}",
+                'Failed to fetch shop category items.': "{{ __('Failed to fetch shop category items.') }}",
+                'Failed to fetch shop categories.': "{{ __('Failed to fetch shop categories.') }}",
+                'Failed to fetch shop items.': "{{ __('Failed to fetch shop items.') }}",
             }
 
             return translations[key] ?? key;

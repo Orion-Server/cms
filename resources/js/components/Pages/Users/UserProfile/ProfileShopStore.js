@@ -47,7 +47,7 @@ document.addEventListener('alpine:init', () => {
                 return
             }
 
-            const errorMessage = 'Failed to fetch shop items'
+            const errorMessage = __('Failed to fetch shop items.')
             this.delay = true
 
             await this.profileComponent.fetchData(appUrl(`/api/profile/shop/type/${this.currentTab}/items`), ({ data }) => {
@@ -66,7 +66,7 @@ document.addEventListener('alpine:init', () => {
         async fetchShopCategories() {
             if(this.shopCategories.length) return
 
-            const errorMessage = 'Failed to fetch shop categories'
+            const errorMessage = __('Failed to fetch shop categories.')
 
             await this.profileComponent.fetchData(appUrl(`/api/profile/shop/categories`), ({ data }) => {
                 if(!data.success || !data.categories) {
@@ -101,7 +101,7 @@ document.addEventListener('alpine:init', () => {
 
             if(!this.isValidCategoryTab(tabId)) return
 
-            const errorMessage = 'Failed to fetch shop category'
+            const errorMessage = __('Failed to fetch shop category items.')
             this.delay = true
 
             await this.profileComponent.fetchData(appUrl(`/api/profile/shop/category/${tabId}/items`), ({ data }) => {
@@ -158,10 +158,8 @@ document.addEventListener('alpine:init', () => {
         async buyItem() {
             if(this.buttonDelay || !this.activeItem) return
 
-            let errorMessage = 'Failed to buy item'
+            let errorMessage = __('Failed to buy item.')
             this.buttonDelay = true
-
-            const item = this.activeItem
 
             await axios.post(appUrl(`/profile/${this.profileComponent.username}/buy-item`), {
                 item_id: this.activeItem.id,

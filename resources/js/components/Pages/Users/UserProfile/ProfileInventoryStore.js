@@ -17,7 +17,7 @@ document.addEventListener('alpine:init', () => {
         placeQuantity: 1,
 
         async fetchUserItems() {
-            const errorMessage = 'Failed to fetch inventory'
+            const errorMessage = __('Failed to fetch inventory.')
                     this.delay = true
 
             await this.profileComponent

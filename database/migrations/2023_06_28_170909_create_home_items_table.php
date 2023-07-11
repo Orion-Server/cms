@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(HomeCategory::class)->nullable();
 
             $table->char('type', 1);
+            $table->integer('order')->default(0);
 
             $table->string('name');
             $table->string('image');

@@ -15,17 +15,17 @@ class NavigationSeeder extends Seeder
         $allNavigations = $this->getDefaultNavigations();
 
         collect($allNavigations)->each(function ($navigation, $navigationName) {
-            tap(Navigation::create(
+            tap(Navigation::updateOrCreate(
                 array_merge(['label' => $navigationName], $navigation['data'])
             ), function($navInstance) use ($navigation) {
                 foreach($navigation['subNavigations'] as $key => $subNavigationName) {
                     if(is_string($subNavigationName)) {
-                        $navInstance->subNavigations()->create(['label' => $subNavigationName]);
+                        $navInstance->subNavigations()->updateOrCreate(['label' => $subNavigationName]);
                         continue;
                     }
 
                     $navInstance->subNavigations()
-                        ->create([
+                        ->updateOrCreate([
                             'label' => $key,
                             'slug' => $subNavigationName['slug'] ?? null,
                         ]);

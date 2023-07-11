@@ -1,7 +1,6 @@
 import axios from 'axios'
 import Alpine from 'alpinejs'
 import interact from 'interactjs'
-import Turbolinks from 'turbolinks'
 
 document.addEventListener('alpine:init', () => {
     Alpine.store('profileItems', {
@@ -36,7 +35,7 @@ document.addEventListener('alpine:init', () => {
         },
 
         async fetchPlacedItems() {
-            if(this.placedItems.length) return
+            if(!this.profileComponent.username?.length) return
 
             await this.profileComponent.fetchData(appUrl(`/api/profile/${this.profileComponent.username}/placed-items`), ({ data }) => {
                 if(!data.success || !data.items) {
@@ -160,15 +159,11 @@ document.addEventListener('alpine:init', () => {
                     this.profileComponent.$dispatch('orion:alert', { type: 'success', message: data.message })
 
                     setTimeout(() => {
-                        Turbolinks.visit(data.href)
-
-                        this.profileComponent.$nextTick(() => {
-                            this.saveButtonDelay = false
-                        })
-                    }, 500)
+                        window.location.href = data.href
+                    }, 1000)
                 })
                 .catch(data => {
-                    this.profileComponent.$dispatch('orion:alert', { type: 'error', message: __('An error occurred while saving your home, please try again') })
+                    this.profileComponent.$dispatch('orion:alert', { type: 'error', message: __('An error occurred while saving your profile') })
                     this.saveButtonDelay = false
                 })
         },

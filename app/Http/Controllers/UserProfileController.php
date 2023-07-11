@@ -71,8 +71,10 @@ class UserProfileController extends Controller
             'backgroundId' => 'required|integer',
         ]);
 
+        $user = \Auth::user();
+
         try {
-            $this->profileService->saveItems(\Auth::user(), $data);
+            $this->profileService->saveItems($user, $data);
         } catch (\Throwable $ignored) {
             return $this->jsonResponse([
                 'message' => __('An error occurred while saving your profile.')
@@ -80,7 +82,8 @@ class UserProfileController extends Controller
         }
 
         return $this->jsonResponse([
-            'message' => __('Profile saved successfully.')
+            'message' => __('Profile saved successfully.'),
+            'href' => route('users.profile.show', $user->username)
         ]);
     }
 }
