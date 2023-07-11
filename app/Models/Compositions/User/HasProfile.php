@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\{
 
 trait HasProfile
 {
-    private function generateInitialHomeItems(): void
+    public function generateInitialHomeItems(): void
     {
         $this->homeItems()->create([
             'home_item_id' => HomeItem::whereType(HomeItemType::Background)->first()->id,

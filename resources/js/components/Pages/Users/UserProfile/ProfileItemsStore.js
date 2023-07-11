@@ -163,7 +163,7 @@ document.addEventListener('alpine:init', () => {
                     }, 1000)
                 })
                 .catch(data => {
-                    this.profileComponent.$dispatch('orion:alert', { type: 'error', message: __('An error occurred while saving your profile') })
+                    this.profileComponent.$dispatch('orion:alert', { type: 'error', message: __('An error occurred while saving your profile.') })
                     this.saveButtonDelay = false
                 })
         },

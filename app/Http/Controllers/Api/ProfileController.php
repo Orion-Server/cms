@@ -15,14 +15,14 @@ class ProfileController extends Controller
     public function getShopCategories(): JsonResponse
     {
         return $this->jsonResponse([
-            'categories' => HomeCategory::latest()->get()->values()
+            'categories' => HomeCategory::orderBy('order')->get()->values()
         ]);
     }
 
     public function getShopItemsByCategory(string $categoryId): JsonResponse
     {
         $category = HomeCategory::with([
-            'homeItems' => fn ($query) => $query->latest()->whereType(HomeItemType::Sticker)
+            'homeItems' => fn ($query) => $query->orderBy('order')->whereType(HomeItemType::Sticker)
         ])->whereId($categoryId)->first();
 
         if (!$category) {
@@ -47,7 +47,7 @@ class ProfileController extends Controller
         }
 
         return $this->jsonResponse([
-            'items' => HomeItem::whereType($firstCategoryLetter)->latest()->get()->values()
+            'items' => HomeItem::whereType($firstCategoryLetter)->orderBy('order')->get()->values()
         ]);
     }
 

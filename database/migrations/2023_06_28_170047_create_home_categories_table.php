@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('home_categories', function (Blueprint $table) {
             $table->id();
+            $table->integer('order')->default(0);
 
             $table->string('name');
             $table->string('icon')->nullable();

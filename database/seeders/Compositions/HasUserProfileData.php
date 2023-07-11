@@ -60,6 +60,7 @@ trait HasUserProfileData
     ): array {
         return [
             'type' => $type,
+            'order' => $this->currentOrder++,
             'home_category_id' => $category?->id,
             'name' => $name ?? sprintf('%s %s', config('app.name'), 'Item'),
             'image' => $image,

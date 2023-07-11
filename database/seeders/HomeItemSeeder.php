@@ -11,6 +11,7 @@ class HomeItemSeeder extends Seeder
 {
     use HasUserProfileData;
 
+    public int $currentOrder = 1;
     /**
      * Run the database seeds.
      */
@@ -42,6 +43,8 @@ class HomeItemSeeder extends Seeder
 
     protected function addItemForCategory(string $categoryName): void
     {
+        $this->currentOrder = 1;
+
         if(!$category = HomeCategory::whereName($categoryName)->first()) return;
 
         $method = sprintf('get%sItemsData', str_replace(' ', '', $categoryName));

@@ -13,9 +13,12 @@ class HomeCategorySeeder extends Seeder
      */
     public function run(): void
     {
+        $order = 1;
+
         foreach ($this->getDefaultHomeCategories() as $category) {
             HomeCategory::firstOrCreate(['name' => $category[0]], [
-                'icon' => $category[1]
+                'icon' => $category[1],
+                'order' => $order++
             ]);
         }
     }
