@@ -15,7 +15,7 @@
                     class="w-full h-22 bg-no-repeat bg-center rounded-t-md border-b-2 dark:border-slate-600"
                     :style="{ backgroundImage: `url(${item.image})` }"
                 ></div>
-                <div class="w-full h-6 px-1 flex justify-end items-center gap-1 bg-slate-100 dark:bg-slate-700 rounded-b-md">
+                <div class="w-full h-6 px-1 flex justify-end items-center gap-1 bg-slate-100 dark:bg-slate-700 rounded-b-sm">
                     <span class="dark:text-white text-[0.65rem]" x-text="item.price"></span>
                     <img :src="shopStore.getCurrencyIcon(item)" alt="Coin">
                 </div>

@@ -24,10 +24,19 @@ class UserProfileComponent {
                 if(this.isOwner) {
                     this.shopStore.setProfileComponent(this)
                     this.inventoryStore.setProfileComponent(this)
+                    this.treatPageReload()
+                    this.initWatchers()
                 }
 
                 this.itemsStore.setProfileComponent(this)
-                this.initWatchers()
+            },
+
+            treatPageReload() {
+                window.onbeforeunload = () => {
+                    if(!this.editing || ['dev', 'development', 'local'].includes(import.meta.env.MODE)) return
+
+                    return __('You have unsaved changes. Are you sure you want to leave?')
+                }
             },
 
             isValidUsername() {
@@ -84,6 +93,13 @@ class UserProfileComponent {
             resetSelectedItem() {
                 this.shopStore.resetSelectedItem()
                 this.inventoryStore.resetSelectedItem()
+            },
+
+            onCancelPressed() {
+                if (!window.confirm(__('Are you sure you want to cancel editing?'))) return
+
+                this.editing = false
+                location.reload()
             },
 
             async fetchData(endpoint, onSuccessCallback, errorMessage = 'Failed to fetch data') {

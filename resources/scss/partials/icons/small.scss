@@ -20,13 +20,21 @@ i.icon {
         }
     }
 
-    &.home-delete {
+    &.home {
         width: 18px;
         height: 20px;
-        background-image: url('https://imgur.com/xkzcuzj.png');
-        background-color: transparent !important;
-        border: none;
-        box-shadow: none;
+
+        &.delete {
+            background-color: transparent !important;
+            border: none;
+            box-shadow: none;
+            border-radius: 5px !important;
+            background-image: url('https://imgur.com/xkzcuzj.png');
+        }
+
+        &.note-edit {
+            background-image: url('https://imgur.com/hNaqXNt.png');
+        }
     }
 
     &.language {

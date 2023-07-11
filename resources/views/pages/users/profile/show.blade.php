@@ -35,7 +35,7 @@
                         <div class="flex gap-3">
                             <x-ui.buttons.default
                                 class="dark:bg-red-500 bg-red-500 border-red-700 hover:bg-red-400 dark:hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75 py-2 text-white"
-                                @click="editing = false"
+                                @click="onCancelPressed()"
                                 x-show="!itemsStore.saveButtonDelay"
                             >
                                 <img src="https://i.imgur.com/9Q7dOd0.png" alt="{{ __('Cancel') }}">
@@ -80,7 +80,7 @@
                 :style="{ backgroundImage: `url(${itemsStore.getBackground()})` }"
             >
                 <template x-for="(item, index) in itemsStore.getPlacedItems()" :key="item.id">
-                    @include('components.home.items.sticker')
+                    @include('components.home.items.item')
                 </template>
             </div>
         @endif

@@ -49,6 +49,14 @@ document.addEventListener('alpine:init', () => {
             return this.tabs.includes(tab)
         },
 
+        canPlaceAllItems() {
+            return this.activeItem?.item_ids.length > 1 && ['s'].includes(this.activeItem?.home_item?.type)
+        },
+
+        canPlaceMultipleItems() {
+            return this.canPlaceAllItems()
+        },
+
         resetSelectedItem() {
             this.activeItem = null
             this.placeQuantity = 1

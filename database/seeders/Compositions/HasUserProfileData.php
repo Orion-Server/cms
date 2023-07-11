@@ -16,6 +16,7 @@ use Database\Seeders\Compositions\Home\{
     HasForestAndRelatedCategoryData,
     HasHabboweenCategoryData,
     HasKeepItRealCategoryData,
+    HasNotesCategoryData,
     HasPaintingsCategoryData,
     HasPlasticAlphabetCategoryData,
     HasPiratesCategoryData,
@@ -49,7 +50,8 @@ trait HasUserProfileData
         HasCoinsAndRelatedCategoryData,
         HasForestAndRelatedCategoryData,
         HasClampsAndRelatedCategoryData,
-        HasBackgroundsCategoryData;
+        HasBackgroundsCategoryData,
+        HasNotesCategoryData;
 
     protected function buildItemStructure(
         ?HomeCategory $category,

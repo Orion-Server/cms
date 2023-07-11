@@ -229,5 +229,6 @@
     "Failed to fetch placed items.": "Failed to fetch placed items.",
     "Failed to fetch shop category items.": "Failed to fetch shop category items.",
     "Failed to fetch shop categories.": "Failed to fetch shop categories.",
-    "Failed to fetch shop items.": "Failed to fetch shop items."
+    "Failed to fetch shop items.": "Failed to fetch shop items.",
+    "You have unsaved changes. Are you sure you want to leave?": "You have unsaved changes. Are you sure you want to leave?"
 }

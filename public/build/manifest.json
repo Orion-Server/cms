@@ -1,4 +1,7 @@
 {
+  "_module.esm-665164d8.js": {
+    "file": "assets/module.esm-665164d8.js"
+  },
   "node_modules/lightgallery/fonts/lg.svg": {
     "file": "assets/lg-f2fe1c00.svg",
     "src": "node_modules/lightgallery/fonts/lg.svg"
@@ -34,17 +37,28 @@
     "css": [
       "assets/app-8ec2fb49.css"
     ],
-    "file": "assets/app-275f0335.js",
+    "file": "assets/app-9e265380.js",
+    "imports": [
+      "_module.esm-665164d8.js"
+    ],
     "isEntry": true,
     "src": "resources/js/app.js"
   },
+  "resources/js/client.js": {
+    "file": "assets/client-3c8f5270.js",
+    "imports": [
+      "_module.esm-665164d8.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/client.js"
+  },
   "resources/scss/app.scss": {
-    "file": "assets/app-59abcf3a.css",
+    "file": "assets/app-00a29403.css",
     "isEntry": true,
     "src": "resources/scss/app.scss"
   },
   "resources/scss/filament.scss": {
-    "file": "assets/filament-6936350d.css",
+    "file": "assets/filament-581f44fd.css",
     "isEntry": true,
     "src": "resources/scss/filament.scss"
   }

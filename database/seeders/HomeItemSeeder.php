@@ -17,31 +17,32 @@ class HomeItemSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->addItemForCategory('Cine');
-        $this->addItemForCategory('Bling Alphabet');
-        $this->addItemForCategory('Plastic Alphabet');
-        $this->addItemForCategory('Wooden Alphabet');
-        $this->addItemForCategory('Keep It Real');
-        $this->addItemForCategory('Summer Vacation');
-        $this->addItemForCategory('Pirates');
-        $this->addItemForCategory('Valentine');
-        $this->addItemForCategory('Buttons');
-        $this->addItemForCategory('Alhambra');
-        $this->addItemForCategory('Sports');
-        $this->addItemForCategory('WWE');
-        $this->addItemForCategory('Paintings');
-        $this->addItemForCategory('Dividers');
-        $this->addItemForCategory('SnowStorm');
-        $this->addItemForCategory('Artists');
-        $this->addItemForCategory('Habboween');
-        $this->addItemForCategory('Coins and Related');
-        $this->addItemForCategory('Forest and Related');
-        $this->addItemForCategory('Clamps and Related');
+        $this->addItemsForCategory('Cine');
+        $this->addItemsForCategory('Bling Alphabet');
+        $this->addItemsForCategory('Plastic Alphabet');
+        $this->addItemsForCategory('Wooden Alphabet');
+        $this->addItemsForCategory('Keep It Real');
+        $this->addItemsForCategory('Summer Vacation');
+        $this->addItemsForCategory('Pirates');
+        $this->addItemsForCategory('Valentine');
+        $this->addItemsForCategory('Buttons');
+        $this->addItemsForCategory('Alhambra');
+        $this->addItemsForCategory('Sports');
+        $this->addItemsForCategory('WWE');
+        $this->addItemsForCategory('Paintings');
+        $this->addItemsForCategory('Dividers');
+        $this->addItemsForCategory('SnowStorm');
+        $this->addItemsForCategory('Artists');
+        $this->addItemsForCategory('Habboween');
+        $this->addItemsForCategory('Coins and Related');
+        $this->addItemsForCategory('Forest and Related');
+        $this->addItemsForCategory('Clamps and Related');
 
         $this->insertBackgroundsItemsData();
+        $this->insertNotesItemsData();
     }
 
-    protected function addItemForCategory(string $categoryName): void
+    protected function addItemsForCategory(string $categoryName): void
     {
         $this->currentOrder = 1;
 

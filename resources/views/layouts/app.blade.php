@@ -55,6 +55,7 @@
                 'Failed to fetch shop category items.': "{{ __('Failed to fetch shop category items.') }}",
                 'Failed to fetch shop categories.': "{{ __('Failed to fetch shop categories.') }}",
                 'Failed to fetch shop items.': "{{ __('Failed to fetch shop items.') }}",
+                'You have unsaved changes. Are you sure you want to leave?': "{{ __('You have unsaved changes. Are you sure you want to leave?') }}"
             }
 
             return translations[key] ?? key;

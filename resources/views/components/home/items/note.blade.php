@@ -11,5 +11,9 @@
     <template x-if="editing">
         <x-home.items.partials.default-actions />
     </template>
-    <img :src="item.home_item.image" alt="Item image" />
+    <div
+        class="bg-white rounded-lg shadow-lg p-2 text-xs"
+        :data-theme="item.theme"
+        x-html="item.extra_data"
+    ></div>
 </div>
