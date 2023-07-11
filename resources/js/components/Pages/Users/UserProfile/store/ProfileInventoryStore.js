@@ -109,7 +109,7 @@ document.addEventListener('alpine:init', () => {
             if(!this.isValidTab(tab)) return
 
             await new Promise(resolve => {
-                const existingItem = this.allItems[tab].find(tabItem => tabItem.home_item_id === item.home_item_id)
+                const existingItem = this.allItems[tab].find(tabItem => tabItem.home_item_id === item.home_item.id)
 
                 if(existingItem) {
                     existingItem.item_ids.push(item.id)

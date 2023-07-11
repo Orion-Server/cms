@@ -79,8 +79,10 @@
                 :class="{ 'opacity-90': itemsStore.isBackgroundPreview }"
                 :style="{ backgroundImage: `url(${itemsStore.getBackground()})` }"
             >
-                <template x-for="(item, index) in itemsStore.getPlacedItems()" :key="item.id">
-                    @include('components.home.items.item')
+                <template x-for="item in itemsStore.getPlacedItems()" :key="item.id">
+                    <div>
+                        @include('components.home.items.item')
+                    </div>
                 </template>
             </div>
         @endif
