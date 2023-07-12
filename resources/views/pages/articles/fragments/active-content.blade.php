@@ -63,9 +63,44 @@
             />
             <div class="bg-white w-full h-auto dark:bg-slate-950 p-1 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg mt-8">
                 <x-ui.textarea
-                    article-id="{{ $activeArticle->id }}"
-                    article-slug="{{ $activeArticle->slug }}"
-                />
+                    route="{{ route('articles.comments.store', [$activeArticle->id, $activeArticle->slug]) }}"
+                    id="comment"
+                    placeholder="{{ __('Write a comment...') }}"
+                >
+                    <x-slot:actions>
+                        <x-ui.buttons.loadable
+                            alpine-model="previewLoading"
+                            @click="onPreviewRequest"
+                            type="button"
+                            class="dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
+                        >
+                            <template x-if="!showPreview">
+                                <span>
+                                    <i class="fa-solid fa-eye mr-1"></i>
+                                    {{ __('Preview') }}
+                                </span>
+                            </template>
+
+                            <template x-if="showPreview">
+                                <span>
+                                    <i class="fa-solid fa-arrow-rotate-left mr-1"></i>
+                                    {{ __('Back to Form') }}
+                                </span>
+                            </template>
+                        </x-ui.buttons.loadable>
+
+                        <template x-if="!showPreview">
+                            <x-ui.buttons.loadable
+                                alpine-model="loading"
+                                type="submit"
+                                class="dark:bg-green-500 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-400 dark:shadow-green-700/75 shadow-green-600/75 py-2 text-white"
+                            >
+                                <i class="fa-solid fa-message mr-1"></i>
+                                {{ __('Post Comment') }}
+                            </x-ui.buttons.loadable>
+                        </template>
+                    </x-slot:actions>
+                </x-ui.textarea>
             </div>
         </div>
     @endauth

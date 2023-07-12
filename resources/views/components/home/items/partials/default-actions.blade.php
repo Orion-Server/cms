@@ -2,7 +2,7 @@
     <template x-if="item.home_item.type == 'n'">
         <i
             class="icon home note-edit cursor-pointer hover:brightness-125"
-            @click="itemsStore.backToInventory(item)"
+            @click="itemsStore.editNote(item)"
         ></i>
     </template>
     <i

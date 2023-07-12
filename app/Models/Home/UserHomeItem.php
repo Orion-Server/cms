@@ -36,4 +36,11 @@ class UserHomeItem extends Model
 
         $query->with($relation);
     }
+
+    public function parsedData(): string
+    {
+        if(!$this->extra_data) return '';
+
+        return renderBBCodeText($this->extra_data, true);
+    }
 }

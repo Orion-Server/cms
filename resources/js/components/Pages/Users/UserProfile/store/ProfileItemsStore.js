@@ -4,16 +4,19 @@ import interact from 'interactjs'
 
 document.addEventListener('alpine:init', () => {
     Alpine.store('profileItems', {
+        activeItem: null,
         profileManager: null,
 
         isBackgroundPreview: false,
         currentBackground: null,
+
         placedItems: [],
         removedItemIds: [],
 
         saveButtonDelay: false,
 
-        activeItem: null,
+        showNoteEditingModal: false,
+        activeNote: null,
 
         init() {
             const alpineInstance = this
@@ -99,7 +102,10 @@ document.addEventListener('alpine:init', () => {
                     y: 0,
                     z: 0,
                     is_reversed: false,
+                    extra_data: '',
+                    parsed_data: '',
                     theme: null,
+                    hasChanges: true
                 })
             }
         },
@@ -115,7 +121,10 @@ document.addEventListener('alpine:init', () => {
             item.y = 0
             item.z = 0
             item.is_reversed = false
+            item.hasChanges = true
             item.theme = null
+            item.extra_data = ''
+            item.parsed_data = ''
         },
 
         getPlacedItems() {
@@ -128,6 +137,16 @@ document.addEventListener('alpine:init', () => {
             await this.profileManager.inventoryStore.backItemToInventory(item)
 
             this.removedItemIds.push(item.id)
+        },
+
+        editNote(item) {
+            this.showNoteEditingModal = true
+            this.activeNote = item
+
+            this.profileManager.$dispatch('orion:note-value', {
+                data: item.extra_data,
+                parsedData: item.parsed_data,
+            })
         },
 
         async saveItems() {
@@ -144,6 +163,7 @@ document.addEventListener('alpine:init', () => {
                         is_reversed: item.is_reversed,
                         theme: item.theme,
                         placed: !this.removedItemIds.includes(item.id),
+                        extra_data: item.extra_data || null,
                     }
                 }).filter(item => item)
 
@@ -166,6 +186,16 @@ document.addEventListener('alpine:init', () => {
                     this.profileManager.$dispatch('orion:alert', { type: 'error', message: __('An error occurred while saving your profile.') })
                     this.saveButtonDelay = false
                 })
+        },
+
+        saveNoteData(defaultData, parsedData) {
+            if(!this.activeNote) return
+
+            this.activeNote.hasChanges = true
+            this.activeNote.extra_data = defaultData
+            this.activeNote.parsed_data = parsedData
+
+            this.showNoteEditingModal = false
         },
 
         previewBackground(background) {

@@ -12,8 +12,8 @@
         <x-home.items.partials.default-actions />
     </template>
     <div
-        class="bg-white rounded-lg shadow-lg p-2 text-xs"
+        class="bg-white rounded-lg shadow-lg p-2 text-xs themeable"
         :data-theme="item.theme"
-        x-html="item.extra_data"
+        x-html="item.parsed_data"
     ></div>
 </div>

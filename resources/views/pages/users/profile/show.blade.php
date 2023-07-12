@@ -75,16 +75,18 @@
             @endif
 
             <div
-                class="home-container border-2 relative border-dashed border-slate-200 dark:border-slate-800 w-[928px] h-[1360px]"
+                class="home-container border-2 relative border-slate-200 dark:border-slate-800 w-[928px] h-[1360px]"
                 :class="{ 'opacity-90': itemsStore.isBackgroundPreview }"
                 :style="{ backgroundImage: `url(${itemsStore.getBackground()})` }"
             >
                 <template x-for="item in itemsStore.getPlacedItems()" :key="item.id">
-                    <div>
-                        @include('components.home.items.item')
-                    </div>
+                    @include('components.home.items.item')
                 </template>
             </div>
+        @endif
+
+        @if($isMe)
+            <x-home.layouts.note-modal />
         @endif
     </x-container>
 @endsection

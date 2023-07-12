@@ -17,6 +17,7 @@ import PasswordSettings from '../components/Pages/Users/PasswordSettings'
 import ArticleReaction from '../components/Pages/Articles/ArticleReaction'
 import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
 import UserProfileManager from '../components/Pages/Users/UserProfile/UserProfileManager'
+import SelectLanguage from '../components/Ui/SelectLanguage'
 
 export default class WebManager {
     static start() {
@@ -44,6 +45,7 @@ export default class WebManager {
         Staff.start()
         AutomaticSearch.start()
         ArticleReaction.start()
+        SelectLanguage.start()
 
         // User Components
         AccountSettings.start()
