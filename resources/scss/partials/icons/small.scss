@@ -23,17 +23,21 @@ i.icon {
     &.home {
         width: 18px;
         height: 20px;
+        border: none;
+        box-shadow: none;
+        background-color: transparent !important;
+        border-radius: 5px !important;
 
         &.delete {
-            background-color: transparent !important;
-            border: none;
-            box-shadow: none;
-            border-radius: 5px !important;
             background-image: url('https://imgur.com/xkzcuzj.png');
         }
 
         &.note-edit {
-            background-image: url('https://imgur.com/hNaqXNt.png');
+            background-image: url('https://imgur.com/0tKo423.png');
+        }
+
+        &.theme-edit {
+            background-image: url('https://imgur.com/LgmCTqt.png');
         }
     }
 

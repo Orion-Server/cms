@@ -54,6 +54,7 @@ trait HasProfile
             array_fill(0, $quantity, [
                 'user_id' => $this->id,
                 'home_item_id' => $item->id,
+                'theme' => $item->getDefaultTheme(),
                 'created_at' => now(),
                 'updated_at' => now()
             ])

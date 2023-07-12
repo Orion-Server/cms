@@ -1,8 +1,8 @@
 <div
-    class="select-none"
-    :style="`position: absolute; top: ${item.y}px; left: ${item.x}px; z-index: ${item.z};`"
+    class="select-none absolute"
+    :style="`top: ${item.y}px; left: ${item.x}px; z-index: ${item.z};`"
     @if($isMe)
-    :class="{ 'home-draggable': editing }"
+    :class="{ 'home-draggable drag-handle': editing }"
     @mouseDown="itemsStore.selectItem(item)"
     @mouseUp="itemsStore.selectItem(null)"
     @click="itemsStore.updateZIndex(item)"

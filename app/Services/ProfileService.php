@@ -82,7 +82,7 @@ class ProfileService
                 $item->y = (int) $itemData['y'] ?? $item->y;
                 $item->z = (int) $itemData['z'] ?? $item->z;
                 $item->is_reversed = (bool) $itemData['is_reversed'] ?? $item->is_reversed;
-                $item->theme = $itemData['theme'] ?? $item->theme;
+                $item->theme = $itemData['theme'] ?? $item->homeItem->getDefaultTheme();
                 $item->extra_data = isset($itemData['extra_data']) && $itemData['extra_data'] ? strip_tags($itemData['extra_data']) : $item->extra_data;
 
                 if(!$item->placed && $item->homeItem->type == 'n') {

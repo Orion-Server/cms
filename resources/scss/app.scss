@@ -10,6 +10,10 @@
 @import 'partials/icons.scss';
 @import 'partials/loader.scss';
 
+// User homes
+@import 'home/items/notes.scss';
+@import 'home/themes.scss';
+
 html,
 body {
     scroll-behavior: smooth;
@@ -76,4 +80,10 @@ html {
 
 .home-container {
     transition: background-image 0.3s ease-in-out;
+
+    .home-draggable {
+        img {
+            max-width: 100vw !important;
+        }
+    }
 }

@@ -2,7 +2,7 @@
     class="select-none"
     :style="`position: absolute; top: ${item.y}px; left: ${item.x}px; z-index: ${item.z};`"
     @if($isMe)
-    :class="{ 'home-draggable': editing }"
+    :class="{ 'home-draggable': editing, 'drag-handle': item.theme == 'default' }"
     @mouseDown="itemsStore.selectItem(item)"
     @mouseUp="itemsStore.selectItem(null)"
     @click="itemsStore.updateZIndex(item)"
@@ -12,8 +12,16 @@
         <x-home.items.partials.default-actions />
     </template>
     <div
-        class="bg-white rounded-lg shadow-lg p-2 text-xs themeable"
+        class="rounded-lg p-2 text-xs home-note themeable"
         :data-theme="item.theme"
-        x-html="item.parsed_data"
-    ></div>
+    >
+        <template x-if="item.theme != 'default'">
+            <div class="heading drag-handle">
+                <span>asdas</span>
+            </div>
+        </template>
+        <div class="body">
+            <div class="text" x-html="item.parsed_data"></div>
+        </div>
+    </div>
 </div>

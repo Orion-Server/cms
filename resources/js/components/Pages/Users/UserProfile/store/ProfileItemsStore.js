@@ -22,6 +22,7 @@ document.addEventListener('alpine:init', () => {
             const alpineInstance = this
 
             interact('.home-draggable').draggable({
+                allowFrom: '.drag-handle',
                 modifiers: [
                     interact.modifiers.restrictRect({
                       restriction: '.home-container',
@@ -81,6 +82,7 @@ document.addEventListener('alpine:init', () => {
             if(item.home_item.type == 'b') {
                 item.id = item.item_ids.shift()
 
+                this.backToInventory(this.currentBackground)
                 this.currentBackground = item
                 return
             }
@@ -104,7 +106,7 @@ document.addEventListener('alpine:init', () => {
                     is_reversed: false,
                     extra_data: '',
                     parsed_data: '',
-                    theme: null,
+                    theme: this.getDefaultTheme(item),
                     hasChanges: true
                 })
             }
@@ -122,9 +124,18 @@ document.addEventListener('alpine:init', () => {
             item.z = 0
             item.is_reversed = false
             item.hasChanges = true
-            item.theme = null
+            item.theme = this.getDefaultTheme(item)
             item.extra_data = ''
             item.parsed_data = ''
+        },
+
+        getDefaultTheme(item) {
+            if(!item.home_item) return null
+
+            if(item.home_item.type == 'n') return 'note'
+            if(item.home_item.type == 'w') return 'default'
+
+            return null
         },
 
         getPlacedItems() {
@@ -132,7 +143,7 @@ document.addEventListener('alpine:init', () => {
         },
 
         async backToInventory(item) {
-            if(!item.home_item || item.home_item.type == 'b') return
+            if(!item.home_item) return
 
             await this.profileManager.inventoryStore.backItemToInventory(item)
 
@@ -147,6 +158,10 @@ document.addEventListener('alpine:init', () => {
                 data: item.extra_data,
                 parsedData: item.parsed_data,
             })
+        },
+
+        openThemeModal(item) {
+
         },
 
         async saveItems() {

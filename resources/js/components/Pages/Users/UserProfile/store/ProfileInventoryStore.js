@@ -104,6 +104,7 @@ document.addEventListener('alpine:init', () => {
 
             if(item.home_item.type == 's') tab = 'stickers'
             else if(item.home_item.type == 'w') tab = 'widgets'
+            else if(item.home_item.type == 'b') tab = 'backgrounds'
             else tab = 'notes'
 
             if(!this.isValidTab(tab)) return
