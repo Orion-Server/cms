@@ -7,6 +7,8 @@ document.addEventListener('alpine:init', () => {
         activeItem: null,
         profileManager: null,
 
+        themes: ['default', 'goldenframe', 'hcmachine', 'hcpillow', 'metal', 'note', 'notepad'],
+
         isBackgroundPreview: false,
         currentBackground: null,
 
@@ -17,6 +19,9 @@ document.addEventListener('alpine:init', () => {
 
         showNoteEditingModal: false,
         activeNote: null,
+
+        showChangeThemeDropdown: false,
+        activeThemeableItem: null,
 
         init() {
             const alpineInstance = this
@@ -160,8 +165,24 @@ document.addEventListener('alpine:init', () => {
             })
         },
 
-        openThemeModal(item) {
+        toggleThemeDropdown(item) {
+            if(this.activeThemeableItem && this.activeThemeableItem.id == item.id) return this.closeThemeDropdown()
 
+            this.showChangeThemeDropdown = true
+            this.activeThemeableItem = item
+        },
+
+        closeThemeDropdown() {
+            this.showChangeThemeDropdown = false
+            this.activeThemeableItem = null
+        },
+
+        selectThemeForActiveThemeableItem(theme) {
+            if(!this.themes.includes(theme)) return
+
+            this.activeThemeableItem.theme = theme
+
+            this.profileManager.$nextTick(() => this.closeThemeDropdown())
         },
 
         async saveItems() {

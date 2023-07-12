@@ -86,7 +86,7 @@
         @endif
 
         @if($isMe)
-            <x-home.layouts.note-modal />
+            <x-home.layouts.modals.note-modal />
         @endif
     </x-container>
 @endsection

@@ -3,9 +3,9 @@
     :style="`position: absolute; top: ${item.y}px; left: ${item.x}px; z-index: ${item.z};`"
     @if($isMe)
     :class="{ 'home-draggable': editing, 'drag-handle': item.theme == 'default' }"
-    @mouseDown="itemsStore.selectItem(item)"
-    @mouseUp="itemsStore.selectItem(null)"
-    @click="itemsStore.updateZIndex(item)"
+    @mouseDown.stop="itemsStore.selectItem(item)"
+    @mouseUp.stop="itemsStore.selectItem(null)"
+    @click.stop="itemsStore.updateZIndex(item)"
     @endif
 >
     <template x-if="editing">
@@ -16,9 +16,7 @@
         :data-theme="item.theme"
     >
         <template x-if="item.theme != 'default'">
-            <div class="heading drag-handle">
-                <span>asdas</span>
-            </div>
+            <div class="heading drag-handle"></div>
         </template>
         <div class="body">
             <div class="text" x-html="item.parsed_data"></div>
