@@ -18,7 +18,7 @@
             x-show="!showPreview"
             id="{{ $id }}"
             x-ref="textarea"
-            @input.prevent.debounce.500ms="requestPreview"
+            @input.prevent.debounce.500ms="requestPreview()"
             rows="6"
             class="w-full min-h-[150px] focus:outline-none px-0 text-sm text-gray-900 bg-transparent border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400"
             placeholder="{{ $placeholder }}"

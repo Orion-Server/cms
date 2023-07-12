@@ -28,7 +28,7 @@ class HomeItem extends Model
         return $this->total_bought >= $this->limit;
     }
 
-    public function getDefaultTheme(): string
+    public function getDefaultTheme(): ?string
     {
         if($this->type == 'n') {
             return 'note';

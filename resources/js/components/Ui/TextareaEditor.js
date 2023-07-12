@@ -8,7 +8,7 @@ class TextareaEditor {
     }
 
     _startComponent() {
-        Alpine.data("textareaEditor", (automaticPreview) => ({
+        Alpine.data("textareaEditor", (automaticPreview = false) => ({
             loading: false,
 
             showPreview: false,
@@ -19,6 +19,8 @@ class TextareaEditor {
                 this.initEditorButtons()
 
                 document.addEventListener('orion:note-value', ({ detail: eventData }) => {
+                    if(!eventData?.data || !eventData?.parsedData) return
+
                     this.$refs.textarea.value = eventData.data
                     this.previewText = XssWrapper.clean(eventData.parsedData)
                 })
