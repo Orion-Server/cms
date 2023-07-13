@@ -18,7 +18,7 @@
         </div>
     </div>
     <di class="flex flex-col gap-2">
-        <template x-if="shopStore.currentTab != 'backgrounds' && shopStore.activeItem?.type != 'b'">
+        <template x-if="shopStore.currentTab != 'backgrounds' && ['s', 'n'].includes(shopStore.activeItem?.type)">
             <div class="flex gap-2 items-center">
                 <x-ui.input
                     label='<i class="fa-solid fa-arrow-up-wide-short fa-xl"></i>'

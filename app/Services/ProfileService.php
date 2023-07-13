@@ -24,12 +24,12 @@ class ProfileService
             throw new \Exception(__("You don't have enough :c to buy this item.", ['c' => strtolower(__($item->currency_type->name))]));
         }
 
-        if($item->type == 'b' && $user->homeItems()->where('home_item_id', $item->id)->exists()) {
-            throw new \Exception(__('You already have this background in your inventory.'));
+        if(in_array($item->type, ['b', 'w']) && $user->homeItems()->where('home_item_id', $item->id)->exists()) {
+            throw new \Exception(__('You already have this item in your inventory.'));
         }
 
-        if($item->type == 'b' && $data['quantity'] > 1) {
-            throw new \Exception(__('You can only buy one background at a time.'));
+        if(in_array($item->type, ['b', 'w']) && $data['quantity'] > 1) {
+            throw new \Exception(__('You can buy this item only once.'));
         }
     }
 

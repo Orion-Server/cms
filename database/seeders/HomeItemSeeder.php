@@ -40,6 +40,7 @@ class HomeItemSeeder extends Seeder
 
         $this->insertBackgroundsItemsData();
         $this->insertNotesItemsData();
+        $this->insertWidgetsItemsData();
     }
 
     protected function addItemsForCategory(string $categoryName): void

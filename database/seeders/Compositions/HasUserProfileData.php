@@ -24,6 +24,7 @@ use Database\Seeders\Compositions\Home\{
     HasSportsCategoryData,
     HasSummerVacationCategoryData,
     HasValentineCategoryData,
+    HasWidgetsCategoryData,
     HasWoodenAlphabetCategoryData,
     HasWWECategoryData
 };
@@ -51,7 +52,8 @@ trait HasUserProfileData
         HasForestAndRelatedCategoryData,
         HasClampsAndRelatedCategoryData,
         HasBackgroundsCategoryData,
-        HasNotesCategoryData;
+        HasNotesCategoryData,
+        HasWidgetsCategoryData;
 
     protected function buildItemStructure(
         ?HomeCategory $category,

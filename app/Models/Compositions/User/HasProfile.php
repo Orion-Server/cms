@@ -4,6 +4,7 @@ namespace App\Models\Compositions\User;
 
 use App\Enums\HomeItemType;
 use Illuminate\Support\Facades\DB;
+use App\Services\Fillers\FillUserProfile;
 use App\Models\Home\{
     HomeItem,
     UserHomeItem
@@ -16,10 +17,7 @@ trait HasProfile
 {
     public function generateInitialHomeItems(): void
     {
-        $this->homeItems()->create([
-            'home_item_id' => HomeItem::whereType(HomeItemType::Background)->first()->id,
-            'placed' => true
-        ]);
+        FillUserProfile::forUser($this);
     }
 
     public function homeItems(): HasMany

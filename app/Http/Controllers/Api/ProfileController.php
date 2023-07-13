@@ -94,11 +94,12 @@ class ProfileController extends Controller
         $notes = $filterByType(HomeItemType::Note)
             ->each(fn (UserHomeItem $item) => $item->parsed_data = $item->parsedData());
 
+        $widgets = $filterByType(HomeItemType::Widget)
+            ->each(fn (UserHomeItem $item) => $item->homeItem->setContent());
+
         return $this->jsonResponse([
             'activeBackground' => $filterByType(HomeItemType::Background)->first(),
-            'items' => $filterByType(HomeItemType::Widget)
-                ->concat($filterByType(HomeItemType::Sticker))
-                ->concat($notes)
+            'items' => $widgets->concat($notes)->concat($filterByType(HomeItemType::Sticker))
         ]);
     }
 }

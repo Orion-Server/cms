@@ -40,4 +40,14 @@ class HomeItem extends Model
 
         return null;
     }
+
+    public function setContent(): void
+    {
+        $this->widget_content = $this->getWidgetIdentifier();
+    }
+
+    public function getWidgetIdentifier(): string
+    {
+        return \Str::slug($this->name);
+    }
 }
