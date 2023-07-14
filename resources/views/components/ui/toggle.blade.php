@@ -16,6 +16,6 @@
         "text-xs" => $small,
         "text-sm" => !$small
     ])>
-        {{ $label }}
+        {!! $label !!}
     </div>
 </label>

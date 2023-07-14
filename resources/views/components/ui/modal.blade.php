@@ -22,8 +22,8 @@
                 <span class="sr-only">Close modal</span>
             </button>
             <div class="p-6 text-center">
-                @if($title) <h2 class="text-2xl font-semibold text-gray-700 dark:text-white text-center">{{ $title }}</h2> @endif
-                @if($subTitle) <p class="text-lg text-gray-600 text-center dark:text-gray-400">{{ $subTitle }}</p> @endif
+                @if($title) <h2 class="text-2xl font-semibold text-gray-700 dark:text-white text-center">{!! $title !!}</h2> @endif
+                @if($subTitle) <p class="text-lg text-gray-600 text-center dark:text-gray-400">{!! $subTitle !!}</p> @endif
 
                 @if (empty($type))
                     {{ $slot }}

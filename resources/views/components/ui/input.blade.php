@@ -20,13 +20,13 @@
     class="text-gray-700 text-left font-semibold mb-2 dark:text-gray-200 text-sm"
 >
     <i class="{{ $icon }} mr-1"></i>
-    {{ $label }}
+    {!! $label !!}
 </label>
 @endif
 <input
     type="{{ $type }}"
     autocomplete="{{ $autocomplete }}"
-    placeholder="{{ $placeholder }}"
+    placeholder="{!! $placeholder !!}"
     @if($alpineModel) x-model="{{ $alpineModel }}" @endif
     @if($defaultValue) value="{{ $defaultValue }}" @endif
     @if($name) name="{{ $name }}" @endif
