@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Alpine from 'alpinejs'
 import interact from 'interactjs'
+import XssWrapper from '../../../../../external/XssWrapper'
 
 document.addEventListener('alpine:init', () => {
     Alpine.store('profileItems', {
@@ -85,10 +86,12 @@ document.addEventListener('alpine:init', () => {
             if(!item.item_ids?.length || !item.home_item) return
 
             if(item.home_item.type == 'b') {
-                item.id = item.item_ids.shift()
+                this.placeBackground(item)
+                return
+            }
 
-                this.backToInventory(this.currentBackground)
-                this.currentBackground = item
+            if(item.home_item.type == 'w') {
+                this.placeWidget(item)
                 return
             }
 
@@ -102,36 +105,87 @@ document.addEventListener('alpine:init', () => {
                     continue
                 }
 
-                this.placedItems.push({
-                    id,
-                    home_item: item.home_item,
-                    x: 0,
-                    y: 0,
-                    z: 0,
-                    is_reversed: false,
-                    extra_data: '',
-                    parsed_data: '',
-                    theme: this.getDefaultTheme(item),
-                    hasChanges: true
-                })
+                this.pushToPlacedItems(id, item)
             }
         },
 
-        placeRemovedItem(id) {
-            this.removedItemIds.splice(this.removedItemIds.indexOf(id), 1)
+        placeBackground(item) {
+            item.id = item.item_ids.shift()
 
+            this.backToInventory(this.currentBackground)
+            this.currentBackground = item
+        },
+
+        async placeWidget(item) {
+            const id = item.item_ids?.shift()
+
+            if(!id) return
+
+            let placedItem = null
+
+            if(this.removedItemIds.includes(id)) {
+                placedItem = this.placedItems.find(item => item.id == id)
+            }
+
+            await this.profileManager.fetchData(appUrl(`/profile/${this.profileManager.username}/widget-content/${id}`), ({ data }) => {
+                if(!data.success || !data.content) {
+                    this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to fetch widget' })
+                    return
+                }
+
+                item.content = XssWrapper.cleanWidget(data.content)
+                item.home_item.name = data.name
+                item.widget_type = data.widget_type
+            }, 'Failed to fetch widget')
+
+            this.pushToPlacedItems(id, item, placedItem)
+
+            this.profileManager.$nextTick(() => {
+                this.removedItemIds.splice(this.removedItemIds.indexOf(id), 1)
+            })
+        },
+
+        async pushToPlacedItems(id, item, placedItem = null) {
+            const itemData = placedItem || {
+                id,
+                home_item: item.home_item,
+            }
+
+            await this.setDefaultItemData(itemData)
+
+            if(item.home_item.type == 'w') {
+                itemData.content = item.content
+                itemData.widget_type = item.widget_type
+            }
+
+            if(placedItem) return
+
+            this.placedItems.push(itemData)
+        },
+
+        async placeRemovedItem(id) {
             const item = this.placedItems.find(item => item.id == id)
 
             if(!item) return
 
-            item.x = 0
-            item.y = 0
-            item.z = 0
-            item.is_reversed = false
-            item.hasChanges = true
-            item.theme = this.getDefaultTheme(item)
-            item.extra_data = ''
-            item.parsed_data = ''
+            await this.setDefaultItemData(item)
+
+            this.removedItemIds.splice(this.removedItemIds.indexOf(id), 1)
+        },
+
+        setDefaultItemData(item) {
+            return new Promise(resolve => {
+                item.x = 0
+                item.y = 0
+                item.z = 0
+                item.is_reversed = false
+                item.hasChanges = true
+                item.theme = this.getDefaultTheme(item)
+                item.extra_data = ''
+                item.parsed_data = ''
+
+                this.profileManager.$nextTick(() => resolve())
+            })
         },
 
         getDefaultTheme(item) {

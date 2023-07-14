@@ -13,4 +13,18 @@ export default class XssWrapper {
             }
         })
     }
+
+    static cleanWidget(html) {
+        return defaultXSS(html, {
+            whiteList: {
+                div: ['class', 'style'],
+                span: ['class'],
+                a: ['class'],
+                img: ['src', 'alt', 'width'],
+                input: ['class'],
+                br: [],
+                button: ['class']
+            }
+        })
+    }
 }

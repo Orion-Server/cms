@@ -117,4 +117,23 @@ class UserProfileController extends Controller
             'href' => route('users.profile.show', $user->username)
         ]);
     }
+
+    public function getWidgetContent(string $username, int $itemId): JsonResponse
+    {
+        $user = \Auth::user();
+
+        if(!$item = $user->homeItems()->defaultRelationships()->find($itemId)) {
+            return $this->jsonResponse([
+                'message' => __('Home item not found.')
+            ], 404);
+        }
+
+        $item->setWidgetContent($user);
+
+        return $this->jsonResponse([
+            'name' => $item->homeItem->name,
+            'widget_type' => $item->widget_type,
+            'content' => $item->content
+        ]);
+    }
 }

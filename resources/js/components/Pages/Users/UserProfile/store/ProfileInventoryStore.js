@@ -6,6 +6,7 @@ document.addEventListener('alpine:init', () => {
         tabs: ['stickers', 'notes', 'widgets', 'backgrounds'],
         delay: false,
         currentTab: 'stickers',
+        loadingPlacedItem: false,
 
         allItems: {
             'stickers': [],
@@ -126,12 +127,19 @@ document.addEventListener('alpine:init', () => {
             })
         },
 
-        placeActiveItem(placeAllItems = false) {
+        async placeActiveItem(placeAllItems = false) {
             if(!this.activeItem) return
 
             this.placeQuantity = placeAllItems ? this.activeItem.item_ids.length : this.placeQuantity
 
-            this.profileManager.itemsStore.placeItem(this.activeItem, this.placeQuantity)
+            if(this.activeItem.home_item.type == 'w') {
+                this.loadingPlacedItem = true
+                await this.profileManager.itemsStore.placeWidget(this.activeItem)
+
+                this.loadingPlacedItem = false
+            } else {
+                this.profileManager.itemsStore.placeItem(this.activeItem, this.placeQuantity)
+            }
 
             this.resetSelectedItem()
             this.profileManager.showBagModal = false

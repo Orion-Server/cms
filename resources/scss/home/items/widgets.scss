@@ -1,6 +1,6 @@
 $defaultMyProfileWidgetWidth: 240px;
 
-$defaultMyGroupsWidgetWidth: 200px;
+$defaultMyGroupsWidgetWidth: 220px;
 $defaultMyGroupsWidgetHeight: 200px;
 
 .home-container {
@@ -15,7 +15,7 @@ $defaultMyGroupsWidgetHeight: 200px;
             width: $defaultMyGroupsWidgetWidth;
 
             .groups {
-                height: $defaultMyGroupsWidgetHeight;
+                max-height: $defaultMyGroupsWidgetHeight;
                 overflow-y: auto;
             }
         }
