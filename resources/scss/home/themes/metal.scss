@@ -16,7 +16,6 @@
 
         background: url(https://imgur.com/wu3YuTw.png) no-repeat bottom right;
         padding: 1px 26px 23px 7px;
-        max-height: $maxNoteWithBorderHeight;
 
         &:after {
             @apply absolute right-[100%] h-[100%] top-0 w-[22px];

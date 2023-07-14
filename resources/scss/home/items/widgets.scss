@@ -1,0 +1,23 @@
+$defaultMyProfileWidgetWidth: 240px;
+
+$defaultMyGroupsWidgetWidth: 200px;
+$defaultMyGroupsWidgetHeight: 200px;
+
+.home-container {
+    .my-profile {
+        .body {
+            width: $defaultMyProfileWidgetWidth;
+        }
+    }
+
+    .my-groups {
+        .body {
+            width: $defaultMyGroupsWidgetWidth;
+
+            .groups {
+                height: $defaultMyGroupsWidgetHeight;
+                overflow-y: auto;
+            }
+        }
+    }
+}

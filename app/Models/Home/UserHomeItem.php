@@ -2,6 +2,8 @@
 
 namespace App\Models\Home;
 
+use App\Models\User;
+use App\Services\ProfileService;
 use Illuminate\Database\Eloquent\{
     Model,
     Builder,
@@ -30,7 +32,7 @@ class UserHomeItem extends Model
     {
         $relation = 'homeItem';
 
-        if(!$completeLoading) {
+        if (!$completeLoading) {
             $relation .= ':id,type,name,image';
         }
 
@@ -39,8 +41,24 @@ class UserHomeItem extends Model
 
     public function parsedData(): string
     {
-        if(!$this->extra_data) return '';
+        if (!$this->extra_data) return '';
 
         return renderBBCodeText($this->extra_data, true);
+    }
+
+    public function setWidgetContent(User $user): void
+    {
+        $this->content = null;
+
+        if ($this->homeItem->type != 'w') return;
+
+        $allAvailableWidgets = $this->homeItem->getAvailableWidgets();
+
+        if (empty($allAvailableWidgets) || !array_key_exists($this->homeItem->name, $allAvailableWidgets)) return;
+
+        $this->widget_type = $allAvailableWidgets[$this->homeItem->name];
+        $this->content = app(ProfileService::class)->getWidgetContent($user, $this);
+
+        $this->homeItem->name = __($this->homeItem->name);
     }
 }

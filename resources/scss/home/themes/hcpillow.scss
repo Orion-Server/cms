@@ -21,7 +21,6 @@
 
         background: url(https://imgur.com/P9IcHsi.png) no-repeat bottom right;
         padding: 0 46px 31px 0;
-        max-height: $maxNoteWithBorderHeight;
 
         &:before {
             @apply pl-[49px];

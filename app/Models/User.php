@@ -165,6 +165,23 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         return $this->hasMany(MessengerFriendship::class, 'user_one_id');
     }
 
+    public function ownerGuilds(): HasMany
+    {
+        return $this->hasMany(Guild::class);
+    }
+
+    public function guilds(): HasMany
+    {
+        return $this->hasMany(GuildMember::class);
+    }
+
+    public function loadGuilds()
+    {
+        return $this->load([
+            'guilds' => fn ($query) => $query->withDefaultRelationships()
+        ]);
+    }
+
     public function canAccessFilament(): bool
     {
         return $this->rank >= getSetting('min_rank_to_housekeeping_login');

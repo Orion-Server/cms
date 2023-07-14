@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Enums\HomeItemType;
 use Illuminate\Http\Request;
 use App\Models\Home\HomeItem;
 use App\Services\ProfileService;
+use App\Models\Home\UserHomeItem;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -27,6 +29,34 @@ class UserProfileController extends Controller
         ]);
     }
 
+    public function getUserHomeItems(string $username): JsonResponse
+    {
+        if (!$user = User::whereUsername($username)->first()) {
+            return $this->jsonResponse([
+                'message' => __('User not found')
+            ], 404);
+        }
+
+        $allPlacedItems = $user->placedHomeItems()
+            ->defaultRelationships(true)
+            ->get();
+
+        $filterByType = fn ($type) => $allPlacedItems->filter(
+            fn (UserHomeItem $item) => $item->homeItem?->type === $type->value
+        )->values();
+
+        $notes = $filterByType(HomeItemType::Note)
+            ->each(fn (UserHomeItem $item) => $item->parsed_data = $item->parsedData());
+
+        $widgets = $filterByType(HomeItemType::Widget)
+            ->each(fn (UserHomeItem $item) => $item->setWidgetContent($user));
+
+        return $this->jsonResponse([
+            'activeBackground' => $filterByType(HomeItemType::Background)->first(),
+            'items' => $widgets->concat($notes)->concat($filterByType(HomeItemType::Sticker))
+        ]);
+    }
+
     public function buyItem(Request $request): JsonResponse
     {
         $data = $request->validate([
@@ -44,8 +74,8 @@ class UserProfileController extends Controller
         $totalPrice = $item->price * $data['quantity'];
 
         try {
-            $this->profileService->checkPurchasePossibility($user, $item, $data, $totalPrice);
-            $this->profileService->buyItemForUser($user, $item, $data, $totalPrice);
+            $this->profileService->verifyPurchasePossibility($user, $item, $data, $totalPrice);
+            $this->profileService->buyItem($item, $user, $data, $totalPrice);
         } catch (\Throwable $exception) {
             return $this->jsonResponse([
                 'message' => $exception->getMessage()

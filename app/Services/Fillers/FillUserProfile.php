@@ -9,8 +9,9 @@ use App\Models\Home\HomeItem;
 class FillUserProfile
 {
     /**
-     *  - The first background in the home_items table,
-     *  - The first widget in the home_items table
+     * - Default home items:
+     *  1. The first background in the home_items table,
+     *  2. The first widget in the home_items table
      */
     public static function getDefaultUserItems(User $user): array
     {

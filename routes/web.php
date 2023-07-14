@@ -93,9 +93,11 @@ Route::name('users.')
             ->name('profile.')
             ->group(function () {
                 Route::get('{username}', [UserProfileController::class, 'show'])->name('show')->withoutMiddleware('auth');
+                Route::get('{username}/placed-items', [UserProfileController::class, 'getUserHomeItems'])->withoutMiddleware('auth');
+
                 Route::post('{username}/buy-item', [UserProfileController::class, 'buyItem'])->name('buy-item');
                 Route::post('{username}/save', [UserProfileController::class, 'save'])->name('save');
-            });
+        });
 
         Route::prefix('user')
             ->group(function() {

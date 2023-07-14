@@ -18,6 +18,16 @@ class HomeItem extends Model
         'enabled' => 'boolean'
     ];
 
+    protected $availableWidgets = [
+        'My Profile' => 'my-profile',
+        'My Friends' => 'my-friends',
+        'My Guestbook' => 'my-guestbook',
+        'My Badges' => 'my-badges',
+        'My Rooms' => 'my-rooms',
+        'My Groups' => 'my-groups',
+        'My Ratings Preview' => 'my-ratings-preview'
+    ];
+
     public function homeCategory(): BelongsTo
     {
         return $this->belongsTo(HomeCategory::class);
@@ -41,13 +51,8 @@ class HomeItem extends Model
         return null;
     }
 
-    public function setContent(): void
+    public function getAvailableWidgets(): array
     {
-        $this->widget_content = $this->getWidgetIdentifier();
-    }
-
-    public function getWidgetIdentifier(): string
-    {
-        return \Str::slug($this->name);
+        return $this->availableWidgets;
     }
 }

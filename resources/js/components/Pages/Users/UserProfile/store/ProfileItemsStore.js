@@ -46,7 +46,7 @@ document.addEventListener('alpine:init', () => {
         async fetchPlacedItems() {
             if(!this.profileManager.username?.length) return
 
-            await this.profileManager.fetchData(appUrl(`/api/profile/${this.profileManager.username}/placed-items`), ({ data }) => {
+            await this.profileManager.fetchData(appUrl(`/profile/${this.profileManager.username}/placed-items`), ({ data }) => {
                 if(!data.success || !data.items) {
                     this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to fetch placed items' })
                     return

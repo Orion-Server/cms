@@ -40,8 +40,6 @@
 
         background: url(https://imgur.com/pI0vj4i.png) no-repeat bottom right;
         padding: 4px 35px 35px 4px;
-        width: calc(100% - 31px);
-        max-height: $maxNoteWithBorderHeight;
 
         &:before {
             @apply absolute top-0 right-[100%] pl-[30px] h-[100%];
