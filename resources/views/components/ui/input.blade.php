@@ -27,7 +27,7 @@
 <input
     type="{{ $type }}"
     autocomplete="{{ $autocomplete }}"
-    placeholder="{{ $placeholder }}"
+    placeholder="{!! $placeholder !!}"
     @if($alpineModel) x-model="{{ $alpineModel }}" @endif
     @if($defaultValue) value="{{ $defaultValue }}" @endif
     @if($name) name="{{ $name }}" @endif

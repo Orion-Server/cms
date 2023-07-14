@@ -16,7 +16,7 @@
     :class="{ '{{ $selectedClasses }}': {{ $alpineModel }} === '{{ $value }}' }"
     >
     <div class="block">
-        <div class="w-full font-semibold">{{ $title }}</div>
+        <div class="w-full font-semibold">{!! $title !!}</div>
     </div>
     @if ($icon)
     <i class="{{ $icon }}"></i>

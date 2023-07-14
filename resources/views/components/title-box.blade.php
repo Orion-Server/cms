@@ -33,12 +33,12 @@
             <span @class([
                 "font-semibold dark:text-white",
                 "text-sm" => $small,
-            ])>{{ $title }}</span>
+            ])>{!! $title !!}</span>
             <span @class([
                 "text-slate-700 dark:text-slate-400",
                 "text-xs" => $small,
                 "text-sm" => !$small
-            ])>{{ $description }}</span>
+            ])>{!! $description !!}</span>
         </div>
     </div>
     @if ($slot->isNotEmpty())
