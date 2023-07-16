@@ -19,10 +19,10 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "dompurify": "^3.0.5",
         "interactjs": "^1.10.17",
         "lightgallery": "^2.7.1",
         "notyf": "^3.10.0",
-        "tippy.js": "^6.3.7",
-        "xss": "^1.0.14"
+        "tippy.js": "^6.3.7"
     }
 }

@@ -8,9 +8,11 @@
     @click.stop="itemsStore.updateZIndex(item)"
     @endif
 >
+    @if($isMe)
     <template x-if="editing">
         <x-home.items.partials.default-actions />
     </template>
+    @endif
     <div
         class="rounded-lg p-2 text-xs themeable"
         :class="item.widget_type"
@@ -19,6 +21,6 @@
         <div class="heading drag-handle">
             <span x-text="item.home_item.name"></span>
         </div>
-        <div class="body" x-html="item.content"></div>
+        <div class="body" x-html="$sanitize(item.content)"></div>
     </div>
 </div>

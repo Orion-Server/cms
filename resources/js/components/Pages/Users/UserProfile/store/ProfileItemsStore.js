@@ -133,7 +133,7 @@ document.addEventListener('alpine:init', () => {
                     return
                 }
 
-                item.content = XssWrapper.cleanWidget(data.content)
+                item.content = XssWrapper.clean(data.content)
                 item.home_item.name = data.name
                 item.widget_type = data.widget_type
             }, 'Failed to fetch widget')

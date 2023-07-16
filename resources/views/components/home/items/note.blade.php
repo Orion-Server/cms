@@ -8,9 +8,11 @@
     @click.stop="itemsStore.updateZIndex(item)"
     @endif
 >
+    @if($isMe)
     <template x-if="editing">
         <x-home.items.partials.default-actions />
     </template>
+    @endif
     <div
         class="rounded-lg p-2 text-xs home-note themeable"
         :data-theme="item.theme"
@@ -19,7 +21,7 @@
             <div class="heading drag-handle"></div>
         </template>
         <div class="body">
-            <div class="text" x-html="item.parsed_data"></div>
+            <div class="text" x-html="$sanitize(item.parsed_data)"></div>
         </div>
     </div>
 </div>

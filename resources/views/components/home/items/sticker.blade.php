@@ -8,8 +8,10 @@
     @click="itemsStore.updateZIndex(item)"
     @endif
 >
+    @if($isMe)
     <template x-if="editing">
         <x-home.items.partials.default-actions />
     </template>
+    @endif
     <img :src="item.home_item.image" alt="Item image" />
 </div>

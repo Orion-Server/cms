@@ -40,7 +40,7 @@ class FillUserProfile
             $items[] = [
                 'user_id' => $user->id,
                 'home_item_id' => $defaultWidget->id,
-                'x' => 700,
+                'x' => 500,
                 'y' => 150,
                 'z' => 0,
                 'placed' => true,
