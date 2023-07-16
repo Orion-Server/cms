@@ -148,6 +148,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         return $this->hasMany(ArticleComment::class);
     }
 
+    public function rooms(): HasMany
+    {
+        return $this->hasMany(Room::class, 'owner_id');
+    }
+
     public function activeBadges(): HasMany
     {
         return $this->badges()
@@ -173,13 +178,6 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     public function guilds(): HasMany
     {
         return $this->hasMany(GuildMember::class);
-    }
-
-    public function loadGuilds()
-    {
-        return $this->load([
-            'guilds' => fn ($query) => $query->withDefaultRelationships()
-        ]);
     }
 
     public function canAccessFilament(): bool

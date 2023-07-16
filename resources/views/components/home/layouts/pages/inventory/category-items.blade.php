@@ -13,10 +13,10 @@
             >
                 <div
                     class="w-full h-22 bg-no-repeat bg-center rounded-t-md border-b-2 dark:border-slate-600"
-                    :class="{ '!border-green-500': false, 'bg-cover no-pixelated h-28': inventoryStore.currentTab == 'backgrounds' }"
+                    :class="{ '!border-green-500': false, 'bg-cover no-pixelated': inventoryStore.currentTab == 'backgrounds', 'h-28': ['backgrounds', 'widgets'].includes(inventoryStore.currentTab) }"
                     :style="{ backgroundImage: `url(${homeItemData?.home_item.image})` }"
                 ></div>
-                <template x-if="inventoryStore.currentTab != 'backgrounds'">
+                <template x-if="['stickers', 'notes'].includes(inventoryStore.currentTab)">
                     <div
                         class="w-full h-6 px-1 flex justify-center items-center gap-1 bg-slate-100 dark:bg-slate-700 rounded-b-sm"
                         :class="{ '!bg-green-400': false }"

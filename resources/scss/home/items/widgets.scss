@@ -3,6 +3,9 @@ $defaultMyProfileWidgetWidth: 240px;
 $defaultMyGroupsWidgetWidth: 220px;
 $defaultMyGroupsWidgetHeight: 200px;
 
+$defaultMyRoomsWidgetWidth: 240px;
+$defaultMyRoomsWidgetHeight: 200px;
+
 .home-container {
     .my-profile {
         .body {
@@ -16,6 +19,29 @@ $defaultMyGroupsWidgetHeight: 200px;
 
             .groups {
                 max-height: $defaultMyGroupsWidgetHeight;
+                overflow-y: auto;
+            }
+        }
+    }
+
+    .my-rooms {
+        .opened-room {
+            background-image: url(https://imgur.com/vrRUlWb.png);
+        }
+
+        .locked-room {
+            background-image: url(https://imgur.com/fQwxU0s.png);
+        }
+
+        .password-room {
+            background-image: url(https://imgur.com/NlFEouG.png);
+        }
+
+        .body {
+            width: $defaultMyRoomsWidgetWidth;
+
+            .rooms {
+                max-height: $defaultMyRoomsWidgetHeight;
                 overflow-y: auto;
             }
         }

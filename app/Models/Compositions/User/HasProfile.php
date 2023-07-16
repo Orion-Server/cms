@@ -70,4 +70,18 @@ trait HasProfile
         $background->placed = true;
         $background->save();
     }
+
+    public function loadRoomsForProfile(): self
+    {
+        return $this->load([
+            'rooms' => fn ($query) => $query->select('id', 'owner_id', 'name', 'description', 'state')
+        ]);
+    }
+
+    public function loadGuildsForProfile(): self
+    {
+        return $this->load([
+            'guilds' => fn ($query) => $query->withDefaultRelationships()
+        ]);
+    }
 }

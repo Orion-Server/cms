@@ -14,7 +14,8 @@ trait InteractWithWidgets
         if (! view()->exists($viewName)) return null;
 
         $user = match ($item->widget_type) {
-            'my-groups' => $user->loadGuilds(),
+            'my-groups' => $user->loadGuildsForProfile(),
+            'my-rooms' => $user->loadRoomsForProfile(),
             default => $user
         };
 

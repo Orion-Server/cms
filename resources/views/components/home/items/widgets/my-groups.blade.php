@@ -1,6 +1,6 @@
-<div class="flex flex-col space-y-0.5 groups pr-1">
+<div class="flex flex-col space-y-0.5 groups p-1">
     @forelse($user->guilds as $memberData)
-    <div class="flex p-0.5 gap-1 bg-neutral-400/75 border border-dashed border-black/25">
+    <div class="flex p-0.5 gap-1 bg-neutral-400/50 border border-dashed border-black/50">
         <div
             class="w-[40px] h-[40px] bg-center bg-no-repeat"
             style="background-image: url('https://imager.blet.in/badge/{{ $memberData->guild->badge }}.gif')"
