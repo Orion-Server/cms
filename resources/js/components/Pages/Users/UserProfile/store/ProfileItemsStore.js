@@ -49,17 +49,18 @@ document.addEventListener('alpine:init', () => {
             if(!this.profileManager.username?.length) return
 
             const urlParams = new URLSearchParams(window.location.search),
-                badgesPage = urlParams.get('badges_page') || 1;
+                badgesPage = urlParams.get('badges_page') || 1,
+                errorMessage = 'Failed to fetch placed items';
 
             await this.profileManager.fetchData(appUrl(`/profile/${this.profileManager.username}/placed-items?badges_page=${badgesPage}`), ({ data }) => {
                 if(!data.success || !data.items) {
-                    this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to fetch placed items' })
+                    this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
                 }
 
                 this.currentBackground = data.activeBackground
                 this.placedItems = data.items
-            }, 'Failed to fetch placed items')
+            }, errorMessage)
 
             this.profileManager.$nextTick(() => {
                 this.detectNavigatableWidgets()
@@ -135,16 +136,18 @@ document.addEventListener('alpine:init', () => {
                 placedItem = this.placedItems.find(item => item.id == id)
             }
 
+            const errorMessage = __('Failed to fetch widget')
+
             await this.profileManager.fetchData(appUrl(`/profile/${this.profileManager.username}/widget-content/${id}`), ({ data }) => {
                 if(!data.success || !data.content) {
-                    this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to fetch widget' })
+                    this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
                 }
 
                 item.content = XssWrapper.clean(data.content)
                 item.home_item.name = data.name
                 item.widget_type = data.widget_type
-            }, 'Failed to fetch widget')
+            }, errorMessage)
 
             await this.pushToPlacedItems(id, item, placedItem)
 
@@ -272,7 +275,7 @@ document.addEventListener('alpine:init', () => {
             await axios.post(appUrl(`/profile/${this.profileManager.username}/save`), { items, backgroundId: this.currentBackground?.id || 0 })
                 .then(({ data }) => {
                     if(!data.success) {
-                        this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to save items' })
+                        this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || __('Failed to save items') })
                         return
                     }
 
@@ -331,7 +334,7 @@ document.addEventListener('alpine:init', () => {
                 if(this.profileManager.editing) {
                     this.profileManager.$dispatch('orion:alert', {
                         type: 'info',
-                        message: 'Navigation is blocked because you are editing your profile.'
+                        message: __('Navigation is blocked because you are editing your profile.')
                     })
 
                     return
