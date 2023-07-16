@@ -2,6 +2,7 @@ import axios from 'axios'
 import Alpine from 'alpinejs'
 import interact from 'interactjs'
 import XssWrapper from '../../../../../external/XssWrapper'
+import Turbolinks from 'turbolinks'
 
 document.addEventListener('alpine:init', () => {
     Alpine.store('profileItems', {
@@ -47,7 +48,10 @@ document.addEventListener('alpine:init', () => {
         async fetchPlacedItems() {
             if(!this.profileManager.username?.length) return
 
-            await this.profileManager.fetchData(appUrl(`/profile/${this.profileManager.username}/placed-items`), ({ data }) => {
+            const urlParams = new URLSearchParams(window.location.search),
+                badgesPage = urlParams.get('badges_page') || 1;
+
+            await this.profileManager.fetchData(appUrl(`/profile/${this.profileManager.username}/placed-items?badges_page=${badgesPage}`), ({ data }) => {
                 if(!data.success || !data.items) {
                     this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || 'Failed to fetch placed items' })
                     return
@@ -56,6 +60,10 @@ document.addEventListener('alpine:init', () => {
                 this.currentBackground = data.activeBackground
                 this.placedItems = data.items
             }, 'Failed to fetch placed items')
+
+            this.profileManager.$nextTick(() => {
+                this.detectNavigatableWidgets()
+            })
         },
 
         selectItem(item) {
@@ -138,10 +146,12 @@ document.addEventListener('alpine:init', () => {
                 item.widget_type = data.widget_type
             }, 'Failed to fetch widget')
 
-            this.pushToPlacedItems(id, item, placedItem)
+            await this.pushToPlacedItems(id, item, placedItem)
+
+            this.removedItemIds.splice(this.removedItemIds.indexOf(id), 1)
 
             this.profileManager.$nextTick(() => {
-                this.removedItemIds.splice(this.removedItemIds.indexOf(id), 1)
+                this.detectNavigatableWidgets()
             })
         },
 
@@ -308,6 +318,27 @@ document.addEventListener('alpine:init', () => {
             }
 
             return this.currentBackground.image
+        },
+
+        detectNavigatableWidgets() {
+            const pages = document.querySelector('span[data-href]')
+
+            if(!pages) return
+
+            pages.addEventListener('click', (event) => {
+                event.preventDefault()
+
+                if(this.profileManager.editing) {
+                    this.profileManager.$dispatch('orion:alert', {
+                        type: 'info',
+                        message: 'Navigation is blocked because you are editing your profile.'
+                    })
+
+                    return
+                }
+
+                Turbolinks.visit(event.target.dataset.href)
+            })
         }
     })
 })

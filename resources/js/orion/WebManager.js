@@ -9,16 +9,16 @@ import SwiperWrapper from '../external/SwiperWrapper'
 import DiscordWidget from '../components/DiscordWidget'
 import OnlineFriends from '../components/OnlineFriends'
 import Authentication from '../components/Authentication'
+import SelectLanguage from '../components/Ui/SelectLanguage'
 import TextareaEditor from '../components/Ui/TextareaEditor'
 import AutomaticSearch from '../components/Ui/AutomaticSearch'
+import AlpineHelpers from '../components/Helpers/AlpineHelpers'
 import IngameSettings from '../components/Pages/Users/IngameSettings'
 import AccountSettings from '../components/Pages/Users/AccountSettings'
 import PasswordSettings from '../components/Pages/Users/PasswordSettings'
 import ArticleReaction from '../components/Pages/Articles/ArticleReaction'
 import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
 import UserProfileManager from '../components/Pages/Users/UserProfile/UserProfileManager'
-import SelectLanguage from '../components/Ui/SelectLanguage'
-import AlpineHelpers from '../components/Helpers/AlpineHelpers'
 
 export default class WebManager {
     static start() {

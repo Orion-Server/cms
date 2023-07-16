@@ -14,7 +14,7 @@ trait HasWidgetsCategoryData
             $this->buildItemStructure(null, 'https://imgur.com/MZiw18o.png', 'My Profile', 30, 'w'),
             $this->buildItemStructure(null, 'https://imgur.com/Ac7XcJQ.png', 'My Friends', 30, 'w'),
             $this->buildItemStructure(null, 'https://imgur.com/iNcpO2q.png', 'My Guestbook', 30, 'w'),
-            $this->buildItemStructure(null, 'https://imgur.com/gWpDn8t.png', 'My Badges and Achievements', 30, 'w'),
+            $this->buildItemStructure(null, 'https://imgur.com/gWpDn8t.png', 'My Badges', 30, 'w'),
             $this->buildItemStructure(null, 'https://imgur.com/9h35Bkm.png', 'My Rooms', 30, 'w'),
             $this->buildItemStructure(null, 'https://imgur.com/oNDGmYS.png', 'My Groups', 30, 'w'),
             $this->buildItemStructure(null, 'https://imgur.com/2dkPaE9.png', 'My Ratings Preview', 30, 'w')

@@ -16,6 +16,7 @@ trait InteractWithWidgets
         $user = match ($item->widget_type) {
             'my-groups' => $user->loadGuildsForProfile(),
             'my-rooms' => $user->loadRoomsForProfile(),
+            'my-badges' => $user->loadBadgesForProfile(),
             default => $user
         };
 

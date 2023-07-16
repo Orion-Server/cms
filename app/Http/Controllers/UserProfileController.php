@@ -29,7 +29,7 @@ class UserProfileController extends Controller
         ]);
     }
 
-    public function getUserHomeItems(string $username): JsonResponse
+    public function getUserHomeItems(string $username, Request $request): JsonResponse
     {
         if (!$user = User::whereUsername($username)->first()) {
             return $this->jsonResponse([
@@ -120,7 +120,11 @@ class UserProfileController extends Controller
 
     public function getWidgetContent(string $username, int $itemId): JsonResponse
     {
-        $user = \Auth::user();
+        if(!$user = User::whereUsername($username)->first()) {
+            return $this->jsonResponse([
+                'message' => __('User not found.')
+            ], 404);
+        }
 
         if(!$item = $user->homeItems()->defaultRelationships()->find($itemId)) {
             return $this->jsonResponse([

@@ -60,6 +60,6 @@
             @endforelse
         </div>
 
-        {!! $category->questions?->withQueryString()->links() !!}
+        {{ $category->questions?->withQueryString()->links() }}
     </x-container>
 @endsection

@@ -6,6 +6,9 @@ $defaultMyGroupsWidgetHeight: 200px;
 $defaultMyRoomsWidgetWidth: 240px;
 $defaultMyRoomsWidgetHeight: 200px;
 
+$defaultMyBadgesWidgetWidth: 220px;
+$defaultMyBadgesWidgetHeight: 205px;
+
 .home-container {
     .my-profile {
         .body {
@@ -42,6 +45,17 @@ $defaultMyRoomsWidgetHeight: 200px;
 
             .rooms {
                 max-height: $defaultMyRoomsWidgetHeight;
+                overflow-y: auto;
+            }
+        }
+    }
+
+    .my-badges {
+        .body {
+            width: $defaultMyBadgesWidgetWidth;
+
+            .badges {
+                height: $defaultMyBadgesWidgetHeight;
                 overflow-y: auto;
             }
         }

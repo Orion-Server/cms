@@ -84,4 +84,16 @@ trait HasProfile
             'guilds' => fn ($query) => $query->withDefaultRelationships()
         ]);
     }
+
+    public function loadBadgesForProfile(): self
+    {
+        $this->setRelation('badges',
+            $this->badges()
+                ->orderByDesc('id')
+                ->paginate(16, ['*'], 'badges_page')
+                ->withPath(route('users.profile.show', $this->username))
+        );
+
+        return $this;
+    }
 }

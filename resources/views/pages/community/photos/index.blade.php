@@ -111,7 +111,7 @@
                 </div>
             @endforeach
         </div>
-        {!! $photos->withQueryString()->links() !!}
+        {{ $photos->withQueryString()->links() }}
     </div>
 </x-container>
 @endsection
