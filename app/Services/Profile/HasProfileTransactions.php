@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 trait HasProfileTransactions
 {
-    public function buyItem(HomeItem $item, User $user, array $data, int $totalPrice): bool
+    public function buyItem(HomeItem $item, User $user, array $data, int $totalPrice): void
     {
         if (!$user->online) {
             DB::transaction(function () use ($user, $item, $data, $totalPrice) {
@@ -18,7 +18,7 @@ trait HasProfileTransactions
                 $user->giveHomeItem($item, $data['quantity']);
             });
 
-            return true;
+            return;
         }
 
         if (!config('hotel.rcon.enabled')) {

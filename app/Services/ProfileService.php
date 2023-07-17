@@ -50,7 +50,7 @@ class ProfileService
                 LIMIT ?
             ) AS uhi
         JOIN home_items hi ON hi.id = uhi.home_item_id
-        GROUP BY hi.id, hi.type, hi.name, hi.image";
+        GROUP BY hi.id, hi.type, hi.name, hi.image, uhi.home_item_id";
 
         $queryResult = DB::select($query, [$user->id, 0, $item->id, $quantity]);
 
