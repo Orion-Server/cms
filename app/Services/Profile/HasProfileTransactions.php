@@ -12,28 +12,10 @@ trait HasProfileTransactions
 {
     public function buyItem(HomeItem $item, User $user, array $data, int $totalPrice): void
     {
-        if (!$user->online) {
-            DB::transaction(function () use ($user, $item, $data, $totalPrice) {
-                $user->discountCurrency($item->currency_type, $totalPrice);
-                $user->giveHomeItem($item, $data['quantity']);
-            });
-
-            return;
-        }
-
-        if (!config('hotel.rcon.enabled')) {
-            throw new \Exception(__('RCON is not enabled!'));
-        }
-
-        $rcon = app(RconService::class);
-
-        $rcon->sendSafely(
-            'giveCurrency',
-            [$user, $item->currency_type?->value, $user->fresh()->currency($item->currency_type) - $totalPrice],
-            fn () => throw new \Exception(__('An error occurred while connecting with RCON'))
-        );
-
-        $user->giveHomeItem($item, $data['quantity']);
+        DB::transaction(function () use ($user, $item, $data, $totalPrice) {
+            $user->discountCurrency($item->currency_type, $totalPrice);
+            $user->giveHomeItem($item, $data['quantity']);
+        });
     }
 
     public function saveItems(User $user, array $data): void

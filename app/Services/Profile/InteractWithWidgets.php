@@ -17,6 +17,7 @@ trait InteractWithWidgets
             'my-groups' => $user->loadGuildsForProfile(),
             'my-rooms' => $user->loadRoomsForProfile(),
             'my-badges' => $user->loadBadgesForProfile(),
+            'my-friends' => $user->loadFriendsForProfile(),
             default => $user
         };
 

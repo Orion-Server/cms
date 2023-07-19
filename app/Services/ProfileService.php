@@ -15,6 +15,10 @@ class ProfileService
 
     public function verifyPurchasePossibility(User $user, HomeItem $item, array $data, int $totalPrice): void
     {
+        if($user->online) {
+            throw new \Exception(__('You must be offline to buy this item.'));
+        }
+
         if ($item->limit && $item->exceededPurchaseLimit()) {
             throw new \Exception(__('This item exceeded the purchase limit.'));
         }

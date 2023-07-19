@@ -127,7 +127,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     public function getOnlineFriends(int $limit = 20)
     {
         return $this->friends()
-            ->defaultFriendData()
+            ->select('user_two_id', 'users.id', 'users.username', 'users.look', 'users.motto', 'users.last_online')
             ->join('users', 'users.id', '=', 'user_two_id')
             ->selectRaw('user_two_id')
             ->where('users.online', '1')

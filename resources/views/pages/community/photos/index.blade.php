@@ -100,7 +100,7 @@
                     <div class="w-full flex justify-start items-center gap-3 p-1 bg-gray-100 rounded-b-lg border-t-2 border-gray-300 dark:border-slate-600 dark:bg-gray-900">
                         <div
                             class="w-[50px] min-w-[50px] h-[50px] bg-center bg-no-repeat rounded-full bg-white border border-gray-200 dark:bg-gray-950 dark:border-black"
-                            style="background-image: url('{{ getSetting('figure_imager') . $photo->user->username }}&direction=2&head_direction=2&size=m&gesture=sml&headonly=1')"
+                            style="background-image: url('{{ getFigureUrl($photo->user->username, 'direction=2&head_direction=2&size=m&gesture=sml&headonly=1') }}')"
                         ></div>
                         <a href="{{ route('users.profile.show', $photo->user->username) }}" class="text-sm dark:text-slate-200 grow font-medium underline underline-offset-2 truncate">{{ $photo->user->username }}</a>
                         {{-- <div class="dark:text-slate-200 text-end text-xs cursor-pointer">

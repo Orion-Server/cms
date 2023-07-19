@@ -44,11 +44,11 @@ class UserHomeItem extends Model
         $query->with($relation);
     }
 
-    public function parsedData(): string
+    public function setParsedData(): void
     {
-        if (!$this->extra_data) return '';
+        if (empty($this->extra_data)) return;
 
-        return renderBBCodeText($this->extra_data, true);
+        $this->parsed_data = renderBBCodeText($this->extra_data, true);
     }
 
     public function setWidgetContent(User $user): void

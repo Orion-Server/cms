@@ -85,6 +85,18 @@ trait HasProfile
         ]);
     }
 
+    public function loadFriendsForProfile(): self
+    {
+        $this->setRelation('friends',
+            $this->friends()
+                ->orderByDesc('id')
+                ->paginate(8, ['*'], 'friends_page')
+                ->withPath(route('users.profile.show', $this->username))
+        );
+
+        return $this;
+    }
+
     public function loadBadgesForProfile(): self
     {
         $this->setRelation('badges',

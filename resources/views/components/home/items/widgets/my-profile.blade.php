@@ -10,7 +10,7 @@
         <br>
         {{ \Carbon\Carbon::parse($user->account_created)->format('Y-m-d H:i') }}
     </span>
-    <div class="w-[64px] h-[110px] absolute right-6 bottom-1" style="background-image: url('{{ getSetting('figure_imager') . $user->look }}&direction=4&head_direction=4&size=m&gesture=sml')"></div>
+    <div class="w-[64px] h-[110px] absolute right-6 bottom-1" style="background-image: url('{{ getFigureUrl($user->username, 'direction=4&head_direction=4&size=m&gesture=sml') }}')"></div>
 </div>
 <div class="mt-1 block">
     <span class="my-1 text-xs block">{{ $user->motto }}</span>

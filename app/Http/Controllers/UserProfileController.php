@@ -29,7 +29,7 @@ class UserProfileController extends Controller
         ]);
     }
 
-    public function getUserHomeItems(string $username, Request $request): JsonResponse
+    public function getUserHomeItems(string $username): JsonResponse
     {
         if (!$user = User::whereUsername($username)->first()) {
             return $this->jsonResponse([
@@ -46,7 +46,7 @@ class UserProfileController extends Controller
         )->values();
 
         $notes = $filterByType(HomeItemType::Note)
-            ->each(fn (UserHomeItem $item) => $item->parsed_data = $item->parsedData());
+            ->each(fn (UserHomeItem $item) => $item->setParsedData());
 
         $widgets = $filterByType(HomeItemType::Widget)
             ->each(fn (UserHomeItem $item) => $item->setWidgetContent($user));

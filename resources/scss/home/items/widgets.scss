@@ -7,7 +7,10 @@ $defaultMyRoomsWidgetWidth: 240px;
 $defaultMyRoomsWidgetHeight: 200px;
 
 $defaultMyBadgesWidgetWidth: 220px;
-$defaultMyBadgesWidgetHeight: 205px;
+$defaultMyBadgesWidgetHeight: 180px;
+
+$defaultMyFriendsWidgetWidth: 280px;
+$defaultMyFriendsWidgetHeight: 230px;
 
 .home-container {
     .my-profile {
@@ -56,6 +59,17 @@ $defaultMyBadgesWidgetHeight: 205px;
 
             .badges {
                 height: $defaultMyBadgesWidgetHeight;
+                overflow-y: auto;
+            }
+        }
+    }
+
+    .my-friends {
+        .body {
+            width: $defaultMyFriendsWidgetWidth;
+
+            .friends {
+                height: $defaultMyFriendsWidgetHeight;
                 overflow-y: auto;
             }
         }

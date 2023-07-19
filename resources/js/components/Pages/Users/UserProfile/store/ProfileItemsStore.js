@@ -50,9 +50,10 @@ document.addEventListener('alpine:init', () => {
 
             const urlParams = new URLSearchParams(window.location.search),
                 badgesPage = urlParams.get('badges_page') || 1,
+                friendsPage = urlParams.get('friends_page') || 1,
                 errorMessage = 'Failed to fetch placed items';
 
-            await this.profileManager.fetchData(appUrl(`/profile/${this.profileManager.username}/placed-items?badges_page=${badgesPage}`), ({ data }) => {
+            await this.profileManager.fetchData(appUrl(`/profile/${this.profileManager.username}/placed-items?badges_page=${badgesPage}&friends_page=${friendsPage}`), ({ data }) => {
                 if(!data.success || !data.items) {
                     this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
@@ -324,23 +325,25 @@ document.addEventListener('alpine:init', () => {
         },
 
         detectNavigatableWidgets() {
-            const pages = document.querySelector('span[data-href]')
+            const pages = document.querySelectorAll('span[data-href]')
 
             if(!pages) return
 
-            pages.addEventListener('click', (event) => {
-                event.preventDefault()
+            pages.forEach(page => {
+                page.addEventListener('click', (event) => {
+                    event.preventDefault()
 
-                if(this.profileManager.editing) {
-                    this.profileManager.$dispatch('orion:alert', {
-                        type: 'info',
-                        message: __('Navigation is blocked because you are editing your profile.')
-                    })
+                    if(this.profileManager.editing) {
+                        this.profileManager.$dispatch('orion:alert', {
+                            type: 'info',
+                            message: __('Navigation is blocked because you are editing your profile.')
+                        })
 
-                    return
-                }
+                        return
+                    }
 
-                Turbolinks.visit(event.target.dataset.href)
+                    Turbolinks.visit(event.target.dataset.href)
+                })
             })
         }
     })
