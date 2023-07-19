@@ -1,4 +1,4 @@
-<div class="flex flex-col space-y-0.5">
+<div class="flex flex-col space-y-0.5" data-turbolinks-scroll>
     @if($user->friends->isNotEmpty())
     <div class="grid grid-cols-2 gap-1.5 friends p-1">
         @foreach($user->friends as $friend)
@@ -6,9 +6,7 @@
             <div class="w-[33px] h-[56px]" style="background-image: url('{{ getFigureUrl($friend->user->username, 'direction=4&head_direction=4&action=sml&size=s') }}')"></div>
             <div class="w-[70px] h-full">
                 <a class="block underline text-amber-950 text-xxs font-semibold truncate" href="{{ route('users.profile.show', $friend->user->username) }}">{{ $friend->user->username }}</a>
-                <span class="text-xxs italic text-black">{{
-                \Carbon\Carbon::parse($friend->user->account_created)->toFormattedDateString()
-                }}</span>
+                <span class="text-xxs italic text-black">{{ \Carbon\Carbon::parse($friend->user->account_created)->toFormattedDateString() }}</span>
             </div>
         </div>
         @endforeach

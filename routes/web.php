@@ -91,13 +91,15 @@ Route::name('users.')
 
         Route::prefix('profile')
             ->name('profile.')
+            ->middleware('throttle:120,1')
             ->group(function () {
                 Route::get('{username}', [UserProfileController::class, 'show'])->name('show')->withoutMiddleware('auth');
+                Route::get('{username}/placed-items', [UserProfileController::class, 'getUserHomeItems'])->withoutMiddleware('auth');
+                Route::get('{username}/widget-content/{itemId}', [UserProfileController::class, 'getWidgetContent'])->name('widget-content');
 
                 Route::post('{username}/save', [UserProfileController::class, 'save'])->name('save');
                 Route::post('{username}/buy-item', [UserProfileController::class, 'buyItem'])->name('buy-item');
-                Route::get('{username}/placed-items', [UserProfileController::class, 'getUserHomeItems'])->withoutMiddleware('auth');
-                Route::get('{username}/widget-content/{itemId}', [UserProfileController::class, 'getWidgetContent'])->name('widget-content');
+                Route::post('{username}/rating', [UserProfileController::class, 'ratingHome'])->name('rating');
         });
 
         Route::prefix('user')

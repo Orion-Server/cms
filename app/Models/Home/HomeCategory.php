@@ -12,6 +12,8 @@ class HomeCategory extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function homeItems(): HasMany
     {
         return $this->hasMany(HomeItem::class);

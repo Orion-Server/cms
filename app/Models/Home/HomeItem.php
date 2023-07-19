@@ -13,6 +13,8 @@ class HomeItem extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $casts = [
         'currency_type' => CurrencyType::class,
         'enabled' => 'boolean'
@@ -25,7 +27,7 @@ class HomeItem extends Model
         'My Badges' => 'my-badges',
         'My Rooms' => 'my-rooms',
         'My Groups' => 'my-groups',
-        'My Ratings Preview' => 'my-ratings-preview'
+        'My Rating' => 'my-rating'
     ];
 
     public function homeCategory(): BelongsTo
@@ -45,7 +47,7 @@ class HomeItem extends Model
         }
 
         if($this->type == 'w') {
-            return 'widget';
+            return 'default';
         }
 
         return null;

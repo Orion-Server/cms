@@ -140,4 +140,31 @@ class UserProfileController extends Controller
             'content' => $item->content
         ]);
     }
+
+    public function ratingHome(string $username, Request $request)
+    {
+        $data = $request->validate([
+            'rating' => 'required|integer|between:1,5'
+        ]);
+
+        if(!$user = User::whereUsername($username)->first()) {
+            return $this->jsonResponse([
+                'message' => __('User not found.')
+            ], 404);
+        }
+
+        if($user->id === \Auth::id()) {
+            return $this->jsonResponse([
+                'message' => __('You cannot rate your own profile.')
+            ], 400);
+        }
+
+        $user->ratings()->updateOrCreate(['user_id' => \Auth::id()], [
+            'rating' => $data['rating']
+        ]);
+
+        return $this->jsonResponse([
+            'href' => route('users.profile.show', $user->username)
+        ]);
+    }
 }

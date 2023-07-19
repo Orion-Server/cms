@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Services\Fillers\FillUserProfile;
 use App\Models\Home\{
     HomeItem,
-    UserHomeItem
+    UserHomeItem,
+    UserHomeRating
 };
 use Illuminate\Database\Eloquent\{
     Relations\HasMany
@@ -46,6 +47,11 @@ trait HasProfile
             ->wherePlaced(1);
     }
 
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(UserHomeRating::class, 'rated_user_id');
+    }
+
     public function giveHomeItem(HomeItem $item, int $quantity = 1): void
     {
         $this->homeItems()->insert(
@@ -74,21 +80,33 @@ trait HasProfile
     public function loadRoomsForProfile(): self
     {
         return $this->load([
-            'rooms' => fn ($query) => $query->select('id', 'owner_id', 'name', 'description', 'state')
+            'rooms' => fn (HasMany $query) => $query->select('id', 'owner_id', 'name', 'description', 'state')
         ]);
     }
 
     public function loadGuildsForProfile(): self
     {
         return $this->load([
-            'guilds' => fn ($query) => $query->withDefaultRelationships()
+            'guilds' => fn (HasMany $query) => $query->withDefaultRelationships()
         ]);
+    }
+
+    public function loadRatingsForProfile(): self
+    {
+        $this->profileRating = $this->ratings()
+            ->selectRaw('AVG(rating) as rating_avg, COUNT(*) as total, COUNT(IF(rating >= 4, 4, NULL)) as most_posit')
+            ->first();
+
+        $this->profileRating->rating_avg = number_format($this->profileRating->rating_avg, 1);
+
+        return $this;
     }
 
     public function loadFriendsForProfile(): self
     {
         $this->setRelation('friends',
             $this->friends()
+                ->defaultFriendData()
                 ->orderByDesc('id')
                 ->paginate(8, ['*'], 'friends_page')
                 ->withPath(route('users.profile.show', $this->username))

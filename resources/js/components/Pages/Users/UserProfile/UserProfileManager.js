@@ -3,6 +3,7 @@ import Alpine from 'alpinejs'
 import './store/ProfileShopStore'
 import './store/ProfileItemsStore'
 import './store/ProfileInventoryStore'
+import './store/widgets/RatingStore'
 
 export default new class UserProfileManager {
     start() {
@@ -29,6 +30,7 @@ export default new class UserProfileManager {
                 }
 
                 this.itemsStore.setProfileManager(this)
+                this.ratingStore.setProfileManager(this)
             },
 
             treatPageReload() {
@@ -53,6 +55,10 @@ export default new class UserProfileManager {
 
             get itemsStore() {
                 return this.$store.profileItems
+            },
+
+            get ratingStore() {
+                return this.$store.ratingWidget
             },
 
             currentBagTabIs(tab) {

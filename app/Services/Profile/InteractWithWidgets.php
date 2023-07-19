@@ -18,6 +18,7 @@ trait InteractWithWidgets
             'my-rooms' => $user->loadRoomsForProfile(),
             'my-badges' => $user->loadBadgesForProfile(),
             'my-friends' => $user->loadFriendsForProfile(),
+            'my-rating' => $user->loadRatingsForProfile(),
             default => $user
         };
 

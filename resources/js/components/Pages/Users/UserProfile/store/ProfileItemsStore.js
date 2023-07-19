@@ -48,12 +48,9 @@ document.addEventListener('alpine:init', () => {
         async fetchPlacedItems() {
             if(!this.profileManager.username?.length) return
 
-            const urlParams = new URLSearchParams(window.location.search),
-                badgesPage = urlParams.get('badges_page') || 1,
-                friendsPage = urlParams.get('friends_page') || 1,
-                errorMessage = 'Failed to fetch placed items';
+            const errorMessage = 'Failed to fetch placed items'
 
-            await this.profileManager.fetchData(appUrl(`/profile/${this.profileManager.username}/placed-items?badges_page=${badgesPage}&friends_page=${friendsPage}`), ({ data }) => {
+            await this.profileManager.fetchData(this.getPlacedItemsUrl(), ({ data }) => {
                 if(!data.success || !data.items) {
                     this.profileManager.$dispatch('orion:alert', { type: 'error', message: data.message || errorMessage })
                     return
@@ -65,7 +62,25 @@ document.addEventListener('alpine:init', () => {
 
             this.profileManager.$nextTick(() => {
                 this.detectNavigatableWidgets()
+                this.profileManager.$dispatch('orion:home-loaded')
             })
+        },
+
+        getPlacedItemsUrl() {
+            const urlParams = new URLSearchParams(window.location.search),
+                badgesPage = urlParams.get('badges_page'),
+                friendsPage = urlParams.get('friends_page')
+
+            let baseUrl = appUrl(`/profile/${this.profileManager.username}/placed-items`)
+
+            if(!badgesPage && !friendsPage) return baseUrl
+
+            baseUrl += '?'
+
+            if(badgesPage && badgesPage != '1') baseUrl += `&badges_page=${badgesPage}`
+            if(friendsPage && friendsPage != '1') baseUrl += `&friends_page=${friendsPage}`
+
+            return baseUrl
         },
 
         selectItem(item) {
