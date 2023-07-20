@@ -7,20 +7,15 @@ use App\Models\Home\UserHomeItem;
 
 trait InteractWithWidgets
 {
-    public function getWidgetContent(User $user, UserHomeItem $item): ?string
+    use HasCacheableWidgets;
+
+    public function getCacheableWidgetContent(User $user, UserHomeItem $item): ?string
     {
         $viewName = "components.home.items.widgets.{$item->widget_type}";
 
-        if (! view()->exists($viewName)) return null;
+        if (!view()->exists($viewName)) return null;
 
-        $user = match ($item->widget_type) {
-            'my-groups' => $user->loadGuildsForProfile(),
-            'my-rooms' => $user->loadRoomsForProfile(),
-            'my-badges' => $user->loadBadgesForProfile(),
-            'my-friends' => $user->loadFriendsForProfile(),
-            'my-rating' => $user->loadRatingsForProfile(),
-            default => $user
-        };
+        $user = $this->getCacheableWidgetData($user, $item);
 
         return view($viewName, compact('item', 'user'))->render();
     }

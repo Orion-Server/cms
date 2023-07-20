@@ -88,5 +88,9 @@
         @if($isMe)
             <x-home.layouts.modals.note-modal />
         @endif
+
+        @auth
+            <x-home.layouts.modals.message-modal />
+        @endauth
     </x-container>
 @endsection

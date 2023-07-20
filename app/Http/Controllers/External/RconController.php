@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\External;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Services\RconService;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 
 class RconController extends Controller
 {

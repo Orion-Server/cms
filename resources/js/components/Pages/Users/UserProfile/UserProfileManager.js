@@ -1,9 +1,12 @@
 import axios from 'axios'
 import Alpine from 'alpinejs'
+
 import './store/ProfileShopStore'
 import './store/ProfileItemsStore'
 import './store/ProfileInventoryStore'
+
 import './store/widgets/RatingStore'
+import './store/widgets/GuestbookStore'
 
 export default new class UserProfileManager {
     start() {
@@ -31,6 +34,7 @@ export default new class UserProfileManager {
 
                 this.itemsStore.setProfileManager(this)
                 this.ratingStore.setProfileManager(this)
+                this.guestbookStore.setProfileManager(this)
             },
 
             treatPageReload() {
@@ -59,6 +63,10 @@ export default new class UserProfileManager {
 
             get ratingStore() {
                 return this.$store.ratingWidget
+            },
+
+            get guestbookStore() {
+                return this.$store.guestbookWidget
             },
 
             currentBagTabIs(tab) {

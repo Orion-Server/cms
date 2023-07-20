@@ -14,7 +14,10 @@ use App\Http\Controllers\{
     StaffController,
     UserSettingController,
     Auth\AuthSessionController,
-    UserProfileController
+    UserProfileController,
+    Profile\RatingController as UserHomeRatingController,
+    Profile\MessageController as UserHomeMessageController,
+    Profile\ItemController as UserHomeItemController
 };
 
 /*
@@ -94,12 +97,13 @@ Route::name('users.')
             ->middleware('throttle:120,1')
             ->group(function () {
                 Route::get('{username}', [UserProfileController::class, 'show'])->name('show')->withoutMiddleware('auth');
-                Route::get('{username}/placed-items', [UserProfileController::class, 'getUserHomeItems'])->withoutMiddleware('auth');
-                Route::get('{username}/widget-content/{itemId}', [UserProfileController::class, 'getWidgetContent'])->name('widget-content');
+                Route::get('{username}/placed-items', [UserProfileController::class, 'getPlacedItems'])->withoutMiddleware('auth');
+                Route::get('{username}/widget-content/{itemId}', [UserHomeItemController::class, 'getWidgetContent'])->name('widget-content');
 
                 Route::post('{username}/save', [UserProfileController::class, 'save'])->name('save');
-                Route::post('{username}/buy-item', [UserProfileController::class, 'buyItem'])->name('buy-item');
-                Route::post('{username}/rating', [UserProfileController::class, 'ratingHome'])->name('rating');
+                Route::post('{username}/buy-item', [UserHomeItemController::class, 'store'])->name('items.store');
+                Route::post('{username}/rating', [UserHomeRatingController::class, 'store'])->name('ratings.store');
+                Route::post('{username}/message', [UserHomeMessageController::class, 'store'])->name('comments.store');
         });
 
         Route::prefix('user')

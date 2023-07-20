@@ -4,9 +4,9 @@ namespace App\Services\Profile;
 
 use App\Models\User;
 use App\Models\Home\HomeItem;
-use App\Services\RconService;
 use App\Models\Home\UserHomeItem;
 use Illuminate\Support\Facades\DB;
+use App\Services\PreventXssService;
 
 trait HasProfileTransactions
 {
@@ -43,7 +43,10 @@ trait HasProfileTransactions
                 $item->z = (int) $itemData['z'] ?? $item->z;
                 $item->is_reversed = (bool) $itemData['is_reversed'] ?? $item->is_reversed;
                 $item->theme = $itemData['theme'] ?? $item->homeItem->getDefaultTheme();
-                $item->extra_data = isset($itemData['extra_data']) && $itemData['extra_data'] ? strip_tags($itemData['extra_data']) : $item->extra_data;
+
+                $item->extra_data = isset($itemData['extra_data']) && $itemData['extra_data']
+                    ? PreventXssService::sanitize($itemData['extra_data'])
+                    : $item->extra_data;
 
                 if(!$item->placed && $item->homeItem->type == 'n') {
                     $item->extra_data = '';

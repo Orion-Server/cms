@@ -15,6 +15,9 @@ $defaultMyFriendsWidgetHeight: 230px;
 $defaultMyRatingWidgetWidth: 180px;
 $defaultMyRatingWidgetHeight: 87px;
 
+$defaultMyGuestbookWidgetWidth: 270px;
+$defaultMyGuestbookWidgetHeight: 250px;
+
 .home-container {
     .my-profile {
         .body {
@@ -73,6 +76,17 @@ $defaultMyRatingWidgetHeight: 87px;
 
             .friends {
                 max-height: $defaultMyFriendsWidgetHeight;
+                overflow-y: auto;
+            }
+        }
+    }
+
+    .my-guestbook {
+        .body {
+            width: $defaultMyGuestbookWidgetWidth;
+
+            .messages {
+                max-height: $defaultMyGuestbookWidgetHeight;
                 overflow-y: auto;
             }
         }

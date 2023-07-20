@@ -8,6 +8,7 @@ use App\Services\Fillers\FillUserProfile;
 use App\Models\Home\{
     HomeItem,
     UserHomeItem,
+    UserHomeMessage,
     UserHomeRating
 };
 use Illuminate\Database\Eloquent\{
@@ -52,6 +53,16 @@ trait HasProfile
         return $this->hasMany(UserHomeRating::class, 'rated_user_id');
     }
 
+    public function myHomeMessages(): HasMany
+    {
+        return $this->hasMany(UserHomeMessage::class, 'recipient_user_id');
+    }
+
+    public function homeMessages(): HasMany
+    {
+        return $this->hasMany(UserHomeMessage::class, 'user_id');
+    }
+
     public function giveHomeItem(HomeItem $item, int $quantity = 1): void
     {
         $this->homeItems()->insert(
@@ -87,7 +98,7 @@ trait HasProfile
     public function loadGuildsForProfile(): self
     {
         return $this->load([
-            'guilds' => fn (HasMany $query) => $query->withDefaultRelationships()
+            'guilds' => fn (HasMany $query) => $query->orderByDesc('id')->withDefaultRelationships()
         ]);
     }
 
@@ -125,5 +136,12 @@ trait HasProfile
         );
 
         return $this;
+    }
+
+    public function loadGuestbookForProfile(): self
+    {
+        return $this->load([
+            'myHomeMessages' => fn (HasMany $query) => $query->latest()->defaultUserData()
+        ]);
     }
 }

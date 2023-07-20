@@ -62,7 +62,7 @@ class UserHomeItem extends Model
         if (empty($allAvailableWidgets) || !array_key_exists($this->homeItem->name, $allAvailableWidgets)) return;
 
         $this->widget_type = $allAvailableWidgets[$this->homeItem->name];
-        $this->content = app(ProfileService::class)->getWidgetContent($user, $this);
+        $this->content = app(ProfileService::class)->getCacheableWidgetContent($user, $this);
 
         $this->homeItem->name = __($this->homeItem->name);
     }
