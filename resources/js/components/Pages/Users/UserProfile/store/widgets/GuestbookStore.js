@@ -59,7 +59,12 @@ document.addEventListener('alpine:init', () => {
                 .then(({ data }) => {
                     if(!data.href) return
 
-                    this.profileManager.$nextTick(() => Turbolinks.visit(data.href))
+                    this.profileManager.$nextTick(() => {
+                        Turbolinks.visit(data.href)
+
+                        this.showModal = false
+                        input.value = ''
+                    })
                 })
                 .catch(data => {
                     this.profileManager.$dispatch('orion:alert', { type: 'error', message: data?.response.data?.message || errorMessage })

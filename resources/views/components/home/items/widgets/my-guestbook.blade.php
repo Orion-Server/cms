@@ -25,6 +25,7 @@
         </span>
         @endforelse
     </div>
+    @auth
     <div class="flex justify-end mt-2">
         <x-ui.buttons.default
             class="dark:bg-blue-500 guestbook-button-trigger bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75 py-0.5 text-xs text-white"
@@ -32,4 +33,5 @@
             {{ __('Send a message') }}
         </x-ui.buttons.default>
     </div>
+    @endauth
 </div>

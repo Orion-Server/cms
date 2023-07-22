@@ -8,6 +8,6 @@ class PreventXssService
 {
     public static function sanitize(string $dataToSanitize, array $config = []): string
     {
-        return Sanitizer::create($config)->sanitize($dataToSanitize);
+        return strip_tags(Sanitizer::create($config)->sanitize($dataToSanitize));
     }
 }
