@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\{
     Relations\BelongsTo,
     Factories\HasFactory
 };
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class HomeItem extends Model
 {
@@ -33,6 +34,11 @@ class HomeItem extends Model
     public function homeCategory(): BelongsTo
     {
         return $this->belongsTo(HomeCategory::class);
+    }
+
+    public function userHomeItems(): HasMany
+    {
+        return $this->hasMany(UserHomeItem::class, 'home_item_id');
     }
 
     public function exceededPurchaseLimit(): bool

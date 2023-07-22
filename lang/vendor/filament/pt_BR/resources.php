@@ -97,6 +97,10 @@ return [
         'Update' => 'Atualizar',
         'Create' => 'Criar',
         'Open link' => 'Abrir link',
+        'Sticker' => 'Adesivo',
+        'Widget' => 'Widget',
+        'Note' => 'Nota',
+        'Background' => 'Fundo',
     ],
 
     'helpers' => [
@@ -106,6 +110,7 @@ return [
         'change_username_description' => 'Permitir que este usuário altere seu nome de usuário (dentro do cliente)',
         'change_password_description' => 'Deixe vazio para manter a senha atual',
         'badge_code_helper' => 'Digite o código e clique na lupa ao lado do campo. Se o emblema existir, ele será preenchido automaticamente.',
+        'home_item_limit_helper' => 'Limite de compras para esse item, ou deixe vazio para ilimitado.',
     ],
 
     'tabs' => [
@@ -181,6 +186,10 @@ return [
         'badge_title' => 'Título do emblema',
         'badge_description' => 'Descrição do emblema',
         'badge_image' => 'Imagem do emblema',
+        'home_category_id' => 'Categoria',
+        'price' => 'Preço',
+        'currency_type' => 'Tipo de moeda',
+        'limit' => 'Limite',
     ],
 
     'columns' => [
@@ -219,6 +228,7 @@ return [
         'online_time' => 'Tempo online',
         'can_trade' => 'Pode negociar?',
         'can_change_name' => 'Pode alterar o nome?',
+        'price' => 'Preço',
     ],
 
     'notifications' => [

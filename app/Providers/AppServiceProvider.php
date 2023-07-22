@@ -90,6 +90,11 @@ class AppServiceProvider extends ServiceProvider
                     ->label($getNavigationLabel('User Management'))
                     ->collapsed()
                     ->icon('heroicon-s-user'),
+
+                NavigationGroup::make()
+                    ->label($getNavigationLabel('Profile Management'))
+                    ->collapsed()
+                    ->icon('heroicon-s-document-search'),
             ]);
         });
     }
