@@ -37,104 +37,74 @@ class HomeItemResource extends Resource
         return $form
             ->schema([
                 Card::make()
-                    ->schema([
-                        Select::make('type')
-                            ->label(__('filament::resources.inputs.type'))
-                            ->options([
-                                's' => __('filament::resources.common.Sticker'),
-                                'w' => __('filament::resources.common.Widget'),
-                                'n' => __('filament::resources.common.Note'),
-                                'b' => __('filament::resources.common.Background'),
-                            ])
-                            ->reactive()
-                            ->default('s')
-                            ->required(),
-
-                        Select::make('home_category_id')
-                            ->label(__('filament::resources.inputs.home_category_id'))
-                            ->relationship('homeCategory', 'name')
-                            ->hidden(fn (\Closure $get) => $get('type') != 's')
-                            ->nullable(),
-
-                        TextInput::make('name')
-                            ->label(__('filament::resources.inputs.name'))
-                            ->required()
-                            ->columnSpanFull()
-                            ->maxLength(255),
-
-                        TextInput::make('image')
-                            ->label(__('filament::resources.inputs.image'))
-                            ->required()
-                            ->columnSpanFull()
-                            ->maxLength(255),
-
-                        Select::make('currency_type')
-                            ->label(__('filament::resources.inputs.currency_type'))
-                            ->disablePlaceholderSelection()
-                            ->default(-1)
-                            ->options(CurrencyType::toInput()),
-
-                        TextInput::make('price')
-                            ->label(__('filament::resources.inputs.price'))
-                            ->required()
-                            ->maxLength(255),
-
-                        TextInput::make('limit')
-                            ->numeric()
-                            ->columnSpanFull()
-                            ->label(__('filament::resources.inputs.limit'))
-                            ->helperText(__('filament::resources.helpers.home_item_limit_helper'))
-                            ->nullable(),
-
-                        Toggle::make('enabled')
-                                ->label(__('filament::resources.inputs.visible'))
-                                ->default(true),
-                    ])
+                    ->schema(self::getForm())
                     ->columns([
                         'sm' => 2
                     ])
             ]);
     }
 
+    public static function getForm(): array
+    {
+        return [
+            Select::make('type')
+                ->label(__('filament::resources.inputs.type'))
+                ->options([
+                    's' => __('filament::resources.common.Sticker'),
+                    'w' => __('filament::resources.common.Widget'),
+                    'n' => __('filament::resources.common.Note'),
+                    'b' => __('filament::resources.common.Background'),
+                ])
+                ->reactive()
+                ->default('s')
+                ->required(),
+
+            Select::make('home_category_id')
+                ->label(__('filament::resources.inputs.home_category_id'))
+                ->relationship('homeCategory', 'name')
+                ->hidden(fn (\Closure $get) => $get('type') != 's')
+                ->nullable(),
+
+            TextInput::make('name')
+                ->label(__('filament::resources.inputs.name'))
+                ->required()
+                ->columnSpanFull()
+                ->maxLength(255),
+
+            TextInput::make('image')
+                ->label(__('filament::resources.inputs.image'))
+                ->required()
+                ->columnSpanFull()
+                ->maxLength(255),
+
+            Select::make('currency_type')
+                ->label(__('filament::resources.inputs.currency_type'))
+                ->disablePlaceholderSelection()
+                ->default(-1)
+                ->options(CurrencyType::toInput()),
+
+            TextInput::make('price')
+                ->label(__('filament::resources.inputs.price'))
+                ->required()
+                ->maxLength(255),
+
+            TextInput::make('limit')
+                ->numeric()
+                ->columnSpanFull()
+                ->label(__('filament::resources.inputs.limit'))
+                ->helperText(__('filament::resources.helpers.home_item_limit_helper'))
+                ->nullable(),
+
+            Toggle::make('enabled')
+                    ->label(__('filament::resources.inputs.visible'))
+                    ->default(true),
+        ];
+    }
+
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                TextColumn::make('id')
-                    ->label(__('filament::resources.columns.id'))
-                    ->visible(fn (Component $livewire) => ! $livewire->isTableReordering),
-
-                TextColumn::make('order')
-                    ->label(__('filament::resources.columns.order'))
-                    ->visible(fn (Component $livewire) => $livewire->isTableReordering),
-
-                ImageColumn::make('image')
-                    ->width(40)
-                    ->label(__('filament::resources.columns.image')),
-
-                TextColumn::make('name')
-                    ->label(__('filament::resources.columns.name'))
-                    ->searchable(),
-
-                BadgeColumn::make('type')
-                    ->label(__('filament::resources.columns.type'))
-                    ->enum([
-                        's' => __('filament::resources.common.Sticker'),
-                        'w' => __('filament::resources.common.Widget'),
-                        'n' => __('filament::resources.common.Note'),
-                        'b' => __('filament::resources.common.Background'),
-                    ])
-                    ->colors([
-                        'primary' => 's',
-                        'success' => 'w',
-                        'primary' => 'n',
-                        'danger' => 'b',
-                    ]),
-
-                TextColumn::make('price')
-                    ->label(__('filament::resources.columns.price'))
-                    ->searchable(),
-            ])
+            ->columns(self::getTable())
             ->filters([
                 SelectFilter::make('type')
                     ->label(__('filament::resources.columns.type'))
@@ -156,6 +126,46 @@ class HomeItemResource extends Resource
             ->bulkActions([
                 // Tables\Actions\DeleteBulkAction::make(),
             ]);
+    }
+
+    public static function getTable(): array
+    {
+        return [
+            TextColumn::make('id')
+                ->label(__('filament::resources.columns.id'))
+                ->visible(fn (Component $livewire) => ! $livewire->isTableReordering),
+
+            TextColumn::make('order')
+                ->label(__('filament::resources.columns.order'))
+                ->visible(fn (Component $livewire) => $livewire->isTableReordering),
+
+            ImageColumn::make('image')
+                ->width(40)
+                ->label(__('filament::resources.columns.image')),
+
+            TextColumn::make('name')
+                ->label(__('filament::resources.columns.name'))
+                ->searchable(),
+
+            BadgeColumn::make('type')
+                ->label(__('filament::resources.columns.type'))
+                ->enum([
+                    's' => __('filament::resources.common.Sticker'),
+                    'w' => __('filament::resources.common.Widget'),
+                    'n' => __('filament::resources.common.Note'),
+                    'b' => __('filament::resources.common.Background'),
+                ])
+                ->colors([
+                    'primary' => 's',
+                    'success' => 'w',
+                    'primary' => 'n',
+                    'danger' => 'b',
+                ]),
+
+            TextColumn::make('price')
+                ->label(__('filament::resources.columns.price'))
+                ->searchable(),
+        ];
     }
 
     public static function getRelations(): array

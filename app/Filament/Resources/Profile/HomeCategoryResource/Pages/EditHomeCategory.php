@@ -1,27 +1,27 @@
 <?php
 
-namespace App\Filament\Resources\Profile\HomeItemResource\Pages;
+namespace App\Filament\Resources\Profile\HomeCategoryResource\Pages;
 
 use Filament\Pages\Actions;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
-use App\Filament\Resources\Profile\HomeItemResource;
+use App\Filament\Resources\Profile\HomeCategoryResource;
 
-class EditHomeItem extends EditRecord
+class EditHomeCategory extends EditRecord
 {
-    protected static string $resource = HomeItemResource::class;
+    protected static string $resource = HomeCategoryResource::class;
 
     protected function getActions(): array
     {
         return [
             Actions\DeleteAction::make()
-                ->action(function (HomeItemResource $resource, Model $record) {
-                    if($record->userHomeItems()->exists()) {
+                ->action(function (HomeCategoryResource $resource, Model $record) {
+                    if($record->homeItems()->exists()) {
                         Notification::make()
                             ->danger()
-                            ->title(__('Unable to delete item'))
-                            ->body(__('This item is currently in use by one or more users.'))
+                            ->title(__('Unable to delete category'))
+                            ->body(__('This category is currently in use by one or more items.'))
                             ->persistent()
                             ->send();
 
