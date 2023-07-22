@@ -14,6 +14,8 @@ trait HasCacheableWidgets
         $cacheKey = $this->getWidgetContentCacheKey($user, $item);
         $cacheableTime = $this->getWidgetContentCacheTime();
 
+        if(in_array($item->widget_type, ['my-rating', 'my-guestbook'])) $cacheableTime = 0;
+
         return Cache::remember($cacheKey, $cacheableTime, fn () => match ($item->widget_type) {
             'my-groups' => $user->loadGuildsForProfile(),
             'my-rooms' => $user->loadRoomsForProfile(),
