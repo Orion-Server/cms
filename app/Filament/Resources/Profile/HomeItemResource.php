@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Profile;
 
 use Filament\Tables;
+use Livewire\Component;
 use App\Enums\CurrencyType;
 use Filament\Resources\Form;
 use App\Models\Home\HomeItem;
@@ -16,12 +17,13 @@ use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Filters\SelectFilter;
+use App\Filament\Traits\TranslatableResource;
 use App\Filament\Resources\Profile\HomeItemResource\Pages;
-use Illuminate\Database\Eloquent\Model;
-use Livewire\Component;
 
 class HomeItemResource extends Resource
 {
+    use TranslatableResource;
+
     protected static ?string $model = HomeItem::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-puzzle';

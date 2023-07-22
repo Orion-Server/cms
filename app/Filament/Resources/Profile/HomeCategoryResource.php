@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Profile;
 
-use Filament\Forms;
 use Filament\Tables;
 use Livewire\Component;
 use Filament\Resources\Form;
@@ -14,12 +13,15 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Traits\TranslatableResource;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\Profile\HomeCategoryResource\Pages;
 use App\Filament\Resources\Profile\HomeCategoryResource\RelationManagers;
 
 class HomeCategoryResource extends Resource
 {
+    use TranslatableResource;
+
     protected static ?string $model = HomeCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-menu';

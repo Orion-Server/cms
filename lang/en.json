@@ -241,5 +241,9 @@
     "Navigation is blocked because you are editing your profile.": "Navigation is blocked because you are editing your profile.",
     "Failed to save items": "Failed to save items",
     "Failed to fetch widget": "Failed to fetch widget",
-    "You must save your changes before sending a message.": "You must save your changes before sending a message."
+    "You must save your changes before sending a message.": "You must save your changes before sending a message.",
+    "Unable to delete item": "Unable to delete item",
+    "This item is currently in use by one or more users.": "This item is currently in use by one or more users.",
+    "Unable to delete category": "Unable to delete category",
+    "This category is currently in use by one or more items.": "This category is currently in use by one or more items."
 }

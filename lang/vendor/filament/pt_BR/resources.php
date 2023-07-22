@@ -8,6 +8,7 @@ return [
         'Help Center' => 'Centro de Ajuda',
         'Administration' => 'Administração',
         'User Management' => 'Gerenciamento de Usuários',
+        'Profile Management' => 'Gerenciamento de Perfil',
     ],
 
     'resources' => [
@@ -63,6 +64,16 @@ return [
             'navigation_label' => 'Gerenciar Emblemas',
             'label' => 'Emblema',
             'plural' => 'Emblemas',
+        ],
+        'home-items' => [
+            'navigation_label' => 'Gerenciar Itens',
+            'label' => 'Item',
+            'plural' => 'Itens',
+        ],
+        'home-categories' => [
+            'navigation_label' => 'Gerenciar Categorias',
+            'label' => 'Categoria',
+            'plural' => 'Categorias',
         ],
 
         // Relations
