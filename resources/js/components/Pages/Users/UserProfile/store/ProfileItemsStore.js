@@ -48,7 +48,7 @@ document.addEventListener('alpine:init', () => {
         async fetchPlacedItems() {
             if(!this.profileManager.username?.length) return
 
-            const errorMessage = 'Failed to fetch placed items'
+            const errorMessage = __('Failed to fetch placed items')
 
             await this.profileManager.fetchData(this.getPlacedItemsUrl(), ({ data }) => {
                 if(!data.success || !data.items) {
