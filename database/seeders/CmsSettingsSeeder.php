@@ -165,6 +165,11 @@ class CmsSettingsSeeder extends Seeder
                 'min_list_rank',
                 '4',
                 'The minimum rank to show on CMS lists (Eg. rankings, staff pages)'
+            ],
+            [
+                'group_badges_path',
+                'https://images.habbo.com/c_images/groups/',
+                'The base URL to render the group badges on the CMS'
             ]
         ];
     }

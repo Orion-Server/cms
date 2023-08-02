@@ -8,6 +8,7 @@ return [
         'Help Center' => 'Ohjesivusto',
         'Administration' => 'Hallinta',
         'User Management' => 'Käyttäjien hallinta',
+        'Profile Management' => 'Profile Management',
     ],
 
     'resources' => [
@@ -64,6 +65,16 @@ return [
             'label' => 'Tunnus',
             'plural' => 'Tunnukset',
         ],
+        'home-items' => [
+            'navigation_label' => 'Manage Home Items',
+            'label' => 'Home Item',
+            'plural' => 'Home Items',
+        ],
+        'home-categories' => [
+            'navigation_label' => 'Manage Home Categories',
+            'label' => 'Home Category',
+            'plural' => 'Home Categories',
+        ],
 
         // Relations
         'settings' => [
@@ -94,7 +105,13 @@ return [
         'Duckets' => 'Duckets',
         'Diamonds' => 'Timantit',
         'Points' => 'Pisteet',
+        'Update' => 'Update',
+        'Create' => 'Create',
         'Open link' => 'Avaa linkki',
+        'Sticker' => 'Sticker',
+        'Widget' => 'Widget',
+        'Note' => 'Note',
+        'Background' => 'Background',
     ],
 
     'helpers' => [
@@ -104,6 +121,7 @@ return [
         'change_username_description' => 'Salli tämän käyttäjän vaihtaa käyttäjänimensä (asiakasohjelmassa)',
         'change_password_description' => 'Jätä tyhjäksi pitääksesi nykyisen salasanan',
         'badge_code_helper' => 'Syötä koodi ja napsauta kentän vieressä olevaa suurennuslasia. Jos merkki on olemassa, kaikki kentät täytetään automaattisesti.',
+        'home_item_limit_helper' => 'Buy limit for this item. Leave blank for unlimited.',
     ],
 
     'tabs' => [
@@ -179,6 +197,9 @@ return [
         'badge_title' => 'Tunnuksen otsikko',
         'badge_description' => 'Tunnuksen kuvaus',
         'badge_image' => 'Tunnuksen kuva',
+        'price' => 'Price',
+        'currency_type' => 'Currency Type',
+        'limit' => 'Limit',
     ],
 
     'columns' => [
@@ -217,6 +238,7 @@ return [
         'online_time' => 'Online-aika',
         'can_trade' => 'Voiko vaihtaa?',
         'can_change_name' => 'Voiko vaihtaa nimeä?',
+        'price' => 'Price',
     ],
 
     'notifications' => [

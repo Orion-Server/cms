@@ -12,9 +12,13 @@ use App\Http\Controllers\{
     HelpQuestionController,
     RankingController,
     StaffController,
-    UserSettingController
+    UserSettingController,
+    Auth\AuthSessionController,
+    UserProfileController,
+    Profile\RatingController as UserHomeRatingController,
+    Profile\MessageController as UserHomeMessageController,
+    Profile\ItemController as UserHomeItemController
 };
-use App\Http\Controllers\Auth\AuthSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +74,6 @@ Route::prefix('articles')
 Route::prefix('community')
     ->name('community.')
     ->group(function () {
-        // Photos Routes
         Route::prefix('photos')
             ->name('photos.')
             ->group(function () {
@@ -82,20 +85,34 @@ Route::prefix('community')
 
         Route::get('staff', [StaffController::class, 'index'])->name('staffs.index');
         Route::get('rankings', RankingController::class)
-            ->middleware('auth')
             ->name('rankings.index');
     });
 
-Route::prefix('user')
-    ->name('users.')
+Route::name('users.')
     ->middleware('auth')
     ->group(function () {
 
-        // User Settings
-        Route::prefix('settings')
-            ->name('settings.')
+        Route::prefix('profile')
+            ->name('profile.')
+            ->middleware('throttle:120,1')
             ->group(function () {
-                Route::match(['GET', 'POST'], '/{page?}', [UserSettingController::class, 'index'])->name('index');
+                Route::get('{username}', [UserProfileController::class, 'show'])->name('show')->withoutMiddleware('auth');
+                Route::get('{username}/placed-items', [UserProfileController::class, 'getPlacedItems'])->withoutMiddleware('auth');
+                Route::get('{username}/widget-content/{itemId}', [UserHomeItemController::class, 'getWidgetContent'])->name('widget-content');
+
+                Route::post('{username}/save', [UserProfileController::class, 'save'])->name('save');
+                Route::post('{username}/buy-item', [UserHomeItemController::class, 'store'])->name('items.store');
+                Route::post('{username}/rating', [UserHomeRatingController::class, 'store'])->name('ratings.store');
+                Route::post('{username}/message', [UserHomeMessageController::class, 'store'])->name('comments.store');
+        });
+
+        Route::prefix('user')
+            ->group(function() {
+                Route::prefix('settings')
+                    ->name('settings.')
+                    ->group(function () {
+                        Route::match(['GET', 'POST'], '/{page?}', [UserSettingController::class, 'index'])->name('index');
+                    });
             });
     });
 

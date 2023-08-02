@@ -17,6 +17,10 @@ export default {
                 '22': '5.5rem',
                 '35': '8.75rem',
             },
+            fontSize: {
+                'xss': '.6875rem',
+                'xxs': '.65rem',
+            },
             bottom: {
                 '18': '4.5rem',
             },

@@ -17,7 +17,7 @@
                             class="icon small w-[13px] h-[15px] border-none shadow-none rounded-none ifixed"
                         ></i>
                     @endif
-                    <a href="#" class="font-bold underline underline-offset-2 text-blue-400">{{ $comment->user->username }}</a> {{ strtolower(__('Commented')) }}:
+                    <a href="{{ route('users.profile.show', $comment->user->username) }}" class="font-bold underline underline-offset-2 text-blue-400">{{ $comment->user->username }}</a> {{ strtolower(__('Commented')) }}:
                 </span>
                 <span class="w-1/2 text-end text-xs text-slate-400">
                     <i class="fa-regular fa-clock"></i>

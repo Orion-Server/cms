@@ -15,16 +15,22 @@ class OnlineFriends {
 
                 this.delay = true
 
+                let axiosResponseData = null;
+
                 await axios.post(followUserEndpoint.replace(':userId', id))
-                    .then(response => {
-                        this.$dispatch('orion:alert', {
-                            type: response.data.type,
-                            message: response.data.message
-                        })
-                    })
+                    .then(response => axiosResponseData = response.data)
                     .catch(error => {
+                        axiosResponseData = error.response?.data
+
                         console.error('[FollowUser] - ', error)
                     })
+
+                if(axiosResponseData) {
+                    this.$dispatch('orion:alert', {
+                        type: axiosResponseData?.type || 'error',
+                        message: axiosResponseData?.message
+                    })
+                }
 
                 setTimeout(() => this.delay = false, 2000)
             }

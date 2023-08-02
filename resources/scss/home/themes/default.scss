@@ -1,0 +1,34 @@
+&[data-theme="default"] {
+    @apply p-[5px] border border-black bg-[#ffc300];
+
+    background: -moz-linear-gradient(top, #ffc300 0%, #ffc300 57%, #ffa500 91%);
+    background: -webkit-linear-gradient(top, #ffc300 0%, #ffc300 57%, #ffa500 91%);
+    background: linear-gradient(to bottom, #ffc300 0%, #ffc300 57%, #ffa500 91%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc300', endColorstr='#ffa500', GradientType=0);
+    box-shadow: inset 0px 1px 0px 0px #ffc300, inset 0px 2px 0px 0px #ffff99;
+
+    .heading {
+        @apply uppercase relative mb-[5px] min-h-[25px] text-white rounded-[5px] p-[5px] border border-black bg-[#676767];
+
+        box-shadow: inset 0px 1px 0px 1px rgba(255, 255, 255, .3), 0px 2px #bd6800;
+
+        &:before {
+            @apply absolute right-[5px] h-[14px] w-[100px] top-0 bottom-0 m-auto;
+
+            content: " ";
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAJklEQVQYV2NctGjR/7i4OEYGKAAzfHx8/m/ZsgXMhsugqIBxQDQArB0IBa4ERKAAAAAASUVORK5CYII=);
+        }
+
+        span {
+            @apply text-[10px];
+        }
+    }
+
+    .body {
+        @apply border border-black rounded-[5px] p-[7px] overflow-hidden text-black relative mb-[2px];
+
+        background-image: url(https://imgur.com/61L8DPu.png), linear-gradient(90deg, #d8d8c5 16.67%, #ebebdd 16.67%, #ebebdd 50%, #d8d8c5 50%, #d8d8c5 66.67%, #ebebdd 66.67%, #ebebdd 100%);
+        background-size: contain, 6.00px 6.00px;
+        box-shadow: inset 0px -2px #a1a18d, inset 0 0 0 2px #d8d8c5, inset 0 0 0 3px #fff, 0px 2px #bd6800;
+    }
+}

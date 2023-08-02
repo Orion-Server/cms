@@ -38,6 +38,10 @@ class RedirectIfAuthenticatable extends RedirectIfTwoFactorAuthenticatable
             if(!! getSetting('maintenance') && $user->rank < getSetting('min_rank_to_maintenance_login')) {
                 $this->throwFailedAuthenticationExceptionDuringMaintenance($request);
             }
+
+            if (!$user->homeItems()->count()) {
+                $user->generateInitialHomeItems();
+            }
         });
     }
 

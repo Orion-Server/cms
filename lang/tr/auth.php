@@ -16,5 +16,9 @@ return [
     'failed' => 'Bu kimlik bilgileri kayıtlarımızda bulunamadı.',
     'password' => 'Girilen şifre yanlış.',
     'throttle' => 'Çok fazla giriş denemesi yapıldı. Lütfen :seconds saniye sonra tekrar deneyin.',
+    'recaptcha_failed' => 'reCAPTCHA doğrulaması başarısız oldu.',
+    'max_accounts_per_ip' => 'IP adresi başına maksimum hesap sayısına ulaştınız.',
+    'invalid_ip' => 'Geçersiz IP adresi.',
+    'registration_disabled' => 'Kayıt devre dışı bırakıldı.'
 
 ];

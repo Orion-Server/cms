@@ -8,6 +8,7 @@ return [
         'Help Center' => 'Yardım Merkezi',
         'Administration' => 'Yönetim',
         'User Management' => 'Kullanıcı Yönetimi',
+        'Profile Management' => 'Profile Management',
     ],
 
     'resources' => [
@@ -64,6 +65,16 @@ return [
             'label' => 'Rozet',
             'plural' => 'Rozetler',
         ],
+        'home-items' => [
+            'navigation_label' => 'Manage Home Items',
+            'label' => 'Home Item',
+            'plural' => 'Home Items',
+        ],
+        'home-categories' => [
+            'navigation_label' => 'Manage Home Categories',
+            'label' => 'Home Category',
+            'plural' => 'Home Categories',
+        ],
 
         // Relations
         'settings' => [
@@ -94,6 +105,13 @@ return [
         'Duckets' => 'Duckets',
         'Diamonds' => 'Elmaslar',
         'Points' => 'Puanlar',
+        'Update' => 'Update',
+        'Create' => 'Create',
+        'Open link' => 'Open link',
+        'Sticker' => 'Sticker',
+        'Widget' => 'Widget',
+        'Note' => 'Note',
+        'Background' => 'Background',
     ],
 
     'helpers' => [
@@ -102,6 +120,8 @@ return [
         'help_questions_category_icon' => 'Burada herhangi bir resim bağlantısı kullanabilirsiniz. 20x20 boyutunda bir resim kullanmanızı öneririz.',
         'change_username_description' => 'Bu kullanıcının kullanıcı adını değiştirmesine izin ver',
         'change_password_description' => 'Mevcut şifreyi korumak için boş bırakın',
+        'badge_code_helper' => 'Enter the code and click on the magnifying glass next to the field. If the badge exists, all fields will be filled in automatically.',
+        'home_item_limit_helper' => 'Buy limit for this item. Leave blank for unlimited.',
     ],
 
     'tabs' => [
@@ -116,8 +136,7 @@ return [
         'Change Password' => 'Şifreyi Değiştir',
         'Change Rank' => 'Rütbe Değiştir',
         'Account Data' => 'Hesap Verileri',
-        'Extra Settings' => 'Ek Ayarlar',
-        'badge_code_helper' => 'Kodu girin ve alanın yanındaki büyüteci tıklayın. Amblem varsa otomatik olarak doldurulacaktır.',
+        'Extra Settings' => 'Ek Ayarlar'
     ],
 
     'inputs' => [
@@ -178,6 +197,9 @@ return [
         'badge_title' => 'Rozet Başlığı',
         'badge_description' => 'Rozet Açıklaması',
         'badge_image' => 'Rozet Resmi',
+        'price' => 'Price',
+        'currency_type' => 'Currency Type',
+        'limit' => 'Limit',
     ],
 
     'columns' => [
@@ -216,6 +238,7 @@ return [
         'online_time' => 'Çevrimiçi Süre',
         'can_trade' => 'Takas Yapabilir mi?',
         'can_change_name' => 'İsim Değiştirebilir mi?',
+        'price' => 'Price',
     ],
 
     'notifications' => [

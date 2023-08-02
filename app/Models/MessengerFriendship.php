@@ -20,6 +20,6 @@ class MessengerFriendship extends Model
 
     public function scopeDefaultFriendData(Builder $query): void
     {
-        $query->select('user_two_id', 'users.id', 'users.username', 'users.look', 'users.motto', 'users.last_online');
+        $query->with(['user:id,username,look,account_created']);
     }
 }

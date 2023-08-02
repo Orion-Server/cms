@@ -14,13 +14,13 @@
             data-tippy-content="<small>{{ $onlineFriend->motto }}</small>"
             class="w-14 hover:bg-gray-100 dark:hover:bg-slate-700 h-14 relative shrink-0 rounded-full dark:bg-slate-800 border border-gray-300 dark:border-slate-700 p-0.5 cursor-pointer"
         >
-            <div class="w-full h-full rounded-full bg-center bg-no-repeat" style="background-image: url('{{ getSetting('figure_imager') . $onlineFriend->look }}&head_direction=3&gesture=sml&headonly=1')"></div>
+            <div class="w-full h-full rounded-full bg-center bg-no-repeat" style="background-image: url('{{ getFigureUrl($onlineFriend->look, 'head_direction=3&gesture=sml&headonly=1') }}')"></div>
             <div class="absolute max-w-[100%] truncate text-xs -bottom-5 left-1/2 -translate-x-1/2 dark:text-slate-200">{{ $onlineFriend->username }}</div>
         </div>
     @empty
         <div class="flex items-center justify-center gap-2 w-full">
             <i class="fa-solid fa-users-slash text-gray-300 dark:text-slate-600"></i>
-            <span class="text-gray-400 dark:text-slate-500 text-sm">{{ __('No friends online') }}</span>
+            <span class="text-gray-400 dark:text-slate-500 text-sm py-5">{{ __('No friends online') }}</span>
         </div>
     @endforelse
 </div>

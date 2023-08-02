@@ -1,0 +1,26 @@
+$maxNoteWithoutBorderHeight: 150px;
+$maxNoteWithBorderHeight: 200px;
+
+.home-note {
+    min-width: 180px;
+    max-width: 280px;
+
+    &.themeable {
+        .body {
+            max-height: $maxNoteWithoutBorderHeight;
+
+            .text {
+                overflow-y: auto;
+                max-height: calc($maxNoteWithoutBorderHeight - 15px);
+            }
+        }
+
+        &[data-theme="goldenframe"] .body,
+        &[data-theme="hcpillow"] .body,
+        &[data-theme="hcmachine"] .body,
+        &[data-theme="metal"] .body,
+        &[data-theme="note"] .body {
+            max-height: $maxNoteWithBorderHeight;
+        }
+    }
+}

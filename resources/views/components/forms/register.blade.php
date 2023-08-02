@@ -32,7 +32,7 @@
         />
     </div>
 
-    <div class="flex mt-4 justify-between gap-3 sm:flex-row flex-col bg-gray-100 dark:bg-transparent dark:border dark:border-slate-800 p-2 rounded-lg">
+    <div class="flex mt-4 justify-between gap-3 sm:flex-row flex-col bg-gray-100 dark:bg-slate-850 dark:border dark:border-slate-800 p-2 rounded-lg">
         <div class="flex flex-col">
             <x-ui.input
                 label="{{ __('Password') }}"

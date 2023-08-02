@@ -1,0 +1,165 @@
+$defaultMyProfileWidgetWidth: 240px;
+
+$defaultMyGroupsWidgetWidth: 220px;
+$defaultMyGroupsWidgetHeight: 200px;
+
+$defaultMyRoomsWidgetWidth: 240px;
+$defaultMyRoomsWidgetHeight: 200px;
+
+$defaultMyBadgesWidgetWidth: 220px;
+$defaultMyBadgesWidgetHeight: 180px;
+
+$defaultMyFriendsWidgetWidth: 280px;
+$defaultMyFriendsWidgetHeight: 230px;
+
+$defaultMyRatingWidgetWidth: 180px;
+$defaultMyRatingWidgetHeight: 87px;
+
+$defaultMyGuestbookWidgetWidth: 270px;
+$defaultMyGuestbookWidgetHeight: 250px;
+
+.home-container {
+    .my-profile {
+        .body {
+            width: $defaultMyProfileWidgetWidth;
+        }
+    }
+
+    .my-groups {
+        .body {
+            width: $defaultMyGroupsWidgetWidth;
+
+            .groups {
+                max-height: $defaultMyGroupsWidgetHeight;
+                overflow-y: auto;
+            }
+        }
+    }
+
+    .my-rooms {
+        .opened-room {
+            background-image: url(https://imgur.com/vrRUlWb.png);
+        }
+
+        .locked-room {
+            background-image: url(https://imgur.com/fQwxU0s.png);
+        }
+
+        .password-room {
+            background-image: url(https://imgur.com/NlFEouG.png);
+        }
+
+        .body {
+            width: $defaultMyRoomsWidgetWidth;
+
+            .rooms {
+                max-height: $defaultMyRoomsWidgetHeight;
+                overflow-y: auto;
+            }
+        }
+    }
+
+    .my-badges {
+        .body {
+            width: $defaultMyBadgesWidgetWidth;
+
+            .badges {
+                max-height: $defaultMyBadgesWidgetHeight;
+                overflow-y: auto;
+            }
+        }
+    }
+
+    .my-friends {
+        .body {
+            width: $defaultMyFriendsWidgetWidth;
+
+            .friends {
+                max-height: $defaultMyFriendsWidgetHeight;
+                overflow-y: auto;
+            }
+        }
+    }
+
+    .my-guestbook {
+        .body {
+            width: $defaultMyGuestbookWidgetWidth;
+
+            .messages {
+                max-height: $defaultMyGuestbookWidgetHeight;
+                overflow-y: auto;
+            }
+        }
+    }
+
+    .my-rating {
+        .body {
+            width: $defaultMyRatingWidgetWidth;
+
+            .ratings {
+                height: $defaultMyRatingWidgetHeight;
+                overflow-y: auto;
+
+                .stars {
+                    list-style: none;
+                    margin: 0px;
+                    padding: 0px;
+                    height: 30px;
+                    width: 150px;
+                    position: relative;
+                    background: url(https://imgur.com/OqgeW1A.png) top left repeat-x;
+
+                    .star {
+                        @apply w-[30px] h-[30px] absolute z-[20] p-0;
+
+                        &:nth-child(1) {
+                            @apply left-0 z-[50] hover:w-[30px];
+                        }
+
+                        &:nth-child(2) {
+                            @apply left-[30px] z-[40] hover:w-[60px];
+                        }
+
+                        &:nth-child(3) {
+                            @apply left-[60px] z-[30] hover:w-[90px];
+                        }
+
+                        &:nth-child(4) {
+                            @apply left-[90px] z-[20] hover:w-[120px];
+                        }
+
+                        &:nth-child(5) {
+                            @apply left-[120px] z-[10] hover:w-[150px];
+                        }
+
+                        &:nth-child(6) {
+                            @apply left-0 z-[0];
+
+                            width: calc(var(--baseRatedCalculation) * 30px);
+                            background: url(https://imgur.com/OqgeW1A.png) bottom left repeat-x;
+
+                            &:hover {
+                                background: url(https://imgur.com/OqgeW1A.png) bottom left repeat-x;
+                            }
+                        }
+
+                        &:hover {
+                            @apply left-0 cursor-pointer;
+
+                            background: url(https://imgur.com/OqgeW1A.png) left center;
+                        }
+                    }
+                }
+            }
+        }
+
+        &[data-theme="hcpillow"],
+        &[data-theme="goldenframe"],
+        &[data-theme="hcmachine"],
+        &[data-theme="metal"] {
+            .body {
+                width: calc($defaultMyRatingWidgetWidth + 20px);
+            }
+        }
+    }
+}

@@ -65,11 +65,11 @@
                                                 "bg-green-400 animate-pulse" => $userStaff->online,
                                                 "bg-red-500" => ! $userStaff->online,
                                             ])></div>
-                                            <a href="#" class="text-white font-bold truncate text-sm hover:underline underline-offset-4">{{ $userStaff->username }}</a>
+                                            <a href="{{ route('users.profile.show', $userStaff->username) }}" class="text-white font-bold truncate text-sm hover:underline underline-offset-4">{{ $userStaff->username }}</a>
                                         </div>
                                         <div
                                             class="absolute -bottom-12 right-0 w-[64px] h-[110px] bg-center bg-no-repeat"
-                                            style="background-image: url('{{ getSetting('figure_imager') . $userStaff->look }}&direction=3&head_direction=2&size=m&gesture=sml')"
+                                            style="background-image: url('{{ getFigureUrl($userStaff->look, 'direction=3&head_direction=2&size=m&gesture=sml') }}')"
                                         ></div>
                                     </div>
                                     <div class="w-full h-auto flex flex-col p-1 pl-2">

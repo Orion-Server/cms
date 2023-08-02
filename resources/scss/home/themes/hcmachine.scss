@@ -1,0 +1,35 @@
+&[data-theme="hcmachine"] {
+    .heading {
+        @apply relative h-[42px] ml-[61px];
+        background: url(https://imgur.com/rLGUyIx.png) no-repeat top right;
+
+        &:after {
+            @apply pl-[61px] h-[42px];
+
+            background: url(https://imgur.com/sNuo8j8.png) no-repeat top left;
+        }
+
+        span {
+            @apply text-white block text-center pt-[3px] uppercase font-bold text-xs;
+
+            margin: 2px 61px 0 0;
+        }
+    }
+
+    .body {
+        @apply ml-[49px] relative text-white;
+
+        background: url(https://imgur.com/DnenYaX.png) no-repeat bottom right;
+        padding: 0 46px 31px 0;
+
+        &:before {
+            @apply pl-[49px];
+
+            background: url(https://imgur.com/88xqJZ0.png) no-repeat bottom left;
+        }
+
+        .text {
+            max-height: calc($maxNoteWithBorderHeight - 40px);
+        }
+    }
+}

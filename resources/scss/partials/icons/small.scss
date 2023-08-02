@@ -20,6 +20,27 @@ i.icon {
         }
     }
 
+    &.home {
+        width: 18px;
+        height: 20px;
+        border: none;
+        box-shadow: none;
+        background-color: transparent !important;
+        border-radius: 5px !important;
+
+        &.delete {
+            background-image: url('https://imgur.com/xkzcuzj.png');
+        }
+
+        &.note-edit {
+            background-image: url('https://imgur.com/0tKo423.png');
+        }
+
+        &.theme-edit {
+            background-image: url('https://imgur.com/LgmCTqt.png');
+        }
+    }
+
     &.language {
         width: 26px;
         height: 26px;

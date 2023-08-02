@@ -8,6 +8,7 @@ return [
         'Help Center' => 'Centre d\'aide',
         'Administration' => 'Administration',
         'User Management' => 'Gestion des utilisateurs',
+        'Profile Management' => 'Profile Management',
     ],
 
     'resources' => [
@@ -64,6 +65,16 @@ return [
             'label' => 'Badge',
             'plural' => 'Badges',
         ],
+        'home-items' => [
+            'navigation_label' => 'Manage Home Items',
+            'label' => 'Home Item',
+            'plural' => 'Home Items',
+        ],
+        'home-categories' => [
+            'navigation_label' => 'Manage Home Categories',
+            'label' => 'Home Category',
+            'plural' => 'Home Categories',
+        ],
 
         // Relations
         'settings' => [
@@ -94,7 +105,13 @@ return [
         'Duckets' => 'Duckets',
         'Diamonds' => 'Diamants',
         'Points' => 'Points',
+        'Update' => 'Update',
+        'Create' => 'Create',
         'Open link' => 'Ouvrir le lien',
+        'Sticker' => 'Sticker',
+        'Widget' => 'Widget',
+        'Note' => 'Note',
+        'Background' => 'Background',
     ],
 
     'helpers' => [
@@ -104,6 +121,7 @@ return [
         'change_username_description' => 'Autoriser cet utilisateur à changer son pseudo (dans le client)',
         'change_password_description' => 'Laissez vide pour conserver le mot de passe actuel',
         'badge_code_helper' => 'Entrez le code et cliquez sur la loupe à côté du champ. Si le badge existe, tous les champs seront remplis automatiquement.',
+        'home_item_limit_helper' => 'Buy limit for this item. Leave blank for unlimited.',
     ],
 
     'tabs' => [
@@ -179,6 +197,9 @@ return [
         'badge_title' => 'Titre du badge',
         'badge_description' => 'Description du badge',
         'badge_image' => 'Image du badge',
+        'price' => 'Price',
+        'currency_type' => 'Currency Type',
+        'limit' => 'Limit',
     ],
 
     'columns' => [
@@ -217,6 +238,7 @@ return [
         'online_time' => 'Temps en ligne',
         'can_trade' => 'Peut échanger',
         'can_change_name' => 'Peut changer de nom',
+        'price' => 'Price',
     ],
 
     'notifications' => [

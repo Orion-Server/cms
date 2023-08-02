@@ -8,7 +8,7 @@ class TextareaEditor {
     }
 
     _startComponent() {
-        Alpine.data("textareaEditor", () => ({
+        Alpine.data("textareaEditor", (automaticPreview = false) => ({
             loading: false,
 
             showPreview: false,
@@ -17,6 +17,13 @@ class TextareaEditor {
 
             init() {
                 this.initEditorButtons()
+
+                document.addEventListener('orion:note-value', ({ detail: eventData }) => {
+                    if(!eventData?.data || !eventData?.parsedData) return
+
+                    this.$refs.textarea.value = eventData.data
+                    this.previewText = XssWrapper.clean(eventData.parsedData)
+                })
             },
 
             initEditorButtons() {
@@ -57,6 +64,8 @@ class TextareaEditor {
                             selectionStart == selectionEnd
                                 ? selectionStart + before.length
                                 : textarea.value.length
+
+                        textarea.dispatchEvent(new Event('input'))
                     })
                 })
             },
@@ -98,18 +107,26 @@ class TextareaEditor {
                 setTimeout(() => (this.loading = false), 2000)
             },
 
-            async onPreviewRequest() {
+            onPreviewRequest() {
                 if(this.showPreview) {
                     this.showPreview = false
                     return
                 }
 
+                this.requestPreview(true, () => this.showPreview = true)
+            },
+
+            async requestPreview(requestedManually = false, callback = null) {
+                if(!automaticPreview && !requestedManually) return
+
                 const textarea = this.$refs.textarea
 
-                if(!textarea
-                    || !textarea.value.length
-                    || this.previewLoading
-                ) return
+                if((!textarea || !textarea.value.length || this.previewLoading) && !automaticPreview) return
+
+                if(!textarea.value.length) {
+                    this.previewText = ''
+                    return
+                }
 
                 this.previewLoading = true
 
@@ -123,7 +140,8 @@ class TextareaEditor {
                         }
 
                         this.previewText = XssWrapper.clean(response.data.content)
-                        this.showPreview = true
+
+                        if(callback) callback()
                     })
                     .catch(error => console.error('[TextareaEditorPreview] - ', error))
 

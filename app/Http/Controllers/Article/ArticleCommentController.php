@@ -6,6 +6,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Services\PreventXssService;
 
 class ArticleCommentController extends Controller
 {
@@ -26,7 +27,7 @@ class ArticleCommentController extends Controller
         }
 
         $comment = $article->comments()->create([
-            'content' => strip_tags($data['content']),
+            'content' => PreventXssService::sanitize($data['content']),
             'user_id' => $user->id
         ]);
 

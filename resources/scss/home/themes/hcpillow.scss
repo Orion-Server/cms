@@ -1,0 +1,35 @@
+&[data-theme="hcpillow"] {
+    .heading {
+        @apply relative h-[49px] ml-[50px];
+        background: url(https://imgur.com/cPcSAJz.png) no-repeat top right;
+
+        &:after {
+            @apply pl-[49px] h-[49px];
+
+            background: url(https://imgur.com/ptIEbx3.png) no-repeat top left;
+        }
+
+        span {
+            @apply text-black/90 block text-center pt-[9px] uppercase font-bold text-xs;
+
+            margin: 2px 61px 0 0;
+        }
+    }
+
+    .body {
+        @apply ml-[49px] relative text-white;
+
+        background: url(https://imgur.com/P9IcHsi.png) no-repeat bottom right;
+        padding: 0 46px 31px 0;
+
+        &:before {
+            @apply pl-[49px];
+
+            background: url(https://imgur.com/u2skRq7.png) no-repeat bottom left;
+        }
+
+        .text {
+            max-height: calc($maxNoteWithBorderHeight - 35px);
+        }
+    }
+}

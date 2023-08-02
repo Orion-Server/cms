@@ -1,7 +1,7 @@
 <nav class="w-full h-16 relative bg-white dark:bg-slate-950 dark:border-slate-800 border-b-2 border-gray-200 shadow flex justify-center items-center">
     <div class="absolute w-2/3 xl:w-1/3 mx-auto inset-x-0 h-px -translate-y-1/2 dark:bg-slate-900 bg-gray-300 top-1/2"></div>
     <div
-        class="flex relative h-full justify-center items-center bg-white dark:bg-slate-950 px-2"
+        class="flex relative h-full justify-center items-center bg-white dark:bg-slate-950 lg:px-2"
         x-data="authentication"
     >
         <div
@@ -24,7 +24,7 @@
                 <x-forms.login />
             </x-ui.modal>
         </div>
-        <span class="px-4 font-bold text-blue-400">{{ __('or') }}</span>
+        <span class="px-2 lg:px-4 font-bold text-blue-400">{{ __('or') }}</span>
         <div>
             <x-ui.buttons.default
                 @click="showRegisterModal = true"

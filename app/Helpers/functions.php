@@ -86,3 +86,12 @@ if(!function_exists('renderBBCodeText')) {
             ])->then(fn (string $content) => $reflectLineBreaks ? nl2br($content) : $content);
     }
 }
+
+if(!function_exists('getFigureUrl')) {
+    /**
+     * Gets the Habbo Imager URL.
+     */
+    function getFigureUrl(string $figure, string $strings): string {
+        return sprintf('%s%s&%s', getSetting('figure_imager'), $figure, $strings);
+    }
+}

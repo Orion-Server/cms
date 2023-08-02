@@ -1,0 +1,29 @@
+&[data-theme="notepad"] {
+    .heading {
+        @apply sticky h-[29px] ml-[25px];
+        background: url(https://imgur.com/Rk1PKUS.png) no-repeat top right;
+
+        &:after {
+            @apply h-[29px] pl-[25px];
+
+            background: url(https://imgur.com/XeoEZWg.png) no-repeat top left;
+        }
+
+        span {
+            @apply leading-8 ml-[10px];
+        }
+    }
+
+    .body {
+        @apply relative text-black ml-[27px];
+
+        background: url(https://imgur.com/gjuiLxL.png) no-repeat bottom right;
+        padding: 2px 7px 18px 2px;
+
+        &:before {
+            @apply pl-[27px];
+
+            background: url('https://imgur.com/ljIjh0O.png') no-repeat bottom left;
+        }
+    }
+}

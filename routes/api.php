@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\InviteController;
+use App\Http\Controllers\Api\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,18 @@ Route::prefix('hotel')
     ->name('hotel.')
     ->group(function() {
         Route::get('online-count', [ApiController::class, 'getOnlineCount'])->name('online-count');
+    });
+
+Route::prefix('profile')
+    ->name('profile.')
+    ->group(function() {
+        Route::prefix('shop')
+            ->name('shop.')
+            ->group(function() {
+                Route::get('categories', [ProfileController::class, 'getShopCategories'])->name('categories');
+                Route::get('category/{categoryId}/items', [ProfileController::class, 'getShopItemsByCategory'])->name('items-by-category');
+                Route::get('type/{type}/items', [ProfileController::class, 'getShopItemsByType'])->name('items-by-type');
+            });
+
+        Route::get('{username}/inventory', [ProfileController::class, 'getUserInventory'])->name('inventory');
     });

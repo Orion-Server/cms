@@ -7,10 +7,10 @@
     'imageIsBadge' => false
 ])
 
-<div class="w-full h-16 flex justify-between">
+<div class="w-full lg:h-16 flex-col lg:flex-row flex justify-between">
     <div @class([
         "h-full flex justify-start items-center",
-        'w-2/3' => $slot->isNotEmpty(),
+        'w-full lg:w-2/3' => $slot->isNotEmpty(),
         'w-full' => $slot->isEmpty()
     ])>
         <div @class([
@@ -42,7 +42,7 @@
         </div>
     </div>
     @if ($slot->isNotEmpty())
-    <div class="w-1/3 h-full">
+    <div class="lg:w-1/3 h-full mt-2 lg:mt-0">
         <div class="w-full h-full flex justify-end items-center gap-3">
             {{ $slot }}
         </div>

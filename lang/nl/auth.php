@@ -16,5 +16,9 @@ return [
     'failed' => 'Deze inloggegevens komen niet overeen met onze gegevens.',
     'password' => 'Het opgegeven wachtwoord is onjuist.',
     'throttle' => 'Te veel inlogpogingen. Probeer het opnieuw in :seconds seconden.',
+    'recaptcha_failed' => 'De reCAPTCHA-verificatie is mislukt.',
+    'max_accounts_per_ip' => 'U heeft het maximale aantal accounts per IP-adres bereikt.',
+    'invalid_ip' => 'Ongeldig IP-adres.',
+    'registration_disabled' => 'Registratie is uitgeschakeld.'
 
 ];

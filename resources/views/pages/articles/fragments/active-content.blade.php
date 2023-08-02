@@ -11,7 +11,7 @@
     </span>
 </div>
 <div>
-    <div class="text-sm prose dark:prose-invert !max-w-full ck-content w-full dark:text-slate-200 mt-4 h-auto p-4 bg-white dark:bg-slate-950 rounded-t-lg shadow-lg">
+    <div class="active-article-content text-sm prose dark:prose-invert !max-w-full ck-content w-full dark:text-slate-200 mt-4 h-auto p-4 bg-white dark:bg-slate-950 rounded-t-lg shadow-lg">
         {!! $activeArticle->content !!}
     </div>
     <div class="w-full flex border-t dark:border-slate-700 flex-col lg:flex-row gap-4 lg:gap-0 h-auto lg:h-20 lg:divide-x dark:divide-slate-800 py-2 overflow-hidden px-4 bg-gray-100 dark:bg-slate-850 rounded-b-lg shadow-lg">
@@ -21,10 +21,10 @@
                 "border-blue-300 shadow-blue-500" => true,
                 "border-pink-300 shadow-pink-500" => false
             ]) style="background-image: url('{{ asset('assets/images/user-box-bg.gif') }}')">
-                <div class="w-[64px] h-[110px] absolute bottom-2 left-2" style="background-image: url('{{ getSetting('figure_imager') . $activeArticle->user->look }}&direction=2&head_direction=2&size=m&gesture=sml')"></div>
+                <div class="w-[64px] h-[110px] absolute bottom-2 left-2" style="background-image: url('{{ getFigureUrl($activeArticle->user->look, 'direction=2&head_direction=2&size=m&gesture=sml') }}')"></div>
             </div>
             <a
-                href="#"
+                href="{{ route('users.profile.show', $activeArticle->user->username) }}"
                 class="truncate w-full font-semibold underline underline-offset-2 text-blue-400"
             >
                 {{ $activeArticle->user->username }}
@@ -63,9 +63,44 @@
             />
             <div class="bg-white w-full h-auto dark:bg-slate-950 p-1 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg mt-8">
                 <x-ui.textarea
-                    article-id="{{ $activeArticle->id }}"
-                    article-slug="{{ $activeArticle->slug }}"
-                />
+                    route="{{ route('articles.comments.store', [$activeArticle->id, $activeArticle->slug]) }}"
+                    id="comment"
+                    placeholder="{{ __('Write a comment...') }}"
+                >
+                    <x-slot:actions>
+                        <x-ui.buttons.loadable
+                            alpine-model="previewLoading"
+                            @click="onPreviewRequest"
+                            type="button"
+                            class="dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
+                        >
+                            <template x-if="!showPreview">
+                                <span>
+                                    <i class="fa-solid fa-eye mr-1"></i>
+                                    {{ __('Preview') }}
+                                </span>
+                            </template>
+
+                            <template x-if="showPreview">
+                                <span>
+                                    <i class="fa-solid fa-arrow-rotate-left mr-1"></i>
+                                    {{ __('Back to Form') }}
+                                </span>
+                            </template>
+                        </x-ui.buttons.loadable>
+
+                        <template x-if="!showPreview">
+                            <x-ui.buttons.loadable
+                                alpine-model="loading"
+                                type="submit"
+                                class="dark:bg-green-500 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-400 dark:shadow-green-700/75 shadow-green-600/75 py-2 text-white"
+                            >
+                                <i class="fa-solid fa-message mr-1"></i>
+                                {{ __('Post Comment') }}
+                            </x-ui.buttons.loadable>
+                        </template>
+                    </x-slot:actions>
+                </x-ui.textarea>
             </div>
         </div>
     @endauth

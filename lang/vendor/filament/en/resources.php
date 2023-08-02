@@ -8,6 +8,7 @@ return [
         'Help Center' => 'Help Center',
         'Administration' => 'Administration',
         'User Management' => 'User Management',
+        'Profile Management' => 'Profile Management',
     ],
 
     'resources' => [
@@ -64,6 +65,16 @@ return [
             'label' => 'Badge',
             'plural' => 'Badges',
         ],
+        'home-items' => [
+            'navigation_label' => 'Manage Home Items',
+            'label' => 'Home Item',
+            'plural' => 'Home Items',
+        ],
+        'home-categories' => [
+            'navigation_label' => 'Manage Home Categories',
+            'label' => 'Home Category',
+            'plural' => 'Home Categories',
+        ],
 
         // Relations
         'settings' => [
@@ -97,6 +108,10 @@ return [
         'Update' => 'Update',
         'Create' => 'Create',
         'Open link' => 'Open link',
+        'Sticker' => 'Sticker',
+        'Widget' => 'Widget',
+        'Note' => 'Note',
+        'Background' => 'Background',
     ],
 
     'helpers' => [
@@ -106,6 +121,7 @@ return [
         'change_username_description' => 'Allow this user to change their username (within the client)',
         'change_password_description' => 'Leave blank to keep the current password',
         'badge_code_helper' => 'Enter the code and click on the magnifying glass next to the field. If the badge exists, all fields will be filled in automatically.',
+        'home_item_limit_helper' => 'Buy limit for this item. Leave blank for unlimited.',
     ],
 
     'tabs' => [
@@ -181,6 +197,9 @@ return [
         'badge_title' => 'Badge Title',
         'badge_description' => 'Badge Description',
         'badge_image' => 'Badge Image',
+        'price' => 'Price',
+        'currency_type' => 'Currency Type',
+        'limit' => 'Limit',
     ],
 
     'columns' => [
@@ -219,6 +238,7 @@ return [
         'online_time' => 'Online Time',
         'can_trade' => 'Can Trade?',
         'can_change_name' => 'Can Change Name?',
+        'price' => 'Price',
     ],
 
     'notifications' => [

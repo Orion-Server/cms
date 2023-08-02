@@ -32,7 +32,7 @@
                     </div>
                     <div class="w-full h-auto flex divide-x dark:divide-slate-700 overflow-hidden">
                         <a
-                            href="#"
+                            href="{{ route('users.profile.show', $getUser($ranking)->username) }}"
                             @class([
                                 "w-2/3 hover:text-blue-500 dark:text-slate-200  h-full flex justify-start pl-3 items-center truncate",
                                 "font-medium" => $index < 3,

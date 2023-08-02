@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use App\Services\PreventXssService;
 use App\Http\Controllers\Controller;
 
 class ApiController extends Controller
@@ -22,7 +23,7 @@ class ApiController extends Controller
             'content' => 'required|string'
         ]);
 
-        $content = strip_tags($data['content']);
+        $content = PreventXssService::sanitize($data['content']);
 
         return response()->json([
             'success' => true,

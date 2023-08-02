@@ -2,18 +2,24 @@
     'type' => null,
     'title' => null,
     'subTitle' => null,
-    'alpineModel' => 'modalOpen'
+    'alpineModel' => 'modalOpen',
+    'maxWidth' => false,
+    'extraClasses' => ''
 ])
 
 <div tabindex="-1"
-    class="fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden bg-black/50 overflow-y-auto md:inset-0 h-full max-h-full hidden justify-center items-center"
+    class="fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden bg-black/50 overflow-y-auto md:inset-0 h-full max-h-full hidden justify-center items-center {{ $extraClasses }} z-[99999]"
     :class="{ 'hidden': !{{ $alpineModel }}, 'flex': {{ $alpineModel }} }"
     x-transition
     x-show="{{ $alpineModel }}"
     x-on:click.self="{{ $alpineModel }} = false"
     x-on:keydown.escape.prevent.stop="{{ $alpineModel }} = false"
 >
-    <div class="relative w-full max-w-md max-h-full">
+    <div @class([
+        'relative w-full max-h-full',
+        'max-w-md' => !$maxWidth,
+        $maxWidth,
+    ])>
         {{-- <div class="card bg-blue-500 shadow-lg shadow-blue-700/75 w-full h-full rounded-3xl absolute  transform -rotate-3"></div>
         <div class="card bg-blue-400 shadow-blue-600/75 shadow-lg w-full h-full rounded-3xl absolute  transform rotate-3"></div> --}}
         <div class="relative w-full md:w-auto bg-white rounded-lg shadow dark:bg-slate-900">

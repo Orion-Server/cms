@@ -1,0 +1,27 @@
+&[data-theme="metal"] {
+    .heading {
+        @apply relative h-[33px] ml-[35px] pr-[40px] pt-[4px] text-center font-bold text-xs;
+
+        background: url(https://imgur.com/uCGcRWN.png) no-repeat top right;
+
+        &:after {
+            @apply h-[33px] pl-[35px];
+
+            background: url(https://imgur.com/QvnH1RQ.png) no-repeat top left;
+        }
+    }
+
+    .body {
+        @apply relative text-black ml-[22px];
+
+        background: url(https://imgur.com/wu3YuTw.png) no-repeat bottom right;
+        padding: 1px 26px 23px 7px;
+
+        &:after {
+            @apply absolute right-[100%] h-[100%] top-0 w-[22px];
+
+	        content: '';
+            background: url(https://imgur.com/WDzuZIA.png) no-repeat bottom left;
+        }
+    }
+}

@@ -1,0 +1,55 @@
+&[data-theme="goldenframe"] {
+    .heading {
+        @apply sticky text-center pt-[8px] h-[31px] ml-[30px] pr-[31px] text-[#733A00];
+
+        background: url(https://imgur.com/6B5wQRB.png) no-repeat top right;
+
+        &:after {
+            @apply h-[31px] pl-[31px];
+
+            background: url(https://imgur.com/UFTRhfo.png) no-repeat top left;
+        }
+
+        span {
+            @apply relative text-xs p-[2px] m-0 h-[21px];
+
+            background: url(https://imgur.com/fr0lEkK.png);
+
+            &:before,
+            &:after {
+                @apply absolute h-[21px] top-0;
+
+                content: '';
+                padding: 3px 0px 3px 13px;
+            }
+
+            &:before {
+                background: url(https://imgur.com/YNueN9a.png) no-repeat;
+	            right: 100%;
+            }
+
+            &:after {
+                background: url(https://imgur.com/H9JEc8s.png) no-repeat;
+	            left: 100%;
+            }
+        }
+    }
+
+    .body {
+        @apply relative ml-[30px] text-black;
+
+        background: url(https://imgur.com/pI0vj4i.png) no-repeat bottom right;
+        padding: 4px 35px 35px 4px;
+
+        &:before {
+            @apply absolute top-0 right-[100%] pl-[30px] h-[100%];
+
+            content: '';
+            background: url(https://imgur.com/vMbhgvp.png) no-repeat bottom left;
+        }
+
+        .text {
+            max-height: calc($maxNoteWithBorderHeight - 40px);
+        }
+    }
+}

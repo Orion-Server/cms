@@ -1,0 +1,23 @@
+.themeable {
+    &[data-theme="notepad"] .heading:after,
+    &[data-theme="notepad"] .body:before,
+    &[data-theme="goldenframe"] .heading:after,
+    &[data-theme="hcmachine"] .heading:after,
+    &[data-theme="metal"] .heading:after,
+    &[data-theme="hcmachine"] .body:before,
+    &[data-theme="note"] .heading:after,
+    &[data-theme="note"] .body:before,
+    &[data-theme="hcpillow"] .heading:after,
+    &[data-theme="hcpillow"] .body:before {
+        content: '';
+        @apply absolute right-[100%] h-[100%] top-0;
+    }
+
+    @import './themes/default.scss';
+    @import './themes/notepad.scss';
+    @import './themes/goldenframe.scss';
+    @import './themes/hcmachine.scss';
+    @import './themes/hcpillow.scss';
+    @import './themes/note.scss';
+    @import './themes/metal.scss';
+}

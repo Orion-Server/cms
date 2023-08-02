@@ -17,7 +17,8 @@ use App\Models\{
 };
 use App\Models\Compositions\User\{
     HasCurrency,
-    HasSettings
+    HasSettings,
+    HasProfile
 };
 use Illuminate\Database\Eloquent\Relations\{
     HasMany,
@@ -32,7 +33,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
 {
-    use HasApiTokens, HasFactory, Notifiable, HasCurrency, HasSettings;
+    use HasApiTokens, HasFactory, Notifiable, HasCurrency, HasSettings, HasProfile;
 
     public $timestamps = false;
 
@@ -87,6 +88,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         static::created(function ($user) {
             $user->generateInitialCurrencies();
             $user->generateInitialSettings();
+            $user->generateInitialHomeItems();
         });
     }
 
@@ -125,7 +127,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     public function getOnlineFriends(int $limit = 20)
     {
         return $this->friends()
-            ->defaultFriendData()
+            ->select('user_two_id', 'users.id', 'users.username', 'users.look', 'users.motto', 'users.last_online')
             ->join('users', 'users.id', '=', 'user_two_id')
             ->selectRaw('user_two_id')
             ->where('users.online', '1')
@@ -146,6 +148,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         return $this->hasMany(ArticleComment::class);
     }
 
+    public function rooms(): HasMany
+    {
+        return $this->hasMany(Room::class, 'owner_id');
+    }
+
     public function activeBadges(): HasMany
     {
         return $this->badges()
@@ -161,6 +168,16 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     public function friends(): HasMany
     {
         return $this->hasMany(MessengerFriendship::class, 'user_one_id');
+    }
+
+    public function ownerGuilds(): HasMany
+    {
+        return $this->hasMany(Guild::class);
+    }
+
+    public function guilds(): HasMany
+    {
+        return $this->hasMany(GuildMember::class);
     }
 
     public function canAccessFilament(): bool

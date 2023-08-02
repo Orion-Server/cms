@@ -4,12 +4,13 @@ namespace App\Filament\Resources\User\UserResource\Pages;
 
 use App\Enums\CurrencyType;
 use Filament\Pages\Actions;
+use App\Models\UserCurrency;
 use App\Services\RconService;
+use Illuminate\Database\Eloquent\Model;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\User\UserResource;
-use App\Models\UserCurrency;
-use Illuminate\Database\Eloquent\Model;
 
 class EditUser extends EditRecord
 {
@@ -39,7 +40,25 @@ class EditUser extends EditRecord
     {
         $user = $this->getRecord();
         $data = $this->form->getState();
+
+        $rconEnabled = config('hotel.rcon.enabled');
         $rcon = app(RconService::class);
+
+        if (!$user->online) {
+            $this->treatChangedCurrenciesWithoutRcon($user, $data);
+            return;
+        }
+
+        if ($user->online && !$rconEnabled) {
+            Notification::make()
+                ->danger()
+                ->title(__('RCON is not enabled!'))
+                ->body(__('You cannot edit users because RCON is not enabled and the user is online.'))
+                ->send();
+
+            $this->halt();
+            return;
+        }
 
         if ($data['credits'] != $user->credits) {
             $rcon->sendSafelyFromDashboard('giveCurrency',
@@ -52,6 +71,24 @@ class EditUser extends EditRecord
         $this->treatChangedCurrencies($user, $data, $rcon);
         $this->treatChangedUserRank($user, $data, $rcon);
         $this->treatChangedUserMotto($user, $data, $rcon);
+    }
+
+    private function treatChangedCurrenciesWithoutRcon(Model $user, array $data): void
+    {
+        if ($data['credits'] != $user->credits) {
+            $user->credits = $data['credits'];
+        }
+
+        $user->currencies->each(function (UserCurrency $currency) use ($data, $user) {
+            $updatedCurrencyAmount = collect($data)
+                ->get("currency_{$currency->type}", $currency->amount);
+
+            if ($updatedCurrencyAmount == $currency->amount) return;
+
+            $user->currencies()->whereType($currency->type)->update([
+                'amount' => $updatedCurrencyAmount
+            ]);
+        });
     }
 
     private function checkUsernameChangedPermission(Model $user, array $data, RconService $rcon): void
@@ -68,7 +105,7 @@ class EditUser extends EditRecord
     {
         $user->currencies->each(function (UserCurrency $currency) use ($data, $user, $rcon) {
             $updatedCurrencyAmount = collect($data)
-                ->get("currency_{$currency->type}", 0);
+                ->get("currency_{$currency->type}", $currency->amount);
 
             if ($updatedCurrencyAmount == $currency->amount) return;
 

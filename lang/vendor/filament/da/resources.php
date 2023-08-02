@@ -8,6 +8,7 @@ return [
         'Help Center' => 'Hjælpecenter',
         'Administration' => 'Administration',
         'User Management' => 'Brugeradministration',
+        'Profile Management' => 'Profile Management',
     ],
 
     'resources' => [
@@ -64,6 +65,16 @@ return [
             'label' => 'Mærke',
             'plural' => 'Mærker',
         ],
+        'home-items' => [
+            'navigation_label' => 'Manage Home Items',
+            'label' => 'Home Item',
+            'plural' => 'Home Items',
+        ],
+        'home-categories' => [
+            'navigation_label' => 'Manage Home Categories',
+            'label' => 'Home Category',
+            'plural' => 'Home Categories',
+        ],
 
         // Relations
         'settings' => [
@@ -94,7 +105,13 @@ return [
         'Duckets' => 'Duckets',
         'Diamonds' => 'Diamanter',
         'Points' => 'Point',
+        'Update' => 'Update',
+        'Create' => 'Create',
         'Open link' => 'Åben link',
+        'Sticker' => 'Sticker',
+        'Widget' => 'Widget',
+        'Note' => 'Note',
+        'Background' => 'Background',
     ],
 
     'helpers' => [
@@ -103,6 +120,8 @@ return [
         'help_questions_category_icon' => 'Du kan bruge ethvert billedlink her. Vi anbefaler at bruge et billede med en størrelse på 20x20.',
         'change_username_description' => 'Tillad denne bruger at ændre deres brugernavn (inden for klienten)',
         'change_password_description' => 'Lad feltet stå tomt for at beholde den nuværende adgangskode',
+        'badge_code_helper' => 'Enter the code and click on the magnifying glass next to the field. If the badge exists, all fields will be filled in automatically.',
+        'home_item_limit_helper' => 'Buy limit for this item. Leave blank for unlimited.',
     ],
 
     'tabs' => [
@@ -174,6 +193,13 @@ return [
         'block_camera_follow' => 'Bloker Kamerastyring',
         'ignore_bots' => 'Ignorer Robotter',
         'ignore_pets' => 'Ignorer Kæledyr',
+        'badge_code' => 'Badge Code',
+        'badge_title' => 'Badge Title',
+        'badge_description' => 'Badge Description',
+        'badge_image' => 'Badge Image',
+        'price' => 'Price',
+        'currency_type' => 'Currency Type',
+        'limit' => 'Limit',
     ],
 
     'columns' => [
@@ -212,6 +238,7 @@ return [
         'online_time' => 'Online Tid',
         'can_trade' => 'Kan Handle?',
         'can_change_name' => 'Kan ændre Navn?',
+        'price' => 'Price',
     ],
 
     'notifications' => [

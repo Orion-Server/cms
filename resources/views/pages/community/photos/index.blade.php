@@ -71,7 +71,7 @@
                     <div
                         class="bg-center border border-slate-300 dark:border-slate-700 hover:scale-[1.05] transition-transform relative group lightgallery-image cursor-pointer flex items-end justify-center w-full h-48 bg-no-repeat rounded-t-lg"
                         data-src="{{ $photo->url }}"
-                        data-sub-html='<h4>{{ __("Photo by") }} <a href="#" class="underline underline-offset-4">{{ $photo->user->username }}</a></h4><p>{{ __("Photo taken on") }} <b>{{ $photo->formattedDate }}</b> {{ __("in the room") }} <a href="#" class="underline underline-offset-4">{{ $photo->room->name }}</a></p>'
+                        data-sub-html='<h4>{{ __("Photo by") }} <a href="{{ route('users.profile.show', $photo->user->username) }}" class="underline underline-offset-4">{{ $photo->user->username }}</a></h4><p>{{ __("Photo taken on") }} <b>{{ $photo->formattedDate }}</b>@if($photo->room) {{ __("in the room") }} <a href="#" class="underline underline-offset-4">{{ $photo->room->name }}</a>@endif</p>'
                         style="background-image: url('{{ $photo->url }}')"
                     >
                         <div class="w-full p-2 flex justify-end items-center gap-2 bg-black/75 h-10">
@@ -100,9 +100,9 @@
                     <div class="w-full flex justify-start items-center gap-3 p-1 bg-gray-100 rounded-b-lg border-t-2 border-gray-300 dark:border-slate-600 dark:bg-gray-900">
                         <div
                             class="w-[50px] min-w-[50px] h-[50px] bg-center bg-no-repeat rounded-full bg-white border border-gray-200 dark:bg-gray-950 dark:border-black"
-                            style="background-image: url('{{ getSetting('figure_imager') . $photo->user->username }}&direction=2&head_direction=2&size=m&gesture=sml&headonly=1')"
+                            style="background-image: url('{{ getFigureUrl($photo->user->username, 'direction=2&head_direction=2&size=m&gesture=sml&headonly=1') }}')"
                         ></div>
-                        <a href="#" class="text-sm dark:text-slate-200 grow font-medium underline underline-offset-2 truncate">{{ $photo->user->username }}</a>
+                        <a href="{{ route('users.profile.show', $photo->user->username) }}" class="text-sm dark:text-slate-200 grow font-medium underline underline-offset-2 truncate">{{ $photo->user->username }}</a>
                         {{-- <div class="dark:text-slate-200 text-end text-xs cursor-pointer">
                             <i class="fa-solid fa-comments"></i>
                             <span>(10)</span>
@@ -111,7 +111,7 @@
                 </div>
             @endforeach
         </div>
-        {!! $photos->withQueryString()->links() !!}
+        {{ $photos->withQueryString()->links() }}
     </div>
 </x-container>
 @endsection
