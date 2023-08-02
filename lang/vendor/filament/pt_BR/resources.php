@@ -197,7 +197,6 @@ return [
         'badge_title' => 'Título do emblema',
         'badge_description' => 'Descrição do emblema',
         'badge_image' => 'Imagem do emblema',
-        'home_category_id' => 'Categoria',
         'price' => 'Preço',
         'currency_type' => 'Tipo de moeda',
         'limit' => 'Limite',

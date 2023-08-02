@@ -8,6 +8,7 @@ return [
         'Help Center' => 'Helpcentrum',
         'Administration' => 'Administratie',
         'User Management' => 'Gebruikersbeheer',
+        'Profile Management' => 'Profile Management',
     ],
 
     'resources' => [
@@ -64,6 +65,16 @@ return [
             'label' => 'Badge',
             'plural' => 'Badges',
         ],
+        'home-items' => [
+            'navigation_label' => 'Manage Home Items',
+            'label' => 'Home Item',
+            'plural' => 'Home Items',
+        ],
+        'home-categories' => [
+            'navigation_label' => 'Manage Home Categories',
+            'label' => 'Home Category',
+            'plural' => 'Home Categories',
+        ],
 
         // Relations
         'settings' => [
@@ -94,7 +105,13 @@ return [
         'Duckets' => 'Duckets',
         'Diamonds' => 'Diamanten',
         'Points' => 'Punten',
+        'Update' => 'Update',
+        'Create' => 'Create',
         'Open link' => 'Open link',
+        'Sticker' => 'Sticker',
+        'Widget' => 'Widget',
+        'Note' => 'Note',
+        'Background' => 'Background',
     ],
 
     'helpers' => [
@@ -104,6 +121,7 @@ return [
         'change_username_description' => 'Sta deze gebruiker toe om zijn gebruikersnaam te wijzigen (binnen de client)',
         'change_password_description' => 'Laat leeg om het huidige wachtwoord te behouden',
         'badge_code_helper' => 'Voer de code in en klik op het vergrootglas naast het veld. Als het embleem bestaat, wordt het automatisch ingevuld.',
+        'home_item_limit_helper' => 'Buy limit for this item. Leave blank for unlimited.',
     ],
 
     'tabs' => [
@@ -179,6 +197,9 @@ return [
         'badge_title' => 'Embleem titel',
         'badge_description' => 'Embleem beschrijving',
         'badge_image' => 'Embleem afbeelding',
+        'price' => 'Price',
+        'currency_type' => 'Currency Type',
+        'limit' => 'Limit',
     ],
 
     'columns' => [
@@ -217,6 +238,7 @@ return [
         'online_time' => 'Online Tijd',
         'can_trade' => 'Kan Handelen?',
         'can_change_name' => 'Kan Naam Wijzigen?',
+        'price' => 'Price',
     ],
 
     'notifications' => [

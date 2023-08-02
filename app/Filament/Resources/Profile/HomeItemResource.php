@@ -62,7 +62,7 @@ class HomeItemResource extends Resource
                 ->required(),
 
             Select::make('home_category_id')
-                ->label(__('filament::resources.inputs.home_category_id'))
+                ->label(__('filament::resources.inputs.category'))
                 ->relationship('homeCategory', 'name')
                 ->hidden(fn (\Closure $get) => $get('type') != 's')
                 ->nullable(),
