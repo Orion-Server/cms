@@ -11,7 +11,7 @@
         id="referral-link"
         :small="true"
         default-value="{{ route('register', ['referral' => \Auth::user()->referral_code]) }}"
-        :disabled="true"
+        :readonly="true"
     />
     <span class="text-slate-400 text-xs mt-1">
         {{ __('Share the link above to receive great prizes when your friends register.') }}
@@ -20,25 +20,31 @@
         {!! __('You still need to invite :m to collect the next reward.', ['m' => '<span class="text-blue-500 dark:text-blue-400">5 users</span>']) !!}
     </span>
     <div class="flex items-center justify-end gap-3 mt-2" x-data="{
-        copyLink(event) {
-            const buttonContent = event.target.innerHTML
+        init() {
+            const clipboard = new ClipboardJS('.trigger-button');
 
-            if(!navigator?.clipboard) {
-                console.error('{{ __('[Referral Link] Clipboard API is not supported') }}')
-                return
-            }
+            clipboard.on('success', function (e) {
+                e.clearSelection()
 
-            navigator.clipboard.writeText(document.getElementById('referral-link').value)
-            event.target.innerHTML = '{{ __('Successful!') }}'
+                const button = e.trigger
 
-            setTimeout(() => event.target.innerHTML = buttonContent, 2000)
+                if(!button) return
+
+                button.classList.add('!bg-green-400', '!border-green-600', '!text-white')
+                button.classList.remove('bg-blue-400', 'border-blue-600', 'text-white')
+
+                setTimeout(() => {
+                    button.classList.add('bg-blue-400', 'border-blue-600', 'text-white')
+                    button.classList.remove('!bg-green-400', '!border-green-600', '!text-white')
+                }, 2000);
+            });
         }
     }">
         <div class="border-t border-gray-300 dark:border-slate-700 flex-auto"></div>
         <x-ui.buttons.default
-            class="bg-blue-400 hover:bg-blue-500 text-white border-blue-600 rounded-lg"
+            class="trigger-button bg-blue-400 hover:bg-blue-500 text-white border-blue-600 rounded-lg"
             data-tippy
-            @click.debounce.500ms="copyLink"
+            data-clipboard-target="#referral-link"
             data-tippy-content="<small>{{ __('Click to copy the link') }}</small>"
         >
             <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>

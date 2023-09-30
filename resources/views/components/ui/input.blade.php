@@ -7,6 +7,7 @@
     'alpineModel' => null,
     'icon' => null,
     'disabled' => false,
+    'readonly' => false,
     'defaultValue' => null,
     'small' => false,
     'id' => null,
@@ -35,6 +36,7 @@
     @if($id) id="{{ $id }}" @endif
     @if($ref) x-ref="{{ $ref }}" @endif
     @disabled($disabled)
+    @readonly($readonly)
     @class([
         "bg-gray-50 font-semibold text-gray-700 focus:outline-none border-b-4 dark:border-gray-700 dark:text-white dark:bg-transparent border-gray-300 focus:border-blue-500 dark:focus:border-blue-500 border rounded-lg block w-full appearance-none",
         "py-2 px-4" => !$small,

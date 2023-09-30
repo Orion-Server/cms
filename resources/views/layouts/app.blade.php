@@ -115,6 +115,7 @@
 
     @include('layouts.footer')
     <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/clipboard.min.js') }}"></script>
     @vite(['resources/js/app.js'])
     @stack('scripts')
 </body>
