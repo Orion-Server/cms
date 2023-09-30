@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}" />
     @vite(['resources/scss/app.scss'])
+
+    @include('partials.js-translations')
 </head>
 <body
     class="bg-slate-900 bg-[url('/assets/images/maintenance-bg.png')] bg-no-repeat bg-[right_bottom_-1rem]"
