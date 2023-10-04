@@ -66,14 +66,19 @@ return [
             'plural' => 'Rozetler',
         ],
         'home-items' => [
-            'navigation_label' => 'Manage Home Items',
-            'label' => 'Home Item',
-            'plural' => 'Home Items',
+            'navigation_label' => 'Profil Öğelerini Yönet',
+            'label' => 'Profil Öğesi',
+            'plural' => 'Profil Öğeleri',
         ],
         'home-categories' => [
-            'navigation_label' => 'Manage Home Categories',
-            'label' => 'Home Category',
-            'plural' => 'Home Categories',
+            'navigation_label' => 'Profil Kategorilerini Yönet',
+            'label' => 'Profil Kategorisi',
+            'plural' => 'Profil Kategorileri',
+        ],
+        'navigations' => [
+            'navigation_label' => 'Menüleri Yönet',
+            'label' => 'Menü',
+            'plural' => 'Menüler',
         ],
 
         // Relations
@@ -200,6 +205,10 @@ return [
         'price' => 'Price',
         'currency_type' => 'Currency Type',
         'limit' => 'Limit',
+        'slug' => 'Slug',
+        'order' => 'Order',
+        'new_tab' => 'New Tab',
+        'label' => 'Label',
     ],
 
     'columns' => [
@@ -239,6 +248,8 @@ return [
         'can_trade' => 'Takas Yapabilir mi?',
         'can_change_name' => 'İsim Değiştirebilir mi?',
         'price' => 'Price',
+        'slug' => 'Slug',
+        'new_tab' => 'New Tab'
     ],
 
     'notifications' => [

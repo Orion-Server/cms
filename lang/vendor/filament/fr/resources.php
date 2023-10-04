@@ -75,6 +75,11 @@ return [
             'label' => 'Home Category',
             'plural' => 'Home Categories',
         ],
+        'navigations' => [
+            'navigation_label' => 'Gérer les menus',
+            'label' => 'Menu',
+            'plural' => 'Menus',
+        ],
 
         // Relations
         'settings' => [
@@ -200,6 +205,10 @@ return [
         'price' => 'Price',
         'currency_type' => 'Currency Type',
         'limit' => 'Limit',
+        'slug' => 'Slug',
+        'order' => 'Order',
+        'new_tab' => 'New Tab',
+        'label' => 'Label',
     ],
 
     'columns' => [
@@ -239,6 +248,8 @@ return [
         'can_trade' => 'Peut échanger',
         'can_change_name' => 'Peut changer de nom',
         'price' => 'Price',
+        'slug' => 'Slug',
+        'new_tab' => 'New Tab',
     ],
 
     'notifications' => [

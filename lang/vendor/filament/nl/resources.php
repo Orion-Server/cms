@@ -66,14 +66,19 @@ return [
             'plural' => 'Badges',
         ],
         'home-items' => [
-            'navigation_label' => 'Manage Home Items',
+            'navigation_label' => 'Beheer Home Items',
             'label' => 'Home Item',
             'plural' => 'Home Items',
         ],
         'home-categories' => [
-            'navigation_label' => 'Manage Home Categories',
-            'label' => 'Home Category',
-            'plural' => 'Home Categories',
+            'navigation_label' => 'Beheer Home Categorieën',
+            'label' => 'Home Categorie',
+            'plural' => 'Home Categorieën',
+        ],
+        'navigations' => [
+            'navigation_label' => 'Beheer Navigaties',
+            'label' => 'Navigatie',
+            'plural' => 'Navigaties',
         ],
 
         // Relations
@@ -200,6 +205,10 @@ return [
         'price' => 'Price',
         'currency_type' => 'Currency Type',
         'limit' => 'Limit',
+        'slug' => 'Slug',
+        'order' => 'Order',
+        'new_tab' => 'New Tab',
+        'label' => 'Label',
     ],
 
     'columns' => [
@@ -239,6 +248,8 @@ return [
         'can_trade' => 'Kan Handelen?',
         'can_change_name' => 'Kan Naam Wijzigen?',
         'price' => 'Price',
+        'slug' => 'Slug',
+        'new_tab' => 'New Tab',
     ],
 
     'notifications' => [
