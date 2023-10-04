@@ -68,6 +68,7 @@ class SubNavigationsRelationManager extends RelationManager
                 TextColumn::make('order')
                     ->label(__('filament::resources.columns.order'))
             ])
+            ->reorderable('order')
             ->filters([
                 //
             ])
