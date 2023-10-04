@@ -26,6 +26,7 @@ class UserSetting extends Model
         return UserSetting::query()
             ->select(['user_id', "{$rankingType} as value"])
             ->whereNotIn('user_id', $excluseUsersId)
+            ->whereHas('user')
             ->orderByDesc($rankingType)
             ->limit($limit)
             ->with(['user:id,username,look']);

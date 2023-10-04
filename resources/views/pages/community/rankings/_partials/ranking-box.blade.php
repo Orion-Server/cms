@@ -27,7 +27,7 @@
                     <div class="w-14 h-full overflow-hidden flex items-center justify-center group-first:rounded-tl-lg group-last:rounded-bl-lg">
                         <div
                             class="w-[54px] h-14 bg-center bg-no-repeat"
-                            style="background-image: url('{{ $getUser($ranking)?->figure_path }}&direction=3&head_direction=2&size=m&headonly=1')"
+                            style="background-image: url('{{ $getUser($ranking)->figure_path }}&direction=3&head_direction=2&size=m&headonly=1')"
                         ></div>
                     </div>
                     <div class="w-full h-auto flex divide-x dark:divide-slate-700 overflow-hidden">
@@ -46,7 +46,7 @@
                                 "bg-amber-500" => $index == 2,
                                 "!text-slate-800 dark:!text-slate-200" => $index > 2,
                             ])>{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
-                            {{ $getUser($ranking)?->username }}
+                            {{ $getUser($ranking)->username }}
                         </a>
                         <div class="w-1/3 h-full flex text-sm font-bold justify-center items-center dark:text-slate-200">
                             {{ $icon != 'online-time'

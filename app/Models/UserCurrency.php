@@ -27,6 +27,7 @@ class UserCurrency extends Model
         $query = UserCurrency::query()
             ->whereType($currency->value)
             ->select(['user_id', 'amount as value'])
+            ->whereHas('user')
             ->orderByDesc('amount')
             ->limit($limit)
             ->with(['user:id,username,look']);
