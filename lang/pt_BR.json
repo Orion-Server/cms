@@ -245,5 +245,8 @@
     "Unable to delete item": "Não foi possível excluir o item",
     "This item is currently in use by one or more users.": "Este item está atualmente em uso por um ou mais usuários.",
     "Unable to delete category": "Não foi possível excluir a categoria",
-    "This category is currently in use by one or more items.": "Esta categoria está atualmente em uso por um ou mais itens."
+    "This category is currently in use by one or more items.": "Esta categoria está atualmente em uso por um ou mais itens.",
+    "Flash client is disabled.": "O cliente Flash está desativado.",
+    "Nitro client is disabled.": "O cliente Nitro está desativado.",
+    "Your browser does not support Flash.": "Seu navegador não suporta Flash."
 }

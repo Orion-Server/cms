@@ -2,9 +2,7 @@ const frame = document.querySelector("iframe#nitro-client");
 
 window.FlashExternalInterface = {
     disconnect: () => {
-        document.dispatchEvent(
-            new Event("nitro:disconnect")
-        )
+        document.dispatchEvent(new Event("nitro:disconnect"))
     },
 };
 
@@ -18,7 +16,9 @@ if (frame && frame.contentWindow) {
 
         if (!ev.data.startsWith(legacyInterface)) return
 
-        const { method, params } = JSON.parse(ev.data.substring(legacyInterface.length))
+        const { method, params } = JSON.parse(
+            ev.data.substring(legacyInterface.length)
+        )
 
         if (!("FlashExternalInterface" in window)) return
 

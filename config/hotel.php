@@ -56,7 +56,9 @@ return [
      * Client configurations
      */
     'client' => [
+        // Nitro configurations
         'nitro' => [
+            'enabled' => !! env('NITRO_ENABLED', true),
             'cms_toggle_button' => true,
             'online_count_button' => true,
 
@@ -67,8 +69,36 @@ return [
             'relative_files_path' => env('NITRO_FILES_RELATIVE_PATH', null)
         ],
 
+        // Flash configurations
         'flash' => [
-            'relative_files_path' => env('FLASH_FILES_RELATIVE_PATH', null)
+            'enabled' => !! env('FLASH_ENABLED', true),
+            'cms_toggle_button' => true,
+            'online_count_button' => true,
+
+            'emulator_host' => env('EMULATOR_HOST', null),
+            'emulator_port' => env('EMULATOR_PORT', null),
+
+            'relative_files_path' => env('FLASH_FILES_RELATIVE_PATH', null),
+
+            'loading_phrases' => [
+                "When you least expect it... we'll finish loading...",
+                'Loading fun message! Please wait.',
+                'Follow the yellow duck.',
+                'Look to one side. Look at each other. Blink twice. Ready!',
+                'Loading the pixel universe.',
+            ],
+
+            'external_files' => [
+                'flash_production' => env('FLASH_PRODUCTION'),
+                'flash_furnidata' => env('FLASH_FURNIDATA'),
+                'flash_figuremap' => env('FLASH_FIGUREMAP'),
+                'flash_figuredata' => env('FLASH_FIGUREDATA'),
+                'flash_productdata' => env('FLASH_PRODUCTDATA'),
+                'flash_external_variables' => env('FLASH_EXTERNAL_VARIABLES'),
+                'flash_external_flash_texts' => env('FLASH_EXTERNAL_FLASH_TEXTS'),
+                'flash_external_override_variables' => env('FLASH_EXTERNAL_OVERRIDE_VARIABLES'),
+                'flash_external_flash_override_texts' => env('FLASH_EXTERNAL_FLASH_OVERRIDE_TEXTS'),
+            ]
         ]
     ]
 ];

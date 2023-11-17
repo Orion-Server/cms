@@ -45,6 +45,8 @@ class AppServiceProvider extends ServiceProvider
     private function bootGlobalViewVariables(): void
     {
         View::share('fromClient', request()->has('fromClient'));
+        View::share('unsupportedFlashClient', request()->has('unsupported_flash'));
+
         View::share('availableLanguages', config('hotel.cms.available_languages'));
         View::share('articleReactions', collect(ArticleReactionType::cases()));
     }

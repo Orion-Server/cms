@@ -1,4 +1,6 @@
+@php($showCmsToggleButton = config('hotel.client.nitro.cms_toggle_button'))
 @php($showOnlineCountButton = config('hotel.client.nitro.online_count_button'))
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +21,7 @@
 >
     <main>
         <div class="fixed z-50 top-0 left-0 pl-2 pt-2 h-12 flex gap-2">
-            @if (config('hotel.client.nitro.cms_toggle_button'))
+            @if ($showCmsToggleButton)
             <x-ui.buttons.default
                 class="dark:bg-orange-500 bg-orange-500 border-orange-700 hover:bg-orange-400 dark:hover:bg-orange-400 dark:shadow-orange-700/75 shadow-orange-600/75 py-2 text-white"
                 @click="toggleCms"
@@ -63,7 +65,7 @@
             ></iframe>
         </div>
 
-        @if (config('hotel.client.nitro.cms_toggle_button'))
+        @if ($showCmsToggleButton)
         <div
             x-show="showCmsFrame"
             style="display: none"

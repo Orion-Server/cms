@@ -70,6 +70,8 @@ export default class WebManager {
 
             NotyfWrapper.alert(type, message, duration)
         })
+
+        window.notyf = NotyfWrapper
     }
 
     static startSliders() {

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\{
     WebController,
     JailController,
@@ -47,6 +48,10 @@ Route::prefix('hotel')
     ->middleware('auth')
     ->group(function () {
         Route::get('nitro', [ClientController::class, 'nitro'])->name('nitro');
+        Route::get('flash', [ClientController::class, 'flash'])->name('flash');
+        Route::post('client-errors', [ClientController::class, 'clientErrors'])
+            ->name('client-errors')
+            ->withoutMiddleware(VerifyCsrfToken::class);
 
         Route::prefix('rcon')
             ->name('rcon.')

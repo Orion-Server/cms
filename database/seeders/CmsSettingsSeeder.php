@@ -170,6 +170,11 @@ class CmsSettingsSeeder extends Seeder
                 'group_badges_path',
                 'https://images.habbo.com/c_images/groups/',
                 'The base URL to render the group badges on the CMS'
+            ],
+            [
+                'min_rank_to_view_client_errors',
+                '7',
+                'The minimum rank to visualize client errors'
             ]
         ];
     }
