@@ -48,12 +48,10 @@ class ClientController extends Controller
             return redirect()->route('index');
         }
 
-        $errorCategory = $request->input('error_cat');
-        $errorDescription = $request->input('error_desc');
-
         return response()->json([
-            'category' => $errorCategory,
-            'description' => $errorDescription
+            'flash_version' => $request->input('flash_version'),
+            'system' => $request->input('system'),
+            'description' => $request->input('error_desc'),
         ]);
     }
 }
