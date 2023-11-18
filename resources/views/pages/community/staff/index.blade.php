@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', __('Staff Team'))
+
 @php($boxes = ['Orion Staff', 'Subscriptions', 'Identifications'])
 @php($icons = ['hotel', 'comment', 'articles'])
 

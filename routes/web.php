@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\{
+    AboutController,
     WebController,
     JailController,
     ClientController,
@@ -132,4 +133,11 @@ Route::prefix('support')
                 Route::get('category/{slug}', [HelpQuestionController::class, 'category'])->name('categories.show');
                 Route::get('{id}/{slug}', [HelpQuestionController::class, 'show'])->name('show');
             });
+    });
+
+Route::prefix('about')
+    ->name('about.')
+    ->group(function() {
+        Route::get('discord', [AboutController::class, 'discordInvite'])->name('discord');
+        Route::get('safety', [AboutController::class, 'safety'])->name('safety');
     });

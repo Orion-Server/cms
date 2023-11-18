@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Question: ' . $question->title)
+@section('title', __('Question: :title', ['title' => $question->title]))
 
 @section('content')
     <x-container class="mt-10 flex flex-col gap-8">

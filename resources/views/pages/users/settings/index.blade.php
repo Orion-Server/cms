@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', __('My Settings'))
+
 @section('content')
 <x-container>
     <div class="w-full h-auto relative flex justify-start flex-col lg:flex-row items-start gap-6">

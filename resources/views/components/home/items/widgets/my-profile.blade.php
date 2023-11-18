@@ -15,7 +15,7 @@
 <div class="mt-1 block">
     <span class="my-1 text-xs block">{{ $user->motto }}</span>
     <div class="border border-white bg-neutral-300/50 p-1">
-        No tags found
+        {{ __('No tags found') }}
     </div>
     @if(Auth::check() && $user->id == Auth::id())
     <div class="mt-1 space-y-1 block">

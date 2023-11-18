@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $user ? 'Profile of ' . $user->username : __('User not found.'))
+@section('title', $user ? __('Profile of :u', ['u' => $user->username]) : __('User not found.'))
 
 @section('content')
     <x-container @class([

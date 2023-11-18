@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Help Questions')
+@section('title', __('Help Questions'))
 
 @php($hasSearch = request()->has('search'))
 

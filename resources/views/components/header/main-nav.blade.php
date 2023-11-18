@@ -35,7 +35,7 @@
 
                             @unless ($navigation->subNavigations->isEmpty())
                                 <div class="absolute left-0 top-full min-w-full w-auto dark:bg-slate-950 bg-white shadow-lg border-b-2 border-gray-200 dark:border-slate-800 rounded-b-md z-[1]"
-                                    x-transition.origin.top.left
+                                    x-transition.origin.top.center
                                     x-show="showSubmenuId == {{ $navigation->id }}"
                                     style="display: none"
                                 >
@@ -44,7 +44,7 @@
                                             <a @if($subItem->new_tab) target="_blank" @endif href="{{ $subItem->slug }}" class="flex items-center gap-1 px-4 py-3 hover:text-blue-600 dark:hover:text-blue-400 w-full">
                                                 <span>{{ $subItem->label }}</span>
                                                 @if($subItem->new_tab)
-                                                    <i class="fa-solid fa-up-right-from-square text-blue-300 text-[0.7rem]" data-tippy data-tippy-content="<small>{{ __('Opened in a new tab') }}</small>" data-tippy-placement="bottom"></i>
+                                                    <i class="fa-solid fa-up-right-from-square text-blue-300 text-[0.7rem] ml-1" data-tippy data-tippy-content="<small>{{ __('Opened in a new tab') }}</small>" data-tippy-placement="bottom"></i>
                                                 @endif
                                             </a>
                                         @endforeach

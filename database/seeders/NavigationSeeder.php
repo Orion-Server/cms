@@ -18,7 +18,7 @@ class NavigationSeeder extends Seeder
             tap(Navigation::updateOrCreate(
                 array_merge(['label' => $navigationName], $navigation['data'])
             ), function($navInstance) use ($navigation) {
-                foreach($navigation['subNavigations'] as $key => $subNavigationName) {
+                foreach($navigation['subNavigations'] as $label => $subNavigationName) {
                     if(is_string($subNavigationName)) {
                         $navInstance->subNavigations()->updateOrCreate(['label' => $subNavigationName]);
                         continue;
@@ -26,8 +26,9 @@ class NavigationSeeder extends Seeder
 
                     $navInstance->subNavigations()
                         ->updateOrCreate([
-                            'label' => $key,
+                            'label' => $label,
                             'slug' => $subNavigationName['slug'] ?? null,
+                            'new_tab' => $subNavigationName['newTab'] ?? false,
                         ]);
                 }
             });
@@ -44,32 +45,26 @@ class NavigationSeeder extends Seeder
             'Community' => [
                 'data' => $this->makeNavigationData('/community', 'https://i.imgur.com/dTeCegt.png', 1),
                 'subNavigations' => [
+                    'Articles' => ['slug' => '/articles'],
                     'Staff' => ['slug' => '/community/staff'],
-                    'Rankings' => ['slug' => '/community/rankings'],
                     'Photos' => ['slug' => '/community/photos']
                 ]
             ],
-            'Forum' => [
-                'data' => $this->makeNavigationData('/forum', 'https://i.imgur.com/Z0eWGl7.gif', 2),
-                'subNavigations' => [
-                    'Access',
-                    'Rules',
-                    'Achievements',
-                    'Rankings',
-                    'Levels'
-                ]
-            ],
-            'Shop' => [
-                'data' => $this->makeNavigationData('/shop', 'https://i.imgur.com/6Z1Noci.gif', 3),
+            'Leaderboards' => [
+                'data' => $this->makeNavigationData('/community/rankings', 'https://imgur.com/NiNsGW4.png', 2),
                 'subNavigations' => [],
             ],
-            'Radio' => [
-                'data' => $this->makeNavigationData('/radio', 'https://i.imgur.com/S1nUekx.gif', 4),
+            'About' => [
+                'data' => $this->makeNavigationData('/about', 'https://imgur.com/AdmVS6p.png', 3),
                 'subNavigations' => [
-                    'Schedules',
-                    'Join Us'
-                ]
-            ]
+                    'Discord' => ['slug' => '/about/discord', 'newTab' => true],
+                    'Safety' => ['slug' => '/about/safety', 'newTab' => true],
+                ],
+            ],
+            'Shop' => [
+                'data' => $this->makeNavigationData('/shop', 'https://i.imgur.com/6Z1Noci.gif', 4),
+                'subNavigations' => [],
+            ],
         ];
     }
 
