@@ -86,7 +86,7 @@
                                 <span class="w-auto absolute bottom-2 left-2 flex gap-2 justify-start items-center text-slate-700 max-h-[45px] overflow-hidden dark:text-slate-400 text-xs">
                                     <div
                                             class="w-auto pr-3 max-w-[100px] h-[30px] bg-start pl-8 flex items-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900"
-                                            style="background-image: url('{{ getFigureUrl($photo->userd?->look, 'direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1') }}')"
+                                            style="background-image: url('{{ getFigureUrl($photo->user?->look, 'direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1') }}')"
                                     >
                                         <a class="underline underline-offset-2 hover:text-blue-400" href="{{ $photo->user ? route('users.profile.show', $photo->user->username) : '#' }}">{{ $photo->user->username ?? 'System' }}</a>
                                     </div>
