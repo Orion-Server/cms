@@ -7,10 +7,11 @@ class AccountSettings {
     }
 
     _startComponent() {
-        Alpine.data('accountSettings', (route, email, referral_code) => ({
+        Alpine.data('accountSettings', (route, email, referral_code, avatar_background) => ({
             data: {
                 email,
                 referral_code,
+                avatar_background
             },
             loading: false,
 

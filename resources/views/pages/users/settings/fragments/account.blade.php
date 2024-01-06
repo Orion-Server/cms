@@ -4,7 +4,7 @@
 />
 
 <div
-    x-data="accountSettings('{{ route('users.settings.index', 'account') }}', '{{ $user->mail }}', '{{ $user->referral_code }}')"
+    x-data="accountSettings('{{ route('users.settings.index', 'account') }}', '{{ $user->mail }}', '{{ $user->referral_code }}', '{{ $user->avatar_background }}')"
 >
     <form
         class="mt-4 bg-white dark:bg-slate-950 border-b-2 border-gray-300 dark:border-gray-800 rounded-lg p-4 flex flex-col gap-6 shadow-lg"
@@ -40,6 +40,21 @@
             />
             <small class="text-slate-500">
                 {{ __('Customize your referral code above. This is the code that you can share with your friends and family to earn rewards.') }}
+            </small>
+        </div>
+
+        <div class="flex flex-col gap-1">
+            <x-ui.input
+                label="{{ __('Avatar Background') }}"
+                id="referral-code"
+                icon="fa-solid fa-user-plus"
+                alpine-model="data.avatar_background"
+                name="avatar_background"
+                placeholder="{{ __('Avatar Background') }}"
+                type="text"
+            />
+            <small class="text-slate-500 border-l-4 border-red-400 pl-2">
+                {{ __('Any image that violates hotel standards or respect for others will be deleted and you will be punished.') }}
             </small>
         </div>
 

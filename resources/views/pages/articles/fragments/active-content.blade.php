@@ -20,7 +20,7 @@
                 "rounded-lg w-22 h-22 absolute border-4 shadow-inner bg-cover bg-center bg-no-repeat -bottom-8 lg:-bottom-10 left-0",
                 "border-blue-300 shadow-blue-500" => true,
                 "border-pink-300 shadow-pink-500" => false
-            ]) style="background-image: url('{{ asset('assets/images/user-box-bg.gif') }}')">
+            ]) style="background-image: url('{{ $activeArticle->user->getAvatarBackground() }}')">
                 <div class="w-[64px] h-[110px] absolute bottom-2 left-2" style="background-image: url('{{ getFigureUrl($activeArticle->user->look, 'direction=2&head_direction=2&size=m&gesture=sml') }}')"></div>
             </div>
             <a

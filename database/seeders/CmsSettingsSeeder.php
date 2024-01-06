@@ -175,6 +175,11 @@ class CmsSettingsSeeder extends Seeder
                 'min_rank_to_view_client_errors',
                 '7',
                 'The minimum rank to visualize client errors'
+            ],
+            [
+                'default_avatar_background',
+                'https://i.imgur.com/wP1rnDY.gif',
+                'The default avatar background to show on the CMS'
             ]
         ];
     }

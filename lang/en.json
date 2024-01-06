@@ -286,5 +286,7 @@
     ":username does not have any rooms yet.": ":username does not have any rooms yet.",
     ":username hasn't received any messages yet.": ":username hasn't received any messages yet.",
     ":username does not have any badges yet.": ":username does not have any badges yet.",
-    ":username does not have any friends yet.": ":username does not have any friends yet."
+    ":username does not have any friends yet.": ":username does not have any friends yet.",
+    "Any image that violates hotel standards or respect for others will be deleted and you will be punished.": "Any image that violates hotel standards or respect for others will be deleted and you will be punished.",
+    "Avatar Background": "Avatar Background"
 }

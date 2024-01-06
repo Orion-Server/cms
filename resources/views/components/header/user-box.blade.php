@@ -92,7 +92,7 @@
             </div>
         </div>
         <div class="w-1/4 h-full p-1">
-            <div class="w-full relative rounded-lg h-full bg-right-bottom bg-no-repeat" style="background-image: url('{{ asset('assets/images/user-box-bg.gif') }}')">
+            <div class="w-full relative rounded-lg h-full bg-right-bottom bg-no-repeat" style="background-image: url('{{ \Auth::user()?->getAvatarBackground() ?? getSetting('default_avatar_background') }}')">
                 <div class="absolute -bottom-6 right-2 w-[73px] h-[57px] bg-center bg-no-repeat" style="background-image: url('{{ asset('assets/images/stage.png') }}')"></div>
                 <div
                     class="absolute -bottom-4 right-2 w-[64px] h-[110px] bg-center bg-no-repeat"

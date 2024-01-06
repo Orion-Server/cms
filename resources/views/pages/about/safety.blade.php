@@ -13,7 +13,7 @@
             </span>
 
             <div class="mt-8 border-t-4 dark:border-slate-700 flex flex-col w-full">
-                <div class="py-8 flex border-b-4 border-dotted">
+                <div class="py-8 flex border-b-4 border-dotted dark:border-slate-800">
                     <img width="210" src="https://imgur.com/2e70Iz3.png" alt="personal_info" />
                     <div class="flex flex-col gap-4 pl-4 h-full">
                         <span class="text-xl font-extrabold text-slate-700 dark:text-slate-100 uppercase">
@@ -24,7 +24,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="py-8 flex border-b-4 border-dotted">
+                <div class="py-8 flex border-b-4 border-dotted dark:border-slate-800">
                     <div class="flex flex-col gap-4 pl-4 h-full">
                         <span class="text-xl font-extrabold text-slate-700 dark:text-slate-100 uppercase">
                             <b class="text-green-500">2.</b> {{ __('Protect your privacy') }}
@@ -35,7 +35,7 @@
                     </div>
                     <img width="210" src="https://imgur.com/epPGwWb.png" alt="privacy_safety" />
                 </div>
-                <div class="py-8 flex border-b-4 border-dotted">
+                <div class="py-8 flex border-b-4 border-dotted dark:border-slate-800">
                     <img width="190" src="https://imgur.com/mjRlc1T.png" alt="pressure_safety" />
                     <div class="flex flex-col gap-4 pl-4 h-full">
                         <span class="text-xl font-extrabold text-slate-700 dark:text-slate-100 uppercase">
@@ -46,7 +46,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="py-8 flex border-b-4 border-dotted">
+                <div class="py-8 flex border-b-4 border-dotted dark:border-slate-800">
                     <div class="flex flex-col gap-4 pl-4 h-full">
                         <span class="text-xl font-extrabold text-slate-700 dark:text-slate-100 uppercase">
                             <b class="text-green-500">4.</b> {{ __("Keep Your Pals In Pixels") }}
@@ -57,7 +57,7 @@
                     </div>
                     <img width="200" src="https://imgur.com/m8lDyZz.png" alt="pixels_friends" />
                 </div>
-                <div class="py-8 flex border-b-4 border-dotted">
+                <div class="py-8 flex border-b-4 border-dotted dark:border-slate-800">
                     <img width="199" src="https://imgur.com/EWpJi1O.png" alt="speak_up" />
                     <div class="flex flex-col gap-4 pl-4 h-full">
                         <span class="text-xl font-extrabold text-slate-700 dark:text-slate-100 uppercase">
@@ -68,7 +68,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="py-8 flex border-b-4 border-dotted">
+                <div class="py-8 flex border-b-4 border-dotted dark:border-slate-800">
                     <div class="flex flex-col gap-4 pl-4 h-full">
                         <span class="text-xl font-extrabold text-slate-700 dark:text-slate-100 uppercase">
                             <b class="text-green-500">6.</b> {{ __("Ban The Cam") }}

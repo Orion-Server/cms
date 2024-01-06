@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\{
     Casts\Attribute,
@@ -29,7 +28,6 @@ use Filament\Models\Contracts\{
     FilamentUser,
     HasAvatar
 };
-use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
 {
@@ -58,7 +56,8 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         'auth_ticket',
         'gender',
         'referral_code',
-        'referrer_code'
+        'referrer_code',
+        'avatar_background'
     ];
 
     /**
@@ -224,5 +223,14 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         return new Attribute(
             get: fn() => getSetting('figure_imager') . $this->look
         );
+    }
+
+    public function getAvatarBackground(): string
+    {
+        if(! empty($this->avatar_background)) {
+            return $this->avatar_background;
+        }
+
+        return getSetting('default_avatar_background');
     }
 }

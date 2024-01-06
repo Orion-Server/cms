@@ -83,7 +83,7 @@ class Article extends Model
     public static function forIndex(int $limit): Builder
     {
         return Article::valid()
-            ->with(['user:id,username,look'])
+            ->with(['user:id,username,look,avatar_background'])
             ->select(['id', 'user_id', 'title', 'slug', 'is_promotion', 'image', 'description', 'promotion_ends_at', 'created_at', 'fixed'])
             ->limit($limit)
             ->latest();

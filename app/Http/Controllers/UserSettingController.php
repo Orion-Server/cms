@@ -47,11 +47,13 @@ class UserSettingController extends Controller
         $data = $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'mail')->ignore($user->id)],
             'referral_code' => ['nullable', 'string', 'between:3,15', Rule::unique('users', 'referral_code')->ignore($user->id)],
+            'avatar_background' => ['nullable', 'string', 'url', 'max:255']
         ]);
 
         $user->update([
             'mail' => $data['email'],
-            'referral_code' => $data['referral_code']
+            'referral_code' => $data['referral_code'],
+            'avatar_background' => $data['avatar_background']
         ]);
 
         return ['type' => 'success', 'message' => __('Your account settings has been updated!')];
