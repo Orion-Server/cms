@@ -47,7 +47,8 @@ class NavigationSeeder extends Seeder
                 'subNavigations' => [
                     'Articles' => ['slug' => '/articles'],
                     'Staff' => ['slug' => '/community/staff'],
-                    'Photos' => ['slug' => '/community/photos']
+                    'Photos' => ['slug' => '/community/photos'],
+                    'Teams' => ['slug' => '/community/teams'],
                 ]
             ],
             'Leaderboards' => [

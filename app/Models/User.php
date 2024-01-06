@@ -21,7 +21,8 @@ use App\Models\Compositions\User\{
 };
 use Illuminate\Database\Eloquent\Relations\{
     HasMany,
-    BelongsTo
+    BelongsTo,
+    HasOne
 };
 use Filament\Models\Contracts\{
     HasName,
@@ -57,7 +58,8 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         'gender',
         'referral_code',
         'referrer_code',
-        'avatar_background'
+        'avatar_background',
+        'team_id'
     ];
 
     /**
@@ -196,6 +198,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     public function permission(): BelongsTo
     {
         return $this->belongsTo(Permission::class, 'rank');
+    }
+
+    public function team(): HasOne
+    {
+        return $this->hasOne(Team::class);
     }
 
     public function photoLikes(): HasMany

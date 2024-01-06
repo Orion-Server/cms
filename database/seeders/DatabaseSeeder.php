@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             NavigationSeeder::class,
             CmsSettingsSeeder::class,
             HomeCategorySeeder::class,
-            HomeItemSeeder::class
+            HomeItemSeeder::class,
+            TeamSeeder::class
         ]);
     }
 }

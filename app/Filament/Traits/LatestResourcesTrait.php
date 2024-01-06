@@ -8,6 +8,10 @@ trait LatestResourcesTrait
 {
     protected function getTableQuery(): Builder
     {
+        if($this->isTableReordering()) {
+            return parent::getTableQuery();
+        }
+
         $primaryKey = 'id';
 
         if(method_exists(static::class, 'getPrimaryKey')) {

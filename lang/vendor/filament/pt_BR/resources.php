@@ -80,6 +80,11 @@ return [
             'label' => 'Menu',
             'plural' => 'Menus',
         ],
+        'teams' => [
+            'navigation_label' => 'Gerenciar Equipes',
+            'label' => 'Equipe',
+            'plural' => 'Equipes',
+        ],
 
         // Relations
         'settings' => [
@@ -209,6 +214,8 @@ return [
         'order' => 'Ordem',
         'new_tab' => 'Abrir em nova aba',
         'label' => 'Nome',
+        'team_id' => 'Equipe',
+        'is_hidden' => 'Oculto?',
     ],
 
     'columns' => [
