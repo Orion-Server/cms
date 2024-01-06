@@ -209,6 +209,7 @@ return [
         'order' => 'Ordem',
         'new_tab' => 'Abrir em nova aba',
         'label' => 'Nome',
+        'team_id' => 'Equipe',
     ],
 
     'columns' => [

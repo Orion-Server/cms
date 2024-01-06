@@ -288,5 +288,6 @@
     ":username does not have any badges yet.": ":username ainda não tem nenhum emblema.",
     ":username does not have any friends yet.": ":username ainda não tem nenhum amigo.",
     "Any image that violates hotel standards or respect for others will be deleted and you will be punished.": "Qualquer imagem que viole os padrões do hotel ou o respeito pelos outros será excluída e você será punido.",
-    "Avatar Background": "Fundo do Avatar"
+    "Avatar Background": "Fundo do Avatar",
+    "No user found for this team.": "Nenhum usuário encontrado nessa equipe."
 }

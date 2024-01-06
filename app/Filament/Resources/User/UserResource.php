@@ -25,6 +25,7 @@ use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Tables\Columns\UserAvatarColumn;
 use App\Filament\Resources\User\UserResource\Pages;
 use App\Filament\Resources\User\UserResource\RelationManagers;
+use App\Models\Team;
 
 class UserResource extends Resource
 {
@@ -102,6 +103,11 @@ class UserResource extends Resource
                                     ->label(__('filament::resources.inputs.referrer_code'))
                                     ->nullable()
                                     ->maxLength(15),
+
+                                Select::make('team_id')
+                                    ->label(__('filament::resources.inputs.team_id'))
+                                    ->options(Team::all()->pluck('name', 'id'))
+                                    ->columnSpanFull()
                             ])->columns(['sm' => 2]),
 
                         Tab::make(__('filament::resources.tabs.Currencies'))

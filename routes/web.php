@@ -19,7 +19,8 @@ use App\Http\Controllers\{
     UserProfileController,
     Profile\RatingController as UserHomeRatingController,
     Profile\MessageController as UserHomeMessageController,
-    Profile\ItemController as UserHomeItemController
+    Profile\ItemController as UserHomeItemController,
+    TeamController
 };
 
 /*
@@ -92,6 +93,8 @@ Route::prefix('community')
         Route::get('staff', [StaffController::class, 'index'])->name('staffs.index');
         Route::get('rankings', RankingController::class)
             ->name('rankings.index');
+
+        Route::get('teams', [TeamController::class, 'index'])->name('teams.index');
     });
 
 Route::name('users.')
