@@ -28,7 +28,7 @@ class Team extends Model
             ->with([
                 'users:id,username,look,rank,online,team_id',
                 'users.activeBadges'
-            ])->orderByDesc('order')
+            ])->orderBy('order')
             ->get();
     }
 

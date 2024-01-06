@@ -8,7 +8,7 @@ return [
         'Help Center' => 'Help Center',
         'Administration' => 'Administration',
         'User Management' => 'User Management',
-        'Profile Management' => 'Profile Management',
+        'Profile Management' => 'Profile Management'
     ],
 
     'resources' => [
@@ -79,6 +79,11 @@ return [
             'navigation_label' => 'Manage Navigation',
             'label' => 'Navigation',
             'plural' => 'Navigations',
+        ],
+        'teams' => [
+            'navigation_label' => 'Manage Teams',
+            'label' => 'Team',
+            'plural' => 'Teams',
         ],
 
         // Relations
@@ -210,6 +215,7 @@ return [
         'new_tab' => 'New Tab',
         'label' => 'Label',
         'team_id' => 'Team',
+        'is_hidden' => 'Is Hidden?',
     ],
 
     'columns' => [

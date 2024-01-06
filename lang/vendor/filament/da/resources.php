@@ -80,6 +80,11 @@ return [
             'label' => 'Navigation',
             'plural' => 'Navigations',
         ],
+        'teams' => [
+            'navigation_label' => 'Manage Teams',
+            'label' => 'Team',
+            'plural' => 'Teams',
+        ],
 
         // Relations
         'settings' => [
@@ -210,6 +215,7 @@ return [
         'new_tab' => 'New Tab',
         'label' => 'Label',
         'team_id' => 'Team',
+        'is_hidden' => 'Skjult?',
     ],
 
     'columns' => [
