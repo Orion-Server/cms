@@ -6,6 +6,7 @@
 /public/storage
 /public/nitro
 /storage/*.key
+/public/build
 /vendor
 .env
 .env.backup
