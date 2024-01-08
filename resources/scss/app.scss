@@ -38,6 +38,10 @@ header {
     background-image: url('/assets/images/background.webp')
 }
 
+body.shop {
+    background: url('https://i.imgur.com/syUeW7n.png'), theme('colors.slate.900');
+}
+
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
 * {

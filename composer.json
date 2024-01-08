@@ -12,7 +12,8 @@
         "laravel/fortify": "^1.17",
         "laravel/framework": "^10.8",
         "laravel/sanctum": "^3.2",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "srmklive/paypal": "~3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",

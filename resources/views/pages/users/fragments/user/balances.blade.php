@@ -1,3 +1,7 @@
+@props([
+    'isShopComponent' => false
+])
+
 <div class="flex justify-start h-12 bg-white dark:bg-slate-950 dark:border-slate-800 border-b-2 border-gray-200 shadow">
     <x-container class="grid grid-cols-4 divide-x-2 divide-slate-200 dark:divide-slate-800 select-none">
         <div class="flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-850">

@@ -20,6 +20,7 @@ use App\Http\Controllers\{
     Profile\RatingController as UserHomeRatingController,
     Profile\MessageController as UserHomeMessageController,
     Profile\ItemController as UserHomeItemController,
+    ShopController,
     TeamController
 };
 
@@ -143,4 +144,11 @@ Route::prefix('about')
     ->group(function() {
         Route::get('discord', [AboutController::class, 'discordInvite'])->name('discord');
         Route::get('safety', [AboutController::class, 'safety'])->name('safety');
+    });
+
+Route::prefix('shop')
+    ->name('shop.')
+    ->middleware('auth')
+    ->group(function() {
+        Route::get('/', [ShopController::class, 'index'])->name('index');
     });
