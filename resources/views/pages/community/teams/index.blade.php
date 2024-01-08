@@ -63,6 +63,8 @@
                                                 <div
                                                     class="w-[48px] h-[48px] bg-white border dark:border-none rounded-lg dark:bg-slate-800 bg-center bg-no-repeat"
                                                     style="background-image: url('{{ $activeBadge->getBadgePath() }}')"
+                                                    data-tippy
+                                                    data-tippy-content="<small><b>{{ $activeBadge->badge_code }}</b></small>"
                                                 ></div>
                                             @endforeach
                                         </div>

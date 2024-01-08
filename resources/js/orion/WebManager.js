@@ -90,7 +90,7 @@ export default class WebManager {
             Array.from(scrollContainer).map((container) => {
                 container.addEventListener("wheel", (event) => {
                     event.preventDefault()
-                    container.scrollLeft += event.deltaY * 1.96
+                    container.scrollLeft += event.deltaY * (Math.PI / 2)
                 })
             })
         })
