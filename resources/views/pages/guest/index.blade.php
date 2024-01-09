@@ -84,12 +84,14 @@
                             <div class="w-full h-35 relative flex flex-col p-1">
                                 <a href="{{ route('community.photos.index') }}" class="w-full h-full flex justify-center items-center bg-center bg-no-repeat rounded-md" style="background-image: url('{{ $photo->url }}')"></a>
                                 <span class="w-auto absolute bottom-2 left-2 flex gap-2 justify-start items-center text-slate-700 max-h-[45px] overflow-hidden dark:text-slate-400 text-xs">
-                                    <div
-                                        class="w-auto pr-3 max-w-[100px] h-[30px] bg-start pl-8 flex items-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900"
-                                        style="background-image: url('{{ getFigureUrl($photo->user->look, 'direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1') }}')"
-                                    >
-                                        <a class="underline underline-offset-2 hover:text-blue-400" href="{{ route('users.profile.show', $photo->user->username) }}">{{ $photo->user->username }}</a>
-                                    </div>
+                                    @if($photo->user)
+                                        <div
+                                            class="w-auto pr-3 max-w-[100px] h-[30px] bg-start pl-8 flex items-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900"
+                                            style="background-image: url('{{ getFigureUrl($photo->user?->look, 'direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1') }}')"
+                                        >
+                                            <a class="underline underline-offset-2 hover:text-blue-400" href="{{ route('users.profile.show', $photo->user->username) }}">{{ $photo->user->username }}</a>
+                                        </div>
+                                    @endif
                                 </span>
                             </div>
                         </div>

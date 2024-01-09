@@ -9,7 +9,7 @@ class CameraController extends Controller
 {
     public function index(Request $request)
     {
-        $photos = Camera::latestWith(true);
+        $photos = Camera::latestWith(includesRoom: true);
 
         $period = $request->get('period', null);
         $rule = $request->get('rule', null);
