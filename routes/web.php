@@ -151,4 +151,5 @@ Route::prefix('shop')
     ->middleware('auth')
     ->group(function() {
         Route::get('/', [ShopController::class, 'index'])->name('index');
+        Route::get('/{id}/{category}', [ShopController::class, 'show'])->name('show');
     });

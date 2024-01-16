@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ShopCategory extends Model
 {
@@ -12,4 +12,9 @@ class ShopCategory extends Model
     public $timestamps = false;
 
     protected $guarded = [];
+
+    public function products()
+    {
+        return $this->hasMany(ShopProduct::class);
+    }
 }

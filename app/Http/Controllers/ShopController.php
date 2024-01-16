@@ -14,4 +14,11 @@ class ShopController extends Controller
 
         return view('pages.shop.index', compact('categories'));
     }
+
+    public function show(int $id, string $category): View
+    {
+        $category = ShopCategory::with('items')->findOrFail($id);
+
+        return view('pages.shop.index', compact('category'));
+    }
 }

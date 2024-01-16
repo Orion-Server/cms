@@ -28,6 +28,10 @@ class ShopCategorySeeder extends Seeder
                 'Seasonal Points',
                 'https://i.imgur.com/uGY9pbm.png'
             ],
+            [
+                'VIP',
+                'https://i.imgur.com/Q3hmF7w.png'
+            ]
         ];
     }
     /**
