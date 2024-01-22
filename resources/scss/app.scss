@@ -35,7 +35,18 @@ body {
 }
 
 header {
-    background-image: url('/assets/images/background.webp')
+    background-image: url('/assets/images/header-bg.png');
+}
+
+.logo {
+    width: var(--logo-width, 256px);
+    height: var(--logo-height, 41px);
+    background-image: url('/assets/images/logo.gif');
+    position: relative;
+}
+
+.logo:hover {
+    animation: tada 1s;
 }
 
 body.shop {

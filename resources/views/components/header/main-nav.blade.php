@@ -1,7 +1,7 @@
 @php($navigations = \App\Models\Navigation::getNavigations())
 
 <div
-    class="bg-white fixed top-0 dark:bg-slate-950 w-full z-[2] lg:relative h-auto lg:h-16 border-b-2 border-gray-200 dark:border-slate-800"
+    class="bg-white fixed top-0 dark:bg-slate-950 w-full z-[2] lg:relative h-auto lg:h-16 dark:border-slate-800"
     x-data="navigation"
     data-turbolinks-permanent
 >
@@ -16,7 +16,7 @@
         </div>
         <nav class="h-full w-full lg:w-1/2" @click.away="showSubmenuId = null">
             <ul :class="{ 'hidden': !showMobileMenu, 'flex': showMobileMenu }"
-                class="hidden lg:flex flex-col lg:flex-row divide-y lg:divide-x relative dark:divide-slate-800 justify-center text-slate-800 dark:text-white font-medium text-sm items-center h-full"
+                class="hidden lg:flex flex-col lg:flex-row divide-y relative dark:divide-slate-800 justify-center text-slate-800 dark:text-white font-medium text-sm items-center h-full"
             >
                 @foreach ($navigations as $navigation)
                     <li @click="toggleMenu({{ $navigation->id }})" @class([

@@ -1,14 +1,15 @@
-<div class="relative w-full flex md:w-3/4 max-w-[500px] bg-white dark:bg-slate-950 h-24 dark:shadow-none rounded-lg shadow-lg dark:divide-slate-800">
-    @guest
-        <div x-data class="text-center w-full h-full dark:text-white text-slate-950 font-bold text-sm blur-none rounded-lg absolute top-0 left-0 z-[1] flex justify-center items-center">
-            {{ __('Please, login to access this content.') }}
+<div class="relative w-full flex bg-white dark:bg-slate-950 h-20 dark:shadow-none rounded-lg shadow-lg dark:divide-slate-800">
+    <div class="w-full h-full flex">
+        <div class="w-28 h-full p-1">
+            <div class="w-full relative rounded-lg h-full bg-right-bottom bg-no-repeat" style="background-image: url('{{ \Auth::user()?->getAvatarBackground() ?? getSetting('default_avatar_background') }}')">
+                <div class="absolute -bottom-6 right-2 w-[73px] h-[57px] bg-center bg-no-repeat" style="background-image: url('{{ asset('assets/images/stage.png') }}')"></div>
+                <div
+                    class="absolute -bottom-4 right-4 w-[64px] h-[110px] bg-center bg-no-repeat"
+                    style="background-image: url('{{ \Auth::user()?->figure_path ?? '0' }}&direction=2&head_direction=2&size=m&gesture=sml&action=sit,wav')"
+                ></div>
+            </div>
         </div>
-    @endguest
-    <div @class([
-        "w-full h-full flex",
-        "blur-sm" => !\Auth::check()
-    ])>
-        <div class="w-3/4 flex flex-col">
+        <div class="w-full flex flex-col">
             <div class="w-full rounded-t-lg flex justify-around items-center divide-x dark:divide-slate-800 h-16 bg-gray-100 dark:bg-gray-900">
                 <a
                     class="h-full rounded-tl-lg flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
@@ -74,7 +75,7 @@
                     @csrf
                     <x-ui.buttons.confirmable
                         data-tippy-placement="bottom"
-                        class="flex h-full w-full items-center justify-center focus:bg-red-500 group hover:bg-red-100 dark:hover:bg-red-300 border-none"
+                        class="flex h-full w-full items-center justify-center focus:bg-red-500 group hover:bg-red-100 rounded-br-lg dark:hover:bg-red-300 border-none"
                         :exclusive="true"
                     >
                         <x-slot:confirmation>
@@ -89,15 +90,6 @@
                         </x-slot:label>
                     </x-ui.buttons.confirmable>
                 </form>
-            </div>
-        </div>
-        <div class="w-1/4 h-full p-1">
-            <div class="w-full relative rounded-lg h-full bg-right-bottom bg-no-repeat" style="background-image: url('{{ \Auth::user()?->getAvatarBackground() ?? getSetting('default_avatar_background') }}')">
-                <div class="absolute -bottom-6 right-2 w-[73px] h-[57px] bg-center bg-no-repeat" style="background-image: url('{{ asset('assets/images/stage.png') }}')"></div>
-                <div
-                    class="absolute -bottom-4 right-2 w-[64px] h-[110px] bg-center bg-no-repeat"
-                    style="background-image: url('{{ \Auth::user()?->figure_path ?? '0' }}&direction=4&head_direction=4&size=m&gesture=sml&action=sit,wav')"
-                ></div>
             </div>
         </div>
     </div>

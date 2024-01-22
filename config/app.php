@@ -186,7 +186,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'CurrencyType' => App\Enums\CurrencyType::class,
-        'CarbonInterval' => Carbon\CarbonInterval::class
+        'CarbonInterval' => Carbon\CarbonInterval::class,
+        'User' => App\Models\User::class,
     ])->toArray(),
 
 ];

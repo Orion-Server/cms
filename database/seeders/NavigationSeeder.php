@@ -59,7 +59,7 @@ class NavigationSeeder extends Seeder
                 'data' => $this->makeNavigationData('/about', 'https://imgur.com/AdmVS6p.png', 3),
                 'subNavigations' => [
                     'Discord' => ['slug' => '/about/discord', 'newTab' => true],
-                    'Safety' => ['slug' => '/about/safety', 'newTab' => false],
+                    'Safety' => ['slug' => '/about/safety'],
                 ],
             ],
             'Shop' => [

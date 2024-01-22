@@ -62,64 +62,34 @@
 
     <x-header.main-nav />
 
-    <header class="relative flex justify-start items-center py-7 border-b-2 border-blue-500 bg-blue-400 shadow-md dark:shadow-none">
-        <x-container class="flex lg:flex-row flex-col justify-between gap-4 lg:gap-0 items-center">
-            <div class="lg:w-1/2 w-full flex flex-col justify-center items-center lg:items-start">
-                <span class="text-4xl font-semibold text-white text-center lg:text-left drop-shadow-lg">
-                    {{ __('Welcome') }},
-                    <b @class([
-                        'text-white' => !Auth::check(),
-                        'text-lime-500' => Auth::user()?->isBoy(),
-                        'text-rose-500' => Auth::user()?->isGirl(),
-                    ])>
-                        {{ Auth::check() ? Auth::user()->username : strtolower(__('Guest')) }}
-                    </b>!
-                </span>
-                @if (Auth::check() && !$fromClient)
-                    <div class="mt-2 flex gap-3 flex-wrap">
-                        @if(config('hotel.client.flash.enabled'))
-                            <x-ui.buttons.redirectable
-                                href="{{ route('hotel.flash') }}"
-                                data-turbolinks="false"
-                                class="dark:bg-orange-500 bg-orange-500 border-orange-700 hover:bg-orange-400 dark:hover:bg-orange-400 dark:shadow-orange-700/75 shadow-orange-600/75 py-2 text-white"
-                            >
-                                {{ __('Join (Flash)') }}
-                            </x-ui.buttons.redirectable>
-                        @endif
-
-                        @if(config('hotel.client.nitro.enabled'))
-                            <x-ui.buttons.redirectable
-                                href="{{ route('hotel.nitro') }}"
-                                data-turbolinks="false"
-                                class="dark:bg-gray-500 bg-gray-500 border-gray-700 hover:bg-gray-400 dark:hover:bg-gray-400 dark:shadow-gray-700/75 shadow-gray-600/75 py-2 text-white"
-                            >
-                                {{ __('Join (Nitro HTML5)') }}
-                            </x-ui.buttons.redirectable>
-                        @endif
-
-                        @if (Auth::user()->rank >= getSetting('min_rank_to_housekeeping_login'))
-                            <x-ui.buttons.redirectable
-                                href="/admin"
-                                target="_blank"
-                                class="dark:bg-red-500 bg-red-500 border-red-700 hover:bg-red-400 dark:hover:bg-red-400 dark:shadow-red-700/75 shadow-red-600/75 py-2 text-white"
-                            >
-                                <i class="fa-solid fa-chart-line mr-1"></i>
-                                {{ __('Housekeeping') }}
-                            </x-ui.buttons.redirectable>
-                        @endif
-                    </div>
-                @endif
+    <header @class([
+        'relative pt-7 border-b border-slate-300 dark:border-slate-800 bg-blue-400 shadow-md dark:shadow-none',
+        'h-[240px] lg:h-[180px] border-b-4 border-white' => ! Auth::check(),
+        'h-[300px] lg:h-[220px]' => Auth::check(),
+    ])>
+        <x-container class="flex flex-col lg:flex-row items-center justify-around h-full">
+            <div class="flex flex-col gap-2 lg:gap-5">
+                <div style="--logo-width: 256px; --logo-height: 41px" class="logo bg-center bg-no-repeat"></div>
+                <div class="onlines-count bg-white w-auto px-4 rounded-lg h-10 relative dark:bg-gray-950 flex items-center justify-center">
+                    <div class="absolute h-2 w-2 bg-white dark:bg-gray-950 rotate-45 -top-1 left-1/2 -translate-x-1/2"></div>
+                    <span class="text-sm dark:text-slate-100">{{ __(":c connected habbo's", ['c' => User::whereOnline('1')->count()]) }}</span>
+                </div>
             </div>
-            <x-header.user-box />
+            @auth
+            <div class="flex flex-col gap-2 lg:gap-5 items-center">
+                <x-header.user-box />
+                @include('pages.users.fragments.user.auth-buttons')
+            </div>
+            @endauth
+
+            @guest
+                <x-header.auth-nav />
+            @endguest
         </x-container>
     </header>
 
-    @guest
-        <x-header.auth-nav />
-    @endguest
-
     @auth
-    @include('pages.users.fragments.user.balances')
+        @include('pages.users.fragments.user.balances')
     @endauth
 
     <main class="mt-4">
