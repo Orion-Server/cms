@@ -1,6 +1,6 @@
-<div class="relative w-full flex bg-white dark:bg-slate-950 h-20 dark:shadow-none rounded-lg shadow-lg dark:divide-slate-800">
+<div class="relative w-full flex bg-white dark:bg-slate-950 h-24 dark:shadow-none rounded-lg shadow-lg dark:divide-slate-800">
     <div class="w-full h-full flex">
-        <div class="w-28 h-full p-1">
+        <div class="w-32 h-full p-1">
             <div class="w-full relative rounded-lg h-full bg-right-bottom bg-no-repeat" style="background-image: url('{{ \Auth::user()?->getAvatarBackground() ?? getSetting('default_avatar_background') }}')">
                 <div class="absolute -bottom-6 right-2 w-[73px] h-[57px] bg-center bg-no-repeat" style="background-image: url('{{ asset('assets/images/stage.png') }}')"></div>
                 <div
