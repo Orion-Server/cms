@@ -142,7 +142,8 @@ class HomeItemResource extends Resource
                 ->visible(fn (Component $livewire) => $livewire->isTableReordering),
 
             ImageColumn::make('image')
-                ->width(40)
+                ->size('auto')
+                ->extraAttributes(['style' => 'max-width: 200px;'])
                 ->label(__('filament::resources.columns.image')),
 
             TextColumn::make('name')

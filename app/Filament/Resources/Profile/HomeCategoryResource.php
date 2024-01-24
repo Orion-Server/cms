@@ -63,7 +63,7 @@ class HomeCategoryResource extends Resource
 
                 ImageColumn::make('icon')
                     ->label(__('filament::resources.columns.icon'))
-                    ->size(20),
+                    ->size('auto'),
 
                 TextColumn::make('name')
                     ->label(__('filament::resources.columns.name'))

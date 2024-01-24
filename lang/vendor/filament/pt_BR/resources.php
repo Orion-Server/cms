@@ -91,6 +91,11 @@ return [
             'label' => 'Produto',
             'plural' => 'Produtos',
         ],
+        'shop-categories' => [
+            'navigation_label' => 'Gerenciar Categorias',
+            'label' => 'Categoria',
+            'plural' => 'Categorias',
+        ],
 
         // Relations
         'settings' => [

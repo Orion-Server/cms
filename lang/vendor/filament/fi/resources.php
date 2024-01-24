@@ -86,6 +86,16 @@ return [
             'label' => 'Team',
             'plural' => 'Teams',
         ],
+        'shop-products' => [
+            'navigation_label' => 'Hallinnoi kaupan tuotteita',
+            'label' => 'Kaupan tuote',
+            'plural' => 'Kaupan tuotteet',
+        ],
+        'shop-categories' => [
+            'navigation_label' => 'Hallinnoi kaupan kategorioita',
+            'label' => 'Kaupan kategoria',
+            'plural' => 'Kaupan kategoriat',
+        ],
 
         // Relations
         'settings' => [
@@ -123,6 +133,7 @@ return [
         'Widget' => 'Widget',
         'Note' => 'Note',
         'Background' => 'Background',
+        'Metrics' => 'Metrics',
     ],
 
     'helpers' => [
