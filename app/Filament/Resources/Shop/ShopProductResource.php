@@ -117,6 +117,8 @@ class ShopProductResource extends Resource
                     ->label(__('filament::resources.columns.name')),
 
                 ImageColumn::make('image')
+                    ->circular()
+                    ->size('auto')
                     ->label(__('filament::resources.columns.image')),
 
                 TextColumn::make('category.name')
