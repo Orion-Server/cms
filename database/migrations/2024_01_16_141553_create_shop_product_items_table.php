@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('shop_product_items', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignIdFor(ShopProduct::class);
+            $table->foreignIdFor(ShopProduct::class, 'product_id');
 
             $table->string('name');
             $table->enum('type', ['badge', 'furniture', 'room', 'currency']);

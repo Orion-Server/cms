@@ -9,6 +9,7 @@ return [
         'Administration' => 'Administração',
         'User Management' => 'Gerenciamento de Usuários',
         'Profile Management' => 'Gerenciamento de Perfil',
+        'Shop' => 'Loja',
     ],
 
     'resources' => [
@@ -85,6 +86,11 @@ return [
             'label' => 'Equipe',
             'plural' => 'Equipes',
         ],
+        'shop-products' => [
+            'navigation_label' => 'Gerenciar Produtos',
+            'label' => 'Produto',
+            'plural' => 'Produtos',
+        ],
 
         // Relations
         'settings' => [
@@ -132,6 +138,13 @@ return [
         'change_password_description' => 'Deixe vazio para manter a senha atual',
         'badge_code_helper' => 'Digite o código e clique na lupa ao lado do campo. Se o emblema existir, ele será preenchido automaticamente.',
         'home_item_limit_helper' => 'Limite de compras para esse item, ou deixe vazio para ilimitado.',
+        'limit_per_user_helper' => 'Limite de compras por usuário, ou deixe vazio para ilimitado.',
+        'sales_count_helper' => 'Total de vendas para esse item. (Essa informação é atualizada automaticamente)',
+        'badge_item_data_helper' => 'Digite abaixo o código do emblema.',
+        'furniture_item_data_helper' => 'Digite abaixo o ID do mobi.',
+        'room_item_data_helper' => 'Digite abaixo o ID do quarto.',
+        'currency_item_data_helper' => 'Digite abaixo o ID da moeda.',
+        'empty_item_data_helper' => 'Selecione um tipo de item para ver as informações necessárias.',
     ],
 
     'tabs' => [
@@ -147,6 +160,7 @@ return [
         'Change Rank' => 'Alterar rank',
         'Account Data' => 'Dados da conta',
         'Extra Settings' => 'Configurações extras',
+        'Metrics' => 'Métricas',
     ],
 
     'inputs' => [
@@ -216,6 +230,13 @@ return [
         'label' => 'Nome',
         'team_id' => 'Equipe',
         'is_hidden' => 'Oculto?',
+        'is_featured' => 'Em Destaque',
+        'limit_per_user' => 'Limite por usuário',
+        'sales_count' => 'Total de Vendas',
+        'item_data' => 'Informação do Item',
+        'quantity' => 'Quantidade',
+        'is_active' => 'Ativo?',
+        'item_is_active' => 'Esse item pode ser mostrado e enviado para outros usuários através de uma compra?',
     ],
 
     'columns' => [
@@ -257,6 +278,17 @@ return [
         'price' => 'Preço',
         'slug' => 'Slug',
         'new_tab' => 'Abrir em nova aba',
+        'is_featured' => 'Em Destaque',
+        'sales_count' => 'Total de Vendas',
+        'type' => 'Tipo',
+        'item_data' => 'Informação do Item'
+    ],
+
+    'options' => [
+        'badge' => 'Emblema',
+        'furniture' => 'Mobi',
+        'room' => 'Quarto',
+        'currency' => 'Moeda',
     ],
 
     'notifications' => [

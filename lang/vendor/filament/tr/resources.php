@@ -9,6 +9,7 @@ return [
         'Administration' => 'Yönetim',
         'User Management' => 'Kullanıcı Yönetimi',
         'Profile Management' => 'Profile Management',
+        'Shop' => 'Mağaza',
     ],
 
     'resources' => [
@@ -85,6 +86,11 @@ return [
             'label' => 'Team',
             'plural' => 'Teams',
         ],
+        'shop-products' => [
+            'navigation_label' => 'Ürünleri Yönet',
+            'label' => 'Ürün',
+            'plural' => 'Ürünler',
+        ],
 
         // Relations
         'settings' => [
@@ -122,6 +128,7 @@ return [
         'Widget' => 'Widget',
         'Note' => 'Note',
         'Background' => 'Background',
+        'Metrics' => 'Metrics',
     ],
 
     'helpers' => [
@@ -132,6 +139,13 @@ return [
         'change_password_description' => 'Mevcut şifreyi korumak için boş bırakın',
         'badge_code_helper' => 'Enter the code and click on the magnifying glass next to the field. If the badge exists, all fields will be filled in automatically.',
         'home_item_limit_helper' => 'Buy limit for this item. Leave blank for unlimited.',
+        'limit_per_user_helper' => 'Purchase limit per user, or leave blank for unlimited.',
+        'sales_count_helper' => 'Total sales for this item. (This information is automatically updated)',
+        'badge_item_data_helper' => 'Enter the badge code below.',
+        'furniture_item_data_helper' => 'Enter the furniture ID below.',
+        'room_item_data_helper' => 'Enter the room ID below.',
+        'currency_item_data_helper' => 'Enter the currency ID below.',
+        'empty_item_data_helper' => 'Select an item type to view the necessary information.',
     ],
 
     'tabs' => [
@@ -216,6 +230,13 @@ return [
         'label' => 'Label',
         'team_id' => 'Team',
         'is_hidden' => 'Is Hidden?',
+        'is_featured' => 'Is Featured?',
+        'limit_per_user' => 'Limit Per User',
+        'sales_count' => 'Sales Count',
+        'item_data' => 'Item Data',
+        'quantity' => 'Quantity',
+        'is_active' => 'Is Active?',
+        'item_is_active' => 'Can this item be displayed and sent to other users through a purchase?',
     ],
 
     'columns' => [
@@ -256,7 +277,18 @@ return [
         'can_change_name' => 'İsim Değiştirebilir mi?',
         'price' => 'Price',
         'slug' => 'Slug',
-        'new_tab' => 'New Tab'
+        'new_tab' => 'New Tab',
+        'is_featured' => 'Is Featured?',
+        'sales_count' => 'Sales Count',
+        'type' => 'Type',
+        'item_data' => 'Item Data',
+    ],
+
+    'options' => [
+        'badge' => 'Badge',
+        'furniture' => 'Furniture',
+        'room' => 'Room',
+        'currency' => 'Currency',
     ],
 
     'notifications' => [

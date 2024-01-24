@@ -9,6 +9,7 @@ return [
         'Administration' => 'Administration',
         'User Management' => 'Gestion des utilisateurs',
         'Profile Management' => 'Profile Management',
+        'Shop' => 'Boutique',
     ],
 
     'resources' => [
@@ -81,9 +82,14 @@ return [
             'plural' => 'Menus',
         ],
         'teams' => [
-            'navigation_label' => 'Manage Teams',
-            'label' => 'Team',
-            'plural' => 'Teams',
+            'navigation_label' => 'Gérer les équipes',
+            'label' => 'Équipe',
+            'plural' => 'Équipes',
+        ],
+        'shop-products' => [
+            'navigation_label' => 'Gérer les produits',
+            'label' => 'Produit',
+            'plural' => 'Produits',
         ],
 
         // Relations
@@ -122,6 +128,7 @@ return [
         'Widget' => 'Widget',
         'Note' => 'Note',
         'Background' => 'Background',
+        'Metrics' => 'Metrics',
     ],
 
     'helpers' => [
@@ -132,6 +139,13 @@ return [
         'change_password_description' => 'Laissez vide pour conserver le mot de passe actuel',
         'badge_code_helper' => 'Entrez le code et cliquez sur la loupe à côté du champ. Si le badge existe, tous les champs seront remplis automatiquement.',
         'home_item_limit_helper' => 'Buy limit for this item. Leave blank for unlimited.',
+        'limit_per_user_helper' => 'Purchase limit per user, or leave blank for unlimited.',
+        'sales_count_helper' => 'Total sales for this item. (This information is automatically updated)',
+        'badge_item_data_helper' => 'Enter the badge code below.',
+        'furniture_item_data_helper' => 'Enter the furniture ID below.',
+        'room_item_data_helper' => 'Enter the room ID below.',
+        'currency_item_data_helper' => 'Enter the currency ID below.',
+        'empty_item_data_helper' => 'Select an item type to view the necessary information.',
     ],
 
     'tabs' => [
@@ -216,6 +230,13 @@ return [
         'label' => 'Label',
         'team_id' => 'Team',
         'is_hidden' => 'Is Hidden?',
+        'is_featured' => 'Is Featured?',
+        'limit_per_user' => 'Limit Per User',
+        'sales_count' => 'Sales Count',
+        'item_data' => 'Item Data',
+        'quantity' => 'Quantity',
+        'is_active' => 'Is Active?',
+        'item_is_active' => 'Can this item be displayed and sent to other users through a purchase?',
     ],
 
     'columns' => [
@@ -257,6 +278,17 @@ return [
         'price' => 'Price',
         'slug' => 'Slug',
         'new_tab' => 'New Tab',
+        'is_featured' => 'Is Featured?',
+        'sales_count' => 'Sales Count',
+        'type' => 'Type',
+        'item_data' => 'Item Data',
+    ],
+
+    'options' => [
+        'badge' => 'Badge',
+        'furniture' => 'Furniture',
+        'room' => 'Room',
+        'currency' => 'Currency',
     ],
 
     'notifications' => [

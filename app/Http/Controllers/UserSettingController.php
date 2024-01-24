@@ -12,10 +12,10 @@ use Illuminate\Validation\Rules\Password;
 
 class UserSettingController extends Controller
 {
-    public function index(Request $request, string $page = 'account'): View|JsonResponse
+    public function index(Request $request, string $page = 'ingame'): View|JsonResponse
     {
         if (!in_array($page, ['account', 'password', 'ingame'])) {
-            $page = 'account';
+            $page = 'ingame';
         }
 
         if ($request->isMethod('POST')) {
@@ -134,6 +134,11 @@ class UserSettingController extends Controller
     {
         return [
             [
+                'type' => 'ingame',
+                'title' => __('In-game Settings'),
+                'icon' => 'fa-solid fa-gamepad'
+            ],
+            [
                 'type' => 'account',
                 'title' => __('Account Preferences'),
                 'icon' => 'fa-regular fa-address-card'
@@ -142,11 +147,6 @@ class UserSettingController extends Controller
                 'type' => 'password',
                 'title' => __('Account Security'),
                 'icon' => 'fa-solid fa-key'
-            ],
-            [
-                'type' => 'ingame',
-                'title' => __('In-game Settings'),
-                'icon' => 'fa-solid fa-gamepad'
             ]
         ];
     }

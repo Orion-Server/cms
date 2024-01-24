@@ -5,10 +5,8 @@
 @php($hasSearch = request()->has('search'))
 
 @section('content')
-    <x-container class="mt-10 flex flex-col gap-8">
-        @includeWhen($hasSearch, 'pages.support.questions.partials.back-button')
-
-        <div class="flex flex-col justify-center items-center gap-2">
+    <div class="flex -mt-4 bg-white border-y dark:border-slate-800 shadow py-4 dark:bg-slate-950">
+        <x-container class="flex flex-col justify-center items-center gap-8">
             <span class="text-3xl font-bold text-slate-800 dark:text-slate-200 underline underline-offset-4 decoration-emerald-500">
                 {{ __('Help & Tricks') }}
             </span>
@@ -33,7 +31,10 @@
                     {{ __('This search is automatic, you just need to type something.') }}
                 </small>
             </div>
-        </div>
+        </x-container>
+    </div>
+    <x-container class="mt-10 flex flex-col gap-8">
+        @includeWhen($hasSearch, 'pages.support.questions.partials.back-button')
 
         @includeWhen(! $hasSearch, 'pages.support.questions.partials.default-content')
         @includeWhen($hasSearch, 'pages.support.questions.partials.researched-content')

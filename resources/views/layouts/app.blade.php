@@ -52,7 +52,7 @@
 
     @vite(['resources/scss/app.scss'])
 </head>
-<body class="bg-gray-100 dark:bg-slate-900 pt-12 lg:pt-0 overflow-x-hidden">
+<body class="pt-12 lg:pt-0 overflow-x-hidden bg-slate-50 dark:bg-slate-900">
     @if(!! getSetting('maintenance'))
         <span class="w-full h-12 flex justify-center items-center bg-red-500 text-red-800 font-bold">
             <i class="fa-solid fa-exclamation-circle mr-2"></i>

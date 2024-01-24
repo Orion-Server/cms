@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('shop_products', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(ShopCategory::class);
+            $table->foreignIdFor(ShopCategory::class, 'category_id');
 
             $table->string('name');
             $table->text('description')->nullable();
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->boolean('is_featured')->default(false);
 
-            $table->integer('limit_per_user')->default(0);
+            $table->integer('limit_per_user')->nullable();
             $table->integer('sales_count')->default(0);
 
             $table->timestamps();

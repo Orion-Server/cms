@@ -18,6 +18,6 @@ class ShopProduct extends Model
 
     public function items()
     {
-        return $this->hasMany(ShopProductItem::class);
+        return $this->hasMany(ShopProductItem::class, 'product_id');
     }
 }

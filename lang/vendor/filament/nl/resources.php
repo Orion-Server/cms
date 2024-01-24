@@ -9,6 +9,7 @@ return [
         'Administration' => 'Administratie',
         'User Management' => 'Gebruikersbeheer',
         'Profile Management' => 'Profile Management',
+        'Shop' => 'Shop',
     ],
 
     'resources' => [
@@ -81,9 +82,14 @@ return [
             'plural' => 'Navigaties',
         ],
         'teams' => [
-            'navigation_label' => 'Manage Teams',
+            'navigation_label' => 'Beheer Teams',
             'label' => 'Team',
             'plural' => 'Teams',
+        ],
+        'shop-products' => [
+            'navigation_label' => 'Beheer Producten',
+            'label' => 'Product',
+            'plural' => 'Producten',
         ],
 
         // Relations
@@ -122,6 +128,7 @@ return [
         'Widget' => 'Widget',
         'Note' => 'Note',
         'Background' => 'Background',
+        'Metrics' => 'Metrics',
     ],
 
     'helpers' => [
@@ -132,6 +139,13 @@ return [
         'change_password_description' => 'Laat leeg om het huidige wachtwoord te behouden',
         'badge_code_helper' => 'Voer de code in en klik op het vergrootglas naast het veld. Als het embleem bestaat, wordt het automatisch ingevuld.',
         'home_item_limit_helper' => 'Buy limit for this item. Leave blank for unlimited.',
+        'limit_per_user_helper' => 'Purchase limit per user, or leave blank for unlimited.',
+        'sales_count_helper' => 'Total sales for this item. (This information is automatically updated)',
+        'badge_item_data_helper' => 'Enter the badge code below.',
+        'furniture_item_data_helper' => 'Enter the furniture ID below.',
+        'room_item_data_helper' => 'Enter the room ID below.',
+        'currency_item_data_helper' => 'Enter the currency ID below.',
+        'empty_item_data_helper' => 'Select an item type to view the necessary information.',
     ],
 
     'tabs' => [
@@ -216,6 +230,13 @@ return [
         'label' => 'Label',
         'team_id' => 'Team',
         'is_hidden' => 'Is Hidden?',
+        'is_featured' => 'Is Featured?',
+        'limit_per_user' => 'Limit Per User',
+        'sales_count' => 'Sales Count',
+        'item_data' => 'Item Data',
+        'quantity' => 'Quantity',
+        'is_active' => 'Is Active?',
+        'item_is_active' => 'Can this item be displayed and sent to other users through a purchase?',
     ],
 
     'columns' => [
@@ -257,6 +278,17 @@ return [
         'price' => 'Price',
         'slug' => 'Slug',
         'new_tab' => 'New Tab',
+        'is_featured' => 'Is Featured?',
+        'sales_count' => 'Sales Count',
+        'type' => 'Type',
+        'item_data' => 'Item Data',
+    ],
+
+    'options' => [
+        'badge' => 'Badge',
+        'furniture' => 'Furniture',
+        'room' => 'Room',
+        'currency' => 'Currency',
     ],
 
     'notifications' => [

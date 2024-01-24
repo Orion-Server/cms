@@ -9,6 +9,7 @@ return [
         'Administration' => 'Hallinta',
         'User Management' => 'Käyttäjien hallinta',
         'Profile Management' => 'Profile Management',
+        'Shop' => 'Kauppa',
     ],
 
     'resources' => [
@@ -132,6 +133,13 @@ return [
         'change_password_description' => 'Jätä tyhjäksi pitääksesi nykyisen salasanan',
         'badge_code_helper' => 'Syötä koodi ja napsauta kentän vieressä olevaa suurennuslasia. Jos merkki on olemassa, kaikki kentät täytetään automaattisesti.',
         'home_item_limit_helper' => 'Buy limit for this item. Leave blank for unlimited.',
+        'limit_per_user_helper' => 'Purchase limit per user, or leave blank for unlimited.',
+        'sales_count_helper' => 'Total sales for this item. (This information is automatically updated)',
+        'badge_item_data_helper' => 'Enter the badge code below.',
+        'furniture_item_data_helper' => 'Enter the furniture ID below.',
+        'room_item_data_helper' => 'Enter the room ID below.',
+        'currency_item_data_helper' => 'Enter the currency ID below.',
+        'empty_item_data_helper' => 'Select an item type to view the necessary information.',
     ],
 
     'tabs' => [
@@ -216,6 +224,13 @@ return [
         'label' => 'Label',
         'team_id' => 'Team',
         'is_hidden' => 'Is Hidden?',
+        'is_featured' => 'Is Featured?',
+        'limit_per_user' => 'Limit Per User',
+        'sales_count' => 'Sales Count',
+        'item_data' => 'Item Data',
+        'quantity' => 'Quantity',
+        'is_active' => 'Is Active?',
+        'item_is_active' => 'Can this item be displayed and sent to other users through a purchase?',
     ],
 
     'columns' => [
@@ -256,7 +271,18 @@ return [
         'can_change_name' => 'Voiko vaihtaa nimeä?',
         'price' => 'Price',
         'slug' => 'Slug',
-        'new_tab' => 'New Tab'
+        'new_tab' => 'New Tab',
+        'is_featured' => 'Is Featured?',
+        'sales_count' => 'Sales Count',
+        'type' => 'Type',
+        'item_data' => 'Item Data',
+    ],
+
+    'options' => [
+        'badge' => 'Badge',
+        'furniture' => 'Furniture',
+        'room' => 'Room',
+        'currency' => 'Currency',
     ],
 
     'notifications' => [

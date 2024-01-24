@@ -74,6 +74,11 @@ class AppServiceProvider extends ServiceProvider
                     ->icon('heroicon-s-desktop-computer'),
 
                 NavigationGroup::make()
+                    ->label($getNavigationLabel('Shop'))
+                    ->collapsed()
+                    ->icon('heroicon-s-shopping-cart'),
+
+                NavigationGroup::make()
                     ->label($getNavigationLabel('Help Center'))
                     ->collapsed()
                     ->icon('heroicon-o-support'),
