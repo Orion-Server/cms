@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\InviteController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\ShopProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,4 +43,10 @@ Route::prefix('profile')
             });
 
         Route::get('{username}/inventory', [ProfileController::class, 'getUserInventory'])->name('inventory');
+    });
+
+Route::prefix('shop')
+    ->name('shop.')
+    ->group(function() {
+        Route::get('products/{id}', [ShopProductController::class, 'show'])->name('products.show');
     });

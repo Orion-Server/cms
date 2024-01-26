@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignIdFor(ShopCategory::class, 'category_id');
 
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->string('description')->nullable();
+            $table->text('content')->nullable();
 
             $table->string('image')->nullable();
             $table->integer('price')->default(0);

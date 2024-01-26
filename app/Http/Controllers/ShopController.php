@@ -2,23 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use App\Models\ShopProduct;
 use App\Models\ShopCategory;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class ShopController extends Controller
 {
-    public function index(): View
+    private const PRODUCTS_LIST_LIMIT = 10;
+
+    public function index(Request $request, ?string $currentCategoryId = null): View
     {
         $categories = ShopCategory::all();
+        $products = ShopProduct::active(considerRank: false)->latest();
+        $featuredProducts = ShopProduct::active()->featured()->get();
 
-        return view('pages.shop.index', compact('categories'));
-    }
+        if($currentCategoryId) {
+            $products->whereCategoryId($currentCategoryId);
+        }
 
-    public function show(int $id, string $category): View
-    {
-        $category = ShopCategory::with('items')->findOrFail($id);
+        $products = $products->paginate(self::PRODUCTS_LIST_LIMIT)->fragment('products');
 
-        return view('pages.shop.index', compact('category'));
+        return view('pages.shop.index', compact('categories', 'featuredProducts', 'products', 'currentCategoryId'));
     }
 }

@@ -4,7 +4,9 @@
     'icon' => null,
     'image' => null,
     'small' => false,
-    'imageIsBadge' => false
+    'imageIsBadge' => false,
+    'titleClasses' => "font-semibold dark:text-white",
+    'descriptionClasses' => "text-slate-700 dark:text-slate-400",
 ])
 
 <div class="w-full lg:h-16 flex-col lg:flex-row flex justify-between">
@@ -31,11 +33,11 @@
         </div>
         <div class="flex flex-col">
             <span @class([
-                "font-semibold dark:text-white",
+                $titleClasses,
                 "text-sm" => $small,
             ])>{!! $title !!}</span>
             <span @class([
-                "text-slate-700 dark:text-slate-400",
+                $descriptionClasses,
                 "text-xs" => $small,
                 "text-sm" => !$small
             ])>{!! $description !!}</span>

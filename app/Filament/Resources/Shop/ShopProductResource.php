@@ -53,8 +53,13 @@ class ShopProductResource extends Resource
                                     ->label(__('filament::resources.inputs.name'))
                                     ->required(),
 
-                                CKEditor::make('description')
+                                TextInput::make('description')
                                     ->label(__('filament::resources.inputs.description'))
+                                    ->nullable()
+                                    ->columnSpan('full'),
+
+                                CKEditor::make('content')
+                                    ->label(__('filament::resources.inputs.content'))
                                     ->nullable()
                                     ->columnSpan('full'),
 

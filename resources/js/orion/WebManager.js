@@ -8,6 +8,7 @@ import NotyfWrapper from '../external/NotyfWrapper'
 import SwiperWrapper from '../external/SwiperWrapper'
 import DiscordWidget from '../components/DiscordWidget'
 import OnlineFriends from '../components/OnlineFriends'
+import ShopComponent from '../components/Pages/Shop/ShopComponent'
 import Authentication from '../components/Authentication'
 import SelectLanguage from '../components/Ui/SelectLanguage'
 import TextareaEditor from '../components/Ui/TextareaEditor'
@@ -54,6 +55,9 @@ export default class WebManager {
         AccountSettings.start()
         PasswordSettings.start()
         IngameSettings.start()
+
+        // Shop Components
+        ShopComponent.start()
 
         UserProfileManager.start()
     }

@@ -36,6 +36,7 @@ body {
 
 header {
     background-image: url('/assets/images/header-bg.png');
+    box-shadow: inset 0px -15px 0px 0px rgba(0, 0, 0, 0.6);
 }
 
 .logo {
@@ -47,10 +48,6 @@ header {
 
 .logo:hover {
     animation: tada 1s;
-}
-
-body.shop {
-    background: url('https://i.imgur.com/syUeW7n.png'), theme('colors.slate.900');
 }
 
 /* ===== Scrollbar CSS ===== */

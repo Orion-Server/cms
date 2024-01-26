@@ -1,51 +1,81 @@
-@extends('layouts.shop-app')
+@extends('layouts.app')
+
+@section('title', __('Shop'))
 
 @section('content')
-<div class="flex h-screen">
-    <div class="w-2/6 xl:w-1/6 h-full bg-slate-850/75 border-r border-slate-800">
-        <x-ui.buttons.redirectable
-            href="{{ route('index') }}"
-            class="dark:bg-transparent mx-auto mt-4 !w-1/2 border-blue-700 border hover:border-blue-500 shadow-blue-600/75 flex-1 py-3 text-white"
-        >
-            <i class="fa-solid fa-chevron-left"></i>
-            {{ __('Back') }}
-        </x-ui.buttons.redirectable>
-
-        <div class="flex flex-col w-full">
-            <div class="flex flex-col w-full mt-8 bg-slate-900 border-y border-slate-800 text-slate-300 text-sm">
-                <div class="flex items-center py-2 pl-4">
-                    <div class="w-6 h-6 bg-center bg-no-repeat" style="background-image: url('https://i.imgur.com/6Z1Noci.gif')"></div>
-                    <span class="px-2">{{ __(':a credits', ['a' => Auth::user()->currency(CurrencyType::Credits)]) }}</span>
-                </div>
-                <div class="flex items-center py-2 pl-4">
-                    <div class="w-6 h-6 bg-center bg-no-repeat" style="background-image: url('https://i.imgur.com/ZRBOYoE.png')"></div>
-                    <span class="px-2">{{ __(':a duckets', ['a' => Auth::user()->currency(CurrencyType::Duckets)]) }}</span>
-                </div>
-                <div class="flex items-center py-2 pl-4">
-                    <div class="w-6 h-6 bg-center bg-no-repeat" style="background-image: url('https://i.imgur.com/7MyGvjK.png')"></div>
-                    <span class="px-2">{{ __(':a diamonds', ['a' => Auth::user()->currency(CurrencyType::Diamonds)]) }}</span>
-                </div>
-                <div class="flex items-center py-2 pl-4">
-                    <div class="w-6 h-6 bg-center bg-no-repeat" style="background-image: url('https://i.imgur.com/8p2Dqlw.png')"></div>
-                    <span class="px-2">{{ __(':a points', ['a' => Auth::user()->currency(CurrencyType::Points)]) }}</span>
-                </div>
+<section x-data="shopComponent">
+    <div class="bg-[#E77307] bg-[url('https://i.imgur.com/U47gQYh.png')] -mt-4 pb-10 shadow-[inset_0_0_0_15px_rgba(0,0,0,0.1),0_4px_0_rgba(0,0,0,0.1)] relative">
+        <div class="bg-[url('https://i.imgur.com/ngpWiI8.png')] bg-repeat-x w-full h-[85px]"></div>
+        <x-container class="mt-4">
+            <div class="my-6">
+                <x-title-box
+                    icon="featured-products"
+                    title="{{ __('Featured Products') }}"
+                    description="{{ __('Featured products will appear below. Take the opportunity!') }}"
+                    title-classes="text-white font-bold"
+                    description-classes="text-slate-100"
+                />
             </div>
 
-            <span class="text-xl font-medium text-center text-slate-100 mt-8 underline underline-offset-4 decoration-blue-500">{{ __('Categories') }}</span>
-        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                @forelse($featuredProducts as $product)
+                    <x-shop.product-card :product="$product" />
+                @empty
+                    <div class="col-span-full text-center">
+                        <span class="text-slate-100 font-bold mt-4">{{ __('No featured products found.') }}</span>
+                    </div>
+                @endforelse
+            </div>
+        </x-container>
 
-        <ul class="w-full flex flex-col mt-8 border-t border-slate-800">
-            @foreach ($categories as $category)
-                <a href="{{ route('shop.show', [$category->id, Str::slug($category->name)]) }}">
-                    <li class="p-4 border-b border-slate-800 flex items-center justify-start gap-2 hover:bg-slate-700">
-                        <img src="{{ $category->icon }}" alt="{{ $category->name }}">
-                        <span class="text-sm font-medium text-slate-100">{{ $category->name }}</span>
-                    </li>
-                </a>
-            @endforeach
-        </ul>
+        <x-ui.modal x-if="product" type="view-shop-product" />
     </div>
-    <div class="w-5/6 h-full">
-    </div>
-</div>
+
+    <x-container class="flex gap-4 mt-6">
+        <div class="w-1/4 flex flex-col">
+            <x-title-box
+                icon="categories"
+                title="{{ __('Categories') }}"
+            />
+
+            <div class="mt-6 flex flex-col gap-2">
+                @if($currentCategoryId)
+                <x-ui.buttons.redirectable
+                    href="{{ route('shop.index') }}"
+                    class="!justify-start hover:ml-2 hover:!text-blue-400 transition-[margin-left] dark:text-slate-200 border-none bg-white dark:bg-slate-950 shadow py-3"
+                >
+                    <i class="fas fa-chevron-left mr-2"></i>
+                    {{ __('Show all') }}
+                </x-ui.buttons.loadable>
+                @endif
+
+                @foreach($categories as $category)
+                <x-ui.buttons.redirectable
+                    href="{{ route('shop.categories.show', $category->id) }}#products"
+                    @class([
+                        "!justify-start transition-[margin-left] dark:text-slate-200 border-none bg-white dark:bg-slate-950 shadow py-3",
+                        "!bg-blue-400 !text-white" => $currentCategoryId == $category->id,
+                        "hover:ml-2 hover:!text-blue-400" => $currentCategoryId != $category->id,
+                    ])
+                >
+                    <img src="{{ $category->icon }}" label="{{ $category->name }}" class="mr-2" />
+                    {{ $category->name }}
+                </x-ui.buttons.loadable>
+                @endforeach
+            </div>
+        </div>
+        <div class="w-3/4 flex flex-col gap-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4" id="products">
+                @forelse($products as $product)
+                    <x-shop.product-card :product="$product" />
+                @empty
+                    <div class="col-span-full text-center">
+                        <span class="text-slate-100 font-bold mt-4">{{ __('No featured products found.') }}</span>
+                    </div>
+                @endforelse
+            </div>
+            {{ $products->links() }}
+        </div>
+    </x-container>
+</section>
 @endsection

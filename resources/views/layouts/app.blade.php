@@ -65,7 +65,7 @@
     <header @class([
         'relative pt-7 border-b border-slate-300 dark:border-slate-800 bg-blue-400 shadow-md dark:shadow-none',
         'h-[240px] lg:h-[180px] border-b-4 border-white' => ! Auth::check(),
-        'h-[300px] lg:h-[220px]' => Auth::check(),
+        'h-[300px] lg:h-[240px]' => Auth::check(),
     ])>
         <x-container class="flex flex-col lg:flex-row items-center justify-around h-full">
             <div class="flex flex-col gap-2 lg:gap-5">
@@ -76,9 +76,9 @@
                 </div>
             </div>
             @auth
-            <div class="flex flex-col gap-2 lg:gap-5 items-center">
+            <div class="flex flex-col gap-2 lg:gap-4 items-center">
                 <x-header.user-box />
-                @include('pages.users.fragments.user.auth-buttons')
+                @include('pages.users.fragments.user.client-buttons')
             </div>
             @endauth
 
