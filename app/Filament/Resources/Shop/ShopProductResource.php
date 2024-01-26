@@ -117,14 +117,14 @@ class ShopProductResource extends Resource
                     ->searchable()
                     ->label(__('filament::resources.columns.id')),
 
+                ImageColumn::make('image')
+                    ->circular()
+                    ->size(60)
+                    ->label(__('filament::resources.columns.image')),
+
                 TextColumn::make('name')
                     ->searchable()
                     ->label(__('filament::resources.columns.name')),
-
-                ImageColumn::make('image')
-                    ->circular()
-                    ->size('auto')
-                    ->label(__('filament::resources.columns.image')),
 
                 TextColumn::make('category.name')
                     ->searchable()
