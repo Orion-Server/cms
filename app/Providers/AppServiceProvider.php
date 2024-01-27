@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Filament\Navigation\NavigationGroup;
 use App\Services\Parsers\ExternalTextsParser;
+use Srmklive\PayPal\Services\PayPal;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,7 +37,18 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
+        $this->bindPaypalInstance();
         $this->bootDashboardSettings();
+    }
+
+    private function bindPaypalInstance(): void
+    {
+        $this->app->bind(PayPal::class, function() {
+            $provider = new PayPal(config('paypal'));
+            $provider->getAccessToken();
+
+            return $provider;
+        });
     }
 
     /**

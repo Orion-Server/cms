@@ -10,7 +10,7 @@ class ShopProductController extends Controller
 {
     public function show(string $id)
     {
-        $product = ShopProduct::find($id);
+        $product = ShopProduct::with('items')->find($id);
 
         if (!$product) {
             return $this->jsonResponse([

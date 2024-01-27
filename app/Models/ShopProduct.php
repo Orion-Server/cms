@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\User\UserOrder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
 class ShopProduct extends Model
@@ -15,6 +17,11 @@ class ShopProduct extends Model
     public function category()
     {
         return $this->belongsTo(ShopCategory::class);
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(UserOrder::class, 'product_id');
     }
 
     public function scopeActive($query, bool $considerRank = true)

@@ -29,6 +29,13 @@ class UserSettingController extends Controller
         ]);
     }
 
+    public function purchases(): View
+    {
+        return view('pages.users.purchases', [
+            'purchases' => \Auth::user()->orders()->defaultRelationships()->latest()->paginate(10)
+        ]);
+    }
+
     public function treatUpdateSettings(Request $request, string $page): JsonResponse
     {
         $user = \Auth::user();

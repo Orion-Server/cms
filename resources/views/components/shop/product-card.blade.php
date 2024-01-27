@@ -18,9 +18,13 @@
             <i class="fa-regular fa-eye"></i>
             {{ __('View') }}
         </x-ui.buttons.loadable>
-        <x-ui.buttons.default class="dark:bg-emerald-500 bg-emerald-500 border-emerald-700 hover:bg-emerald-400 dark:hover:bg-emerald-400 dark:shadow-emerald-700/75 shadow-emerald-600/75 py-2 text-white rounded-full">
+        <x-ui.buttons.redirectable
+            x-bind:href="getProductOrderEndpoint('{{ $product->id }}')"
+            data-turbolinks="false"
+            class="dark:bg-emerald-500 bg-emerald-500 border-emerald-700 hover:bg-emerald-400 dark:hover:bg-emerald-400 dark:shadow-emerald-700/75 shadow-emerald-600/75 py-2 text-white rounded-full"
+        >
             <i class="fa-solid fa-cart-shopping"></i>
             {{ __('Buy') }}
-        </x-ui.buttons.default>
+        </x-ui.buttons.redirectable>
     </div>
 </div>

@@ -123,6 +123,8 @@ Route::name('users.')
                     ->group(function () {
                         Route::match(['GET', 'POST'], '/{page?}', [UserSettingController::class, 'index'])->name('index');
                     });
+
+                Route::get('/purchases', [UserSettingController::class, 'purchases'])->name('purchases');
             });
     });
 
@@ -152,4 +154,11 @@ Route::prefix('shop')
     ->group(function() {
         Route::get('/', [ShopController::class, 'index'])->name('index');
         Route::get('/category/{category?}', [ShopController::class, 'index'])->name('categories.show');
+
+        Route::get('/order/{productId}', [ShopController::class, 'makePaymentOrder'])
+            ->name('products.buy')
+            ->middleware('throttle:15,1');
+
+        Route::get('/payment/cancel', [ShopController::class, 'paymentCancelled'])->name('payment.cancelled');
+        Route::get('/payment/success', [ShopController::class, 'paymentSucessfull'])->name('payment.sucessfull');
     });

@@ -63,13 +63,19 @@
                     <i class="fa-regular fa-bell text-slate-700 dark:text-white"></i>
                 </a>
                 <a
-                    class="flex flex-1 h-full items-center justify-center hover:bg-gray-50 dark:hover:bg-slate-800"
-                    href=""
+                    class="flex flex-1 relative h-full items-center justify-center hover:bg-gray-50 dark:hover:bg-slate-800"
+                    href="{{ route('users.purchases') }}"
                     data-tippy
                     data-tippy-content="<small>{{ __('My Purchases') }}</small>"
                     data-tippy-placement="bottom"
                 >
-                    <i class="fa-solid fa-cart-plus text-slate-700 dark:text-white"></i>
+                    <i @class([
+                        '!text-green-500' => session()->has('shopSuccess'),
+                        "fa-solid fa-cart-plus text-slate-700 dark:text-white"
+                    ])></i>
+                    @if(session()->has('shopSuccess'))
+                        <span class="ml-2 text-xxs animate-pulse text-slate-100 py-px px-1 bg-red-500 rounded-full">{{ __('New') }}</span>
+                    @endif
                 </a>
                 <form class="flex-1 flex h-full" action="/logout" method="POST">
                     @csrf

@@ -3,7 +3,9 @@
 @section('title', __('Shop'))
 
 @section('content')
-<section x-data="shopComponent">
+<section
+    x-data="shopComponent('{{ route('shop.products.buy', ['productId' => '%ID%']) }}')"
+>
     <div class="bg-[#E77307] bg-[url('https://i.imgur.com/U47gQYh.png')] -mt-4 pb-10 shadow-[inset_0_0_0_15px_rgba(0,0,0,0.1),0_4px_0_rgba(0,0,0,0.1)] relative">
         <div class="bg-[url('https://i.imgur.com/ngpWiI8.png')] bg-repeat-x w-full h-[85px]"></div>
         <x-container class="mt-4">
@@ -53,9 +55,9 @@
                 <x-ui.buttons.redirectable
                     href="{{ route('shop.categories.show', $category->id) }}#products"
                     @class([
-                        "!justify-start transition-[margin-left] dark:text-slate-200 border-none bg-white dark:bg-slate-950 shadow py-3",
+                        "!justify-start dark:text-slate-200 border-none bg-white dark:bg-slate-950 shadow py-3",
                         "!bg-blue-400 !text-white" => $currentCategoryId == $category->id,
-                        "hover:ml-2 hover:!text-blue-400" => $currentCategoryId != $category->id,
+                        "hover:ml-2 hover:!text-blue-400 transition-all" => $currentCategoryId != $category->id,
                     ])
                 >
                     <img src="{{ $category->icon }}" label="{{ $category->name }}" class="mr-2" />
@@ -77,5 +79,25 @@
             {{ $products->links() }}
         </div>
     </x-container>
+
+    @if(session()->has('shopError'))
+        @pushOnce('scripts')
+        <script>
+            document.addEventListener('alpine:init', () => {
+                window.notyf.error("{{ session()->get('shopError') }}", 5000)
+            });
+        </script>
+        @endpushOnce
+    @enderror
+
+    @if(session()->has('shopSuccess'))
+        @pushOnce('scripts')
+        <script>
+            document.addEventListener('alpine:init', () => {
+                window.notyf.success("{{ session()->get('shopSuccess') }}", 5000)
+            });
+        </script>
+        @endpushOnce
+    @enderror
 </section>
 @endsection

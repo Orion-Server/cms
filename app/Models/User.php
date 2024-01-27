@@ -19,6 +19,7 @@ use App\Models\Compositions\User\{
     HasSettings,
     HasProfile
 };
+use App\Models\User\UserOrder;
 use Illuminate\Database\Eloquent\Relations\{
     HasMany,
     BelongsTo,
@@ -164,6 +165,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     public function badges(): HasMany
     {
         return $this->hasMany(UserBadge::class);
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(UserOrder::class);
     }
 
     public function friends(): HasMany

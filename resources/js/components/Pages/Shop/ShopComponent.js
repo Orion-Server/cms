@@ -6,10 +6,14 @@ export default new class ShopComponent {
     }
 
     _startComponent() {
-        Alpine.data('shopComponent', () => ({
+        Alpine.data('shopComponent', (buyProductEndpoint) => ({
             modalOpen: false,
             loadingId: null,
             product: null,
+
+            getProductOrderEndpoint(productId) {
+                return buyProductEndpoint.replace('%ID%', productId)
+            },
 
             openProductModal(id) {
                 this.loadingId = id

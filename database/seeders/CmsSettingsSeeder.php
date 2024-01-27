@@ -180,6 +180,11 @@ class CmsSettingsSeeder extends Seeder
                 'default_avatar_background',
                 'https://i.imgur.com/wP1rnDY.gif',
                 'The default avatar background to show on the CMS'
+            ],
+            [
+                'furniture_icon_path',
+                'https://localhost/static/dcr/hof_furni/icons/',
+                'The base URL to render the furniture icons on the CMS'
             ]
         ];
     }
