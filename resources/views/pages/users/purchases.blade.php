@@ -29,7 +29,7 @@
                             ])>{{ __(strtoupper($purchase->status->value)) }}</span>
                         </td>
                         <td class="border-b border-slate-100 text-center dark:border-slate-700 p-4 text-slate-700 dark:text-slate-400">{{ $purchase->product->name }}</td>
-                        <td class="border-b border-slate-100 text-center dark:border-slate-700 p-4 text-slate-700 dark:text-slate-400">{{ $purchase->currency }} {{ $purchase->price }}</td>
+                        <td class="border-b border-slate-100 text-center dark:border-slate-700 p-4 text-slate-700 dark:text-slate-400">{{ $purchase->product->formatted_price }}</td>
                         <td class="border-b border-slate-100 text-center dark:border-slate-700 p-4 text-slate-700 dark:text-slate-400">{{ $purchase->created_at->diffForHumans() }}</td>
                         <td class="border-b border-slate-100 text-center dark:border-slate-700 p-4 text-slate-700 dark:text-slate-400">
                             @if ($purchase->is_delivered)

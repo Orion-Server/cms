@@ -301,5 +301,10 @@
     "Featured Products": "Produtos em Destaque",
     "Featured products will appear below. Take the opportunity!": "Produtos em destaque aparecerão abaixo. Aproveite a oportunidade!",
     "No featured products found.": "Nenhum produto em destaque encontrado.",
-    "Show all": "Mostrar todos"
+    "Show all": "Mostrar todos",
+    "Status": "Status",
+    "Product Name": "Nome do Produto",
+    "Price": "Preço",
+    "Created At": "Criado em",
+    "Is Delivered": "Foi entregue?"
 }
