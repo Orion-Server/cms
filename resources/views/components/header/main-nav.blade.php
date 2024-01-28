@@ -21,7 +21,7 @@
                 @foreach ($navigations as $navigation)
                     <li @click="toggleMenu({{ $navigation->id }})" @class([
                         "relative group px-8 uppercase w-full lg:w-auto h-12 lg:h-full cursor-pointer",
-                        "text-blue-600 dark:text-blue-400 font-semibold border-b-2 border-blue-500" => \Route::current()->uri == $navigation->slug
+                        "text-blue-600 dark:text-blue-400 font-semibold border-b-2 border-blue-500" => \Route::current()->uri == ($navigation->slug == '/' ? $navigation->slug : ltrim($navigation->slug, '/'))
                     ])>
                         <a
                             class="w-full h-full flex justify-center items-center gap-1"
@@ -41,7 +41,13 @@
                                 >
                                     <ul class="flex divide-y dark:divide-slate-800 flex-col">
                                         @foreach ($navigation->subNavigations as $subItem)
-                                            <a @if($subItem->new_tab) target="_blank" @endif href="{{ $subItem->slug }}" class="flex items-center gap-1 px-4 py-3 hover:text-blue-600 dark:hover:text-blue-400 w-full">
+                                            <a @class([
+                                                    "flex items-center gap-1 px-4 py-3 hover:text-blue-600 dark:hover:text-blue-400 w-full",
+                                                    "!text-blue-500" => strtolower(\Route::current()->uri) == ltrim($subItem->slug, '/')
+                                                ])
+                                                @if($subItem->new_tab) target="_blank" @endif
+                                                href="{{ $subItem->slug }}"
+                                            >
                                                 <span>{{ $subItem->label }}</span>
                                                 @if($subItem->new_tab)
                                                     <i class="fa-solid fa-up-right-from-square text-blue-300 text-[0.7rem] ml-1" data-tippy data-tippy-content="<small>{{ __('Opened in a new tab') }}</small>" data-tippy-placement="bottom"></i>
