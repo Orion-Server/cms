@@ -96,6 +96,11 @@ return [
             'label' => 'Kaupan kategoria',
             'plural' => 'Kaupan kategoriat',
         ],
+        'shop-orders' => [
+            'navigation_label' => 'Manage Orders',
+            'label' => 'Order',
+            'plural' => 'Orders',
+        ],
 
         // Relations
         'settings' => [
@@ -247,6 +252,11 @@ return [
         'quantity' => 'Quantity',
         'is_active' => 'Is Active?',
         'item_is_active' => 'Can this item be displayed and sent to other users through a purchase?',
+        'order_id' => 'Order ID',
+        'status' => 'Status',
+        'paypal_fee' => 'PayPal Fee',
+        'details' => 'Details',
+        'is_delivered' => 'Is Delivered?',
     ],
 
     'columns' => [
@@ -293,6 +303,8 @@ return [
         'type' => 'Type',
         'item_data' => 'Item Data',
         'quantity' => 'Quantity',
+        'order_id' => 'Order ID',
+        'is_delivered' => 'Is Delivered?',
     ],
 
     'options' => [
@@ -300,6 +312,18 @@ return [
         'furniture' => 'Furniture',
         'room' => 'Room',
         'currency' => 'Currency',
+        'completed' => 'Completed',
+        'pending' => 'Pending',
+        'cancelled' => 'Cancelled',
+    ],
+
+    'widgets' => [
+        'pending_orders' => 'Pending Orders',
+        'completed_orders' => 'Completed Orders',
+        'canceled_orders' => 'Canceled Orders',
+        'were_canceled' => 'were cancelered.',
+        'are_pending_payment' => 'are pending payment.',
+        'were_completed' => 'have been paid and completed.',
     ],
 
     'notifications' => [

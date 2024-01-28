@@ -96,6 +96,11 @@ return [
             'label' => 'Categoria',
             'plural' => 'Categorias',
         ],
+        'shop-orders' => [
+            'navigation_label' => 'Gerenciar Pedidos',
+            'label' => 'Pedido',
+            'plural' => 'Pedidos',
+        ],
 
         // Relations
         'settings' => [
@@ -247,6 +252,11 @@ return [
         'quantity' => 'Quantidade',
         'is_active' => 'Ativo?',
         'item_is_active' => 'Esse item pode ser mostrado e enviado para outros usuários através de uma compra?',
+        'order_id' => 'ID do Pedido',
+        'status' => 'Status',
+        'paypal_fee' => 'Taxa do PayPal',
+        'details' => 'Detalhes',
+        'is_delivered' => 'Entregue?',
     ],
 
     'columns' => [
@@ -293,6 +303,8 @@ return [
         'type' => 'Tipo',
         'item_data' => 'Informação do Item',
         'quantity' => 'Quantidade',
+        'order_id' => 'ID do Pedido',
+        'is_delivered' => 'Entregue?',
     ],
 
     'options' => [
@@ -300,6 +312,18 @@ return [
         'furniture' => 'Mobi',
         'room' => 'Quarto',
         'currency' => 'Moeda',
+        'completed' => 'Completo',
+        'pending' => 'Pendente',
+        'cancelled' => 'Cancelado',
+    ],
+
+    'widgets' => [
+        'pending_orders' => 'Pedidos Pendentes',
+        'completed_orders' => 'Pedidos Completos',
+        'canceled_orders' => 'Pedidos Cancelados',
+        'were_canceled' => 'foram cancelados.',
+        'are_pending_payment' => 'estão pendentes de pagamento.',
+        'were_completed' => 'foram pagos e entregues.',
     ],
 
     'notifications' => [

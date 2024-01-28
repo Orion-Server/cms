@@ -182,6 +182,8 @@ class ShopController extends Controller
 
         ShopService::deliver(Auth::user(), $order);
 
+        $order->product->increment('sales_count');
+
         return redirect()->route('shop.index')
             ->with('shopSuccess', __('Payment completed. Thanks for your purchase!'));
     }
