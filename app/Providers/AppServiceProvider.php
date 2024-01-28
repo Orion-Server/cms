@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Filament\Navigation\NavigationGroup;
 use App\Services\Parsers\ExternalTextsParser;
+use Illuminate\Support\Facades\Blade;
 use Srmklive\PayPal\Services\PayPal;
 
 class AppServiceProvider extends ServiceProvider
