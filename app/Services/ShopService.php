@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\User\UserOrder;
 use App\Models\ShopProductItem;
 use App\Http\Controllers\ShopController;
+use App\Models\ItemDefinition;
+use App\Models\Room;
 use Illuminate\Support\Facades\Log;
 
 class ShopService
@@ -108,6 +110,44 @@ class ShopService
             ]);
 
             return;
+        }
+
+        if($item->type === ShopProductItemType::Furniture) {
+            $itemDefinition = ItemDefinition::whereItemName($item->data)->first();
+
+            if(!$itemDefinition) {
+                if(ShopController::ENABLE_ERRORS_LOG) {
+                    Log::driver('shop')->error('[DELIVER] Order product item furniture not found.', [
+                        'user' => $user->username,
+                        'item' => $item,
+                    ]);
+
+                    $hasError = true;
+                }
+
+                return;
+            }
+
+            $user->addItem($itemDefinition, $item->quantity);
+        }
+
+        if($item->type === ShopProductItemType::Room) {
+            $room = Room::find($item->data);
+
+            if(!$room) {
+                if(ShopController::ENABLE_ERRORS_LOG) {
+                    Log::driver('shop')->error('[DELIVER] Order product item room not found.', [
+                        'user' => $user->username,
+                        'item' => $item,
+                    ]);
+
+                    $hasError = true;
+                }
+
+                return;
+            }
+
+            $room->replicateForUser($user);
         }
     }
 

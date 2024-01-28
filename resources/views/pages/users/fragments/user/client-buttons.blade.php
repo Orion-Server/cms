@@ -1,4 +1,4 @@
-<div class="p-1 rounded-full bg-black/50 flex flex-col justify-center items-center">
+<div class="p-1 rounded-full bg-black/50 flex flex-col justify-center items-start">
     @if (!$fromClient)
         <div class="flex gap-3 flex-wrap">
             @if(config('hotel.client.nitro.enabled'))

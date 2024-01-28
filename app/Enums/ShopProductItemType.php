@@ -40,6 +40,8 @@ enum ShopProductItemType: string
             $itemData = sprintf('%s_icon', $itemData);
         }
 
+        $itemData = str_replace('*', '_', $itemData);
+
         return sprintf('%s%s.png', getSetting('furniture_icon_path'), $itemData);
     }
 

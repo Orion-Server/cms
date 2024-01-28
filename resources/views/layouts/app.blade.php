@@ -76,7 +76,7 @@
                 </div>
             </div>
             @auth
-            <div class="flex flex-col gap-2 lg:gap-4 items-center">
+            <div class="flex flex-col gap-2 lg:gap-4 items-start lg:min-w-[525px]">
                 <x-header.user-box />
                 @include('pages.users.fragments.user.client-buttons')
             </div>

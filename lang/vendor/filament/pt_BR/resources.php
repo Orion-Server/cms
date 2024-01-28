@@ -108,6 +108,11 @@ return [
             'label' => 'Emblema',
             'plural' => 'Emblemas',
         ],
+        'product-item' => [
+            'navigation_label' => 'Itens',
+            'label' => 'Item',
+            'plural' => 'Itens',
+        ],
     ],
 
     'common' => [
@@ -286,7 +291,8 @@ return [
         'is_featured' => 'Em Destaque',
         'sales_count' => 'Total de Vendas',
         'type' => 'Tipo',
-        'item_data' => 'Informação do Item'
+        'item_data' => 'Informação do Item',
+        'quantity' => 'Quantidade',
     ],
 
     'options' => [

@@ -8,17 +8,23 @@ use Filament\Tables;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Traits\LatestRelationResourcesTrait;
+use App\Filament\Traits\TranslatableResource;
 use Filament\Resources\RelationManagers\RelationManager;
 
 class ItemsRelationManager extends RelationManager
 {
+    use LatestRelationResourcesTrait, TranslatableResource;
+
     protected static string $relationship = 'items';
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    protected static ?string $translateIdentifier = 'product-item';
 
     public static function form(Form $form): Form
     {
@@ -82,7 +88,13 @@ class ItemsRelationManager extends RelationManager
                     ->label(__('filament::resources.columns.item_data')),
 
                 Tables\Columns\TextColumn::make('data')
-                    ->label(__('filament::resources.columns.item_data'))
+                    ->label(__('filament::resources.columns.item_data')),
+
+                Tables\Columns\TextColumn::make('quantity')
+                    ->label(__('filament::resources.columns.quantity')),
+
+                Tables\Columns\ToggleColumn::make('is_active')
+                    ->label(__('filament::resources.columns.visible')),
             ])
             ->filters([
                 //

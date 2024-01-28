@@ -108,6 +108,11 @@ return [
             'label' => 'Badge',
             'plural' => 'Badges',
         ],
+        'product-item' => [
+            'navigation_label' => 'Items',
+            'label' => 'Item',
+            'plural' => 'Items',
+        ],
     ],
 
     'common' => [
@@ -288,6 +293,7 @@ return [
         'sales_count' => 'Sales Count',
         'type' => 'Type',
         'item_data' => 'Item Data',
+        'quantity' => 'Quantity',
     ],
 
     'options' => [

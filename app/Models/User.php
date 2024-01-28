@@ -16,9 +16,11 @@ use App\Models\{
 };
 use App\Models\Compositions\User\{
     HasCurrency,
+    HasItems,
     HasSettings,
     HasProfile
 };
+use App\Models\User\UserItem;
 use App\Models\User\UserOrder;
 use Illuminate\Database\Eloquent\Relations\{
     HasMany,
@@ -33,7 +35,7 @@ use Filament\Models\Contracts\{
 
 class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
 {
-    use HasApiTokens, HasFactory, Notifiable, HasCurrency, HasSettings, HasProfile;
+    use HasApiTokens, HasFactory, Notifiable, HasCurrency, HasSettings, HasProfile, HasItems;
 
     public $timestamps = false;
 
@@ -175,6 +177,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     public function friends(): HasMany
     {
         return $this->hasMany(MessengerFriendship::class, 'user_one_id');
+    }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(UserItem::class);
     }
 
     public function ownerGuilds(): HasMany
