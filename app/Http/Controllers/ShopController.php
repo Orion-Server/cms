@@ -42,6 +42,10 @@ class ShopController extends Controller
 
         $user = Auth::user();
 
+        if($user->online) {
+            return redirect()->route('shop.index')->with('shopError', __('You must be offline to buy!'));
+        }
+
         $orderDetail = $paypal->createOrder([
             'intent' => 'CAPTURE',
             'application_context' => [
@@ -179,7 +183,7 @@ class ShopController extends Controller
         ShopService::deliver(Auth::user(), $order);
 
         return redirect()->route('shop.index')
-            ->with('shopSuccess', __('Payment completed. Access your purchases and enjoy!'));
+            ->with('shopSuccess', __('Payment completed. Thanks for your purchase!'));
     }
 
     public function paymentCancelled(Request $request): RedirectResponse
@@ -197,6 +201,6 @@ class ShopController extends Controller
         }
 
         return redirect()->route('shop.index')
-            ->with('shopError', __('Payment cancelled'));
+            ->with('shopError', __('Payment cancelled.'));
     }
 }

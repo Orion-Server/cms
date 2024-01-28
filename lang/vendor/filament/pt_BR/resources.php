@@ -151,9 +151,9 @@ return [
         'limit_per_user_helper' => 'Limite de compras por usuário, ou deixe vazio para ilimitado.',
         'sales_count_helper' => 'Total de vendas para esse item. (Essa informação é atualizada automaticamente)',
         'badge_item_data_helper' => 'Digite abaixo o código do emblema.',
-        'furniture_item_data_helper' => 'Digite abaixo o ID do mobi.',
+        'furniture_item_data_helper' => "Digite abaixo o 'item_name' do mobi. Essa informação pode ser encontrada na tabela 'items_base' do seu banco de dados.",
         'room_item_data_helper' => 'Digite abaixo o ID do quarto.',
-        'currency_item_data_helper' => 'Digite abaixo o ID da moeda.',
+        'currency_item_data_helper' => 'Digite abaixo o nome da moeda. Exemplo: credits, duckets, diamonds ou points.',
         'empty_item_data_helper' => 'Selecione um tipo de item para ver as informações necessárias.',
     ],
 

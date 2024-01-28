@@ -246,5 +246,16 @@
     "This item is currently in use by one or more users.": "Dit item is momenteel in gebruik door één of meer gebruikers.",
     "Unable to delete category": "Kan categorie niet verwijderen",
     "This category is currently in use by one or more items.": "Deze categorie is momenteel in gebruik door één of meer items.",
-    ":c connected habbo's": ":c verbonden habbo's"
+    ":c connected habbo's": ":c verbonden habbo's",
+    "You must be offline to buy!": "You must be offline to buy!",
+    "Something went wrong, please try again later.": "Something went wrong, please try again later.",
+    "Payment completed. Thanks for your purchase!": "Payment completed. Thanks for your purchase!",
+    "Payment cancelled.": "Payment cancelled.",
+    "Product not found.": "Product not found.",
+    "View": "View",
+    "It has the following items:": "It has the following items:",
+    "Featured Products": "Featured Products",
+    "Featured products will appear below. Take the opportunity!": "Featured products will appear below. Take the opportunity!",
+    "No featured products found.": "No featured products found.",
+    "Show all": "Show all"
 }

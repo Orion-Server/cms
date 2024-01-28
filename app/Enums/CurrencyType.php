@@ -29,6 +29,16 @@ enum CurrencyType: int
         return $currency;
     }
 
+    public function getImage(): string
+    {
+        return match ($this->value) {
+            CurrencyType::Credits->value => asset('assets/images/currencies/credits.gif'),
+            CurrencyType::Duckets->value => asset('assets/images/currencies/duckets.png'),
+            CurrencyType::Diamonds->value => asset('assets/images/currencies/diamonds.png'),
+            CurrencyType::Points->value => asset('assets/images/currencies/points.png'),
+        };
+    }
+
     public static function toInput(): array
     {
         $allCurrencies = self::cases();

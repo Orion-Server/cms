@@ -16,7 +16,7 @@ class ShopProductController extends Controller
 
         if (!$product) {
             return $this->jsonResponse([
-                'message' => __('Product not found')
+                'message' => __('Product not found.')
             ], 404);
         }
 

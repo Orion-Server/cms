@@ -25,7 +25,7 @@ enum ShopProductItemType: string
             self::Badge->value => $this->getBadgeImage($itemData),
             self::Furniture->value => $this->getFurnitureImage($itemData),
             self::Room->value => $this->getRoomImage($itemData),
-            self::Currency->value => $this->getCurrencyImage($itemData)
+            self::Currency->value => CurrencyType::fromCurrencyName($itemData)?->getImage() ?? '',
         };
     }
 
@@ -48,15 +48,5 @@ enum ShopProductItemType: string
     private function getRoomImage(string $itemData): string
     {
         return $itemData;
-    }
-
-    private function getCurrencyImage(string $itemData): string
-    {
-        return match ($itemData) {
-            'credits' => 'https://i.imgur.com/6Z1Noci.gif',
-            'duckets' => 'https://i.imgur.com/ZRBOYoE.png',
-            'diamonds' => 'https://i.imgur.com/7MyGvjK.png',
-            'points' => 'https://i.imgur.com/8p2Dqlw.png'
-        };
     }
 }

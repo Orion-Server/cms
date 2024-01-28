@@ -2,15 +2,15 @@
 
 namespace App\Services;
 
-use App\Enums\CurrencyType;
-use App\Enums\ShopProductItemType;
+use App\Models\Room;
 use App\Models\User;
+use App\Enums\CurrencyType;
+use App\Models\ItemDefinition;
 use App\Models\User\UserOrder;
 use App\Models\ShopProductItem;
-use App\Http\Controllers\ShopController;
-use App\Models\ItemDefinition;
-use App\Models\Room;
+use App\Enums\ShopProductItemType;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\ShopController;
 
 class ShopService
 {
@@ -21,9 +21,31 @@ class ShopService
         $product = $order->product;
         $hasError = false;
 
+        if($order->is_delivered) {
+            if(ShopController::ENABLE_ERRORS_LOG) {
+                Log::driver('shop')->error('[DELIVER] Order already delivered.', [
+                    'user' => $user->username,
+                    'order' => $product->name,
+                ]);
+            }
+
+            return;
+        }
+
         if(!$product) {
             if(ShopController::ENABLE_ERRORS_LOG) {
                 Log::driver('shop')->error('[DELIVER] Order product not found.', [
+                    'user' => $user->username,
+                    'order' => $product->name,
+                ]);
+            }
+
+            return;
+        }
+
+        if($user->online) {
+            if(ShopController::ENABLE_ERRORS_LOG) {
+                Log::driver('shop')->error('[DELIVER] User is online.', [
                     'user' => $user->username,
                     'order' => $product->name,
                 ]);
@@ -43,27 +65,8 @@ class ShopService
             return;
         }
 
-        $product->items->each(function(ShopProductItem $item) use ($user, $product, &$hasError) {
-            $rconEnabled = config('hotel.rcon.enabled');
-            $rcon = app(RconService::class);
-
-            if(!$user->online) {
-                self::treatProductDeliverWithoutRcon($user, $item, $hasError);
-                return;
-            }
-
-            if(!$rconEnabled) {
-                if(ShopController::ENABLE_ERRORS_LOG) {
-                    Log::driver('shop')->error('[DELIVER] You cannot deliver products because RCON is not enabled and the user is online.', [
-                        'user' => $user->username,
-                        'order' => $product->name,
-                    ]);
-                }
-
-                return;
-            }
-
-            self::treatProductDeliverWithRcon($rcon, $user, $item, $hasError);
+        $product->items->each(function(ShopProductItem $item) use ($user, &$hasError) {
+            self::treatProductDeliverWithoutRcon($user, $item, $hasError);
         });
 
         if($hasError) {
@@ -149,10 +152,5 @@ class ShopService
 
             $room->replicateForUser($user);
         }
-    }
-
-    public static function treatProductDeliverWithRcon(RconService $rcon, User $user, ShopProductItem $item, bool &$hasError): void
-    {
-
     }
 }
