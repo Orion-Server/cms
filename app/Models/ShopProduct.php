@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Models\User\UserOrder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Number;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ShopProduct extends Model
 {
@@ -17,6 +19,10 @@ class ShopProduct extends Model
     protected $casts = [
         'is_active' => 'boolean',
         'is_featured' => 'boolean',
+    ];
+
+    protected $appends = [
+        'formatted_price'
     ];
 
     public function category()
@@ -46,5 +52,12 @@ class ShopProduct extends Model
     public function items(): HasMany
     {
         return $this->hasMany(ShopProductItem::class, 'product_id');
+    }
+
+    public function formattedPrice(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Number::currency($this->price, config('paypal.currency'))
+        );
     }
 }

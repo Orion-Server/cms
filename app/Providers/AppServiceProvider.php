@@ -9,11 +9,10 @@ use App\Enums\ArticleReactionType;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
+use Srmklive\PayPal\Services\PayPal;
 use Illuminate\Support\ServiceProvider;
 use Filament\Navigation\NavigationGroup;
 use App\Services\Parsers\ExternalTextsParser;
-use Illuminate\Support\Facades\Blade;
-use Srmklive\PayPal\Services\PayPal;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->bootGlobalViewVariables();
+        $this->bootGlobalViewHelpers();
 
         if (App::isProduction() && config('hotel.force_https')) {
             URL::forceScheme('https');
@@ -55,7 +54,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap the global view variables.
      */
-    private function bootGlobalViewVariables(): void
+    private function bootGlobalViewHelpers(): void
     {
         View::share('fromClient', request()->has('fromClient'));
         View::share('unsupportedFlashClient', request()->has('unsupported_flash'));

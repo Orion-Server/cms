@@ -24,7 +24,7 @@
             class="dark:bg-emerald-500 text-xs bg-emerald-500 border-emerald-700 hover:bg-emerald-400 dark:hover:bg-emerald-400 dark:shadow-emerald-700/75 shadow-emerald-600/75 py-2 px-3 text-white rounded-full"
         >
             <i class="fa-solid fa-cart-shopping"></i>
-            {{ __('Buy') }} ({{ config('paypal.currency') }} {{ $product->price }})
+            {{ __('Buy') }} ({{ $product->formatted_price }})
         </x-ui.buttons.redirectable>
     </div>
 </div>

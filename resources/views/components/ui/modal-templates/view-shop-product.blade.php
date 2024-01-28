@@ -34,7 +34,7 @@
             data-turbolinks="false"
         >
             <i class="fa-solid fa-cart-shopping"></i>
-            {{ __('Buy') }}
+            {{ __('Buy') }} <span class="m-0 p-0" x-html="`(${product.formatted_price})`"></span>
         </x-ui.buttons.redirectable>
     </div>
 </template>
