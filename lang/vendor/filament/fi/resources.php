@@ -133,7 +133,6 @@ return [
         'Widget' => 'Widget',
         'Note' => 'Note',
         'Background' => 'Background',
-        'Metrics' => 'Metrics',
     ],
 
     'helpers' => [
@@ -166,6 +165,7 @@ return [
         'Change Rank' => 'Vaihda sijoitus',
         'Account Data' => 'Tilin tiedot',
         'Extra Settings' => 'Lisäasetukset',
+        'Metrics' => 'Mittarit',
     ],
 
     'inputs' => [

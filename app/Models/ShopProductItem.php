@@ -14,7 +14,8 @@ class ShopProductItem extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'type' => ShopProductItemType::class
+        'type' => ShopProductItemType::class,
+        'is_active' => 'boolean',
     ];
 
     protected $appends = [

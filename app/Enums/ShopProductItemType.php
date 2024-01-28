@@ -36,6 +36,10 @@ enum ShopProductItemType: string
 
     private function getFurnitureImage(string $itemData): string
     {
+        if(!str_ends_with($itemData, '_icon')) {
+            $itemData = sprintf('%s_icon', $itemData);
+        }
+
         return sprintf('%s%s.png', getSetting('furniture_icon_path'), $itemData);
     }
 

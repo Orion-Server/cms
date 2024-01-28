@@ -133,7 +133,6 @@ return [
         'Widget' => 'Widget',
         'Note' => 'Note',
         'Background' => 'Background',
-        'Metrics' => 'Metrics',
     ],
 
     'helpers' => [
@@ -166,6 +165,7 @@ return [
         'Change Rank' => 'Skift Rang',
         'Account Data' => 'Kontodata',
         'Extra Settings' => 'Ekstra Indstillinger',
+        'Metrics' => 'Metrics',
     ],
 
     'inputs' => [

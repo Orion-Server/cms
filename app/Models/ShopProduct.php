@@ -14,6 +14,11 @@ class ShopProduct extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'is_active' => 'boolean',
+        'is_featured' => 'boolean',
+    ];
+
     public function category()
     {
         return $this->belongsTo(ShopCategory::class);
@@ -38,7 +43,7 @@ class ShopProduct extends Model
         return $query->where('is_featured', true);
     }
 
-    public function items()
+    public function items(): HasMany
     {
         return $this->hasMany(ShopProductItem::class, 'product_id');
     }

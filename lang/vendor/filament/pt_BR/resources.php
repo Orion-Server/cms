@@ -9,7 +9,7 @@ return [
         'Administration' => 'Administração',
         'User Management' => 'Gerenciamento de Usuários',
         'Profile Management' => 'Gerenciamento de Perfil',
-        'Shop' => 'Loja',
+        'Shop' => 'Loja'
     ],
 
     'resources' => [

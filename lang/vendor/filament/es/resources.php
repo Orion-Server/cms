@@ -9,7 +9,7 @@ return [
         'Administration' => 'Administración',
         'User Management' => 'Gestión de usuarios',
         'Profile Management' => 'Profile Management',
-        'Shop' => 'Tienda',
+        'Shop' => 'Tienda'
     ],
 
     'resources' => [
@@ -132,8 +132,7 @@ return [
         'Sticker' => 'Sticker',
         'Widget' => 'Widget',
         'Note' => 'Note',
-        'Background' => 'Background',
-        'Metrics' => 'Metrics',
+        'Background' => 'Background'
     ],
 
     'helpers' => [
@@ -166,6 +165,7 @@ return [
         'Change Rank' => 'Cambiar Rango',
         'Account Data' => 'Datos de la Cuenta',
         'Extra Settings' => 'Configuraciones Adicionales',
+        'Metrics' => 'Metrics',
     ],
 
     'inputs' => [

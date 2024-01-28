@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use Error;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Log;
 
 class RconService
 {
@@ -299,6 +300,15 @@ class RconService
                 ->title($notificationTitle)
                 ->body(__('Please check your RCON connection and try again.'))
                 ->send()
+        );
+    }
+
+    public function sendSafelyFromShop($method, array $args, $notificationTitle)
+    {
+        $this->sendSafely(
+            $method,
+            $args,
+            fn () => Log::error($notificationTitle)
         );
     }
 }

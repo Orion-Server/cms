@@ -77,43 +77,35 @@ class AppServiceProvider extends ServiceProvider
             Filament::registerNavigationGroups([
                 NavigationGroup::make()
                     ->label($getNavigationLabel('Dashboard'))
-                    ->collapsible(false)
-                    ->icon('heroicon-s-server'),
+                    ->collapsible(false),
 
                 NavigationGroup::make()
                     ->label($getNavigationLabel('Website'))
-                    ->collapsed()
-                    ->icon('heroicon-s-desktop-computer'),
+                    ->collapsed(),
 
                 NavigationGroup::make()
                     ->label($getNavigationLabel('Shop'))
-                    ->collapsed()
-                    ->icon('heroicon-s-shopping-cart'),
+                    ->collapsed(),
 
                 NavigationGroup::make()
                     ->label($getNavigationLabel('Help Center'))
-                    ->collapsed()
-                    ->icon('heroicon-o-support'),
+                    ->collapsed(),
 
                 NavigationGroup::make()
                     ->label($getNavigationLabel('Hotel'))
-                    ->collapsed()
-                    ->icon('heroicon-s-office-building'),
+                    ->collapsed(),
 
                 NavigationGroup::make()
                     ->label($getNavigationLabel('Administration'))
-                    ->collapsed()
-                    ->icon('heroicon-s-adjustments'),
+                    ->collapsed(),
 
                 NavigationGroup::make()
                     ->label($getNavigationLabel('User Management'))
-                    ->collapsed()
-                    ->icon('heroicon-s-user'),
+                    ->collapsed(),
 
                 NavigationGroup::make()
                     ->label($getNavigationLabel('Profile Management'))
                     ->collapsed()
-                    ->icon('heroicon-s-document-search'),
             ]);
         });
     }

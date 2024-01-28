@@ -133,7 +133,6 @@ return [
         'Widget' => 'Widget',
         'Note' => 'Note',
         'Background' => 'Background',
-        'Metrics' => 'Metrics',
     ],
 
     'helpers' => [
@@ -165,7 +164,8 @@ return [
         'Change Password' => 'Şifreyi Değiştir',
         'Change Rank' => 'Rütbe Değiştir',
         'Account Data' => 'Hesap Verileri',
-        'Extra Settings' => 'Ek Ayarlar'
+        'Extra Settings' => 'Ek Ayarlar',
+        'Metrics' => 'Metrikler',
     ],
 
     'inputs' => [

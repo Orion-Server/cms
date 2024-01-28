@@ -8,6 +8,7 @@
         "php": "^8.1",
         "cyrildewit/eloquent-viewable": "^7.0",
         "filament/filament": "^2.0",
+        "filipfonal/filament-log-manager": "^1.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/fortify": "^1.17",
         "laravel/framework": "^10.8",

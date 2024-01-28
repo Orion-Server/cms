@@ -10,7 +10,9 @@ class ShopProductController extends Controller
 {
     public function show(string $id)
     {
-        $product = ShopProduct::with('items')->find($id);
+        $product = ShopProduct::with([
+            'items' => fn ($query) => $query->where('is_active', true)
+        ])->find($id);
 
         if (!$product) {
             return $this->jsonResponse([

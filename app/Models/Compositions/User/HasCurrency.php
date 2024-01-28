@@ -67,4 +67,16 @@ trait HasCurrency
             ->whereType($currency->value)
             ->decrement('amount', $amount);
     }
+
+    public function incrementCurrency(CurrencyType $currency, int $amount): void
+    {
+        if($currency === CurrencyType::Credits) {
+            $this->increment('credits', $amount);
+            return;
+        }
+
+        $this->currencies()
+            ->whereType($currency->value)
+            ->increment('amount', $amount);
+    }
 }

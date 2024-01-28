@@ -29,6 +29,14 @@ class UserOrder extends Model
         return $query->with('product');
     }
 
+    public function scopeCompleteRelationships($query)
+    {
+        return $query->with([
+            'product',
+            'product.items' => fn ($query) => $query->where('is_active', true)
+        ]);
+    }
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(ShopProduct::class);

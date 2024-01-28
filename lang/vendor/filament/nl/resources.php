@@ -166,6 +166,7 @@ return [
         'Change Rank' => 'Rang Wijzigen',
         'Account Data' => 'Accountgegevens',
         'Extra Settings' => 'Extra Instellingen',
+        'Metrics' => 'Metrics',
     ],
 
     'inputs' => [

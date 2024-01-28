@@ -14,6 +14,21 @@ enum CurrencyType: int
         return array_column(self::cases(), 'value');
     }
 
+    public static function fromCurrencyName(string $currencyName): ?self
+    {
+        $currencyName = strtolower($currencyName);
+
+        $currency = match ($currencyName) {
+            'credits' => self::Credits,
+            'duckets' => self::Duckets,
+            'diamonds' => self::Diamonds,
+            'points' => self::Points,
+            default => null,
+        };
+
+        return $currency;
+    }
+
     public static function toInput(): array
     {
         $allCurrencies = self::cases();

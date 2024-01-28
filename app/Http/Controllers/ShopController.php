@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\View\View;
 use App\Models\ShopProduct;
 use App\Models\ShopCategory;
+use App\Services\ShopService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Srmklive\PayPal\Services\PayPal;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 class ShopController extends Controller
 {
-    private const ENABLE_ERRORS_LOG = true;
+    public const ENABLE_ERRORS_LOG = true;
     private const PRODUCTS_LIST_LIMIT = 12;
 
     public function index(?string $currentCategoryId = null): View
@@ -39,6 +40,8 @@ class ShopController extends Controller
             return $this->index();
         }
 
+        $user = Auth::user();
+
         $orderDetail = $paypal->createOrder([
             'intent' => 'CAPTURE',
             'application_context' => [
@@ -63,8 +66,9 @@ class ShopController extends Controller
 
         if(!array_key_exists('id', $orderDetail)) {
             if(self::ENABLE_ERRORS_LOG) {
-                Log::error('[PROCESS] PayPal order id is not available.', [
-                    'orderDetail' => $orderDetail
+                Log::driver('shop')->error('[PROCESS] PayPal order id is not available.', [
+                    'user' => $user->username,
+                    'orderDetail' => $orderDetail,
                 ]);
             }
 
@@ -75,8 +79,9 @@ class ShopController extends Controller
 
         if(!count($approveLink)) {
             if(self::ENABLE_ERRORS_LOG) {
-                Log::error('[PROCESS] PayPal approve link is not available.', [
-                    'orderDetail' => $orderDetail
+                Log::driver('shop')->error('[PROCESS] PayPal approve link is not available.', [
+                    'user' => $user->username,
+                    'orderDetail' => $orderDetail,
                 ]);
             }
 
@@ -98,12 +103,18 @@ class ShopController extends Controller
             'token' => 'required|string',
         ]);
 
-        $order = Auth::user()->orders()->where('order_id', $request->token)->first();
+        $user = Auth::user();
+
+        $order = $user->orders()
+            ->completeRelationships()
+            ->where('order_id', $request->token)
+            ->first();
 
         if(!$order) {
             if(self::ENABLE_ERRORS_LOG) {
-                Log::error('[SUCESSFULL] PayPal order not found.', [
-                    'order' => $order
+                Log::driver('shop')->error('[SUCESSFULL] PayPal order not found.', [
+                    'user' => $user->username,
+                    'order' => $order->product->name,
                 ]);
             }
 
@@ -116,8 +127,9 @@ class ShopController extends Controller
             $firstError = $paymentOrder['error']['details'][0];
 
             if(self::ENABLE_ERRORS_LOG) {
-                Log::error('[SUCESSFULL] PayPal payment order status is not available.', [
-                    'order' => $order,
+                Log::driver('shop')->error('[SUCESSFULL] PayPal payment order status is not available.', [
+                    'user' => $user->username,
+                    'order' => $order->product->name,
                     'paymentOrder' => $paymentOrder
                 ]);
             }
@@ -131,8 +143,9 @@ class ShopController extends Controller
 
         if($paymentOrder['status'] !== 'COMPLETED') {
             if(self::ENABLE_ERRORS_LOG) {
-                Log::error('[SUCESSFULL] PayPal payment order status is not completed.', [
-                    'order' => $order,
+                Log::driver('shop')->error('[SUCESSFULL] PayPal payment order status is not completed.', [
+                    'user' => $user->username,
+                    'order' => $order->product->name,
                     'paymentOrder' => $paymentOrder
                 ]);
             }
@@ -144,8 +157,9 @@ class ShopController extends Controller
 
         if($purchaseDetails['reference_id'] != $order->product_id) {
             if(self::ENABLE_ERRORS_LOG) {
-                Log::error('[SUCESSFULL] PayPal payment order reference id does not match with the order product id.', [
-                    'order' => $order,
+                Log::driver('shop')->error('[SUCESSFULL] PayPal payment order reference id does not match with the order product id.', [
+                    'user' => $user->username,
+                    'order' => $order->product->name,
                     'purchaseDetails' => $purchaseDetails
                 ]);
             }
@@ -161,6 +175,8 @@ class ShopController extends Controller
             'currency' => $paymentDetails['amount']['currency_code'],
             'paypal_fee' => $paymentDetails['seller_receivable_breakdown']['paypal_fee']['value'],
         ]);
+
+        ShopService::deliver(Auth::user(), $order);
 
         return redirect()->route('shop.index')
             ->with('shopSuccess', __('Payment completed. Access your purchases and enjoy!'));
