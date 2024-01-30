@@ -39,6 +39,14 @@ return [
         'site_key' => env('RECAPTCHA_SITE_KEY', ''),
         'secret_key' => env('RECAPTCHA_SECRET_KEY', ''),
     ],
+	/**
+     * Turnstile configurations
+     */	
+	'turnstile' => [
+        'enabled' => !! env('TURNSILE_ENABLED', false),
+        'site_key' => env('TURNSTILE_SITE_KEY', ''),
+        'secret_key' => env('TURNSTILE_SECRET_KEY', ''),
+    ],
 
     /**
      * Meta data configurations

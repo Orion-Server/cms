@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use App\Rules\RecaptchaRule;
+use App\Rules\TurnstileCheck;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -124,6 +125,10 @@ class CreateNewUser implements CreatesNewUsers
 
         if(config('hotel.recaptcha.enabled')) {
             $validations['recaptcha'] = ['required', 'string', new RecaptchaRule];
+        }
+		
+		if(config('hotel.turnstile.enabled')) {
+            $validations['turnstile'] = ['required', 'string', new TurnstileCheck];
         }
 
         return Validator::make($input, $validations)
