@@ -39,6 +39,26 @@ export default class SwiperWrapper {
                     el: ".swiper-pagination",
                     type: "progressbar",
                 }
+            },
+            friendStories: {
+                spaceBetween: 30,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    type: "progressbar",
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev"
+                },
+                on: {
+                    autoplayTimeLeft(s, time, progress) {
+                    }
+                }
             }
         }[elementId]
     }

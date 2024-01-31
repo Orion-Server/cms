@@ -34,7 +34,7 @@ class ArticleCommentController extends Controller
         return $this->jsonResponse([
             'comment' => $comment,
             'message' => __('Comment created successfully'),
-            'href' => route('articles.show', ['id' => $article->id, 'slug' => $article->slug])
+            'href' => route('articles.show', ['id' => $article->id, 'slug' => $article->slug]) . '#comments'
         ]);
     }
 }

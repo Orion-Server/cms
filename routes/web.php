@@ -159,6 +159,6 @@ Route::prefix('shop')
             ->name('products.buy')
             ->middleware('throttle:15,1');
 
-        Route::get('/payment/cancel', [ShopController::class, 'paymentCancelled'])->name('payment.cancelled');
+        Route::get('/payment/cancelled', [ShopController::class, 'paymentCancelled'])->name('payment.cancelled');
         Route::get('/payment/success', [ShopController::class, 'paymentSucessfull'])->name('payment.sucessfull');
     });

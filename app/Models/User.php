@@ -223,19 +223,14 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         return $this->hasMany(CameraLike::class)->whereLiked(true);
     }
 
+    public function photoViews(): HasMany
+    {
+        return $this->hasMany(CameraView::class);
+    }
+
     public function getFilamentName(): string
     {
         return $this->username;
-    }
-
-    public function isBoy(): bool
-    {
-        return $this->gender == 'M';
-    }
-
-    public function isGirl(): bool
-    {
-        return $this->gender == 'F';
     }
 
     public function figurePath(): Attribute

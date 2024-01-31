@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\{
     Factories\HasFactory,
     Relations\HasMany
 };
+use Illuminate\Support\Facades\DB;
 
 class Camera extends Model
 {
@@ -19,6 +20,27 @@ class Camera extends Model
     protected $table = 'camera_web';
 
     public $timestamps = false;
+
+    protected $casts = [
+        'timestamp' => 'datetime',
+    ];
+
+    public static function getFriendsWhoHaveStories()
+    {
+        $friendsId = \Auth::user()
+            ->friends()
+            ->pluck('user_two_id')
+            ->toArray();
+
+        return DB::table('users')
+            ->leftJoin('camera_web', 'users.id', '=', 'camera_web.user_id')
+            ->select('users.id', 'users.username', 'users.avatar_background', 'camera_web.timestamp')
+            ->whereIn('camera_web.user_id', $friendsId)
+            ->where('camera_web.timestamp', '>=', now()->subDay()->timestamp)
+            ->orderBy('camera_web.timestamp', 'desc')
+            ->get()
+            ->groupBy('username');
+    }
 
     public static function latestWith(bool $includesRoom = false): Builder
     {
@@ -81,6 +103,11 @@ class Camera extends Model
     public function likes(): HasMany
     {
         return $this->hasMany(CameraLike::class);
+    }
+
+    public function views(): HasMany
+    {
+        return $this->hasMany(CameraView::class);
     }
 
     public function formattedDate(): Attribute
