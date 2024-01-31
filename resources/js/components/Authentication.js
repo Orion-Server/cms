@@ -101,10 +101,15 @@ export default class Authentication {
                     this.registerData.referrer_code = this.registerReferrerData.code
                 }
 
-                const recaptchaResponse = document.querySelector('#register-form #g-recaptcha-response')
+                const recaptchaResponse = document.querySelector('#register-form #g-recaptcha-response'),
+                    turnstile = document.querySelector('#register-form [name="cf-turnstile-response"]')
 
                 if(recaptchaResponse && recaptchaResponse.value.length) {
                     this.registerData.recaptcha = recaptchaResponse.value
+                }
+
+                if(turnstile && turnstile.value.length) {
+                    this.registerData['cf-turnstile-response'] = turnstile.value
                 }
 
                 await Authentication._attemptAuthentication('/register', this.registerData,

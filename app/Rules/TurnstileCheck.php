@@ -2,23 +2,23 @@
 
 namespace App\Rules;
 
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Coderflex\LaravelTurnstile\Facades\LaravelTurnstile;
-use Illuminate\Contracts\Validation\Rule;
 
-class TurnstileCheck implements Rule
+class TurnstileCheck implements ValidationRule
 {
-    public function passes($attribute, $value)
+    /**
+     * Run the validation rule.
+     *
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     */
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (!config('hotel.turnstile.enabled')) {
-            return true;
-        }
+        if (!config('hotel.turnstile.enabled')) return;
 
         $response = LaravelTurnstile::validate($value);
-        return $response['success'];
-    }
 
-    public function message()
-    {
-        return __('auth.recaptcha_failed');
+        if(! $response['success']) $fail(__('auth.turnstile_failed'));
     }
 }

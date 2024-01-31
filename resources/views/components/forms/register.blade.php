@@ -90,10 +90,7 @@
 
     <div class="flex justify-center mt-4">
 		@includeWhen(config('hotel.recaptcha.enabled'), 'components.ui.recaptcha')
-
-		@unless(config('hotel.recaptcha.enabled'))
-			@includeWhen(config('hotel.turnstile.enabled'), 'components.ui.turnstile')
-		@endunless
+		@includeWhen(config('hotel.turnstile.enabled'), 'components.ui.turnstile')
 	</div>
 
     <div class="flex gap-4 mt-6">

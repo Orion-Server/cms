@@ -126,9 +126,9 @@ class CreateNewUser implements CreatesNewUsers
         if(config('hotel.recaptcha.enabled')) {
             $validations['recaptcha'] = ['required', 'string', new RecaptchaRule];
         }
-		
+
 		if(config('hotel.turnstile.enabled')) {
-            $validations['turnstile'] = ['required', 'string', new TurnstileCheck];
+            $validations['cf-turnstile-response'] = ['required', 'string', new TurnstileCheck];
         }
 
         return Validator::make($input, $validations)

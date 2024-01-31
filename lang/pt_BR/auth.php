@@ -17,6 +17,7 @@ return [
     'password' => 'A senha informada está incorreta.',
     'throttle' => 'Muitas tentativas de login. Tente novamente em :seconds segundos.',
     'recaptcha_failed' => 'A verificação reCAPTCHA falhou.',
+    'turnstile_failed' => 'A verificação Turnstile falhou.',
     'max_accounts_per_ip' => 'Você atingiu o número máximo de contas por endereço IP.',
     'invalid_ip' => 'Endereço IP inválido.',
     'registration_disabled' => 'O registro está desativado.'
