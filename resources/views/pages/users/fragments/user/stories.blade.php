@@ -11,7 +11,7 @@
         <div
             @click="onStoryClick('{{ $friendName }}')"
             data-tippy-singleton
-            data-tippy-content="<small>{{ \Carbon\Carbon::parse($stories->first()->timestamp)->diffForHumans() }}</small>"
+            data-tippy-content="<small>{{ $stories->first()->timestamp }}</small>"
             @class([
                 "w-16 h-16 relative shrink-0 rounded-full bg-gray-100 dark:bg-slate-800 border-2 p-0.5 cursor-pointer"
             ])>

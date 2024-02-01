@@ -24,7 +24,7 @@ export default class SwiperWrapper {
             return;
         }
 
-        new Swiper(`.${swiperContainer.classList[0]}`, swiperConfig);
+        return new Swiper(`.${swiperContainer.classList[0]}`, swiperConfig);
     }
 
     static getElementConfigFromId(elementId) {
@@ -46,7 +46,9 @@ export default class SwiperWrapper {
                 },
             },
             friendStory: {
-                direction: "vertical",
+                direction: "horizontal",
+                watchSlidesProgress: true,
+                slidesPerView: 1,
                 autoplay: {
                     delay: 5000,
                     disableOnInteraction: false,
@@ -54,33 +56,65 @@ export default class SwiperWrapper {
                     stopOnLastSlide: true,
                 },
                 pagination: {
-                    el: ".swiper-pagination",
+                    el: '.story_pagination',
+                    clickable: true,
+                    renderBullet: function (index, className) {
+                        return '<div class="' + className + '"><div class="swiper-pagination-progress"></div></div>';
+                    },
                 },
                 navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
+                    nextEl: ".story_next",
+                    prevEl: ".story_prev",
                 },
                 on: {
-                    autoplayStart(s) {
+                    autoplayStart(swiper) {
                         document.addEventListener('orion:stop-story', () => {
-                            s.autoplay?.stop()
-                            s.destroy()
+                            swiper.autoplay?.stop()
+                            swiper.destroy(true, true)
                         })
                     },
-                    autoplayTimeLeft(s, time, progress) {
-                        if(!s.slides.length) return;
+                    autoplayTimeLeft(swiper, time, progress) {
+                        if(!swiper.slides?.length) return;
 
-                        progressCircle.style.setProperty("--progress", 1 - progress)
-                        progressContent.textContent = `${Math.ceil(time / 1000)}s`
-                    },
-                    reachEnd(s) {
-                        setTimeout(() => {
-                            s.autoplay.stop()
-                            s.destroy()
+                        let currentBullet = document.querySelectorAll('.friendStory .swiper-pagination-progress')[swiper.realIndex]
 
-                            document.dispatchEvent(new Event('orion:next-story'))
-                        }, 5500)
+                        if(!currentBullet) return;
+
+                        currentBullet.style.width = Math.min(
+                            Math.max(parseFloat(((swiper.params.autoplay.delay - time) * 100 / swiper.params.autoplay.delay).toFixed(1)), 0),
+                        100) + '%';
+
+                        if(swiper.isEnd && time <= 0) {
+                            swiper.autoplay.stop()
+                            swiper.destroy(true, true)
+
+                            setTimeout(() => document.dispatchEvent(new Event('orion:next-story')), 500)
+                        }
                     },
+                    transitionEnd(swiper) {
+                        if(!swiper.slides?.length) return;
+
+                        let allBullets = Array.from(document.querySelectorAll('.friendStory .swiper-pagination-progress')),
+                            bulletsBefore = allBullets.slice(0, swiper.realIndex),
+                            bulletsAfter = allBullets.slice(swiper.realIndex, allBullets.length);
+
+                        bulletsBefore.forEach(bullet => bullet.style.width = '100%');
+                        bulletsAfter.forEach(bullet => bullet.style.width = '0%');
+
+                        let currentSlide = swiper.slides[swiper.realIndex]
+
+                        if(!currentSlide) return;
+
+                        document.documentElement.style.setProperty('--friend-story-bg', `url(${currentSlide.dataset.bg})`)
+
+                        const event = new CustomEvent('orion:current-story-slide', {
+                            detail: {
+                                currentIndex: swiper.realIndex
+                            }
+                        })
+
+                        document.dispatchEvent(event)
+                    }
                 }
             },
         }[elementId];

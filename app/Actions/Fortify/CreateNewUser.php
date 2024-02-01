@@ -44,7 +44,8 @@ class CreateNewUser implements CreatesNewUsers
                 'home_room' => getSetting('start_room_id'),
                 'ip_register' => $userIp,
                 'ip_current' => $userIp,
-                'referral_code' => \Str::random(15)
+                'referral_code' => \Str::random(15),
+                'avatar_background' => getSetting('default_avatar_background'),
             ]), function (User $user) use ($input) {
                 if(!isset($input['referrer_code'])) return;
 

@@ -13,17 +13,20 @@ class FriendStories {
             currentStoryName: '',
             modalOpen: false,
             currentStories: [],
+            currentSwiperInstance: null,
+            currentStory: null,
 
             init() {
                 document.addEventListener('orion:next-story', () => {
                     if(!this.currentStoryName?.length) return;
 
-                    const indexOf = Object.values(this.stories).findIndex((story, index) => Object.keys(this.stories)[index] === this.currentStoryName)
+                    const indexOf = Object.values(this.stories).findIndex(
+                        (_, index) => Object.keys(this.stories)[index] === this.currentStoryName
+                    )
 
                     if(indexOf === -1) return;
 
                     const nextFriendStoryName = Object.keys(this.stories)[indexOf + 1]
-
 
                     if(!nextFriendStoryName) {
                         this.closeStory()
@@ -34,15 +37,29 @@ class FriendStories {
                         this.onStoryClick(nextFriendStoryName)
                     })
                 })
+
+                document.addEventListener('orion:current-story-slide', (event) => {
+                    if(!this.currentStoryName?.length) return;
+
+                    this.currentStory = this.currentStories[event.detail.currentIndex]
+                })
             },
 
             onStoryClick(friendName) {
                 if(!this.stories[friendName]) return;
 
+                if(this.currentSwiperInstance) {
+                    this.currentSwiperInstance.autoplay?.stop()
+                    this.currentSwiperInstance.destroy(true, true)
+                }
+
                 this.currentStoryName = friendName
                 this.modalOpen = true
+                this.currentStory = null
 
-                SwiperWrapper.createSwiper(
+                this.currentStories = []
+
+                this.currentSwiperInstance = SwiperWrapper.createSwiper(
                     document.querySelector('.swiper#friendStory')
                 );
 
@@ -55,8 +72,32 @@ class FriendStories {
                 this.modalOpen = false
                 this.currentStoryName = ''
                 this.currentStories = []
+                this.currentStory = null
+                this.currentSwiperInstance = null
 
                 document.dispatchEvent(new Event('orion:stop-story'))
+            },
+
+            getActiveFriendBackground() {
+                if(this.dataIsInvalid()) return '';
+
+                return this.currentStory.avatar_background
+            },
+
+            getActiveFriendLook() {
+                if(this.dataIsInvalid()) return '';
+
+                return this.currentStory.look
+            },
+
+            getActiveFriendStoryTimestamp() {
+                if(this.dataIsInvalid()) return '';
+
+                return this.currentStory.timestamp
+            },
+
+            dataIsInvalid() {
+                return !this.currentStoryName?.length || !this.currentStories.length || !this.currentStory
             }
         }))
     }
