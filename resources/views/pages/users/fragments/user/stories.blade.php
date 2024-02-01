@@ -4,7 +4,7 @@
     description="{{ __('Stay on top of your friends latest activities') }}"
 />
 <div
-    x-data='friendStories(@json($friendStories->keys()->toArray()))'
+    x-data='friendStories(@json($friendStories))'
     class="flex justify-start gap-3 scroll-smooth scroll-x relative mt-4 p-2 pb-6 overflow-x-auto rounded-lg shadow border-b-2 border-gray-300 dark:border-slate-800 bg-white dark:bg-slate-950"
 >
     @forelse ($friendStories as $friendName => $stories)
@@ -18,6 +18,7 @@
             <div class="w-full h-full rounded-full bg-center bg-no-repeat bg-cover" style="background-image: url('{{ $stories->first()->avatar_background ?? getSetting('default_avatar_background') }}')"></div>
             <div class="absolute max-w-[100%] truncate text-xs -bottom-5 left-1/2 -translate-x-1/2 dark:text-slate-200">{{ $friendName }}</div>
         </div>
+
     @empty
         <div class="flex items-center justify-center gap-2 w-full">
             <i class="fa-solid fa-camera-retro text-gray-300 dark:text-slate-600"></i>
@@ -25,5 +26,5 @@
         </div>
     @endforelse
 
-    <x-ui.story-modal x-if="currentStoryName" type="stories" />
+    <x-ui.story-modal x-if="currentStoryName" />
 </div>

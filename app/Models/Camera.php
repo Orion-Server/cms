@@ -34,7 +34,8 @@ class Camera extends Model
 
         return DB::table('users')
             ->leftJoin('camera_web', 'users.id', '=', 'camera_web.user_id')
-            ->select('users.id', 'users.username', 'users.avatar_background', 'camera_web.timestamp')
+            ->leftJoin('camera_web_views', 'camera_web.id', '=', 'camera_web_views.camera_id')
+            ->select('users.id', 'users.username', 'users.avatar_background', 'camera_web.timestamp', 'camera_web.url')
             ->whereIn('camera_web.user_id', $friendsId)
             ->where('camera_web.timestamp', '>=', now()->subDay()->timestamp)
             ->orderBy('camera_web.timestamp', 'desc')

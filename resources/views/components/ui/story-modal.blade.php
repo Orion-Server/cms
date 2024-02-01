@@ -1,41 +1,32 @@
-@props([
-    'type' => null,
-    'title' => null,
-    'subTitle' => null,
-    'alpineModel' => 'modalOpen',
-    'maxWidth' => false,
-    'extraClasses' => ''
-])
-
 <div tabindex="-1"
-    class="fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden bg-black/50 overflow-y-auto md:inset-0 h-full max-h-full hidden justify-center items-center {{ $extraClasses }} z-[99999]"
-    :class="{ 'hidden': !{{ $alpineModel }}, 'flex': {{ $alpineModel }} }"
+    class="fixed top-0 left-0 right-0 p-4 overflow-x-hidden bg-black/[0.9] overflow-y-auto md:inset-0 h-full max-h-full hidden justify-center items-center z-[99999]"
+    :class="{ 'hidden': !modalOpen, 'flex': modalOpen }"
     x-transition
-    x-show="{{ $alpineModel }}"
-    x-on:click.self="{{ $alpineModel }} = false"
-    x-on:keydown.escape.prevent.stop="{{ $alpineModel }} = false"
+    x-show="modalOpen"
+    x-on:click.self="closeStory()"
+    x-on:keydown.escape.prevent.stop="closeStory()"
 >
-    <div @class([
-        'relative w-full max-h-full',
-        'max-w-md' => !$maxWidth,
-        $maxWidth,
-    ])>
+    <div class="relative w-[380px] h-full">
         {{-- <div class="card bg-blue-500 shadow-lg shadow-blue-700/75 w-full h-full rounded-3xl absolute  transform -rotate-3"></div>
         <div class="card bg-blue-400 shadow-blue-600/75 shadow-lg w-full h-full rounded-3xl absolute  transform rotate-3"></div> --}}
-        <div class="relative w-full md:w-auto bg-white rounded-lg shadow dark:bg-slate-900">
-            <button @click="{{ $alpineModel }} = false" type="button" class="absolute top-3 right-2.5 text-gray-400 dark:text-gray-200 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white">
-                <i class="fa-solid fa-xmark"></i>
-                <span class="sr-only">Close modal</span>
-            </button>
-            <div class="p-6 text-center">
-                @if($title) <h2 class="text-2xl font-semibold text-gray-700 dark:text-white text-center">{!! $title !!}</h2> @endif
-                @if($subTitle) <p class="text-lg text-gray-600 text-center dark:text-gray-400">{!! $subTitle !!}</p> @endif
-
-                @if (empty($type))
-                    {{ $slot }}
-                @else
-                    <x-dynamic-component component="ui.modal-templates.{{ $type }}" :attributes="$attributes" />
-                @endif
+        <div class="relative w-full flex justify-center items-center md:w-auto rounded-lg shadow h-full">
+            <div class="friendStory swiper no-init !w-[320px] !h-[320px]" id="friendStory">
+                <div class="swiper-wrapper">
+                    <template x-for="(story, index) in currentStories" x-bind:key="index">
+                        <div
+                            class="swiper-slide w-full h-full relative rounded-lg"
+                            x-bind:style="{ backgroundImage: `url(${story.url})` }"
+                        ></div>
+                    </template>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="autoplay-progress">
+                    <svg viewBox="0 0 48 48">
+                        <circle cx="24" cy="24" r="20"></circle>
+                    </svg>
+                    <span></span>
+                </div>
             </div>
         </div>
     </div>
