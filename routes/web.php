@@ -37,14 +37,20 @@ use App\Http\Controllers\{
 
 Route::get('/set-language/{language}', [WebController::class, 'setLanguage'])->name('set-language');
 
-Route::get('/', [WebController::class, 'index'])->name('index');
-Route::get('/login', [WebController::class, 'index'])->name('login');
-Route::get('/register', [WebController::class, 'index'])->name('register');
+Route::get('/', [WebController::class, 'index'])->name('index')
+	->middleware('throttle:15,1');
+Route::get('/login', [WebController::class, 'index'])->name('login')
+	->middleware('throttle:15,1');
+Route::get('/register', [WebController::class, 'index'])->name('register')
+	->middleware('throttle:15,1');
 
-Route::post('/logout', [AuthSessionController::class, 'destroy'])->name('logout');
+Route::post('/logout', [AuthSessionController::class, 'destroy'])->name('logout')
+	->middleware('throttle:15,1');
 
-Route::get('jail', [JailController::class, 'show'])->name('jail');
-Route::get('maintenance', [WebController::class, 'maintenance'])->name('maintenance');
+Route::get('jail', [JailController::class, 'show'])->name('jail')
+	->middleware('throttle:15,1');
+Route::get('maintenance', [WebController::class, 'maintenance'])->name('maintenance')
+	->middleware('throttle:15,1');
 
 Route::prefix('hotel')
     ->name('hotel.')
@@ -67,8 +73,10 @@ Route::prefix('hotel')
 Route::prefix('articles')
     ->name('articles.')
     ->group(function () {
-        Route::get('/', [ArticleController::class, 'index'])->name('index');
-        Route::get('{id}/{slug}', [ArticleController::class, 'show'])->name('show');
+        Route::get('/', [ArticleController::class, 'index'])->name('index')
+			->middleware('throttle:15,1');
+        Route::get('{id}/{slug}', [ArticleController::class, 'show'])->name('show')
+			->middleware('throttle:15,1');
 
         Route::post('{id}/{slug}/comment', [ArticleCommentController::class, 'store'])
             ->middleware('auth')
@@ -85,17 +93,21 @@ Route::prefix('community')
         Route::prefix('photos')
             ->name('photos.')
             ->group(function () {
-                Route::get('/', [CameraController::class, 'index'])->name('index');
+                Route::get('/', [CameraController::class, 'index'])->name('index')
+					->middleware('throttle:15,1');
                 Route::post('photo/{camera:id}/like', [CameraController::class, 'toggleLike'])
                     ->middleware('auth')
                     ->name('like');
             });
 
-        Route::get('staff', [StaffController::class, 'index'])->name('staffs.index');
+        Route::get('staff', [StaffController::class, 'index'])->name('staffs.index')
+			->middleware('throttle:15,1');
         Route::get('rankings', RankingController::class)
-            ->name('rankings.index');
+            ->name('rankings.index')
+			->middleware('throttle:15,1');
 
-        Route::get('teams', [TeamController::class, 'index'])->name('teams.index');
+        Route::get('teams', [TeamController::class, 'index'])->name('teams.index')
+			->middleware('throttle:15,1');
     });
 
 Route::name('users.')
@@ -144,8 +156,10 @@ Route::prefix('support')
 Route::prefix('about')
     ->name('about.')
     ->group(function() {
-        Route::get('discord', [AboutController::class, 'discordInvite'])->name('discord');
-        Route::get('safety', [AboutController::class, 'safety'])->name('safety');
+        Route::get('discord', [AboutController::class, 'discordInvite'])->name('discord')
+			->middleware('throttle:15,1');
+        Route::get('safety', [AboutController::class, 'safety'])->name('safety')
+			->middleware('throttle:15,1');
     });
 
 Route::prefix('shop')
