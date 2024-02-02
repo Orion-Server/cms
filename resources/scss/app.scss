@@ -127,12 +127,13 @@ html {
         bottom: unset !important;
         top: 8px !important;
         display: flex;
-        width: 100%;
+        width: 90%;
+        margin-left: 5%;
 
         .swiper-pagination-bullet {
             flex-grow: 1;
             border-radius: 100vh;
-            height: 3px;
+            height: 4px;
             margin: 0 2px !important;
             background-color: rgba($color: #f7f7f5, $alpha: .4);
             opacity: 1;

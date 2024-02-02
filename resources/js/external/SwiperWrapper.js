@@ -28,9 +28,6 @@ export default class SwiperWrapper {
     }
 
     static getElementConfigFromId(elementId) {
-        const progressCircle = document.querySelector(".autoplay-progress svg");
-        const progressContent = document.querySelector(".autoplay-progress span");
-
         return {
             latestArticles: {
                 direction: "vertical",
@@ -48,7 +45,6 @@ export default class SwiperWrapper {
             friendStory: {
                 direction: "horizontal",
                 watchSlidesProgress: true,
-                slidesPerView: 1,
                 autoplay: {
                     delay: 5000,
                     disableOnInteraction: false,
@@ -73,6 +69,7 @@ export default class SwiperWrapper {
                             swiper.destroy(true, true)
                         })
                     },
+
                     autoplayTimeLeft(swiper, time, progress) {
                         if(!swiper.slides?.length) return;
 
@@ -91,6 +88,7 @@ export default class SwiperWrapper {
                             setTimeout(() => document.dispatchEvent(new Event('orion:next-story')), 500)
                         }
                     },
+
                     transitionEnd(swiper) {
                         if(!swiper.slides?.length) return;
 
@@ -104,8 +102,6 @@ export default class SwiperWrapper {
                         let currentSlide = swiper.slides[swiper.realIndex]
 
                         if(!currentSlide) return;
-
-                        document.documentElement.style.setProperty('--friend-story-bg', `url(${currentSlide.dataset.bg})`)
 
                         const event = new CustomEvent('orion:current-story-slide', {
                             detail: {

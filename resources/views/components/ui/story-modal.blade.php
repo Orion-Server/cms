@@ -8,7 +8,7 @@
 >
     <div class="relative w-[380px] h-full">
         <div
-            class="relative w-full flex flex-col justify-center items-center bg-slate-900 md:w-auto rounded-xl shadow h-full"
+            class="relative w-full flex flex-col justify-center items-center md:w-auto rounded-xl shadow h-full"
         >
             <div class="!w-[320px] flex justify-start items-center gap-3 p-2 rounded-t-lg bg-slate-900 border border-b-none border-slate-700">
                 <div
@@ -30,8 +30,6 @@
                     <template x-for="(story, index) in currentStories" x-bind:key="index">
                         <div
                             class="swiper-slide w-full h-full relative rounded-lg rounded-t-none"
-                            x-bind:data-bg="story.url"
-                            x-bind:data-timestamp="story.timestamp"
                             x-bind:style="{ backgroundImage: `url('${story.url}')` }"
                         ></div>
                     </template>

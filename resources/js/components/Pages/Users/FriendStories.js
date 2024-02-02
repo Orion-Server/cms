@@ -43,6 +43,10 @@ class FriendStories {
 
                     this.currentStory = this.currentStories[event.detail.currentIndex]
                 })
+
+                this.$watch('currentStories', () => {
+                    this.currentSwiperInstance?.update()
+                })
             },
 
             onStoryClick(friendName) {
@@ -57,46 +61,46 @@ class FriendStories {
                 this.modalOpen = true
                 this.currentStory = null
 
-                this.currentStories = []
-
                 this.currentSwiperInstance = SwiperWrapper.createSwiper(
                     document.querySelector('.swiper#friendStory')
                 );
 
                 this.$nextTick(() => {
                     this.currentStories = Object.values(this.stories[friendName])
+                    this.currentStory = this.currentStories[0]
                 })
             },
 
             closeStory() {
                 this.modalOpen = false
-                this.currentStoryName = ''
-                this.currentStories = []
+
                 this.currentStory = null
+                this.currentStories = []
+                this.currentStoryName = ''
                 this.currentSwiperInstance = null
 
                 document.dispatchEvent(new Event('orion:stop-story'))
             },
 
             getActiveFriendBackground() {
-                if(this.dataIsInvalid()) return '';
+                if(this.storyDataIsInvalid()) return '';
 
                 return this.currentStory.avatar_background
             },
 
             getActiveFriendLook() {
-                if(this.dataIsInvalid()) return '';
+                if(this.storyDataIsInvalid()) return '';
 
                 return this.currentStory.look
             },
 
             getActiveFriendStoryTimestamp() {
-                if(this.dataIsInvalid()) return '';
+                if(this.storyDataIsInvalid()) return '';
 
                 return this.currentStory.timestamp
             },
 
-            dataIsInvalid() {
+            storyDataIsInvalid() {
                 return !this.currentStoryName?.length || !this.currentStories.length || !this.currentStory
             }
         }))
