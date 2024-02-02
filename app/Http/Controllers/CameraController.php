@@ -35,22 +35,6 @@ class CameraController extends Controller
         ]);
     }
 
-    public function getFilterData(string $name)
-    {
-        return match($name) {
-            'periods' => [
-                null => __('All'),
-                'today' => __('Today'),
-                'last_week' => __('Last week'),
-                'last_month' => __('Last month'),
-            ],
-            'rules' => [
-                'only_my_friends' => __('Only my friends'),
-                'liked_by_me' => __('Liked by me'),
-            ]
-        };
-    }
-
     public function toggleLike(Request $request, Camera $camera)
     {
         $userId = \Auth::id();
@@ -74,5 +58,21 @@ class CameraController extends Controller
             'status' => $like->liked,
             'likes' => $camera->likes()->whereLiked(true)->count()
         ]);
+    }
+
+    public function getFilterData(string $name)
+    {
+        return match($name) {
+            'periods' => [
+                null => __('All'),
+                'today' => __('Today'),
+                'last_week' => __('Last week'),
+                'last_month' => __('Last month'),
+            ],
+            'rules' => [
+                'only_my_friends' => __('Only my friends'),
+                'liked_by_me' => __('Liked by me'),
+            ]
+        };
     }
 }

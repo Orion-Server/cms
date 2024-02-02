@@ -6,7 +6,7 @@
 </div>
 
 <div class="relative flex flex-col p-1.5 rounded-lg shadow border-b-2 border-gray-300 dark:border-slate-800 bg-white dark:bg-slate-950">
-    <div class="swiper w-full h-44 relative" id="latestArticles">
+    <div class="latestArticles swiper w-full h-44 relative" id="latestArticles">
         <div class="swiper-wrapper">
             @foreach ($defaultArticles as $defaultArticle)
             <div class="swiper-slide relative bg-center bg-no-repeat" style="background-image: url({{ $defaultArticle->image }})">

@@ -58,6 +58,7 @@ header {
 }
 
 html {
+
     /* Chrome, Edge, and Safari */
     *::-webkit-scrollbar {
         width: 7px;
@@ -97,6 +98,52 @@ html {
     .home-draggable {
         img {
             max-width: 100vw !important;
+        }
+    }
+}
+
+.friendStory {
+    .story_prev,
+    .story_next {
+        height: 100%;
+        width: 50%;
+        top: 0;
+        margin-top: 0;
+
+        &::after {
+            content: none;
+        }
+    }
+
+    .story_prev {
+        left: 0;
+    }
+
+    .story_next {
+        right: 0;
+    }
+
+    .story_pagination {
+        bottom: unset !important;
+        top: 8px !important;
+        display: flex;
+        width: 90%;
+        margin-left: 5%;
+
+        .swiper-pagination-bullet {
+            flex-grow: 1;
+            border-radius: 100vh;
+            height: 4px;
+            margin: 0 2px !important;
+            background-color: rgba($color: #f7f7f5, $alpha: .4);
+            opacity: 1;
+
+            .swiper-pagination-progress {
+                height: 100%;
+                width: 0%;
+                border-radius: 100vh;
+                background-color: #f7f7f5;
+            }
         }
     }
 }

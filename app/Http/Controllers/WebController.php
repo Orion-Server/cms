@@ -31,12 +31,13 @@ class WebController extends Controller
         if ($isAuthenticated) {
             $onlineFriends = \Auth::user()->getOnlineFriends();
             $referredUsersCount = \Auth::user()->referredUsers()->count();
+            $friendStories = Camera::getFriendsWhoHaveStories();
 
             $fixedArticles = Article::forIndex($this->getArticlesLimit('fixed', $isAuthenticated))
                 ->whereFixed(true)
                 ->get();
 
-            array_push($compactValues, 'onlineFriends', 'referredUsersCount', 'fixedArticles');
+            array_push($compactValues, 'onlineFriends', 'referredUsersCount', 'fixedArticles', 'friendStories');
         } else {
             $photos = Camera::latestWith()->limit(6)->get();
             $latestUsers = User::forIndex()->get();
