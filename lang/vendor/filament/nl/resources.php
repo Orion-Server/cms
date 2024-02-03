@@ -10,6 +10,7 @@ return [
         'User Management' => 'Gebruikersbeheer',
         'Profile Management' => 'Profile Management',
         'Shop' => 'Shop',
+        'Logs' => 'Logs',
     ],
 
     'resources' => [
@@ -100,6 +101,16 @@ return [
             'navigation_label' => 'Manage Orders',
             'label' => 'Order',
             'plural' => 'Orders',
+        ],
+        'command-logs' => [
+            'navigation_label' => 'Manage Command Logs',
+            'label' => 'Command Log',
+            'plural' => 'Command Logs',
+        ],
+        'wordfilter' => [
+            'navigation_label' => 'Manage Word Filter',
+            'label' => 'Word Filter',
+            'plural' => 'Word Filters',
         ],
 
         // Relations
@@ -258,6 +269,10 @@ return [
         'paypal_fee' => 'PayPal Fee',
         'details' => 'Details',
         'is_delivered' => 'Is Delivered?',
+        'replacement' => 'Replacement',
+        'hideable' => 'Hideable',
+        'reportable' => 'Reportable',
+        'mute_time' => 'Mute Time',
     ],
 
     'columns' => [
@@ -306,6 +321,13 @@ return [
         'quantity' => 'Quantity',
         'order_id' => 'Order ID',
         'is_delivered' => 'Is Delivered?',
+        'command' => 'Command',
+        'success' => 'Success',
+        'executed_at' => 'Executed At',
+        'replacement' => 'Replacement',
+        'hideable' => 'Hideable',
+        'reportable' => 'Reportable',
+        'mute_time' => 'Mute Time',
     ],
 
     'options' => [
@@ -316,6 +338,8 @@ return [
         'completed' => 'Completed',
         'pending' => 'Pending',
         'cancelled' => 'Cancelled',
+        'yes' => 'Yes',
+        'no' => 'No',
     ],
 
     'widgets' => [
@@ -325,6 +349,10 @@ return [
         'were_canceled' => 'were cancelered.',
         'are_pending_payment' => 'are pending payment.',
         'were_completed' => 'have been paid and completed.',
+    ],
+
+    'filters' => [
+        'success' => 'Success',
     ],
 
     'notifications' => [

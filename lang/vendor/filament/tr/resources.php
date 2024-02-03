@@ -10,6 +10,7 @@ return [
         'User Management' => 'Kullanıcı Yönetimi',
         'Profile Management' => 'Profil Yönetimi',
         'Shop' => 'Mağaza',
+        'Logs' => 'Kayıtlar',
     ],
 
     'resources' => [
@@ -100,6 +101,16 @@ return [
             'navigation_label' => 'Siparişleri Yönet',
             'label' => 'Sipariş',
             'plural' => 'Siparişler',
+        ],
+        'command-logs' => [
+            'navigation_label' => 'Komut Kayıtlarını Yönet',
+            'label' => 'Komut Kaydı',
+            'plural' => 'Komut Kayıtları',
+        ],
+        'wordfilter' => [
+            'navigation_label' => 'Kelime Filtresini Yönet',
+            'label' => 'Kelime Filtresi',
+            'plural' => 'Kelime Filtreleri',
         ],
 
         // Relations
@@ -258,6 +269,10 @@ return [
         'paypal_fee' => 'PayPal Ücreti',
         'details' => 'Detaylar',
         'is_delivered' => 'Teslim Edildi mi?',
+        'replacement' => 'Replacement',
+        'hideable' => 'Hideable',
+        'reportable' => 'Reportable',
+        'mute_time' => 'Mute Time',
     ],
 
     'columns' => [
@@ -306,6 +321,13 @@ return [
         'quantity' => 'Miktar',
         'order_id' => 'Sipariş ID',
         'is_delivered' => 'Teslim Edildi mi?',
+        'command' => 'Command',
+        'success' => 'Success',
+        'executed_at' => 'Executed At',
+        'replacement' => 'Replacement',
+        'hideable' => 'Hideable',
+        'reportable' => 'Reportable',
+        'mute_time' => 'Mute Time',
     ],
 
     'options' => [
@@ -316,6 +338,8 @@ return [
         'completed' => 'Tamamlandı',
         'pending' => 'Beklemede',
         'cancelled' => 'İptal Edildi',
+        'yes' => 'Yes',
+        'no' => 'No',
     ],
 
     'widgets' => [
@@ -325,6 +349,10 @@ return [
         'were_canceled' => 'iptal edildi.',
         'are_pending_payment' => 'ödeme bekliyor.',
         'were_completed' => 'ödendi ve tamamlandı.',
+    ],
+
+    'filters' => [
+        'success' => 'Success',
     ],
 
     'notifications' => [
