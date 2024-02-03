@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('cms_writeable_boxes', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
             $table->string('icon')->nullable();
+
+            $table->string('name');
             $table->string('description')->nullable();
+
             $table->enum('page_target', ['staff', 'shop', 'teams']);
+            $table->boolean('is_active')->default(true);
 
             $table->text('content')->nullable();
         });

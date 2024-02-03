@@ -112,6 +112,11 @@ return [
             'label' => 'Filtro de Palavra',
             'plural' => 'Filtros de Palavras',
         ],
+        'writeable-boxes' => [
+            'navigation_label' => 'Gerenciar Caixas Editáveis',
+            'label' => 'Caixa Editável',
+            'plural' => 'Caixas Editáveis',
+        ],
 
         // Relations
         'settings' => [
@@ -272,6 +277,7 @@ return [
         'hideable' => 'Ocultável',
         'reportable' => 'Reportável',
         'mute_time' => 'Tempo Mudo',
+        'page_target' => 'Página Alvo',
     ],
 
     'columns' => [
@@ -327,6 +333,7 @@ return [
         'hideable' => 'Ocultável',
         'reportable' => 'Reportável',
         'mute_time' => 'Tempo Mudo',
+        'page_target' => 'Página Alvo',
     ],
 
     'options' => [
@@ -339,10 +346,15 @@ return [
         'cancelled' => 'Cancelado',
         'yes' => 'Sim',
         'no' => 'Não',
+        'staff' => 'Staff',
+        'shop' => 'Loja',
+        'teams' => 'Equipes',
     ],
 
     'filters' => [
         'success' => 'Sucesso',
+        'page_target' => 'Página Alvo',
+        'visible' => 'Visível',
     ],
 
     'widgets' => [

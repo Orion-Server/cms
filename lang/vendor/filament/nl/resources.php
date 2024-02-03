@@ -112,6 +112,11 @@ return [
             'label' => 'Word Filter',
             'plural' => 'Word Filters',
         ],
+        'writeable-boxes' => [
+            'navigation_label' => 'Beheer Schrijfbare Boxen',
+            'label' => 'Schrijfbare Box',
+            'plural' => 'Schrijfbare Boxen',
+        ],
 
         // Relations
         'settings' => [
@@ -273,6 +278,7 @@ return [
         'hideable' => 'Hideable',
         'reportable' => 'Reportable',
         'mute_time' => 'Mute Time',
+        'page_target' => 'Page Target',
     ],
 
     'columns' => [
@@ -328,6 +334,7 @@ return [
         'hideable' => 'Hideable',
         'reportable' => 'Reportable',
         'mute_time' => 'Mute Time',
+        'page_target' => 'Page Target',
     ],
 
     'options' => [
@@ -353,6 +360,8 @@ return [
 
     'filters' => [
         'success' => 'Success',
+        'page_target' => 'Page Target',
+        'visible' => 'Visible',
     ],
 
     'notifications' => [

@@ -18,7 +18,7 @@ class CommandLogResource extends Resource
 
     protected static ?string $model = CommandLog::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-chat-alt-2';
+    protected static ?string $navigationIcon = 'heroicon-o-chat';
 
     protected static ?string $navigationGroup = 'Logs';
 

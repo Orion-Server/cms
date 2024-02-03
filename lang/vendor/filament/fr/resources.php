@@ -103,14 +103,19 @@ return [
             'plural' => 'Orders',
         ],
         'command-logs' => [
-            'navigation_label' => 'Manage Command Logs',
+            'navigation_label' => 'Gérer les logs de commandes',
             'label' => 'Command Log',
             'plural' => 'Command Logs',
         ],
         'wordfilter' => [
-            'navigation_label' => 'Manage Word Filter',
+            'navigation_label' => 'Gérer les filtres de mots',
             'label' => 'Word Filter',
             'plural' => 'Word Filters',
+        ],
+        'writeable-boxes' => [
+            'navigation_label' => 'Gérer les boîtes éditables',
+            'label' => 'Boîte Éditable',
+            'plural' => 'Boîtes Éditables',
         ],
 
         // Relations
@@ -272,6 +277,7 @@ return [
         'hideable' => 'Hideable',
         'reportable' => 'Reportable',
         'mute_time' => 'Mute Time',
+        'page_target' => 'Page Target',
     ],
 
     'columns' => [
@@ -327,6 +333,7 @@ return [
         'hideable' => 'Hideable',
         'reportable' => 'Reportable',
         'mute_time' => 'Mute Time',
+        'page_target' => 'Page Target',
     ],
 
     'options' => [
@@ -352,6 +359,8 @@ return [
 
     'filters' => [
         'success' => 'Success',
+        'page_target' => 'Page Target',
+        'visible' => 'Visible',
     ],
 
     'notifications' => [
