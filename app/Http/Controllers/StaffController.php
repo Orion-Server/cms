@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Permission;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Permission;
+use App\Models\WriteableBox;
+use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {
     public function index(): View
     {
         $staffs = Permission::forIndex();
+        $writeableBoxes = WriteableBox::getForPage('staff');
 
-        return view('pages.community.staff.index', compact('staffs'));
+        return view('pages.community.staff.index', compact('staffs', 'writeableBoxes'));
     }
 }

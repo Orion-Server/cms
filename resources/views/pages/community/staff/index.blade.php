@@ -2,21 +2,19 @@
 
 @section('title', __('Staff Team'))
 
-@php($boxes = ['Orion Staff', 'Subscriptions', 'Identifications'])
-@php($icons = ['hotel', 'comment', 'articles'])
-
 @section('content')
     <x-container class="flex justify-between flex-col lg:flex-row gap-6" x-data="staff">
         <div class="w-full lg:w-1/4 h-auto flex flex-col gap-4">
-            @foreach($boxes as $item)
+            @foreach($writeableBoxes as $box)
             <div>
                 <x-title-box
-                    icon="{{ $icons[random_int(0, 2)] }}"
-                    title="{{ $item }}"
-                    description="This is customizable"
+                    image="{{ $box->icon }}"
+                    :image-is-badge="true"
+                    title="{{ $box->name }}"
+                    description="{{ $box->description }}"
                 />
-                <div class="mt-4 p-4 text-xs font-medium dark:text-slate-200 bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
-                    {{ fake()->sentence(random_int(10, 50)) }}
+                <div class="mt-4 p-4 prose dark:prose-invert text-xs font-medium dark:text-slate-200 bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
+                    {!! $box->content !!}
                 </div>
             </div>
             @endforeach

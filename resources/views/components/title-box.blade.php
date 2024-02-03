@@ -25,8 +25,7 @@
             @elseif ($image)
                 <i class="icon big">
                     <img src="{{ $image }}" alt="" @class([
-                        "rounded-full",
-                        "w-12 h-12" => !$imageIsBadge
+                        "w-12 h-12 rounded-full" => !$imageIsBadge
                     ])>
                 </i>
             @endif

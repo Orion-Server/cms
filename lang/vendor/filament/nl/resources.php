@@ -347,6 +347,9 @@ return [
         'cancelled' => 'Cancelled',
         'yes' => 'Yes',
         'no' => 'No',
+        'staff' => 'Staff',
+        'shop' => 'Shop',
+        'teams' => 'Teams',
     ],
 
     'widgets' => [

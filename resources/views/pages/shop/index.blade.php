@@ -64,6 +64,22 @@
                     {{ $category->name }}
                 </x-ui.buttons.loadable>
                 @endforeach
+
+                <div class="flex flex-col gap-6 mt-6">
+                    @foreach($writeableBoxes as $box)
+                    <div>
+                        <x-title-box
+                            image="{{ $box->icon }}"
+                            :image-is-badge="true"
+                            title="{{ $box->name }}"
+                            description="{{ $box->description }}"
+                        />
+                        <div class="mt-4 p-4 prose dark:prose-invert text-xs font-medium dark:text-slate-200 bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
+                            {!! $box->content !!}
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
             </div>
         </div>
         <div class="w-3/4 flex flex-col gap-4">

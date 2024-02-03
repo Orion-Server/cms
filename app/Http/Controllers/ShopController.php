@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\View\View;
 use App\Models\ShopProduct;
 use App\Models\ShopCategory;
+use App\Models\WriteableBox;
 use App\Services\ShopService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,7 @@ class ShopController extends Controller
         $categories = ShopCategory::all();
         $products = ShopProduct::latest()->active(considerRank: false);
         $featuredProducts = ShopProduct::active()->featured()->get();
+        $writeableBoxes = WriteableBox::getForPage('shop');
 
         if($currentCategoryId) {
             $products->whereCategoryId($currentCategoryId);
@@ -29,7 +31,7 @@ class ShopController extends Controller
 
         $products = $products->paginate(self::PRODUCTS_LIST_LIMIT)->fragment('products');
 
-        return view('pages.shop.index', compact('categories', 'featuredProducts', 'products', 'currentCategoryId'));
+        return view('pages.shop.index', compact('categories', 'featuredProducts', 'products', 'currentCategoryId', 'writeableBoxes'));
     }
 
     public function makePaymentOrder(string $productId, PayPal $paypal)

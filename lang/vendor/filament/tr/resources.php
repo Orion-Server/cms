@@ -347,6 +347,9 @@ return [
         'cancelled' => 'İptal Edildi',
         'yes' => 'Yes',
         'no' => 'No',
+        'staff' => 'Staff',
+        'shop' => 'Shop',
+        'teams' => 'Teams',
     ],
 
     'widgets' => [

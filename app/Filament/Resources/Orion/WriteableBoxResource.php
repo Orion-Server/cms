@@ -19,6 +19,7 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -48,7 +49,7 @@ class WriteableBoxResource extends Resource
 
                 TextInput::make('icon')
                     ->label(__('filament::resources.inputs.icon'))
-                    ->nullable(),
+                    ->required(),
 
                 TextInput::make('description')
                     ->label(__('filament::resources.inputs.description'))
@@ -83,6 +84,11 @@ class WriteableBoxResource extends Resource
             ->columns([
                 TextColumn::make('id')
                     ->label(__('filament::resources.columns.id')),
+
+                ImageColumn::make('icon')
+                    ->label(__('filament::resources.columns.icon'))
+                    ->size('auto')
+                    ->searchable(),
 
                 TextColumn::make('name')
                     ->label(__('filament::resources.columns.name'))
