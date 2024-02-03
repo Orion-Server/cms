@@ -32,6 +32,8 @@ class AchievementResource extends Resource
 
     public static string $translateIdentifier = 'achievements';
 
+    protected static ?string $slug = 'hotel/achievements';
+
     public static function form(Form $form): Form
     {
         return $form

@@ -3,8 +3,8 @@
 @section('title', __('Teams'))
 
 @section('content')
-    <x-container class="flex justify-between flex-col gap-6" x-data="staff">
-        <div class="w-full flex flex-col gap-4">
+    <x-container class="flex justify-between gap-6" x-data="staff">
+        <div class="w-full lg:w-3/4 flex flex-col gap-4">
             <div class="w-full h-auto flex flex-wrap gap-2">
                 <x-ui.buttons.default
                     class="dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75 py-2 text-white"
@@ -82,6 +82,19 @@
                     </div>
                 @endforeach
             </div>
+        </div>
+        <div class="w-full lg:w-1/4 h-auto flex flex-col gap-4">
+            @foreach(['teste', 'oi'] as $item)
+            <div>
+                <x-title-box
+                    title="{{ $item }}"
+                    description="This is customizable"
+                />
+                <div class="mt-4 p-4 text-xs font-medium dark:text-slate-200 bg-white dark:bg-slate-950 rounded-lg border-b-2 border-gray-300 dark:border-slate-800 shadow-lg">
+                    {{ fake()->sentence(random_int(10, 50)) }}
+                </div>
+            </div>
+            @endforeach
         </div>
     </x-container>
 @endsection

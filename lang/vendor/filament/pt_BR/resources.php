@@ -9,7 +9,8 @@ return [
         'Administration' => 'Administração',
         'User Management' => 'Gerenciamento de Usuários',
         'Profile Management' => 'Gerenciamento de Perfil',
-        'Shop' => 'Loja'
+        'Shop' => 'Loja',
+        'Logs' => 'Logs',
     ],
 
     'resources' => [
@@ -100,6 +101,16 @@ return [
             'navigation_label' => 'Gerenciar Pedidos',
             'label' => 'Pedido',
             'plural' => 'Pedidos',
+        ],
+        'command-logs' => [
+            'navigation_label' => 'Gerenciar Logs de Comandos',
+            'label' => 'Log de Comando',
+            'plural' => 'Logs de Comandos',
+        ],
+        'wordfilter' => [
+            'navigation_label' => 'Gerenciar Filtros de Palavras',
+            'label' => 'Filtro de Palavra',
+            'plural' => 'Filtros de Palavras',
         ],
 
         // Relations
@@ -257,6 +268,10 @@ return [
         'paypal_fee' => 'Taxa do PayPal',
         'details' => 'Detalhes',
         'is_delivered' => 'Entregue?',
+        'replacement' => 'Substituição',
+        'hideable' => 'Ocultável',
+        'reportable' => 'Reportável',
+        'mute_time' => 'Tempo Mudo',
     ],
 
     'columns' => [
@@ -305,6 +320,13 @@ return [
         'quantity' => 'Quantidade',
         'order_id' => 'ID do Pedido',
         'is_delivered' => 'Entregue?',
+        'command' => 'Comando',
+        'success' => 'Sucesso',
+        'executed_at' => 'Executado em',
+        'replacement' => 'Substituição',
+        'hideable' => 'Ocultável',
+        'reportable' => 'Reportável',
+        'mute_time' => 'Tempo Mudo',
     ],
 
     'options' => [
@@ -315,6 +337,12 @@ return [
         'completed' => 'Completo',
         'pending' => 'Pendente',
         'cancelled' => 'Cancelado',
+        'yes' => 'Sim',
+        'no' => 'Não',
+    ],
+
+    'filters' => [
+        'success' => 'Sucesso',
     ],
 
     'widgets' => [

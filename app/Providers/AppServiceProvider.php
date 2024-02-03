@@ -105,7 +105,11 @@ class AppServiceProvider extends ServiceProvider
 
                 NavigationGroup::make()
                     ->label($getNavigationLabel('Profile Management'))
-                    ->collapsed()
+                    ->collapsed(),
+
+                NavigationGroup::make()
+                    ->label($getNavigationLabel('Logs'))
+                    ->collapsed(),
             ]);
         });
     }

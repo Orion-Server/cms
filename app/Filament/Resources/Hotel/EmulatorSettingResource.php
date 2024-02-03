@@ -25,6 +25,8 @@ class EmulatorSettingResource extends Resource
 
     public static string $translateIdentifier = 'emulator-settings';
 
+    protected static ?string $slug = 'hotel/emulator-settings';
+
     public static function form(Form $form): Form
     {
         return $form
