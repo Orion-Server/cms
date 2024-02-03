@@ -47,6 +47,6 @@ enum ShopProductItemType: string
 
     private function getRoomImage(string $itemData): string
     {
-        return $itemData;
+        return 'https://i.imgur.com/AjSxH6v.png';
     }
 }
