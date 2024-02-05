@@ -8,18 +8,24 @@ class Navigation {
     }
 
     _startComponent() {
-        Alpine.data('navigation', () => ({
+        Alpine.data('navigation', (defaultTheme) => ({
             showMobileMenu: false,
             showSubmenuId: null,
+            defaultTheme,
             theme: null,
 
             init() {
                 if(!localStorage.theme) {
-                    localStorage.setItem('theme', 'light')
+                    localStorage.setItem('theme', defaultTheme)
                 }
 
                 this.theme = localStorage.theme
 
+                if(!this.theme || !['light', 'dark'].includes(this.defaultTheme)) {
+                    this.theme = 'light'
+                }
+
+                console.log(this.theme)
                 this.setTheme()
             },
 
