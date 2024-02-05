@@ -202,11 +202,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
 
     public function getFilamentAvatarUrl(): ?string
     {
-        return sprintf(
-            '%s%s&size=m&head_direction=3&gesture=sml&headonly=1',
-            getSetting('figure_imager'),
-            $this->look
-        );
+        return $this->getAvatarBackground();
     }
 
     public function permission(): BelongsTo
