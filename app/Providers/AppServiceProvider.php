@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Filament\Facades\Filament;
 use App\Services\ProfileService;
 use App\Services\SettingsService;
 use App\Enums\ArticleReactionType;
@@ -11,9 +10,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Srmklive\PayPal\Services\PayPal;
 use Illuminate\Support\ServiceProvider;
-use Filament\Navigation\NavigationGroup;
 use App\Services\Parsers\ExternalTextsParser;
-use Filament\Support\Facades\FilamentAsset;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -69,11 +66,6 @@ class AppServiceProvider extends ServiceProvider
      */
     private function bootDashboardSettings(): void
     {
-        Filament::serving(function() {
-            FilamentAsset::renderStyles([
-                asset('assets/css/ckeditor.css'),
-                asset('assets/css/filament.css')
-            ]);
-        });
+        //
     }
 }

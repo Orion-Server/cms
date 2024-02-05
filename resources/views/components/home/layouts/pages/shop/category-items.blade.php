@@ -1,4 +1,4 @@
-<div class=" flex flex-wrap gap-2 max-h-full justify-start items-start overflow-y-auto px-2">
+<div class=" flex flex-wrap gap-1 max-h-full justify-start items-start overflow-y-auto px-2">
     <template x-if="shopStore.delay">
         <div class="h-[300px] w-full flex justify-center items-center">
             <div class="orion-loader"></div>

@@ -12,7 +12,7 @@ export default defineConfig({
     },
     plugins: [
         laravel({
-            input: ['resources/scss/app.scss', 'resources/js/app.js', 'resources/js/client.js', 'resources/scss/filament.scss'],
+            input: ['resources/scss/app.scss', 'resources/js/app.js', 'resources/js/client.js'],
             refresh: true,
             transformOnServe: (code) => code.replaceAll('/assets/', '/public/assets/'),
         }),

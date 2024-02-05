@@ -185,6 +185,11 @@ class CmsSettingsSeeder extends Seeder
                 'furniture_icon_path',
                 'https://localhost/static/dcr/hof_furni/icons/',
                 'The base URL to render the furniture icons on the CMS'
+            ],
+            [
+                'hk_top_navigation_enabled',
+                '0',
+                'Determines whether panel navigations should be on the side or top'
             ]
         ];
     }

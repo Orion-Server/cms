@@ -11,6 +11,7 @@ use Filament\Support\Colors\Color;
 use App\Http\Middleware\VerifyLocale;
 use Filament\Navigation\NavigationGroup;
 use App\Http\Middleware\VerifyPunishments;
+use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -19,6 +20,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Support\Assets\Css;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 
@@ -26,7 +28,8 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
-        $getNavigationLabel = fn (string $label) => __("filament::resources.navigations.{$label}");
+        $topNavigationEnabled = getSetting('hk_top_navigation_enabled', '0') === '1';
+        $defaultTheme = getSetting('default_cms_mode', 'light') === 'dark' ? ThemeMode::Dark : ThemeMode::Light;
 
         return $panel
             ->default()
@@ -41,13 +44,10 @@ class AdminPanelProvider extends PanelProvider
             ->pages([
                 Dashboard::class,
             ])
-            ->spa()
+            ->topNavigation($topNavigationEnabled)
+            ->defaultThemeMode($defaultTheme)
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
-            ])
-            // ->topNavigation()
+            ->widgets([])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -61,48 +61,15 @@ class AdminPanelProvider extends PanelProvider
                 VerifyLocale::class,
                 VerifyPunishments::class,
             ])
-            ->navigationGroups([
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Dashboard'))
-                    ->collapsible(false),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Website'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Shop'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Help Center'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Hotel'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Administration'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('User Management'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Profile Management'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Logs'))
-                    ->collapsed(),
-            ])
             ->brandLogo(asset('assets/images/logo.gif'))
             ->favicon(asset('assets/images/panel_favicon.gif'))
             ->sidebarCollapsibleOnDesktop()
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->assets([
+                Css::make('ckeditor-stylesheet', asset('assets/css/ckeditor.css')),
+                Css::make('scrollbar-stylesheet', asset('assets/css/filament.css'))
             ]);
     }
 }
