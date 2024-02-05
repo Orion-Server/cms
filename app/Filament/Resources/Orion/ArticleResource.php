@@ -100,6 +100,7 @@ class ArticleResource extends Resource
 
                             DateTimePicker::make('promotion_ends_at')
                                 ->displayFormat('Y-m-d H:i')
+                                ->native(false)
                                 ->withoutSeconds()
                                 ->hidden(fn (\Filament\Forms\Get $get) => !$get('is_promotion'))
                                 ->label(__('filament::resources.inputs.promotion_ends_at'))

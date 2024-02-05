@@ -51,6 +51,7 @@ class BanResource extends Resource
                     ]),
 
                 DateTimePicker::make('ban_expire')
+                    ->native(false)
                     ->label(__('filament::resources.inputs.expires_at'))
                     ->displayFormat('Y-m-d H:i')
                     ->format('U')

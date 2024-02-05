@@ -71,18 +71,21 @@ class UserResource extends Resource
                                     ->required(),
 
                                 DateTimePicker::make('account_created')
+                                    ->native(false)
                                     ->displayFormat('Y-m-d H:i:s')
                                     ->dehydrateStateUsing(fn (Model $record) => $record->account_created)
                                     ->disabled()
                                     ->label(__('filament::resources.inputs.created_at')),
 
                                 DateTimePicker::make('last_login')
+                                    ->native(false)
                                     ->displayFormat('Y-m-d H:i:s')
                                     ->dehydrateStateUsing(fn (Model $record) => $record->last_login)
                                     ->disabled()
                                     ->label(__('filament::resources.inputs.last_login')),
 
                                 DateTimePicker::make('last_online')
+                                    ->native(false)
                                     ->displayFormat('Y-m-d H:i:s')
                                     ->dehydrateStateUsing(fn (Model $record) => $record->last_online)
                                     ->disabled()

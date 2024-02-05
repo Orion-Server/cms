@@ -11,6 +11,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Traits\TranslatableResource;
+use Filament\Forms\Get;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Columns\TextColumn;
 
@@ -48,7 +49,7 @@ class ItemsRelationManager extends RelationManager
                 TextInput::make('data')
                     ->label(__('filament::resources.inputs.item_data'))
                     ->columnSpanFull()
-                    ->hint(fn (Closure $get) => $get('type') ? __("filament::resources.helpers.{$get('type')}_item_data_helper") : __("filament::resources.helpers.empty_item_data_helper"))
+                    ->hint(fn (Get $get) => $get('type') ? __("filament::resources.helpers.{$get('type')}_item_data_helper") : __("filament::resources.helpers.empty_item_data_helper"))
                     ->required()
                     ->maxLength(255),
 
