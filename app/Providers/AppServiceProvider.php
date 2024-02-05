@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\View;
 use Srmklive\PayPal\Services\PayPal;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Parsers\ExternalTextsParser;
+use BezhanSalleh\FilamentLanguageSwitch\Enums\Placement;
+use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -66,6 +68,17 @@ class AppServiceProvider extends ServiceProvider
      */
     private function bootDashboardSettings(): void
     {
-        //
+        LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
+            $flags = [];
+            $availableLanguages = array_keys(config('hotel.cms.available_languages'));
+
+            foreach ($availableLanguages as $language) {
+                $flags[$language] = asset("assets/images/country-flags/{$language}.png");
+            }
+
+            $switch->locales(array_keys(config('hotel.cms.available_languages')))
+                ->labels(config('hotel.cms.available_languages'))
+                ->flags($flags);
+        });
     }
 }
