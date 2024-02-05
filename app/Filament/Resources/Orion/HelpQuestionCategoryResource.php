@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\Orion;
 
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use Filament\Tables\Columns\TextColumn;
@@ -21,7 +21,7 @@ class HelpQuestionCategoryResource extends Resource
 
     protected static ?string $model = HelpQuestionCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-s-menu';
+    protected static ?string $navigationIcon = 'heroicon-s-bars-2';
 
     protected static ?string $navigationGroup = 'Help Center';
 

@@ -4,16 +4,15 @@ namespace App\Filament\Resources\Orion\ArticleResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Filament\Resources\Orion\TagResource;
 use App\Filament\Traits\TranslatableResource;
-use App\Filament\Traits\LatestRelationResourcesTrait;
 use Filament\Resources\RelationManagers\RelationManager;
 
 class TagsRelationManager extends RelationManager
 {
-    use LatestRelationResourcesTrait, TranslatableResource;
+    use TranslatableResource;
 
     protected static string $relationship = 'tags';
 
@@ -21,7 +20,7 @@ class TagsRelationManager extends RelationManager
 
     public static string $translateIdentifier = 'tags';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -31,10 +30,11 @@ class TagsRelationManager extends RelationManager
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns(TagResource::getTable())
+            ->modifyQueryUsing(fn ($query) => $query->latest())
             ->filters([
                 //
             ])

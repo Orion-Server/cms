@@ -2,23 +2,19 @@
 
 namespace App\Filament\Resources\Shop;
 
-use Filament\Forms;
 use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Models\ShopCategory;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
 use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Traits\TranslatableResource;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\Shop\ShopCategoryResource\Pages;
-use App\Filament\Resources\Shop\ShopCategoryResource\RelationManagers;
 use Filament\Forms\Components\Card;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\ToggleColumn;
+use App\Filament\Traits\TranslatableResource;
+use App\Filament\Resources\Shop\ShopCategoryResource\Pages;
 
 class ShopCategoryResource extends Resource
 {
@@ -26,7 +22,7 @@ class ShopCategoryResource extends Resource
 
     protected static ?string $model = ShopCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-menu';
+    protected static ?string $navigationIcon = 'heroicon-o-tag';
 
     protected static ?string $navigationGroup = 'Shop';
 

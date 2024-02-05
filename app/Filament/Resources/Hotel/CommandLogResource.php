@@ -2,12 +2,11 @@
 
 namespace App\Filament\Resources\Hotel;
 
+use Filament\Forms\Form;
 use App\Models\CommandLog;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Filters\SelectFilter;
 use App\Filament\Traits\TranslatableResource;
 use App\Filament\Resources\Hotel\CommandLogResource\Pages;
@@ -18,7 +17,7 @@ class CommandLogResource extends Resource
 
     protected static ?string $model = CommandLog::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-chat';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
 
     protected static ?string $navigationGroup = 'Logs';
 
@@ -43,11 +42,12 @@ class CommandLogResource extends Resource
                     ->label(__('filament::resources.columns.command'))
                     ->searchable(),
 
-                BadgeColumn::make('succes')
-                    ->colors([
-                        'primary' => 'yes',
-                        'warning' => 'no'
-                    ])
+                TextColumn::make('succes')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'yes' => 'primary',
+                        'no' => 'warning'
+                    })
                     ->label(__('filament::resources.columns.success'))
                     ->formatStateUsing(fn (string $state): string => __("filament::resources.options.{$state}")),
 

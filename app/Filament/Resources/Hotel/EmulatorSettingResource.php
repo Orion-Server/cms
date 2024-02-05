@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\Hotel;
 
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Models\EmulatorSetting;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
@@ -19,7 +19,7 @@ class EmulatorSettingResource extends Resource
 
     protected static ?string $model = EmulatorSetting::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-adjustments';
+    protected static ?string $navigationIcon = 'heroicon-o-adjustments-horizontal';
 
     protected static ?string $navigationGroup = 'Hotel';
 

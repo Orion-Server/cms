@@ -3,16 +3,15 @@
 namespace App\Filament\Resources\Orion\HelpQuestionCategoryResource\RelationManagers;
 
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Filament\Traits\TranslatableResource;
-use App\Filament\Traits\LatestRelationResourcesTrait;
 use App\Filament\Resources\Orion\HelpQuestionResource;
 use Filament\Resources\RelationManagers\RelationManager;
 
 class QuestionsRelationManager extends RelationManager
 {
-    use LatestRelationResourcesTrait, TranslatableResource;
+    use TranslatableResource;
 
     protected static string $relationship = 'questions';
 
@@ -20,14 +19,15 @@ class QuestionsRelationManager extends RelationManager
 
     public static string $translateIdentifier = 'help-questions';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form->schema(HelpQuestionResource::getForm(true));
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table->columns(HelpQuestionResource::getTable())
+            ->modifyQueryUsing(fn ($query) => $query->latest())
             ->filters([
                 //
             ])

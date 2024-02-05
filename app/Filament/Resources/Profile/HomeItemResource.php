@@ -4,17 +4,16 @@ namespace App\Filament\Resources\Profile;
 
 use Filament\Tables;
 use Livewire\Component;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Enums\CurrencyType;
-use Filament\Resources\Form;
 use App\Models\Home\HomeItem;
-use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Filters\SelectFilter;
 use App\Filament\Traits\TranslatableResource;
@@ -26,7 +25,7 @@ class HomeItemResource extends Resource
 
     protected static ?string $model = HomeItem::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-puzzle';
+    protected static ?string $navigationIcon = 'heroicon-o-puzzle-piece';
 
     protected static ?string $navigationGroup = 'Profile Management';
 
@@ -50,6 +49,7 @@ class HomeItemResource extends Resource
     {
         return [
             Select::make('type')
+                ->native(false)
                 ->label(__('filament::resources.inputs.type'))
                 ->options([
                     's' => __('filament::resources.common.Sticker'),
@@ -62,9 +62,10 @@ class HomeItemResource extends Resource
                 ->required(),
 
             Select::make('home_category_id')
+                ->native(false)
                 ->label(__('filament::resources.inputs.category'))
                 ->relationship('homeCategory', 'name')
-                ->hidden(fn (\Closure $get) => $get('type') != 's')
+                ->hidden(fn (\Filament\Forms\Get $get) => $get('type') != 's')
                 ->nullable(),
 
             TextInput::make('name')
@@ -80,6 +81,7 @@ class HomeItemResource extends Resource
                 ->maxLength(255),
 
             Select::make('currency_type')
+                ->native(false)
                 ->label(__('filament::resources.inputs.currency_type'))
                 ->disablePlaceholderSelection()
                 ->default(-1)
@@ -150,20 +152,21 @@ class HomeItemResource extends Resource
                 ->label(__('filament::resources.columns.name'))
                 ->searchable(),
 
-            BadgeColumn::make('type')
+            TextColumn::make('type')
                 ->label(__('filament::resources.columns.type'))
-                ->enum([
+                ->badge()
+                ->formatStateUsing(fn (string $state): string => match ($state) {
                     's' => __('filament::resources.common.Sticker'),
                     'w' => __('filament::resources.common.Widget'),
                     'n' => __('filament::resources.common.Note'),
                     'b' => __('filament::resources.common.Background'),
-                ])
-                ->colors([
-                    'primary' => 's',
-                    'success' => 'w',
-                    'primary' => 'n',
-                    'danger' => 'b',
-                ]),
+                })
+                ->color(fn (string $state): string => match ($state) {
+                    's' => 'primary',
+                    'w' => 'success',
+                    'n' => 'primary',
+                    'b' => 'danger',
+                }),
 
             TextColumn::make('price')
                 ->label(__('filament::resources.columns.price'))

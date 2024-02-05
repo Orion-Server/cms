@@ -2,22 +2,18 @@
 
 namespace App\Filament\Resources\Orion;
 
-use Filament\Forms;
 use App\Models\Team;
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Traits\TranslatableResource;
 use App\Filament\Tables\Columns\HabboBadgeColumn;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\Orion\TeamResource\Pages;
-use App\Filament\Resources\Orion\TeamResource\RelationManagers;
-use Filament\Forms\Components\Toggle;
 
 class TeamResource extends Resource
 {

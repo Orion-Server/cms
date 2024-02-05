@@ -30,19 +30,19 @@ class BadgeResource extends Page
 
     public $badgeWasPreviouslyCreated;
 
-    protected function getTitle(): string
+    public function getTitle(): string
     {
         return __(
             sprintf('filament::resources.resources.%s.navigation_label', static::$translateIdentifier)
         );
     }
 
-    protected function getFormStatePath(): string
+    public function getFormStatePath(): string
     {
         return 'data';
     }
 
-    protected function getFormSchema(): array
+    public function getFormSchema(): array
     {
         return [
             Card::make()

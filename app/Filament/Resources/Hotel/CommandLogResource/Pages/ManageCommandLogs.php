@@ -2,11 +2,9 @@
 
 namespace App\Filament\Resources\Hotel\CommandLogResource\Pages;
 
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\ManageRecords;
 use App\Filament\Traits\LatestResourcesTrait;
 use App\Filament\Resources\Hotel\CommandLogResource;
-use Illuminate\Database\Eloquent\Model;
 
 class ManageCommandLogs extends ManageRecords
 {

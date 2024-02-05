@@ -2,12 +2,13 @@
 
 namespace App\Filament\Resources\User;
 
+use App\Models\Team;
 use App\Models\User;
 use Filament\Tables;
+use Filament\Forms\Form;
 use App\Models\Permission;
+use Filament\Tables\Table;
 use App\Enums\CurrencyType;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Tabs;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +26,6 @@ use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Tables\Columns\UserAvatarColumn;
 use App\Filament\Resources\User\UserResource\Pages;
 use App\Filament\Resources\User\UserResource\RelationManagers;
-use App\Models\Team;
 
 class UserResource extends Resource
 {
@@ -62,6 +62,7 @@ class UserResource extends Resource
                                     ->maxLength(127),
 
                                 Select::make('gender')
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.gender'))
                                     ->options([
                                         'M' => __('filament::resources.common.Male'),
@@ -105,6 +106,7 @@ class UserResource extends Resource
                                     ->maxLength(15),
 
                                 Select::make('team_id')
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.team_id'))
                                     ->options(Team::all()->pluck('name', 'id'))
                                     ->columnSpanFull()
@@ -176,6 +178,7 @@ class UserResource extends Resource
                                 Section::make(__('filament::resources.tabs.Change Rank'))
                                     ->schema([
                                         Select::make('rank')
+                                            ->native(false)
                                             ->label(__('filament::resources.inputs.rank'))
                                             ->options(Permission::all()->pluck('rank_name', 'id'))
                                     ])->collapsible()

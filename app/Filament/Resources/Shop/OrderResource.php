@@ -2,27 +2,24 @@
 
 namespace App\Filament\Resources\Shop;
 
-use Filament\Forms;
+use App\Enums\ShopOrderStatus;
+use Closure;
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Models\User\UserOrder;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\ToggleColumn;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Traits\TranslatableResource;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\Shop\OrderResource\Pages;
 use App\Filament\Resources\Shop\OrderResource\Widgets;
-use App\Filament\Resources\Shop\OrderResource\RelationManagers;
-use Closure;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Get;
 
 class OrderResource extends Resource
 {
@@ -30,7 +27,7 @@ class OrderResource extends Resource
 
     protected static ?string $model = UserOrder::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-bookmark-alt';
+    protected static ?string $navigationIcon = 'heroicon-o-bookmark-square';
 
     protected static ?string $navigationGroup = 'Shop';
 
@@ -49,6 +46,7 @@ class OrderResource extends Resource
                             ->disabled(),
 
                         Select::make('status')
+                            ->native(false)
                             ->options([
                                 'pending' => __('filament::resources.options.pending'),
                                 'completed' => __('filament::resources.options.completed'),
@@ -57,6 +55,7 @@ class OrderResource extends Resource
                             ->label(__('filament::resources.inputs.status')),
 
                         Select::make('product_id')
+                            ->native(false)
                             ->relationship('product', 'name')
                             ->columnSpanFull()
                             ->label(__('filament::resources.inputs.name'))
@@ -64,7 +63,7 @@ class OrderResource extends Resource
 
                         TextInput::make('price')
                             ->suffixIcon('heroicon-o-currency-dollar')
-                            ->prefix(fn (Closure $get) => $get('currency'))
+                            ->prefix(fn (Get $get) => $get('currency'))
                             ->columnSpanFull()
                             ->label(__('filament::resources.inputs.price'))
                             ->disabled(),
@@ -92,15 +91,16 @@ class OrderResource extends Resource
                 TextColumn::make('id')
                     ->label(__('filament::resources.columns.id')),
 
-                BadgeColumn::make('status')
-                    ->colors([
-                        'warning' => 'pending',
-                        'success' => 'completed',
-                        'danger' => 'cancelled'
-                    ])
+                TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (ShopOrderStatus $state): string => match ($state) {
+                        ShopOrderStatus::Pending => 'warning',
+                        ShopOrderStatus::Completed => 'success',
+                        ShopOrderStatus::Cancelled => 'danger'
+                    })
                     ->searchable()
                     ->label(__('filament::resources.columns.type'))
-                    ->formatStateUsing(fn (string $state): string => __("filament::resources.options.{$state}")),
+                    ->formatStateUsing(fn (ShopOrderStatus $state): string => __("filament::resources.options.{$state->value}")),
 
                 TextColumn::make('order_id')
                     ->searchable()

@@ -2,14 +2,11 @@
 
 namespace App\Filament\Resources\Profile\HomeCategoryResource\RelationManagers;
 
-use App\Filament\Resources\Profile\HomeItemResource;
-use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use App\Filament\Resources\Profile\HomeItemResource;
+use Filament\Resources\RelationManagers\RelationManager;
 
 class HomeItemsRelationManager extends RelationManager
 {
@@ -17,13 +14,13 @@ class HomeItemsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema(HomeItemResource::getForm());
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns(HomeItemResource::getTable())

@@ -5,15 +5,14 @@ namespace App\Filament\Resources\Hotel;
 use Filament\Tables;
 use App\Enums\CurrencyType;
 use App\Models\Achievement;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use App\Enums\AchievementCategory;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use App\Filament\Traits\TranslatableResource;
@@ -57,6 +56,7 @@ class AchievementResource extends Resource
                                     ->columnSpan('full'),
 
                                 Select::make('category')
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.category'))
                                     ->disablePlaceholderSelection()
                                     ->options(AchievementCategory::toInput())
@@ -66,6 +66,7 @@ class AchievementResource extends Resource
                             ->icon('heroicon-o-cog')
                             ->schema([
                                 Select::make('visible')
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.visible'))
                                     ->disablePlaceholderSelection()
                                     ->options([
@@ -74,6 +75,7 @@ class AchievementResource extends Resource
                                     ]),
 
                                 Select::make('reward_type')
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.reward_type'))
                                     ->disablePlaceholderSelection()
                                     ->options(CurrencyType::toInput()),
@@ -117,7 +119,8 @@ class AchievementResource extends Resource
                 TextColumn::make('level')
                     ->label(__('filament::resources.columns.level')),
 
-                BadgeColumn::make('category')
+                TextColumn::make('category')
+                    ->badge()
                     ->searchable()
                     ->label(__('filament::resources.columns.category'))
                     ->toggleable(),

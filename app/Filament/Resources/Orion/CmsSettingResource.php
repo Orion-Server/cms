@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources\Orion;
 
-use Filament\Forms;
 use Filament\Tables;
+use Filament\Forms\Form;
 use App\Models\CmsSetting;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use Filament\Tables\Columns\TextColumn;
@@ -20,7 +19,7 @@ class CmsSettingResource extends Resource
 
     protected static ?string $model = CmsSetting::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-chip';
+    protected static ?string $navigationIcon = 'heroicon-o-cpu-chip';
 
     protected static ?string $navigationGroup = 'Website';
 
@@ -78,7 +77,7 @@ class CmsSettingResource extends Resource
                     ->tooltip(function (TextColumn $column): ?string {
                         $state = $column->getState();
 
-                        if (strlen($state) <= $column->getLimit()) return null;
+                        if (strlen($state) <= $column->getCharacterLimit()) return null;
 
                         return $state;
                     })

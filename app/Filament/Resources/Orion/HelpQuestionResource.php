@@ -3,9 +3,9 @@
 namespace App\Filament\Resources\Orion;
 
 use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Models\HelpQuestion;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use App\Forms\Components\CKEditor;
 use Filament\Forms\Components\Card;
@@ -48,6 +48,7 @@ class HelpQuestionResource extends Resource
                         ->columnSpan('full'),
 
                     Select::make('categories')
+                        ->native(false)
                         ->label(__('filament::resources.inputs.categories'))
                         ->multiple()
                         ->visibleOn('create')

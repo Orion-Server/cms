@@ -1,0 +1,19 @@
+:root {
+    --scrollbar-color: #2563eb;
+}
+
+* {
+    scrollbar-color: var(--scrollbar-color) #fff !important;
+    scrollbar-width: auto !important
+}
+
+::-webkit-scrollbar {
+    background: transparent !important;
+    height: 5px;
+    width: 5px !important
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-color) !important;
+    border-radius: 10px !important
+}

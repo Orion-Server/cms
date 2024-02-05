@@ -4,13 +4,12 @@ namespace App\Filament\Resources\User;
 
 use App\Models\Ban;
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\BadgeColumn;
 use App\Filament\Traits\TranslatableResource;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Tables\Columns\UserAvatarColumn;
@@ -41,6 +40,7 @@ class BanResource extends Resource
                     ->columnSpanFull(),
 
                 Select::make('type')
+                    ->native(false)
                     ->label(__('filament::resources.inputs.type'))
                     ->columnSpanFull()
                     ->options([
@@ -84,27 +84,28 @@ class BanResource extends Resource
                     ->tooltip(function (TextColumn $column): ?string {
                         $state = $column->getState();
 
-                        if (strlen($state) <= $column->getLimit()) return null;
+                        if (strlen($state) <= $column->getCharacterLimit()) return null;
 
                         return $state;
                     })
                     ->limit(15)
                     ->searchable(),
 
-                BadgeColumn::make('type')
+                TextColumn::make('type')
+                    ->badge()
                     ->label(__('filament::resources.columns.type'))
-                    ->enum([
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
                         'account' => __('filament::resources.common.Account'),
                         'ip' => __('filament::resources.common.IP'),
                         'machine' => __('filament::resources.common.Machine'),
                         'super' => __('filament::resources.common.Super'),
-                    ])
-                    ->colors([
-                        'primary' => 'account',
-                        'success' => 'ip',
-                        'primary' => 'machine',
-                        'danger' => 'super',
-                    ]),
+                    })
+                    ->color(fn (string $state): string => match ($state) {
+                        'account' => 'primary',
+                        'ip' => 'success',
+                        'machine' => 'primary',
+                        'super' => 'danger',
+                    }),
 
                 TextColumn::make('timestamp')
                     ->label(__('filament::resources.columns.banned_at'))

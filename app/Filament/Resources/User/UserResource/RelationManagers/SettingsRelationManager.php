@@ -2,10 +2,8 @@
 
 namespace App\Filament\Resources\User\UserResource\RelationManagers;
 
-use App\Filament\Traits\TranslatableResource;
-use Filament\Resources\Form;
-use App\Services\RconService;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Filament\Forms\Components\Tabs;
 use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Select;
@@ -13,6 +11,7 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use App\Filament\Traits\TranslatableResource;
 use Filament\Resources\RelationManagers\RelationManager;
 
 class SettingsRelationManager extends RelationManager
@@ -23,7 +22,7 @@ class SettingsRelationManager extends RelationManager
 
     protected static string $translateIdentifier = 'settings';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -42,7 +41,7 @@ class SettingsRelationManager extends RelationManager
                                     ->required(),
 
                                 Select::make('can_trade')
-                                    ->disablePlaceholderSelection()
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.can_trade'))
                                     ->options([
                                         '0' => __('filament::resources.common.No'),
@@ -51,7 +50,7 @@ class SettingsRelationManager extends RelationManager
                                     ->required(),
 
                                 Select::make('block_following')
-                                    ->disablePlaceholderSelection()
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.block_following'))
                                     ->options([
                                         '0' => __('filament::resources.common.No'),
@@ -60,7 +59,7 @@ class SettingsRelationManager extends RelationManager
                                     ->required(),
 
                                 Select::make('block_friendrequests')
-                                    ->disablePlaceholderSelection()
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.block_friendrequests'))
                                     ->options([
                                         '0' => __('filament::resources.common.No'),
@@ -69,7 +68,7 @@ class SettingsRelationManager extends RelationManager
                                     ->required(),
 
                                 Select::make('block_roominvites')
-                                    ->disablePlaceholderSelection()
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.block_roominvites'))
                                     ->options([
                                         '0' => __('filament::resources.common.No'),
@@ -92,7 +91,7 @@ class SettingsRelationManager extends RelationManager
                         Tabs\Tab::make(__('filament::resources.tabs.Extra Settings'))
                             ->schema([
                                 Select::make('old_chat')
-                                    ->disablePlaceholderSelection()
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.old_chat'))
                                     ->options([
                                         '0' => __('filament::resources.common.No'),
@@ -101,7 +100,7 @@ class SettingsRelationManager extends RelationManager
                                     ->required(),
 
                                 Select::make('block_camera_follow')
-                                    ->disablePlaceholderSelection()
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.block_camera_follow'))
                                     ->options([
                                         '0' => __('filament::resources.common.No'),
@@ -110,7 +109,7 @@ class SettingsRelationManager extends RelationManager
                                     ->required(),
 
                                 Select::make('ignore_bots')
-                                    ->disablePlaceholderSelection()
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.ignore_bots'))
                                     ->options([
                                         '0' => __('filament::resources.common.No'),
@@ -119,7 +118,7 @@ class SettingsRelationManager extends RelationManager
                                     ->required(),
 
                                 Select::make('ignore_pets')
-                                    ->disablePlaceholderSelection()
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.ignore_pets'))
                                     ->options([
                                         '0' => __('filament::resources.common.No'),
@@ -131,7 +130,7 @@ class SettingsRelationManager extends RelationManager
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([
@@ -176,7 +175,7 @@ class SettingsRelationManager extends RelationManager
             ->headerActions([
                 Action::make('helper')
                     ->label('Settings Tip')
-                    ->icon('heroicon-o-exclamation')
+                    ->icon('heroicon-o-exclamation-triangle')
                     ->tooltip('You can only change the offline user settings.')
                     ->extraAttributes(['style' => 'cursor: default !important'])
             ])

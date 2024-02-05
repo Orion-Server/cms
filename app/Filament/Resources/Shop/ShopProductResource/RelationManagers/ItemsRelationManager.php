@@ -2,23 +2,21 @@
 
 namespace App\Filament\Resources\Shop\ShopProductResource\RelationManagers;
 
+use App\Enums\ShopProductItemType;
 use Closure;
-use Filament\Forms;
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Traits\LatestRelationResourcesTrait;
 use App\Filament\Traits\TranslatableResource;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables\Columns\TextColumn;
 
 class ItemsRelationManager extends RelationManager
 {
-    use LatestRelationResourcesTrait, TranslatableResource;
+    use TranslatableResource;
 
     protected static string $relationship = 'items';
 
@@ -26,7 +24,7 @@ class ItemsRelationManager extends RelationManager
 
     protected static ?string $translateIdentifier = 'product-item';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -36,6 +34,7 @@ class ItemsRelationManager extends RelationManager
                     ->maxLength(255),
 
                 Select::make('type')
+                    ->native(false)
                     ->required()
                     ->label(__('filament::resources.inputs.type'))
                     ->reactive()
@@ -68,21 +67,23 @@ class ItemsRelationManager extends RelationManager
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn ($query) => $query->latest())
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
 
-                Tables\Columns\BadgeColumn::make('type')
-                    ->colors([
-                        'primary' => 'badge',
-                        'secondary' => 'furniture',
-                        'success' => 'room',
-                        'warning' => 'currency'
-                    ])
+                TextColumn::make('type')
+                    ->badge()
+                    ->color(fn (ShopProductItemType $state): string => match ($state) {
+                        ShopProductItemType::Badge => 'primary',
+                        ShopProductItemType::Furniture => 'secondary',
+                        ShopProductItemType::Room => 'success',
+                        ShopProductItemType::Currency => 'warning'
+                    })
                     ->label(__('filament::resources.columns.type'))
-                    ->formatStateUsing(fn (string $state): string => __("filament::resources.options.{$state}")),
+                    ->formatStateUsing(fn (ShopProductItemType $state): string => __("filament::resources.options.{$state->value}")),
 
                 Tables\Columns\TextColumn::make('data')
                     ->label(__('filament::resources.columns.item_data')),

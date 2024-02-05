@@ -2,24 +2,17 @@
 
 namespace App\Filament\Resources\Hotel;
 
-use Filament\Forms;
 use Filament\Tables;
+use Filament\Forms\Form;
 use App\Models\WordFilter;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Traits\TranslatableResource;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\Hotel\WordFilterResource\Pages;
-use App\Filament\Resources\Hotel\WordFilterResource\RelationManagers;
-use Carbon\Carbon;
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
+use Filament\Forms\Components\TextInput;
+use App\Filament\Traits\TranslatableResource;
+use App\Filament\Resources\Hotel\WordFilterResource\Pages;
 
 class WordFilterResource extends Resource
 {
@@ -27,7 +20,7 @@ class WordFilterResource extends Resource
 
     protected static ?string $model = WordFilter::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-eye-off';
+    protected static ?string $navigationIcon = 'heroicon-o-eye-slash';
 
     protected static ?string $navigationGroup = 'Hotel';
 
@@ -50,6 +43,7 @@ class WordFilterResource extends Resource
                     ->required(),
 
                 Select::make('hide')
+                    ->native(false)
                     ->label(__('filament::resources.inputs.hideable'))
                     ->default('0')
                     ->options([
@@ -57,8 +51,9 @@ class WordFilterResource extends Resource
                         '1' => __('filament::resources.options.yes'),
                     ]),
 
-                Select::make('hide')
-                    ->label(__('filament::resources.inputs.hideable'))
+                Select::make('report')
+                    ->native(false)
+                    ->label(__('filament::resources.inputs.reportable'))
                     ->default('0')
                     ->options([
                         '0' => __('filament::resources.options.no'),

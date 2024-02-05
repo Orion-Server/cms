@@ -2,28 +2,22 @@
 
 namespace App\Filament\Resources\Orion;
 
-use Filament\Forms;
 use Filament\Tables;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
-use Filament\Resources\Resource;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Models\WriteableBox;
-use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Traits\TranslatableResource;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\Orion\WriteableBoxResource\Pages;
-use App\Filament\Resources\Orion\WriteableBoxResource\RelationManagers;
-use App\Forms\Components\CKEditor;
-use Closure;
-use Filament\Forms\Components\RichEditor;
+use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\RichEditor;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
-use Illuminate\Database\Eloquent\Model;
+use App\Filament\Traits\TranslatableResource;
+use App\Filament\Resources\Orion\WriteableBoxResource\Pages;
 
 class WriteableBoxResource extends Resource
 {
@@ -31,7 +25,7 @@ class WriteableBoxResource extends Resource
 
     protected static ?string $model = WriteableBox::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-chat-alt-2';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
 
     protected static ?string $navigationGroup = 'Website';
 
@@ -62,6 +56,7 @@ class WriteableBoxResource extends Resource
                     ->nullable(),
 
                 Select::make('page_target')
+                    ->native(false)
                     ->label(__('filament::resources.inputs.page_target'))
                     ->columnSpanFull()
                     ->options([

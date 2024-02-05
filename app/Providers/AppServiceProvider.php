@@ -13,6 +13,7 @@ use Srmklive\PayPal\Services\PayPal;
 use Illuminate\Support\ServiceProvider;
 use Filament\Navigation\NavigationGroup;
 use App\Services\Parsers\ExternalTextsParser;
+use Filament\Support\Facades\FilamentAsset;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -69,47 +70,9 @@ class AppServiceProvider extends ServiceProvider
     private function bootDashboardSettings(): void
     {
         Filament::serving(function() {
-            Filament::registerStyles([asset('assets/css/ckeditor.css')]);
-            Filament::registerViteTheme('resources/scss/filament.scss');
-
-            $getNavigationLabel = fn (string $label) => __("filament::resources.navigations.{$label}");
-
-            Filament::registerNavigationGroups([
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Dashboard'))
-                    ->collapsible(false),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Website'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Shop'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Help Center'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Hotel'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Administration'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('User Management'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Profile Management'))
-                    ->collapsed(),
-
-                NavigationGroup::make()
-                    ->label($getNavigationLabel('Logs'))
-                    ->collapsed(),
+            FilamentAsset::renderStyles([
+                asset('assets/css/ckeditor.css'),
+                asset('assets/css/filament.css')
             ]);
         });
     }

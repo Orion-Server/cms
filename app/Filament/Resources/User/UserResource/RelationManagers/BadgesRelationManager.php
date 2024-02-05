@@ -3,23 +3,22 @@
 namespace App\Filament\Resources\User\UserResource\RelationManagers;
 
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Services\RconService;
-use Filament\Resources\Table;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
-use App\Filament\Tables\Columns\HabboBadgeColumn;
 use Filament\Notifications\Notification;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\DeleteBulkAction;
-use App\Filament\Traits\LatestRelationResourcesTrait;
 use App\Filament\Traits\TranslatableResource;
+use Filament\Tables\Actions\DeleteBulkAction;
+use App\Filament\Tables\Columns\HabboBadgeColumn;
 use Filament\Resources\RelationManagers\RelationManager;
 
 class BadgesRelationManager extends RelationManager
 {
-    use LatestRelationResourcesTrait, TranslatableResource;
+    use TranslatableResource;
 
     protected static string $relationship = 'badges';
 
@@ -27,7 +26,7 @@ class BadgesRelationManager extends RelationManager
 
     protected static ?string $translateIdentifier = 'badges';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -39,9 +38,10 @@ class BadgesRelationManager extends RelationManager
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn ($query) => $query->latest('id'))
             ->columns([
                 TextColumn::make('id')
                     ->label(__('filament::resources.columns.id')),

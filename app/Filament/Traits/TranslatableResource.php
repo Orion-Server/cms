@@ -4,7 +4,7 @@ namespace App\Filament\Traits;
 
 trait TranslatableResource
 {
-    protected static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): ?string
     {
         return __(
             sprintf('filament::resources.navigations.%s', static::$navigationGroup)

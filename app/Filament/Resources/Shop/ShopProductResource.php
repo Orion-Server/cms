@@ -2,25 +2,22 @@
 
 namespace App\Filament\Resources\Shop;
 
-use Filament\Forms;
 use Filament\Tables;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
 use App\Models\ShopProduct;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use App\Forms\Components\CKEditor;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use App\Filament\Traits\TranslatableResource;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\Shop\ShopProductResource\Pages;
 use App\Filament\Resources\Shop\ShopProductResource\RelationManagers;
-use App\Forms\Components\CKEditor;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\ToggleColumn;
 
 class ShopProductResource extends Resource
 {
@@ -46,6 +43,7 @@ class ShopProductResource extends Resource
                             ->icon('heroicon-o-home')
                             ->schema([
                                 Select::make('category_id')
+                                    ->native(false)
                                     ->label(__('filament::resources.inputs.category'))
                                     ->relationship('category', 'name'),
 
@@ -86,13 +84,13 @@ class ShopProductResource extends Resource
                                     ->onIcon('heroicon-s-check')
                                     ->label(__('filament::resources.inputs.visible'))
                                     ->default(false)
-                                    ->offIcon('heroicon-s-x'),
+                                    ->offIcon('heroicon-s-x-mark'),
 
                                 Toggle::make('is_featured')
                                     ->onIcon('heroicon-s-check')
                                     ->label(__('filament::resources.inputs.is_featured'))
                                     ->default(false)
-                                    ->offIcon('heroicon-s-x'),
+                                    ->offIcon('heroicon-s-x-mark'),
                             ]),
 
                         Tabs\Tab::make(__('filament::resources.tabs.Metrics'))

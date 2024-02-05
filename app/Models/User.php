@@ -32,6 +32,7 @@ use Filament\Models\Contracts\{
     FilamentUser,
     HasAvatar
 };
+use Filament\Panel;
 
 class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
 {
@@ -194,7 +195,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         return $this->hasMany(GuildMember::class);
     }
 
-    public function canAccessFilament(): bool
+    public function canAccessPanel(Panel $panel): bool
     {
         return $this->rank >= getSetting('min_rank_to_housekeeping_login');
     }
