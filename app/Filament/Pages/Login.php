@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Pages\Auth;
+namespace App\Filament\Pages;
 
 use Filament\Facades\Filament;
 use Filament\Notifications\Notification;

@@ -33,10 +33,11 @@ use Filament\Models\Contracts\{
     HasAvatar
 };
 use Filament\Panel;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
 {
-    use HasApiTokens, HasFactory, Notifiable, HasCurrency, HasSettings, HasProfile, HasItems;
+    use HasApiTokens, HasFactory, Notifiable, HasCurrency, HasSettings, HasProfile, HasItems, HasRoles;
 
     public $timestamps = false;
 
