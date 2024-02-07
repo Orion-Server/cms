@@ -14,3 +14,12 @@
 ::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar-color) !important;
 }
+
+.language-switch-trigger {
+    box-shadow: none !important;
+}
+
+.language-switch-trigger img {
+    width: 34px;
+    height: 34px;
+}
