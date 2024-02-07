@@ -20,6 +20,8 @@ class CategoriesRelationManager extends RelationManager
 
     public static string $translateIdentifier = 'help-questions-categories';
 
+    protected static ?string $inverseRelationship = 'questions';
+
     public function form(Form $form): Form
     {
         return $form->schema(HelpQuestionCategoryResource::getForm());
