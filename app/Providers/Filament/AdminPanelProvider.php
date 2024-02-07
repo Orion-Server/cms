@@ -24,6 +24,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use App\Filament\Resources\DashboardResource\Widgets\TopDashboardOverview;
 use App\Filament\Resources\DashboardResource\Widgets\ArticlesAggregateChart;
+use App\Filament\Resources\DashboardResource\Widgets\LatestOrders;
 use App\Filament\Resources\DashboardResource\Widgets\OrdersAggregateChart;
 
 class AdminPanelProvider extends PanelProvider
@@ -54,6 +55,7 @@ class AdminPanelProvider extends PanelProvider
                 TopDashboardOverview::class,
                 OrdersAggregateChart::class,
                 ArticlesAggregateChart::class,
+                LatestOrders::class
             ])
             ->middleware([
                 EncryptCookies::class,

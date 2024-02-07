@@ -38,86 +38,61 @@ class OrderResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Grid::make()
-                    ->schema([
-                        TextInput::make('order_id')
-                            ->label(__('filament::resources.inputs.order_id'))
-                            ->disabled(),
+            ->schema(self::getForm());
+    }
 
-                        Select::make('status')
-                            ->native(false)
-                            ->options([
-                                'pending' => __('filament::resources.options.pending'),
-                                'completed' => __('filament::resources.options.completed'),
-                                'cancelled' => __('filament::resources.options.cancelled'),
-                            ])
-                            ->label(__('filament::resources.inputs.status')),
+    public static function getForm(): array
+    {
+        return [
+            Grid::make()
+                ->schema([
+                    TextInput::make('order_id')
+                        ->label(__('filament::resources.inputs.order_id'))
+                        ->disabled(),
 
-                        Select::make('product_id')
-                            ->native(false)
-                            ->relationship('product', 'name')
-                            ->columnSpanFull()
-                            ->label(__('filament::resources.inputs.name'))
-                            ->disabled(),
+                    Select::make('status')
+                        ->native(false)
+                        ->options([
+                            'pending' => __('filament::resources.options.pending'),
+                            'completed' => __('filament::resources.options.completed'),
+                            'cancelled' => __('filament::resources.options.cancelled'),
+                        ])
+                        ->label(__('filament::resources.inputs.status')),
 
-                        TextInput::make('price')
-                            ->suffixIcon('heroicon-o-currency-dollar')
-                            ->prefix(fn (Get $get) => $get('currency'))
-                            ->columnSpanFull()
-                            ->label(__('filament::resources.inputs.price'))
-                            ->disabled(),
+                    Select::make('product_id')
+                        ->native(false)
+                        ->relationship('product', 'name')
+                        ->columnSpanFull()
+                        ->label(__('filament::resources.inputs.name'))
+                        ->disabled(),
 
-                        TextInput::make('paypal_fee')
-                            ->label(__('filament::resources.inputs.paypal_fee'))
-                            ->columnSpanFull()
-                            ->disabled(),
+                    TextInput::make('price')
+                        ->suffixIcon('heroicon-o-currency-dollar')
+                        ->prefix(fn (Get $get) => $get('currency'))
+                        ->columnSpanFull()
+                        ->label(__('filament::resources.inputs.price'))
+                        ->disabled(),
 
-                        Textarea::make('details')
-                            ->columnSpanFull()
-                            ->label(__('filament::resources.inputs.details')),
+                    TextInput::make('paypal_fee')
+                        ->label(__('filament::resources.inputs.paypal_fee'))
+                        ->columnSpanFull()
+                        ->disabled(),
 
-                        Toggle::make('is_delivered')
-                            ->label(__('filament::resources.inputs.is_delivered')),
-                    ])
-            ]);
+                    Textarea::make('details')
+                        ->columnSpanFull()
+                        ->label(__('filament::resources.inputs.details')),
+
+                    Toggle::make('is_delivered')
+                        ->label(__('filament::resources.inputs.is_delivered')),
+                ])
+        ];
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->poll('60s')
-            ->columns([
-                TextColumn::make('id')
-                    ->label(__('filament::resources.columns.id')),
-
-                TextColumn::make('status')
-                    ->badge()
-                    ->color(fn (ShopOrderStatus $state): string => match ($state) {
-                        ShopOrderStatus::Pending => 'warning',
-                        ShopOrderStatus::Completed => 'success',
-                        ShopOrderStatus::Cancelled => 'danger'
-                    })
-                    ->searchable()
-                    ->label(__('filament::resources.columns.type'))
-                    ->formatStateUsing(fn (ShopOrderStatus $state): string => __("filament::resources.options.{$state->value}")),
-
-                TextColumn::make('order_id')
-                    ->searchable()
-                    ->label(__('filament::resources.columns.order_id')),
-
-                TextColumn::make('user.username')
-                    ->searchable()
-                    ->label(__('filament::resources.columns.username')),
-
-                TextColumn::make('product.name')
-                    ->searchable()
-                    ->label(__('filament::resources.columns.name')),
-
-                ToggleColumn::make('is_delivered')
-                    ->disabled()
-                    ->label(__('filament::resources.columns.is_delivered')),
-            ])
+            ->columns(self::getTable())
             ->filters([
                 //
             ])
@@ -126,6 +101,46 @@ class OrderResource extends Resource
                 Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([]);
+    }
+
+    public static function getTable(): array
+    {
+        return [
+            TextColumn::make('id')
+                ->label(__('filament::resources.columns.id')),
+
+            TextColumn::make('status')
+                ->badge()
+                ->color(fn (ShopOrderStatus $state): string => match ($state) {
+                    ShopOrderStatus::Pending => 'warning',
+                    ShopOrderStatus::Completed => 'success',
+                    ShopOrderStatus::Cancelled => 'danger'
+                })
+                ->icon(fn (ShopOrderStatus $state): string => match ($state) {
+                    ShopOrderStatus::Pending => 'heroicon-o-clock',
+                    ShopOrderStatus::Completed => 'heroicon-o-check-circle',
+                    ShopOrderStatus::Cancelled => 'heroicon-o-x-circle'
+                })
+                ->searchable()
+                ->label(__('filament::resources.columns.type'))
+                ->formatStateUsing(fn (ShopOrderStatus $state): string => __("filament::resources.options.{$state->value}")),
+
+            TextColumn::make('order_id')
+                ->searchable()
+                ->label(__('filament::resources.columns.order_id')),
+
+            TextColumn::make('user.username')
+                ->searchable()
+                ->label(__('filament::resources.columns.username')),
+
+            TextColumn::make('product.name')
+                ->searchable()
+                ->label(__('filament::resources.columns.name')),
+
+            ToggleColumn::make('is_delivered')
+                ->disabled()
+                ->label(__('filament::resources.columns.is_delivered')),
+        ];
     }
 
     public static function getPages(): array

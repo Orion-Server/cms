@@ -149,10 +149,7 @@ class SettingsRelationManager extends RelationManager
 
                 IconColumn::make('can_trade')
                     ->label(__('filament::resources.columns.can_trade'))
-                    ->options([
-                        'heroicon-o-check-circle' => '1',
-                        'heroicon-o-x-circle' => '0',
-                    ])
+                    ->icon(fn (string $state) => $state === '1' ? 'heroicon-o-check-circle' : 'heroicon-o-x-circle')
                     ->colors([
                         'success' => '1',
                         'danger' => '0',
@@ -160,10 +157,7 @@ class SettingsRelationManager extends RelationManager
 
                 IconColumn::make('can_change_name')
                     ->label(__('filament::resources.columns.can_change_name'))
-                    ->options([
-                        'heroicon-o-check-circle' => '1',
-                        'heroicon-o-x-circle' => '0',
-                    ])
+                    ->icon(fn (string $state) => $state === '1' ? 'heroicon-o-check-circle' : 'heroicon-o-x-circle')
                     ->colors([
                         'success' => '1',
                         'danger' => '0',

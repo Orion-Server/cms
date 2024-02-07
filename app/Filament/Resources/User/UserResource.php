@@ -227,10 +227,7 @@ class UserResource extends Resource
 
                 IconColumn::make('online')
                     ->label(__('filament::resources.columns.online'))
-                    ->options([
-                        'heroicon-o-x-circle' => fn ($state, $record): bool => ! $record->online,
-                        'heroicon-o-check-circle' => fn ($state, $record): bool => !! $record->online,
-                    ])
+                    ->icon(fn (Model $record) => $record->online ? 'heroicon-o-check-circle' : 'heroicon-o-x-circle')
                     ->colors([
                         'danger' => false,
                         'success' => true,

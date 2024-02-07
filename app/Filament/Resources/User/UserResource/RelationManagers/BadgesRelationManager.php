@@ -55,10 +55,7 @@ class BadgesRelationManager extends RelationManager
 
                 IconColumn::make('slot_id')
                     ->label(__('filament::resources.columns.equipped'))
-                    ->options([
-                        'heroicon-o-check-circle' => fn (string $state) => $state > 0,
-                        'heroicon-o-x-circle' => fn (string $state) => $state <= 0,
-                    ])
+                    ->icon(fn ($record) => $record->slot_id > 0 ? 'heroicon-o-check-circle' : 'heroicon-o-x-circle')
                     ->colors([
                         'success' => fn (string $state) => $state > 0,
                         'danger' => fn (string $state) => $state <= 0,
