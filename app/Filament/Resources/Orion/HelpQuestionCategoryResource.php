@@ -6,7 +6,7 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
@@ -38,7 +38,7 @@ class HelpQuestionCategoryResource extends Resource
     public static function getForm(): array
     {
         return [
-            Card::make()
+            Section::make()
                 ->schema([
                     TextInput::make('name')
                         ->label(__('filament::resources.inputs.name'))
@@ -55,6 +55,7 @@ class HelpQuestionCategoryResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->columns(static::getTable())
             ->filters([
                 //

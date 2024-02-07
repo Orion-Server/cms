@@ -9,9 +9,9 @@ use Filament\Tables\Table;
 use App\Enums\CurrencyType;
 use App\Models\Home\HomeItem;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
@@ -37,7 +37,7 @@ class HomeItemResource extends Resource
     {
         return $form
             ->schema([
-                Card::make()
+                Section::make()
                     ->schema(self::getForm())
                     ->columns([
                         'sm' => 2
@@ -83,7 +83,6 @@ class HomeItemResource extends Resource
             Select::make('currency_type')
                 ->native(false)
                 ->label(__('filament::resources.inputs.currency_type'))
-                ->disablePlaceholderSelection()
                 ->default(-1)
                 ->options(CurrencyType::toInput()),
 
@@ -108,6 +107,7 @@ class HomeItemResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->columns(self::getTable())
             ->filters([
                 SelectFilter::make('type')
@@ -145,7 +145,7 @@ class HomeItemResource extends Resource
 
             ImageColumn::make('image')
                 ->size('auto')
-                ->extraAttributes(['style' => 'max-width: 200px;'])
+                ->extraImgAttributes(['style' => 'max-width: 200px'])
                 ->label(__('filament::resources.columns.image')),
 
             TextColumn::make('name')

@@ -2,18 +2,17 @@
 
 namespace App\Filament\Resources\Shop\ShopProductResource\RelationManagers;
 
-use App\Enums\ShopProductItemType;
-use Closure;
 use Filament\Tables;
+use Filament\Forms\Get;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Enums\ShopProductItemType;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Traits\TranslatableResource;
-use Filament\Forms\Get;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables\Columns\TextColumn;
 
 class ItemsRelationManager extends RelationManager
 {

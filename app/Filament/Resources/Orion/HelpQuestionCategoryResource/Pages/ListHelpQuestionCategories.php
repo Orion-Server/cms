@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources\Orion\HelpQuestionCategoryResource\Pages;
 
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
-use App\Filament\Traits\LatestResourcesTrait;
 use App\Filament\Resources\Orion\HelpQuestionCategoryResource;
 
 class ListHelpQuestionCategories extends ListRecords

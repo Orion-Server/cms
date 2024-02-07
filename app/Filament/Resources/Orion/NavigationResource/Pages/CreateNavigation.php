@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources\Orion\NavigationResource\Pages;
 
-use App\Filament\Resources\Orion\NavigationResource;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use App\Filament\Resources\Orion\NavigationResource;
 
 class CreateNavigation extends CreateRecord
 {

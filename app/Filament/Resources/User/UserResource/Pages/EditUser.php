@@ -2,8 +2,7 @@
 
 namespace App\Filament\Resources\User\UserResource\Pages;
 
-use App\Enums\CurrencyType;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use App\Models\UserCurrency;
 use App\Services\RconService;
 use Illuminate\Database\Eloquent\Model;

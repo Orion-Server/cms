@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Shop\ShopCategoryResource\Pages;
 
-use App\Filament\Resources\Shop\ShopCategoryResource;
 use Filament\Resources\Pages\ViewRecord;
+use App\Filament\Resources\Shop\ShopCategoryResource;
 
 class ViewShopCategory extends ViewRecord
 {

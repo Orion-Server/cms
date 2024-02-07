@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources\Shop\ShopCategoryResource\Pages;
 
-use App\Filament\Resources\Shop\ShopCategoryResource;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use App\Filament\Resources\Shop\ShopCategoryResource;
 
 class CreateShopCategory extends CreateRecord
 {

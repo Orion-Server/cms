@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\Shop;
 
-use App\Enums\ShopOrderStatus;
-use Closure;
 use Filament\Tables;
+use Filament\Forms\Get;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Enums\ShopOrderStatus;
 use App\Models\User\UserOrder;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Grid;
@@ -19,7 +19,6 @@ use Filament\Tables\Columns\ToggleColumn;
 use App\Filament\Traits\TranslatableResource;
 use App\Filament\Resources\Shop\OrderResource\Pages;
 use App\Filament\Resources\Shop\OrderResource\Widgets;
-use Filament\Forms\Get;
 
 class OrderResource extends Resource
 {
@@ -37,8 +36,7 @@ class OrderResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema(self::getForm());
+        return $form->schema(self::getForm());
     }
 
     public static function getForm(): array
@@ -91,6 +89,7 @@ class OrderResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->poll('60s')
             ->columns(self::getTable())
             ->filters([

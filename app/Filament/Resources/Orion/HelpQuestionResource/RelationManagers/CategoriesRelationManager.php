@@ -8,7 +8,6 @@ use Filament\Tables\Table;
 use App\Filament\Traits\TranslatableResource;
 use Filament\Resources\RelationManagers\RelationManager;
 use App\Filament\Resources\Orion\HelpQuestionCategoryResource;
-use Illuminate\Database\Eloquent\Model;
 
 class CategoriesRelationManager extends RelationManager
 {

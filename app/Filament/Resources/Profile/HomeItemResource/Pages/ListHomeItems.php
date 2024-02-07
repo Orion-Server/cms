@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Profile\HomeItemResource\Pages;
 
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use App\Filament\Resources\Profile\HomeItemResource;
 

@@ -9,8 +9,6 @@ use App\Filament\Resources\Hotel\AchievementResource;
 
 class ListAchievements extends ListRecords
 {
-    use LatestResourcesTrait;
-
     protected static string $resource = AchievementResource::class;
 
     protected function getActions(): array

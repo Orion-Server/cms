@@ -8,9 +8,9 @@ use Filament\Tables\Table;
 use App\Models\HelpQuestion;
 use Filament\Resources\Resource;
 use App\Forms\Components\CKEditor;
-use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Traits\TranslatableResource;
@@ -39,7 +39,7 @@ class HelpQuestionResource extends Resource
     public static function getForm(): array
     {
         return [
-            Card::make()
+            Section::make()
                 ->schema([
                     TextInput::make('title')
                         ->label(__('filament::resources.inputs.title'))

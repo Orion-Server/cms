@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Profile\HomeItemResource\Pages;
 
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;

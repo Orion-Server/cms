@@ -7,7 +7,7 @@ use Filament\Forms\Form;
 use App\Models\CmsSetting;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Traits\TranslatableResource;
@@ -31,7 +31,7 @@ class CmsSettingResource extends Resource
     {
         return $form
             ->schema([
-                Card::make()
+                Section::make()
                     ->schema([
                         TextInput::make('key')
                             ->label(__('filament::resources.inputs.key'))
@@ -60,6 +60,7 @@ class CmsSettingResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->columns([
                 TextColumn::make('key')
                     ->label(__('filament::resources.columns.key'))

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Orion\TeamResource\Pages;
 
-use App\Filament\Resources\Orion\TeamResource;
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\Orion\TeamResource;
 
 class EditTeam extends EditRecord
 {

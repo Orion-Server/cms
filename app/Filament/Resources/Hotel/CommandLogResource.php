@@ -33,6 +33,7 @@ class CommandLogResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('timestamp', 'desc')
             ->columns([
                 TextColumn::make('user.username')
                     ->label(__('filament::resources.columns.username'))

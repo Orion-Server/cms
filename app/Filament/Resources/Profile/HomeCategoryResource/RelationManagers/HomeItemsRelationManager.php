@@ -16,27 +16,23 @@ class HomeItemsRelationManager extends RelationManager
 
     public function form(Form $form): Form
     {
-        return $form
-            ->schema(HomeItemResource::getForm());
+        return $form->schema(HomeItemResource::getForm());
     }
 
     public function table(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->columns(HomeItemResource::getTable())
             ->filters([
                 //
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),
-                Tables\Actions\AssociateAction::make(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DissociateAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DissociateBulkAction::make(),
-            ]);
+            ->bulkActions([]);
     }
 }

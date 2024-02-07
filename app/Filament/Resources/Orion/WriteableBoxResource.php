@@ -76,6 +76,7 @@ class WriteableBoxResource extends Resource
     {
         return $table
             ->reorderable('order')
+            ->defaultSort('id', 'desc')
             ->columns([
                 TextColumn::make('id')
                     ->label(__('filament::resources.columns.id')),

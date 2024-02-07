@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Orion\HelpQuestionResource\Pages;
 
-use Filament\Pages\Actions;
+use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use App\Filament\Resources\Orion\HelpQuestionResource;
 

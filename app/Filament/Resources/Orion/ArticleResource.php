@@ -114,6 +114,7 @@ class ArticleResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('id', 'desc')
             ->poll('60s')
             ->columns(static::getTable())
             ->filters([
