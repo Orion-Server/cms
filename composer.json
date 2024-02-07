@@ -11,6 +11,7 @@
         "cyrildewit/eloquent-viewable": "^7.0",
         "filament/filament": "^3.2",
         "filipfonal/filament-log-manager": "^2.0",
+        "flowframe/laravel-trend": "^0.1.5",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/fortify": "^1.17",
         "laravel/framework": "^10.8",

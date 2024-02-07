@@ -366,6 +366,37 @@ return [
         'were_completed' => 'foram pagos e entregues.',
     ],
 
+    'stats' => [
+        'users_count' => [
+            'title' => 'Quantidade de Usuários',
+            'description' => 'usuários registrados.',
+        ],
+        'furniture_count' => [
+            'title' => 'Contagem de Mobis',
+            'description' => 'mobis registrados.',
+        ],
+        'rooms_count' => [
+            'title' => 'Contagem de Quartos',
+            'description' => 'quartos criados.',
+        ],
+        'photos_count' => [
+            'title' => 'Fotos Postadas',
+            'description' => 'fotos compradas.',
+        ],
+        'articles_chart' => [
+            'title' => 'Artigos (Mensal)',
+            'label' => 'Artigos',
+            'description' => 'Quantidade de posts feitos esse mês.',
+        ],
+        'orders_chart' => [
+            'title' => 'Pedidos (Mensal)',
+            'pending' => 'Pendentes',
+            'cancelled' => 'Cancelados',
+            'completed' => 'Completos',
+            'description' => 'Quantidade de pedidos feitos esse mês.',
+        ],
+    ],
+
     'notifications' => [
         'badge_code_required' => 'Você precisa inserir um código de emblema.',
         'badge_found' => 'Emblema encontrado!',

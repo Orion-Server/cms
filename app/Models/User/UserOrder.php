@@ -24,6 +24,21 @@ class UserOrder extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function scopeCompleted($query)
+    {
+        return $query->where('status', ShopOrderStatus::Completed);
+    }
+
+    public function scopeCancelled($query)
+    {
+        return $query->where('status', ShopOrderStatus::Cancelled);
+    }
+
+    public function scopePending($query)
+    {
+        return $query->where('status', ShopOrderStatus::Pending);
+    }
+
     public function scopeDefaultRelationships($query)
     {
         return $query->with('product');

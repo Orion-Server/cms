@@ -122,4 +122,11 @@ class FlashBadgeParser extends BadgeParser
     {
         return $this->flashTexts;
     }
+
+    public function getUniqueCount(): int
+    {
+        if (!($this->flashTexts instanceof Collection)) return 0;
+
+        return $this->getTexts()->filter(fn (?string $value, ?string $key) => Str::contains($key, ['badge_name_']))->count();
+    }
 }

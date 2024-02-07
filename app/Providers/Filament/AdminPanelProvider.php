@@ -3,16 +3,15 @@
 namespace App\Providers\Filament;
 
 use Filament\Panel;
-use Filament\Widgets;
 use Filament\PanelProvider;
+use Filament\Enums\ThemeMode;
+use Filament\Support\Assets\Css;
+use App\Filament\Pages\BadgePage;
 use App\Filament\Pages\Dashboard;
 use App\Filament\Pages\Auth\Login;
-use App\Filament\Pages\BadgePage;
 use Filament\Support\Colors\Color;
 use App\Http\Middleware\VerifyLocale;
-use Filament\Navigation\NavigationGroup;
 use App\Http\Middleware\VerifyPunishments;
-use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -21,9 +20,11 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Support\Assets\Css;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use App\Filament\Resources\DashboardResource\Widgets\TopDashboardOverview;
+use App\Filament\Resources\DashboardResource\Widgets\ArticlesAggregateChart;
+use App\Filament\Resources\DashboardResource\Widgets\OrdersAggregateChart;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -49,7 +50,11 @@ class AdminPanelProvider extends PanelProvider
             ->topNavigation($topNavigationEnabled)
             ->defaultThemeMode($defaultTheme)
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([])
+            ->widgets([
+                TopDashboardOverview::class,
+                OrdersAggregateChart::class,
+                ArticlesAggregateChart::class,
+            ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

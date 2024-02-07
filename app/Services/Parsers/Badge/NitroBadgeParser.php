@@ -88,4 +88,11 @@ class NitroBadgeParser extends BadgeParser
     {
         return $this->nitroTexts;
     }
+
+    public function getUniqueCount(): int
+    {
+        if (!($this->nitroTexts instanceof Collection)) return 0;
+
+        return $this->getTexts()->filter(fn (?string $value, ?string $key) => Str::contains($key, ['badge_name_']))->count();
+    }
 }
