@@ -3,6 +3,16 @@
     'removeSocialButtons' => false,
 ])
 
+@if(session()->has('loginError'))
+    @pushOnce('scripts')
+    <script>
+        document.addEventListener('alpine:init', () => {
+            window.notyf.error("{{ session()->get('loginError') }}", 5000)
+        });
+    </script>
+    @endpushOnce
+@enderror
+
 <form
     id="login-form"
     method="POST"
@@ -62,24 +72,24 @@
         <span class="border-b dark:border-gray-700 w-1/5 md:w-1/4"></span>
     </div>
 
-    <div class="flex justify-around flex-col sm:flex-row gap-3 mt-4">
-        <a href="#" class="flex gap-3 items-center justify-center dark:bg-slate-900 dark:shadow-xl dark:border-slate-800 dark:border text-white rounded-lg shadow-md hover:bg-gray-100">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
+        <a href="{{ route('google.login') }}" class="flex gap-3 items-center justify-center dark:bg-slate-900 dark:shadow-xl dark:border-slate-800 dark:border text-white rounded-lg shadow-md hover:bg-gray-100 dark:hover:bg-slate-700">
             <div class="pl-4 py-3">
                 <i class="fa-brands fa-google text-red-500"></i>
             </div>
-            <h1 class="pr-4 py-3 text-center text-gray-600 font-bold">Google</h1>
+            <h1 class="pr-4 py-3 text-center text-gray-600 dark:text-gray-400 font-bold">Google</h1>
         </a>
-        <a href="#" class="flex gap-3 items-center justify-center dark:bg-slate-900 dark:shadow-xl dark:border-slate-800 dark:border text-white rounded-lg shadow-md hover:bg-gray-100">
+        <a href="{{ route('facebook.login') }}" class="flex gap-3 items-center justify-center dark:bg-slate-900 dark:shadow-xl dark:border-slate-800 dark:border text-white rounded-lg shadow-md hover:bg-gray-100 dark:hover:bg-slate-700">
             <div class="pl-4 py-3">
                 <i class="fa-brands fa-facebook-f text-blue-500"></i>
             </div>
-            <h1 class="pr-4 py-3 text-center text-gray-600 font-bold">Facebook</h1>
+            <h1 class="pr-4 py-3 text-center text-gray-600 dark:text-gray-400 font-bold">Facebook</h1>
         </a>
-        <a href="#" class="flex gap-3 items-center justify-center dark:bg-slate-900 dark:shadow-xl dark:border-slate-800 dark:border text-white rounded-lg shadow-md hover:bg-gray-100">
+        <a href="{{ route('discord.login') }}" class="flex gap-3 items-center justify-center dark:bg-slate-900 dark:shadow-xl dark:border-slate-800 dark:border text-white rounded-lg shadow-md hover:bg-gray-100 dark:hover:bg-slate-700">
             <div class="pl-4 py-3">
                 <i class="fa-brands fa-discord text-gray-900 dark:text-slate-600"></i>
             </div>
-            <h1 class="pr-4 py-3 text-center text-gray-600 font-bold">Discord</h1>
+            <h1 class="pr-4 py-3 text-center text-gray-600 dark:text-gray-400 font-bold">Discord</h1>
         </a>
     </div>
     @endif

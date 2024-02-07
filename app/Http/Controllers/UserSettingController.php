@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Services\RconService;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
 class UserSettingController extends Controller
@@ -135,6 +136,43 @@ class UserSettingController extends Controller
         return $hasRconError
             ? ['type' => 'error', 'message' => __('An error occurred while trying to update your in-game settings!')]
             : ['type' => 'success', 'message' => __('Your in-game settings has been updated!')];
+    }
+
+    public function changeUsername(Request $request)
+    {
+        $data = $request->validate([
+            'newUsername' => ['required', 'string', 'max:25', sprintf('regex:%s', getSetting('register_username_regex')), Rule::unique('users', 'username')->ignore(Auth::id())],
+            'gender' => ['required', 'string', 'max:1', Rule::in(['M', 'F'])],
+        ]);
+
+        $user = Auth::user();
+
+        if($user->username === $data['newUsername']) {
+            $user->settings->can_change_name = false;
+            $user->settings->save();
+
+            return $this->externalJsonResponse('success', __('Your username has been updated!'));
+        }
+
+        if($user->online) {
+            return $this->externalJsonResponse('error', __("You can't change your username while you are online!"));
+        }
+
+        if(!$user->settings->can_change_name) {
+            return $this->externalJsonResponse('error', __("You can't change your username right now!"));
+        }
+
+        $user->rooms()->update(['owner_name' => $data['newUsername']]);
+
+        $user->update([
+            'username' => $data['newUsername'],
+            'gender' => $data['gender']
+        ]);
+
+        $user->settings->can_change_name = '0';
+        $user->settings->save();
+
+        return $this->externalJsonResponse('success', __('Your username has been updated!'));
     }
 
     private function getSettingsNavigationData(): array

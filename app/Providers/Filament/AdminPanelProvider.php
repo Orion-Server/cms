@@ -4,11 +4,11 @@ namespace App\Providers\Filament;
 
 use Filament\Panel;
 use Filament\PanelProvider;
+use App\Filament\Pages\Login;
 use Filament\Enums\ThemeMode;
 use Filament\Support\Assets\Css;
 use App\Filament\Pages\BadgePage;
 use App\Filament\Pages\Dashboard;
-use App\Filament\Pages\Auth\Login;
 use Filament\Support\Colors\Color;
 use App\Http\Middleware\VerifyLocale;
 use App\Http\Middleware\VerifyPunishments;
@@ -22,10 +22,10 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
-use App\Filament\Resources\DashboardResource\Widgets\TopDashboardOverview;
-use App\Filament\Resources\DashboardResource\Widgets\ArticlesAggregateChart;
 use App\Filament\Resources\DashboardResource\Widgets\LatestOrders;
 use App\Filament\Resources\DashboardResource\Widgets\OrdersAggregateChart;
+use App\Filament\Resources\DashboardResource\Widgets\TopDashboardOverview;
+use App\Filament\Resources\DashboardResource\Widgets\ArticlesAggregateChart;
 
 class AdminPanelProvider extends PanelProvider
 {

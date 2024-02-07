@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Listeners\LogoutListener;
 use Illuminate\Auth\Events\Logout;
+use SocialiteProviders\Manager\SocialiteWasCalled;
+use SocialiteProviders\Discord\DiscordExtendSocialite;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -17,6 +19,10 @@ class EventServiceProvider extends ServiceProvider
         Logout::class => [
             LogoutListener::class,
         ],
+
+        SocialiteWasCalled::class => [
+            DiscordExtendSocialite::class . '@handle'
+        ]
     ];
 
     /**

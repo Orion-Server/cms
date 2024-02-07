@@ -16,6 +16,9 @@ use App\Http\Controllers\{
     StaffController,
     UserSettingController,
     Auth\AuthSessionController,
+    Auth\Socialite\FacebookController,
+    Auth\Socialite\GoogleController,
+    Auth\Socialite\DiscordController,
     UserProfileController,
     Profile\RatingController as UserHomeRatingController,
     Profile\MessageController as UserHomeMessageController,
@@ -40,6 +43,15 @@ Route::get('/set-language/{language}', [WebController::class, 'setLanguage'])->n
 Route::get('/', [WebController::class, 'index'])->name('index');
 Route::get('/login', [WebController::class, 'index'])->name('login');
 Route::get('/register', [WebController::class, 'index'])->name('register');
+
+Route::get('/login/google', [GoogleController::class, 'handleRedirect'])->name('google.login');
+Route::get('/login/google/callback', [GoogleController::class, 'handleCallback']);
+
+Route::get('/login/facebook', [FacebookController::class, 'handleRedirect'])->name('facebook.login');
+Route::get('/login/facebook/callback', [FacebookController::class, 'handleCallback']);
+
+Route::get('/login/discord', [DiscordController::class, 'handleRedirect'])->name('discord.login');
+Route::get('/login/discord/callback', [DiscordController::class, 'handleCallback']);
 
 Route::post('/logout', [AuthSessionController::class, 'destroy'])->name('logout');
 
@@ -121,6 +133,7 @@ Route::name('users.')
                 Route::prefix('settings')
                     ->name('settings.')
                     ->group(function () {
+                        Route::post('/change-username', [UserSettingController::class, 'changeUsername'])->name('change-username');
                         Route::match(['GET', 'POST'], '/{page?}', [UserSettingController::class, 'index'])->name('index');
                     });
 

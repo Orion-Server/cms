@@ -63,7 +63,8 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         'referral_code',
         'referrer_code',
         'avatar_background',
-        'team_id'
+        'team_id',
+        'provider_id'
     ];
 
     /**
@@ -90,10 +91,15 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     {
         parent::boot();
 
-        static::created(function ($user) {
+        static::created(function (User $user) {
             $user->generateInitialCurrencies();
             $user->generateInitialSettings();
             $user->generateInitialHomeItems();
+
+            if(!empty($user->provider_id)) {
+                $user->settings->can_change_name = '1';
+                $user->settings->save();
+            }
         });
     }
 
@@ -117,6 +123,21 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         return User::select(['id', 'username', 'look'])
             ->limit($limit)
             ->latest('id');
+    }
+
+    public static function createFromData(array $data)
+    {
+        return self::create([
+            ...$data,
+            'account_created' => time(),
+            'last_login' => time(),
+            'motto' => getSetting('start_motto'),
+            'look' => getSetting($data['gender'] == 'M' ? 'start_male_look' : 'start_female_look'),
+            'credits' => getSetting('start_credits'),
+            'home_room' => getSetting('start_room_id'),
+            'referral_code' => \Str::random(15),
+            'avatar_background' => isset($data['avatar_background']) ? $data['avatar_background'] : getSetting('default_avatar_background'),
+        ]);
     }
 
     public function referrer(): BelongsTo

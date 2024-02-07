@@ -9,12 +9,13 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Actions\Compositions\HasAuthAttempt;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
 {
-    use PasswordValidationRules;
+    use PasswordValidationRules, HasAuthAttempt;
 
     /**
      * Validate and create a newly registered user.
@@ -32,66 +33,19 @@ class CreateNewUser implements CreatesNewUsers
             ->interceptRegistrationsOverflowAttempts($userIp);
 
         return DB::transaction(function () use ($input, $userIp) {
-            return tap(User::create([
+            return tap(User::createFromData([
                 'username' => $input['username'],
                 'password' => Hash::make($input['password']),
                 'mail' => $input['email'],
                 'gender' => $input['gender'],
-                'account_created' => time(),
-                'last_login' => time(),
-                'motto' => getSetting('start_motto'),
-                'look' => getSetting($input['gender'] == 'M' ? 'start_male_look' : 'start_female_look'),
-                'credits' => getSetting('start_credits'),
-                'home_room' => getSetting('start_room_id'),
                 'ip_register' => $userIp,
                 'ip_current' => $userIp,
-                'referral_code' => \Str::random(15),
-                'avatar_background' => getSetting('default_avatar_background'),
             ]), function (User $user) use ($input) {
                 if(!isset($input['referrer_code'])) return;
 
                 $this->setReferrer($user, $input['referrer_code']);
             });
         });
-    }
-
-    private function treatRegistrationsStatus(): CreateNewUser
-    {
-        if(! getSetting('disable_registrations')) return $this;
-
-        throw ValidationException::withMessages([
-            'error' => __('auth.registration_disabled')
-        ]);
-    }
-
-    private function validateClientIp(string $ip): CreateNewUser
-    {
-        $flags = \App::isProduction()
-            ? FILTER_FLAG_NO_RES_RANGE | FILTER_FLAG_NO_PRIV_RANGE
-            : FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6;
-
-        if(!! filter_var($ip, FILTER_VALIDATE_IP, $flags)) return $this;
-
-        throw ValidationException::withMessages([
-            'error' => __('auth.invalid_ip')
-        ]);
-    }
-
-    private function interceptRegistrationsOverflowAttempts(string $ip): CreateNewUser
-    {
-        $accountsCount = User::where('ip_register', $ip)
-            ->orWhere('ip_current', $ip)
-            ->count();
-
-        if(!$accountsCount) return $this;
-
-        $maxAccountsPerIp = getSetting('max_accounts_per_ip');
-
-        if($accountsCount <= $maxAccountsPerIp) return $this;
-
-        throw ValidationException::withMessages([
-            'error' => __('auth.max_accounts_per_ip', ['max' => $maxAccountsPerIp])
-        ]);
     }
 
     private function setReferrer(User $user, string $referrerCode): void

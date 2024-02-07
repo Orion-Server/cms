@@ -60,6 +60,8 @@
         </span>
     @endif
 
+    @include('pages.users.fragments.change-username')
+
     <x-header.main-nav />
 
     <header @class([

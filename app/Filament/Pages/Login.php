@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Filament\Pages\Auth;
+namespace App\Filament\Pages;
 
 use Filament\Facades\Filament;
+use Filament\Forms\Components\Component;
+use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Pages\Auth\Login as AuthLogin;
 use Illuminate\Validation\ValidationException;
 use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
-use Filament\Forms\Components\Component;
-use Filament\Forms\Components\TextInput;
 
 class Login extends AuthLogin
 {

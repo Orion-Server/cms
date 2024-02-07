@@ -25,7 +25,6 @@ class Navigation {
                     this.theme = 'light'
                 }
 
-                console.log(this.theme)
                 this.setTheme()
             },
 

@@ -16,6 +16,7 @@ import AlpineHelpers from '../components/Helpers/AlpineHelpers'
 import ShopComponent from '../components/Pages/Shop/ShopComponent'
 import FriendStories from '../components/Pages/Users/FriendStories'
 import IngameSettings from '../components/Pages/Users/IngameSettings'
+import ChangeUsername from '../components/Pages/Users/ChangeUsername'
 import AccountSettings from '../components/Pages/Users/AccountSettings'
 import PasswordSettings from '../components/Pages/Users/PasswordSettings'
 import ArticleReaction from '../components/Pages/Articles/ArticleReaction'
@@ -55,6 +56,7 @@ export default class WebManager {
         // User Components
         AccountSettings.start()
         PasswordSettings.start()
+        ChangeUsername.start()
         IngameSettings.start()
         FriendStories.start()
 
