@@ -404,5 +404,6 @@ return [
         'badge_updated' => 'Emblema atualizado com sucesso!',
         'badge_update_failed' => 'Não foi possível atualizar o emblema.',
         'badge_texts_required' => 'Você precisa inserir os textos do emblema.',
+        'badge_image_required' => 'Você precisa inserir uma imagem para o emblema.',
     ]
 ];

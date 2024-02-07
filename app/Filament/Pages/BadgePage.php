@@ -121,6 +121,8 @@ class BadgePage extends Page
 
         if ($this->badgeWasPreviouslyCreated) {
             Notification::make()
+                ->icon('heroicon-o-check-circle')
+                ->iconColor('success')
                 ->color('success')
                 ->title(__('filament::resources.notifications.badge_found'))
                 ->send();
@@ -141,6 +143,8 @@ class BadgePage extends Page
 
         Notification::make()
             ->color('success')
+            ->icon('heroicon-o-check-circle')
+            ->iconColor('success')
             ->title(__('filament::resources.notifications.create_badge'))
             ->send();
 
@@ -177,9 +181,15 @@ class BadgePage extends Page
 
         // image and code fields are required when creating a new badge
         if(!$this->badgeWasPreviouslyCreated && (empty($this->data['image']) || empty($this->data['code']))) {
+            $notificationTitle = empty($this->data['image']) ?
+                __('filament::resources.notifications.badge_image_required') :
+                __('filament::resources.notifications.badge_code_required');
+
             Notification::make()
+                ->icon('heroicon-o-exclamation-triangle')
+                ->iconColor('danger')
                 ->color('danger')
-                ->title(__('filament::resources.notifications.badge_image_required'))
+                ->title($notificationTitle)
                 ->send();
 
             return;
@@ -189,6 +199,8 @@ class BadgePage extends Page
 
         if((empty($this->data['nitro']) && $nitroEnabled) || (empty($this->data['flash']) && $flashEnabled)) {
             Notification::make()
+                ->icon('heroicon-o-exclamation-triangle')
+                ->iconColor('danger')
                 ->color('danger')
                 ->title(__('filament::resources.notifications.badge_texts_required'))
                 ->send();
@@ -205,6 +217,8 @@ class BadgePage extends Page
             Log::channel('badge')->error('[ORION BADGE RESOURCE] - ERROR: ' . $exception->getMessage());
 
             Notification::make()
+                ->icon('heroicon-o-exclamation-triangle')
+                ->iconColor('danger')
                 ->color('danger')
                 ->title(__('filament::resources.notifications.badge_update_failed'))
                 ->send();
@@ -216,6 +230,8 @@ class BadgePage extends Page
         $this->badgeWasPreviouslyCreated = true;
 
         Notification::make()
+            ->icon('heroicon-o-check-circle')
+            ->iconColor('success')
             ->color('success')
             ->title(__('filament::resources.notifications.badge_updated'))
             ->send();
@@ -233,6 +249,8 @@ class BadgePage extends Page
 
         if ($gdImage === false) {
             Notification::make()
+                ->icon('heroicon-o-exclamation-triangle')
+                ->iconColor('danger')
                 ->color('danger')
                 ->title(__('filament::resources.notifications.badge_image_upload_failed'))
                 ->send();

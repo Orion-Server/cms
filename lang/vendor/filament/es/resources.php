@@ -373,6 +373,7 @@ return [
         'badge_update_failed' => 'No se pudo actualizar la insignia.',
         'create_badge' => 'Enter the data below to create a new badge!',
         'badge_texts_required' => 'You need to enter the badge texts.',
+        'badge_image_required' => 'You need to enter a badge image url.',
     ],
 
     'stats' => [
