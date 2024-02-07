@@ -371,5 +371,7 @@ return [
         'badge_found' => 'Insignia encontrada!',
         'badge_updated' => 'Insignia actualizada!',
         'badge_update_failed' => 'No se pudo actualizar la insignia.',
+        'create_badge' => 'Enter the data below to create a new badge!',
+        'badge_texts_required' => 'You need to enter the badge texts.',
     ]
 ];

@@ -72,6 +72,13 @@ return [
             'replace_placeholders' => true,
         ],
 
+        'badge' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/badges_upload.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'replace_placeholders' => true,
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),

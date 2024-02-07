@@ -371,5 +371,7 @@ return [
         'badge_found' => 'Tunnus löydetty!',
         'badge_updated' => 'Tunnus päivitetty!',
         'badge_update_failed' => 'Tunnuksen päivitys epäonnistui.',
+        'create_badge' => 'Enter the data below to create a new badge!',
+        'badge_texts_required' => 'You need to enter the badge texts.',
     ]
 ];

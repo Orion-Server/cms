@@ -372,5 +372,7 @@ return [
         'badge_found' => 'Rozet bulundu!',
         'badge_updated' => 'Rozet güncellendi!',
         'badge_update_failed' => 'Rozet güncellenemedi!',
+        'create_badge' => 'Enter the data below to create a new badge!',
+        'badge_texts_required' => 'You need to enter the badge texts.',
     ]
 ];

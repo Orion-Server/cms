@@ -369,7 +369,9 @@ return [
     'notifications' => [
         'badge_code_required' => 'Você precisa inserir um código de emblema.',
         'badge_found' => 'Emblema encontrado!',
+        'create_badge' => 'Insira os dados abaixo para criar um novo emblema!',
         'badge_updated' => 'Emblema atualizado com sucesso!',
         'badge_update_failed' => 'Não foi possível atualizar o emblema.',
+        'badge_texts_required' => 'Você precisa inserir os textos do emblema.',
     ]
 ];

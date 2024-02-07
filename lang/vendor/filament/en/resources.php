@@ -371,5 +371,7 @@ return [
         'badge_found' => 'Badge found!',
         'badge_updated' => 'Badge updated successfully!',
         'badge_update_failed' => 'Badge update failed.',
+        'create_badge' => 'Enter the data below to create a new badge!',
+        'badge_texts_required' => 'You need to enter the badge texts.',
     ]
 ];

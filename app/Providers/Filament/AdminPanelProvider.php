@@ -7,6 +7,7 @@ use Filament\Widgets;
 use Filament\PanelProvider;
 use App\Filament\Pages\Dashboard;
 use App\Filament\Pages\Auth\Login;
+use App\Filament\Pages\BadgePage;
 use Filament\Support\Colors\Color;
 use App\Http\Middleware\VerifyLocale;
 use Filament\Navigation\NavigationGroup;
@@ -43,6 +44,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Dashboard::class,
+                BadgePage::class
             ])
             ->topNavigation($topNavigationEnabled)
             ->defaultThemeMode($defaultTheme)
