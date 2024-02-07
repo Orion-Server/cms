@@ -373,5 +373,36 @@ return [
         'badge_update_failed' => 'No se pudo actualizar la insignia.',
         'create_badge' => 'Enter the data below to create a new badge!',
         'badge_texts_required' => 'You need to enter the badge texts.',
-    ]
+    ],
+
+    'stats' => [
+        'users_count' => [
+            'title' => 'Users Count',
+            'description' => 'users registered.',
+        ],
+        'furniture_count' => [
+            'title' => 'Furniture Count',
+            'description' => 'furniture items registered.',
+        ],
+        'rooms_count' => [
+            'title' => 'Rooms Count',
+            'description' => 'rooms created.',
+        ],
+        'photos_count' => [
+            'title' => 'Photos Count',
+            'description' => 'photos uploaded.',
+        ],
+        'articles_chart' => [
+            'title' => 'Articles (Monthly)',
+            'label' => 'Articles',
+            'description' => 'Amount of articles created this month.',
+        ],
+        'orders_chart' => [
+            'title' => 'Orders (Monthly)',
+            'pending' => 'Pending',
+            'cancelled' => 'Cancelled',
+            'completed' => 'Completed',
+            'description' => 'Amount of orders created this month.',
+        ],
+    ],
 ];

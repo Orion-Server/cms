@@ -14,8 +14,8 @@ html .ck-source-editing-area {
 html.dark .ck-reset_all :not(.ck-reset_all-excluded *), .ck.ck-reset, .ck.ck-reset_all,
 html.dark .ck-content,
 html.dark .ck-source-editing-area {
-    background-color: #374151 !important; /* gray-700 */
-    border-color: #4b5563 !important; /* gray-600 */
+    background-color: #09090b !important; /* gray-700 */
+    border-color: #3f3f46 !important; /* gray-600 */
     color: white !important; /* gray-400 */
 }
 
