@@ -306,5 +306,8 @@
     "Product Name": "Nome do Produto",
     "Price": "Preço",
     "Created At": "Criado em",
-    "Is Delivered": "Foi entregue?"
+    "Is Delivered": "Foi entregue?",
+    "Your username has been updated!": "Seu nome de usuário foi atualizado!",
+    "You can't change your username while you are online!": "Você não pode alterar seu nome de usuário enquanto estiver online!",
+    "You can't change your username right now!": "Você não pode alterar seu nome de usuário agora!"
 }

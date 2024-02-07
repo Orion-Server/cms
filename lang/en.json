@@ -306,5 +306,8 @@
     "Product Name": "Product Name",
     "Price": "Price",
     "Created At": "Created At",
-    "Is Delivered": "Is Delivered?"
+    "Is Delivered": "Is Delivered?",
+    "Your username has been updated!": "Your username has been updated!",
+    "You can't change your username while you are online!": "You can't change your username while you are online!",
+    "You can't change your username right now!": "You can't change your username right now!"
 }
