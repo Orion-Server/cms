@@ -34,7 +34,7 @@
 
     <meta name="twitter:image" content="{{ asset(config('hotel.meta.image')) }}" />
 
-    <link rel="icon" href="{{ asset('favicon.png') }}" sizes="20x20" type="image/png">
+    <link rel="icon" href="{{ asset('favicon.gif') }}" sizes="20x20" type="image/gif">
 
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" />
