@@ -103,7 +103,7 @@
                         <div
                             class="w-[50px] min-w-[50px] h-[50px] bg-center bg-no-repeat rounded-full bg-white border border-gray-200 dark:bg-gray-950 dark:border-black"
                             @if($photo->user)
-                            style="background-image: url('{{ getFigureUrl($photo->user->username, 'direction=2&head_direction=2&size=m&gesture=sml&headonly=1') }}')"
+                            style="background-image: url('{{ getFigureUrl($photo->user->look, 'direction=2&head_direction=2&size=m&gesture=sml&headonly=1') }}')"
                             @endif
                         ></div>
                         @if($photo->user)

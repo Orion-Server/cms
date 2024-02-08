@@ -22,7 +22,7 @@ class ArticleCommentController extends Controller
 
         $user = \Auth::user();
 
-        if($user->recentlyCommentedOnArticle()) {
+        if($user->recentlyCommentedOnArticle() && !$user->hasHighPermissions()) {
             return $this->jsonResponse(['message' => __('You are commenting too fast')], 422);
         }
 

@@ -19,7 +19,8 @@
         "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.8",
         "socialiteproviders/discord": "^4.2",
-        "srmklive/paypal": "~3.0"
+        "srmklive/paypal": "~3.0",
+        "symfony/html-sanitizer": "^6.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",

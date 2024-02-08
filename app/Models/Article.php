@@ -97,7 +97,7 @@ class Article extends Model
     public function scopeDefaultRelationships(Builder $query): void
     {
         $query->with([
-            'user:id,username,look',
+            'user:id,username,look,gender',
             'tags',
             'reactions' => fn ($query) => $query->defaultRelationships()
         ]);

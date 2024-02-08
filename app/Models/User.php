@@ -169,6 +169,16 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
             ->exists();
     }
 
+    public function isFemale(): bool
+    {
+        return $this->gender === 'F';
+    }
+
+    public function isMale(): bool
+    {
+        return $this->gender === 'M';
+    }
+
     public function articleComments(): HasMany
     {
         return $this->hasMany(ArticleComment::class);
@@ -217,6 +227,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     }
 
     public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->hasHighPermissions();
+    }
+
+    public function hasHighPermissions(): bool
     {
         return $this->rank >= getSetting('min_rank_to_housekeeping_login');
     }
