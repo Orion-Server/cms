@@ -11,7 +11,16 @@ class SettingsService
 
     public function __construct()
     {
-        $this->allSettings = CmsSetting::all()->pluck('value', 'key');
+        $this->loadSettingsFromDatabase();
+    }
+
+    private function loadSettingsFromDatabase(): void
+    {
+        try {
+            $this->allSettings = CmsSetting::all()->pluck('value', 'key');
+        } catch (\Throwable $ignored) {
+            $this->allSettings = collect();
+        }
     }
 
     public function get(string $key, ?string $defaultValue = null): mixed
