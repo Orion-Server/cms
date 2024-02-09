@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Home\HomeCategory;
+use App\Models\Home\HomeItem;
 use Illuminate\Support\Facades\DB;
 use Database\Seeders\Compositions\HasUserProfileData;
 
@@ -17,6 +18,10 @@ class HomeItemSeeder extends Seeder
      */
     public function run(): void
     {
+        if(HomeItem::count() && !$this->command->confirm(
+            'It was detected that your database already has home items, are you sure you want to generate them again?', false
+        )) return;
+
         $this->addItemsForCategory('Cine');
         $this->addItemsForCategory('Bling Alphabet');
         $this->addItemsForCategory('Plastic Alphabet');

@@ -38,6 +38,11 @@ class Permission extends Model implements HasBadge
         return $this->hasMany(User::class, 'rank');
     }
 
+    public function roles(): HasMany
+    {
+        return $this->hasMany(PermissionRole::class);
+    }
+
     public function getBadgePath(): string
     {
         return getSetting('badges_path') . $this->badge . '.gif';

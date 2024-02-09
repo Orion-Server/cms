@@ -35,6 +35,11 @@ class BadgePage extends Page
 
     public ?array $data = [];
 
+    public static function canAccess(): bool
+    {
+        return auth()->user()->can('view_any::admin::badge_page');
+    }
+
     public function getTitle(): string | Htmlable
     {
         return __(

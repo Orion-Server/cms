@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             TeamSeeder::class,
             ShopCategorySeeder::class,
             WriteableBoxSeeder::class,
+            PermissionRoleSeeder::class,
         ]);
     }
 }

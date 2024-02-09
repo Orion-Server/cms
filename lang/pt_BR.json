@@ -316,5 +316,7 @@
     "Your username will appear to others when chatting, adding, or creating rooms. Don't use difficult characters!": "Seu nome de usuário aparecerá para os outros ao conversar, adicionar ou criar quartos. Não use caracteres difíceis!",
     "Please enter a valid email. We will use this information to recover your account if you lose access!": "Por favor, insira um email válido. Usaremos essas informações para recuperar sua conta se você perder o acesso!",
     "Enter a valid email": "Insira um email válido",
-    "Date of Birth": "Data de Nascimento"
+    "Date of Birth": "Data de Nascimento",
+    "Submit": "Enviar",
+    "Change username": "Alterar o nome de usuário"
 }

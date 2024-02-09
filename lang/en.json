@@ -316,5 +316,7 @@
     "Your username will appear to others when chatting, adding, or creating rooms. Don't use difficult characters!": "Your username will appear to others when chatting, adding, or creating rooms. Don't use difficult characters!",
     "Please enter a valid email. We will use this information to recover your account if you lose access!": "Please enter a valid email. We will use this information to recover your account if you lose access!",
     "Enter a valid email": "Enter a valid email",
-    "Date of Birth": "Date of Birth"
+    "Date of Birth": "Date of Birth",
+    "Submit": "Submit",
+    "Change username": "Change username"
 }
