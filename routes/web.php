@@ -42,7 +42,7 @@ Route::get('/set-language/{language}', [WebController::class, 'setLanguage'])->n
 
 Route::get('/', [WebController::class, 'index'])->name('index');
 Route::get('/login', [WebController::class, 'index'])->name('login');
-Route::get('/register', [WebController::class, 'index'])->name('register');
+Route::get('/register', [WebController::class, 'register'])->name('register');
 
 Route::get('/login/google', [GoogleController::class, 'handleRedirect'])->name('google.login');
 Route::get('/login/google/callback', [GoogleController::class, 'handleCallback']);

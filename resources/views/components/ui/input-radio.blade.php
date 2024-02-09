@@ -5,8 +5,7 @@
     'imageIcon' => null,
     'value' => null,
     'alpineModel' => null,
-    'selectedClasses' => null,
-    'renderInput' => true
+    'selectedClasses' => null
 ])
 
 <input type="radio" id="{{ $value }}" x-model="{{ $alpineModel }}" value="{{ $value }}" class="hidden peer" required>

@@ -30,6 +30,14 @@ body {
     image-rendering: pixelated;
 }
 
+body {
+    background: url('/assets/images/background.webp'), theme('colors.slate.50');
+}
+
+html.dark body {
+    background: url('/assets/images/background.webp'), theme('colors.slate.900');
+}
+
 .no-pixelated {
     image-rendering: auto !important;
 }

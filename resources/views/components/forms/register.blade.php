@@ -15,24 +15,37 @@
             id="register-username"
             icon="fa-solid fa-user"
             alpine-model="registerData.username"
-            placeholder="{{ __('Username') }}"
+            placeholder="{{ __('Create a unique and awesome username') }}"
             type="text"
         />
     </div>
 
-    <div class="mt-4 flex flex-col">
-        <x-ui.input
-            label="{{ __('Email') }}"
-            autocomplete="email"
-            id="register-email"
-            icon="fa-solid fa-envelope"
-            alpine-model="registerData.email"
-            placeholder="{{ __('Email') }}"
-            type="email"
-        />
+    <div class="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div class="flex flex-col">
+            <x-ui.input
+                label="{{ __('Email') }}"
+                autocomplete="email"
+                id="register-email"
+                icon="fa-solid fa-envelope"
+                alpine-model="registerData.email"
+                placeholder="{{ __('Email') }}"
+                type="email"
+            />
+        </div>
+
+        <div class="flex flex-col">
+            <x-ui.input
+                label="{{ __('Date of Birth') }}"
+                autocomplete="birthday"
+                id="register-birthday"
+                icon="fa-regular fa-calendar-days"
+                alpine-model="registerData.birthday"
+                type="date"
+            />
+        </div>
     </div>
 
-    <div class="flex mt-4 justify-between gap-3 sm:flex-row flex-col bg-gray-100 dark:bg-slate-850 dark:border dark:border-slate-800 p-2 rounded-lg">
+    <div class="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-3 bg-gray-100 dark:bg-slate-850 dark:border dark:border-slate-800 p-2 rounded-lg">
         <div class="flex flex-col">
             <x-ui.input
                 label="{{ __('Password') }}"
@@ -97,7 +110,7 @@
         <x-ui.buttons.loadable
             alpine-model="loading"
             type="submit"
-            class="dark:bg-blue-600 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-500 dark:shadow-blue-700/75 shadow-blue-600/75 flex-1 py-3 text-white">
+            class="dark:bg-green-600 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-500 dark:shadow-green-700/75 shadow-green-600/75 flex-1 py-3 text-white">
             <i class="fa-solid fa-user-plus"></i>
             {{ __('Register') }}
         </x-ui.buttons.loadable>

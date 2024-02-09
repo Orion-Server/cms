@@ -12,7 +12,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Index') - {{ config('app.name') }}</title>
+    <title>{{ config('app.name') }} - @yield('title', 'Index')</title>
 
     <meta name="keywords" content="{{ config('hotel.meta.keywords') }}">
     <meta name="rating" content="Geral">
@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}" />
 
-    @include('partials.js-translations')
+    @include('partials.js-parities')
 
     @if(Auth::check() && $unsupportedFlashClient)
         <script>
@@ -52,7 +52,7 @@
 
     @vite(['resources/scss/app.scss'])
 </head>
-<body class="pt-12 lg:pt-0 overflow-x-hidden bg-slate-50 dark:bg-slate-900">
+<body class="pt-12 lg:pt-0 overflow-x-hidden">
     @if(!! getSetting('maintenance'))
         <span class="w-full h-12 flex justify-center items-center bg-red-500 text-red-800 font-bold">
             <i class="fa-solid fa-exclamation-circle mr-2"></i>

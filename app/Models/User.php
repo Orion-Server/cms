@@ -64,7 +64,8 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         'referrer_code',
         'avatar_background',
         'team_id',
-        'provider_id'
+        'provider_id',
+        'account_day_of_birth'
     ];
 
     /**
@@ -132,7 +133,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
             'account_created' => time(),
             'last_login' => time(),
             'motto' => getSetting('start_motto'),
-            'look' => getSetting($data['gender'] == 'M' ? 'start_male_look' : 'start_female_look'),
+            'look' => $data['look'] ?? getSetting('start_male_look'),
             'credits' => getSetting('start_credits'),
             'home_room' => getSetting('start_room_id'),
             'referral_code' => \Str::random(15),
