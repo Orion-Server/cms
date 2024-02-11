@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\User\UserOrder;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserOrderPolicy
+class ShopOrderPolicy
 {
     use HandlesAuthorization;
 
@@ -18,7 +18,7 @@ class UserOrderPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any::admin::user_order');
+        return $user->can('view_any::admin::shop_order');
     }
 
     /**
@@ -30,7 +30,7 @@ class UserOrderPolicy
      */
     public function view(User $user, UserOrder $userOrder): bool
     {
-        return $user->can('view::admin::user_order');
+        return $user->can('view::admin::shop_order');
     }
 
     /**
@@ -41,7 +41,7 @@ class UserOrderPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create::admin::user_order');
+        return $user->can('create::admin::shop_order');
     }
 
     /**
@@ -53,7 +53,7 @@ class UserOrderPolicy
      */
     public function update(User $user, UserOrder $userOrder): bool
     {
-        return $user->can('update::admin::user_order');
+        return $user->can('update::admin::shop_order');
     }
 
     /**
@@ -65,7 +65,7 @@ class UserOrderPolicy
      */
     public function delete(User $user, UserOrder $userOrder): bool
     {
-        return $user->can('delete::admin::user_order');
+        return $user->can('delete::admin::shop_order');
     }
 
     /**
@@ -76,7 +76,7 @@ class UserOrderPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any::admin::user_order');
+        return $user->can('delete_any::admin::shop_order');
     }
 
     /**
@@ -88,7 +88,7 @@ class UserOrderPolicy
      */
     public function forceDelete(User $user, UserOrder $userOrder): bool
     {
-        return $user->can('force_delete::admin::user_order');
+        return $user->can('force_delete::admin::shop_order');
     }
 
     /**
@@ -99,7 +99,7 @@ class UserOrderPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any::admin::user_order');
+        return $user->can('force_delete_any::admin::shop_order');
     }
 
     /**
@@ -111,7 +111,7 @@ class UserOrderPolicy
      */
     public function restore(User $user, UserOrder $userOrder): bool
     {
-        return $user->can('restore::admin::user_order');
+        return $user->can('restore::admin::shop_order');
     }
 
     /**
@@ -122,7 +122,7 @@ class UserOrderPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any::admin::user_order');
+        return $user->can('restore_any::admin::shop_order');
     }
 
     /**
@@ -134,7 +134,7 @@ class UserOrderPolicy
      */
     public function replicate(User $user, UserOrder $userOrder): bool
     {
-        return $user->can('replicate::admin::user_order');
+        return $user->can('replicate::admin::shop_order');
     }
 
     /**
@@ -145,7 +145,7 @@ class UserOrderPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder::admin::user_order');
+        return $user->can('reorder::admin::shop_order');
     }
 
 }

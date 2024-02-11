@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use Filament\Panel;
+use Filament\Pages\Page;
 use Filament\PanelProvider;
 use App\Filament\Pages\Login;
 use Filament\Enums\ThemeMode;
@@ -10,6 +11,7 @@ use Filament\Support\Assets\Css;
 use App\Filament\Pages\BadgePage;
 use App\Filament\Pages\Dashboard;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\MaxWidth;
 use App\Http\Middleware\VerifyLocale;
 use App\Http\Middleware\VerifyPunishments;
 use Filament\Http\Middleware\Authenticate;
@@ -33,6 +35,8 @@ class AdminPanelProvider extends PanelProvider
     {
         $topNavigationEnabled = getSetting('hk_top_navigation_enabled', '0') === '1';
         $defaultTheme = getSetting('default_cms_mode', 'light') === 'dark' ? ThemeMode::Dark : ThemeMode::Light;
+
+        Page::alignFormActionsEnd();
 
         return $panel
             ->default()

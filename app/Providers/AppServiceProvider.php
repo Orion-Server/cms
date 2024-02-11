@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\View;
 use Srmklive\PayPal\Services\PayPal;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Parsers\ExternalTextsParser;
-use BezhanSalleh\FilamentLanguageSwitch\Enums\Placement;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 
 class AppServiceProvider extends ServiceProvider

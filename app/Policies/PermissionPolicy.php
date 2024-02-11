@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\WordFilter;
+use App\Models\Permission;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class WordFilterPolicy
+class PermissionPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class WordFilterPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any::admin::word_filter');
+        return $user->can('view_any::admin::permission');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\WordFilter  $wordFilter
+     * @param  \App\Models\Permission  $role
      * @return bool
      */
-    public function view(User $user, WordFilter $wordFilter): bool
+    public function view(User $user, Permission $permission): bool
     {
-        return $user->can('view::admin::word_filter');
+        return $user->can('view::admin::permission') && $user->rank >= $permission->id;
     }
 
     /**
@@ -41,31 +41,31 @@ class WordFilterPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create::admin::word_filter');
+        return $user->can('create::admin::permission');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\WordFilter  $wordFilter
+     * @param  \App\Models\Permission  $role
      * @return bool
      */
-    public function update(User $user, WordFilter $wordFilter): bool
+    public function update(User $user, Permission $permission): bool
     {
-        return $user->can('update::admin::word_filter');
+        return $user->can('update::admin::permission') && $user->rank >= $permission->id;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\WordFilter  $wordFilter
+     * @param  \App\Models\Permission  $role
      * @return bool
      */
-    public function delete(User $user, WordFilter $wordFilter): bool
+    public function delete(User $user, Permission $permission): bool
     {
-        return $user->can('delete::admin::word_filter');
+        return $user->can('delete::admin::permission') && $user->rank >= $permission->id;
     }
 
     /**
@@ -76,19 +76,19 @@ class WordFilterPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any::admin::word_filter');
+        return $user->can('delete_any::admin::permission');
     }
 
     /**
      * Determine whether the user can permanently delete.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\WordFilter  $wordFilter
+     * @param  \App\Models\Permission  $role
      * @return bool
      */
-    public function forceDelete(User $user, WordFilter $wordFilter): bool
+    public function forceDelete(User $user, Permission $permission): bool
     {
-        return $user->can('force_delete::admin::word_filter');
+        return $user->can('force_delete::admin::permission') && $user->rank >= $permission->id;
     }
 
     /**
@@ -99,19 +99,19 @@ class WordFilterPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any::admin::word_filter');
+        return $user->can('force_delete_any::admin::permission');
     }
 
     /**
      * Determine whether the user can restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\WordFilter  $wordFilter
+     * @param  \App\Models\Permission  $role
      * @return bool
      */
-    public function restore(User $user, WordFilter $wordFilter): bool
+    public function restore(User $user, Permission $permission): bool
     {
-        return $user->can('restore::admin::word_filter');
+        return $user->can('restore::admin::permission') && $user->rank >= $permission->id;
     }
 
     /**
@@ -122,19 +122,19 @@ class WordFilterPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any::admin::word_filter');
+        return $user->can('restore_any::admin::permission');
     }
 
     /**
      * Determine whether the user can replicate.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\WordFilter  $wordFilter
+     * @param  \App\Models\Permission  $role
      * @return bool
      */
-    public function replicate(User $user, WordFilter $wordFilter): bool
+    public function replicate(User $user, Permission $permission): bool
     {
-        return $user->can('replicate::admin::word_filter');
+        return $user->can('replicate::admin::permission') && $user->rank >= $permission->id;
     }
 
     /**
@@ -145,7 +145,7 @@ class WordFilterPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder::admin::word_filter');
+        return $user->can('reorder::admin::permission');
     }
 
 }

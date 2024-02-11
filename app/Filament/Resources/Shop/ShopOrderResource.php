@@ -6,25 +6,27 @@ use Filament\Tables;
 use Filament\Forms\Get;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use App\Enums\ShopOrderStatus;
-use App\Models\User\UserOrder;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ToggleColumn;
+use App\Models\User\UserOrder as ShopOrder;
 use App\Filament\Traits\TranslatableResource;
-use App\Filament\Resources\Shop\OrderResource\Pages;
-use App\Filament\Resources\Shop\OrderResource\Widgets;
+use App\Filament\Resources\Shop\ShopOrderResource\Pages;
+use App\Filament\Resources\Shop\ShopOrderResource\Widgets;
 
-class OrderResource extends Resource
+class ShopOrderResource extends Resource
 {
     use TranslatableResource;
 
-    protected static ?string $model = UserOrder::class;
+    protected static ?string $model = ShopOrder::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-bookmark-square';
 
@@ -122,6 +124,14 @@ class OrderResource extends Resource
                 })
                 ->searchable()
                 ->label(__('filament::resources.columns.type'))
+                ->description(fn (Model $record) => Str::limit($record->details, 20))
+                ->tooltip(function (Model $record): ?string {
+                    $details = $record->details;
+
+                    if (strlen($details) <= 20) return null;
+
+                    return $details;
+                })
                 ->formatStateUsing(fn (ShopOrderStatus $state): string => __("filament::resources.options.{$state->value}")),
 
             TextColumn::make('order_id')
@@ -145,7 +155,7 @@ class OrderResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageOrders::route('/'),
+            'index' => Pages\ManageShopOrders::route('/'),
         ];
     }
 

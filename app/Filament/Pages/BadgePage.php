@@ -12,12 +12,13 @@ use Illuminate\Support\Facades\Http;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use App\Filament\Compositions\HasRoleName;
 use Filament\Actions\Action as PageAction;
+use Illuminate\Contracts\Support\Htmlable;
 use App\Filament\Traits\TranslatableResource;
 use App\Services\Parsers\ExternalTextsParser;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Concerns\InteractsWithForms;
-use Illuminate\Contracts\Support\Htmlable;
 
 class BadgePage extends Page
 {
@@ -35,9 +36,11 @@ class BadgePage extends Page
 
     public ?array $data = [];
 
+    public static string $roleName = 'badge_page';
+
     public static function canAccess(): bool
     {
-        return auth()->user()->can('view_any::admin::badge_page');
+        return auth()->user()->can("view::admin::" . static::$roleName);
     }
 
     public function getTitle(): string | Htmlable

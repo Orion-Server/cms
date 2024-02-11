@@ -16,6 +16,8 @@ class Permission extends Model implements HasBadge
 
     protected $guarded = [];
 
+    public $timestamps = false;
+
     protected $casts = [
         'is_hidden' => 'boolean'
     ];

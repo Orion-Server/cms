@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Permission;
 use App\Models\PermissionRole;
+use App\Services\RoleService;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
@@ -37,7 +38,7 @@ class PermissionRoleSeeder extends Seeder
             if($index <= 3) {
                 $roles->push([
                     'permission_id' => $permission->id,
-                    'role_name' => 'view::admin::housekeeping'
+                    'role_name' => 'view::admin::dashboard'
                 ]);
             }
 
@@ -45,7 +46,12 @@ class PermissionRoleSeeder extends Seeder
             if($index === 0) {
                 $roles->push([
                     'permission_id' => $permission->id,
-                    'role_name' => 'view_any::admin::badge_page'
+                    'role_name' => 'view::admin::badge_page'
+                ]);
+
+                $roles->push([
+                    'permission_id' => $permission->id,
+                    'role_name' => 'view::admin::permission_roles'
                 ]);
             }
         });
@@ -69,12 +75,12 @@ class PermissionRoleSeeder extends Seeder
 
         // 'Super Mod' or minor
         if($index >= 1) {
-            array_push($policiesException, ['cms_setting', 'emulator_setting', 'permission_role', 'writeable_box', 'navigation', 'user', 'shop_category', 'shop_product', 'user_order']);
+            array_push($policiesException, ['cms_setting', 'emulator_setting', 'writeable_box', 'navigation', 'user', 'shop_category', 'shop_product', 'shop_order']);
         }
 
         // 'Moderator' or minor
         if($index >= 2) {
-            array_push($policiesException, ['achievement', 'article', 'help_question_category', 'help_question', 'home_item', 'home_category', 'tag', 'team']);
+            array_push($policiesException, ['achievement', 'article', 'permission', 'help_question_category', 'help_question', 'home_item', 'home_category', 'tag', 'team']);
         }
 
         // 'Support' or minor
@@ -87,7 +93,10 @@ class PermissionRoleSeeder extends Seeder
         // Permissions below 'Support' do not have permissions on the dashboard
         if($index > 3) return;
 
-        $allPolicies = $this->getPolicyNamesExcept($policiesException);
+        $allPolicies = array_diff(
+            RoleService::getPoliciesRoleNamesForSeeder(),
+            $policiesException
+        );
 
         if(empty($allPolicies)) return;
 
@@ -109,53 +118,7 @@ class PermissionRoleSeeder extends Seeder
     {
         return array_map(
             fn (string $role): string => "{$role}::{$key}",
-            $this->getDefaultRoleNamesForAdminPanel()
+            RoleService::getDefaultRoleNames(panel: 'admin')
         );
-    }
-
-    private function getDefaultRoleNamesForAdminPanel(): array
-    {
-        return [
-            'view_any::admin',
-            'view::admin',
-            'create::admin',
-            'update::admin',
-            'delete::admin',
-            'delete_any::admin',
-            'force_delete::admin',
-            'force_delete_any::admin',
-            'restore::admin',
-            'restore_any::admin',
-            'replicate::admin',
-            'reorder::admin'
-        ];
-    }
-
-    private function getPolicyNamesExcept(array $except = []): array
-    {
-        $policyNames = [
-            'achievement',
-            'article',
-            'ban',
-            'cms_setting',
-            'command_log',
-            'emulator_setting',
-            'help_question_category',
-            'help_question',
-            'home_category',
-            'home_item',
-            'navigation',
-            'permission_role',
-            'shop_category',
-            'shop_product',
-            'tag',
-            'team',
-            'user_order',
-            'user',
-            'wordfilter',
-            'writeable_box'
-        ];
-
-        return array_diff($policyNames, $except);
     }
 }

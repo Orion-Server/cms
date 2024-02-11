@@ -47,6 +47,7 @@ class BadgesRelationManager extends RelationManager
                     ->label(__('filament::resources.columns.id')),
 
                 HabboBadgeColumn::make('badge')
+                    ->alignCenter()
                     ->label(__('filament::resources.columns.image')),
 
                 TextColumn::make('badge_code')

@@ -3,10 +3,10 @@
 namespace App\Filament\Resources\Hotel;
 
 use Filament\Tables;
-use App\Enums\CurrencyType;
-use App\Models\Achievement;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Enums\CurrencyType;
+use App\Models\Achievement;
 use Filament\Resources\Resource;
 use App\Enums\AchievementCategory;
 use Filament\Forms\Components\Tabs;
@@ -58,7 +58,6 @@ class AchievementResource extends Resource
                                 Select::make('category')
                                     ->native(false)
                                     ->label(__('filament::resources.inputs.category'))
-                                    ->disablePlaceholderSelection()
                                     ->options(AchievementCategory::toInput())
                             ]),
 
@@ -68,7 +67,6 @@ class AchievementResource extends Resource
                                 Select::make('visible')
                                     ->native(false)
                                     ->label(__('filament::resources.inputs.visible'))
-                                    ->disablePlaceholderSelection()
                                     ->options([
                                         '1' => __('filament::resources.common.Yes'),
                                         '0' => __('filament::resources.common.No'),
@@ -77,7 +75,6 @@ class AchievementResource extends Resource
                                 Select::make('reward_type')
                                     ->native(false)
                                     ->label(__('filament::resources.inputs.reward_type'))
-                                    ->disablePlaceholderSelection()
                                     ->options(CurrencyType::toInput()),
 
                                 TextInput::make('reward_amount')

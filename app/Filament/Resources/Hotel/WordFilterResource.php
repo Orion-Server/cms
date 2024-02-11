@@ -24,9 +24,9 @@ class WordFilterResource extends Resource
 
     protected static ?string $navigationGroup = 'Hotel';
 
-    public static string $translateIdentifier = 'wordfilter';
-
     protected static ?string $slug = 'hotel/wordfilters';
+
+    public static string $translateIdentifier = 'word-filters';
 
     public static function form(Form $form): Form
     {

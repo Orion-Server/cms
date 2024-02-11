@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Home\HomeItem;
 use Illuminate\Database\Seeder;
 use App\Models\Home\HomeCategory;
-use App\Models\Home\HomeItem;
 use Illuminate\Support\Facades\DB;
 use Database\Seeders\Compositions\HasUserProfileData;
 
