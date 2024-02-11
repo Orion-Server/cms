@@ -190,7 +190,22 @@ class CmsSettingsSeeder extends Seeder
                 'hk_top_navigation_enabled',
                 '0',
                 'Determines whether panel navigations should be on the side or top'
-            ]
+            ],
+            [
+                'header_background_image',
+                'https://i.imgur.com/XLnDlUr.png',
+                'The header background image to show on the CMS. Recommended size: 1920x340'
+            ],
+            [
+                'logo_image',
+                'https://i.imgur.com/tOiWadG.gif',
+                'The logo image to show on the CMS'
+            ],
+            [
+                'logo_size',
+                '256x41',
+                "Your logo size. Format: WIDTHxHEIGHT (without px). Example: 256x41"
+            ],
         ];
     }
     /**

@@ -43,14 +43,12 @@ html.dark body {
 }
 
 header {
-    background-image: url('/assets/images/header-bg.png');
     box-shadow: inset 0px -15px 0px 0px rgba(0, 0, 0, 0.6);
 }
 
 .logo {
     width: var(--logo-width, 256px);
     height: var(--logo-height, 41px);
-    background-image: url('/assets/images/logo.gif');
     position: relative;
 }
 
