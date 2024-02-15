@@ -34,6 +34,7 @@ class WordFilterResource extends Resource
             ->schema([
                 TextInput::make('key')
                     ->label(__('filament::resources.inputs.key'))
+                    ->maxLength(256)
                     ->unique('wordfilter', 'key', ignoreRecord: true)
                     ->required(),
 

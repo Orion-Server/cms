@@ -51,17 +51,20 @@ class ArticleResource extends Resource
                                 ->label(__('filament::resources.inputs.title'))
                                 ->required()
                                 ->autocomplete()
+                                ->maxLength(255)
                                 ->columnSpan('full'),
 
                             TextInput::make('description')
                                 ->label(__('filament::resources.inputs.description'))
                                 ->required()
+                                ->maxLength(255)
                                 ->autocomplete()
                                 ->columnSpan('full'),
 
                             TextInput::make('image')
                                 ->label(__('filament::resources.inputs.image'))
                                 ->required()
+                                ->maxLength(255)
                                 ->columnSpan('full'),
 
                             CKEditor::make('content')

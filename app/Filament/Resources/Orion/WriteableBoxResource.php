@@ -39,14 +39,17 @@ class WriteableBoxResource extends Resource
             ->schema([
                 TextInput::make('name')
                     ->label(__('filament::resources.inputs.name'))
+                    ->maxLength(255)
                     ->required(),
 
                 TextInput::make('icon')
                     ->label(__('filament::resources.inputs.icon'))
+                    ->maxLength(255)
                     ->required(),
 
                 TextInput::make('description')
                     ->label(__('filament::resources.inputs.description'))
+                    ->maxLength(255)
                     ->columnSpanFull()
                     ->nullable(),
 

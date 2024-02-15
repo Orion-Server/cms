@@ -318,10 +318,12 @@ class PermissionResource extends Resource
 
                                         TextInput::make('prefix')
                                             ->label(__('filament::resources.inputs.prefix'))
+                                            ->maxLength(5)
                                             ->required(),
 
                                         ColorPicker::make('prefix_color')
                                             ->label(__('filament::resources.inputs.prefix_color'))
+                                            ->maxLength(7)
                                             ->required(),
 
                                         TextInput::make('description')

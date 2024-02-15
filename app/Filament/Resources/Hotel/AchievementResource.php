@@ -45,6 +45,7 @@ class AchievementResource extends Resource
                                 TextInput::make('name')
                                     ->label(__('filament::resources.inputs.name'))
                                     ->required()
+                                    ->maxLength(64)
                                     ->autocomplete()
                                     ->columnSpan('full'),
 

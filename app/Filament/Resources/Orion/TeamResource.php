@@ -37,13 +37,16 @@ class TeamResource extends Resource
                     ->schema([
                         TextInput::make('name')
                             ->autofocus()
+                            ->maxLength(255)
                             ->required()
                             ->label(__('filament::resources.inputs.name')),
 
                         TextInput::make('description')
+                            ->maxLength(255)
                             ->label(__('filament::resources.inputs.description')),
 
                         TextInput::make('badge')
+                            ->maxLength(255)
                             ->label(__('filament::resources.inputs.badge_code')),
 
                         TextInput::make('order')

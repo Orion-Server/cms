@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Orion\PermissionResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 use App\Filament\Resources\Orion\PermissionResource;
 
@@ -12,7 +13,7 @@ class EditPermission extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 }

@@ -47,6 +47,7 @@ class TagResource extends Resource
                             TextInput::make('name')
                                 ->label(__('filament::resources.inputs.name'))
                                 ->required()
+                                ->maxLength(255)
                                 ->autocomplete()
                                 ->columnSpan('full'),
 

@@ -44,6 +44,7 @@ class HelpQuestionResource extends Resource
                     TextInput::make('title')
                         ->label(__('filament::resources.inputs.title'))
                         ->required()
+                        ->maxLength(255)
                         ->autocomplete()
                         ->columnSpan('full'),
 

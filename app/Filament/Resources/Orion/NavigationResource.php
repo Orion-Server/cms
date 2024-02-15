@@ -40,9 +40,11 @@ class NavigationResource extends Resource
                         TextInput::make('label')
                             ->autofocus()
                             ->required()
+                            ->maxLength(255)
                             ->label(__('filament::resources.inputs.name')),
 
                         TextInput::make('icon')
+                            ->maxLength(255)
                             ->label(__('filament::resources.inputs.image')),
 
                         TextInput::make('slug')

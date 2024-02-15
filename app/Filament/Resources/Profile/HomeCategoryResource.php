@@ -37,10 +37,12 @@ class HomeCategoryResource extends Resource
                 Section::make()
                     ->schema([
                         TextInput::make('name')
+                            ->maxLength(255)
                             ->label(__('filament::resources.inputs.name'))
                             ->required(),
 
                         TextInput::make('icon')
+                            ->maxLength(255)
                             ->label(__('filament::resources.inputs.icon'))
                             ->required()
                     ])

@@ -43,11 +43,13 @@ class CmsSettingResource extends Resource
                         TextInput::make('value')
                             ->label(__('filament::resources.inputs.value'))
                             ->required()
+                            ->maxLength(255)
                             ->autocomplete(),
 
                         TextInput::make('comment')
                             ->label(__('filament::resources.inputs.comment'))
                             ->nullable()
+                            ->maxLength(255)
                             ->autocomplete()
                             ->columnSpanFull()
                     ])

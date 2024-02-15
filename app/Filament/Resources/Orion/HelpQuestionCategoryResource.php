@@ -42,10 +42,12 @@ class HelpQuestionCategoryResource extends Resource
                 ->schema([
                     TextInput::make('name')
                         ->label(__('filament::resources.inputs.name'))
+                        ->maxLength(255)
                         ->required(),
 
                     TextInput::make('icon')
                         ->label(__('filament::resources.inputs.icon'))
+                        ->maxLength(255)
                         ->helperText(__('filament::resources.helpers.help_questions_category_icon'))
                         ->nullable()
                 ])
