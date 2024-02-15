@@ -30,12 +30,43 @@ body {
     image-rendering: pixelated;
 }
 
-body {
+body:not(.maintenance) {
     background: url('/assets/images/background.webp'), theme('colors.slate.50');
 }
 
-html.dark body {
+html.dark body,
+body.maintenance {
     background: url('/assets/images/background.webp'), theme('colors.slate.900');
+}
+
+body.maintenance {
+    animation: backgroundPosition 20s linear infinite;
+}
+
+body.maintenance::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 928px;
+    height: 291px;
+    background: url('/assets/images/maintenance-bg.png');
+    z-index: -1;
+}
+
+@media screen and (max-width: 1024px) {
+    body.maintenance::after {
+        display: none;
+    }
+}
+
+@keyframes backgroundPosition {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
 }
 
 .no-pixelated {

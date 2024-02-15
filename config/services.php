@@ -57,5 +57,9 @@ return [
         'verify_vote_uri' => 'https://findretros.com/validate.php?user=%s&ip=%s',
         'redirect_vote_uri' => 'https://findretros.com/servers/%s/vote?return=1&minimal=1',
         'session_key' => 'fr_%s_voted',
-    ]
+        ],
+
+        'ipdata' => [
+            'api_key' => env('IPDATA_API_KEY'),
+        ]
 ];

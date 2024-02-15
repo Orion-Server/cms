@@ -50,6 +50,14 @@
         </script>
     @endif
 
+    @if(Auth::check() && session()->has('vpnError'))
+        <script>
+            document.addEventListener('alpine:init', () => {
+                window.notyf.error("{{ session()->get('vpnError') }}", 8000)
+            });
+        </script>
+    @endif
+
     @vite(['resources/scss/app.scss'])
 </head>
 <body class="pt-12 lg:pt-0 overflow-x-hidden">

@@ -220,6 +220,21 @@ class CmsSettingsSeeder extends Seeder
                 'min_rank_to_bypass_findretros_vote',
                 '5',
                 'The minimum rank to bypass the FindRetros vote'
+            ],
+            [
+                'vpn_checker_enabled',
+                '1',
+                'Determines if the VPN checker is enabled'
+            ],
+            [
+                'min_rank_to_bypass_vpn_checker',
+                '5',
+                'The minimum rank to bypass the VPN checker'
+            ],
+            [
+                'vpn_threat_data_fields',
+                'is_anonymous,is_known_attacker,is_known_abuser,is_threat,is_bogon,is_tor,is_vpn',
+                'The VPN threat data fields to be validated in the VPN scanner. (comma separated without spaces)'
             ]
         ];
     }

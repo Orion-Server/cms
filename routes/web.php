@@ -62,8 +62,8 @@ Route::prefix('hotel')
     ->name('hotel.')
     ->middleware('auth')
     ->group(function () {
-        Route::get('nitro', [ClientController::class, 'nitro'])->middleware('findretros-vote')->name('nitro');
-        Route::get('flash', [ClientController::class, 'flash'])->middleware('findretros-vote')->name('flash');
+        Route::get('nitro', [ClientController::class, 'nitro'])->middleware('findretros.vote', 'vpn.prevent')->name('nitro');
+        Route::get('flash', [ClientController::class, 'flash'])->middleware('findretros.vote', 'vpn.prevent')->name('flash');
 
         Route::post('client-errors', [ClientController::class, 'clientErrors'])
             ->name('client-errors')

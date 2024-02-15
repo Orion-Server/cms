@@ -13,6 +13,7 @@
         "filipfonal/filament-log-manager": "^2.0",
         "flowframe/laravel-trend": "^0.1.5",
         "guzzlehttp/guzzle": "^7.2",
+        "kielabokkie/laravel-ipdata": "^0.2.1",
         "laravel/fortify": "^1.17",
         "laravel/framework": "^10.8",
         "laravel/sanctum": "^3.2",

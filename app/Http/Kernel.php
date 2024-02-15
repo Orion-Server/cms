@@ -64,8 +64,9 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'verify-punishments' => \App\Http\Middleware\VerifyPunishments::class,
-        'cms-maintenance' => \App\Http\Middleware\RedirectIfMaintenance::class,
-        'findretros-vote' => \App\Http\Middleware\RedirectIfVoteMissing::class,
+        'verify.punishments' => \App\Http\Middleware\VerifyPunishments::class,
+        'cms.maintenance' => \App\Http\Middleware\RedirectIfMaintenance::class,
+        'findretros.vote' => \App\Http\Middleware\RedirectIfVoteMissing::class,
+        'vpn.prevent' => \App\Http\Middleware\VerifyVpnAddresses::class,
     ];
 }
