@@ -323,7 +323,6 @@ class PermissionResource extends Resource
 
                                         ColorPicker::make('prefix_color')
                                             ->label(__('filament::resources.inputs.prefix_color'))
-                                            ->maxLength(7)
                                             ->required(),
 
                                         TextInput::make('description')
