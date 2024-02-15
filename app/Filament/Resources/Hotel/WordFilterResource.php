@@ -4,7 +4,7 @@ namespace App\Filament\Resources\Hotel;
 
 use Filament\Tables;
 use Filament\Forms\Form;
-use App\Models\WordFilter;
+use App\Models\Wordfilter;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
@@ -18,7 +18,7 @@ class WordFilterResource extends Resource
 {
     use TranslatableResource;
 
-    protected static ?string $model = WordFilter::class;
+    protected static ?string $model = Wordfilter::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-eye-slash';
 
