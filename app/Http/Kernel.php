@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'verify-punishments' => \App\Http\Middleware\VerifyPunishments::class,
         'cms-maintenance' => \App\Http\Middleware\RedirectIfMaintenance::class,
+        'findretros-vote' => \App\Http\Middleware\RedirectIfVoteMissing::class,
     ];
 }

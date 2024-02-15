@@ -206,6 +206,21 @@ class CmsSettingsSeeder extends Seeder
                 '256x41',
                 "Your logo size. Format: WIDTHxHEIGHT (without px). Example: 256x41"
             ],
+            [
+                'findretros_enabled',
+                '0',
+                'Determines if the FindRetros voting system is enabled'
+            ],
+            [
+                'findretros_name',
+                'Habbo',
+                'Your hotel name on the FindRetros voting system'
+            ],
+            [
+                'min_rank_to_bypass_findretros_vote',
+                '5',
+                'The minimum rank to bypass the FindRetros vote'
+            ]
         ];
     }
     /**
