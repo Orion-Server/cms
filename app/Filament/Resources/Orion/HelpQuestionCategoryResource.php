@@ -27,7 +27,7 @@ class HelpQuestionCategoryResource extends Resource
 
     protected static ?string $slug = 'help/help-question-categories';
 
-    public static string $translateIdentifier = 'help-questions-categories';
+    public static string $translateIdentifier = 'help-question-categories';
 
     public static function form(Form $form): Form
     {

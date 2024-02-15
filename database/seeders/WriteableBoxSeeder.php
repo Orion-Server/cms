@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\WriteableBox;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class WriteableBoxSeeder extends Seeder
@@ -13,6 +12,10 @@ class WriteableBoxSeeder extends Seeder
      */
     public function run(): void
     {
+        if(WriteableBox::count() && !$this->command->confirm(
+            'It was detected that your database already has writeable boxes, are you sure you want to generate them again?', false
+        )) return;
+
         $boxes = [
             [
                 'icon' => 'https://i.imgur.com/yTNQDwp.png',

@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources\DashboardResource\Widgets;
 
-use App\Filament\Resources\Shop\OrderResource;
-use App\Models\User\UserOrder;
 use Filament\Tables;
 use Filament\Tables\Table;
+use App\Models\User\UserOrder;
 use Filament\Widgets\TableWidget as BaseWidget;
+use App\Filament\Resources\Shop\ShopOrderResource;
 
 class LatestOrders extends BaseWidget
 {
@@ -17,9 +17,9 @@ class LatestOrders extends BaseWidget
         return $table
             ->query(UserOrder::latest())
             ->paginated([3, 5, 8])
-            ->columns(OrderResource::getTable())
+            ->columns(ShopOrderResource::getTable())
             ->actions([
-                Tables\Actions\ViewAction::make()->form(OrderResource::getForm()),
+                Tables\Actions\ViewAction::make()->form(ShopOrderResource::getForm()),
             ]);
     }
 }

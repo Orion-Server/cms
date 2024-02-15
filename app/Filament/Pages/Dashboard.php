@@ -16,4 +16,11 @@ class Dashboard extends FilamentDashboard
     protected static ?string $navigationIcon = 'heroicon-o-home';
 
     public static string $translateIdentifier = 'dashboard';
+
+    public static string $roleName = 'dashboard';
+
+    public static function canAccess(): bool
+    {
+        return auth()->user()->can("view::admin::" . static::$roleName);
+    }
 }

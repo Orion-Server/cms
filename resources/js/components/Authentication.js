@@ -7,13 +7,16 @@ export default class Authentication {
     }
 
     static _startComponent() {
-        Alpine.data('authentication', () => ({
+        Alpine.data('authentication', (figureUrl = '') => ({
             showLoginModal: false,
             showRegisterModal: false,
             loading: false,
+            figureUrl,
 
             init() {
                 this.$nextTick(() => this.treatCurrentUrl())
+
+                if(this.figureUrl.length) this.setupAvatarPreview()
             },
 
             ...Authentication._layoutMethods(),
@@ -32,9 +35,7 @@ export default class Authentication {
                 }
 
                 if (['/register'].includes(url.pathname)) {
-                    this.toggleToRegisterModal(
-                        url.searchParams.get('referral')
-                    )
+                    this.treatReferralCode(url.searchParams.get('referral'))
                 }
             },
 
@@ -53,6 +54,8 @@ export default class Authentication {
             },
 
             treatReferralCode(referralCode) {
+                if(!referralCode) return
+
                 this.registerReferrerData.code = referralCode
 
                 const referralUsername = localStorage.getItem(`referral_${referralCode}_username`)
@@ -85,11 +88,50 @@ export default class Authentication {
                 password: '',
                 password_confirmation: '',
                 gender: 'M',
+                birthday: ''
+            },
+
+            registerStaticData: {
+                defaultLooks: []
             },
 
             registerReferrerData: {
                 code: null,
                 username: null
+            },
+
+            setupAvatarPreview() {
+                this.registerStaticData.defaultLooks = registerLooks
+
+                this.registerData.look = this.registerStaticData.defaultLooks[this.registerData.gender][0] || ''
+
+                this.$watch('registerData.gender', (newValue, oldValue) => {
+                    if(!['M', 'F'].includes(newValue) || newValue === oldValue) return
+
+                    if(!this.registerStaticData.defaultLooks[newValue]) return
+
+                    this.registerData.look = this.registerStaticData.defaultLooks[newValue][0]
+                })
+            },
+
+            getDefaultLooksByGender() {
+                return this.registerStaticData.defaultLooks[this.registerData.gender] || []
+            },
+
+            getFigureUrl(look) {
+                return this.figureUrl.replace('%figure%', look).replace('%params%', 'direction=3&head_direction=3&gesture=sml&action=wav&size=m')
+            },
+
+            genderSelectedIs(gender) {
+                return this.registerData.gender === gender
+            },
+
+            lookIsActiveByGender(gender, look) {
+                return this.registerData.look === look && this.registerData.gender === gender
+            },
+
+            selectLook(look) {
+                this.registerData.look = look
             },
 
             async onFormRegisterSubmit() {

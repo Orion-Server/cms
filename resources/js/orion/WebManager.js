@@ -34,6 +34,7 @@ export default class WebManager {
         WebManager.startSliders()
 
         WebManager.detectHorizontallyScrollables()
+        WebManager.detectCaptchasAfterNavigation()
         WebManager.startAlpineFlow()
     }
 
@@ -99,6 +100,22 @@ export default class WebManager {
                 container.addEventListener("wheel", (event) => {
                     event.preventDefault()
                     container.scrollLeft += event.deltaY * (Math.PI / 2)
+                })
+            })
+        })
+    }
+
+    static detectCaptchasAfterNavigation() {
+        document.addEventListener('turbolinks:load', () => {
+            const turnstileContainer = document.querySelectorAll(".cf-turnstile")
+
+            Array.from(turnstileContainer).map((container) => {
+                if(!turnstile || !turnstile.render) return console.error('[Turnstile] is not defined')
+
+                if(!container.dataset.sitekey) return console.error('[Recaptcha sitekey] is not defined')
+
+                turnstile.render(container, {
+                    sitekey: container.dataset.sitekey
                 })
             })
         })

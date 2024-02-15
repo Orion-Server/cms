@@ -53,4 +53,13 @@ return [
         'avatar_default_extension' => env('DISCORD_EXTENSION_DEFAULT', 'png'), // only pick from jpg, png, webp
     ],
 
+    'findretros' => [
+        'verify_vote_uri' => 'https://findretros.com/validate.php?user=%s&ip=%s',
+        'redirect_vote_uri' => 'https://findretros.com/servers/%s/vote?return=1&minimal=1',
+        'session_key' => 'fr_%s_voted',
+        ],
+
+        'ipdata' => [
+            'api_key' => env('IPDATA_API_KEY'),
+        ]
 ];

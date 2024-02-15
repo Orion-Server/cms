@@ -65,11 +65,11 @@ class TeamResource extends Resource
                 TextColumn::make('id')
                     ->label(__('filament::resources.columns.id')),
 
-                TextColumn::make('name')
-                    ->label(__('filament::resources.columns.name')),
-
                 HabboBadgeColumn::make('badge')
                     ->label(__('filament::resources.columns.badge')),
+
+                TextColumn::make('name')
+                    ->label(__('filament::resources.columns.name')),
 
                 TextColumn::make('order')
                     ->label(__('filament::resources.columns.order')),

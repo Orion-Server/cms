@@ -42,7 +42,7 @@ Route::get('/set-language/{language}', [WebController::class, 'setLanguage'])->n
 
 Route::get('/', [WebController::class, 'index'])->name('index');
 Route::get('/login', [WebController::class, 'index'])->name('login');
-Route::get('/register', [WebController::class, 'index'])->name('register');
+Route::get('/register', [WebController::class, 'register'])->name('register');
 
 Route::get('/login/google', [GoogleController::class, 'handleRedirect'])->name('google.login');
 Route::get('/login/google/callback', [GoogleController::class, 'handleCallback']);
@@ -62,8 +62,9 @@ Route::prefix('hotel')
     ->name('hotel.')
     ->middleware('auth')
     ->group(function () {
-        Route::get('nitro', [ClientController::class, 'nitro'])->name('nitro');
-        Route::get('flash', [ClientController::class, 'flash'])->name('flash');
+        Route::get('nitro', [ClientController::class, 'nitro'])->middleware('findretros.vote', 'vpn.prevent')->name('nitro');
+        Route::get('flash', [ClientController::class, 'flash'])->middleware('findretros.vote', 'vpn.prevent')->name('flash');
+
         Route::post('client-errors', [ClientController::class, 'clientErrors'])
             ->name('client-errors')
             ->withoutMiddleware(VerifyCsrfToken::class);

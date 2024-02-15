@@ -40,6 +40,8 @@ class CreateNewUser implements CreatesNewUsers
                 'gender' => $input['gender'],
                 'ip_register' => $userIp,
                 'ip_current' => $userIp,
+                'account_day_of_birth' => strtotime($input['birthday']),
+                'look' => $input['look'] ?? (getSetting($input['gender'] == 'M' ? 'start_male_look' : 'start_female_look')),
             ]), function (User $user) use ($input) {
                 if(!isset($input['referrer_code'])) return;
 
@@ -75,6 +77,8 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'mail')],
             'gender' => ['required', 'string', 'max:1', Rule::in(['M', 'F'])],
             'referral_code' => ['sometimes', 'string', 'size:15'],
+            'birthday' => ['required', 'date', 'before:today'],
+            'look' => ['nullable', 'string'],
             'password' => $this->passwordRules()
         ];
 
@@ -85,6 +89,12 @@ class CreateNewUser implements CreatesNewUsers
 		if(config('hotel.turnstile.enabled')) {
             $validations['cf-turnstile-response'] = ['required', 'string', new TurnstileCheck];
         }
+
+        try {
+            $gender = config('hotel.cms.register.register_looks')[$input['gender']];
+
+            array_push($validations['look'], Rule::in($gender));
+        } catch (\Throwable $ignored) {}
 
         return Validator::make($input, $validations)
             ->stopOnFirstFailure()

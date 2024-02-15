@@ -1,7 +1,7 @@
 @php($navigations = \App\Models\Navigation::getNavigations())
 
 <div
-    class="bg-white fixed top-0 dark:bg-slate-950 w-full z-[2] lg:relative h-auto lg:h-16 dark:border-slate-800 lg:shadow-[0_20px_0_0_rgba(0,0,0,0.2)]"
+    class="bg-white fixed top-0 dark:bg-slate-950 w-full z-50 lg:relative h-auto lg:h-16 dark:border-slate-800 lg:shadow-[0_20px_0_0_rgba(0,0,0,0.2)]"
     x-data='navigation(@json(getSetting("default_cms_mode")))'
     data-turbolinks-permanent
 >

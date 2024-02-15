@@ -309,5 +309,14 @@
     "Is Delivered": "Foi entregue?",
     "Your username has been updated!": "Seu nome de usuário foi atualizado!",
     "You can't change your username while you are online!": "Você não pode alterar seu nome de usuário enquanto estiver online!",
-    "You can't change your username right now!": "Você não pode alterar seu nome de usuário agora!"
+    "You can't change your username right now!": "Você não pode alterar seu nome de usuário agora!",
+    "Create a free account": "Crie uma conta gratuita",
+    "Register with :h": "Registre-se no :h",
+    "Create a unique and awesome username": "Crie um nome de usuário único e incrível",
+    "Your username will appear to others when chatting, adding, or creating rooms. Don't use difficult characters!": "Seu nome de usuário aparecerá para os outros ao conversar, adicionar ou criar quartos. Não use caracteres difíceis!",
+    "Please enter a valid email. We will use this information to recover your account if you lose access!": "Por favor, insira um email válido. Usaremos essas informações para recuperar sua conta se você perder o acesso!",
+    "Enter a valid email": "Insira um email válido",
+    "Date of Birth": "Data de Nascimento",
+    "Submit": "Enviar",
+    "Change username": "Alterar o nome de usuário"
 }

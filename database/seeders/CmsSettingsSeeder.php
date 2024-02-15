@@ -153,7 +153,7 @@ class CmsSettingsSeeder extends Seeder
             ],
             [
                 'min_rank_to_housekeeping_login',
-                '7',
+                '4',
                 'Minimum rank to login into housekeeping'
             ],
             [
@@ -190,6 +190,51 @@ class CmsSettingsSeeder extends Seeder
                 'hk_top_navigation_enabled',
                 '0',
                 'Determines whether panel navigations should be on the side or top'
+            ],
+            [
+                'header_background_image',
+                'https://i.imgur.com/XLnDlUr.png',
+                'The header background image to show on the CMS. Recommended size: 1920x340'
+            ],
+            [
+                'logo_image',
+                'https://i.imgur.com/tOiWadG.gif',
+                'The logo image to show on the CMS'
+            ],
+            [
+                'logo_size',
+                '256x41',
+                "Your logo size. Format: WIDTHxHEIGHT (without px). Example: 256x41"
+            ],
+            [
+                'findretros_enabled',
+                '0',
+                'Determines if the FindRetros voting system is enabled'
+            ],
+            [
+                'findretros_name',
+                'Habbo',
+                'Your hotel name on the FindRetros voting system'
+            ],
+            [
+                'min_rank_to_bypass_findretros_vote',
+                '5',
+                'The minimum rank to bypass the FindRetros vote'
+            ],
+            [
+                'vpn_checker_enabled',
+                '1',
+                'Determines if the VPN checker is enabled'
+            ],
+            [
+                'min_rank_to_bypass_vpn_checker',
+                '5',
+                'The minimum rank to bypass the VPN checker'
+            ],
+            [
+                'vpn_threat_data_fields',
+                'is_anonymous,is_known_attacker,is_known_abuser,is_threat,is_bogon,is_tor,is_vpn',
+                'The VPN threat data fields to be validated in the VPN scanner. (comma separated without spaces)'
             ]
         ];
     }

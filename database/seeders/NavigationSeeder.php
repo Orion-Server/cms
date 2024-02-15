@@ -12,6 +12,10 @@ class NavigationSeeder extends Seeder
      */
     public function run(): void
     {
+        if(Navigation::count() && !$this->command->confirm(
+            'It was detected that your database already has navigations, are you sure you want to generate them again?'
+        )) return;
+
         $allNavigations = $this->getDefaultNavigations();
 
         collect($allNavigations)->each(function ($navigation, $navigationName) {

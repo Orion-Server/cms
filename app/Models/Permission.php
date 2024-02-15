@@ -16,6 +16,8 @@ class Permission extends Model implements HasBadge
 
     protected $guarded = [];
 
+    public $timestamps = false;
+
     protected $casts = [
         'is_hidden' => 'boolean'
     ];
@@ -36,6 +38,11 @@ class Permission extends Model implements HasBadge
     public function users(): HasMany
     {
         return $this->hasMany(User::class, 'rank');
+    }
+
+    public function roles(): HasMany
+    {
+        return $this->hasMany(PermissionRole::class);
     }
 
     public function getBadgePath(): string

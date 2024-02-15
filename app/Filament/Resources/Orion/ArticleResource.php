@@ -31,7 +31,7 @@ class ArticleResource extends Resource
 
     protected static ?string $slug = 'website/articles';
 
-    public static string $translateIdentifier = 'article';
+    public static string $translateIdentifier = 'articles';
 
     public static function form(Form $form): Form
     {
