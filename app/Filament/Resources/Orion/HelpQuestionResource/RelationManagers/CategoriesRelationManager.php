@@ -17,7 +17,7 @@ class CategoriesRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    public static string $translateIdentifier = 'help-questions-categories';
+    public static string $translateIdentifier = 'help-question-categories';
 
     protected static ?string $inverseRelationship = 'questions';
 
