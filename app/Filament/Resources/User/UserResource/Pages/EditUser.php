@@ -88,6 +88,10 @@ class EditUser extends EditRecord
                 'amount' => $updatedCurrencyAmount
             ]);
         });
+
+        $user->settings->update([
+            'can_change_name' => $data['allow_change_username'] ? '1' : '0',
+        ]);
     }
 
     private function checkUsernameChangedPermission(Model $user, array $data, RconService $rcon): void
