@@ -31,12 +31,12 @@ body {
 }
 
 body:not(.maintenance) {
-    background: url('/assets/images/background.webp'), theme('colors.slate.50');
+    background: url('/assets/images/orion-bg.png'), theme('colors.slate.50');
 }
 
 html.dark body,
 body.maintenance {
-    background: url('/assets/images/background.webp'), theme('colors.slate.900');
+    background: url('/assets/images/orion-bg.png'), theme('colors.slate.900');
 }
 
 body.maintenance {
