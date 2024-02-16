@@ -76,7 +76,7 @@
                                 id="register-password"
                                 icon="fa-solid fa-key"
                                 alpine-model="registerData.password"
-                                placeholder="{{ __('Enter a valid email') }}"
+                                placeholder="{{ __('Enter a valid password') }}"
                                 type="password"
                             />
                         </div>
