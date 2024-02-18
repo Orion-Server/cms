@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Services\CacheTimeService;
 use Illuminate\Support\{
-    Collection,
-    Facades\App
+    Collection
 };
 use Illuminate\Database\Eloquent\{
     Model,
@@ -35,9 +35,7 @@ class Navigation extends Model
 
     public static function getNavigations(bool $withSubNavigations = true): Collection
     {
-        $cacheableTime = App::isLocal() ? 0 : 300;
-
-        return \Cache::remember('navigations', $cacheableTime, function() use ($withSubNavigations) {
+        return \Cache::remember('navigations', CacheTimeService::getForNavigations(), function() use ($withSubNavigations) {
             $navigation = Navigation::defaultQuery();
 
             if($withSubNavigations) {

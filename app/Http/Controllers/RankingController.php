@@ -8,7 +8,7 @@ use App\Enums\CurrencyType;
 use App\Models\UserSetting;
 use App\Models\UserCurrency;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use App\Services\CacheTimeService;
 use Illuminate\Support\Facades\Cache;
 
 class RankingController extends Controller
@@ -18,9 +18,7 @@ class RankingController extends Controller
      */
     public function __invoke(Request $request): View
     {
-        $cacheableTime = App::isLocal() ? 0 : 300;
-
-        $rankings = Cache::remember('rankings_data', $cacheableTime, function () {
+        $rankings = Cache::remember('rankings_data', CacheTimeService::getForRankings(), function () {
             $staffIds = User::getAllStaffsId();
 
             return [

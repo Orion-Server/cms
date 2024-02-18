@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\CacheTimeService;
 use App\Services\SettingsService;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
@@ -19,9 +20,7 @@ if(!function_exists('getPredominantImageColor')) {
      * Gets the most predominant color in an image.
      */
     function getPredominantImageColor(string $imageUrl, string $default = '#000'): string {
-        $cacheableTime = App::isLocal() ? 0 : 86400 * 10; // 10 days
-
-        return Cache::remember("image-color-$imageUrl", $cacheableTime, function () use ($imageUrl, $default) {
+        return Cache::remember("image-color-$imageUrl", CacheTimeService::getForImagePredominantColor(), function () use ($imageUrl, $default) {
             try {
                 $gdImage = imagecreatefromstring(
                     Http::get($imageUrl)->body()

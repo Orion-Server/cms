@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\{
 };
 use App\Models\{
     User\UserBadge,
+    User\UserNotification,
     Article\ArticleComment
 };
 use App\Models\Compositions\User\{
@@ -239,6 +240,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     public function guilds(): HasMany
     {
         return $this->hasMany(GuildMember::class);
+    }
+
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(UserNotification::class, 'recipient_id');
     }
 
     public function canAccessPanel(Panel $panel): bool

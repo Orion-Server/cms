@@ -24,7 +24,8 @@ use App\Http\Controllers\{
     Profile\MessageController as UserHomeMessageController,
     Profile\ItemController as UserHomeItemController,
     ShopController,
-    TeamController
+    TeamController,
+    UserNotificationController
 };
 
 /*
@@ -114,7 +115,6 @@ Route::prefix('community')
 Route::name('users.')
     ->middleware('auth')
     ->group(function () {
-
         Route::prefix('profile')
             ->name('profile.')
             ->middleware('throttle:120,1')
@@ -139,6 +139,14 @@ Route::name('users.')
                     });
 
                 Route::get('/purchases', [UserSettingController::class, 'purchases'])->name('purchases');
+
+                Route::prefix('notifications')
+                    ->name('notifications.')
+                    ->middleware('throttle:30,1')
+                    ->group(function () {
+                        Route::post('/', [UserNotificationController::class, 'index'])->name('index');
+                        Route::post('/count', [UserNotificationController::class, 'count'])->name('count');
+                    });
             });
     });
 

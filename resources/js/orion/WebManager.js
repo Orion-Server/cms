@@ -6,6 +6,7 @@ import Navigation from '../components/Navigation'
 import TippyWrapper from '../external/TippyWrapper'
 import NotyfWrapper from '../external/NotyfWrapper'
 import SwiperWrapper from '../external/SwiperWrapper'
+import Notification from '../components/Notification'
 import DiscordWidget from '../components/DiscordWidget'
 import OnlineFriends from '../components/OnlineFriends'
 import Authentication from '../components/Authentication'
@@ -47,6 +48,7 @@ export default class WebManager {
         Authentication.start()
         ImageVisualizationWrapper.start()
         OnlineFriends.start()
+        Notification.start()
         TextareaEditor.start()
         Navigation.start()
         Staff.start()
