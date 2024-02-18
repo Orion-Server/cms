@@ -223,7 +223,7 @@ class CmsSettingsSeeder extends Seeder
             ],
             [
                 'vpn_checker_enabled',
-                '1',
+                '0',
                 'Determines if the VPN checker is enabled'
             ],
             [
