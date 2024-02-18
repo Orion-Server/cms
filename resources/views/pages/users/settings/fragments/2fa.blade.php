@@ -14,3 +14,11 @@
     @includeWhen(Auth::user()->hasIncompleteTwoFactorAuthentication(), 'pages.users.settings.fragments.2fa.confirm')
     @includeWhen(Auth::user()->hasEnabledTwoFactorAuthentication(), 'pages.users.settings.fragments.2fa.disable')
 </form>
+
+@if(session()->has('error'))
+    <script>
+        document.addEventListener('alpine:init', () => {
+            window.notyf.error("{{ session()->get('error') }}", 8000)
+        });
+    </script>
+@endif

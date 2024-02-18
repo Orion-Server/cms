@@ -320,5 +320,17 @@
     "Submit": "Enviar",
     "Change username": "Alterar o nome de usuário",
     "Please, confirm you password": "Por favor, confirme sua senha",
-    "The provided two factor authentication code was invalid.": "O código de autenticação de dois fatores fornecido é inválido."
+    "The provided two factor authentication code was invalid.": "O código de autenticação de dois fatores fornecido é inválido.",
+    "You need to enable two-factor authentication to access this page.": "Você precisa habilitar a autenticação de dois fatores para acessar esta página.",
+    "Two-Factor Authentication": "Autenticação de Dois Fatores",
+    "Two-Factor Challenge": "Desafio de Dois Fatores",
+    "Two-Factor Code": "Código de Dois Fatores",
+    "Code": "Código",
+    "Confirmation Code": "Código de Confirmação",
+    "Disable Two-Factor Authentication": "Desativar Autenticação de Dois Fatores",
+    "Disabling two-factor authentication removes an extra security measure, potentially increasing the vulnerability of your account to unauthorized entry.": "Desativar a autenticação de dois fatores remove uma medida de segurança extra, potencialmente aumentando a vulnerabilidade de sua conta a entrada não autorizada.",
+    "Enabling two-factor authentication adds an additional layer of security, safeguarding your account against unauthorized access.": "Ativar a autenticação de dois fatores adiciona uma camada adicional de segurança, protegendo sua conta contra acesso não autorizado.",
+    "We recommend that you use this security feature to keep your account free from any type of threat!": "Recomendamos que você use esse recurso de segurança para manter sua conta livre de qualquer tipo de ameaça!",
+    "Enable Two-Factor Authentication": "Ativar Autenticação de Dois Fatores",
+    "Store these recovery codes in a secure password manager. They can be used to recover access to your account if you lose your two-factor authentication device.": "Armazene esses códigos de recuperação em um gerenciador de senhas seguro. Eles podem ser usados para recuperar o acesso à sua conta se você perder seu dispositivo de autenticação de dois fatores."
 }

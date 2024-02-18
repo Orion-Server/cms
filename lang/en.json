@@ -320,5 +320,17 @@
     "Submit": "Submit",
     "Change username": "Change username",
     "Please, confirm you password": "Please, confirm you password",
-    "The provided two factor authentication code was invalid.": "The provided two factor authentication code was invalid."
+    "The provided two factor authentication code was invalid.": "The provided two factor authentication code was invalid.",
+    "You need to enable two-factor authentication to access this page.": "You need to enable two-factor authentication to access this page.",
+    "Two-Factor Authentication": "Two-Factor Authentication",
+    "Two-Factor Challenge": "Two-Factor Challenge",
+    "Two-Factor Code": "Two-Factor Code",
+    "Code": "Code",
+    "Confirmation Code": "Confirmation Code",
+    "Disable Two-Factor Authentication": "Disable Two-Factor Authentication",
+    "Disabling two-factor authentication removes an extra security measure, potentially increasing the vulnerability of your account to unauthorized entry.": "Disabling two-factor authentication removes an extra security measure, potentially increasing the vulnerability of your account to unauthorized entry.",
+    "Enabling two-factor authentication adds an additional layer of security, safeguarding your account against unauthorized access.": "Enabling two-factor authentication adds an additional layer of security, safeguarding your account against unauthorized access.",
+    "We recommend that you use this security feature to keep your account free from any type of threat!": "We recommend that you use this security feature to keep your account free from any type of threat!",
+    "Enable Two-Factor Authentication": "Enable Two-Factor Authentication",
+    "Store these recovery codes in a secure password manager. They can be used to recover access to your account if you lose your two-factor authentication device.": "Store these recovery codes in a secure password manager. They can be used to recover access to your account if you lose your two-factor authentication device."
 }
