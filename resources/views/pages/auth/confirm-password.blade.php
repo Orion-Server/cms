@@ -5,8 +5,9 @@
 @section('title', __('Confirm your password'))
 
 @section('content')
-<x-container class="flex justify-center items-center h-screen">
+<x-container class="flex flex-col gap-4 justify-center items-center h-screen">
     <div class="fixed top-0 left-0 w-screen h-screen bg-black/25"></div>
+    <div style="--logo-width: {{ $logoSize[0] }}px; --logo-height: {{ $logoSize[1] }}px; background-image: url({{ $logo }})" class="logo bg-center bg-no-repeat"></div>
     <div class="bg-white w-full lg:w-1/2 dark:bg-slate-850 overflow-hidden rounded-lg shadow relative border border-slate-300 dark:border-slate-600 p-4">
         <form class="space-y-4" method="POST" action="{{ route('password.confirm') }}">
             @csrf
