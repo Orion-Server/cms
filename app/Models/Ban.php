@@ -21,7 +21,7 @@ class Ban extends Model
     public function scopeValid(Builder $query): void
     {
         $query->where(fn ($query) =>
-            $query->where('ban_expire', '>', now())
+            $query->where('ban_expire', '>', now()->timestamp)
                   ->orWhere('ban_expire', '0') // permanent
         );
     }

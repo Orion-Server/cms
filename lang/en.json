@@ -332,5 +332,6 @@
     "Enabling two-factor authentication adds an additional layer of security, safeguarding your account against unauthorized access.": "Enabling two-factor authentication adds an additional layer of security, safeguarding your account against unauthorized access.",
     "We recommend that you use this security feature to keep your account free from any type of threat!": "We recommend that you use this security feature to keep your account free from any type of threat!",
     "Enable Two-Factor Authentication": "Enable Two-Factor Authentication",
-    "Store these recovery codes in a secure password manager. They can be used to recover access to your account if you lose your two-factor authentication device.": "Store these recovery codes in a secure password manager. They can be used to recover access to your account if you lose your two-factor authentication device."
+    "Store these recovery codes in a secure password manager. They can be used to recover access to your account if you lose your two-factor authentication device.": "Store these recovery codes in a secure password manager. They can be used to recover access to your account if you lose your two-factor authentication device.",
+    "Enter a valid password": "Enter a valid password"
 }
