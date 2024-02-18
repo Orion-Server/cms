@@ -89,7 +89,7 @@ return [
     |
     */
 
-    'middleware' => ['web', 'cms.maintenance'],
+    'middleware' => ['web', 'cms.maintenance', 'verify.punishments'],
 
     /*
     |--------------------------------------------------------------------------

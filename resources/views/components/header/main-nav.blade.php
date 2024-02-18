@@ -2,7 +2,7 @@
 
 <div
     class="bg-white fixed top-0 dark:bg-slate-950 w-full z-50 lg:relative h-auto lg:h-16 dark:border-slate-800 lg:shadow-[0_20px_0_0_rgba(0,0,0,0.2)]"
-    x-data='navigation(@json(getSetting("default_cms_mode")))'
+    x-data="navigation"
     data-turbolinks-permanent
 >
     <x-container class="h-full flex flex-col items-center justify-center lg:bg-transparent bg-white dark:bg-slate-950">

@@ -11,7 +11,6 @@ use Filament\Support\Assets\Css;
 use App\Filament\Pages\BadgePage;
 use App\Filament\Pages\Dashboard;
 use Filament\Support\Colors\Color;
-use Filament\Support\Enums\MaxWidth;
 use App\Http\Middleware\VerifyLocale;
 use App\Http\Middleware\VerifyPunishments;
 use Filament\Http\Middleware\Authenticate;

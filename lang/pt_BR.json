@@ -318,5 +318,7 @@
     "Enter a valid email": "Insira um email válido",
     "Date of Birth": "Data de Nascimento",
     "Submit": "Enviar",
-    "Change username": "Alterar o nome de usuário"
+    "Change username": "Alterar o nome de usuário",
+    "Please, confirm you password": "Por favor, confirme sua senha",
+    "The provided two factor authentication code was invalid.": "O código de autenticação de dois fatores fornecido é inválido."
 }

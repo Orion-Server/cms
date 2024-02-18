@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Filament\Panel;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\{
     Casts\Attribute,
@@ -12,6 +14,8 @@ use Illuminate\Database\Eloquent\{
 };
 use App\Models\{
     User\UserBadge,
+    User\UserItem,
+    User\UserOrder,
     Article\ArticleComment
 };
 use App\Models\Compositions\User\{
@@ -21,8 +25,6 @@ use App\Models\Compositions\User\{
     HasProfile,
     HasRoles
 };
-use App\Models\User\UserItem;
-use App\Models\User\UserOrder;
 use Illuminate\Database\Eloquent\Relations\{
     HasMany,
     BelongsTo,
@@ -34,11 +36,11 @@ use Filament\Models\Contracts\{
     FilamentUser,
     HasAvatar
 };
-use Filament\Panel;
 
 class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
 {
-    use HasApiTokens, HasFactory, Notifiable, HasCurrency, HasSettings, HasProfile, HasItems, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasCurrency, HasSettings, HasProfile, HasItems, HasRoles;
 
     public $timestamps = false;
 
@@ -67,7 +69,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         'avatar_background',
         'team_id',
         'provider_id',
-        'account_day_of_birth'
+        'account_day_of_birth',
     ];
 
     /**
@@ -300,5 +302,15 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         }
 
         return getSetting('default_avatar_background');
+    }
+
+    public function needsEnableTwoFactorAuthentication(): bool
+    {
+        return is_null($this->two_factor_secret);
+    }
+
+    public function hasIncompleteTwoFactorAuthentication(): bool
+    {
+        return $this->two_factor_secret && !$this->hasEnabledTwoFactorAuthentication();
     }
 }

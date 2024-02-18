@@ -4,9 +4,9 @@ namespace App\Actions\Fortify;
 
 use Laravel\Fortify\Fortify;
 use Illuminate\Validation\ValidationException;
-use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
+use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable as FortifyRedirectIfTwoFactorAuthenticatable;
 
-class RedirectIfAuthenticatable extends RedirectIfTwoFactorAuthenticatable
+class RedirectIfTwoFactorAuthenticatable extends FortifyRedirectIfTwoFactorAuthenticatable
 {
     /**
      * Attempt to validate the incoming credentials.

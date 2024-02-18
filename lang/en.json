@@ -318,5 +318,7 @@
     "Enter a valid email": "Enter a valid email",
     "Date of Birth": "Date of Birth",
     "Submit": "Submit",
-    "Change username": "Change username"
+    "Change username": "Change username",
+    "Please, confirm you password": "Please, confirm you password",
+    "The provided two factor authentication code was invalid.": "The provided two factor authentication code was invalid."
 }
