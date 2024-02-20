@@ -20,7 +20,7 @@ class ShopController extends Controller
 
     public function index(?string $currentCategoryId = null): View
     {
-        $categories = ShopCategory::all();
+        $categories = ShopCategory::visible()->get();
         $products = ShopProduct::latest()->active(considerRank: false);
         $featuredProducts = ShopProduct::active()->featured()->get();
         $writeableBoxes = WriteableBox::getForPage('shop');
