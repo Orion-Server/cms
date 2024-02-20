@@ -1,17 +1,17 @@
 <?php
 
 return [
-    'navigation_label' => 'Logs',
+    'navigation_label' => 'Protokolle',
     'navigation_group' => 'System',
-    'title' => 'Logs',
-    'search_placeholder' => 'Select or search a log file',
-    'no_logs' => 'No Logs to display',
-    'delete' => 'Delete',
+    'title' => 'Protokolle',
+    'search_placeholder' => 'Wählen Sie eine Protokolldatei aus',
+    'no_logs' => 'Keine Protokolle zum Anzeigen',
+    'delete' => 'Löschen',System
     'download' => 'Download',
-    'no_such_file' => 'No such file',
-    'file_too_large' => 'File is too large',
-    'modal_delete_heading' => 'Delete this logs file?',
-    'modal_delete_subheading' => 'Are you sure you want to delete this logs file?',
-    'modal_delete_action_cancel' => 'Cancel',
-    'modal_delete_action_confirm' => 'Delete',
+    'no_such_file' => 'Keine solche Datei',
+    'file_too_large' => 'Datei ist zu groß',
+    'modal_delete_heading' => 'Diese Protokolldatei löschen?',
+    'modal_delete_subheading' => 'Sind Sie sicher, dass Sie diese Protokolldatei löschen möchten?',
+    'modal_delete_action_cancel' => 'Stornieren',
+    'modal_delete_action_confirm' => 'Löschen',
 ];

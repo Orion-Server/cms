@@ -2,14 +2,14 @@
 
 return [
 
-    'title' => 'Login',
+    'title' => 'Anmeldung',
 
-    'heading' => 'Sign in to your account',
+    'heading' => 'Melden Sie sich mit Ihrem Konto an',
 
     'buttons' => [
 
         'submit' => [
-            'label' => 'Sign in',
+            'label' => 'Anmelden',
         ],
 
     ],
@@ -17,26 +17,26 @@ return [
     'fields' => [
 
         'email' => [
-            'label' => 'Email address',
+            'label' => 'E-Mail',
         ],
 
         'username' => [
-            'label' => 'Username'
+            'label' => 'User Name'
         ],
 
         'password' => [
-            'label' => 'Password',
+            'label' => 'Passwort',
         ],
 
         'remember' => [
-            'label' => 'Remember me',
+            'label' => 'Hast du dein Passwort vergessen?',
         ],
 
     ],
 
     'messages' => [
-        'failed' => 'These credentials do not match our records.',
-        'throttled' => 'Too many login attempts. Please try again in :seconds seconds.',
+        'failed' => 'Diese Anmeldeinformationen stimmen nicht mit unseren Unterlagen Ã¼berein.',
+        'throttled' => 'Zu viele Anmeldeversuche. Bitte versuchen Sie es in :seconds Sekunden erneut.',
     ],
 
 ];

@@ -4,22 +4,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Authentication Language Lines
+    | Zeilen der Authentifizierungssprache
     |--------------------------------------------------------------------------
     |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
+    | Die folgenden Sprachzeilen werden bei der Authentifizierung für verschiedene Nachrichten
+    | verwendet, die wir dem Benutzer anzeigen müssen. Es steht Ihnen frei, diese Sprachzeilen
+    | entsprechend den Anforderungen Ihrer Anwendung zu ändern.
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'recaptcha_failed' => 'The reCAPTCHA verification failed.',
-    'turnstile_failed' => 'The Turnstile verification failed.',
-    'max_accounts_per_ip' => 'You have reached the maximum number of accounts per IP address.',
-    'invalid_ip' => 'Invalid IP address.',
-    'registration_disabled' => 'Registration is disabled.'
+    'failed' => 'Diese Anmeldeinformationen stimmen nicht mit unseren Unterlagen überein.',
+    'password' => 'Das angegebene Passwort ist falsch.',
+    'throttle' => 'Zu viele Anmeldeversuche. Bitte versuchen Sie es in :sekunden Sekunden erneut.',
+    'recaptcha_failed' => 'Die CAPTCHA Überprüfung ist fehlgeschlagen.',
+    'turnstile_failed' => 'Die Überprüfung des Drehkreuzes ist fehlgeschlagen.',
+    'max_accounts_per_ip' => 'Sie haben die maximale Anzahl von Konten pro IP-Adresse erreicht.',
+    'invalid_ip' => 'Ungültige IP-Adresse.',
+    'registration_disabled' => 'Die Registrierung ist deaktiviert.'
 
 ];
