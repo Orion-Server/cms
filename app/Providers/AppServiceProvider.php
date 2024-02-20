@@ -65,6 +65,7 @@ class AppServiceProvider extends ServiceProvider
         View::share('headerBackground', getSetting('header_background_image', 'https://i.imgur.com/XLnDlUr.png'));
         View::share('logo', getSetting('logo_image', 'https://i.imgur.com/tOiWadG.gif'));
         View::share('logoSize', explode('x', getSetting('logo_size', '256x41')));
+        View::share('usingNitroImager', getSetting('using_nitro_imager', true));
     }
 
     /**

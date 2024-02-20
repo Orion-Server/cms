@@ -2,7 +2,12 @@
     <div class="messages p-1">
         @forelse ($user->myHomeMessages as $message)
             <div class="border-b border-dashed border-black/75 flex pb-1">
-                <div class="w-[33px] h-[56px]" style="background-image: url('{{ getFigureUrl($message->user->look, 'direction=4&head_direction=4&action=sml&size=s') }}')"></div>
+                <div @class([
+                        "w-[33px] h-[56px]",
+                        "bg-[-9px_-7px]" => $usingNitroImager
+                    ])
+                    style="background-image: url('{{ getFigureUrl($message->user->look, 'direction=4&head_direction=4&action=sml&size=s') }}')"
+                ></div>
                 <div class="w-[215px] flex flex-col">
                     <div class="flex gap-1 pt-1">
                         <img @class([

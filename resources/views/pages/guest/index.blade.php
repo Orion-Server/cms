@@ -32,7 +32,11 @@
                                 >{{ $defaultArticle->title }}</a>
                                 <span class="w-full mt-2 flex gap-2 justify-start items-center text-slate-700 max-h-[45px] overflow-hidden dark:text-slate-400 text-xs">
                                     <div
-                                        class="w-[30px] h-[30px] bg-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900"
+                                        @class([
+                                            "w-[30px] h-[30px] bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900",
+                                            "bg-center" => !$usingNitroImager,
+                                            "bg-[-7px_-10px]" => $usingNitroImager
+                                        ])
                                         style="background-image: url('{{ getFigureUrl($defaultArticle->user->look, 'head_direction=2&size=s&headonly=1') }}')"
                                     ></div>
                                     <a class="underline underline-offset-2 hover:text-blue-400" href="{{ route('users.profile.show', $defaultArticle->user->username) }}">{{ $defaultArticle->user->username }}</a>
@@ -57,7 +61,11 @@
                         onclick="Turbolinks.visit('{{ route('users.profile.show', $latestUser->username) }}')"
                         data-tippy-singleton
                         data-tippy-content="<small>{{ $latestUser->username }}</small>"
-                        class="h-16 bg-white rounded-lg shadow-lg border-b-2 border-gray-300 dark:border-slate-800 dark:bg-slate-950 bg-center bg-no-repeat cursor-pointer"
+                        @class([
+                            "h-16 bg-white rounded-lg shadow-lg border-b-2 border-gray-300 dark:border-slate-800 dark:bg-slate-950 bg-no-repeat cursor-pointer",
+                            "bg-center" => !$usingNitroImager,
+                            "bg-[-5px_-20px]" => $usingNitroImager
+                        ])
                         style="background-image: url('{{ getFigureUrl($latestUser->look, 'head_direction=3&size=m&gesture=sml&action=sit,wav&headonly=1') }}')"
                     ></div>
                 @endforeach
@@ -86,7 +94,10 @@
                                 <span class="w-auto absolute bottom-2 left-2 flex gap-2 justify-start items-center text-slate-700 max-h-[45px] overflow-hidden dark:text-slate-400 text-xs">
                                     @if($photo->user)
                                         <div
-                                            class="w-auto pr-3 max-w-[100px] h-[30px] bg-start pl-8 flex items-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900"
+                                            @class([
+                                                "w-auto pr-3 max-w-[100px] h-[30px] bg-start pl-8 flex items-center bg-no-repeat rounded-full bg-gray-200 dark:bg-slate-900",
+                                                "bg-[-8px_-10px]" => $usingNitroImager
+                                            ])
                                             style="background-image: url('{{ getFigureUrl($photo->user?->look, 'direction=4&head_direction=2&size=s&gesture=sml&action=sit,wav&headonly=1') }}')"
                                         >
                                             <a class="underline underline-offset-2 hover:text-blue-400" href="{{ route('users.profile.show', $photo->user->username) }}">{{ $photo->user->username }}</a>

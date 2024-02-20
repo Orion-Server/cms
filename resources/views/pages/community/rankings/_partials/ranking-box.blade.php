@@ -26,7 +26,11 @@
                 ])>
                     <div class="w-14 h-full overflow-hidden flex items-center justify-center group-first:rounded-tl-lg group-last:rounded-bl-lg">
                         <div
-                            class="w-[54px] h-14 bg-center bg-no-repeat"
+                            @class([
+                                "w-[54px] h-14 bg-no-repeat",
+                                "bg-center" => !$usingNitroImager,
+                                "bg-[-18px_-25px]" => $usingNitroImager
+                            ])
                             style="background-image: url('{{ $getUser($ranking)->figure_path }}&direction=3&head_direction=2&size=m&headonly=1')"
                         ></div>
                     </div>

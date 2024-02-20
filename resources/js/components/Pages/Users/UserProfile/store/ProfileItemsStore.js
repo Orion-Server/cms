@@ -342,23 +342,26 @@ document.addEventListener('alpine:init', () => {
         detectNavigatableWidgets() {
             const pages = document.querySelectorAll('span[data-href]')
 
-            if(!pages) return
+            if(!pages || !pages.length) return
+
+            const onWidgetClick = (event) => {
+                event.preventDefault()
+
+                if(this.profileManager.editing) {
+                    this.profileManager.$dispatch('orion:alert', {
+                        type: 'info',
+                        message: __('Navigation is blocked because you are editing your profile.')
+                    })
+
+                    return
+                }
+
+                Turbolinks.visit(event.target.dataset.href)
+            }
 
             pages.forEach(page => {
-                page.addEventListener('click', (event) => {
-                    event.preventDefault()
-
-                    if(this.profileManager.editing) {
-                        this.profileManager.$dispatch('orion:alert', {
-                            type: 'info',
-                            message: __('Navigation is blocked because you are editing your profile.')
-                        })
-
-                        return
-                    }
-
-                    Turbolinks.visit(event.target.dataset.href)
-                })
+                page.removeEventListener('click', onWidgetClick)
+                page.addEventListener('click', onWidgetClick)
             })
         }
     })

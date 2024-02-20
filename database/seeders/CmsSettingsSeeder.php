@@ -235,6 +235,11 @@ class CmsSettingsSeeder extends Seeder
                 'vpn_threat_data_fields',
                 'is_anonymous,is_known_attacker,is_known_abuser,is_threat,is_bogon,is_tor,is_vpn',
                 'The VPN threat data fields to be validated in the VPN scanner. (comma separated without spaces)'
+            ],
+            [
+                'using_nitro_imager',
+                '1',
+                'Determines if the hotel is using the Nitro imager'
             ]
         ];
     }

@@ -4,7 +4,11 @@
             <div class="w-full relative rounded-lg h-full bg-right-bottom bg-no-repeat" style="background-image: url('{{ \Auth::user()?->getAvatarBackground() ?? getSetting('default_avatar_background') }}')">
                 <div class="absolute -bottom-6 right-2 w-[73px] h-[57px] bg-center bg-no-repeat" style="background-image: url('{{ asset('assets/images/stage.png') }}')"></div>
                 <div
-                    class="absolute -bottom-4 right-4 w-[64px] h-[110px] bg-center bg-no-repeat"
+                    @class([
+                        "absolute right-4 w-[64px] h-[110px] bg-center bg-no-repeat",
+                        "-bottom-4" => !$usingNitroImager,
+                        "-bottom-3" => $usingNitroImager
+                    ])
                     style="background-image: url('{{ \Auth::user()?->figure_path ?? '0' }}&direction=2&head_direction=2&size=m&gesture=sml&action=sit,wav')"
                 ></div>
             </div>
