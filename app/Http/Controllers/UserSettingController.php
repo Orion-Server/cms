@@ -15,7 +15,7 @@ class UserSettingController extends Controller
 {
     public function index(Request $request, string $page = 'ingame'): View|JsonResponse
     {
-        if (!in_array($page, ['account', 'password', 'ingame'])) {
+        if (!in_array($page, ['account', 'password', 'ingame', '2fa'])) {
             $page = 'ingame';
         }
 
@@ -23,11 +23,22 @@ class UserSettingController extends Controller
             return $this->treatUpdateSettings($request, $page);
         }
 
-        return view('pages.users.settings.index', [
-            'user' => \Auth::user(),
+        /** @var User $user */
+        $user = Auth::user();
+
+        $settingsVariables = [
+            'user' => $user,
             'page' => $page,
             'navigations' => $this->getSettingsNavigationData()
-        ]);
+        ];
+
+        if($page === '2fa') $settingsVariables['twoFactorRoute'] = match (true) {
+            $user->needsEnableTwoFactorAuthentication() => route('two-factor.enable'),
+            $user->hasEnabledTwoFactorAuthentication() => route('two-factor.disable'),
+            $user->hasIncompleteTwoFactorAuthentication() => route('two-factor.confirm'),
+        };
+
+        return view('pages.users.settings.index', $settingsVariables);
     }
 
     public function purchases(): View
@@ -192,6 +203,11 @@ class UserSettingController extends Controller
                 'type' => 'password',
                 'title' => __('Account Security'),
                 'icon' => 'fa-solid fa-key'
+            ],
+            [
+                'type' => '2fa',
+                'title' => __('Two-Factor Authentication'),
+                'icon' => 'fa-solid fa-user-shield'
             ]
         ];
     }

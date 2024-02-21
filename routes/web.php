@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\VerifyCsrfToken;
+use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController;
 use App\Http\Controllers\{
     AboutController,
     WebController,
@@ -43,6 +44,10 @@ Route::get('/set-language/{language}', [WebController::class, 'setLanguage'])->n
 Route::get('/', [WebController::class, 'index'])->name('index');
 Route::get('/login', [WebController::class, 'index'])->name('login');
 Route::get('/register', [WebController::class, 'register'])->name('register');
+
+Route::get('/two-factor-challenge', [TwoFactorAuthenticatedSessionController::class, 'create'])
+    ->middleware('guest:web')
+    ->name('two-factor.login');
 
 Route::get('/login/google', [GoogleController::class, 'handleRedirect'])->name('google.login');
 Route::get('/login/google/callback', [GoogleController::class, 'handleCallback']);
@@ -139,6 +144,7 @@ Route::name('users.')
                     });
 
                 Route::get('/purchases', [UserSettingController::class, 'purchases'])->name('purchases');
+                Route::get('confirm-password', [WebController::class, 'confirmPassword'])->name('password.confirm');
             });
     });
 

@@ -240,6 +240,11 @@ class CmsSettingsSeeder extends Seeder
                 'using_nitro_imager',
                 '1',
                 'Determines if the hotel is using the Nitro imager'
+            ],
+            [
+                'force_housekeeping_two_factor',
+                '1',
+                'Determines if the staff should be forced to use two-factor authentication to login into the housekeeping'
             ]
         ];
     }

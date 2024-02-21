@@ -11,12 +11,12 @@ use Filament\Support\Assets\Css;
 use App\Filament\Pages\BadgePage;
 use App\Filament\Pages\Dashboard;
 use Filament\Support\Colors\Color;
-use Filament\Support\Enums\MaxWidth;
 use App\Http\Middleware\VerifyLocale;
 use App\Http\Middleware\VerifyPunishments;
 use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
+use App\Http\Middleware\RedirectIfTwoFactorDisabled;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
@@ -42,7 +42,6 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login(action: Login::class)
             ->colors([
                 'primary' => Color::Blue,
             ])
@@ -73,6 +72,7 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
                 VerifyLocale::class,
                 VerifyPunishments::class,
+                RedirectIfTwoFactorDisabled::class
             ])
             ->brandLogo(asset('assets/images/logo.gif'))
             ->favicon(asset('assets/images/panel_favicon.gif'))

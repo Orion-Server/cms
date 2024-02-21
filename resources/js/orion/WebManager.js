@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs'
+import Orion from '../components/Orion'
 import Staff from '../components/Pages/Staff'
 import Footer from '../components/Pages/Footer'
 import Photos from '../components/Pages/Photos'
@@ -48,6 +49,7 @@ export default class WebManager {
         ImageVisualizationWrapper.start()
         OnlineFriends.start()
         TextareaEditor.start()
+        Orion.start()
         Navigation.start()
         Staff.start()
         AutomaticSearch.start()

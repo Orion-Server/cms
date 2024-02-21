@@ -48,11 +48,6 @@ class WebController extends Controller
         return view('index', compact($compactValues));
     }
 
-    public function register(): View
-    {
-        return view('pages.auth.register');
-    }
-
     private function getArticlesLimit(string $type, bool $isAuthenticated): int
     {
         if($type == 'default') return match ($isAuthenticated) {
@@ -75,6 +70,16 @@ class WebController extends Controller
         }
 
         return redirect()->back(302, [], route('index'));
+    }
+
+    public function register(): View
+    {
+        return view('pages.auth.register');
+    }
+
+    public function confirmPassword(): View
+    {
+        return view('pages.auth.confirm-password');
     }
 
     public function maintenance(): View
