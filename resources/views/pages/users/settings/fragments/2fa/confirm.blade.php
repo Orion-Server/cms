@@ -20,6 +20,7 @@
         autocomplete="code"
         id="confirm-code"
         icon="fa-solid fa-key"
+        :autofocus="true"
         name="code"
         placeholder="{{ __('Code') }}"
         type="text"

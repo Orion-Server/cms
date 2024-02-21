@@ -1,5 +1,8 @@
 <div>
-    <div class="g-recaptcha mt-4" data-sitekey="{{ config('hotel.recaptcha.site_key') }}"></div>
+    <div class="g-recaptcha mt-4"
+        x-bind:data-theme="theme"
+        data-sitekey="{{ config('hotel.recaptcha.site_key') }}"
+    ></div>
 </div>
 
 @push('scripts')
