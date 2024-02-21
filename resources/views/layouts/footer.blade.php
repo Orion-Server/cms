@@ -9,7 +9,8 @@
 
     <x-container class="flex justify-center gap-1 items-center text-sm flex-col">
         <span class="dark:text-gray-200">
-            {!! __('© OrionCMS 2023 - Development by :a. All rights reserved.', [
+            {!! __('© OrionCMS :y - Development by :a. All rights reserved.', [
+                    'y' => date('Y'),
                     'a' => <<<HTML
                         <a
                             data-tippy

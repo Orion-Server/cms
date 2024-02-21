@@ -16,7 +16,11 @@
                     x-bind:style="{ backgroundImage: `url('${getActiveFriendBackground()}')` }"
                 >
                     <div
-                        class="w-full h-full bg-center bg-no-repeat"
+                        @class([
+                            "w-full h-full bg-no-repeat",
+                            "bg-center" => !$usingNitroImager,
+                            "bg-[-15px_-20px]" => $usingNitroImager
+                        ])
                         x-bind:style="{ backgroundImage: `url({{ getSetting('figure_imager') }}${getActiveFriendLook()}&headonly=1&head_direction=2&size=m)` }"
                     ></div>
                 </div>
