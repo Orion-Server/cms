@@ -198,7 +198,7 @@ class CmsSettingsSeeder extends Seeder
             ],
             [
                 'logo_image',
-                'https://i.imgur.com/tOiWadG.gif',
+                'https://i.imgur.com/ZqE16Ph.png',
                 'The logo image to show on the CMS'
             ],
             [
