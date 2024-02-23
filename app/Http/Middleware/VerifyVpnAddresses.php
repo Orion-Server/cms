@@ -68,8 +68,6 @@ class VerifyVpnAddresses
             getSetting('vpn_threat_data_fields', '')
         );
 
-        $ipData->threat->is_threat = true;
-
         if(empty($fieldsToValidate)) return $next($request);
 
         foreach ($fieldsToValidate as $field) {
