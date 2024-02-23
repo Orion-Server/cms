@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Enums\AddressCondition;
 use Closure;
 use App\Models\IpDataList;
 use Illuminate\Http\Request;
+use App\Enums\AddressCondition;
 use Illuminate\Support\Facades\Auth;
 use Kielabokkie\LaravelIpdata\Facades\Ipdata;
 use Symfony\Component\HttpFoundation\Response;
