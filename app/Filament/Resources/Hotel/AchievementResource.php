@@ -108,8 +108,7 @@ class AchievementResource extends Resource
                     ->label(__('filament::resources.columns.id')),
 
                 HabboBadgeColumn::make('badge')
-                    ->label(__('filament::resources.columns.badge'))
-                    ->searchable(),
+                    ->label(__('filament::resources.columns.badge')),
 
                 TextColumn::make('name')
                     ->label(__('filament::resources.columns.name'))

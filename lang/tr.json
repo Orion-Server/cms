@@ -165,7 +165,7 @@
     "This comment is fixed": "Bu yorum düzeltildi",
     "Commented": "Yorum yapıldı",
     "This website is a not-for-profit educational project.": "Bu web sitesi kar amacı gütmeyen bir eğitim projesidir.",
-    "© OrionCMS :y - Development by :a. All rights reserved.": "© OrionCMS :y - Geliştirme: :a. Tüm hakları saklıdır.",
+    "© OrionCMS - Developed by :orion": "© OrionCMS - Geliştirme: :a",
     "You have been disconnected.": "Bağlantınız kesildi.",
     "Reload": "Yeniden Yükle",
     "Back to website": "Web sitesine geri dön",
