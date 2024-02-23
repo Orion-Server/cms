@@ -1,6 +1,6 @@
 
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://i.imgur.com/ZqE16Ph.png" width="263" alt="OrionCMS Logo"></a></p>
+<p align="center"><a href="https://github.com/orion-server/cms" target="_blank"><img src="https://i.imgur.com/ZqE16Ph.png" width="263" alt="OrionCMS Logo"></a></p>
 
 <p align="center">
 <a href="https://discord.gg/zsksUjfNrA"><img src="https://img.shields.io/discord/1099836667780665364" alt="Discord"></a>
