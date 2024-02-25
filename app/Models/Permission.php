@@ -31,7 +31,7 @@ class Permission extends Model implements HasBadge
             ->with([
                 'users:id,username,look,rank,online',
                 'users.activeBadges'
-            ])->orderByDesc('level')
+            ])->orderByDesc('id')
             ->get();
     }
 
