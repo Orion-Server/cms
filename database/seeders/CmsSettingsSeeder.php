@@ -203,8 +203,8 @@ class CmsSettingsSeeder extends Seeder
             ],
             [
                 'logo_size',
-                '256x41',
-                "Your logo size. Format: WIDTHxHEIGHT (without px). Example: 256x41"
+                '263x59',
+                "Your logo size. Format: WIDTHxHEIGHT (without px). Example: 263x59"
             ],
             [
                 'findretros_enabled',
