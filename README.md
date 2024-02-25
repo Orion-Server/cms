@@ -62,6 +62,7 @@ We have a list of contributors who have helped us in the development of OrionCMS
 - **Kaio** - Windows/IIS tutorials
 - **Lariesse** - TR translations
 - **Kamil** - DE translations
+- **Assholic** - Amazing GFX
 
 If you want to contribute to the project, join our [Discord](https://discord.gg/Kb7USXupCT) and let us know about your interest in helping us.
 
