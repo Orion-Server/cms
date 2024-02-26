@@ -195,6 +195,7 @@ return [
         'furniture_item_data_helper' => "Aşağıya 'item_name' mobilyasını girin. (Bu veri veritabanındaki 'items_base' tablosunda bulunabilir)",
         'room_item_data_helper' => "Oda ID'sini' aşağıya giriniz",
         'currency_item_data_helper' => 'Para birimi adını aşağıya girin. Şunlardan biri olabilir: credits, duckets, diamonds or points',
+        'rank_item_data_helper' => 'Rütbe adını aşağıya girin.',
         'empty_item_data_helper' => ' Gerekli bilgileri görüntülemek için bir eşya türü seçin.',
 
     ],
@@ -374,6 +375,7 @@ return [
         'furniture' => 'Eşya',
         'room' => 'Oda',
         'currency' => 'Para Birimi',
+        'rank' => 'Rütbe',
         'completed' => 'Tamamlandı',
         'pending' => 'Beklemede',
         'cancelled' => 'İptal Edildi',

@@ -196,6 +196,7 @@ return [
         'furniture_item_data_helper' => "Enter the furniture 'item_name' below. (This data can be found in the 'items_base' table in the database)",
         'room_item_data_helper' => 'Enter the room ID below.',
         'currency_item_data_helper' => 'Enter the currency name below. Can be one of: credits, duckets, diamonds or points',
+        'rank_item_data_helper' => 'Enter the rank ID below.',
         'empty_item_data_helper' => 'Select an item type to view the necessary information.',
     ],
 
@@ -374,6 +375,7 @@ return [
         'furniture' => 'Meubi',
         'room' => 'Room',
         'currency' => 'Valuta',
+        'rank' => 'Rank',
         'completed' => 'Compleet',
         'pending' => 'Afwachting',
         'cancelled' => 'Gecanceld',

@@ -26,7 +26,7 @@
                                 "bg-green-500 border-green-600" => $purchase->status->value === 'completed',
                                 "bg-yellow-500 border-yellow-600" => $purchase->status->value === 'pending',
                                 "bg-red-500 border-red-600" => $purchase->status->value === 'cancelled'
-                            ])>{{ __(strtoupper($purchase->status->value)) }}</span>
+                            ])>{{ __(ucfirst($purchase->status->value)) }}</span>
                         </td>
                         <td class="border-b border-slate-100 text-center dark:border-slate-700 p-4 text-slate-700 dark:text-slate-400">{{ $purchase->product->name }}</td>
                         <td class="border-b border-slate-100 text-center dark:border-slate-700 p-4 text-slate-700 dark:text-slate-400">{{ $purchase->product->formatted_price }}</td>

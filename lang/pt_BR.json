@@ -333,5 +333,9 @@
     "We recommend that you use this security feature to keep your account free from any type of threat!": "Recomendamos que você use esse recurso de segurança para manter sua conta livre de qualquer tipo de ameaça!",
     "Enable Two-Factor Authentication": "Ativar Autenticação de Dois Fatores",
     "Store these recovery codes in a secure password manager. They can be used to recover access to your account if you lose your two-factor authentication device.": "Armazene esses códigos de recuperação em um gerenciador de senhas seguro. Eles podem ser usados para recuperar o acesso à sua conta se você perder seu dispositivo de autenticação de dois fatores.",
-    "Enter a valid password": "Insira uma senha válida"
+    "Enter a valid password": "Insira uma senha válida",
+    "Completed": "Concluído",
+    "Pending": "Pendente",
+    "Cancelled": "Cancelado",
+    "Yes": "Sim"
 }

@@ -11,6 +11,7 @@ use App\Models\ShopProductItem;
 use App\Enums\ShopProductItemType;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\ShopController;
+use App\Models\Permission;
 
 class ShopService
 {
@@ -151,6 +152,26 @@ class ShopService
             }
 
             $room->replicateForUser($user);
+        }
+
+        if($item->type === ShopProductItemType::Rank) {
+            $rank = Permission::find($item->data);
+
+            if(!$rank) {
+                if(ShopController::ENABLE_ERRORS_LOG) {
+                    Log::driver('shop')->error('[DELIVER] Order product item rank not found.', [
+                        'user' => $user->username,
+                        'item' => $item,
+                    ]);
+
+                    $hasError = true;
+                }
+
+                return;
+            }
+
+            $user->rank = $rank->id;
+            $user->save();
         }
     }
 }

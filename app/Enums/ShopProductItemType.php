@@ -2,12 +2,15 @@
 
 namespace App\Enums;
 
+use App\Models\Permission;
+
 enum ShopProductItemType: string
 {
     case Room = 'room';
     case Badge = 'badge';
     case Currency = 'currency';
     case Furniture = 'furniture';
+    case Rank = 'rank';
 
     public static function values(): array
     {
@@ -26,6 +29,8 @@ enum ShopProductItemType: string
             self::Furniture->value => $this->getFurnitureImage($itemData),
             self::Room->value => $this->getRoomImage($itemData),
             self::Currency->value => CurrencyType::fromCurrencyName($itemData)?->getImage() ?? '',
+            self::Rank->value => $this->getRankImage($itemData),
+            default => ''
         };
     }
 
@@ -48,5 +53,15 @@ enum ShopProductItemType: string
     private function getRoomImage(string $itemData): string
     {
         return 'https://i.imgur.com/AjSxH6v.png';
+    }
+
+    private function getRankImage(string $itemData): string
+    {
+        /** @var null|Permission $permission */
+        $permission = Permission::find($itemData);
+
+        if(!$permission) return '';
+
+        return $permission->getBadgePath();
     }
 }
