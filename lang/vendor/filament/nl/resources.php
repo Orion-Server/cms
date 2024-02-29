@@ -1,4 +1,4 @@
-<?php
+ <  ? php
 
 return [
     'navigations' => [
@@ -196,7 +196,7 @@ return [
         'furniture_item_data_helper' => "Vul hieronder de 'item_name' van het meubel in. (Deze gegevens zijn te vinden in de tabel 'items_base' in de database)",
         'room_item_data_helper' => 'Vul hieronder het kamer ID in.',
         'currency_item_data_helper' => 'Voer hieronder de valutanaam in. Kan een van de volgende zijn: credits, duckets, diamanten of punten.',
-		'rank_item_data_helper' => 'Voer de Rank ID in.',
+        'rank_item_data_helper' => 'Voer de Rank ID in.',
         'empty_item_data_helper' => 'Selecteer een itemtype om de benodigde informatie te bekijken.',
     ],
 
@@ -375,7 +375,7 @@ return [
         'furniture' => 'Meubels',
         'room' => 'Room',
         'currency' => 'Valuta',
-		'rank' => 'Rank',
+        'rank' => 'Rank',
         'completed' => 'Compleet',
         'pending' => 'Afwachting',
         'cancelled' => 'Gecanceld',
