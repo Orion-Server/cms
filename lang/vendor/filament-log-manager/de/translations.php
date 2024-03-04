@@ -6,7 +6,7 @@ return [
     'title' => 'Protokolle',
     'search_placeholder' => 'Wählen Sie eine Protokolldatei aus',
     'no_logs' => 'Keine Protokolle zum Anzeigen',
-    'delete' => 'Löschen',System
+    'delete' => 'Löschen',
     'download' => 'Download',
     'no_such_file' => 'Keine solche Datei',
     'file_too_large' => 'Datei ist zu groß',

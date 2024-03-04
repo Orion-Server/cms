@@ -14,6 +14,7 @@
 </head>
 <body
     class="bg-slate-900 maintenance"
+    x-data='orion(@json(getSetting("default_cms_mode")))'
 >
     <div class="w-screen bg-black/25 h-screen flex flex-col items-center gap-4 justify-center p-4">
         <div style="--logo-width: {{ $logoSize[0] }}px; --logo-height: {{ $logoSize[1] }}px; background-image: url({{ $logo }})" class="logo bg-center bg-no-repeat"></div>
@@ -57,5 +58,6 @@
     </div>
 
     @vite(['resources/js/app.js'])
+    @stack('scripts')
 </body>
 </html>

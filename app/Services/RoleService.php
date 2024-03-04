@@ -8,6 +8,7 @@ use Filament\Facades\Filament;
 use App\Filament\Pages\BadgePage;
 use App\Filament\Pages\Dashboard;
 use Illuminate\Support\Collection;
+use App\Filament\Pages\LogsManager;
 
 class RoleService
 {
@@ -30,7 +31,8 @@ class RoleService
     {
         return collect([
             Dashboard::class => Dashboard::$roleName,
-            BadgePage::class => BadgePage::$roleName
+            BadgePage::class => BadgePage::$roleName,
+            LogsManager::class => LogsManager::$roleName
         ]);
     }
 
@@ -42,10 +44,9 @@ class RoleService
     public static function getSpecialRolesFor(string $policyClass, string $panel): array
     {
         return match ($policyClass) {
-            Dashboard::class => [
-                "view::{$panel}"
-            ],
-            BadgePage::class => [
+            Dashboard::class,
+            BadgePage::class,
+            LogsManager::class => [
                 "view::{$panel}"
             ],
             default => []

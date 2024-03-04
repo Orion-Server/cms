@@ -22,6 +22,21 @@ class Permission extends Model implements HasBadge
         'is_hidden' => 'boolean'
     ];
 
+    public static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(function ($permission) {
+            if(blank($permission->prefix)) $permission->prefix = '';
+            if(blank($permission->prefix_color)) $permission->prefix_color = '';
+        });
+
+        static::updating(function ($permission) {
+            if(blank($permission->prefix)) $permission->prefix = '';
+            if(blank($permission->prefix_color)) $permission->prefix_color = '';
+        });
+    }
+
     public static function forIndex(): Collection
     {
         return Permission::query()

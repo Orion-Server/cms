@@ -44,15 +44,11 @@ class PermissionRoleSeeder extends Seeder
 
             // Administrator
             if($index === 0) {
-                $roles->push([
-                    'permission_id' => $permission->id,
-                    'role_name' => 'view::admin::badge_page'
-                ]);
-
-                $roles->push([
-                    'permission_id' => $permission->id,
-                    'role_name' => 'view::admin::permission_roles'
-                ]);
+                $roles->push(
+                    ['permission_id' => $permission->id, 'role_name' => 'view::admin::badge_page'],
+                    ['permission_id' => $permission->id, 'role_name' => 'view::admin::logs_manager'],
+                    ['permission_id' => $permission->id, 'role_name' => 'view::admin::permission_roles']
+                );
             }
         });
 
