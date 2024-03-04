@@ -57,7 +57,14 @@ class PermissionResource extends Resource
          * @param bool $needsSecondOption = false
          */
         $groupedToggleButton = fn (string $name, bool $needsSecondOption = false): ToggleButtons => ToggleButtons::make($name)
-            ->label(__("filament::resources.permissions.{$name}"))
+            ->label(function() use ($name) {
+                $translationKey = "filament::resources.permissions.{$name}";
+                $translation = __($translationKey);
+
+                if($translationKey == $translation) return $name;
+
+                return $translation;
+            })
             ->options(function () use ($needsSecondOption) {
                 $options = [
                     '0' => __('filament::resources.options.no'),
