@@ -50,7 +50,7 @@
                 <i
                     data-type="{{ $reaction->type->value }}"
                     @click.stop="toggleReaction"
-                    class="fas fa-times fa-xs invisible absolute group-hover:visible -top-1 -right-1 bg-red-500 rounded-full p-1 py-2 text-white"
+                    class="fas fa-times fa-xs invisible absolute group-hover:visible -top-2 -right-2 bg-red-600 rounded-full p-1 py-2 text-white"
                 ></i>
             @endif
         </div>

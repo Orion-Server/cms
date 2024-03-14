@@ -48,7 +48,7 @@
                 >
                     <i class="fas fa-chevron-left mr-2"></i>
                     {{ __('Show all') }}
-                </x-ui.buttons.loadable>
+                </x-ui.buttons.redirectable>
                 @endif
 
                 @foreach($categories as $category)
@@ -62,7 +62,7 @@
                 >
                     <img src="{{ $category->icon }}" label="{{ $category->name }}" class="mr-2" />
                     {{ $category->name }}
-                </x-ui.buttons.loadable>
+                </x-ui.buttons.redirectable>
                 @endforeach
 
                 <div class="flex flex-col gap-6 mt-6">
