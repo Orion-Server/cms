@@ -22,6 +22,6 @@ class Guild extends Model
 
     public function getBadgePath(): string
     {
-        return getSetting('group_badges_path') . $this->badge . '.gif';
+        return getSetting('group_badges_path') . $this->badge . '.png';
     }
 }
