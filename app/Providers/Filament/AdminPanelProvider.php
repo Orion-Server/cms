@@ -33,6 +33,7 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        $logo = getSetting('logo_image', 'https://i.imgur.com/ZqE16Ph.png');
         $topNavigationEnabled = getSetting('hk_top_navigation_enabled', '0') === '1';
         $defaultTheme = getSetting('default_cms_mode', 'light') === 'dark' ? ThemeMode::Dark : ThemeMode::Light;
 
@@ -74,7 +75,7 @@ class AdminPanelProvider extends PanelProvider
                 VerifyPunishments::class,
                 RedirectIfTwoFactorDisabled::class
             ])
-            ->brandLogo(asset('assets/images/logo.gif'))
+            ->brandLogo($logo)
             ->favicon(asset('assets/images/panel_favicon.gif'))
             ->sidebarCollapsibleOnDesktop()
             ->authMiddleware([

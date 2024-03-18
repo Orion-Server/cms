@@ -3,7 +3,7 @@
     <div class="flex p-0.5 gap-1 bg-neutral-400/50 border border-dashed border-black/50">
         <div
             class="w-[40px] h-[40px] bg-center bg-no-repeat"
-            style="background-image: url('https://imager.blet.in/badge/{{ $memberData->guild->badge }}.gif')"
+            style="background-image: url('{{ $memberData->guild->getBadgePath() }}')"
         ></div>
         <div class="-space-y-1 text-xss flex flex-col" style="max-width: calc(100% - 45px)">
             <span class="font-bold truncate underline mb-px">{{ $memberData->guild->name }}</span>

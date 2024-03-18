@@ -52,7 +52,7 @@
                             ])>{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span>
                             {{ $getUser($ranking)->username }}
                         </a>
-                        <div class="w-1/3 h-full flex text-sm font-bold justify-center items-center dark:text-slate-200">
+                        <div class="w-1/3 h-full flex text-sm font-bold justify-center items-center dark:text-slate-200 text-center">
                             {{ $icon != 'online-time'
                                 ? $ranking->value
                                 : __(':m minutes', ['m' => round(CarbonInterval::seconds($ranking->value)->totalMinutes)]) }}

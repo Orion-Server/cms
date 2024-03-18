@@ -9,8 +9,7 @@ if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
     $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
 }
 
-if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-{
+if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
     $_SERVER["REMOTE_ADDR"] = $_SERVER['HTTP_X_FORWARDED_FOR'];
 }
 
@@ -18,7 +17,8 @@ if(!function_exists('getPredominantImageColor')) {
     /**
      * Gets the most predominant color in an image.
      */
-    function getPredominantImageColor(string $imageUrl, string $default = '#000'): string {
+    function getPredominantImageColor(string $imageUrl, string $default = '#000'): string
+    {
         $cacheableTime = App::isLocal() ? 0 : 86400 * 10; // 10 days
 
         return Cache::remember("image-color-$imageUrl", $cacheableTime, function () use ($imageUrl, $default) {
@@ -47,7 +47,8 @@ if(!function_exists('isDarkColor')) {
     /**
      * Determines whether a color is dark or not.
      */
-    function isDarkColor(string $hexColor): bool {
+    function isDarkColor(string $hexColor): bool
+    {
         $hexColor = str_replace('#', '', $hexColor);
 
         $c_r = hexdec(substr($hexColor, 0, 2));
@@ -64,7 +65,8 @@ if(!function_exists('getSetting')) {
     /**
      * Gets a setting from the database (**cms_settings** table).
      */
-    function getSetting(string $key, ?string $defaultValue = null): mixed {
+    function getSetting(string $key, ?string $defaultValue = null): mixed
+    {
         return app(SettingsService::class)->get($key, $defaultValue);
     }
 }
@@ -75,7 +77,8 @@ if(!function_exists('renderBBCodeText')) {
      *
      * @param bool $reflectLineBreaks Whether to reflect line breaks or not. (usually when displaying rendered text)
      */
-    function renderBBCodeText(string $content, bool $reflectLineBreaks = false): string {
+    function renderBBCodeText(string $content, bool $reflectLineBreaks = false): string
+    {
         return Pipeline::send($content)
             ->through([
                 fn (string $content, \Closure $next) => $next(str_replace(['[b]', '[/b]'], ['<b>', '</b>'], $content)),
@@ -91,7 +94,8 @@ if(!function_exists('getFigureUrl')) {
     /**
      * Gets the Habbo Imager URL.
      */
-    function getFigureUrl(string $figure, string $strings): string {
+    function getFigureUrl(string $figure, string $strings): string
+    {
         return sprintf('%s%s&%s', getSetting('figure_imager'), $figure, $strings);
     }
 }
