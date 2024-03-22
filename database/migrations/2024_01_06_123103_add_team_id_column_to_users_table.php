@@ -12,6 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if(config('app.skip_similar_migrations') && Schema::hasColumn('users', 'team_id')) return;
+
         Schema::table('users', function (Blueprint $table) {
             $table->foreignIdFor(Team::class)->nullable();
         });

@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
+    'skip_similar_migrations' => env('SKIP_SIMILAR_DATABASE_MIGRATIONS', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
