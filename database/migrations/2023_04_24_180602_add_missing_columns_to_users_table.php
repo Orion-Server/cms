@@ -15,11 +15,11 @@ return new class extends Migration
         $hasColumn = fn (string $table, string $column) => Schema::hasColumn($table, $column);
 
         Schema::table('users', function (Blueprint $table) use ($skipSimilarMigrations, $hasColumn) {
-            if ($skipSimilarMigrations && !$hasColumn('users', 'remember_token')) {
+            if (!$skipSimilarMigrations || !$hasColumn('users', 'remember_token')) {
                 $table->rememberToken();
             }
 
-            if ($skipSimilarMigrations && !$hasColumn('users', 'referral_code')) {
+            if (!$skipSimilarMigrations || !$hasColumn('users', 'referral_code')) {
                 $table->string('referral_code', 15)
                     ->nullable()
                     ->unique();
