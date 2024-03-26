@@ -13,8 +13,17 @@ class ShopCategory extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'is_visible' => 'boolean'
+    ];
+
     public function products()
     {
         return $this->hasMany(ShopProduct::class);
+    }
+
+    public function scopeVisible($query)
+    {
+        return $query->where('is_visible', true);
     }
 }

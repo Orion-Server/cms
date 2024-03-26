@@ -198,13 +198,13 @@ class CmsSettingsSeeder extends Seeder
             ],
             [
                 'logo_image',
-                'https://i.imgur.com/tOiWadG.gif',
+                'https://i.imgur.com/ZqE16Ph.png',
                 'The logo image to show on the CMS'
             ],
             [
                 'logo_size',
-                '256x41',
-                "Your logo size. Format: WIDTHxHEIGHT (without px). Example: 256x41"
+                '263x59',
+                "Your logo size. Format: WIDTHxHEIGHT (without px). Example: 263x59"
             ],
             [
                 'findretros_enabled',
@@ -223,7 +223,7 @@ class CmsSettingsSeeder extends Seeder
             ],
             [
                 'vpn_checker_enabled',
-                '1',
+                '0',
                 'Determines if the VPN checker is enabled'
             ],
             [
@@ -235,6 +235,16 @@ class CmsSettingsSeeder extends Seeder
                 'vpn_threat_data_fields',
                 'is_anonymous,is_known_attacker,is_known_abuser,is_threat,is_bogon,is_tor,is_vpn',
                 'The VPN threat data fields to be validated in the VPN scanner. (comma separated without spaces)'
+            ],
+            [
+                'using_nitro_imager',
+                '1',
+                'Determines if the hotel is using the Nitro imager'
+            ],
+            [
+                'force_housekeeping_two_factor',
+                '1',
+                'Determines if the staff should be forced to use two-factor authentication to login into the housekeeping'
             ]
         ];
     }

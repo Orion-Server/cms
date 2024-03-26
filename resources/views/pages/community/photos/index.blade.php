@@ -101,7 +101,11 @@
                     </div>
                     <div class="w-full flex justify-start items-center gap-3 p-1 bg-gray-100 rounded-b-lg border-t-2 border-gray-300 dark:border-slate-600 dark:bg-gray-900">
                         <div
-                            class="w-[50px] min-w-[50px] h-[50px] bg-center bg-no-repeat rounded-full bg-white border border-gray-200 dark:bg-gray-950 dark:border-black"
+                            @class([
+                                "w-[50px] min-w-[50px] h-[50px] bg-no-repeat rounded-full bg-white border border-gray-200 dark:bg-gray-950 dark:border-black",
+                                "bg-center" => !$usingNitroImager,
+                                "bg-[-20px_-27px]" => $usingNitroImager
+                            ])
                             @if($photo->user)
                             style="background-image: url('{{ getFigureUrl($photo->user->look, 'direction=2&head_direction=2&size=m&gesture=sml&headonly=1') }}')"
                             @endif

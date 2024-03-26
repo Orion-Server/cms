@@ -10,7 +10,11 @@
         <br>
         {{ \Carbon\Carbon::parse($user->account_created)->format('Y-m-d H:i') }}
     </span>
-    <div class="w-[64px] h-[110px] absolute right-6 bottom-1" style="background-image: url('{{ getFigureUrl($user->look, 'direction=4&head_direction=4&size=m&gesture=sml') }}')"></div>
+    <div @class([
+        "w-[64px] absolute bottom-1",
+        "h-[110px] right-6" => !$usingNitroImager,
+        "h-[130px] right-7" => $usingNitroImager
+    ]) style="background-image: url('{{ getFigureUrl($user->look, 'direction=4&head_direction=4&size=m&gesture=sml') }}')"></div>
 </div>
 <div class="mt-1 block">
     <span class="my-1 text-xs block">{{ $user->motto }}</span>
@@ -21,6 +25,7 @@
     <div class="mt-1 space-y-1 block">
         <input class="bg-white border w-full h-6 outline-none p-1 border-black/75 shadow-inner" />
         <x-ui.buttons.default
+            disabled
             class="dark:bg-blue-500 bg-blue-500 border-blue-700 hover:bg-blue-400 dark:hover:bg-blue-400 dark:shadow-blue-700/75 shadow-blue-600/75 py-0.5 text-xs text-white"
         >
             {{ __('Add tag') }}

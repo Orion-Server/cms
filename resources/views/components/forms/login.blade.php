@@ -43,6 +43,11 @@
         />
     </div>
 
+    <div class="mt-4 flex justify-center">
+		@includeWhen(config('hotel.recaptcha.enabled'), 'components.ui.recaptcha')
+		@includeWhen(config('hotel.turnstile.enabled'), 'components.ui.turnstile')
+	</div>
+
     <div class="flex gap-4 mt-6">
         @if (!$removeRegisterButton)
         <x-ui.buttons.default

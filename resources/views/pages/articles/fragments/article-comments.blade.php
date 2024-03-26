@@ -32,8 +32,12 @@
             <div class="w-full relative rounded-lg h-full bg-right-bottom bg-no-repeat">
                 <div class="absolute -bottom-8 left-2 w-[73px] h-[57px] bg-center bg-no-repeat" style="background-image: url('{{ asset('assets/images/stage.png') }}')"></div>
                 <div
-                    class="absolute -bottom-6 left-2 w-[64px] h-[110px] bg-center bg-no-repeat"
-                    style="background-image: url('{{ getFigureUrl($activeArticle->user->look, 'direction=2&head_direction=2&size=m&gesture=sml&action=sit,wav') }}')"
+                    @class([
+                        "absolute left-2 w-[64px] h-[110px] bg-center bg-no-repeat",
+                        "-bottom-6" => !$usingNitroImager,
+                        "-bottom-5" => $usingNitroImager
+                    ])
+                    style="background-image: url('{{ getFigureUrl($comment->user->look, 'direction=2&head_direction=2&size=m&gesture=sml&action=sit,wav') }}')"
                 ></div>
                 <div class="w-full h-full items-center pl-20 flex gap-2">
                     @foreach ($comment->user->badges as $badge)

@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Enums\AddressCondition;
 use Closure;
 use App\Models\IpDataList;
 use Illuminate\Http\Request;
+use App\Enums\AddressCondition;
 use Illuminate\Support\Facades\Auth;
 use Kielabokkie\LaravelIpdata\Facades\Ipdata;
 use Symfony\Component\HttpFoundation\Response;
@@ -67,8 +67,6 @@ class VerifyVpnAddresses
         $fieldsToValidate = explode(',',
             getSetting('vpn_threat_data_fields', '')
         );
-
-        $ipData->threat->is_threat = true;
 
         if(empty($fieldsToValidate)) return $next($request);
 

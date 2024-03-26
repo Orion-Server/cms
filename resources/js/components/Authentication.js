@@ -186,9 +186,26 @@ export default class Authentication {
 
                 this.loading = true
 
+                const recaptcha = document.querySelector('#login-form [name="g-recaptcha-response"]'),
+                    turnstile = document.querySelector('#login-form [name="cf-turnstile-response"]')
+
+                if(recaptcha && recaptcha.value.length) {
+                    this.loginData.recaptcha = recaptcha.value
+                }
+
+                if(turnstile && turnstile.value.length) {
+                    this.loginData['cf-turnstile-response'] = turnstile.value
+                }
+
                 await Authentication._attemptAuthentication('/login', this.loginData,
-                    () => {
-                        Authentication._treatResponseSuccess(this, __('You have been logged in successfully.'))
+                    response => {
+                        Authentication._treatResponseSuccess(this, __('You have been logged in successfully.'), !response.data.two_factor)
+
+                        if(!response.data.two_factor) return
+
+                        setTimeout(() => {
+                            window.location.href = '/two-factor-challenge'
+                        }, 1500)
                     },
                     (response) => {
                         Authentication._treatResponseErrors(this, response)

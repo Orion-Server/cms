@@ -54,7 +54,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['daily'],
             'ignore_exceptions' => false,
         ],
 
@@ -66,14 +66,14 @@ return [
         ],
 
         'shop' => [
-            'driver' => 'single',
+            'driver' => 'daily',
             'path' => storage_path('logs/shop.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,
         ],
 
         'badge' => [
-            'driver' => 'single',
+            'driver' => 'daily',
             'path' => storage_path('logs/badges_upload.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,

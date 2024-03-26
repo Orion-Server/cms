@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Actions\Compositions\HasAuthAttempt;
-use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -77,7 +76,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'mail')],
             'gender' => ['required', 'string', 'max:1', Rule::in(['M', 'F'])],
             'referral_code' => ['sometimes', 'string', 'size:15'],
-            'birthday' => ['required', 'date', 'before:today'],
+            'birthday' => ['required', 'date', 'before:today', 'after:1924-01-01'],
             'look' => ['nullable', 'string'],
             'password' => $this->passwordRules()
         ];

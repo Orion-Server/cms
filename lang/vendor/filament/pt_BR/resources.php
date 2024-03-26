@@ -195,6 +195,7 @@ return [
         'furniture_item_data_helper' => "Digite abaixo o 'item_name' do mobi. Essa informação pode ser encontrada na tabela 'items_base' do seu banco de dados.",
         'room_item_data_helper' => 'Digite abaixo o ID do quarto.',
         'currency_item_data_helper' => 'Digite abaixo o nome da moeda. Exemplo: credits, duckets, diamonds ou points.',
+        'rank_item_data_helper' => 'Digite abaixo o ID do rank.',
         'empty_item_data_helper' => 'Selecione um tipo de item para ver as informações necessárias.',
     ],
 
@@ -373,6 +374,7 @@ return [
         'furniture' => 'Mobi',
         'room' => 'Quarto',
         'currency' => 'Moeda',
+        'rank' => 'Rank',
         'completed' => 'Completo',
         'pending' => 'Pendente',
         'cancelled' => 'Cancelado',

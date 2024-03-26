@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs'
+import Orion from '../components/Orion'
 import Staff from '../components/Pages/Staff'
 import Footer from '../components/Pages/Footer'
 import Photos from '../components/Pages/Photos'
@@ -50,6 +51,7 @@ export default class WebManager {
         OnlineFriends.start()
         Notification.start()
         TextareaEditor.start()
+        Orion.start()
         Navigation.start()
         Staff.start()
         AutomaticSearch.start()
@@ -108,15 +110,33 @@ export default class WebManager {
     }
 
     static detectCaptchasAfterNavigation() {
-        document.addEventListener('turbolinks:load', () => {
-            const turnstileContainer = document.querySelectorAll(".cf-turnstile")
+        let isFirstLoad = true
 
-            Array.from(turnstileContainer).map((container) => {
+        document.addEventListener('turbolinks:load', () => {
+            if(isFirstLoad) {
+                isFirstLoad = false
+                return
+            }
+
+            const turnstileContainers = document.querySelectorAll(".cf-turnstile"),
+                recaptchaContainers = document.querySelectorAll(".g-recaptcha")
+
+            Array.from(turnstileContainers).map((container) => {
                 if(!turnstile || !turnstile.render) return console.error('[Turnstile] is not defined')
 
                 if(!container.dataset.sitekey) return console.error('[Recaptcha sitekey] is not defined')
 
                 turnstile.render(container, {
+                    sitekey: container.dataset.sitekey
+                })
+            })
+
+            Array.from(recaptchaContainers).map((container) => {
+                if(!grecaptcha || !grecaptcha.render) return console.error('[Recaptcha] is not defined')
+
+                if(!container.dataset.sitekey) return console.error('[Recaptcha sitekey] is not defined')
+
+                grecaptcha.render(container, {
                     sitekey: container.dataset.sitekey
                 })
             })

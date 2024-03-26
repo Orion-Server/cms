@@ -43,6 +43,7 @@ class ItemsRelationManager extends RelationManager
                         'furniture' => __('filament::resources.options.furniture'),
                         'room' => __('filament::resources.options.room'),
                         'currency' => __('filament::resources.options.currency'),
+                        'rank' => __('filament::resources.options.rank'),
                     ]),
 
                 TextInput::make('data')
@@ -80,7 +81,8 @@ class ItemsRelationManager extends RelationManager
                         ShopProductItemType::Badge => 'primary',
                         ShopProductItemType::Furniture => 'secondary',
                         ShopProductItemType::Room => 'success',
-                        ShopProductItemType::Currency => 'warning'
+                        ShopProductItemType::Currency => 'warning',
+                        ShopProductItemType::Rank => 'danger',
                     })
                     ->label(__('filament::resources.columns.type'))
                     ->formatStateUsing(fn (ShopProductItemType $state): string => __("filament::resources.options.{$state->value}")),

@@ -56,13 +56,9 @@ class Article extends Model
 
     public static function fromIdAndSlug(string $id, string $slug, bool $withDefaultRelationships = true): Builder
     {
-        $query = Article::valid();
-
-        if($withDefaultRelationships) {
-            $query->defaultRelationships();
-        }
-
-        return $query->whereId($id)
+        return Article::valid()
+            ->when($withDefaultRelationships, fn ($query) => $query->defaultRelationships())
+            ->whereId($id)
             ->whereSlug($slug);
     }
 

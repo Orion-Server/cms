@@ -21,7 +21,14 @@
                 "border-blue-300 shadow-blue-500" => $activeArticle->user->isMale(),
                 "border-pink-300 shadow-pink-500" => $activeArticle->user->isFemale()
             ]) style="background-image: url('{{ $activeArticle->user->getAvatarBackground() }}')">
-                <div class="w-[64px] h-[110px] absolute bottom-2 left-2" style="background-image: url('{{ getFigureUrl($activeArticle->user->look, 'direction=2&head_direction=2&size=m&gesture=sml') }}')"></div>
+                <div
+                    @class([
+                        "w-[64px] h-[110px] absolute",
+                        "bottom-2 left-2" => !$usingNitroImager,
+                        "bottom-4 left-0" => $usingNitroImager
+                    ])
+                    style="background-image: url('{{ getFigureUrl($activeArticle->user->look, 'direction=2&head_direction=2&size=m&gesture=sml') }}')"
+                ></div>
             </div>
             <a
                 href="{{ route('users.profile.show', $activeArticle->user->username) }}"

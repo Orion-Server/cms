@@ -22,7 +22,7 @@ return [
     /**
      * Allow deleting logs from the user interface.
      */
-    'allow_delete' => false,
+    'allow_delete' => true,
 
     /**
      * Allow downloading logs from the user interface.

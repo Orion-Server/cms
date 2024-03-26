@@ -14,7 +14,11 @@
             data-tippy-content="<small>{{ $onlineFriend->motto }}</small>"
             class="w-14 hover:bg-gray-100 dark:hover:bg-slate-700 h-14 relative shrink-0 rounded-full dark:bg-slate-800 border border-gray-300 dark:border-slate-700 p-0.5 cursor-pointer"
         >
-            <div class="w-full h-full rounded-full bg-center bg-no-repeat" style="background-image: url('{{ getFigureUrl($onlineFriend->look, 'head_direction=3&gesture=sml&headonly=1') }}')"></div>
+            <div @class([
+                "w-full h-full rounded-full bg-no-repeat",
+                "bg-center" => !$usingNitroImager,
+                "bg-[-20px_-27px]" => $usingNitroImager
+            ]) style="background-image: url('{{ getFigureUrl($onlineFriend->look, 'head_direction=3&gesture=sml&headonly=1') }}')"></div>
             <div class="absolute max-w-[100%] truncate text-xs -bottom-5 left-1/2 -translate-x-1/2 dark:text-slate-200">{{ $onlineFriend->username }}</div>
         </div>
     @empty

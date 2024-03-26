@@ -67,9 +67,9 @@ class AppServiceProvider extends ServiceProvider
         View::share('availableLanguages', config('hotel.cms.available_languages'));
         View::share('articleReactions', collect(ArticleReactionType::cases()));
         View::share('headerBackground', getSetting('header_background_image', 'https://i.imgur.com/XLnDlUr.png'));
-
-        View::share('logo', getSetting('logo_image', 'https://i.imgur.com/tOiWadG.gif'));
-        View::share('logoSize', explode('x', getSetting('logo_size', '256x41')));
+        View::share('logo', getSetting('logo_image', 'https://i.imgur.com/ZqE16Ph.png'));
+        View::share('logoSize', explode('x', getSetting('logo_size', '263x59')));
+        View::share('usingNitroImager', getSetting('using_nitro_imager', true));
     }
 
     /**

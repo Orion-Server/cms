@@ -11,11 +11,11 @@ use Illuminate\Cache\RateLimiting\Limit;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use Illuminate\Support\Facades\RateLimiter;
-use App\Actions\Fortify\RedirectIfAuthenticatable;
 use Laravel\Fortify\Actions\AttemptToAuthenticate;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
+use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -37,6 +37,9 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
+        Fortify::confirmPasswordView(fn () => view('pages.auth.confirm-password'));
+        Fortify::twoFactorChallengeView(fn () => view('pages.auth.two-factor-challenge'));
+
         Fortify::authenticateThrough(function(): array {
             $through = [
                 AttemptToAuthenticate::class,
@@ -44,7 +47,7 @@ class FortifyServiceProvider extends ServiceProvider
             ];
 
             if(Features::enabled(Features::twoFactorAuthentication())) {
-                array_unshift($through, RedirectIfAuthenticatable::class);
+                array_unshift($through, RedirectIfTwoFactorAuthenticatable::class);
             }
 
             if(! config('fortify.limiters.login')) {
@@ -60,8 +63,8 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($email.$request->ip());
         });
 
-        RateLimiter::for('two-factor', function (Request $request) {
-            return Limit::perMinute(5)->by($request->session()->get('login.id'));
-        });
+        RateLimiter::for('two-factor',
+            fn (Request $request) => Limit::perMinute(5)->by($request->session()->get('login.id'))
+        );
     }
 }

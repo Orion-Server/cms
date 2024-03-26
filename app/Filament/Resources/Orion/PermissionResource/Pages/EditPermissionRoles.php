@@ -101,6 +101,10 @@ class EditPermissionRoles extends EditRecord
                             return Section::make(function () use ($policyName, $policyClass) {
                                     $sectionLabel = Str::plural(Str::slug($policyName));
 
+                                    if($sectionLabel == 'logs-managers') {
+                                        return __("filament-log-manager::translations.navigation_label");
+                                    }
+
                                     return __("filament::resources.resources.{$sectionLabel}.plural");
                                 })
                                 ->columnSpan(1)

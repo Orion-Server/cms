@@ -3,6 +3,7 @@
         class="cf-turnstile mt-4"
         data-sitekey="{{ config('hotel.turnstile.site_key') }}"
         data-callback="javascriptCallback"
+        x-bind:data-theme="theme"
     ></div>
 </div>
 

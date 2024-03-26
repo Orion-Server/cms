@@ -19,4 +19,9 @@ class Guild extends Model
     {
         return $this->belongsTo(Room::class);
     }
+
+    public function getBadgePath(): string
+    {
+        return getSetting('group_badges_path') . $this->badge . '.png';
+    }
 }

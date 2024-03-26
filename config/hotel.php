@@ -11,6 +11,7 @@ return [
             'nl' => 'Dutch',
             'fi' => 'Finnish',
             'fr' => 'French',
+            'de' => 'German',
         ],
 
         'register' => [

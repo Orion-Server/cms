@@ -11,12 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->rememberToken();
+        $skipSimilarMigrations = config('app.skip_similar_migrations');
+        $hasColumn = fn (string $table, string $column) => Schema::hasColumn($table, $column);
 
-            $table->string('referral_code', 15)
-                ->nullable()
-                ->unique();
+        Schema::table('users', function (Blueprint $table) use ($skipSimilarMigrations, $hasColumn) {
+            if (!$skipSimilarMigrations || !$hasColumn('users', 'remember_token')) {
+                $table->rememberToken();
+            }
+
+            if (!$skipSimilarMigrations || !$hasColumn('users', 'referral_code')) {
+                $table->string('referral_code', 15)
+                    ->nullable()
+                    ->unique();
+            }
 
             $table->string('referrer_code', 15)->nullable();
         });

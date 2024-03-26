@@ -26,3 +26,19 @@
         return translations[key] ?? key;
     }
 </script>
+
+@if(Auth::check() && $unsupportedFlashClient)
+    <script>
+        document.addEventListener('alpine:init', () => {
+            window.notyf.error('Your browser does not support Flash.', 8000)
+        });
+    </script>
+@endif
+
+@if(Auth::check() && session()->has('vpnError'))
+    <script>
+        document.addEventListener('alpine:init', () => {
+            window.notyf.error("{{ session()->get('vpnError') }}", 8000)
+        });
+    </script>
+@endif

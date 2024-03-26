@@ -1,68 +1,75 @@
-## [Click to join Discord server](https://discord.gg/Kb7USXupCT)
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+
+<p align="center"><a href="https://github.com/orion-server/cms" target="_blank"><img src="https://i.imgur.com/ZqE16Ph.png" width="263" alt="OrionCMS Logo"></a></p>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<a href="https://discord.gg/zsksUjfNrA"><img src="https://img.shields.io/discord/1099836667780665364" alt="Discord"></a>
+<a href="https://github.com/orion-server/cms"><img src="https://img.shields.io/github/license/orion-server/cms" alt="License"></a>
+<a href="https://github.com/orion-server/cms"><img src="https://img.shields.io/github/last-commit/orion-server/cms" alt="Last Commit"></a>
+<a href="https://github.com/orion-server/cms"><img src="https://img.shields.io/github/stars/orion-server" alt="Stars"></a>
+</p>
+<p align="center">
+<a href="https://discord.gg/Kb7USXupCT">Join the OrionCMS Discord server</a>
 </p>
 
-## About Laravel
+## 🌀 Introduction
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**OrionCMS** (Content Management System) is a system that promotes **usability** and **manageability** for your hotel. Orion's purpose is to make your experience and that of your players the best experience possible.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Built with the most modern technologies for websites**, OrionCMS will provide a lot of security and modernity for your hotel, in addition to containing exclusive systems that will make a difference in your day-to-day.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Touching on the subject of differences, the Orion dashboard will surely surprise you. Fully responsive, elegant, secure, and real-time. Most of the updates made to the panel will be reflected in the game, **and that's really surreal**.
 
-## Learning Laravel
+The demo site can be accessed [here](https://orionprojects.net/).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# 🌟 What technologies are used in OrionCMS?
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+The main technologies that make up the structure of Orion and its systems are:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- [Laravel ^10](https://laravel.com/)
+- [AlpineJS](https://alpinejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Filament](https://filamentphp.com/)
 
-## Laravel Sponsors
+However, there are several other technologies that make the magic happen:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- [Turbolinks](https://hotwired.dev/)
+- [SASS](https://sass-lang.com/)
+- [Vite](https://vitejs.dev/)
+- [TippyJS](https://atomiks.github.io/tippyjs/)
 
-### Premium Partners
+And others...
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+# ✅ Supported Emulators
 
-## Contributing
+Currently, the only emulator supported by OrionCMS is [Arcturus](https://git.krews.org/morningstar/Arcturus-Community).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+I have plans to bring Orion to **Comet** and **Plus**, and that won't take long. If you are interested in putting OrionCMS on another emulator, join our [discord](https://discord.com/invite/Kb7USXupCT) and stay on top of updates.
 
-## Code of Conduct
+## 📕 Wiki (Installation)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+If you want to install **OrionCMS** in your hotel, know that we have an installation page ready to help you. We have an example in **Linux** and **Windows**, and if you have any questions, join our [Discord](https://discord.gg/Kb7USXupCT) and let us know about your difficulty!
 
-## Security Vulnerabilities
+The wiki site can be accessed [here](https://github.com/Orion-Server/cms/wiki).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## ⚡ Contributors
+
+We have a list of contributors who have helped us in the development of OrionCMS. We are very grateful to everyone who has contributed to the project, and we hope to continue to count on your help.
+
+- **Ekrisium** - FR translations
+- **Duckietm** - Linux/NGINX tutorials
+- **Object** - DA translations and Docker file
+- **Kaio** - Windows/IIS tutorials
+- **Lariesse** - TR translations
+- **Kamil** - DE translations
+- **Assholic** - Amazing GFX
+
+If you want to contribute to the project, join our [Discord](https://discord.gg/Kb7USXupCT) and let us know about your interest in helping us.
+
+## ✍ Leability Notice
+
+**OrionCMS** is just **a hobby for educational and open-source studies**, so **you agree to assume** all **responsibility for the use of OrionCMS** in your project. The **creator and its developers cannot be held responsible for the misuse of the system**. Rest assured that by using Orion you agree to assume responsibility and consequences for using this system.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The OrionCMS is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

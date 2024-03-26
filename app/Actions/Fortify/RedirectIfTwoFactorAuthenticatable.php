@@ -2,11 +2,14 @@
 
 namespace App\Actions\Fortify;
 
+use App\Rules\RecaptchaRule;
 use Laravel\Fortify\Fortify;
+use App\Rules\TurnstileCheck;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
+use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable as FortifyRedirectIfTwoFactorAuthenticatable;
 
-class RedirectIfAuthenticatable extends RedirectIfTwoFactorAuthenticatable
+class RedirectIfTwoFactorAuthenticatable extends FortifyRedirectIfTwoFactorAuthenticatable
 {
     /**
      * Attempt to validate the incoming credentials.
@@ -39,6 +42,8 @@ class RedirectIfAuthenticatable extends RedirectIfTwoFactorAuthenticatable
                 $this->throwFailedAuthenticationExceptionDuringMaintenance($request);
             }
 
+            $this->validateCaptcha($request->all());
+
             if (!$user->homeItems()->count()) {
                 $user->generateInitialHomeItems();
             }
@@ -60,5 +65,27 @@ class RedirectIfAuthenticatable extends RedirectIfTwoFactorAuthenticatable
         throw ValidationException::withMessages([
             Fortify::username() => ['Only staffs can login during maintenance.'],
         ]);
+    }
+
+    /**
+     * Validate all user data provided from the form.
+     *
+     * @param array<string, string> $input
+     */
+    private function validateCaptcha(array $input): void
+    {
+        $validations = [];
+
+        if(config('hotel.recaptcha.enabled')) {
+            $validations['recaptcha'] = ['required', 'string', new RecaptchaRule];
+        }
+
+		if(config('hotel.turnstile.enabled')) {
+            $validations['cf-turnstile-response'] = ['required', 'string', new TurnstileCheck];
+        }
+
+        Validator::make($input, $validations)
+            ->stopOnFirstFailure()
+            ->validate();
     }
 }

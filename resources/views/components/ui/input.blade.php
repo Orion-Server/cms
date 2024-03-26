@@ -3,7 +3,7 @@
     'label' => null,
     'labelClasses' => null,
     'placeholder' => null,
-    'autocomplete' => null,
+    'autocomplete' => 'off',
     'alpineModel' => null,
     'icon' => null,
     'disabled' => false,

@@ -251,9 +251,18 @@ class BadgePage extends Page
 
         if($this->data['image'] == $parser->getBadgeImageUrl($this->data['code'])) return;
 
-        $gdImage = imagecreatefromstring(
-            Http::get($this->data['image'])->body()
-        );
+        $image = Http::get($this->data['image']);
+
+        if(!$image->successful()) return;
+
+        $contentType = $image->header('content-type');
+
+        $gdImage = match ($contentType) {
+            'image/png' => imagecreatefrompng($this->data['image']),
+            'image/gif' => imagecreatefromgif($this->data['image']),
+            'image/jpeg' => imagecreatefromjpeg($this->data['image']),
+            default => false
+        };
 
         if ($gdImage === false) {
             Notification::make()
