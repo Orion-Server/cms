@@ -1,13 +1,18 @@
 @php
-    $gridCols = 1;
-
-    if(config('hotel.client.flash.enabled')) $gridCols++;
-    if(Auth::user()->rank >= getSetting('min_rank_to_housekeeping_login')) $gridCols++;
+    $flashClientEnabled = config('hotel.client.flash.enabled');
+    $hasHousekeepingAccess = Auth::user()->rank >= getSetting('min_rank_to_housekeeping_login');
 @endphp
 
 <div class="p-1 rounded-full bg-black/50 flex flex-col justify-center items-start">
     @if (!$fromClient)
-        <div class="grid gap-3 grid-cols-{{ $gridCols }}">
+        <div @class([
+            "grid gap-3",
+            match (true) {
+                $flashClientEnabled && $hasHousekeepingAccess => 'grid-cols-3',
+                $flashClientEnabled || $hasHousekeepingAccess => 'grid-cols-2',
+                default => 'grid-cols-1',
+            }
+        ])>
             @if(config('hotel.client.nitro.enabled'))
                 <x-ui.buttons.redirectable
                     href="{{ route('hotel.nitro') }}"
@@ -18,7 +23,7 @@
                 </x-ui.buttons.redirectable>
             @endif
 
-            @if(config('hotel.client.flash.enabled'))
+            @if($flashClientEnabled)
                 <x-ui.buttons.redirectable
                     href="{{ route('hotel.flash') }}"
                     data-turbolinks="false"
@@ -28,7 +33,7 @@
                 </x-ui.buttons.redirectable>
             @endif
 
-            @if (Auth::user()->rank >= getSetting('min_rank_to_housekeeping_login'))
+            @if ($hasHousekeepingAccess)
                 <x-ui.buttons.redirectable
                     href="/admin"
                     target="_blank"

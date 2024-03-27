@@ -17,6 +17,10 @@ class Notification {
             init() {
                 this.fetchUnreadNotificationsCount()
 
+                setInterval(() => {
+                    this.fetchUnreadNotificationsCount()
+                }, this.getTimeInMinutes(1))
+
                 this.$watch('opened', async value => {
                     if(!value) return
 
@@ -32,6 +36,7 @@ class Notification {
                         this.unreadNotificationsCount = response.data.unread_count
 
                         if(this.unreadNotificationsCount > 0) {
+                            document.title = document.title.replace(/\([0-9]+\)/, '')
                             document.title = `(${this.unreadNotificationsCount}) ${document.title}`
                         }
                     })
@@ -60,6 +65,16 @@ class Notification {
                     })
 
                 this.loading = false
+            },
+
+            getAvatarFigure(figure, params) {
+                const avatarFigure = figureUrl.replace('%FIGURE%', figure).replace('%PARAMS%', params)
+
+                return `url('${avatarFigure}')`
+            },
+
+            getTimeInMinutes(minutes) {
+                return minutes * 60 * 1000
             }
         }))
     }
