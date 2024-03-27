@@ -1,6 +1,7 @@
 <script>
     window.appUrl = (completePath) => "{{ config('app.url') }}" + completePath;
     window.registerLooks = @json(config('hotel.cms.register.register_looks'));
+    window.figureUrl = @json(getFigureUrl('%FIGURE%', '%PARAMS%'));
     window.__ = (key) => {
         const translations = {
             'You have been registered successfully': "{{ __('You have been registered successfully') }}",

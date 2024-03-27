@@ -2,14 +2,18 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use App\Services\ProfileService;
 use App\Services\SettingsService;
 use App\Enums\ArticleReactionType;
+use App\Services\CacheTimeService;
 use App\Services\FindRetrosService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Srmklive\PayPal\Services\PayPal;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 use App\Services\Parsers\ExternalTextsParser;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
@@ -34,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->bootGlobalViewHelpers();
 
-        if (App::isProduction() && config('hotel.force_https')) {
+        if (config('hotel.force_https')) {
             URL::forceScheme('https');
         }
 

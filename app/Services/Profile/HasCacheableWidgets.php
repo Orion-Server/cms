@@ -4,6 +4,7 @@ namespace App\Services\Profile;
 
 use App\Models\User;
 use App\Models\Home\UserHomeItem;
+use App\Services\CacheTimeService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 
@@ -12,7 +13,7 @@ trait HasCacheableWidgets
     public function getCacheableWidgetData(User $user, UserHomeItem $item): User
     {
         $cacheKey = $this->getWidgetContentCacheKey($user, $item);
-        $cacheableTime = $this->getWidgetContentCacheTime();
+        $cacheableTime = CacheTimeService::getForHomeWidgetContent();
 
         if(in_array($item->widget_type, ['my-rating', 'my-guestbook'])) $cacheableTime = 0;
 
@@ -25,11 +26,6 @@ trait HasCacheableWidgets
             'my-guestbook' => $user->loadGuestbookForProfile(),
             default => $user
         });
-    }
-
-    public function getWidgetContentCacheTime(): int
-    {
-        return App::isLocal() ? 0 : 30;
     }
 
     public function clearWidgetContentCache(User $user, UserHomeItem $widget): void

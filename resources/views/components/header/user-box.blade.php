@@ -1,3 +1,7 @@
+@props([
+    'unreadNotificationsCount' => 0
+])
+
 <div class="relative w-full flex bg-white dark:bg-slate-950 h-24 dark:shadow-none rounded-lg shadow-lg dark:divide-slate-800">
     <div class="w-full h-full flex">
         <div class="w-32 h-full p-1">
@@ -57,15 +61,29 @@
                 </a>
             </div>
             <div class="w-full flex justify-start items-center divide-x h-8 dark:divide-slate-800">
-                <a
-                    class="flex flex-1 h-full rounded-bl-lg items-center justify-center hover:bg-gray-50 dark:hover:bg-slate-800"
-                    href=""
-                    data-tippy
-                    data-tippy-content="<small>{{ __('My Notifications') }}</small>"
-                    data-tippy-placement="bottom"
+                <div
+                    class="flex relative flex-1 cursor-pointer h-full rounded-bl-lg items-center justify-center hover:bg-gray-50 dark:hover:bg-slate-800"
+                    x-bind:class="{ 'bg-gray-50 dark:bg-slate-800': opened }"
+                    @click.self="opened = !opened"
+                    @click.away="opened = false"
+                    x-data="notification"
                 >
-                    <i class="fa-regular fa-bell text-slate-700 dark:text-white"></i>
-                </a>
+                    <i
+                        class="fa-bell text-slate-700 dark:text-white"
+                        x-bind:class="{ 'fa-regular': !opened, 'fa-solid': opened }"
+                        @click.self="opened = !opened"
+                    ></i>
+
+                    <span
+                        x-show="unreadNotificationsCount > 0"
+                        x-text="unreadNotificationsCount"
+                        x-transition:enter="transition ease-out duration-300"
+                        @click.self="opened = !opened"
+                        class="text-xxs animate-pulse text-slate-100 py-px px-2 bg-red-500 rounded-full"
+                    ></span>
+
+                    @include('components.header.fragments.user-notifications')
+                </div>
                 <a
                     class="flex flex-1 relative h-full items-center justify-center hover:bg-gray-50 dark:hover:bg-slate-800"
                     href="{{ route('users.purchases') }}"
