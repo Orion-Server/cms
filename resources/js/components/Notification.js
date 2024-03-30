@@ -13,6 +13,7 @@ class Notification {
             delay: 15000,
             lastFetchDelay: 0,
             loading: false,
+            actionsDelay: false,
 
             init() {
                 this.fetchUnreadNotificationsCount()
@@ -87,6 +88,46 @@ class Notification {
                 this.$nextTick(() => {
                     Turbolinks.visit(notification.url)
                 })
+            },
+
+            async markAllAsRead() {
+                if(this.actionsDelay) return
+
+                this.actionsDelay = true
+
+                await axios.post('/user/notifications/mark-all-as-read')
+                    .then(response => {
+                        if(!response.data.success) return
+
+                        this.unreadNotificationsCount = 0
+
+                        this.notifications.forEach(notification => {
+                            notification.state = 'read'
+                        })
+                    })
+                    .catch(e => {
+                        console.log('[Notification] - Error marking all as read', e)
+                    })
+
+                setTimeout(() => this.actionsDelay = false, 1000)
+            },
+
+            async deleteAllNotifications() {
+                if(this.actionsDelay) return
+
+                this.actionsDelay = true
+
+                await axios.post('/user/notifications/delete-all')
+                    .then(response => {
+                        if(!response.data.success) return
+
+                        this.notifications = []
+                    })
+                    .catch(e => {
+                        console.log('[Notification] - Error deleting all notifications', e)
+                    })
+
+                setTimeout(() => this.actionsDelay = false, 1000)
             }
         }))
     }

@@ -157,6 +157,9 @@ Route::name('users.')
                         Route::post('/', [UserNotificationController::class, 'index'])->name('index');
                         Route::post('/count', [UserNotificationController::class, 'count'])->name('count');
                         Route::post('/visit', [UserNotificationController::class, 'visit'])->name('visit');
+
+                        Route::post('/mark-all-as-read', [UserNotificationController::class, 'markAllAsRead'])->name('mark-all-as-read');
+                        Route::post('/delete-all', [UserNotificationController::class, 'deleteAllNotifications'])->name('delete-all');
                     });
             });
     });

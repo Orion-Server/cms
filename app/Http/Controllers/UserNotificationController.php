@@ -56,4 +56,23 @@ class UserNotificationController extends Controller
 
         return $this->jsonResponse([]);
     }
+
+    public function markAllAsRead()
+    {
+        Auth::user()->notifications()
+            ->whereNot('state', 'read')
+            ->update([
+                'state' => NotificationState::Read,
+                'read_at' => now()
+            ]);
+
+        return $this->jsonResponse([]);
+    }
+
+    public function deleteAllNotifications()
+    {
+        Auth::user()->notifications()->delete();
+
+        return $this->jsonResponse([]);
+    }
 }
