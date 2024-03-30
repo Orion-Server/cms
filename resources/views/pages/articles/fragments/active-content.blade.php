@@ -39,9 +39,18 @@
             <span class="text-xs w-full dark:text-slate-200"><b class="text-zinc-600 dark:text-slate-200">{{ __('Date') }}:</b> {{ $activeArticle->created_at->format('Y-m-d H:i') }}</span>
         </div>
         <div class="w-full lg:w-2/3 h-full flex-col lg:flex-row relative divide-y dark:divide-slate-800 pl-2">
-            <div class="w-full h-10 lg:h-1/2 flex items-center">
-                <x-ui.toggle label="{{ __('Always get notifications from this author') }}" />
+            @auth
+            <div
+                class="w-full h-10 lg:h-1/2 flex items-center"
+                x-data="articleNotification('{{ route('articles.author-notifications.toggle', [$activeArticle->id, $activeArticle->slug]) }}', {{ $activeArticle->user->followers->contains('user_id', \Auth::id()) ? 'true' : 'false' }})"
+            >
+                <x-ui.toggle
+                    alpine-model="isSubscriber"
+                    disabled="delay"
+                    label="{{ __('Always get notifications from this author') }}"
+                />
             </div>
+            @endauth
             <div class="w-full h-10 lg:h-1/2 py-1 flex gap-1 items-center justify-start flex-wrap">
                 @forelse ($activeArticle->tags as $tag)
                     <span @class([

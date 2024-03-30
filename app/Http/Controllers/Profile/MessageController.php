@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Profile;
 
+use App\Enums\NotificationType;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -34,6 +35,8 @@ class MessageController extends Controller
             'user_id' => $authUser->id,
             'content' => PreventXssService::sanitize($data['content'])
         ]);
+
+        $user->notify($authUser, NotificationType::ProfileMessage, route('users.profile.show', $user->username));
 
         return $this->jsonResponse([
             'href' => route('users.profile.show', $user->username)

@@ -26,7 +26,7 @@ class UserNotification extends Model
         'formatted_date'
     ];
 
-    public function sender(): BelongsTo
+    public function sender(): null|BelongsTo
     {
         return $this->belongsTo(User::class, 'sender_id');
     }

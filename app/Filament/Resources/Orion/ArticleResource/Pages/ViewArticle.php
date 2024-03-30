@@ -5,6 +5,9 @@ namespace App\Filament\Resources\Orion\ArticleResource\Pages;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 use App\Filament\Resources\Orion\ArticleResource;
+use Filament\Actions\Action;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class ViewArticle extends ViewRecord
 {
@@ -13,6 +16,15 @@ class ViewArticle extends ViewRecord
     public function getHeaderActions(): array
     {
         return [
+            Action::make('Send Notification')
+                ->label(__('Send notifications'))
+                ->color('gray')
+                ->visible(fn (Model $record) => $record->user_id === Auth::id())
+                ->requiresConfirmation()
+                ->action(function(Model $record) {
+                    $record->createFollowersNotification();
+                }),
+
             EditAction::make()
         ];
     }

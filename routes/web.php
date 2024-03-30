@@ -96,6 +96,10 @@ Route::prefix('articles')
         Route::post('{id}/{slug}/react', [ArticleController::class, 'toggleReaction'])
             ->middleware('auth')
             ->name('reactions.toggle');
+
+        Route::post('{id}/{slug}/author-notifications/toggle', [ArticleController::class, 'toggleAuthorNotifications'])
+            ->middleware('auth')
+            ->name('author-notifications.toggle');
     });
 
 Route::prefix('community')
@@ -152,6 +156,7 @@ Route::name('users.')
                     ->group(function () {
                         Route::post('/', [UserNotificationController::class, 'index'])->name('index');
                         Route::post('/count', [UserNotificationController::class, 'count'])->name('count');
+                        Route::post('/visit', [UserNotificationController::class, 'visit'])->name('visit');
                     });
             });
     });

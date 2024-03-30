@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Article;
 
+use App\Enums\NotificationType;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -30,6 +31,8 @@ class ArticleCommentController extends Controller
             'content' => PreventXssService::sanitize($data['content']),
             'user_id' => $user->id
         ]);
+
+        $article->user->notify($user, NotificationType::ArticleCommented, route('articles.show', ['id' => $article->id, 'slug' => $article->slug]));
 
         return $this->jsonResponse([
             'comment' => $comment,

@@ -10,7 +10,7 @@ class Notification {
             opened: false,
             notifications: [],
             unreadNotificationsCount: 0,
-            delay: 5000,
+            delay: 15000,
             lastFetchDelay: 0,
             loading: false,
 
@@ -75,6 +75,18 @@ class Notification {
 
             getTimeInMinutes(minutes) {
                 return minutes * 60 * 1000
+            },
+
+            async visitNotification(notification) {
+                if(!notification.url || !notification.url?.length) return
+
+                if(notification.state != 'read') {
+                    await axios.post('/user/notifications/visit', { id: notification.id })
+                }
+
+                this.$nextTick(() => {
+                    Turbolinks.visit(notification.url)
+                })
             }
         }))
     }

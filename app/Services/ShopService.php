@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Room;
 use App\Models\User;
 use App\Enums\CurrencyType;
+use App\Enums\NotificationType;
 use App\Models\ItemDefinition;
 use App\Models\User\UserOrder;
 use App\Models\ShopProductItem;
@@ -80,6 +81,8 @@ class ShopService
                 return;
             }
         }
+
+        $user->notify(null, NotificationType::ProductDelivered, null);
 
         $order->update([
             'is_delivered' => true

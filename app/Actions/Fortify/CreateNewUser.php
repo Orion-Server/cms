@@ -5,6 +5,7 @@ namespace App\Actions\Fortify;
 use App\Models\User;
 use App\Rules\RecaptchaRule;
 use App\Rules\TurnstileCheck;
+use App\Enums\NotificationType;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -58,6 +59,8 @@ class CreateNewUser implements CreatesNewUsers
             )->first();
 
         if(!$referrerCodeOwner) return;
+
+        $referrerCodeOwner->notify($user, NotificationType::ReferrerUser, route('users.profile.show', $user->username));
 
         $user->update([
             'referrer_code' => $referrerCodeOwner->referral_code

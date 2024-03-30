@@ -245,6 +245,11 @@ class CmsSettingsSeeder extends Seeder
                 'force_housekeeping_two_factor',
                 '1',
                 'Determines if the staff should be forced to use two-factor authentication to login into the housekeeping'
+            ],
+            [
+                'staff_notification_image',
+                'https://i.imgur.com/8IcBBTF.gif',
+                'The staff notification image to show on the CMS'
             ]
         ];
     }

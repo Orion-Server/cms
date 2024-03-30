@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Profile;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Enums\NotificationType;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 
@@ -27,9 +28,13 @@ class RatingController extends Controller
             ], 400);
         }
 
-        $user->ratings()->updateOrCreate(['user_id' => \Auth::id()], [
+        $rating = $user->ratings()->updateOrCreate(['user_id' => \Auth::id()], [
             'rating' => $data['rating']
         ]);
+
+        if($rating->wasRecentlyCreated) {
+            $user->notify(\Auth::user(), NotificationType::ProfileRating, route('users.profile.show', $user->username));
+        }
 
         return $this->jsonResponse([
             'href' => route('users.profile.show', $user->username)

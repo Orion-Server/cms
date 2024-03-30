@@ -79,7 +79,7 @@ class ArticleResource extends Resource
                             Toggle::make('visible')
                                 ->onIcon('heroicon-s-check')
                                 ->label(__('filament::resources.inputs.visible'))
-                                ->default(false)
+                                ->default(true)
                                 ->offIcon('heroicon-s-x-mark'),
 
                             Toggle::make('fixed')

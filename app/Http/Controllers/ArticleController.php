@@ -6,6 +6,7 @@ use App\Models\Article;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Enums\ArticleReactionType;
+use App\Models\AuthorNotification;
 
 class ArticleController extends Controller
 {
@@ -73,6 +74,31 @@ class ArticleController extends Controller
         return $this->jsonResponse([
             'message' => __('Successful!'),
             'href' => route('articles.show', [$activeArticle->id, $activeArticle->slug, '#article-content'])
+        ]);
+    }
+
+    public function toggleAuthorNotifications(int $id = null, string $slug = null, Request $request)
+    {
+        if (!$activeArticle = Article::fromIdAndSlug($id, $slug, false)->first()) {
+            return $this->jsonResponse([
+                'message' => __('Article not found')
+            ], 404);
+        }
+
+        $notification = AuthorNotification::firstOrCreate([
+            'user_id' => \Auth::id(),
+            'author_id' => $activeArticle->user->id
+        ]);
+
+        if (!$notification->wasRecentlyCreated) {
+            $notification->active = !$notification->active;
+            $notification->save();
+        }
+
+        return $this->jsonResponse([
+            'message' => $notification->active || $notification->wasRecentlyCreated
+                ? __('You will receive notifications from :a from now on!', ['a' => $activeArticle->user->username])
+                : __('You will no longer receive notifications from :a!', ['a' => $activeArticle->user->username])
         ]);
     }
 

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\NotificationType;
+use App\Models\Compositions\HasNotificationUrl;
 use App\Models\Article\{
     ArticleComment,
     ArticleReaction
@@ -17,6 +19,7 @@ use Illuminate\Database\Eloquent\{
 class Article extends Model
 {
     use HasFactory;
+    use HasNotificationUrl;
 
     protected $guarded = [];
 
@@ -38,7 +41,7 @@ class Article extends Model
             $article->predominant_color = getPredominantImageColor($article->image);
         });
 
-        static::updating(function ($article) {
+        static::updating(function (Article $article) {
             $article->slug = \Str::slug($article->title);
 
             if($article->isDirty('image')) {
@@ -95,7 +98,8 @@ class Article extends Model
         $query->with([
             'user:id,username,look,gender',
             'tags',
-            'reactions' => fn ($query) => $query->defaultRelationships()
+            'reactions' => fn ($query) => $query->defaultRelationships(),
+            'user.followers'
         ]);
     }
 
@@ -124,5 +128,14 @@ class Article extends Model
         return new Attribute(
             get: fn() => isDarkColor($this->predominant_color) ? '#fff' : '#000'
         );
+    }
+
+    public function createFollowersNotification(): void
+    {
+        $this->user->followers()
+            ->with('user:id,username')
+            ->each(fn (AuthorNotification $follower) =>
+                $follower->user->notify($this->user, NotificationType::ArticlePosted, $this->getNotificationUrl())
+            );
     }
 }

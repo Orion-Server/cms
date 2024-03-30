@@ -337,5 +337,13 @@
     "Completed": "Completed",
     "Pending": "Pending",
     "Cancelled": "Cancelled",
-    "Yes": "Yes"
+    "Yes": "Yes",
+    "Send notifications": "Send notifications",
+    "just posted an article.": "just posted an article.",
+    "just commented on your article.": "just commented on your article.",
+    "You will receive notifications from :a from now on!": "You will receive notifications from :a from now on!",
+    "You will no longer receive notifications from :a!": "You will no longer receive notifications from :a!",
+    "left a message on your profile.": "left a message on your profile.",
+    "Your purchase has been delivered! Thank you for supporting us.": "Your purchase has been delivered! Thank you for supporting us.",
+    "registered using your referral link.": "registered using your referral link."
 }
