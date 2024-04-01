@@ -308,6 +308,10 @@ return [
         'auto_pixels_amount' => 'Quantidade de Pixels Automático',
         'auto_gotw_amount' => 'Quantidade de GOTW Pontos Automático',
         'auto_points_amount' => 'Quantidade de Pontos Automático',
+        'users' => 'Usuários',
+        'message' => 'Mensagem',
+        'url' => 'URL',
+        'as_staff' => 'Enviar como Staff do Hotel (Anônimo)'
     ],
 
     'columns' => [
@@ -642,28 +646,29 @@ return [
 
     'sections' => [
         'permissions' => [
-            'title' => 'Permissions Section',
-            'description' => "<b>Tip:</b> If you prefer, you can leave all the fields below empty when creating a rank. It will come with the bank's default permissions (configured by Arcturus)",
+            'title' => 'Permissões',
+            'description' => "<b>Dica:</b> Se preferir, você pode deixar todos os campos abaixo vazios ao criar uma classificação. Ela terá as permissões padrão do banco (configuradas pelo Arcturus)",
         ]
     ],
 
     'roles' => [
-        'view_any' => 'View Any',
-        'view' => 'View',
-        'create' => 'Create',
-        'update' => 'Update',
-        'delete' => 'Delete',
-        'delete_any' => 'Delete Any',
-        'restore' => 'Restore',
-        'restore_any' => 'Restore Any',
-        'force_delete' => 'Force Delete',
-        'force_delete_any' => 'Force Delete Any',
-        'replicate' => 'Replicate',
-        'reorder' => 'Reorder',
+        'view_any' => 'Ver Qualquer',
+        'view' => 'Ver',
+        'create' => 'Criar',
+        'update' => 'Atualizar',
+        'delete' => 'Deletar',
+        'delete_any' => 'Deletar Qualquer',
+        'restore' => 'Restaurar',
+        'restore_any' => 'Restaurar Qualquer',
+        'force_delete' => 'Forçar Deletar',
+        'force_delete_any' => 'Forçar Deletar Qualquer',
+        'replicate' => 'Replicar',
+        'reorder' => 'Reordenar',
     ],
 
     'actions' => [
-        'select_all' => 'Select All',
-        'deselect_all' => 'Deselect All',
+        'select_all' => 'Selecionar Todos',
+        'deselect_all' => 'Desmarcar Todos',
+        'send_notifications' => 'Enviar Notificações',
     ]
 ];

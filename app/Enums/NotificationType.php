@@ -13,6 +13,8 @@ enum NotificationType: int
     case ProductDelivered = 5;
     case ReferrerUser = 6;
 
+    case HousekeepingCustomMessage = 7;
+
     public function getMessage(): string
     {
         return match ($this) {

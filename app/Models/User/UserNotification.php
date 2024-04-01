@@ -41,6 +41,11 @@ class UserNotification extends Model
         return $query->where('state', NotificationState::Unread);
     }
 
+    public function scopeStaff($query)
+    {
+        return $query->where('recipient_id', 0);
+    }
+
     public function scopeWithSender($query)
     {
         $query->with([

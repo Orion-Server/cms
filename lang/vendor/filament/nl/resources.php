@@ -309,6 +309,10 @@ return [
         'auto_pixels_amount' => 'Auto Pixels hoeveelheid',
         'auto_gotw_amount' => 'Auto GOTW hoeveelheid',
         'auto_points_amount' => 'Auto Points hoeveelheid',
+        'users' => 'Users',
+        'message' => 'Message',
+        'url' => 'URL',
+        'as_staff' => 'Send as Hotel Staff (Anonymous)',
     ],
 
     'columns' => [
@@ -666,5 +670,6 @@ return [
     'actions' => [
         'select_all' => 'Selecteer alles',
         'deselect_all' => 'Deselecteer alles',
+        'send_notifications' => 'Stuur notificaties',
     ]
 ];
