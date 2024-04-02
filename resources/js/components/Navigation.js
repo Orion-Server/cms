@@ -1,8 +1,6 @@
 import Alpine from 'alpinejs'
 
 class Navigation {
-    started = false
-
     start() {
         document.addEventListener('alpine:init', this._startComponent)
     }

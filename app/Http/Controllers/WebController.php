@@ -8,6 +8,7 @@ use App\Models\Article;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
@@ -85,5 +86,21 @@ class WebController extends Controller
     public function maintenance(): View
     {
         return view('pages.maintenance');
+    }
+
+    public function subscribeToPushNotifications(Request $request)
+    {
+        $request->validate([
+            'endpoint' => 'required|string',
+            'public_key' => 'required|string',
+            'auth_token' => 'required|string',
+            'content_encoding' => 'required|string',
+        ]);
+
+        /** @var User $user */
+        $user = $request->user();
+        $user->updatePushSubscription($request->endpoint, $request->public_key, $request->auth_token, $request->content_encoding);
+
+        return response()->json(['success' => true]);
     }
 }

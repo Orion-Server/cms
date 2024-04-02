@@ -25,6 +25,7 @@ import ArticleReaction from '../components/Pages/Articles/ArticleReaction'
 import ImageVisualizationWrapper from '../external/ImageVisualizationWrapper'
 import ArticleNotification from '../components/Pages/Articles/ArticleNotification'
 import UserProfileManager from '../components/Pages/Users/UserProfile/UserProfileManager'
+import WebPushNotifications from '../components/WebPushNotifications'
 
 export default class WebManager {
     static start() {
@@ -71,6 +72,7 @@ export default class WebManager {
         ShopComponent.start()
 
         UserProfileManager.start()
+        WebPushNotifications.start()
     }
 
     static startTooltips() {

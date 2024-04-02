@@ -1,8 +1,6 @@
 import Alpine from 'alpinejs'
 
 class Orion {
-    started = false
-
     start() {
         document.addEventListener('alpine:init', this._startComponent)
     }

@@ -51,8 +51,10 @@
     @includeWhen(!isset($cleanLayout), 'layouts.header')
 
     <main @class([
-        "mt-4" => !isset($cleanLayout)
-    ])>
+            "mt-4" => !isset($cleanLayout)
+        ])
+        @if(Auth::check()) x-data="webPushNotifications()" @endif
+    >
         @yield('content')
     </main>
 

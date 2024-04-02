@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\NotificationType;
-use App\Models\Compositions\HasNotificationUrl;
 use App\Models\Article\{
     ArticleComment,
     ArticleReaction
@@ -19,7 +18,6 @@ use Illuminate\Database\Eloquent\{
 class Article extends Model
 {
     use HasFactory;
-    use HasNotificationUrl;
 
     protected $guarded = [];
 
@@ -132,10 +130,12 @@ class Article extends Model
 
     public function createFollowersNotification(): void
     {
+        $url = route('articles.show', [$this->id, $this->slug]);
+
         $this->user->followers()
             ->with('user:id,username')
             ->each(fn (AuthorNotification $follower) =>
-                $follower->user->notify($this->user, NotificationType::ArticlePosted, $this->getNotificationUrl())
+                $follower->user->notify($this->user, NotificationType::ArticlePosted, $url)
             );
     }
 }

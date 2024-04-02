@@ -120,7 +120,12 @@ class BadgePage extends Page
         $badgeCode = $this->form->getState()['code'] ?? null;
 
         if (empty($badgeCode)) {
-            $this->notify('danger', __('filament::resources.notifications.badge_code_required'));
+            Notification::make()
+                ->icon('heroicon-o-exclamation-triangle')
+                ->iconColor('danger')
+                ->body(__('filament::resources.notifications.badge_code_required'))
+                ->send();
+
             return;
         }
 

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use App\Enums\NotificationType;
 use Filament\Panel;
+use App\Enums\NotificationType;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\{
     Casts\Attribute,
@@ -21,7 +22,6 @@ use App\Models\{
     User\UserOrder,
     Article\ArticleComment
 };
-use App\Models\Compositions\HasNotificationUrl;
 use App\Models\Compositions\User\{
     HasCurrency,
     HasItems,
@@ -43,7 +43,7 @@ use Filament\Models\Contracts\{
 
 class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
 {
-    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable, HasPushSubscriptions;
     use HasCurrency, HasSettings, HasProfile, HasItems, HasRoles;
 
     public $timestamps = false;

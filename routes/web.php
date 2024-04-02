@@ -124,6 +124,8 @@ Route::prefix('community')
 Route::name('users.')
     ->middleware('auth')
     ->group(function () {
+        Route::post('push-notifications/subscribe', [WebController::class, 'subscribeToPushNotifications'])->name('push-notifications.subscribe');
+
         Route::prefix('profile')
             ->name('profile.')
             ->middleware('throttle:120,1')
