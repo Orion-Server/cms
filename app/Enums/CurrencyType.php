@@ -5,7 +5,7 @@ namespace App\Enums;
 enum CurrencyType: int
 {
     case Credits = -1;
-    case Duckets = 0;
+    case Duckets = 0; // Duckets & Pixels are the same
     case Diamonds = 5;
     case Points = 101;
 

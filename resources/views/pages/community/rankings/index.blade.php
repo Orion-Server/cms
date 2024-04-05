@@ -4,6 +4,7 @@
     'diamonds' => __('Top Diamonds'),
     'respects' => __('Top Respects'),
     'coins' => __('Top Credits'),
+    'duckets' => __('Top Duckets'),
     'pixels' => __('Top Pixels'),
     'points' => __('Top Points'),
     'online-time' => __('Top Online Time')
@@ -13,6 +14,7 @@
     'diamonds' => __('The richest users in diamonds'),
     'respects' => __('The richest users in respects'),
     'coins' => __('The richest users in coins'),
+    'duckets' => __('The richest users in duckets'),
     'pixels' => __('The richest users in pixels'),
     'points' => __('The richest users in points'),
     'online-time' => __('Users who play the most')
