@@ -35,9 +35,9 @@
             data-tippy-singleton
             data-tippy-content="<small>{{ $reaction->user->username }}</small>"
             @class([
-                "w-12 h-12 group shadow-lg relative rounded-lg bg-center bg-no-repeat border-b-2 cursor-pointer even:bg-blue-300 dark:even:bg-blue-600 bg-blue-400 dark:bg-blue-400 dark:text-white border-blue-500",
+                "w-12 h-12 group shadow-lg relative rounded-lg bg-no-repeat border-b-2 cursor-pointer even:bg-blue-300 dark:even:bg-blue-600 bg-blue-400 dark:bg-blue-400 dark:text-white border-blue-500",
                 "bg-center" => !$usingNitroImager,
-                "bg-[-20px_-27px]" => $usingNitroImager
+                "bg-[-8px_-18px]" => $usingNitroImager
             ])
             style="background-image: url('{{ getFigureUrl($reaction->user->look, 'head_direction=2&size=m&gesture=sml&headonly=1') }}')"
         >
