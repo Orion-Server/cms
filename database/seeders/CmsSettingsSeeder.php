@@ -53,7 +53,7 @@ class CmsSettingsSeeder extends Seeder
             ],
             [
                 'figure_imager',
-                'https://www.habbo.com.br/habbo-imaging/avatarimage?figure=',
+                'https://www.habbo.com/habbo-imaging/avatarimage?figure=',
                 'The imager base URL to render the user look on the CMS (by figure)'
             ],
             [
@@ -238,7 +238,7 @@ class CmsSettingsSeeder extends Seeder
             ],
             [
                 'using_nitro_imager',
-                '1',
+                '0',
                 'Determines if the hotel is using the Nitro imager'
             ],
             [
