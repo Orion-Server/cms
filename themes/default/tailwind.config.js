@@ -4,11 +4,10 @@ import typography from '@tailwindcss/typography'
 
 export default {
     content: [
-        "./resources/**/*.blade.php",
-        "./resources/**/*.js",
-        "./resources/**/*.vue",
-        './vendor/filament/**/*.blade.php',
-        './app/Filament/**/*.php',
+        "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
+        "./storage/framework/views/*.php",
+        "./resources/views/**/*.blade.php",
+        "./themes/test/**/*.{blade.php,js,vue,ts}",
     ],
     darkMode: 'class',
     theme: {
