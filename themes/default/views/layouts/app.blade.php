@@ -42,7 +42,7 @@
 
     @includeWhen(!isset($cleanLayout), 'partials.js-parities')
 
-    @vite(['resources/scss/app.scss'])
+    @vite(['themes/default/scss/app.scss'], 'default')
 </head>
 <body
     class="pt-12 lg:pt-0 overflow-x-hidden"
@@ -59,7 +59,7 @@
     @includeWhen(!isset($cleanLayout), 'layouts.footer')
     <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/clipboard.min.js') }}"></script>
-    @vite(['resources/js/app.js'])
+    @vite(['themes/default/js/app.js'], 'default')
     @stack('scripts')
 </body>
 </html>

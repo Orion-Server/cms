@@ -250,6 +250,11 @@ class CmsSettingsSeeder extends Seeder
                 'staff_notification_image',
                 'https://i.imgur.com/8IcBBTF.gif',
                 'The staff notification image to show on the CMS'
+            ],
+            [
+                'active_cms_theme',
+                'default',
+                'The active theme on the CMS'
             ]
         ];
     }
