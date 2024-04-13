@@ -127,6 +127,11 @@ return [
             'label' => 'Texto',
             'plural' => 'Textos',
         ],
+        'chatlog-private' => [
+            'navigation_label' => 'Gerenciar Mensagens Privadas',
+            'label' => 'Mensagem Privada',
+            'plural' => 'Mensagens Privadas',
+        ],
 
         // Relations
         'settings' => [
@@ -316,7 +321,10 @@ return [
         'users' => 'Usuários',
         'message' => 'Mensagem',
         'url' => 'URL',
-        'as_staff' => 'Enviar como Staff do Hotel (Anônimo)'
+        'as_staff' => 'Enviar como Staff do Hotel (Anônimo)',
+        'sender' => 'Remetente',
+        'receiver' => 'Destinatário',
+        'message' => 'Mensagem',
     ],
 
     'columns' => [
@@ -376,6 +384,9 @@ return [
         'is_hidden' => 'Oculto?',
         'prefix' => 'Prefixo',
         'hidden' => 'Oculto',
+        'sender' => 'Remetente',
+        'receiver' => 'Destinatário',
+        'message' => 'Mensagem',
     ],
 
     'options' => [

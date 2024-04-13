@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Hotel\EmulatorTextResource\Pages;
 
 use Filament\Resources\Pages\ManageRecords;
 use App\Filament\Resources\Hotel\EmulatorTextResource;
+use Filament\Actions\CreateAction;
 
 class ManageEmulatorTexts extends ManageRecords
 {
@@ -11,7 +12,9 @@ class ManageEmulatorTexts extends ManageRecords
 
     protected function getActions(): array
     {
-        return [];
+        return [
+            CreateAction::make('create')
+        ];
     }
 
     public function getPrimaryKey(): string

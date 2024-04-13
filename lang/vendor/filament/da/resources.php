@@ -127,6 +127,11 @@ return [
             'label' => 'Emulator Text',
             'plural' => 'Emulator Texts',
         ],
+        'chatlog-private' => [
+            'navigation_label' => 'Manage Private Chatlogs',
+            'label' => 'Private Chatlog',
+            'plural' => 'Private Chatlogs',
+        ],
 
         // Relations
         'settings' => [
@@ -317,6 +322,9 @@ return [
         'message' => 'Message',
         'url' => 'URL',
         'as_staff' => 'Send as Hotel Staff (Anonymous)',
+        'sender' => 'Sender',
+        'receiver' => 'Receiver',
+        'message' => 'Message',
     ],
 
     'columns' => [
@@ -376,6 +384,9 @@ return [
         'is_hidden' => 'Is Hidden?',
         'prefix' => 'Prefix',
         'hidden' => 'Hidden',
+        'sender' => 'Sender',
+        'receiver' => 'Receiver',
+        'message' => 'Message',
     ],
 
     'options' => [
