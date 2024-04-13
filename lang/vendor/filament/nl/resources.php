@@ -122,6 +122,11 @@ return [
             'label' => 'Toestemming',
             'plural' => 'Toestemming',
         ],
+        'emulator-texts' => [
+            'navigation_label' => 'Manage Emulator Texts',
+            'label' => 'Emulator Text',
+            'plural' => 'Emulator Texts',
+        ],
 
         // Relations
         'settings' => [

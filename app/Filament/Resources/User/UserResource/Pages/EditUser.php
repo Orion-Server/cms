@@ -122,6 +122,7 @@ class EditUser extends EditRecord
     private function treatChangedUserRank(Model $user, array $data, RconService $rcon): void
     {
         if($data['rank'] == $user->rank) return;
+        if($data['rank'] > auth()->user()->rank) return;
 
         if($user->online) {
             $rcon->sendSafelyFromDashboard('alertUser',

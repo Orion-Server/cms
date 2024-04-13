@@ -71,7 +71,7 @@ class PermissionRoleSeeder extends Seeder
 
         // 'Super Mod' or minor
         if($index >= 1) {
-            array_push($policiesException, ['cms_setting', 'emulator_setting', 'writeable_box', 'navigation', 'user', 'shop_category', 'shop_product', 'shop_order']);
+            array_push($policiesException, ['cms_setting', 'emulator_setting', 'writeable_box', 'navigation', 'user', 'shop_category', 'shop_product', 'shop_order', 'emulator_text']);
         }
 
         // 'Moderator' or minor

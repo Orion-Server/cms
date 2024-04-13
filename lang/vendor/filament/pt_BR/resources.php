@@ -122,6 +122,11 @@ return [
             'label' => 'Permissão',
             'plural' => 'Permissões',
         ],
+        'emulator-texts' => [
+            'navigation_label' => 'Gerenciar Textos do Emulador',
+            'label' => 'Texto',
+            'plural' => 'Textos',
+        ],
 
         // Relations
         'settings' => [
