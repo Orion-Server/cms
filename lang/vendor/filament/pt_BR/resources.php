@@ -129,8 +129,13 @@ return [
         ],
         'chatlog-private' => [
             'navigation_label' => 'Gerenciar Mensagens Privadas',
-            'label' => 'Mensagem Privada',
-            'plural' => 'Mensagens Privadas',
+            'label' => 'Mensagem',
+            'plural' => 'Mensagens',
+        ],
+        'chatlog-rooms' => [
+            'navigation_label' => 'Gerenciar Mensagens de Quartos',
+            'label' => 'Mensagem',
+            'plural' => 'Mensagens',
         ],
 
         // Relations
@@ -325,6 +330,7 @@ return [
         'sender' => 'Remetente',
         'receiver' => 'Destinatário',
         'message' => 'Mensagem',
+        'room' => 'Quarto',
     ],
 
     'columns' => [
@@ -387,6 +393,7 @@ return [
         'sender' => 'Remetente',
         'receiver' => 'Destinatário',
         'message' => 'Mensagem',
+        'room' => 'Quarto',
     ],
 
     'options' => [

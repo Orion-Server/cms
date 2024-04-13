@@ -11,6 +11,37 @@ use Illuminate\Support\Facades\Log;
 
 class PermissionRoleSeeder extends Seeder
 {
+    private array $strictAdministratorPermissions = [
+        'cms_setting',
+        'emulator_setting',
+        'writeable_box',
+        'navigation',
+        'user',
+        'shop_category',
+        'shop_product',
+        'shop_order',
+        'emulator_text'
+    ];
+
+    private array $strictSuperModeratorPermissions = [
+        'achievement',
+        'article',
+        'permission',
+        'help_question_category',
+        'help_question',
+        'home_item',
+        'home_category',
+        'tag',
+        'team',
+        'chatlog_private',
+        'chatlog_room'
+    ];
+
+    private array $strictModeratorPermissions = [
+        'command_log',
+        'ban'
+    ];
+
     /**
      * Run the database seeds.
      */
@@ -71,17 +102,17 @@ class PermissionRoleSeeder extends Seeder
 
         // 'Super Mod' or minor
         if($index >= 1) {
-            array_push($policiesException, ['cms_setting', 'emulator_setting', 'writeable_box', 'navigation', 'user', 'shop_category', 'shop_product', 'shop_order', 'emulator_text', 'chatlog_private']);
+            array_push($policiesException, $this->strictAdministratorPermissions);
         }
 
         // 'Moderator' or minor
         if($index >= 2) {
-            array_push($policiesException, ['achievement', 'article', 'permission', 'help_question_category', 'help_question', 'home_item', 'home_category', 'tag', 'team']);
+            array_push($policiesException, $this->strictSuperModeratorPermissions);
         }
 
         // 'Support' or minor
         if($index === 3) {
-            array_push($policiesException, ['command_log', 'ban']);
+            array_push($policiesException, $this->strictModeratorPermissions);
         }
 
         $policiesException = collect($policiesException)->flatten()->toArray();

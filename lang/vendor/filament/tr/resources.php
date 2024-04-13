@@ -132,6 +132,11 @@ return [
             'label' => 'Private Chatlog',
             'plural' => 'Private Chatlogs',
         ],
+        'chatlog-rooms' => [
+            'navigation_label' => 'Manage Room Chatlogs',
+            'label' => 'Room Chatlog',
+            'plural' => 'Room Chatlogs',
+        ],
 
         // Relations
         'settings' => [
@@ -332,7 +337,8 @@ return [
         'url' => 'URL',
         'as_staff' => 'Send as Hotel Staff (Anonymous)',
         'sender' => 'Sender',
-        'receiver' => 'Receiver'
+        'receiver' => 'Receiver',
+        'room' => 'Room',
     ],
 
     'columns' => [
@@ -395,6 +401,7 @@ return [
         'sender' => 'Sender',
         'receiver' => 'Receiver',
         'message' => 'Message',
+        'room' => 'Room',
     ],
 
     'options' => [

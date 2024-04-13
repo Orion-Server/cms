@@ -5,44 +5,49 @@ namespace App\Filament\Resources\Hotel;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
-use App\Models\ChatlogPrivate;
+use App\Models\ChatlogRoom;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Textarea;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
 use App\Filament\Traits\TranslatableResource;
-use App\Filament\Resources\Hotel\ChatlogPrivateResource\Pages;
+use App\Filament\Resources\Hotel\ChatlogRoomResource\Pages;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
 
-class ChatlogPrivateResource extends Resource
+class ChatlogRoomResource extends Resource
 {
     use TranslatableResource;
 
-    protected static ?string $model = ChatlogPrivate::class;
+    protected static ?string $model = ChatlogRoom::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
     protected static ?string $navigationGroup = 'Logs';
 
-    public static string $translateIdentifier = 'chatlog-private';
+    public static string $translateIdentifier = 'chatlog-rooms';
 
-    protected static ?string $slug = 'hotel/chatlog-private';
+    protected static ?string $slug = 'hotel/chatlog-room';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('sender.username')
-                    ->disabled()
-                    ->label(__('filament::resources.inputs.sender')),
+                TextInput::make('room.name')
+                    ->label(__('filament::resources.inputs.room'))
+                    ->columnSpanFull()
+                    ->disabled(),
 
-                TextInput::make('receiver.username')
-                    ->disabled()
-                    ->label(__('filament::resources.inputs.receiver')),
+                    TextInput::make('sender.username')
+                    ->label(__('filament::resources.inputs.sender'))
+                    ->disabled(),
 
-                Textarea::make('message')
+                    TextInput::make('receiver.username')
+                    ->label(__('filament::resources.inputs.receiver'))
+                    ->disabled(),
+
+                    Textarea::make('message')
                     ->label(__('filament::resources.inputs.message'))
                     ->columnSpanFull()
-                    ->disabled()
+                    ->disabled(),
             ]);
     }
 
@@ -50,6 +55,11 @@ class ChatlogPrivateResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('room.name')
+                    ->label(__('filament::resources.columns.room'))
+                    ->toggleable()
+                    ->searchable(isIndividual: true),
+
                 TextColumn::make('sender.username')
                     ->label(__('filament::resources.columns.sender'))
                     ->toggleable()
@@ -66,7 +76,7 @@ class ChatlogPrivateResource extends Resource
                     ->searchable(isIndividual: true)
             ])
             ->filters([
-
+                //
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -77,7 +87,7 @@ class ChatlogPrivateResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageChatlogPrivates::route('/'),
+            'index' => Pages\ManageChatlogRooms::route('/'),
         ];
     }
 }

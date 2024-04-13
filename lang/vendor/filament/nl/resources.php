@@ -132,6 +132,11 @@ return [
             'label' => 'Private Chatlog',
             'plural' => 'Private Chatlogs',
         ],
+        'chatlog-rooms' => [
+            'navigation_label' => 'Manage Room Chatlogs',
+            'label' => 'Room Chatlog',
+            'plural' => 'Room Chatlogs',
+        ],
 
         // Relations
         'settings' => [
@@ -326,6 +331,7 @@ return [
         'sender' => 'Sender',
         'receiver' => 'Receiver',
         'message' => 'Message',
+        'room' => 'Room',
     ],
 
     'columns' => [
@@ -388,6 +394,7 @@ return [
         'sender' => 'Sender',
         'receiver' => 'Receiver',
         'message' => 'Message',
+        'room' => 'Room',
     ],
 
     'options' => [
