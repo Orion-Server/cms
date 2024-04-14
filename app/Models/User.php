@@ -329,6 +329,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         return $this->two_factor_secret && !$this->hasEnabledTwoFactorAuthentication();
     }
 
+    public function chatLogs()
+    {
+        return $this->hasMany(ChatlogRoom::class, 'user_from_id');
+    }
+
     public function notify(null|User $sender, NotificationType $type, null|string $notificationUrl = null): void
     {
         $this->notifications()->create([
