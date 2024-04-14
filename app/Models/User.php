@@ -334,6 +334,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         return $this->hasMany(ChatlogRoom::class, 'user_from_id');
     }
 
+    public function chatLogsPrivate()
+    {
+        return $this->hasMany(ChatlogPrivate::class, 'user_from_id');
+    }
+
     public function notify(null|User $sender, NotificationType $type, null|string $notificationUrl = null): void
     {
         $this->notifications()->create([
