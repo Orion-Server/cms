@@ -12,7 +12,7 @@ class ChatLogRelationManager extends RelationManager
 {
     protected static string $relationship = 'chatLogs';
 
-    protected static $targetResource = ChatLogResource::class;
+    protected static $targetResource = ChatlogRoomResource::class;
 
     public function form(Form $form): Form
     {
@@ -27,11 +27,11 @@ class ChatLogRelationManager extends RelationManager
                     ->label(__('Room ID'))
 					->toggleable(),
 
-                TextColumn::make('userFrom.username')
+                TextColumn::make('sender.username')
                     ->label(__('From User'))
 					->toggleable(),
 
-                TextColumn::make('userTo.username')
+                TextColumn::make('receiver.username')
                     ->label(__('To User'))
 					->toggleable(),
 
