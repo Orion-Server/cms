@@ -73,7 +73,13 @@ class ChatlogRoomResource extends Resource
                 TextColumn::make('message')
                     ->label(__('filament::resources.columns.message'))
                     ->limit(40)
-                    ->searchable(isIndividual: true)
+                    ->searchable(isIndividual: true),
+					
+			    TextColumn::make('timestamp')
+                    ->label(__('filament::resources.columns.executed_at'))
+                    ->dateTime('Y-m-d H:i')
+					->toggleable()
+					
             ])
             ->filters([
                 //
