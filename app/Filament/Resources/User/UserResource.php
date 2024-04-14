@@ -254,6 +254,7 @@ class UserResource extends Resource
         return [
             RelationManagers\SettingsRelationManager::class,
             RelationManagers\BadgesRelationManager::class,
+		    RelationManagers\ChatLogRelationManager::class,
         ];
     }
 
