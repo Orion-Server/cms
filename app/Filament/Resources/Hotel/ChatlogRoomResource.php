@@ -56,30 +56,24 @@ class ChatlogRoomResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('room.name')
-                    ->label(__('filament::resources.inputs.room'))
+                    ->label(__('filament::resources.columns.room'))
                     ->toggleable()
                     ->searchable(isIndividual: true),
 
                 TextColumn::make('sender.username')
-                    ->label(__('filament::resources.inputs.sender'))
+                    ->label(__('filament::resources.columns.sender'))
                     ->toggleable()
                     ->searchable(isIndividual: true),
 
                 TextColumn::make('receiver.username')
-                    ->label(__('filament::resources.inputs.receiver'))
+                    ->label(__('filament::resources.columns.receiver'))
                     ->toggleable()
                     ->searchable(isIndividual: true),
 
                 TextColumn::make('message')
-                    ->label(__('filament::resources.inputs.message'))
+                    ->label(__('filament::resources.columns.message'))
                     ->limit(40)
-                    ->searchable(isIndividual: true),
-					
-			    TextColumn::make('timestamp')
-                    ->label(__('filament::resources.inputs.executed_at'))
-                    ->dateTime('Y-m-d H:i')
-					->toggleable()
-					
+                    ->searchable(isIndividual: true)				
             ])
             ->filters([
                 //
