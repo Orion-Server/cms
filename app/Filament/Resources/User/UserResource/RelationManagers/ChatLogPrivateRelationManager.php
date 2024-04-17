@@ -23,7 +23,6 @@ class ChatLogPrivateRelationManager extends RelationManager
     {
         return $table
             ->columns([
-
                 TextColumn::make('sender.username')
                     ->label(__('filament::resources.columns.sender'))
 					->toggleable(),
