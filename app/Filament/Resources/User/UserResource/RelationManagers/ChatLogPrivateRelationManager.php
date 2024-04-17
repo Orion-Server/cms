@@ -4,9 +4,8 @@ namespace App\Filament\Resources\User\UserResource\RelationManagers;
 
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Filament\Resources\Hotel\ChatlogPrivateResource;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Tables\Columns\TextColumn;
-
 
 class ChatLogPrivateRelationManager extends RelationManager
 {
@@ -22,23 +21,6 @@ class ChatLogPrivateRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->columns([
-                TextColumn::make('sender.username')
-                    ->label(__('filament::resources.columns.sender'))
-					->toggleable(),
-
-                TextColumn::make('receiver.username')
-                    ->label(__('filament::resources.columns.receiver'))
-					->toggleable(),
-
-                TextColumn::make('message')
-                    ->label(__('filament::resources.columns.message'))
-					->toggleable(),
-
-                TextColumn::make('timestamp')
-                    ->label(__('filament::resources.columns.executed_at'))
-                    ->dateTime('Y-m-d H:i')
-					->toggleable(),
-            ]);
+            ->columns(ChatlogPrivateResource::getTable());
     }
 }

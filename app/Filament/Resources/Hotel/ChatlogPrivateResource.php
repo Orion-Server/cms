@@ -49,34 +49,37 @@ class ChatlogPrivateResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                TextColumn::make('sender.username')
-                    ->label(__('filament::resources.columns.sender'))
-                    ->toggleable()
-                    ->searchable(isIndividual: true),
-
-                TextColumn::make('receiver.username')
-                    ->label(__('filament::resources.columns.receiver'))
-                    ->toggleable()
-                    ->searchable(isIndividual: true),
-
-                TextColumn::make('message')
-                    ->label(__('filament::resources.columns.message'))
-                    ->limit(40)
-                    ->searchable(isIndividual: true),
-					
-					 TextColumn::make('timestamp')
-                    ->label(__('filament::resources.columns.executed_at'))
-                    ->dateTime('Y-m-d H:i')
-					->toggleable()
-            ])
-            ->filters([
-
-            ])
+            ->columns(self::getTable())
+            ->filters([])
             ->actions([
                 Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([]);
+    }
+
+    public static function getTable(): array
+    {
+        return [
+            TextColumn::make('sender.username')
+                ->label(__('filament::resources.columns.sender'))
+                ->toggleable()
+                ->searchable(isIndividual: true),
+
+            TextColumn::make('receiver.username')
+                ->label(__('filament::resources.columns.receiver'))
+                ->toggleable()
+                ->searchable(isIndividual: true),
+
+            TextColumn::make('message')
+                ->label(__('filament::resources.columns.message'))
+                ->limit(40)
+                ->searchable(isIndividual: true),
+
+            TextColumn::make('timestamp')
+                ->label(__('filament::resources.columns.executed_at'))
+                ->dateTime('Y-m-d H:i')
+                ->toggleable(),
+        ];
     }
 
     public static function getPages(): array

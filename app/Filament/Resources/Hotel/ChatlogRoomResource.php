@@ -12,6 +12,7 @@ use App\Filament\Resources\Hotel\ChatlogRoomResource\Pages;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
 
 class ChatlogRoomResource extends Resource
 {
@@ -54,34 +55,44 @@ class ChatlogRoomResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                TextColumn::make('room.name')
-                    ->label(__('filament::resources.columns.room'))
-                    ->toggleable()
-                    ->searchable(isIndividual: true),
-
-                TextColumn::make('sender.username')
-                    ->label(__('filament::resources.columns.sender'))
-                    ->toggleable()
-                    ->searchable(isIndividual: true),
-
-                TextColumn::make('receiver.username')
-                    ->label(__('filament::resources.columns.receiver'))
-                    ->toggleable()
-                    ->searchable(isIndividual: true),
-
-                TextColumn::make('message')
-                    ->label(__('filament::resources.columns.message'))
-                    ->limit(40)
-                    ->searchable(isIndividual: true)				
-            ])
-            ->filters([
-                //
+        ->columns(self::getTable())
+        ->filters([
+            //
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([]);
+    }
+
+    public static function getTable(): array
+    {
+        return [
+            TextColumn::make('room.name')
+                ->label(__('filament::resources.columns.room'))
+                ->toggleable()
+                ->searchable(isIndividual: true),
+
+            TextColumn::make('sender.username')
+                ->label(__('filament::resources.columns.sender'))
+                ->toggleable()
+                ->searchable(isIndividual: true),
+
+            TextColumn::make('receiver.username')
+                ->label(__('filament::resources.columns.receiver'))
+                ->toggleable()
+                ->searchable(isIndividual: true),
+
+            TextColumn::make('message')
+                ->label(__('filament::resources.columns.message'))
+                ->limit(40)
+                ->searchable(isIndividual: true),
+
+            TextColumn::make('timestamp')
+                ->label(__('filament::resources.columns.executed_at'))
+                ->dateTime('Y-m-d H:i')
+                ->toggleable(),
+        ];
     }
 
     public static function getPages(): array
