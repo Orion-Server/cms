@@ -24,19 +24,19 @@ class ChatLogRelationManager extends RelationManager
         return $table
             ->columns([
                 TextColumn::make('room_id')
-                    ->label(__('filament::resources.inputs.room'))
+                    ->label(__('filament::resources.columns.room'))
 					->toggleable(),
                       
                 TextColumn::make('sender.username')
-                    ->label(__('filament::resources.inputs.sender'))
+                    ->label(__('filament::resources.columns.sender'))
 					->toggleable(),
 
                 TextColumn::make('receiver.username')
-                    ->label(__('filament::resources.inputs.receiver'))
+                    ->label(__('filament::resources.columns.receiver'))
 					->toggleable(),
 
                 TextColumn::make('message')
-                    ->label(__('filament::resources.inputs.message'))
+                    ->label(__('filament::resources.columns.message'))
 					->toggleable(),
 
                 TextColumn::make('timestamp')
