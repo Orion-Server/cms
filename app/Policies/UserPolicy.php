@@ -28,7 +28,7 @@ class UserPolicy
      */
     public function view(User $authUser, User $user): bool
     {
-        return $authUser->can('replicate::admin::user') && $authUser->rank > $user->rank;
+        return $authUser->can('view::admin::user') && $authUser->rank > $user->rank;
     }
 
     /**
@@ -50,7 +50,7 @@ class UserPolicy
      */
     public function update(User $authUser, User $user): bool
     {
-        return $authUser->can('replicate::admin::user') && $authUser->rank > $user->rank;
+        return $authUser->can('update::admin::user') && $authUser->rank > $user->rank;
     }
 
     /**
@@ -61,7 +61,7 @@ class UserPolicy
      */
     public function delete(User $authUser, User $user): bool
     {
-        return $authUser->can('replicate::admin::user') && $authUser->rank > $user->rank;
+        return $authUser->can('delete::admin::user') && $authUser->rank > $user->rank;
     }
 
     /**
@@ -83,7 +83,7 @@ class UserPolicy
      */
     public function forceDelete(User $authUser, User $user): bool
     {
-        return $authUser->can('replicate::admin::user') && $authUser->rank > $user->rank;
+        return $authUser->can('force_delete::admin::user') && $authUser->rank > $user->rank;
     }
 
     /**
@@ -105,7 +105,7 @@ class UserPolicy
      */
     public function restore(User $authUser, User $user): bool
     {
-        return $authUser->can('replicate::admin::user') && $authUser->rank > $user->rank;
+        return $authUser->can('restore::admin::user') && $authUser->rank > $user->rank;
     }
 
     /**

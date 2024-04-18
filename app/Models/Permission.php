@@ -44,7 +44,7 @@ class Permission extends Model implements HasBadge
             ->where('id', '>=', getSetting('min_list_rank'))
             ->where('is_hidden', false)
             ->with([
-                'users:id,username,look,rank,online',
+                'users' => fn ($query) => $query->select('id', 'username', 'look', 'rank', 'online')->where('is_hidden', false),
                 'users.activeBadges'
             ])->orderByDesc('id')
             ->get();

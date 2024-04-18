@@ -74,6 +74,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         'team_id',
         'provider_id',
         'account_day_of_birth',
+        'is_hidden'
     ];
 
     /**
@@ -94,6 +95,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     protected $casts = [
         'email_verified_at' => 'datetime',
         'online' => 'boolean',
+        'is_hidden' => 'boolean'
     ];
 
     public static function boot(): void
