@@ -345,5 +345,7 @@
     "You will no longer receive notifications from :a!": "You will no longer receive notifications from :a!",
     "left a message on your profile.": "left a message on your profile.",
     "Your purchase has been delivered! Thank you for supporting us.": "Your purchase has been delivered! Thank you for supporting us.",
-    "registered using your referral link.": "registered using your referral link."
+    "registered using your referral link.": "registered using your referral link.",
+    "You cannot edit this user!": "You cannot edit this user",
+    "You cannot edit users with a higher rank than yours.": "You cannot edit users with a higher rank than yours."
 }

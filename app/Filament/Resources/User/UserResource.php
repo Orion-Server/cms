@@ -183,7 +183,7 @@ class UserResource extends Resource
                                         Select::make('rank')
                                             ->native(false)
                                             ->label(__('filament::resources.inputs.rank'))
-                                            ->options(Permission::all()->pluck('rank_name', 'id'))
+                                            ->options(Permission::where('id', '<', auth()->user()->rank)->get()->pluck('rank_name', 'id'))
                                     ])->collapsible()
                                     ->collapsed(),
                             ])

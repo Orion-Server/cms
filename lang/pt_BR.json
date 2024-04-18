@@ -345,5 +345,7 @@
     "You will no longer receive notifications from :a!": "Você não receberá mais notificações de :a!",
     "left a message on your profile.": "deixou uma mensagem no seu perfil.",
     "Your purchase has been delivered! Thank you for supporting us.": "Sua compra foi entregue! Obrigado por nos apoiar.",
-    "registered using your referral link.": "se registrou usando seu link de indicação."
+    "registered using your referral link.": "se registrou usando seu link de indicação.",
+    "You cannot edit this user!": "Você não pode editar este usuário",
+    "You cannot edit users with a higher rank than yours.": "Você não pode editar usuários com um cargo mais alto que o seu."
 }

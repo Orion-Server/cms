@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\Models\User;
-
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
@@ -27,9 +26,9 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return bool
      */
-    public function view(User $user): bool
+    public function view(User $authUser, User $user): bool
     {
-        return $user->can('view::admin::user');
+        return $authUser->can('replicate::admin::user') && $authUser->rank > $user->rank;
     }
 
     /**
@@ -49,9 +48,9 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return bool
      */
-    public function update(User $user): bool
+    public function update(User $authUser, User $user): bool
     {
-        return $user->can('update::admin::user');
+        return $authUser->can('replicate::admin::user') && $authUser->rank > $user->rank;
     }
 
     /**
@@ -60,9 +59,9 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return bool
      */
-    public function delete(User $user): bool
+    public function delete(User $authUser, User $user): bool
     {
-        return $user->can('delete::admin::user');
+        return $authUser->can('replicate::admin::user') && $authUser->rank > $user->rank;
     }
 
     /**
@@ -82,9 +81,9 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return bool
      */
-    public function forceDelete(User $user): bool
+    public function forceDelete(User $authUser, User $user): bool
     {
-        return $user->can('force_delete::admin::user');
+        return $authUser->can('replicate::admin::user') && $authUser->rank > $user->rank;
     }
 
     /**
@@ -104,9 +103,9 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return bool
      */
-    public function restore(User $user): bool
+    public function restore(User $authUser, User $user): bool
     {
-        return $user->can('restore::admin::user');
+        return $authUser->can('replicate::admin::user') && $authUser->rank > $user->rank;
     }
 
     /**
@@ -126,9 +125,9 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return bool
      */
-    public function replicate(User $user): bool
+    public function replicate(User $authUser, User $user): bool
     {
-        return $user->can('replicate::admin::user');
+        return $authUser->can('replicate::admin::user') && $authUser->rank > $user->rank;
     }
 
     /**

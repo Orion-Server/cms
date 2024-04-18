@@ -40,6 +40,17 @@ class EditUser extends EditRecord
         $user = $this->getRecord();
         $data = $this->form->getState();
 
+        if($data['rank'] >= auth()->user()->rank) {
+            Notification::make()
+                ->danger()
+                ->title(__('You cannot edit this user!'))
+                ->body(__('You cannot edit users with a higher rank than yours.'))
+                ->send();
+
+            $this->halt();
+            return;
+        }
+
         $rconEnabled = config('hotel.rcon.enabled');
         $rcon = app(RconService::class);
 
