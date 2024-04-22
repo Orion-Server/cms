@@ -20,6 +20,7 @@ class ChatLogRelationManager extends RelationManager
 
     public function table(Table $table): Table
     {
-        return $table->columns(ChatlogRoomResource::getTable());
+        return $table->columns(ChatlogRoomResource::getTable())
+            ->defaultSort('timestamp', 'desc');
     }
 }

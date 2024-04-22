@@ -49,6 +49,7 @@ class ChatlogPrivateResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('timestamp', 'desc')
             ->columns(self::getTable())
             ->filters([])
             ->actions([
