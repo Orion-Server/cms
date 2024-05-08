@@ -27,7 +27,7 @@ class RedirectIfMaintenance
         }
 
         if (!$user) {
-            if ($request->routeIs('maintenance')) return $next($request);
+            if ($request->routeIs('maintenance') || $request->routeIs('two-factor.login')) return $next($request);
 
             return to_route('maintenance');
         }
