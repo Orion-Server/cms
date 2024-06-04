@@ -14,7 +14,7 @@ class ArticleCommentController extends Controller
     public function store(string $id, string $slug, Request $request): JsonResponse
     {
         $data = $request->validate([
-            'content' => 'required|string|min:5'
+            'content' => 'required|string'
         ]);
 
         if (!$article = Article::fromIdAndSlug($id, $slug)->first()) {
@@ -25,6 +25,10 @@ class ArticleCommentController extends Controller
 
         if($user->recentlyCommentedOnArticle() && !$user->hasHighPermissions()) {
             return $this->jsonResponse(['message' => __('You are commenting too fast')], 422);
+        }
+
+        if(strlen(preg_replace("/\[(\/?).*?\]/", '', $data['content'])) < 5) {
+            return $this->jsonResponse(['message' => __('Please, type a valid comment.')], 422);
         }
 
         $comment = $article->comments()->create([
