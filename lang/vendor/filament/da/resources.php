@@ -394,6 +394,7 @@ return [
         'receiver' => 'Receiver',
         'message' => 'Message',
         'room' => 'Room',
+        'innapropriate' => 'Innapropriate',
     ],
 
     'options' => [
@@ -692,5 +693,6 @@ return [
         'select_all' => 'Select All',
         'deselect_all' => 'Deselect All',
         'sent_notifications' => 'Send Notifications',
+        'innapropriate' => 'Innapropriate',
     ]
 ];
