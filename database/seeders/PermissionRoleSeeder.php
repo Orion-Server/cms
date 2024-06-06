@@ -20,7 +20,8 @@ class PermissionRoleSeeder extends Seeder
         'shop_category',
         'shop_product',
         'shop_order',
-        'emulator_text'
+        'emulator_text',
+        'beta_code',
     ];
 
     private array $strictSuperModeratorPermissions = [

@@ -69,7 +69,7 @@
         </x-ui.buttons.loadable>
     </div>
 
-    @if (!$removeSocialButtons)
+    @if (!$removeSocialButtons && !getSetting('beta_period'))
     <div class="my-6 flex items-center justify-between">
         <span class="border-b dark:border-gray-700 w-1/5 md:w-1/4"></span>
         <span class="text-xs text-gray-500 uppercase dark:text-gray-100">{{ __('or join with') }}</span>

@@ -74,7 +74,8 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         'team_id',
         'provider_id',
         'account_day_of_birth',
-        'is_hidden'
+        'is_hidden',
+        'beta_code'
     ];
 
     /**
@@ -198,6 +199,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     public function rooms(): HasMany
     {
         return $this->hasMany(Room::class, 'owner_id');
+    }
+
+    public function betaCode()
+    {
+        return $this->belongsTo(BetaCode::class, 'beta_code', 'code');
     }
 
     public function roles(): HasManyThrough

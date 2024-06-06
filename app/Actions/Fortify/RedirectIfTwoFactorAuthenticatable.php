@@ -42,6 +42,10 @@ class RedirectIfTwoFactorAuthenticatable extends FortifyRedirectIfTwoFactorAuthe
                 $this->throwFailedAuthenticationExceptionDuringMaintenance($request);
             }
 
+            if(!! getSetting('beta_period') && $user->rank < getSetting('min_rank_to_bypass_beta_period') && (!$user->betaCode || $user->betaCode->valid_at->lte(now()))) {
+                $this->throwFailedAuthenticationExceptionDuringBetaPeriod($request);
+            }
+
             $this->validateCaptcha($request->all());
 
             if (!$user->homeItems()->count()) {
@@ -63,7 +67,24 @@ class RedirectIfTwoFactorAuthenticatable extends FortifyRedirectIfTwoFactorAuthe
         $this->limiter->increment($request);
 
         throw ValidationException::withMessages([
-            Fortify::username() => ['Only staffs can login during maintenance.'],
+            Fortify::username() => [__('Only staffs can login during maintenance.')],
+        ]);
+    }
+
+    /**
+     * Throw a failed authentication validation exception.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function throwFailedAuthenticationExceptionDuringBetaPeriod($request)
+    {
+        $this->limiter->increment($request);
+
+        throw ValidationException::withMessages([
+            Fortify::username() => [__('You need a valid beta code to login.')],
         ]);
     }
 

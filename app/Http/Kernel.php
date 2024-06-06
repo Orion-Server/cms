@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'cms.maintenance' => \App\Http\Middleware\RedirectIfMaintenance::class,
         'findretros.vote' => \App\Http\Middleware\RedirectIfVoteMissing::class,
         'vpn.prevent' => \App\Http\Middleware\VerifyVpnAddresses::class,
+        'beta.code' => \App\Http\Middleware\RedirectIfBetaCodeMissing::class,
     ];
 }

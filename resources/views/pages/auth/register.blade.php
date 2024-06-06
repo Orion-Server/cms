@@ -151,6 +151,19 @@
                     </div>
                 </div>
 
+                @if(!! getSetting('beta_period'))
+                    <div class="flex flex-col">
+                        <x-ui.input
+                            label="{{ __('Beta Code') }}"
+                            id="beta-code"
+                            icon="fa-regular fa-envelope"
+                            alpine-model="registerData.beta_code"
+                            placeholder="{{ __('Beta Code') }}"
+                            type="text"
+                        />
+                    </div>
+                @endif
+
                 <div class="flex justify-center mt-2">
                     @includeWhen(config('hotel.recaptcha.enabled'), 'components.ui.recaptcha')
                     @includeWhen(config('hotel.turnstile.enabled'), 'components.ui.turnstile')
@@ -167,7 +180,6 @@
                 </div>
             </div>
         </form>
-
     </div>
 </x-container>
 @endsection
