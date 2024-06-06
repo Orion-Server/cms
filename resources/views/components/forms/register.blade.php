@@ -8,6 +8,20 @@
             {{ __('You are being invited by') }} <span class="font-semibold" x-text="registerReferrerData.username"></span>
         </div>
     </template>
+
+    @if(!! getSetting('beta_period'))
+        <div class="flex flex-col bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 p-4 rounded-lg">
+            <x-ui.input
+                label="{{ __('Beta Code') }}"
+                id="beta-code"
+                icon="fa-regular fa-envelope"
+                alpine-model="registerData.beta_code"
+                placeholder="{{ __('Beta Code') }}"
+                type="text"
+            />
+        </div>
+    @endif
+
     <div class="mt-4 flex flex-col">
         <x-ui.input
             label="{{ __('Username') }}"
