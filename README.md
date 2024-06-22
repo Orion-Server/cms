@@ -12,6 +12,16 @@
 <a href="https://discord.gg/Kb7USXupCT">Join the OrionCMS Discord server</a>
 </p>
 
+## ⚠️ An important notice about Orion:
+
+**Orion's development will pause**. After a year of development, I met all my expectations regarding the system and as much as I would like to bring more updates, it is currently not possible because things have changed, my priorities are different and now  > **I am stopping working with Habbo** <.
+
+If you use Orion or are reading this intending to use Orion, **listen up: It's still a safe system to use, and you can use it without any problems**. The only difference is that there will no longer be new systems.
+
+Help channels and general will remain open.
+
+**OBS: Important updates (such as vulnerabilities) will continue to be updated!**
+
 ## 🌀 Introduction
 
 **OrionCMS** (Content Management System) is a system that promotes **usability** and **manageability** for your hotel. Orion's purpose is to make your experience and that of your players the best experience possible.
