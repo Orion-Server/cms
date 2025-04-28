@@ -26,7 +26,7 @@ class Client {
                     this.reloadOnlineCount()
 
                     // 30 seconds interval to reload online count
-                    setInterval(() => this.reloadOnlineCount(), this.getTime(30))
+                    setInterval(() => this.reloadOnlineCount(), this.getTime(60))
                 })
             },
 

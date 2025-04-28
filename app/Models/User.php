@@ -11,8 +11,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\{
     Casts\Attribute,
-    Factories\HasFactory,
-    Model
+    Factories\HasFactory
 };
 use App\Models\{
     User\UserBadge,
@@ -21,7 +20,6 @@ use App\Models\{
     User\UserOrder,
     Article\ArticleComment
 };
-use App\Models\Compositions\HasNotificationUrl;
 use App\Models\Compositions\User\{
     HasCurrency,
     HasItems,
