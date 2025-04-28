@@ -3,13 +3,9 @@
 <p align="center"><a href="https://github.com/orion-server/cms" target="_blank"><img src="https://i.imgur.com/ZqE16Ph.png" width="263" alt="OrionCMS Logo"></a></p>
 
 <p align="center">
-<a href="https://discord.gg/zsksUjfNrA"><img src="https://img.shields.io/discord/1099836667780665364" alt="Discord"></a>
 <a href="https://github.com/orion-server/cms"><img src="https://img.shields.io/github/license/orion-server/cms" alt="License"></a>
 <a href="https://github.com/orion-server/cms"><img src="https://img.shields.io/github/last-commit/orion-server/cms" alt="Last Commit"></a>
 <a href="https://github.com/orion-server/cms"><img src="https://img.shields.io/github/stars/orion-server" alt="Stars"></a>
-</p>
-<p align="center">
-<a href="https://discord.gg/Kb7USXupCT">Join the OrionCMS Discord server</a>
 </p>
 
 ## ⚠️ An important notice about Orion:
@@ -29,8 +25,6 @@ Help channels and general will remain open.
 **Built with the most modern technologies for websites**, OrionCMS will provide a lot of security and modernity for your hotel, in addition to containing exclusive systems that will make a difference in your day-to-day.
 
 Touching on the subject of differences, the Orion dashboard will surely surprise you. Fully responsive, elegant, secure, and real-time. Most of the updates made to the panel will be reflected in the game, **and that's really surreal**.
-
-The demo site can be accessed [here](https://orionprojects.net/).
 
 # 🌟 What technologies are used in OrionCMS?
 
@@ -54,11 +48,9 @@ And others...
 
 Currently, the only emulator supported by OrionCMS is [Arcturus](https://git.krews.org/morningstar/Arcturus-Community).
 
-I have plans to bring Orion to **Comet** and **Plus**, and that won't take long. If you are interested in putting OrionCMS on another emulator, join our [discord](https://discord.com/invite/Kb7USXupCT) and stay on top of updates.
-
 ## 📕 Wiki (Installation)
 
-If you want to install **OrionCMS** in your hotel, know that we have an installation page ready to help you. We have an example in **Linux** and **Windows**, and if you have any questions, join our [Discord](https://discord.gg/Kb7USXupCT) and let us know about your difficulty!
+If you want to install **OrionCMS** in your hotel, know that we have an installation page ready to help you. We have an example in **Linux** and **Windows**.
 
 The wiki site can be accessed [here](https://github.com/Orion-Server/cms/wiki).
 
@@ -73,8 +65,6 @@ We have a list of contributors who have helped us in the development of OrionCMS
 - **Lariesse** - TR translations
 - **Kamil** - DE translations
 - **Assholic** - Amazing GFX
-
-If you want to contribute to the project, join our [Discord](https://discord.gg/Kb7USXupCT) and let us know about your interest in helping us.
 
 ## ✍ Leability Notice
 
