@@ -17,7 +17,7 @@
             <div @class([
                 "w-full h-full rounded-full bg-no-repeat",
                 "bg-center" => !$usingNitroImager,
-                "bg-[-20px_-27px]" => $usingNitroImager
+                "bg-[-8px_-14px]" => $usingNitroImager
             ]) style="background-image: url('{{ getFigureUrl($onlineFriend->look, 'head_direction=3&gesture=sml&headonly=1') }}')"></div>
             <div class="absolute max-w-[100%] truncate text-xs -bottom-5 left-1/2 -translate-x-1/2 dark:text-slate-200">{{ $onlineFriend->username }}</div>
         </div>

@@ -104,7 +104,7 @@
                             @class([
                                 "w-[50px] min-w-[50px] h-[50px] bg-no-repeat rounded-full bg-white border border-gray-200 dark:bg-gray-950 dark:border-black",
                                 "bg-center" => !$usingNitroImager,
-                                "bg-[-20px_-27px]" => $usingNitroImager
+                                "bg-[-8px_-14px]" => $usingNitroImager
                             ])
                             @if($photo->user)
                             style="background-image: url('{{ getFigureUrl($photo->user->look, 'direction=2&head_direction=2&size=m&gesture=sml&headonly=1') }}')"

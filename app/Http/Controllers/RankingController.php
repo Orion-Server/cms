@@ -24,7 +24,7 @@ class RankingController extends Controller
             return [
                 'diamonds' => UserCurrency::getRankingFor(CurrencyType::Diamonds, $staffIds)->get(),
                 'respects' => UserSetting::getRanking('respects_received', $staffIds)->get(),
-                'pixels' => UserCurrency::getRankingFor(CurrencyType::Duckets, $staffIds)->get(),
+                'duckets' => UserCurrency::getRankingFor(CurrencyType::Duckets, $staffIds)->get(),
                 'coins' => User::getCreditsRanking()->get(),
                 'points' => UserCurrency::getRankingFor(CurrencyType::Points, $staffIds)->get(),
                 'online-time' => UserSetting::getRanking('online_time', $staffIds)->get()

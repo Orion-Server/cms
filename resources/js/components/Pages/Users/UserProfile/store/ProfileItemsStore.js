@@ -276,9 +276,9 @@ document.addEventListener('alpine:init', () => {
 
                     return {
                         id: item.id,
-                        x: item.x,
-                        y: item.y,
-                        z: item.z,
+                        x: parseInt(item.x),
+                        y: parseInt(item.y),
+                        z: parseInt(item.z),
                         is_reversed: item.is_reversed,
                         theme: item.theme,
                         placed: !this.removedItemIds.includes(item.id),
