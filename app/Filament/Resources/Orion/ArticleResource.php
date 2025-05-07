@@ -177,6 +177,7 @@ class ArticleResource extends Resource
     {
         return [
             RelationManagers\TagsRelationManager::class,
+            RelationManagers\CommentsRelationManager::class,
         ];
     }
 

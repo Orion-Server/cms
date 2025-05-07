@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Orion\WriteableBoxResource\Pages;
 
+use App\Filament\Resources\Orion\WriteableBoxResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
-use App\Filament\Resources\Orion\WriteableBoxResource;
 
 class ManageWriteableBoxes extends ManageRecords
 {

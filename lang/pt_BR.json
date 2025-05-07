@@ -347,5 +347,11 @@
     "Your purchase has been delivered! Thank you for supporting us.": "Sua compra foi entregue! Obrigado por nos apoiar.",
     "registered using your referral link.": "se registrou usando seu link de indicação.",
     "You cannot edit this user!": "Você não pode editar este usuário",
-    "You cannot edit users with a higher rank than yours.": "Você não pode editar usuários com um cargo mais alto que o seu."
+    "You cannot edit users with a higher rank than yours.": "Você não pode editar usuários com um cargo mais alto que o seu.",
+    "Please, type a valid comment.": "Por favor, digite um comentário válido.",
+    "This comment has been marked as innapropriate.": "Este comentário foi marcado como inapropriado.",
+    "Beta code not found or already used.": "Código beta não encontrado ou já usado.",
+    "This beta code has expired.": "Esse código beta já expirou.",
+    "Only staffs can login during maintenance.": "Apenas staffs podem fazer login durante a manutenção.",
+    "You need a valid beta code to login.": "Você precisa de um código beta válido para fazer login."
 }

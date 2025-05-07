@@ -2,6 +2,20 @@
     'activeArticle' => null
 ])
 
+@auth
+    <div class="flex justify-end gap-2 mb-4">
+        @can('update', $activeArticle)
+            <x-ui.buttons.redirectable
+                class="dark:bg-sky-500 bg-sky-500 border-sky-700 hover:bg-sky-400 dark:hover:bg-sky-400 dark:shadow-sky-700/75 shadow-sky-600/75 py-2 text-white"
+                href="{{ \App\Filament\Resources\Orion\ArticleResource::getUrl('edit', ['record' => $activeArticle]) }}"
+                target="_blank"
+            >
+                <i class="fas fa-pencil"></i>
+                {{ __('Edit') }}
+            </x-ui.buttons.redirectable>
+        @endcan
+    </div>
+@endauth
 <div
     class="w-full !bg-cover !bg-no-repeat !bg-center h-16 flex rounded-lg shadow-lg justify-between border-b-2 border-gray-300 dark:border-slate-800"
     style="background: linear-gradient(to right, {{ $activeArticle->predominant_color }}, transparent), url('{{ $activeArticle->image }}')"

@@ -69,6 +69,19 @@ if(!function_exists('getSetting')) {
     }
 }
 
+if(!function_exists('convertTagsToHtml')) {
+    /**
+     * Converts tags to HTML.
+     */
+    function convertTagsToHtml(string $tagStart, string $tagEnd, string $htmlTagStart, string $htmlTagEnd, string $content): string
+    {
+        $tagStart = preg_quote($tagStart, '/');
+        $tagEnd = preg_quote($tagEnd, '/');
+
+        return preg_replace("/{$tagStart}(.*){$tagEnd}/s", "{$htmlTagStart}$1{$htmlTagEnd}", $content);
+    };
+}
+
 if(!function_exists('renderBBCodeText')) {
     /**
      * Render BBCode text to HTML.
@@ -79,11 +92,11 @@ if(!function_exists('renderBBCodeText')) {
     {
         return Pipeline::send($content)
             ->through([
-                fn (string $content, \Closure $next) => $next(str_replace(['[b]', '[/b]'], ['<b>', '</b>'], $content)),
-                fn (string $content, \Closure $next) => $next(str_replace(['[i]', '[/i]'], ['<i>', '</i>'], $content)),
-                fn (string $content, \Closure $next) => $next(str_replace(['[u]', '[/u]'], ['<u>', '</u>'], $content)),
-                fn (string $content, \Closure $next) => $next(str_replace(['[s]', '[/s]'], ['<s>', '</s>'], $content)),
-                fn (string $content, \Closure $next) => $next(str_replace(['[h]', '[/h]'], ['<span class="bbcode-highlighter">', '</span>'], $content)),
+                fn (string $content, \Closure $next) => $next(convertTagsToHtml('[b]', '[/b]', '<b>', '</b>', $content)),
+                fn (string $content, \Closure $next) => $next(convertTagsToHtml('[i]', '[/i]', '<i>', '</i>', $content)),
+                fn (string $content, \Closure $next) => $next(convertTagsToHtml('[u]', '[/u]', '<u>', '</u>', $content)),
+                fn (string $content, \Closure $next) => $next(convertTagsToHtml('[s]', '[/s]', '<s>', '</s>', $content)),
+                fn (string $content, \Closure $next) => $next(convertTagsToHtml('[h]', '[/h]', '<span class="bbcode-highlighter">', '</span>', $content)),
             ])->then(fn (string $content) => $reflectLineBreaks ? nl2br($content) : $content);
     }
 }

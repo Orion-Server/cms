@@ -137,6 +137,11 @@ return [
             'label' => 'Room Chatlog',
             'plural' => 'Room Chatlogs',
         ],
+        'beta-codes' => [
+            'navigation_label' => 'Manage Beta Codes',
+            'label' => 'Code',
+            'plural' => 'Codes',
+        ],
 
         // Relations
         'settings' => [
@@ -212,7 +217,7 @@ return [
         'currency_item_data_helper' => 'Para birimi adını aşağıya girin. Şunlardan biri olabilir: credits, duckets, diamonds or points',
         'rank_item_data_helper' => 'Rütbe adını aşağıya girin.',
         'empty_item_data_helper' => ' Gerekli bilgileri görüntülemek için bir eşya türü seçin.',
-
+        'beta_code_data_helper' => "Leave it empty if you don't want to limit the code to specific data.",
     ],
 
     'tabs' => [
@@ -339,6 +344,8 @@ return [
         'sender' => 'Sender',
         'receiver' => 'Receiver',
         'room' => 'Room',
+        'code' => 'Code',
+        'valid_at' => 'Valid At'
     ],
 
     'columns' => [
@@ -402,6 +409,10 @@ return [
         'receiver' => 'Receiver',
         'message' => 'Message',
         'room' => 'Room',
+        'innapropriate' => 'Innapropriate',
+        'code' => 'Code',
+        'valid_at' => 'Valid At',
+        'rescued_at' => 'Rescued At',
     ],
 
     'options' => [
@@ -701,5 +712,6 @@ return [
         'select_all' => 'Select All',
         'deselect_all' => 'Deselect All',
         'send_notifications' => 'Send Notifications',
+        'innapropriate' => 'Innapropriate',
     ]
 ];

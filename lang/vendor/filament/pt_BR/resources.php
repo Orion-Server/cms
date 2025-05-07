@@ -137,6 +137,11 @@ return [
             'label' => 'Mensagem',
             'plural' => 'Mensagens',
         ],
+        'beta-codes' => [
+            'navigation_label' => 'Gerenciar Códigos Beta',
+            'label' => 'Código',
+            'plural' => 'Códigos',
+        ],
 
         // Relations
         'settings' => [
@@ -212,6 +217,7 @@ return [
         'currency_item_data_helper' => 'Digite abaixo o nome da moeda. Exemplo: credits, duckets, diamonds ou points.',
         'rank_item_data_helper' => 'Digite abaixo o ID do rank.',
         'empty_item_data_helper' => 'Selecione um tipo de item para ver as informações necessárias.',
+        'beta_code_data_helper' => 'Deixe vazio caso não queira limitar o código até uma data específica.',
     ],
 
     'tabs' => [
@@ -331,6 +337,8 @@ return [
         'receiver' => 'Destinatário',
         'message' => 'Mensagem',
         'room' => 'Quarto',
+        'code' => 'Código',
+        'valid_at' => 'Válido até',
     ],
 
     'columns' => [
@@ -394,6 +402,10 @@ return [
         'receiver' => 'Destinatário',
         'message' => 'Mensagem',
         'room' => 'Quarto',
+        'innapropriate' => 'Inapropriado',
+        'code' => 'Código',
+        'valid_at' => 'Válido até',
+        'rescued_at' => 'Resgatado em',
     ],
 
     'options' => [
@@ -693,5 +705,6 @@ return [
         'select_all' => 'Selecionar Todos',
         'deselect_all' => 'Desmarcar Todos',
         'send_notifications' => 'Enviar Notificações',
+        'innapropriate' => 'Inapropriado',
     ]
 ];
