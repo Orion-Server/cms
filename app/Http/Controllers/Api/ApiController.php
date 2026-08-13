@@ -7,14 +7,17 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Services\PreventXssService;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 class ApiController extends Controller
 {
     public function getOnlineCount(): JsonResponse
     {
-        return response()->json([
-            'onlineCount' => User::whereOnline('1')->count()
-        ]);
+        $onlineCount = Cache::remember('hotel_online_count', 60,
+            fn() => User::whereOnline('1')->count()
+        );
+
+        return response()->json(compact('onlineCount'));
     }
 
     public function getBBCodePreview(Request $request): JsonResponse
