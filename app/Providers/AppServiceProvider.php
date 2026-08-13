@@ -58,18 +58,30 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap the global view variables.
+     *
+     * These are resolved through a view composer rather than `View::share()` so that
+     * neither the database (`getSetting()`) nor the current request is touched while
+     * the container is still booting. Booting-time reads break under `config:cache`
+     * and `filament:cache-components`, and would bake a stale request into the
+     * shared data on long-lived workers.
      */
     private function bootGlobalViewHelpers(): void
     {
-        View::share('fromClient', request()->has('fromClient'));
-        View::share('unsupportedFlashClient', request()->has('unsupported_flash'));
+        View::composer('*', function ($view) {
+            // `SettingsService` is a singleton that loads the whole `cms_settings`
+            // table once per container, so these reads do not hit the database again.
+            $view->with([
+                'fromClient' => request()->has('fromClient'),
+                'unsupportedFlashClient' => request()->has('unsupported_flash'),
 
-        View::share('availableLanguages', config('hotel.cms.available_languages'));
-        View::share('articleReactions', collect(ArticleReactionType::cases()));
-        View::share('headerBackground', getSetting('header_background_image', 'https://i.imgur.com/XLnDlUr.png'));
-        View::share('logo', getSetting('logo_image', 'https://i.imgur.com/ZqE16Ph.png'));
-        View::share('logoSize', explode('x', getSetting('logo_size', '263x59')));
-        View::share('usingNitroImager', getSetting('using_nitro_imager', true));
+                'availableLanguages' => config('hotel.cms.available_languages'),
+                'articleReactions' => collect(ArticleReactionType::cases()),
+                'headerBackground' => getSetting('header_background_image', 'https://i.imgur.com/XLnDlUr.png'),
+                'logo' => getSetting('logo_image', 'https://i.imgur.com/ZqE16Ph.png'),
+                'logoSize' => explode('x', getSetting('logo_size', '263x59')),
+                'usingNitroImager' => getSetting('using_nitro_imager', true),
+            ]);
+        });
     }
 
     /**

@@ -4,8 +4,8 @@ namespace App\Providers\Filament;
 
 use Filament\Panel;
 use Filament\Pages\Page;
+use Filament\Facades\Filament;
 use Filament\PanelProvider;
-use App\Filament\Pages\Login;
 use Filament\Enums\ThemeMode;
 use Filament\Support\Assets\Css;
 use App\Filament\Pages\BadgePage;
@@ -31,12 +31,25 @@ use App\Filament\Resources\DashboardResource\Widgets\ArticlesAggregateChart;
 
 class AdminPanelProvider extends PanelProvider
 {
+    /**
+     * Apply the panel settings that depend on the database.
+     *
+     * `panel()` runs while the container is still registering providers and its result
+     * is what `filament:cache-components` serializes, so any `getSetting()` call made
+     * there would either fail silently or be baked into the cache. Deferring to
+     * `Filament::serving()` keeps these values resolved per request.
+     */
+    public function boot(): void
+    {
+        Filament::serving(function () {
+            Filament::getCurrentPanel()?->defaultThemeMode(
+                getSetting('default_cms_mode', 'light') === 'dark' ? ThemeMode::Dark : ThemeMode::Light
+            );
+        });
+    }
+
     public function panel(Panel $panel): Panel
     {
-        $logo = getSetting('logo_image', 'https://i.imgur.com/ZqE16Ph.png');
-        $topNavigationEnabled = getSetting('hk_top_navigation_enabled', '0') === '1';
-        $defaultTheme = getSetting('default_cms_mode', 'light') === 'dark' ? ThemeMode::Dark : ThemeMode::Light;
-
         Page::alignFormActionsEnd();
 
         return $panel
@@ -52,8 +65,7 @@ class AdminPanelProvider extends PanelProvider
                 Dashboard::class,
                 BadgePage::class
             ])
-            ->topNavigation($topNavigationEnabled)
-            ->defaultThemeMode($defaultTheme)
+            ->topNavigation(fn (): bool => getSetting('hk_top_navigation_enabled', '0') === '1')
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 TopDashboardOverview::class,
@@ -75,7 +87,7 @@ class AdminPanelProvider extends PanelProvider
                 VerifyPunishments::class,
                 RedirectIfTwoFactorDisabled::class
             ])
-            ->brandLogo($logo)
+            ->brandLogo(fn (): string => getSetting('logo_image', 'https://i.imgur.com/ZqE16Ph.png'))
             ->favicon(asset('assets/images/panel_favicon.gif'))
             ->sidebarCollapsibleOnDesktop()
             ->authMiddleware([

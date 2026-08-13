@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->longText('content')->change();
+            // Every attribute must be declared explicitly: since Laravel 11 `change()`
+            // no longer preserves attributes that are missing from the definition.
+            $table->longText('content')->nullable(false)->change();
         });
     }
 
@@ -22,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->text('content')->change();
+            $table->text('content')->nullable(false)->change();
         });
     }
 };
