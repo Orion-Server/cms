@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\VerifyCsrfToken;
+use App\Http\Middleware\PreventRequestForgery;
 use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticatedSessionController;
 use App\Http\Controllers\{
     AboutController,
@@ -73,7 +73,7 @@ Route::prefix('hotel')
 
         Route::post('client-errors', [ClientController::class, 'clientErrors'])
             ->name('client-errors')
-            ->withoutMiddleware(VerifyCsrfToken::class);
+            ->withoutMiddleware(PreventRequestForgery::class);
 
         Route::prefix('rcon')
             ->name('rcon.')
