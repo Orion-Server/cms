@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Article;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -65,7 +66,7 @@ class ArticleController extends Controller
         }
 
         $reaction = $activeArticle->reactions()->firstOrCreate([
-            'user_id' => \Auth::id(),
+            'user_id' => Auth::id(),
             'type' => $reactionType
         ]);
 
@@ -86,7 +87,7 @@ class ArticleController extends Controller
         }
 
         $notification = AuthorNotification::firstOrCreate([
-            'user_id' => \Auth::id(),
+            'user_id' => Auth::id(),
             'author_id' => $activeArticle->user->id
         ]);
 

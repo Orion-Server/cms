@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\View;
 use Srmklive\PayPal\Services\PayPal;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
+use Filament\Schemas\Components\Fieldset;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
+use Filament\Tables\Table;
 use App\Services\Parsers\ExternalTextsParser;
-use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
+use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -44,6 +48,28 @@ class AppServiceProvider extends ServiceProvider
 
         $this->bindPaypalInstance();
         $this->bootDashboardSettings();
+        $this->bootFilamentDefaults();
+    }
+
+    /**
+     * Keep the Filament v3 defaults that v4 changed.
+     *
+     * These are global defaults applied at construction, so any component that
+     * sets its own value explicitly still wins.
+     */
+    private function bootFilamentDefaults(): void
+    {
+        // v4 makes Grid/Section/Fieldset consume a single column instead of the
+        // full row, which collapses every layout in this panel to half width.
+        Grid::configureUsing(fn (Grid $component) => $component->columnSpanFull());
+        Section::configureUsing(fn (Section $component) => $component->columnSpanFull());
+        Fieldset::configureUsing(fn (Fieldset $component) => $component->columnSpanFull());
+
+        Table::configureUsing(fn (Table $table) => $table
+            // v4 defers filters, so every SelectFilter would need an extra "Apply" click.
+            ->deferFilters(false)
+            // v4 dropped 'all' from the default page options.
+            ->paginationPageOptions([5, 10, 25, 50, 'all']));
     }
 
     private function bindPaypalInstance(): void

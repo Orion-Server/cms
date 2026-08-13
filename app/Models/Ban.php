@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Auth;
 use Illuminate\Database\Eloquent\{
     Model,
     Builder,
@@ -33,7 +34,7 @@ class Ban extends Model
                     $query = $query->whereIp($ip);
 
                     if($verifyAccount) {
-                        $query = $query->orWhere('user_id', \Auth::id());
+                        $query = $query->orWhere('user_id', Auth::id());
                     }
 
                     return $query;

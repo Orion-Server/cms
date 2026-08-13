@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Exception;
 use App\Models\User;
 use App\Models\Home\HomeItem;
 use Illuminate\Support\Facades\DB;
@@ -16,27 +17,27 @@ class ProfileService
     public function verifyPurchasePossibility(User $user, HomeItem $item, array $data, int $totalPrice): void
     {
         if($user->online) {
-            throw new \Exception(__('You must be offline to buy this item.'));
+            throw new Exception(__('You must be offline to buy this item.'));
         }
 
         if ($item->limit && $item->exceededPurchaseLimit()) {
-            throw new \Exception(__('This item exceeded the purchase limit.'));
+            throw new Exception(__('This item exceeded the purchase limit.'));
         }
 
         if ($item->limit && (($item->total_bought + $data['quantity']) > $item->limit)) {
-            throw new \Exception(__("You can't buy more than :max of this item.", ['max' => $item->limit - $item->total_bought]));
+            throw new Exception(__("You can't buy more than :max of this item.", ['max' => $item->limit - $item->total_bought]));
         }
 
         if ($totalPrice > $user->currency($item->currency_type)) {
-            throw new \Exception(__("You don't have enough :c to buy this item.", ['c' => strtolower(__($item->currency_type->name))]));
+            throw new Exception(__("You don't have enough :c to buy this item.", ['c' => strtolower(__($item->currency_type->name))]));
         }
 
         if(in_array($item->type, ['b', 'w']) && $user->homeItems()->where('home_item_id', $item->id)->exists()) {
-            throw new \Exception(__('You already have this item in your inventory.'));
+            throw new Exception(__('You already have this item in your inventory.'));
         }
 
         if(in_array($item->type, ['b', 'w']) && $data['quantity'] > 1) {
-            throw new \Exception(__('You can buy this item only once.'));
+            throw new Exception(__('You can buy this item only once.'));
         }
     }
 

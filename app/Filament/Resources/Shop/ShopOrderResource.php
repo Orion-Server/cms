@@ -2,14 +2,18 @@
 
 namespace App\Filament\Resources\Shop;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use App\Filament\Resources\Shop\ShopOrderResource\Pages\ManageShopOrders;
+use App\Filament\Resources\Shop\ShopOrderResource\Widgets\OrderOverviewWidget;
 use Filament\Tables;
-use Filament\Forms\Get;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use App\Enums\ShopOrderStatus;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Textarea;
@@ -28,17 +32,17 @@ class ShopOrderResource extends Resource
 
     protected static ?string $model = ShopOrder::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-bookmark-square';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-bookmark-square';
 
-    protected static ?string $navigationGroup = 'Shop';
+    protected static string | \UnitEnum | null $navigationGroup = 'Shop';
 
     protected static ?string $slug = 'shop/orders';
 
     public static string $translateIdentifier = 'shop-orders';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema(self::getForm());
+        return $schema->components(self::getForm());
     }
 
     public static function getForm(): array
@@ -97,11 +101,11 @@ class ShopOrderResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
+            ->recordActions([
+                EditAction::make(),
+                ViewAction::make(),
             ])
-            ->bulkActions([]);
+            ->toolbarActions([]);
     }
 
     public static function getTable(): array
@@ -155,14 +159,14 @@ class ShopOrderResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageShopOrders::route('/'),
+            'index' => ManageShopOrders::route('/'),
         ];
     }
 
     public static function getWidgets(): array
     {
         return [
-            Widgets\OrderOverviewWidget::class,
+            OrderOverviewWidget::class,
         ];
     }
 }

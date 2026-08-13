@@ -2,12 +2,16 @@
 
 namespace App\Filament\Resources\Orion;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Actions\ViewAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
+use App\Filament\Resources\Orion\CmsSettingResource\Pages\ManageCmsSettings;
 use Filament\Tables;
-use Filament\Forms\Form;
 use App\Models\CmsSetting;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Traits\TranslatableResource;
@@ -19,18 +23,18 @@ class CmsSettingResource extends Resource
 
     protected static ?string $model = CmsSetting::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cpu-chip';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-cpu-chip';
 
-    protected static ?string $navigationGroup = 'Website';
+    protected static string | \UnitEnum | null $navigationGroup = 'Website';
 
     protected static ?string $slug = 'website/cms-settings';
 
     public static string $translateIdentifier = 'cms-settings';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make()
                     ->schema([
                         TextInput::make('key')
@@ -89,12 +93,12 @@ class CmsSettingResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 // ...
             ]);
     }
@@ -102,7 +106,7 @@ class CmsSettingResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageCmsSettings::route('/'),
+            'index' => ManageCmsSettings::route('/'),
         ];
     }
 }

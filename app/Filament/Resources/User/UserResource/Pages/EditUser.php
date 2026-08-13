@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\User\UserResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use Filament\Actions;
 use App\Models\UserCurrency;
 use App\Services\RconService;
@@ -18,7 +19,7 @@ class EditUser extends EditRecord
     protected function getActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 

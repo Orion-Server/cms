@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Throwable;
 use App\Models\CmsSetting;
 use Illuminate\Support\Collection;
 
@@ -18,7 +19,7 @@ class SettingsService
     {
         try {
             $this->allSettings = CmsSetting::all()->pluck('value', 'key');
-        } catch (\Throwable $ignored) {
+        } catch (Throwable $ignored) {
             $this->allSettings = collect();
         }
     }

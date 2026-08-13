@@ -2,20 +2,30 @@
 
 namespace App\Filament\Resources\User;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Schemas\Components\Section;
+use Filament\Actions\ViewAction;
+use Filament\Actions\EditAction;
+use App\Filament\Resources\User\UserResource\RelationManagers\SettingsRelationManager;
+use App\Filament\Resources\User\UserResource\RelationManagers\BadgesRelationManager;
+use App\Filament\Resources\User\UserResource\RelationManagers\ChatLogRelationManager;
+use App\Filament\Resources\User\UserResource\RelationManagers\ChatLogPrivateRelationManager;
+use App\Filament\Resources\User\UserResource\Pages\ListUsers;
+use App\Filament\Resources\User\UserResource\Pages\CreateUser;
+use App\Filament\Resources\User\UserResource\Pages\ViewUser;
+use App\Filament\Resources\User\UserResource\Pages\EditUser;
 use App\Models\Team;
 use App\Models\User;
 use Filament\Tables;
-use Filament\Forms\Form;
 use App\Models\Permission;
 use Filament\Tables\Table;
 use App\Enums\CurrencyType;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Tabs;
 use Illuminate\Support\Facades\Hash;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Tabs\Tab;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
@@ -33,18 +43,18 @@ class UserResource extends Resource
 
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-users';
 
-    protected static ?string $navigationGroup = 'User Management';
+    protected static string | \UnitEnum | null $navigationGroup = 'User Management';
 
     protected static ?string $slug = 'user-management/users';
 
     public static string $translateIdentifier = 'users';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Tabs::make('Main')
                     ->tabs([
                         Tab::make(__('filament::resources.tabs.General Information'))
@@ -246,20 +256,20 @@ class UserResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
             ])
-            ->bulkActions([]);
+            ->toolbarActions([]);
     }
 
     public static function getRelations(): array
     {
         return [
-            RelationManagers\SettingsRelationManager::class,
-            RelationManagers\BadgesRelationManager::class,
-		    RelationManagers\ChatLogRelationManager::class,
-            RelationManagers\ChatLogPrivateRelationManager::class,
+            SettingsRelationManager::class,
+            BadgesRelationManager::class,
+		    ChatLogRelationManager::class,
+            ChatLogPrivateRelationManager::class,
         ];
     }
 
@@ -279,10 +289,10 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'view' => Pages\ViewUser::route('/{record}'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => ListUsers::route('/'),
+            'create' => CreateUser::route('/create'),
+            'view' => ViewUser::route('/{record}'),
+            'edit' => EditUser::route('/{record}/edit'),
         ];
     }
 }

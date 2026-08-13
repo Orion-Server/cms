@@ -8,7 +8,7 @@ use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
 class OrderOverviewWidget extends BaseWidget
 {
-    protected static ?string $pollingInterval = '60s';
+    protected ?string $pollingInterval = '60s';
 
     protected function getCards(): array
     {

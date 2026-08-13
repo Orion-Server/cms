@@ -2,8 +2,14 @@
 
 namespace App\Filament\Resources\Orion\NavigationResource\RelationManagers;
 
+use Filament\Schemas\Schema;
+use Filament\Actions\CreateAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\DissociateAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DissociateBulkAction;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
@@ -17,10 +23,10 @@ class SubNavigationsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'label';
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('label')
                     ->label(__('filament::resources.inputs.label'))
                     ->columnSpanFull()
@@ -70,17 +76,17 @@ class SubNavigationsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                CreateAction::make(),
                 // Tables\Actions\AssociateAction::make(),
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DissociateAction::make(),
-                Tables\Actions\DeleteAction::make(),
+            ->recordActions([
+                EditAction::make(),
+                DissociateAction::make(),
+                DeleteAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DissociateBulkAction::make(),
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DissociateBulkAction::make(),
+                DeleteBulkAction::make(),
             ]);
     }
 }

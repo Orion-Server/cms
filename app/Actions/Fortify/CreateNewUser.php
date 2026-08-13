@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use Throwable;
 use App\Models\User;
 use App\Rules\RecaptchaRule;
 use App\Rules\TurnstileCheck;
@@ -121,7 +122,7 @@ class CreateNewUser implements CreatesNewUsers
             $gender = config('hotel.cms.register.register_looks')[$input['gender']];
 
             array_push($validations['look'], Rule::in($gender));
-        } catch (\Throwable $ignored) {}
+        } catch (Throwable $ignored) {}
 
         return Validator::make($input, $validations)
             ->stopOnFirstFailure()

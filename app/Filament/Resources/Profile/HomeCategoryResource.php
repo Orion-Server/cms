@@ -2,13 +2,20 @@
 
 namespace App\Filament\Resources\Profile;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Actions\ViewAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\Profile\HomeCategoryResource\RelationManagers\HomeItemsRelationManager;
+use App\Filament\Resources\Profile\HomeCategoryResource\Pages\ListHomeCategories;
+use App\Filament\Resources\Profile\HomeCategoryResource\Pages\CreateHomeCategory;
+use App\Filament\Resources\Profile\HomeCategoryResource\Pages\EditHomeCategory;
 use Filament\Tables;
 use Livewire\Component;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use App\Models\Home\HomeCategory;
-use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
@@ -22,18 +29,18 @@ class HomeCategoryResource extends Resource
 
     protected static ?string $model = HomeCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-bars-2';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-bars-2';
 
-    protected static ?string $navigationGroup = 'Profile Management';
+    protected static string | \UnitEnum | null $navigationGroup = 'Profile Management';
 
     protected static ?string $slug = 'profile-management/categories';
 
     public static string $translateIdentifier = 'home-categories';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make()
                     ->schema([
                         TextInput::make('name')
@@ -73,28 +80,28 @@ class HomeCategoryResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DeleteBulkAction::make(),
             ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            RelationManagers\HomeItemsRelationManager::class
+            HomeItemsRelationManager::class
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListHomeCategories::route('/'),
-            'create' => Pages\CreateHomeCategory::route('/create'),
-            'edit' => Pages\EditHomeCategory::route('/{record}/edit'),
+            'index' => ListHomeCategories::route('/'),
+            'create' => CreateHomeCategory::route('/create'),
+            'edit' => EditHomeCategory::route('/{record}/edit'),
         ];
     }
 }

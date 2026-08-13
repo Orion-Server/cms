@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Auth;
+use Str;
 use App\Enums\NotificationType;
 use App\Models\Compositions\HasNotificationUrl;
 use App\Models\Article\{
@@ -36,13 +38,13 @@ class Article extends Model
         parent::boot();
 
         static::creating(function (Article $article) {
-            $article->user_id = \Auth::id();
-            $article->slug = \Str::slug($article->title);
+            $article->user_id = Auth::id();
+            $article->slug = Str::slug($article->title);
             $article->predominant_color = getPredominantImageColor($article->image);
         });
 
         static::updating(function (Article $article) {
-            $article->slug = \Str::slug($article->title);
+            $article->slug = Str::slug($article->title);
 
             if($article->isDirty('image')) {
                 $article->predominant_color = getPredominantImageColor($article->image);

@@ -2,6 +2,10 @@
 
 namespace App\Filament\Resources\Orion\ArticleResource\RelationManagers;
 
+use Filament\Schemas\Schema;
+use Filament\Actions\ViewAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
 use App\Models\Article\ArticleComment;
 use Filament\Forms;
 use Filament\Forms\Components\Placeholder;
@@ -9,7 +13,6 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
@@ -24,10 +27,10 @@ class CommentsRelationManager extends RelationManager
 {
     protected static string $relationship = 'comments';
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Placeholder::make('content')
                     ->label(__('filament::resources.inputs.content'))
                     ->columnSpanFull()
@@ -61,12 +64,12 @@ class CommentsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
+            ->recordActions([
+                ViewAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }

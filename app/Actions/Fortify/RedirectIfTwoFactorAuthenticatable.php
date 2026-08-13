@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use Illuminate\Http\Request;
 use App\Rules\RecaptchaRule;
 use Laravel\Fortify\Fortify;
 use App\Rules\TurnstileCheck;
@@ -14,7 +15,7 @@ class RedirectIfTwoFactorAuthenticatable extends FortifyRedirectIfTwoFactorAuthe
     /**
      * Attempt to validate the incoming credentials.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return mixed
      */
     protected function validateCredentials($request)
@@ -57,10 +58,10 @@ class RedirectIfTwoFactorAuthenticatable extends FortifyRedirectIfTwoFactorAuthe
     /**
      * Throw a failed authentication validation exception.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return void
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     protected function throwFailedAuthenticationExceptionDuringMaintenance($request)
     {
@@ -74,10 +75,10 @@ class RedirectIfTwoFactorAuthenticatable extends FortifyRedirectIfTwoFactorAuthe
     /**
      * Throw a failed authentication validation exception.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return void
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     protected function throwFailedAuthenticationExceptionDuringBetaPeriod($request)
     {

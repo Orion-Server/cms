@@ -2,13 +2,15 @@
 
 namespace App\Forms\Components;
 
+use Filament\Forms\Components\Contracts\CanBeLengthConstrained;
+use Filament\Forms\Components\Concerns\HasPlaceholder;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Concerns;
-use Filament\Forms\Components\Contracts;
 
-class CKEditor extends Field implements Contracts\CanBeLengthConstrained, Contracts\HasFileAttachments
+// Filament 4 dropped Contracts\HasFileAttachments; only the concern remains.
+class CKEditor extends Field implements CanBeLengthConstrained
 {
-    use Concerns\HasPlaceholder;
+    use HasPlaceholder;
     use Concerns\HasFileAttachments;
     use Concerns\CanBeLengthConstrained;
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Hash;
 use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -86,7 +87,7 @@ class UserSettingController extends Controller
         ]);
 
         $user->update([
-            'password' => \Hash::make($data['password'])
+            'password' => Hash::make($data['password'])
         ]);
 
         \Auth::logout();

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Orion\BetaCodeResource\Pages;
 
+use Filament\Actions\CreateAction;
 use App\Filament\Resources\Orion\BetaCodeResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
@@ -13,7 +14,7 @@ class ManageBetaCodes extends ManageRecords
     protected function getActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

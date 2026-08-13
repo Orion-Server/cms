@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Throwable;
 use App\Models\User;
 use App\Enums\HomeItemType;
 use Illuminate\Http\Request;
@@ -25,7 +27,7 @@ class UserProfileController extends Controller
     {
         return view('pages.users.profile.show', [
             'user' => User::select('id', 'username')->whereUsername($username)->first(),
-            'isMe' => $username === \Auth::user()?->username
+            'isMe' => $username === Auth::user()?->username
         ]);
     }
 
@@ -71,11 +73,11 @@ class UserProfileController extends Controller
             'backgroundId' => 'required|integer',
         ]);
 
-        $user = \Auth::user();
+        $user = Auth::user();
 
         try {
             $this->profileService->saveItems($user, $data);
-        } catch (\Throwable $ignored) {
+        } catch (Throwable $ignored) {
             return $this->jsonResponse([
                 'message' => __('An error occurred while saving your profile.')
             ], 500);

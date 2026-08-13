@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\{
@@ -27,7 +28,7 @@ class Camera extends Model
 
     public static function getFriendsWhoHaveStories()
     {
-        $friendsId = \Auth::user()
+        $friendsId = Auth::user()
             ->friends()
             ->pluck('user_two_id')
             ->toArray();
@@ -67,7 +68,7 @@ class Camera extends Model
 
     public function scopeFilter(Builder $query, $filter): void
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         if($filter == 'only_my_friends') {
             $friendsId = $user->friends()->pluck('id')->toArray();

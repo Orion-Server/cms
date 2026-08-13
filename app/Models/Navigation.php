@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cache;
 use App\Services\CacheTimeService;
 use Illuminate\Support\{
     Collection
@@ -35,7 +36,7 @@ class Navigation extends Model
 
     public static function getNavigations(bool $withSubNavigations = true): Collection
     {
-        return \Cache::remember('navigations', CacheTimeService::getForNavigations(), function() use ($withSubNavigations) {
+        return Cache::remember('navigations', CacheTimeService::getForNavigations(), function() use ($withSubNavigations) {
             $navigation = Navigation::defaultQuery();
 
             if($withSubNavigations) {

@@ -2,16 +2,22 @@
 
 namespace App\Filament\Resources\Profile;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Actions\ViewAction;
+use Filament\Actions\EditAction;
+use App\Filament\Resources\Profile\HomeItemResource\Pages\ListHomeItems;
+use App\Filament\Resources\Profile\HomeItemResource\Pages\CreateHomeItem;
+use App\Filament\Resources\Profile\HomeItemResource\Pages\EditHomeItem;
 use Filament\Tables;
 use Livewire\Component;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Enums\CurrencyType;
 use App\Models\Home\HomeItem;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
@@ -25,18 +31,18 @@ class HomeItemResource extends Resource
 
     protected static ?string $model = HomeItem::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-puzzle-piece';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-puzzle-piece';
 
-    protected static ?string $navigationGroup = 'Profile Management';
+    protected static string | \UnitEnum | null $navigationGroup = 'Profile Management';
 
     protected static ?string $slug = 'profile-management/items';
 
     public static string $translateIdentifier = 'home-items';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make()
                     ->schema(self::getForm())
                     ->columns([
@@ -65,7 +71,7 @@ class HomeItemResource extends Resource
                 ->native(false)
                 ->label(__('filament::resources.inputs.category'))
                 ->relationship('homeCategory', 'name')
-                ->hidden(fn (\Filament\Forms\Get $get) => $get('type') != 's')
+                ->hidden(fn (Get $get) => $get('type') != 's')
                 ->nullable(),
 
             TextInput::make('name')
@@ -123,11 +129,11 @@ class HomeItemResource extends Resource
                     ->label(__('filament::resources.columns.category'))
                     ->relationship('homeCategory', 'name'),
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 // Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
@@ -184,9 +190,9 @@ class HomeItemResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListHomeItems::route('/'),
-            'create' => Pages\CreateHomeItem::route('/create'),
-            'edit' => Pages\EditHomeItem::route('/{record}/edit'),
+            'index' => ListHomeItems::route('/'),
+            'create' => CreateHomeItem::route('/create'),
+            'edit' => EditHomeItem::route('/{record}/edit'),
         ];
     }
 }

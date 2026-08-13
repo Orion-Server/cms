@@ -2,9 +2,15 @@
 
 namespace App\Filament\Resources\Orion;
 
+use Filament\Schemas\Schema;
+use Str;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\Orion\BetaCodeResource\Pages\ManageBetaCodes;
 use Filament\Tables;
 use App\Models\BetaCode;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
@@ -19,20 +25,20 @@ class BetaCodeResource extends Resource
 
     protected static ?string $model = BetaCode::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-key';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-key';
 
-    protected static ?string $navigationGroup = 'Website';
+    protected static string | \UnitEnum | null $navigationGroup = 'Website';
 
     protected static ?string $slug = 'website/beta-codes';
 
     public static string $translateIdentifier = 'beta-codes';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('code')
-                    ->default(\Str::random(60))
+                    ->default(Str::random(60))
                     ->label(__('filament::resources.inputs.code'))
                     ->unique(ignoreRecord: true)
                     ->required()
@@ -74,13 +80,13 @@ class BetaCodeResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
+            ->recordActions([
+                EditAction::make(),
+                ViewAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -95,7 +101,7 @@ class BetaCodeResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageBetaCodes::route('/'),
+            'index' => ManageBetaCodes::route('/'),
         ];
     }
 }

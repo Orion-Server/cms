@@ -2,9 +2,14 @@
 
 namespace App\Filament\Resources\User;
 
+use Filament\Schemas\Schema;
+use Filament\Actions\ViewAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\User\BanResource\Pages\ManageBans;
 use App\Models\Ban;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
@@ -21,9 +26,9 @@ class BanResource extends Resource
 
     protected static ?string $model = Ban::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-shield-exclamation';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-shield-exclamation';
 
-    protected static ?string $navigationGroup = 'User Management';
+    protected static string | \UnitEnum | null $navigationGroup = 'User Management';
 
     protected static ?string $slug = 'user-management/bans';
 
@@ -31,10 +36,10 @@ class BanResource extends Resource
 
     public static string $translateIdentifier = 'bans';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Textarea::make('ban_reason')
                     ->label(__('filament::resources.inputs.reason'))
                     ->columnSpanFull(),
@@ -120,20 +125,20 @@ class BanResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DeleteBulkAction::make(),
             ]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageBans::route('/'),
+            'index' => ManageBans::route('/'),
         ];
     }
 }

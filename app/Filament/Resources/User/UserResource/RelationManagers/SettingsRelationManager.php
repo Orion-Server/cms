@@ -2,12 +2,14 @@
 
 namespace App\Filament\Resources\User\UserResource\RelationManagers;
 
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
+use CarbonInterval;
+use Filament\Actions\Action;
+use Filament\Actions\EditAction;
 use Filament\Tables\Table;
-use Filament\Forms\Components\Tabs;
-use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Select;
-use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -22,13 +24,13 @@ class SettingsRelationManager extends RelationManager
 
     protected static string $translateIdentifier = 'settings';
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Tabs::make('Settings')
                     ->schema([
-                        Tabs\Tab::make(__('filament::resources.tabs.Account Data'))
+                        Tab::make(__('filament::resources.tabs.Account Data'))
                             ->schema([
                                 TextInput::make('achievement_score')
                                     ->label(__('filament::resources.inputs.achievement_score'))
@@ -88,7 +90,7 @@ class SettingsRelationManager extends RelationManager
                             ])
                             ->columns(['sm' => 2]),
 
-                        Tabs\Tab::make(__('filament::resources.tabs.Extra Settings'))
+                        Tab::make(__('filament::resources.tabs.Extra Settings'))
                             ->schema([
                                 Select::make('old_chat')
                                     ->native(false)
@@ -144,7 +146,7 @@ class SettingsRelationManager extends RelationManager
 
                 TextColumn::make('online_time')
                     ->label(__('filament::resources.columns.online_time'))
-                    ->formatStateUsing(fn (string $state) => __(':m minutes', ['m' => round(\CarbonInterval::seconds($state)->totalMinutes)]))
+                    ->formatStateUsing(fn (string $state) => __(':m minutes', ['m' => round(CarbonInterval::seconds($state)->totalMinutes)]))
                     ->toggleable(),
 
                 IconColumn::make('can_trade')
@@ -173,10 +175,10 @@ class SettingsRelationManager extends RelationManager
                     ->tooltip('You can only change the offline user settings.')
                     ->extraAttributes(['style' => 'cursor: default !important'])
             ])
-            ->actions([
+            ->recordActions([
                 EditAction::make()
                     ->disabled(fn (RelationManager $livewire) => $livewire->getOwnerRecord()->online),
             ])
-            ->bulkActions([]);
+            ->toolbarActions([]);
     }
 }

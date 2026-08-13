@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Profile;
 
+use Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Enums\NotificationType;
@@ -22,18 +23,18 @@ class RatingController extends Controller
             ], 404);
         }
 
-        if($user->id === \Auth::id()) {
+        if($user->id === Auth::id()) {
             return $this->jsonResponse([
                 'message' => __('You cannot rate your own profile.')
             ], 400);
         }
 
-        $rating = $user->ratings()->updateOrCreate(['user_id' => \Auth::id()], [
+        $rating = $user->ratings()->updateOrCreate(['user_id' => Auth::id()], [
             'rating' => $data['rating']
         ]);
 
         if($rating->wasRecentlyCreated) {
-            $user->notify(\Auth::user(), NotificationType::ProfileRating, route('users.profile.show', $user->username));
+            $user->notify(Auth::user(), NotificationType::ProfileRating, route('users.profile.show', $user->username));
         }
 
         return $this->jsonResponse([

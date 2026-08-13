@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Profile\HomeItemResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use Filament\Actions;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Notifications\Notification;
@@ -15,7 +16,7 @@ class EditHomeItem extends EditRecord
     protected function getActions(): array
     {
         return [
-            Actions\DeleteAction::make()
+            DeleteAction::make()
                 ->action(function (HomeItemResource $resource, Model $record) {
                     if($record->userHomeItems()->exists()) {
                         Notification::make()

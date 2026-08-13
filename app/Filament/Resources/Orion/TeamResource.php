@@ -2,13 +2,18 @@
 
 namespace App\Filament\Resources\Orion;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\Orion\TeamResource\Pages\ListTeams;
+use App\Filament\Resources\Orion\TeamResource\Pages\CreateTeam;
+use App\Filament\Resources\Orion\TeamResource\Pages\EditTeam;
 use App\Models\Team;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Traits\TranslatableResource;
@@ -21,18 +26,18 @@ class TeamResource extends Resource
 
     protected static ?string $model = Team::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-user-group';
 
-    protected static ?string $navigationGroup = 'Website';
+    protected static string | \UnitEnum | null $navigationGroup = 'Website';
 
     protected static ?string $slug = 'website/teams';
 
     public static string $translateIdentifier = 'teams';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make()
                     ->schema([
                         TextInput::make('name')
@@ -81,11 +86,11 @@ class TeamResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DeleteBulkAction::make(),
             ]);
     }
 
@@ -99,9 +104,9 @@ class TeamResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTeams::route('/'),
-            'create' => Pages\CreateTeam::route('/create'),
-            'edit' => Pages\EditTeam::route('/{record}/edit'),
+            'index' => ListTeams::route('/'),
+            'create' => CreateTeam::route('/create'),
+            'edit' => EditTeam::route('/{record}/edit'),
         ];
     }
 }

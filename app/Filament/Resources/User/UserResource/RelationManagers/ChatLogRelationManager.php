@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\User\UserResource\RelationManagers;
 
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use App\Filament\Resources\Hotel\ChatlogRoomResource;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -13,9 +13,9 @@ class ChatLogRelationManager extends RelationManager
 
     protected static $targetResource = ChatlogRoomResource::class;
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form;
+        return $schema;
     }
 
     public function table(Table $table): Table

@@ -2,13 +2,22 @@
 
 namespace App\Filament\Resources\Shop;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\Shop\ShopProductResource\RelationManagers\ItemsRelationManager;
+use App\Filament\Resources\Shop\ShopProductResource\Pages\ListShopProducts;
+use App\Filament\Resources\Shop\ShopProductResource\Pages\CreateShopProduct;
+use App\Filament\Resources\Shop\ShopProductResource\Pages\ViewShopProduct;
+use App\Filament\Resources\Shop\ShopProductResource\Pages\EditShopProduct;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\ShopProduct;
 use Filament\Resources\Resource;
 use App\Forms\Components\CKEditor;
-use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
@@ -25,21 +34,21 @@ class ShopProductResource extends Resource
 
     protected static ?string $model = ShopProduct::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-shopping-cart';
 
-    protected static ?string $navigationGroup = 'Shop';
+    protected static string | \UnitEnum | null $navigationGroup = 'Shop';
 
     protected static ?string $slug = 'shop/products';
 
     public static string $translateIdentifier = 'shop-products';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Tabs::make('Main')
                     ->tabs([
-                        Tabs\Tab::make(__('filament::resources.tabs.Home'))
+                        Tab::make(__('filament::resources.tabs.Home'))
                             ->icon('heroicon-o-home')
                             ->schema([
                                 Select::make('category_id')
@@ -72,7 +81,7 @@ class ShopProductResource extends Resource
                                     ->label(__('filament::resources.inputs.price')),
                             ]),
 
-                        Tabs\Tab::make(__('filament::resources.tabs.Configurations'))
+                        Tab::make(__('filament::resources.tabs.Configurations'))
                             ->icon('heroicon-o-cog')
                             ->schema([
                                 TextInput::make('limit_per_user')
@@ -93,7 +102,7 @@ class ShopProductResource extends Resource
                                     ->offIcon('heroicon-s-x-mark'),
                             ]),
 
-                        Tabs\Tab::make(__('filament::resources.tabs.Metrics'))
+                        Tab::make(__('filament::resources.tabs.Metrics'))
                             ->icon('heroicon-o-chart-bar')
                             ->schema([
                                 TextInput::make('sales_count')
@@ -149,29 +158,29 @@ class ShopProductResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
+            ->recordActions([
+                EditAction::make(),
+                ViewAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DeleteBulkAction::make(),
             ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            RelationManagers\ItemsRelationManager::class
+            ItemsRelationManager::class
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListShopProducts::route('/'),
-            'create' => Pages\CreateShopProduct::route('/create'),
-            'view' => Pages\ViewShopProduct::route('/{record}'),
-            'edit' => Pages\EditShopProduct::route('/{record}/edit'),
+            'index' => ListShopProducts::route('/'),
+            'create' => CreateShopProduct::route('/create'),
+            'view' => ViewShopProduct::route('/{record}'),
+            'edit' => EditShopProduct::route('/{record}/edit'),
         ];
     }
 }

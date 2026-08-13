@@ -2,33 +2,32 @@
 
 namespace App\Filament\Pages;
 
-use Filament\Forms\Get;
-use Filament\Forms\Set;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Components\Utilities\Get;
+use Throwable;
 use Filament\Pages\Page;
 use Filament\Actions\ActionGroup;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
-use App\Filament\Compositions\HasRoleName;
 use Filament\Actions\Action as PageAction;
 use Illuminate\Contracts\Support\Htmlable;
 use App\Filament\Traits\TranslatableResource;
 use App\Services\Parsers\ExternalTextsParser;
-use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Concerns\InteractsWithForms;
 
 class BadgePage extends Page
 {
     use TranslatableResource, InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationGroup = 'Hotel';
+    protected static string | \UnitEnum | null $navigationGroup = 'Hotel';
 
-    protected static string $view = 'filament.pages.badge-page';
+    protected string $view = 'filament.pages.badge-page';
 
     protected static string $translateIdentifier = 'badge-resource';
 
@@ -50,10 +49,10 @@ class BadgePage extends Page
         );
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make(__('filament::resources.tabs.Main'))
                     ->schema([
                         TextInput::make('code')
@@ -62,8 +61,8 @@ class BadgePage extends Page
                             ->afterStateUpdated(function (?string $state, Set $set) {
                                 $set('code', strtoupper($state));
                             })
-                            ->suffixAction(fn (): Action =>
-                                Action::make('search')->icon('heroicon-o-magnifying-glass')->action(fn () => $this->searchBadgesByCode())
+                            ->suffixAction(fn (): PageAction =>
+                                PageAction::make('search')->icon('heroicon-o-magnifying-glass')->action(fn () => $this->searchBadgesByCode())
                             ),
 
                         TextInput::make('image')
@@ -72,8 +71,8 @@ class BadgePage extends Page
                             ->autocomplete()
                             ->visible(fn (Get $get) => isset($this->data['image']) ?? false)
                             ->prefixAction(
-                                fn (?string $state): Action =>
-                                Action::make('visit')
+                                fn (?string $state): PageAction =>
+                                PageAction::make('visit')
                                     ->icon('heroicon-s-arrow-top-right-on-square')
                                     ->tooltip(__('filament::resources.common.Open link'))
                                     ->url($state)
@@ -221,7 +220,7 @@ class BadgePage extends Page
 
             if(!empty($this->data['nitro']) && $nitroEnabled) $externalTextsParser->updateNitroBadgeTexts($this->data['code'], ...$this->data['nitro']);
             if(!empty($this->data['flash']) && $flashEnabled) $externalTextsParser->updateFlashBadgeTexts($this->data['code'], ...$this->data['flash']);
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             Log::channel('badge')->error('[ORION BADGE RESOURCE] - ERROR: ' . $exception->getMessage());
 
             Notification::make()
@@ -285,7 +284,7 @@ class BadgePage extends Page
     }
 
     /**
-     * @return array<Action | ActionGroup>
+     * @return array<\Filament\Actions\Action|ActionGroup>
      */
     protected function getHeaderActions(): array
     {

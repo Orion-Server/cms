@@ -2,17 +2,16 @@
 
 namespace App\Filament\Pages;
 
+use Filament\Auth\Http\Responses\Contracts\LoginResponse;
+use Filament\Schemas\Components\Component;
 use Filament\Facades\Filament;
-use Filament\Forms\Components\Component;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Models\Contracts\FilamentUser;
-use Filament\Pages\Auth\Login as AuthLogin;
 use Illuminate\Validation\ValidationException;
-use Filament\Http\Responses\Auth\Contracts\LoginResponse;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 
-class Login extends AuthLogin
+class Login extends \Filament\Auth\Pages\Login
 {
     public $username = '';
 
@@ -46,7 +45,7 @@ class Login extends AuthLogin
 
         if (
             ($user instanceof FilamentUser) &&
-            (! $user->canAccessPanel(Filament::getCurrentPanel()))
+            (! $user->canAccessPanel(Filament::getCurrentOrDefaultPanel()))
         ) {
             Filament::auth()->logout();
 
@@ -63,22 +62,6 @@ class Login extends AuthLogin
         throw ValidationException::withMessages([
             'data.username' => __('filament-panels::pages/auth/login.messages.failed'),
         ]);
-    }
-
-    protected function getFormSchema(): array
-    {
-        return [
-            TextInput::make('username')
-                ->label(__('filament::login.fields.username.label'))
-                ->required()
-                ->autocomplete(),
-            TextInput::make('password')
-                ->label(__('filament::login.fields.password.label'))
-                ->password()
-                ->required(),
-            Checkbox::make('remember')
-                ->label(__('filament::login.fields.remember.label')),
-        ];
     }
 
     protected function getEmailFormComponent(): Component

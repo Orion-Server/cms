@@ -34,7 +34,7 @@ if(!function_exists('getPredominantImageColor')) {
                 $color = dechex(imagecolorat($shortendImage, 0, 0));
 
                 return "#$color";
-            } catch (\Throwable $ignored) {
+            } catch (Throwable $ignored) {
                 return $default;
             }
         });
@@ -92,11 +92,11 @@ if(!function_exists('renderBBCodeText')) {
     {
         return Pipeline::send($content)
             ->through([
-                fn (string $content, \Closure $next) => $next(convertTagsToHtml('[b]', '[/b]', '<b>', '</b>', $content)),
-                fn (string $content, \Closure $next) => $next(convertTagsToHtml('[i]', '[/i]', '<i>', '</i>', $content)),
-                fn (string $content, \Closure $next) => $next(convertTagsToHtml('[u]', '[/u]', '<u>', '</u>', $content)),
-                fn (string $content, \Closure $next) => $next(convertTagsToHtml('[s]', '[/s]', '<s>', '</s>', $content)),
-                fn (string $content, \Closure $next) => $next(convertTagsToHtml('[h]', '[/h]', '<span class="bbcode-highlighter">', '</span>', $content)),
+                fn (string $content, Closure $next) => $next(convertTagsToHtml('[b]', '[/b]', '<b>', '</b>', $content)),
+                fn (string $content, Closure $next) => $next(convertTagsToHtml('[i]', '[/i]', '<i>', '</i>', $content)),
+                fn (string $content, Closure $next) => $next(convertTagsToHtml('[u]', '[/u]', '<u>', '</u>', $content)),
+                fn (string $content, Closure $next) => $next(convertTagsToHtml('[s]', '[/s]', '<s>', '</s>', $content)),
+                fn (string $content, Closure $next) => $next(convertTagsToHtml('[h]', '[/h]', '<span class="bbcode-highlighter">', '</span>', $content)),
             ])->then(fn (string $content) => $reflectLineBreaks ? nl2br($content) : $content);
     }
 }

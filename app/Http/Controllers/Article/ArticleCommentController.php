@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Article;
 
+use Auth;
 use App\Enums\NotificationType;
 use App\Models\Article;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class ArticleCommentController extends Controller
             return $this->jsonResponse(['message' => __('Article not found')], 404);
         }
 
-        $user = \Auth::user();
+        $user = Auth::user();
 
         if($user->recentlyCommentedOnArticle() && !$user->hasHighPermissions()) {
             return $this->jsonResponse(['message' => __('You are commenting too fast')], 422);

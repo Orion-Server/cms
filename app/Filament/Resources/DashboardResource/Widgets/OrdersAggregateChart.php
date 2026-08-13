@@ -10,9 +10,9 @@ use Illuminate\Contracts\Support\Htmlable;
 
 class OrdersAggregateChart extends ChartWidget
 {
-    protected static ?string $maxHeight = '300px';
+    protected ?string $maxHeight = '300px';
 
-    protected static string $color = 'secondary';
+    protected string $color = 'secondary';
 
     public function getHeading(): string | Htmlable | null
     {

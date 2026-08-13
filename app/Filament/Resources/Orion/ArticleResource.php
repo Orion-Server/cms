@@ -2,13 +2,24 @@
 
 namespace App\Filament\Resources\Orion;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Actions\ViewAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\Orion\ArticleResource\RelationManagers\TagsRelationManager;
+use App\Filament\Resources\Orion\ArticleResource\RelationManagers\CommentsRelationManager;
+use App\Filament\Resources\Orion\ArticleResource\Pages\ListArticles;
+use App\Filament\Resources\Orion\ArticleResource\Pages\CreateArticle;
+use App\Filament\Resources\Orion\ArticleResource\Pages\ViewArticle;
+use App\Filament\Resources\Orion\ArticleResource\Pages\EditArticle;
 use Filament\Tables;
 use App\Models\Article;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use App\Forms\Components\CKEditor;
-use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -25,18 +36,18 @@ class ArticleResource extends Resource
 
     protected static ?string $model = Article::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-newspaper';
 
-    protected static ?string $navigationGroup = 'Website';
+    protected static string | \UnitEnum | null $navigationGroup = 'Website';
 
     protected static ?string $slug = 'website/articles';
 
     public static string $translateIdentifier = 'articles';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema(static::getForm());
+        return $schema
+            ->components(static::getForm());
     }
 
     public static function getForm(): array
@@ -44,7 +55,7 @@ class ArticleResource extends Resource
         return [
             Tabs::make('Main')
                 ->tabs([
-                    Tabs\Tab::make(__('filament::resources.tabs.Home'))
+                    Tab::make(__('filament::resources.tabs.Home'))
                         ->icon('heroicon-o-home')
                         ->schema([
                             TextInput::make('title')
@@ -73,7 +84,7 @@ class ArticleResource extends Resource
                                 ->columnSpan('full'),
                         ]),
 
-                    Tabs\Tab::make(__('filament::resources.tabs.Configurations'))
+                    Tab::make(__('filament::resources.tabs.Configurations'))
                         ->icon('heroicon-o-cog')
                         ->schema([
                             Toggle::make('visible')
@@ -105,7 +116,7 @@ class ArticleResource extends Resource
                                 ->displayFormat('Y-m-d H:i')
                                 ->native(false)
                                 ->withoutSeconds()
-                                ->hidden(fn (\Filament\Forms\Get $get) => !$get('is_promotion'))
+                                ->hidden(fn (Get $get) => !$get('is_promotion'))
                                 ->label(__('filament::resources.inputs.promotion_ends_at'))
                                 ->required()
                                 ->columnSpan('full'),
@@ -123,12 +134,12 @@ class ArticleResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DeleteBulkAction::make(),
             ]);
     }
 
@@ -176,18 +187,18 @@ class ArticleResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\TagsRelationManager::class,
-            RelationManagers\CommentsRelationManager::class,
+            TagsRelationManager::class,
+            CommentsRelationManager::class,
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListArticles::route('/'),
-            'create' => Pages\CreateArticle::route('/create'),
-            'view' => Pages\ViewArticle::route('/{record}'),
-            'edit' => Pages\EditArticle::route('/{record}/edit'),
+            'index' => ListArticles::route('/'),
+            'create' => CreateArticle::route('/create'),
+            'view' => ViewArticle::route('/{record}'),
+            'edit' => EditArticle::route('/{record}/edit'),
         ];
     }
 }

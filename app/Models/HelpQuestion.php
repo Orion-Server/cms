@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Auth;
+use Str;
 use App\Models\HelpQuestion\HelpQuestionCategory;
 use CyrildeWit\EloquentViewable\{
     Contracts\Viewable,
@@ -32,8 +34,8 @@ class HelpQuestion extends Model implements Viewable
         parent::boot();
 
         static::creating(function (HelpQuestion $question) {
-            $question->user_id = \Auth::id();
-            $question->slug = \Str::slug($question->title);
+            $question->user_id = Auth::id();
+            $question->slug = Str::slug($question->title);
         });
     }
 

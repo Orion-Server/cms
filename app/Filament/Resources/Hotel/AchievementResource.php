@@ -2,14 +2,21 @@
 
 namespace App\Filament\Resources\Hotel;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Actions\ViewAction;
+use Filament\Actions\EditAction;
+use App\Filament\Resources\Hotel\AchievementResource\Pages\ListAchievements;
+use App\Filament\Resources\Hotel\AchievementResource\Pages\CreateAchievement;
+use App\Filament\Resources\Hotel\AchievementResource\Pages\ViewAchievement;
+use App\Filament\Resources\Hotel\AchievementResource\Pages\EditAchievement;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Enums\CurrencyType;
 use App\Models\Achievement;
 use Filament\Resources\Resource;
 use App\Enums\AchievementCategory;
-use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -25,21 +32,21 @@ class AchievementResource extends Resource
 
     protected static ?string $model = Achievement::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-academic-cap';
 
-    protected static ?string $navigationGroup = 'Hotel';
+    protected static string | \UnitEnum | null $navigationGroup = 'Hotel';
 
     public static string $translateIdentifier = 'achievements';
 
     protected static ?string $slug = 'hotel/achievements';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Tabs::make('Main')
                     ->tabs([
-                        Tabs\Tab::make(__('filament::resources.tabs.Home'))
+                        Tab::make(__('filament::resources.tabs.Home'))
                             ->icon('heroicon-o-home')
                             ->schema([
                                 TextInput::make('name')
@@ -62,7 +69,7 @@ class AchievementResource extends Resource
                                     ->options(AchievementCategory::toInput())
                             ]),
 
-                        Tabs\Tab::make(__('filament::resources.tabs.Configurations'))
+                        Tab::make(__('filament::resources.tabs.Configurations'))
                             ->icon('heroicon-o-cog')
                             ->schema([
                                 Select::make('visible')
@@ -142,11 +149,11 @@ class AchievementResource extends Resource
                     ->label(__('filament::resources.columns.category'))
                     ->placeholder(__('filament::resources.common.All')),
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
             ])
-            ->bulkActions([]);
+            ->toolbarActions([]);
     }
 
     public static function getRelations(): array
@@ -159,10 +166,10 @@ class AchievementResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAchievements::route('/'),
-            'create' => Pages\CreateAchievement::route('/create'),
-            'view' => Pages\ViewAchievement::route('/{record}'),
-            'edit' => Pages\EditAchievement::route('/{record}/edit'),
+            'index' => ListAchievements::route('/'),
+            'create' => CreateAchievement::route('/create'),
+            'view' => ViewAchievement::route('/{record}'),
+            'edit' => EditAchievement::route('/{record}/edit'),
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Profile;
 
+use Auth;
+use Throwable;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Home\HomeItem;
@@ -31,13 +33,13 @@ class ItemController extends Controller
             ], 404);
         }
 
-        $user = \Auth::user();
+        $user = Auth::user();
         $totalPrice = $item->price * $data['quantity'];
 
         try {
             $this->profileService->verifyPurchasePossibility($user, $item, $data, $totalPrice);
             $this->profileService->buyItem($item, $user, $data, $totalPrice);
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             return $this->jsonResponse([
                 'message' => $exception->getMessage()
             ], 500);
