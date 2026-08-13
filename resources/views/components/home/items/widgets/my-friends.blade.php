@@ -11,7 +11,7 @@
             ></div>
             <div class="w-[70px] h-full">
                 <a class="block underline text-amber-950 text-xxs font-semibold truncate" href="{{ route('users.profile.show', $friend->user->username) }}">{{ $friend->user->username }}</a>
-                <span class="text-xxs italic text-black">{{ \Carbon\Carbon::parse($friend->user->account_created)->toFormattedDateString() }}</span>
+                <span class="text-xxs italic text-black">{{ \Carbon\Carbon::createFromTimestamp($friend->user->account_created)->toFormattedDateString() }}</span>
             </div>
         </div>
         @endforeach

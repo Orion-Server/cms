@@ -13,7 +13,7 @@ enum ShopOrderStatus: string
         return array_column(self::cases(), 'value');
     }
 
-    public static function valuesExcept(ShopOrderStatus $exceptValue = null): array
+    public static function valuesExcept(?ShopOrderStatus $exceptValue = null): array
     {
         return array_filter(self::values(), fn ($value) => $value !== $exceptValue->value);
     }

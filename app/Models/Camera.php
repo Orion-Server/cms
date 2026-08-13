@@ -40,7 +40,10 @@ class Camera extends Model
             ->orderBy('camera_web.timestamp', 'desc')
             ->get()
             ->map(function ($item) {
-                $item->timestamp = Carbon::parse($item->timestamp)->diffForHumans();
+                // `camera_web.timestamp` is a unix timestamp column, and this row comes
+                // from a raw query builder select, so it bypasses the model cast. Carbon 3
+                // rejects a numeric *string* in parse(), so be explicit about the format.
+                $item->timestamp = Carbon::createFromTimestamp($item->timestamp)->diffForHumans();
                 return $item;
             })
             ->groupBy('username');

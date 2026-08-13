@@ -8,7 +8,7 @@
         <div class="-space-y-1 text-xss flex flex-col" style="max-width: calc(100% - 45px)">
             <span class="font-bold truncate underline mb-px">{{ $memberData->guild->name }}</span>
             <span class="text-xxs">{{ __('Group created in') }}</span>
-            <span class="text-xxs font-semibold">{{ \Carbon\Carbon::parse($memberData->guild->date_created)->format('Y-m-d H:i') }}</span>
+            <span class="text-xxs font-semibold">{{ \Carbon\Carbon::createFromTimestamp($memberData->guild->date_created)->format('Y-m-d H:i') }}</span>
         </div>
     </div>
     @empty
