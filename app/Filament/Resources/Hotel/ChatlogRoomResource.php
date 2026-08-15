@@ -2,8 +2,10 @@
 
 namespace App\Filament\Resources\Hotel;
 
+use Filament\Schemas\Schema;
+use Filament\Actions\ViewAction;
+use App\Filament\Resources\Hotel\ChatlogRoomResource\Pages\ManageChatlogRooms;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\ChatlogRoom;
 use Filament\Resources\Resource;
@@ -20,18 +22,18 @@ class ChatlogRoomResource extends Resource
 
     protected static ?string $model = ChatlogRoom::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
-    protected static ?string $navigationGroup = 'Logs';
+    protected static string | \UnitEnum | null $navigationGroup = 'Logs';
 
     public static string $translateIdentifier = 'chatlog-rooms';
 
     protected static ?string $slug = 'hotel/chatlog-room';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('room.name')
                     ->label(__('filament::resources.inputs.room'))
                     ->columnSpanFull()
@@ -60,10 +62,10 @@ class ChatlogRoomResource extends Resource
         ->filters([
             //
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
+            ->recordActions([
+                ViewAction::make(),
             ])
-            ->bulkActions([]);
+            ->toolbarActions([]);
     }
 
     public static function getTable(): array
@@ -99,7 +101,7 @@ class ChatlogRoomResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageChatlogRooms::route('/'),
+            'index' => ManageChatlogRooms::route('/'),
         ];
     }
 }

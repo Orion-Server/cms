@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Exception;
+use Throwable;
 use GuzzleHttp\Client;
 use Illuminate\Http\{
     Request,
@@ -52,7 +54,7 @@ class FindRetrosService
         if(Auth::check() && is_numeric($minRankToBypass) && Auth::user()->rank >= $minRankToBypass) return true;
 
         if (!$name = getSetting('findretros_name', false)) {
-            throw new \Exception('The FindRetros name is not set.');
+            throw new Exception('The FindRetros name is not set.');
             return false;
         }
 
@@ -66,7 +68,7 @@ class FindRetrosService
 
         try {
             $request = $this->client->get($completeEndpoint);
-        } catch (\Throwable $error) {
+        } catch (Throwable $error) {
             Log::error("[FINDRETROS] - " . $error->getMessage());
             return false;
         }

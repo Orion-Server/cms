@@ -107,4 +107,25 @@ return [
 
     'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache_'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Cache Serializable Classes
+    |--------------------------------------------------------------------------
+    |
+    | Laravel 13 ships this option set to `false` in a fresh skeleton, which
+    | hardens cache unserialization against PHP deserialization gadget chains
+    | if APP_KEY ever leaks. It is intentionally left unset here, because this
+    | application does cache Eloquent objects and `false` would silently turn
+    | them into __PHP_Incomplete_Class on read:
+    |
+    |   - Navigation::getNavigations()            -> Eloquent collection
+    |   - RankingController::__invoke()           -> array of Eloquent collections
+    |   - HasCacheableWidgets::getCacheableWidgetData() -> User with relations
+    |
+    | Turning this on requires allow-listing the full object graph of those
+    | three call sites (models, relations and collection classes), or moving
+    | them to array payloads. Left as follow-up work.
+    |
+    */
+
 ];

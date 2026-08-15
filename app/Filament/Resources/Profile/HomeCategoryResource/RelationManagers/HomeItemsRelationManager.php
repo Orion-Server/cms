@@ -2,8 +2,10 @@
 
 namespace App\Filament\Resources\Profile\HomeCategoryResource\RelationManagers;
 
+use Filament\Schemas\Schema;
+use Filament\Actions\CreateAction;
+use Filament\Actions\EditAction;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Filament\Resources\Profile\HomeItemResource;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -14,9 +16,9 @@ class HomeItemsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form->schema(HomeItemResource::getForm());
+        return $schema->components(HomeItemResource::getForm());
     }
 
     public function table(Table $table): Table
@@ -28,11 +30,11 @@ class HomeItemsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                CreateAction::make(),
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([]);
+            ->toolbarActions([]);
     }
 }

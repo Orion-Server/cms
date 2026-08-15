@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Orion\CmsSettingResource\Pages;
 
+use Filament\Actions\CreateAction;
 use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
 use App\Filament\Resources\Orion\CmsSettingResource;
@@ -13,7 +14,7 @@ class ManageCmsSettings extends ManageRecords
     protected function getActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 

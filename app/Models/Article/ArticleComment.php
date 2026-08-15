@@ -22,12 +22,13 @@ class ArticleComment extends Model
 
     protected $casts = [
         'visible' => 'boolean',
-        'fixed' => 'boolean'
+        'fixed' => 'boolean',
+        'innapropriate' => 'boolean'
     ];
 
     public function scopeDefaultRelationships(Builder $query): void
     {
-        $query->with([
+        $query->whereVisible(true)->with([
             'user:id,username,look',
             'user.badges' => fn ($query) => $query->where('slot_id', '<>', '0')
         ]);

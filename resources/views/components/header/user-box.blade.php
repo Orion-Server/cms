@@ -20,18 +20,26 @@
         <div class="w-full flex flex-col">
             <div class="w-full rounded-t-lg flex justify-around items-center divide-x dark:divide-slate-800 h-16 bg-gray-100 dark:bg-gray-900">
                 <a
-                    class="h-full rounded-tl-lg flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
+                    @class([
+                        "h-full rounded-tl-lg flex-1 flex justify-center items-center",
+                        "hover:bg-gray-50 dark:hover:bg-slate-800" => !request()->routeIs('users.profile.show'),
+                        "bg-white dark:bg-slate-950" => request()->routeIs('users.profile.show') && request()->route('username') === Auth::user()->username
+                    ])
                     data-tippy
                     data-tippy-content="<small>{{ __('My Profile') }}</small>"
-                    @auth href="{{ route('users.profile.show', Auth::user()->username) }}" @endauth
+                    href="{{ route('users.profile.show', Auth::user()->username) }}"
                 >
                     <img src="{{ asset('https://i.imgur.com/wYP2GOf.png') }}" alt="Profile icon" />
                 </a>
                 <a
-                    class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
+                    @class([
+                        "h-full flex-1 flex justify-center items-center",
+                        "hover:bg-gray-50 dark:hover:bg-slate-800" => !request()->routeIs('users.settings.index'),
+                        "bg-white dark:bg-slate-950" => request()->routeIs('users.settings.index')
+                    ])
                     data-tippy
                     data-tippy-content="<small>{{ __('My Settings') }}</small>"
-                    @auth href="{{ route('users.settings.index') }}" @endauth
+                    href="{{ route('users.settings.index') }}"
                 >
                     <img src="{{ asset('https://i.imgur.com/zjDy01f.gif') }}" alt="Settings icon" />
                 </a>
@@ -52,7 +60,11 @@
                     <img src="{{ asset('https://i.imgur.com/d4oZMFz.png') }}" alt="Inbox icon" />
                 </a>
                 <a
-                    class="h-full flex-1 flex justify-center items-center hover:bg-gray-50 dark:hover:bg-slate-800"
+                    @class([
+                        "h-full flex-1 flex justify-center items-center rounded-tr-lg",
+                        "hover:bg-gray-50 dark:hover:bg-slate-800" => !request()->routeIs('support.questions.index'),
+                        "bg-white dark:bg-slate-950" => request()->routeIs('support.questions.index')
+                    ])
                     data-tippy
                     data-tippy-content="<small>{{ __('Help & Tricks') }}</small>"
                     href="{{ route('support.questions.index') }}"

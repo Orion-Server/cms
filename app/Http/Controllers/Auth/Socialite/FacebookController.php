@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth\Socialite;
 
+use Str;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,7 @@ class FacebookController extends Controller
             ->validateClientIp($userIp)
             ->interceptRegistrationsOverflowAttempts($userIp);
 
-        $username = \Str::before($user->getEmail(), '@') . random_int(1000, 9999);
+        $username = Str::before($user->getEmail(), '@') . random_int(1000, 9999);
 
         if(strlen($username) > 25) {
             $username = substr($username, 0, 25);
@@ -43,7 +44,7 @@ class FacebookController extends Controller
 
         $registeredUser = User::createFromData([
             'username' => $username,
-            'password' => Hash::make(\Str::password(10)),
+            'password' => Hash::make(Str::password(10)),
             'mail' => $user->getEmail(),
             'avatar_background' => getSetting('default_avatar_background'),
             'ip_register' => $userIp,

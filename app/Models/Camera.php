@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\{
@@ -27,7 +28,7 @@ class Camera extends Model
 
     public static function getFriendsWhoHaveStories()
     {
-        $friendsId = \Auth::user()
+        $friendsId = Auth::user()
             ->friends()
             ->pluck('user_two_id')
             ->toArray();
@@ -40,7 +41,10 @@ class Camera extends Model
             ->orderBy('camera_web.timestamp', 'desc')
             ->get()
             ->map(function ($item) {
-                $item->timestamp = Carbon::parse($item->timestamp)->diffForHumans();
+                // `camera_web.timestamp` is a unix timestamp column, and this row comes
+                // from a raw query builder select, so it bypasses the model cast. Carbon 3
+                // rejects a numeric *string* in parse(), so be explicit about the format.
+                $item->timestamp = Carbon::createFromTimestamp($item->timestamp)->diffForHumans();
                 return $item;
             })
             ->groupBy('username');
@@ -64,7 +68,7 @@ class Camera extends Model
 
     public function scopeFilter(Builder $query, $filter): void
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         if($filter == 'only_my_friends') {
             $friendsId = $user->friends()->pluck('id')->toArray();

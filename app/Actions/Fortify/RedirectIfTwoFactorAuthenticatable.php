@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use Illuminate\Http\Request;
 use App\Rules\RecaptchaRule;
 use Laravel\Fortify\Fortify;
 use App\Rules\TurnstileCheck;
@@ -14,7 +15,7 @@ class RedirectIfTwoFactorAuthenticatable extends FortifyRedirectIfTwoFactorAuthe
     /**
      * Attempt to validate the incoming credentials.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return mixed
      */
     protected function validateCredentials($request)
@@ -42,6 +43,10 @@ class RedirectIfTwoFactorAuthenticatable extends FortifyRedirectIfTwoFactorAuthe
                 $this->throwFailedAuthenticationExceptionDuringMaintenance($request);
             }
 
+            if(!! getSetting('beta_period') && $user->rank < getSetting('min_rank_to_bypass_beta_period') && (!$user->betaCode || $user->betaCode->valid_at->lte(now()))) {
+                $this->throwFailedAuthenticationExceptionDuringBetaPeriod($request);
+            }
+
             $this->validateCaptcha($request->all());
 
             if (!$user->homeItems()->count()) {
@@ -53,17 +58,34 @@ class RedirectIfTwoFactorAuthenticatable extends FortifyRedirectIfTwoFactorAuthe
     /**
      * Throw a failed authentication validation exception.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return void
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     protected function throwFailedAuthenticationExceptionDuringMaintenance($request)
     {
         $this->limiter->increment($request);
 
         throw ValidationException::withMessages([
-            Fortify::username() => ['Only staffs can login during maintenance.'],
+            Fortify::username() => [__('Only staffs can login during maintenance.')],
+        ]);
+    }
+
+    /**
+     * Throw a failed authentication validation exception.
+     *
+     * @param Request $request
+     * @return void
+     *
+     * @throws ValidationException
+     */
+    protected function throwFailedAuthenticationExceptionDuringBetaPeriod($request)
+    {
+        $this->limiter->increment($request);
+
+        throw ValidationException::withMessages([
+            Fortify::username() => [__('You need a valid beta code to login.')],
         ]);
     }
 

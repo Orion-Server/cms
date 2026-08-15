@@ -2,8 +2,10 @@
 
 namespace App\Filament\Resources\Hotel;
 
+use Filament\Schemas\Schema;
+use Filament\Actions\ViewAction;
+use App\Filament\Resources\Hotel\ChatlogPrivateResource\Pages\ManageChatlogPrivates;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\ChatlogPrivate;
 use Filament\Resources\Resource;
@@ -19,18 +21,18 @@ class ChatlogPrivateResource extends Resource
 
     protected static ?string $model = ChatlogPrivate::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
-    protected static ?string $navigationGroup = 'Logs';
+    protected static string | \UnitEnum | null $navigationGroup = 'Logs';
 
     public static string $translateIdentifier = 'chatlog-private';
 
     protected static ?string $slug = 'hotel/chatlog-private';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('sender.username')
                     ->disabled()
                     ->label(__('filament::resources.inputs.sender')),
@@ -52,10 +54,10 @@ class ChatlogPrivateResource extends Resource
             ->defaultSort('timestamp', 'desc')
             ->columns(self::getTable())
             ->filters([])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
+            ->recordActions([
+                ViewAction::make(),
             ])
-            ->bulkActions([]);
+            ->toolbarActions([]);
     }
 
     public static function getTable(): array
@@ -86,7 +88,7 @@ class ChatlogPrivateResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageChatlogPrivates::route('/'),
+            'index' => ManageChatlogPrivates::route('/'),
         ];
     }
 }

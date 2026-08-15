@@ -2,9 +2,17 @@
 
 namespace App\Filament\Resources\Shop\ShopProductResource\RelationManagers;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Tables\Columns\ToggleColumn;
+use Filament\Actions\CreateAction;
+use Filament\Actions\AssociateAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\DissociateAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DissociateBulkAction;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Tables;
-use Filament\Forms\Get;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Enums\ShopProductItemType;
 use Filament\Forms\Components\Select;
@@ -24,10 +32,10 @@ class ItemsRelationManager extends RelationManager
 
     protected static ?string $translateIdentifier = 'product-item';
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('name')
                     ->label(__('filament::resources.inputs.name'))
                     ->required()
@@ -73,7 +81,7 @@ class ItemsRelationManager extends RelationManager
         return $table
             ->modifyQueryUsing(fn ($query) => $query->latest())
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                TextColumn::make('name'),
 
                 TextColumn::make('type')
                     ->badge()
@@ -87,33 +95,33 @@ class ItemsRelationManager extends RelationManager
                     ->label(__('filament::resources.columns.type'))
                     ->formatStateUsing(fn (ShopProductItemType $state): string => __("filament::resources.options.{$state->value}")),
 
-                Tables\Columns\TextColumn::make('data')
+                TextColumn::make('data')
                     ->label(__('filament::resources.columns.item_data')),
 
-                Tables\Columns\TextColumn::make('data')
+                TextColumn::make('data')
                     ->label(__('filament::resources.columns.item_data')),
 
-                Tables\Columns\TextColumn::make('quantity')
+                TextColumn::make('quantity')
                     ->label(__('filament::resources.columns.quantity')),
 
-                Tables\Columns\ToggleColumn::make('is_active')
+                ToggleColumn::make('is_active')
                     ->label(__('filament::resources.columns.visible')),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
-                Tables\Actions\AssociateAction::make(),
+                CreateAction::make(),
+                AssociateAction::make(),
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DissociateAction::make(),
-                Tables\Actions\DeleteAction::make(),
+            ->recordActions([
+                EditAction::make(),
+                DissociateAction::make(),
+                DeleteAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DissociateBulkAction::make(),
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DissociateBulkAction::make(),
+                DeleteBulkAction::make(),
             ]);
     }
 }

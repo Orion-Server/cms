@@ -50,14 +50,13 @@
 
     <div class="flex gap-4 mt-6">
         @if (!$removeRegisterButton)
-        <x-ui.buttons.default
-            type="button"
-            @click="toggleToRegisterModal()"
+        <x-ui.buttons.redirectable
+            href="{{ route('register') }}"
             class="dark:bg-green-600 bg-green-500 border-green-700 hover:bg-green-400 dark:hover:bg-green-500 dark:shadow-green-700/75 shadow-green-600/75 flex-1 py-3 text-white"
         >
             <i class="fa-solid fa-user-plus"></i>
             {{ __('Register') }}
-        </x-ui.buttons.default>
+        </x-ui.buttons.redirectable>
         @endif
 
         <x-ui.buttons.loadable
@@ -70,7 +69,7 @@
         </x-ui.buttons.loadable>
     </div>
 
-    @if (!$removeSocialButtons)
+    @if (!$removeSocialButtons && !getSetting('beta_period'))
     <div class="my-6 flex items-center justify-between">
         <span class="border-b dark:border-gray-700 w-1/5 md:w-1/4"></span>
         <span class="text-xs text-gray-500 uppercase dark:text-gray-100">{{ __('or join with') }}</span>

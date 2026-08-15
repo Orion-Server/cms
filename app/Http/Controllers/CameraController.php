@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Camera;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,7 @@ class CameraController extends Controller
 
     public function toggleLike(Request $request, Camera $camera)
     {
-        $userId = \Auth::id();
+        $userId = Auth::id();
 
         $like = $camera->likes()
             ->where('user_id', $userId)

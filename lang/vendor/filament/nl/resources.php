@@ -137,6 +137,11 @@ return [
             'label' => 'Room Chatlog',
             'plural' => 'Room Chatlogs',
         ],
+        'beta-codes' => [
+            'navigation_label' => 'Manage Beta Codes',
+            'label' => 'Code',
+            'plural' => 'Codes',
+        ],
 
         // Relations
         'settings' => [
@@ -213,6 +218,7 @@ return [
         'currency_item_data_helper' => 'Voer hieronder de valutanaam in. Kan een van de volgende zijn: credits, duckets, diamanten of punten.',
 		'rank_item_data_helper' => 'Voer de Rank ID in.',
 		'empty_item_data_helper' => 'Selecteer een itemtype om de benodigde informatie te bekijken.',
+        'beta_code_data_helper' => "Leave it empty if you don't want to limit the code to specific data.",
     ],
 
     'tabs' => [
@@ -332,6 +338,8 @@ return [
         'receiver' => 'Receiver',
         'message' => 'Message',
         'room' => 'Room',
+        'code' => 'Code',
+        'valid_at' => 'Valid At'
     ],
 
     'columns' => [
@@ -395,6 +403,10 @@ return [
         'receiver' => 'Receiver',
         'message' => 'Message',
         'room' => 'Room',
+        'innapropriate' => 'Innapropriate',
+        'code' => 'Code',
+        'valid_at' => 'Valid At',
+        'rescued_at' => 'Rescued At',
     ],
 
     'options' => [
@@ -694,5 +706,6 @@ return [
         'select_all' => 'Selecteer alles',
         'deselect_all' => 'Deselecteer alles',
         'send_notifications' => 'Stuur notificaties',
+        'innapropriate' => 'Innapropriate',
     ]
 ];

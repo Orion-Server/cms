@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Article;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $id = null, string $slug = null)
+    public function show(?int $id = null, ?string $slug = null)
     {
         if (!$activeArticle = Article::fromIdAndSlug($id, $slug)->first()) {
             return redirect()->route('articles.index');
@@ -48,7 +49,7 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function toggleReaction(int $id = null, string $slug = null, Request $request)
+    public function toggleReaction(Request $request, ?int $id = null, ?string $slug = null)
     {
         $reactionType = $request->input('type');
 
@@ -65,7 +66,7 @@ class ArticleController extends Controller
         }
 
         $reaction = $activeArticle->reactions()->firstOrCreate([
-            'user_id' => \Auth::id(),
+            'user_id' => Auth::id(),
             'type' => $reactionType
         ]);
 
@@ -77,7 +78,7 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function toggleAuthorNotifications(int $id = null, string $slug = null, Request $request)
+    public function toggleAuthorNotifications(?int $id = null, ?string $slug = null)
     {
         if (!$activeArticle = Article::fromIdAndSlug($id, $slug, false)->first()) {
             return $this->jsonResponse([
@@ -86,7 +87,7 @@ class ArticleController extends Controller
         }
 
         $notification = AuthorNotification::firstOrCreate([
-            'user_id' => \Auth::id(),
+            'user_id' => Auth::id(),
             'author_id' => $activeArticle->user->id
         ]);
 

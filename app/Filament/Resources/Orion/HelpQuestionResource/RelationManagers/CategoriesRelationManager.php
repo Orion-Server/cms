@@ -2,8 +2,13 @@
 
 namespace App\Filament\Resources\Orion\HelpQuestionResource\RelationManagers;
 
+use Filament\Schemas\Schema;
+use Filament\Actions\CreateAction;
+use Filament\Actions\AttachAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\DetachAction;
+use Filament\Actions\DetachBulkAction;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Filament\Traits\TranslatableResource;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -21,9 +26,9 @@ class CategoriesRelationManager extends RelationManager
 
     protected static ?string $inverseRelationship = 'questions';
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form->schema(HelpQuestionCategoryResource::getForm());
+        return $schema->components(HelpQuestionCategoryResource::getForm());
     }
 
     public function table(Table $table): Table
@@ -34,15 +39,15 @@ class CategoriesRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
-                Tables\Actions\AttachAction::make(),
+                CreateAction::make(),
+                AttachAction::make(),
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DetachAction::make(),
+            ->recordActions([
+                EditAction::make(),
+                DetachAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DetachBulkAction::make(),
+            ->toolbarActions([
+                DetachBulkAction::make(),
             ]);
     }
 }

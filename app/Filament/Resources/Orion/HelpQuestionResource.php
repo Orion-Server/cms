@@ -2,15 +2,23 @@
 
 namespace App\Filament\Resources\Orion;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Actions\ViewAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\Orion\HelpQuestionResource\RelationManagers\CategoriesRelationManager;
+use App\Filament\Resources\Orion\HelpQuestionResource\Pages\ListHelpQuestions;
+use App\Filament\Resources\Orion\HelpQuestionResource\Pages\CreateHelpQuestion;
+use App\Filament\Resources\Orion\HelpQuestionResource\Pages\ViewHelpQuestion;
+use App\Filament\Resources\Orion\HelpQuestionResource\Pages\EditHelpQuestion;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\HelpQuestion;
 use Filament\Resources\Resource;
 use App\Forms\Components\CKEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Traits\TranslatableResource;
@@ -23,17 +31,17 @@ class HelpQuestionResource extends Resource
 
     protected static ?string $model = HelpQuestion::class;
 
-    protected static ?string $navigationIcon = 'heroicon-s-question-mark-circle';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-s-question-mark-circle';
 
-    protected static ?string $navigationGroup = 'Help Center';
+    protected static string | \UnitEnum | null $navigationGroup = 'Help Center';
 
     protected static ?string $slug = 'help/help-questions';
 
     public static string $translateIdentifier = 'help-questions';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema(static::getForm());
+        return $schema->components(static::getForm());
     }
 
     public static function getForm(): array
@@ -73,12 +81,12 @@ class HelpQuestionResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DeleteBulkAction::make(),
             ]);
     }
 
@@ -102,17 +110,17 @@ class HelpQuestionResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\CategoriesRelationManager::class
+            CategoriesRelationManager::class
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListHelpQuestions::route('/'),
-            'create' => Pages\CreateHelpQuestion::route('/create'),
-            'view' => Pages\ViewHelpQuestion::route('/{record}'),
-            'edit' => Pages\EditHelpQuestion::route('/{record}/edit'),
+            'index' => ListHelpQuestions::route('/'),
+            'create' => CreateHelpQuestion::route('/create'),
+            'view' => ViewHelpQuestion::route('/{record}'),
+            'edit' => EditHelpQuestion::route('/{record}/edit'),
         ];
     }
 }

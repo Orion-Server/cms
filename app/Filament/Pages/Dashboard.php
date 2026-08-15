@@ -9,11 +9,11 @@ class Dashboard extends FilamentDashboard
 {
     use TranslatableResource;
 
-    protected static ?string $navigationGroup = 'Dashboard';
+    protected static string | \UnitEnum | null $navigationGroup = 'Dashboard';
 
     protected static ?string $navigationLabel = 'Homepage';
 
-    protected static ?string $navigationIcon = 'heroicon-o-home';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-home';
 
     public static string $translateIdentifier = 'dashboard';
 

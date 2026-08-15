@@ -250,6 +250,11 @@ class CmsSettingsSeeder extends Seeder
                 'staff_notification_image',
                 'https://i.imgur.com/8IcBBTF.gif',
                 'The staff notification image to show on the CMS'
+            ],
+            [
+                'min_rank_to_bypass_beta_period',
+                '5',
+                'The minimum rank to bypass the beta period'
             ]
         ];
     }

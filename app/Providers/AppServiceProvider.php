@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\View;
 use Srmklive\PayPal\Services\PayPal;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
+use Filament\Schemas\Components\Fieldset;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
+use Filament\Tables\Table;
 use App\Services\Parsers\ExternalTextsParser;
-use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
+use BezhanSalleh\LanguageSwitch\LanguageSwitch;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -44,6 +48,28 @@ class AppServiceProvider extends ServiceProvider
 
         $this->bindPaypalInstance();
         $this->bootDashboardSettings();
+        $this->bootFilamentDefaults();
+    }
+
+    /**
+     * Keep the Filament v3 defaults that v4 changed.
+     *
+     * These are global defaults applied at construction, so any component that
+     * sets its own value explicitly still wins.
+     */
+    private function bootFilamentDefaults(): void
+    {
+        // v4 makes Grid/Section/Fieldset consume a single column instead of the
+        // full row, which collapses every layout in this panel to half width.
+        Grid::configureUsing(fn (Grid $component) => $component->columnSpanFull());
+        Section::configureUsing(fn (Section $component) => $component->columnSpanFull());
+        Fieldset::configureUsing(fn (Fieldset $component) => $component->columnSpanFull());
+
+        Table::configureUsing(fn (Table $table) => $table
+            // v4 defers filters, so every SelectFilter would need an extra "Apply" click.
+            ->deferFilters(false)
+            // v4 dropped 'all' from the default page options.
+            ->paginationPageOptions([5, 10, 25, 50, 'all']));
     }
 
     private function bindPaypalInstance(): void
@@ -58,18 +84,30 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap the global view variables.
+     *
+     * These are resolved through a view composer rather than `View::share()` so that
+     * neither the database (`getSetting()`) nor the current request is touched while
+     * the container is still booting. Booting-time reads break under `config:cache`
+     * and `filament:cache-components`, and would bake a stale request into the
+     * shared data on long-lived workers.
      */
     private function bootGlobalViewHelpers(): void
     {
-        View::share('fromClient', request()->has('fromClient'));
-        View::share('unsupportedFlashClient', request()->has('unsupported_flash'));
+        View::composer('*', function ($view) {
+            // `SettingsService` is a singleton that loads the whole `cms_settings`
+            // table once per container, so these reads do not hit the database again.
+            $view->with([
+                'fromClient' => request()->has('fromClient'),
+                'unsupportedFlashClient' => request()->has('unsupported_flash'),
 
-        View::share('availableLanguages', config('hotel.cms.available_languages'));
-        View::share('articleReactions', collect(ArticleReactionType::cases()));
-        View::share('headerBackground', getSetting('header_background_image', 'https://i.imgur.com/XLnDlUr.png'));
-        View::share('logo', getSetting('logo_image', 'https://i.imgur.com/ZqE16Ph.png'));
-        View::share('logoSize', explode('x', getSetting('logo_size', '263x59')));
-        View::share('usingNitroImager', getSetting('using_nitro_imager', true));
+                'availableLanguages' => config('hotel.cms.available_languages'),
+                'articleReactions' => collect(ArticleReactionType::cases()),
+                'headerBackground' => getSetting('header_background_image', 'https://i.imgur.com/XLnDlUr.png'),
+                'logo' => getSetting('logo_image', 'https://i.imgur.com/ZqE16Ph.png'),
+                'logoSize' => explode('x', getSetting('logo_size', '263x59')),
+                'usingNitroImager' => getSetting('using_nitro_imager', true),
+            ]);
+        });
     }
 
     /**

@@ -2,15 +2,17 @@
 
 namespace App\Services;
 
+use Auth;
+use Str;
 use App\Models\User;
 
 class ClientService {
     public static function updateAndGetAuthTicket($user = null): string
     {
-        if(!$user) $user = \Auth::user();
+        if(!$user) $user = Auth::user();
 
         $ssoInUse = User::whereAuthTicket(
-            $updatedSSO = \Str::uuid()
+            $updatedSSO = Str::uuid()
         )->exists();
 
         if($ssoInUse) {

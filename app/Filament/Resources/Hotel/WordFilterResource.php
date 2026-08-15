@@ -2,8 +2,12 @@
 
 namespace App\Filament\Resources\Hotel;
 
+use Filament\Schemas\Schema;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\Hotel\WordFilterResource\Pages\ManageWordFilters;
 use Filament\Tables;
-use Filament\Forms\Form;
 use App\Models\Wordfilter;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
@@ -20,18 +24,18 @@ class WordFilterResource extends Resource
 
     protected static ?string $model = Wordfilter::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-eye-slash';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-eye-slash';
 
-    protected static ?string $navigationGroup = 'Hotel';
+    protected static string | \UnitEnum | null $navigationGroup = 'Hotel';
 
     protected static ?string $slug = 'hotel/wordfilters';
 
     public static string $translateIdentifier = 'word-filters';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('key')
                     ->label(__('filament::resources.inputs.key'))
                     ->maxLength(256)
@@ -103,19 +107,19 @@ class WordFilterResource extends Resource
             ->filters([
 
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+            ->recordActions([
+                EditAction::make(),
+                DeleteAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DeleteBulkAction::make(),
             ]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageWordFilters::route('/'),
+            'index' => ManageWordFilters::route('/'),
         ];
     }
 }

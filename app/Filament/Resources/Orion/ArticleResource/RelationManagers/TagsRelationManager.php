@@ -2,9 +2,15 @@
 
 namespace App\Filament\Resources\Orion\ArticleResource\RelationManagers;
 
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
+use Filament\Actions\CreateAction;
+use Filament\Actions\AttachAction;
+use Filament\Actions\ViewAction;
+use Filament\Actions\DetachAction;
+use Filament\Actions\DetachBulkAction;
 use Filament\Forms;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Filament\Resources\Orion\TagResource;
 use App\Filament\Traits\TranslatableResource;
@@ -20,11 +26,11 @@ class TagsRelationManager extends RelationManager
 
     public static string $translateIdentifier = 'tags';
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
+        return $schema
+            ->components([
+                TextInput::make('name')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -39,17 +45,17 @@ class TagsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make()
-                    ->form(TagResource::getForm()),
+                CreateAction::make()
+                    ->schema(TagResource::getForm()),
 
-                Tables\Actions\AttachAction::make()->preloadRecordSelect()
+                AttachAction::make()->preloadRecordSelect()
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\DetachAction::make(),
+            ->recordActions([
+                ViewAction::make(),
+                DetachAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DetachBulkAction::make(),
+            ->toolbarActions([
+                DetachBulkAction::make(),
             ]);
     }
 }

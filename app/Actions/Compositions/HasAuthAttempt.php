@@ -2,6 +2,7 @@
 
 namespace App\Actions\Compositions;
 
+use App;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
 
@@ -18,7 +19,7 @@ trait HasAuthAttempt
 
     private function validateClientIp(string $ip): self
     {
-        $flags = \App::isProduction()
+        $flags = App::isProduction()
             ? FILTER_FLAG_NO_RES_RANGE | FILTER_FLAG_NO_PRIV_RANGE
             : FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6;
 

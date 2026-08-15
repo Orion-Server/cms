@@ -2,8 +2,13 @@
 
 namespace App\Filament\Resources\Orion;
 
+use Filament\Schemas\Schema;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\Orion\WriteableBoxResource\Pages\ManageWriteableBoxes;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\WriteableBox;
 use Filament\Resources\Resource;
@@ -25,18 +30,18 @@ class WriteableBoxResource extends Resource
 
     protected static ?string $model = WriteableBox::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
 
-    protected static ?string $navigationGroup = 'Website';
+    protected static string | \UnitEnum | null $navigationGroup = 'Website';
 
     protected static ?string $slug = 'website/writeable-boxes';
 
     public static string $translateIdentifier = 'writeable-boxes';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('name')
                     ->label(__('filament::resources.inputs.name'))
                     ->maxLength(255)
@@ -119,20 +124,20 @@ class WriteableBoxResource extends Resource
                         0 => __('filament::resources.options.no'),
                     ])
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\DeleteAction::make(),
+            ->recordActions([
+                EditAction::make(),
+                ViewAction::make(),
+                DeleteAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DeleteBulkAction::make(),
             ]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageWriteableBoxes::route('/'),
+            'index' => ManageWriteableBoxes::route('/'),
         ];
     }
 }

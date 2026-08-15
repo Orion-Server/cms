@@ -2,6 +2,7 @@
 
 namespace App\Models\HelpQuestion;
 
+use Str;
 use App\Http\Controllers\HelpQuestionController;
 use App\Models\HelpQuestion;
 use Illuminate\Database\Eloquent\{
@@ -25,11 +26,11 @@ class HelpQuestionCategory extends Model
         parent::boot();
 
         static::creating(function (HelpQuestionCategory $category) {
-            $category->slug = \Str::slug($category->name);
+            $category->slug = Str::slug($category->name);
         });
 
         static::updating(function (HelpQuestionCategory $category) {
-            $category->slug = \Str::slug($category->name);
+            $category->slug = Str::slug($category->name);
         });
     }
 

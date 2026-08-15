@@ -2,8 +2,12 @@
 
 namespace App\Filament\Resources\Orion\TagResource\RelationManagers;
 
+use Filament\Schemas\Schema;
+use Filament\Actions\AttachAction;
+use Filament\Actions\ViewAction;
+use Filament\Actions\DetachAction;
+use Filament\Actions\DetachBulkAction;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Filament\Traits\TranslatableResource;
 use App\Filament\Resources\Orion\ArticleResource;
@@ -19,10 +23,10 @@ class ArticlesRelationManager extends RelationManager
 
     public static string $translateIdentifier = 'article';
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema(ArticleResource::getForm());
+        return $schema
+            ->components(ArticleResource::getForm());
     }
 
     public function table(Table $table): Table
@@ -34,15 +38,15 @@ class ArticlesRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\AttachAction::make()
+                AttachAction::make()
                     ->preloadRecordSelect(),
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\DetachAction::make(),
+            ->recordActions([
+                ViewAction::make(),
+                DetachAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DetachBulkAction::make(),
+            ->toolbarActions([
+                DetachBulkAction::make(),
             ]);
     }
 }

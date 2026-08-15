@@ -10,9 +10,9 @@ use Illuminate\Contracts\Support\Htmlable;
 
 class ArticlesAggregateChart extends ChartWidget
 {
-    protected static ?string $maxHeight = '300px';
+    protected ?string $maxHeight = '300px';
 
-    protected static string $color = 'primary';
+    protected string $color = 'primary';
 
     public function getHeading(): string | Htmlable | null
     {

@@ -2,17 +2,18 @@
 
 namespace App\Filament\Resources\User\UserResource\RelationManagers;
 
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
+use Filament\Actions\CreateAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Services\RconService;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Notifications\Notification;
-use Filament\Tables\Actions\CreateAction;
-use Filament\Tables\Actions\DeleteAction;
 use App\Filament\Traits\TranslatableResource;
-use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Tables\Columns\HabboBadgeColumn;
 use Filament\Resources\RelationManagers\RelationManager;
 
@@ -26,11 +27,11 @@ class BadgesRelationManager extends RelationManager
 
     protected static ?string $translateIdentifier = 'badges';
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('badge_code')
+        return $schema
+            ->components([
+                TextInput::make('badge_code')
                     ->label(__('filament::resources.inputs.badge_code'))
                     ->required()
                     ->maxLength(255)
@@ -90,11 +91,11 @@ class BadgesRelationManager extends RelationManager
                         $action->cancel();
                     }),
             ])
-            ->actions([
+            ->recordActions([
                 DeleteAction::make()
                     ->before(fn (DeleteAction $action, RelationManager $livewire) => self::onDeleteBadgeAction($action, $livewire)),
             ])
-            ->bulkActions([
+            ->toolbarActions([
                 DeleteBulkAction::make()
                     ->before(fn (DeleteBulkAction $action, RelationManager $livewire) => self::onDeleteBadgeAction($action, $livewire)),
             ]);

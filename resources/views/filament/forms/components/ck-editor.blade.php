@@ -1,13 +1,11 @@
+{{--
+    Filament 4's field-wrapper dropped the helperText/hint/hintIcon props, and
+    $getHelperText() no longer exists on the field at all. Passing the field
+    itself lets the wrapper derive id, label, required, state path and disabled.
+--}}
 <x-dynamic-component
     :component="$getFieldWrapperView()"
-    :id="$getId()"
-    :label="$getLabel()"
-    :label-sr-only="$isLabelHidden()"
-    :helper-text="$getHelperText()"
-    :hint="$getHint()"
-    :hint-icon="$getHintIcon()"
-    :required="$isRequired()"
-    :state-path="$getStatePath()"
+    :field="$field"
     class="relative z-0"
 >
     <div x-data="{ state: $wire.{{ $applyStateBindingModifiers('entangle(\'' . $getStatePath() . '\')') }}, initialized: false, editorChanged: false }"
@@ -208,13 +206,11 @@
                 placeholder="{{ $getPlaceholder() }}"
             >
         @else
+            {{-- Styled in public/assets/css/filament.css: Filament 4 no longer compiles
+                 Tailwind utilities used in application-owned panel views. --}}
             <div
                 x-html="state"
-                style="font-size: 13px"
-                @class([
-                    'prose ck-content block w-full max-w-none rounded-lg border border-gray-300 bg-white p-3 opacity-70 shadow-sm transition duration-75',
-                    'dark:prose-invert dark:bg-gray-700 dark:border-gray-600 dark:text-white' => true,
-                ])
+                class="ck-content orion-ck-editor-disabled"
             ></div>
         @endunless
     </div>

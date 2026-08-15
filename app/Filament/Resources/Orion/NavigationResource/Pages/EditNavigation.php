@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Orion\NavigationResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use App\Filament\Resources\Orion\NavigationResource;
@@ -13,7 +14,7 @@ class EditNavigation extends EditRecord
     protected function getActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 }

@@ -23,6 +23,18 @@
             @submit.prevent="onFormRegisterSubmit"
         >
             <div class="col-span-2 p-4 flex flex-col gap-6">
+                @if(!! getSetting('beta_period'))
+                    <div class="flex flex-col bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 p-4 rounded-lg">
+                        <x-ui.input
+                            label="{{ __('Beta Code') }}"
+                            id="beta-code"
+                            icon="fa-regular fa-envelope"
+                            alpine-model="registerData.beta_code"
+                            placeholder="{{ __('Beta Code') }}"
+                            type="text"
+                        />
+                    </div>
+                @endif
 
                 <div class="flex flex-col">
                     <x-ui.input
@@ -167,7 +179,6 @@
                 </div>
             </div>
         </form>
-
     </div>
 </x-container>
 @endsection

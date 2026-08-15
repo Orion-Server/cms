@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\User;
 use App\Models\Camera;
 use App\Models\Article;
@@ -18,7 +19,7 @@ class WebController extends Controller
 
     public function index(): View
     {
-        $isAuthenticated = \Auth::check();
+        $isAuthenticated = Auth::check();
         $defaultArticles = Article::forIndex($this->getArticlesLimit('default', $isAuthenticated));
 
         if($isAuthenticated) {
@@ -29,8 +30,8 @@ class WebController extends Controller
         $compactValues = ['defaultArticles'];
 
         if ($isAuthenticated) {
-            $onlineFriends = \Auth::user()->getOnlineFriends();
-            $referredUsersCount = \Auth::user()->referredUsers()->count();
+            $onlineFriends = Auth::user()->getOnlineFriends();
+            $referredUsersCount = Auth::user()->referredUsers()->count();
             $friendStories = Camera::getFriendsWhoHaveStories();
 
             $fixedArticles = Article::forIndex($this->getArticlesLimit('fixed', $isAuthenticated))

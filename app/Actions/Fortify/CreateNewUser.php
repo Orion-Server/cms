@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use Throwable;
 use App\Models\User;
 use App\Rules\RecaptchaRule;
 use App\Rules\TurnstileCheck;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Actions\Compositions\HasAuthAttempt;
+use App\Models\BetaCode;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -42,10 +44,21 @@ class CreateNewUser implements CreatesNewUsers
                 'ip_current' => $userIp,
                 'account_day_of_birth' => strtotime($input['birthday']),
                 'look' => $input['look'] ?? (getSetting($input['gender'] == 'M' ? 'start_male_look' : 'start_female_look')),
+                'beta_code' => !! getSetting('beta_period') ? $input['beta_code'] : null,
             ]), function (User $user) use ($input) {
-                if(!isset($input['referrer_code'])) return;
+                if(isset($input['referrer_code'])) {
+                    $this->setReferrer($user, $input['referrer_code']);
+                }
 
-                $this->setReferrer($user, $input['referrer_code']);
+                if(isset($input['beta_code'])) {
+                    $code = BetaCode::whereCode($input['beta_code'])->whereNull('rescued_at')->first();
+
+                    if(!$code) return;
+
+                    $code->update([
+                        'rescued_at' => now()
+                    ]);
+                }
             });
         });
     }
@@ -92,11 +105,24 @@ class CreateNewUser implements CreatesNewUsers
             $validations['cf-turnstile-response'] = ['required', 'string', new TurnstileCheck];
         }
 
+        if(!! getSetting('beta_period')) {
+            $validations['beta_code'] = ['required', 'string', function($attribute, $value, $fail) {
+                if(! $key = BetaCode::whereCode($value)->whereNull('rescued_at')->first()) {
+                    $fail(__('Beta code not found or already used.'));
+                    return;
+                }
+
+                if($key->valid_at != null && $key->valid_at->lte(now())) {
+                    $fail(__('This beta code has expired.'));
+                }
+            }];
+        }
+
         try {
             $gender = config('hotel.cms.register.register_looks')[$input['gender']];
 
             array_push($validations['look'], Rule::in($gender));
-        } catch (\Throwable $ignored) {}
+        } catch (Throwable $ignored) {}
 
         return Validator::make($input, $validations)
             ->stopOnFirstFailure()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Profile;
 
+use Auth;
 use App\Enums\NotificationType;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class MessageController extends Controller
             ], 404);
         }
 
-        $authUser = \Auth::user();
+        $authUser = Auth::user();
 
         if($authUser->homeMessages()->where('created_at', '>', now()->subMinute())->exists()) {
             return $this->jsonResponse([

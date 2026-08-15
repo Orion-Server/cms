@@ -11,8 +11,8 @@ class AuthSessionController extends AuthenticatedSessionController
     /**
      * Destroy an authenticated session.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Laravel\Fortify\Contracts\LogoutResponse
+     * @param Request $request
+     * @return LogoutResponse
      */
     public function destroy(Request $request): LogoutResponse
     {

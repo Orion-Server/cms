@@ -2,13 +2,19 @@
 
 namespace App\Filament\Resources\Orion;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Actions\EditAction;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\Orion\NavigationResource\RelationManagers\SubNavigationsRelationManager;
+use App\Filament\Resources\Orion\NavigationResource\Pages\ListNavigations;
+use App\Filament\Resources\Orion\NavigationResource\Pages\CreateNavigation;
+use App\Filament\Resources\Orion\NavigationResource\Pages\EditNavigation;
 use Filament\Tables;
-use Filament\Forms\Form;
 use App\Models\Navigation;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
@@ -23,18 +29,18 @@ class NavigationResource extends Resource
 
     protected static ?string $model = Navigation::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-bars-3';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-bars-3';
 
-    protected static ?string $navigationGroup = 'Website';
+    protected static string | \UnitEnum | null $navigationGroup = 'Website';
 
     protected static ?string $slug = 'website/navigations';
 
     public static string $translateIdentifier = 'navigations';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make()
                     ->schema([
                         TextInput::make('label')
@@ -92,27 +98,27 @@ class NavigationResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DeleteBulkAction::make(),
             ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            RelationManagers\SubNavigationsRelationManager::class,
+            SubNavigationsRelationManager::class,
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListNavigations::route('/'),
-            'create' => Pages\CreateNavigation::route('/create'),
-            'edit' => Pages\EditNavigation::route('/{record}/edit'),
+            'index' => ListNavigations::route('/'),
+            'create' => CreateNavigation::route('/create'),
+            'edit' => EditNavigation::route('/{record}/edit'),
         ];
     }
 }

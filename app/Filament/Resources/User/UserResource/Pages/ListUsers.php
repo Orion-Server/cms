@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\User\UserResource\Pages;
 
+use Filament\Actions\Action;
+use Filament\Actions\CreateAction;
 use App\Models\User;
 use Filament\Actions;
 use App\Enums\NotificationType;
@@ -20,12 +22,12 @@ class ListUsers extends ListRecords
     protected function getActions(): array
     {
         return [
-            Actions\Action::make(__('filament::resources.actions.send_notifications'))
+            Action::make(__('filament::resources.actions.send_notifications'))
                 ->modal()
                 ->color('gray')
                 ->modalHeading(__('filament::resources.actions.send_notifications'))
                 ->icon('heroicon-o-bell')
-                ->form([
+                ->schema([
                     Select::make('users')
                         ->label(__('filament::resources.inputs.users'))
                         ->searchable()
@@ -77,7 +79,7 @@ class ListUsers extends ListRecords
                         ->send();
                 }),
 
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

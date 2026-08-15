@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Str;
 use App\Enums\NotificationType;
 use Filament\Panel;
 use Laravel\Sanctum\HasApiTokens;
@@ -72,7 +73,8 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
         'team_id',
         'provider_id',
         'account_day_of_birth',
-        'is_hidden'
+        'is_hidden',
+        'beta_code'
     ];
 
     /**
@@ -144,7 +146,7 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
             'look' => $data['look'] ?? getSetting('start_male_look'),
             'credits' => getSetting('start_credits'),
             'home_room' => getSetting('start_room_id'),
-            'referral_code' => \Str::random(15),
+            'referral_code' => Str::random(15),
             'avatar_background' => isset($data['avatar_background']) ? $data['avatar_background'] : getSetting('default_avatar_background'),
         ]);
     }
@@ -196,6 +198,11 @@ class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
     public function rooms(): HasMany
     {
         return $this->hasMany(Room::class, 'owner_id');
+    }
+
+    public function betaCode()
+    {
+        return $this->belongsTo(BetaCode::class, 'beta_code', 'code');
     }
 
     public function roles(): HasManyThrough

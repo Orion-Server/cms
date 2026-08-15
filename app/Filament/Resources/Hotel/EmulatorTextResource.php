@@ -2,8 +2,12 @@
 
 namespace App\Filament\Resources\Hotel;
 
+use Filament\Schemas\Schema;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\Hotel\EmulatorTextResource\Pages\ManageEmulatorTexts;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\EmulatorText;
 use Filament\Resources\Resource;
@@ -18,18 +22,18 @@ class EmulatorTextResource extends Resource
 
     protected static ?string $model = EmulatorText::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-clipboard-document-list';
 
-    protected static ?string $navigationGroup = 'Hotel';
+    protected static string | \UnitEnum | null $navigationGroup = 'Hotel';
 
     protected static ?string $slug = 'hotel/emulator-texts';
 
     public static string $translateIdentifier = 'emulator-texts';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 TextInput::make('key')
                     ->label(__('filament::resources.inputs.key'))
                     ->required()
@@ -58,12 +62,12 @@ class EmulatorTextResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -78,7 +82,7 @@ class EmulatorTextResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageEmulatorTexts::route('/'),
+            'index' => ManageEmulatorTexts::route('/'),
         ];
     }
 }

@@ -14,7 +14,7 @@ enum HomeItemType: string
         return array_column(self::cases(), 'value');
     }
 
-    public static function valuesExcept(HomeItemType $exceptValue = null): array
+    public static function valuesExcept(?HomeItemType $exceptValue = null): array
     {
         return array_filter(self::values(), fn ($value) => $value !== $exceptValue->value);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Services\Parsers\Badge;
 
+use Throwable;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\{
     Str,
@@ -69,7 +70,7 @@ class FlashBadgeParser extends BadgeParser
                         $splitted[0] => $splitted[1] // badge_text => badge_text_value
                     ];
                 });
-        } catch (\Throwable $error) {
+        } catch (Throwable $error) {
             Log::error('[ORION FLASH PARSER] - Error while parsing flash texts: ' . $error->getMessage());
             $this->flashTexts = null;
         }

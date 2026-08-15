@@ -2,13 +2,20 @@
 
 namespace App\Filament\Resources\Shop;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\Shop\ShopCategoryResource\Pages\ListShopCategories;
+use App\Filament\Resources\Shop\ShopCategoryResource\Pages\CreateShopCategory;
+use App\Filament\Resources\Shop\ShopCategoryResource\Pages\ViewShopCategory;
+use App\Filament\Resources\Shop\ShopCategoryResource\Pages\EditShopCategory;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\ShopCategory;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
@@ -22,18 +29,18 @@ class ShopCategoryResource extends Resource
 
     protected static ?string $model = ShopCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-tag';
 
-    protected static ?string $navigationGroup = 'Shop';
+    protected static string | \UnitEnum | null $navigationGroup = 'Shop';
 
     protected static ?string $slug = 'shop/categories';
 
     public static string $translateIdentifier = 'shop-categories';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make()
                     ->schema([
                         TextInput::make('name')
@@ -78,12 +85,12 @@ class ShopCategoryResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
+            ->recordActions([
+                EditAction::make(),
+                ViewAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                DeleteBulkAction::make(),
             ]);
     }
 
@@ -97,10 +104,10 @@ class ShopCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListShopCategories::route('/'),
-            'create' => Pages\CreateShopCategory::route('/create'),
-            'view' => Pages\ViewShopCategory::route('/{record}'),
-            'edit' => Pages\EditShopCategory::route('/{record}/edit'),
+            'index' => ListShopCategories::route('/'),
+            'create' => CreateShopCategory::route('/create'),
+            'view' => ViewShopCategory::route('/{record}'),
+            'edit' => EditShopCategory::route('/{record}/edit'),
         ];
     }
 }

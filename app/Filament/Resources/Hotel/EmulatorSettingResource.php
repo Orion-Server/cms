@@ -2,12 +2,17 @@
 
 namespace App\Filament\Resources\Hotel;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Actions\ViewAction;
+use Filament\Actions\EditAction;
+use App\Filament\Resources\Hotel\EmulatorSettingResource\Pages\ListEmulatorSettings;
+use App\Filament\Resources\Hotel\EmulatorSettingResource\Pages\CreateEmulatorSetting;
+use App\Filament\Resources\Hotel\EmulatorSettingResource\Pages\EditEmulatorSetting;
 use Filament\Tables;
-use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\EmulatorSetting;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Card;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use App\Filament\Traits\TranslatableResource;
@@ -19,19 +24,19 @@ class EmulatorSettingResource extends Resource
 
     protected static ?string $model = EmulatorSetting::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-adjustments-horizontal';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-adjustments-horizontal';
 
-    protected static ?string $navigationGroup = 'Hotel';
+    protected static string | \UnitEnum | null $navigationGroup = 'Hotel';
 
     public static string $translateIdentifier = 'emulator-settings';
 
     protected static ?string $slug = 'hotel/emulator-settings';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Card::make()
+        return $schema
+            ->components([
+                Section::make()
                     ->schema([
                         TextInput::make('key')
                             ->label(__('filament::resources.inputs.key'))
@@ -62,11 +67,11 @@ class EmulatorSettingResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                ViewAction::make(),
+                EditAction::make(),
             ])
-            ->bulkActions([]);
+            ->toolbarActions([]);
     }
 
     public static function getRelations(): array
@@ -79,9 +84,9 @@ class EmulatorSettingResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListEmulatorSettings::route('/'),
-            'create' => Pages\CreateEmulatorSetting::route('/create'),
-            'edit' => Pages\EditEmulatorSetting::route('/{record}/edit'),
+            'index' => ListEmulatorSettings::route('/'),
+            'create' => CreateEmulatorSetting::route('/create'),
+            'edit' => EditEmulatorSetting::route('/{record}/edit'),
         ];
     }
 }

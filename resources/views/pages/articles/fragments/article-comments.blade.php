@@ -25,7 +25,13 @@
                 </span>
             </div>
             <div class="w-full text-sm text-justify dark:text-light-200 mb-4">
-                {!! $comment->renderedContent !!}
+                @if($comment->innapropriate)
+                    <div class="w-full bg-red-100 dark:bg-red-700 text-red-500 dark:text-red-200 p-2 rounded-lg border border-red-200 dark:border-red-700">
+                        <i class="fa-solid fa-exclamation-triangle"></i> {{ __('This comment has been marked as innapropriate.') }}
+                    </div>
+                @else
+                    {!! $comment->renderedContent !!}
+                @endif
             </div>
         </div>
         <div class="w-full h-14 p-1 bg-gray-100 dark:bg-slate-800 rounded-b-lg border-t dark:border-gray-700">

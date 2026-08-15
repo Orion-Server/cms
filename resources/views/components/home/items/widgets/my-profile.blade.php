@@ -8,7 +8,7 @@
     <span class="max-w-[120px] text-xss">
         {{ __('Created on:') }}
         <br>
-        {{ \Carbon\Carbon::parse($user->account_created)->format('Y-m-d H:i') }}
+        {{ \Carbon\Carbon::createFromTimestamp($user->account_created)->format('Y-m-d H:i') }}
     </span>
     <div @class([
         "w-[64px] absolute bottom-1",

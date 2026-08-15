@@ -2,23 +2,23 @@
 
 namespace App\Filament\Resources\Orion\PermissionResource\Pages;
 
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
+use Filament\Actions\Action;
+use Filament\Support\Enums\Size;
 use Illuminate\Support\Str;
 use App\Services\RoleService;
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Section;
-use Filament\Support\Enums\ActionSize;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
-use Filament\Forms\Components\Actions\Action;
 use App\Filament\Resources\Orion\PermissionResource;
 
 class EditPermissionRoles extends EditRecord
 {
     protected static string $resource = PermissionResource::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static string $translateIdentifier = 'permission-roles';
 
@@ -84,11 +84,11 @@ class EditPermissionRoles extends EditRecord
         return $data;
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->statePath('roles')
-            ->schema([
+            ->components([
                 Grid::make()
                     ->columns([
                         'default' => 2
@@ -110,7 +110,7 @@ class EditPermissionRoles extends EditRecord
                                 ->columnSpan(1)
                                 ->headerActions([
                                     Action::make('select_all')
-                                        ->size(ActionSize::ExtraSmall)
+                                        ->size(Size::ExtraSmall)
                                         ->icon('heroicon-o-bookmark')
                                         ->label(__('filament::resources.actions.select_all'))
                                         ->action(function() use ($policyName) {
@@ -122,7 +122,7 @@ class EditPermissionRoles extends EditRecord
                                         }),
 
                                     Action::make('deselect_all')
-                                        ->size(ActionSize::ExtraSmall)
+                                        ->size(Size::ExtraSmall)
                                         ->icon('heroicon-o-bookmark-slash')
                                         ->color('danger')
                                         ->label(__('filament::resources.actions.deselect_all'))

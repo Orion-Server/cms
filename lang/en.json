@@ -347,5 +347,11 @@
     "Your purchase has been delivered! Thank you for supporting us.": "Your purchase has been delivered! Thank you for supporting us.",
     "registered using your referral link.": "registered using your referral link.",
     "You cannot edit this user!": "You cannot edit this user",
-    "You cannot edit users with a higher rank than yours.": "You cannot edit users with a higher rank than yours."
+    "You cannot edit users with a higher rank than yours.": "You cannot edit users with a higher rank than yours.",
+    "Please, type a valid comment.": "Please, type a valid comment.",
+    "This comment has been marked as innapropriate.": "This comment has been marked as innapropriate.",
+    "Beta code not found or already used.": "Beta code not found or already used.",
+    "This beta code has expired.": "This beta code has expired.",
+    "Only staffs can login during maintenance.": "Only staffs can login during maintenance.",
+    "You need a valid beta code to login.": "You need a valid beta code to login."
 }

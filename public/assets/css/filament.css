@@ -23,3 +23,34 @@
     width: 34px;
     height: 34px;
 }
+
+/*
+ * Filament 4 compiles its own views with @apply and ships the result, so Tailwind
+ * utility classes written in application-owned panel views are no longer part of
+ * any stylesheet. These rules replace the utilities those views used to rely on.
+ */
+
+.orion-user-avatar {
+    padding-left: 0.75rem;
+    image-rendering: pixelated;
+}
+
+.orion-ck-editor-disabled {
+    display: block;
+    width: 100%;
+    max-width: none;
+    padding: 0.75rem;
+    font-size: 13px;
+    background-color: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    opacity: 0.7;
+    transition: all 75ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .orion-ck-editor-disabled {
+    color: #fff;
+    background-color: #374151;
+    border-color: #4b5563;
+}

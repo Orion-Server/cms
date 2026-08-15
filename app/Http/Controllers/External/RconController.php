@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\External;
 
+use Auth;
 use App\Models\User;
 use App\Services\RconService;
 use App\Http\Controllers\Controller;
@@ -14,7 +15,7 @@ class RconController extends Controller
             return $this->externalJsonResponse('error', 'RCON is not enabled');
         }
 
-        $follower = \Auth::user();
+        $follower = Auth::user();
 
         if(!$follower->online) {
             return $this->externalJsonResponse('error', 'You must be online to follow a user');
@@ -37,7 +38,7 @@ class RconController extends Controller
             return $this->externalJsonResponse('error', 'You need to be friends to be able to follow this user');
         }
 
-        $rcon->followUser(\Auth::id(), $user->id);
+        $rcon->followUser(Auth::id(), $user->id);
 
         return $this->externalJsonResponse('success', "You followed the user {$user->username}.");
     }

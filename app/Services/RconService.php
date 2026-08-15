@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Throwable;
 use App\Enums\CurrencyType;
 use Socket;
 use Carbon\Carbon;
@@ -41,13 +42,13 @@ class RconService
 
         try {
             $this->socket = socket_create(config('hotel.rcon.domain'), config('hotel.rcon.type'), config('hotel.rcon.protocol'));
-        } catch (\Throwable) {
+        } catch (Throwable) {
             throw new Error(sprintf('socket_create failed. PHP Error: [%s]', socket_strerror(socket_last_error())));
         }
 
         try {
             $this->connected = socket_connect($this->socket, config('hotel.rcon.host'), config('hotel.rcon.port'));
-        } catch (\Throwable) {
+        } catch (Throwable) {
             throw new Error(sprintf('socket_create failed. PHP Error: [%s]', socket_strerror(socket_last_error())));
         }
     }
@@ -284,7 +285,7 @@ class RconService
     {
         try {
             $this->{$method}(...$args);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             if ($fallback) $fallback($e);
         }
     }
